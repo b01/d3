@@ -1,0 +1,22 @@
+ - Implement profile request (DONE)
+	- first time request
+		- request the users profile from battle net (DONE).
+		- store the battlenet profile in local database
+			- store the users IP, along with their battleNetID, and date the profile request was made.
+		- present the profile to the user
+ - Store each item requested:
+	- implement a form that takes an item name
+	- get the item data
+		- check for the data in local database
+			- if not, request the item data from battle net.
+				- store the data in the database
+				- pass the data stored back to the app
+	- present the data to a user
+ - Store each profile requested
+ - Calculate damage formula in JS.
+ - Calculate the following in JavaScript:
+	crit chance,
+	crit damage,
+	dps
+ - Setup basic Google analytics and webmaster tools.
+ - Implement code to track the numver of BattleNet request

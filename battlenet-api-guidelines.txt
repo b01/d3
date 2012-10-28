@@ -1,0 +1,35 @@
+Diablo 3: Web API (subset)
+------------------------------------------
+NOTE: Blizzard Entertainment reserves the right to change the location and definition of what constitutes an application and Blizzard Entertainment Web API resources at any time.
+
+Resources - any data that can be accessed through HTTP requests to URLs on the Battle.net website that begin with “/api”.
+
+	Example applications include, but are not limited to:
+
+		Client libraries
+		Desktop applications
+		Services and deamons such as websites and web services
+		Scripts and non-compiled applications and utilities
+
+Access:
+	Applications may make up to a total of 10,000 unauthenticated (or 50,000 authenticated) requests per day.
+	Applications may not use multiple forms of access, including making any combination of unauthenticated and authenticated requests or using multiple API keys, to make more requests than permitted by the guidelines above.
+	Applications may not use other third-party services to make additional requests on their behalf.
+	Applications may not sell, share, transfer, or distribute application access keys or tokens.
+	Applications may be classified, solely at Blizzard Entertainment's discretion, to allow fewer or greater numbers of requests per day.
+	Blizzard Entertainment also reserves the right to revoke access to the API completely and without warning.
+	
+Charging fees - Applications may not charge premiums for features that use the API.
+
+Application code:
+	Must be completely visible.
+	Programming code of an application must in no way be hidden or obfuscated
+	Must be freely accessible to and viewable by the general public (a.k.a open source).
+	
+Applications may not imply any association with, or endorsement by, Blizzard Entertainment.
+
+Applications must not contain offensive or objectionable material.
+
+Applications may not use names based on Blizzard’s trademarks or taken from Blizzard's products as the name, or part of the name, of the application.
+
+Applications that use Blizzard Entertainment intellectual property, such as Blizzard Web API resources, require a license for that use.

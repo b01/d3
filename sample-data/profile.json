@@ -1,0 +1,1145 @@
+{
+   "heroes":[
+      {
+         "name":"Khalil",
+         "id":3955832,
+         "level":60,
+         "hardcore":false,
+         "paragonLevel":10,
+         "gender":0,
+         "dead":false,
+         "class":"monk",
+         "last-updated":1351304718
+      },
+      {
+         "name":"Karth",
+         "id":10977233,
+         "level":60,
+         "hardcore":false,
+         "paragonLevel":0,
+         "gender":0,
+         "dead":false,
+         "class":"barbarian",
+         "last-updated":1351104483
+      },
+      {
+         "name":"Khal",
+         "id":25879532,
+         "level":54,
+         "hardcore":false,
+         "paragonLevel":0,
+         "gender":0,
+         "dead":false,
+         "class":"demon-hunter",
+         "last-updated":1351225872
+      },
+      {
+         "name":"Khal",
+         "id":25879566,
+         "level":47,
+         "hardcore":false,
+         "paragonLevel":0,
+         "gender":0,
+         "dead":false,
+         "class":"witch-doctor",
+         "last-updated":1347153680
+      },
+      {
+         "name":"Khalil",
+         "id":26845518,
+         "level":38,
+         "hardcore":true,
+         "paragonLevel":0,
+         "gender":0,
+         "dead":true,
+         "class":"monk",
+         "last-updated":1347928825
+      },
+      {
+         "name":"Khalil",
+         "id":27302374,
+         "level":37,
+         "hardcore":true,
+         "paragonLevel":0,
+         "gender":0,
+         "dead":false,
+         "class":"monk",
+         "last-updated":1351121108
+      },
+      {
+         "name":"Khalif",
+         "id":25879670,
+         "level":34,
+         "hardcore":false,
+         "paragonLevel":0,
+         "gender":0,
+         "dead":false,
+         "class":"wizard",
+         "last-updated":1347165976
+      },
+      {
+         "name":"Khalil",
+         "id":27283618,
+         "level":11,
+         "hardcore":true,
+         "paragonLevel":0,
+         "gender":0,
+         "dead":true,
+         "class":"monk",
+         "last-updated":1348787065
+      },
+      {
+         "name":"Khalil",
+         "id":26929973,
+         "level":6,
+         "hardcore":true,
+         "paragonLevel":0,
+         "gender":0,
+         "dead":true,
+         "class":"monk",
+         "last-updated":1347937707
+      }
+   ],
+   "lastHeroPlayed":3955832,
+   "lastUpdated":1351304718,
+   "artisans":[
+      {
+         "slug":"blacksmith",
+         "level":10,
+         "stepCurrent":0,
+         "stepMax":5
+      },
+      {
+         "slug":"jeweler",
+         "level":10,
+         "stepCurrent":0,
+         "stepMax":1
+      }
+   ],
+   "hardcoreArtisans":[
+      {
+         "slug":"blacksmith",
+         "level":5,
+         "stepCurrent":2,
+         "stepMax":5
+      },
+      {
+         "slug":"jeweler",
+         "level":4,
+         "stepCurrent":0,
+         "stepMax":1
+      }
+   ],
+   "kills":{
+      "monsters":129340,
+      "elites":7818,
+      "hardcoreMonsters":20043
+   },
+   "timePlayed":{
+      "barbarian":0.469,
+      "demon-hunter":0.258,
+      "monk":1.0,
+      "witch-doctor":0.16,
+      "wizard":0.114
+   },
+   "fallenHeroes":[
+      {
+         "stats":{
+            "life":822,
+            "damage":190.043,
+            "armor":774,
+            "strength":122,
+            "dexterity":339,
+            "vitality":69,
+            "intelligence":87,
+            "physicalResist":0,
+            "fireResist":8,
+            "coldResist":8,
+            "lightningResist":8,
+            "poisonResist":8,
+            "arcaneResist":8,
+            "damageIncrease":3.390000104904175,
+            "critChance":0.05000000074505806,
+            "damageReduction":0.39209699630737305
+         },
+         "kills":{
+            "elites":220
+         },
+         "items":{
+            "head":{
+               "id":"SpiritStone_003",
+               "name":"Adventuring Third Eye of Invasion",
+               "icon":"spiritstone_003_demonhunter_male",
+               "displayColor":"blue",
+               "tooltipParams":"item/CiUIyJjH8wkSBwgEFZa1hfEdluICIB0nlkBgMAk42ANAAFAIYJAEGNOp0ucBUAhYAA"
+            },
+            "torso":{
+               "id":"ChestArmor_004",
+               "name":"Titan's Savvy",
+               "icon":"chestarmor_004_monk_male",
+               "displayColor":"yellow",
+               "tooltipParams":"item/Cj4IydOglg4SBwgEFasZGWAdnZftbB2MJv6rHdPC7I8dFqTT2CILCAEVcUIDABgaIAYwCTjrA0AASAtQDGCrBBjW5siBDFAIWAA"
+            },
+            "feet":{
+               "id":"Boots_005",
+               "name":"Cosmic Crushers",
+               "icon":"boots_005_monk_male",
+               "displayColor":"yellow",
+               "tooltipParams":"item/CkgI6rP_vAsSBwgEFRs9m38dSFJ1-h2MJv6rHbpb6Egdd_dKBx0J6lAIHRCRU2giCwgAFa3-AQAYHCAMMAk4kgRAAEgBUBBg1gQYtvTZ-Q9QCFgA"
+            },
+            "hands":{
+               "id":"Gloves_005",
+               "name":"Cruel Gauntlets of the Hawk",
+               "icon":"gloves_005_monk_male",
+               "displayColor":"blue",
+               "tooltipParams":"item/CiUIsOO79wwSBwgEFURTkqQdHwKndx2LuXX3MAk4sgNAAFAIYOwDGPey7bYLUAhYAA"
+            },
+            "shoulders":{
+               "id":"Shoulders_003",
+               "name":"Mending Shoulder Guards of the Hawk",
+               "icon":"shoulders_003_monk_male",
+               "displayColor":"blue",
+               "tooltipParams":"item/CiUI8NDtzwQSBwgEFUvwyBUduVvoSB2dl-1sMAk48wNAAFAIYLQEGJbBx9wCUAhYAA"
+            },
+            "legs":{
+               "id":"Pants_004",
+               "name":"Ramble Fortune",
+               "icon":"pants_004_monk_male",
+               "displayColor":"yellow",
+               "tooltipParams":"item/CkgIt9fAjg4SBwgEFRmK1aUduFvoSB0UeEkVHYutUmgdwAmK9R1uWhsSHSeWQGAiCwgBFXZCAwAYAiAKMAk4lARAAEgCUBBg2QQYzdfTogtQCFgA"
+            },
+            "bracers":{
+               "id":"Bracers_003",
+               "name":"Brawl Prize",
+               "icon":"bracers_003_demonhunter_male",
+               "displayColor":"yellow",
+               "tooltipParams":"item/CjwI3vXL9gUSBwgEFVQkyssduFvoSB3DWVNoHVzikOcdFqTT2CILCAEVdkIDABgkIBgwCTjfA0AAUAxgngQY1-6uwwZQCFgA"
+            },
+            "mainHand":{
+               "id":"Mace_1H_006",
+               "name":"Sage's Hammer",
+               "icon":"mace_1h_006_demonhunter_male",
+               "displayColor":"yellow",
+               "tooltipParams":"item/CmgI1bqivgwSBwgEFcMLS50dd_dKBx3DWVNoHUljTzAdhb80ih2iGIEHIgsIABWx_gEAGCIgJjAJOPgDQABQDmC5BGolCgwIABD1xJHSgICAgBgSFQjfreuyBBIHCAQVQ_WLXzAJOABAARj50KerDFAIWAA"
+            },
+            "offHand":{
+               "id":"Shield_006",
+               "name":"Urgent Dam",
+               "icon":"shield_006_demonhunter_male",
+               "displayColor":"yellow",
+               "tooltipParams":"item/CmMIu6uKzgkSBwgEFY4DO2wdhb80ih0VfAbIHRak09gdulvoSCILCAAVw0QDABgQICAwCTjeA0AAUAxgnQRqJQoMCAAQi8SR0oCAgIAYEhUIv6Ht1QsSBwgEFUP1i18wDTgAQAEYnI7Yww1QCFgA"
+            },
+            "waist":{
+               "id":"Belt_004",
+               "name":"Severe Bond",
+               "icon":"belt_004_monk_male",
+               "displayColor":"yellow",
+               "tooltipParams":"item/CjwI8oeZxQ8SBwgEFTqfQtQd2nfX3B24uBmuHSuHYggdjCb-qyILCAAVrv4BABgIIBAwCTjaAkAAUAxgigMYi4PruwVQCFgA"
+            },
+            "rightFinger":{
+               "id":"Ring_05",
+               "name":"Keen Ring",
+               "icon":"ring_05_demonhunter_male",
+               "displayColor":"blue",
+               "tooltipParams":"item/CiAIjvOq-AoSBwgEFfRUXUQdMCcdVjAJOLoCQABQBmDmAhjo0-rFCFAIWAA"
+            },
+            "leftFinger":{
+               "id":"Ring_03",
+               "name":"Lucky Ring",
+               "icon":"ring_03_demonhunter_male",
+               "displayColor":"blue",
+               "tooltipParams":"item/CiAI896g7gQSBwgEFfJUXUQdN-jnYTAJOMICQABQBmDvAhjk0-rFCFAIWAA"
+            },
+            "neck":{
+               "id":"Amulet02",
+               "name":"Reptilian Amulet",
+               "icon":"amulet02_demonhunter_male",
+               "displayColor":"blue",
+               "tooltipParams":"item/CiAIpvfoiAYSBwgEFYrFRGQd4iuJOjAJOIIDQABQBmC2AxiUlqbEDFAIWAA"
+            }
+         },
+         "death":{
+            "killer":4095,
+            "location":75434,
+            "time":1347767416
+         },
+         "name":"Khalil",
+         "level":24,
+         "hardcore":true,
+         "heroId":25879720,
+         "gender":0,
+         "class":"monk"
+      }
+   ],
+   "battleTag":"msuBREAKER#1374",
+   "progression":{
+      "normal":{
+         "act1":{
+            "completed":true,
+            "completedQuests":[
+               {
+                  "slug":"the-fallen-star",
+                  "name":"The Fallen Star"
+               },
+               {
+                  "slug":"the-legacy-of-cain",
+                  "name":"The Legacy of Cain"
+               },
+               {
+                  "slug":"a-shattered-crown",
+                  "name":"A Shattered Crown"
+               },
+               {
+                  "slug":"reign-of-the-black-king",
+                  "name":"Reign of the Black King"
+               },
+               {
+                  "slug":"sword-of-the-stranger",
+                  "name":"Sword of the Stranger"
+               },
+               {
+                  "slug":"the-broken-blade",
+                  "name":"The Broken Blade"
+               },
+               {
+                  "slug":"the-doom-in-wortham",
+                  "name":"The Doom in Wortham"
+               },
+               {
+                  "slug":"trailing-the-coven",
+                  "name":"Trailing the Coven"
+               },
+               {
+                  "slug":"the-imprisoned-angel",
+                  "name":"The Imprisoned Angel"
+               },
+               {
+                  "slug":"return-to-new-tristram",
+                  "name":"Return to New Tristram"
+               }
+            ]
+         },
+         "act2":{
+            "completed":true,
+            "completedQuests":[
+               {
+                  "slug":"shadows-in-the-desert",
+                  "name":"Shadows in the Desert"
+               },
+               {
+                  "slug":"the-road-to-alcarnus",
+                  "name":"The Road to Alcarnus"
+               },
+               {
+                  "slug":"city-of-blood",
+                  "name":"City of Blood"
+               },
+               {
+                  "slug":"a-royal-audience",
+                  "name":"A Royal Audience"
+               },
+               {
+                  "slug":"unexpected-allies",
+                  "name":"Unexpected Allies"
+               },
+               {
+                  "slug":"betrayer-of-the-horadrim",
+                  "name":"Betrayer of the Horadrim"
+               },
+               {
+                  "slug":"blood-and-sand",
+                  "name":"Blood and Sand"
+               },
+               {
+                  "slug":"the-black-soulstone",
+                  "name":"The Black Soulstone"
+               },
+               {
+                  "slug":"the-scouring-of-caldeum",
+                  "name":"The Scouring of Caldeum"
+               },
+               {
+                  "slug":"lord-of-lies",
+                  "name":"Lord of Lies"
+               }
+            ]
+         },
+         "act3":{
+            "completed":true,
+            "completedQuests":[
+               {
+                  "slug":"the-siege-of-bastions-keep",
+                  "name":"The Siege of Bastion's Keep"
+               },
+               {
+                  "slug":"turning-the-tide",
+                  "name":"Turning the Tide"
+               },
+               {
+                  "slug":"the-breached-keep",
+                  "name":"The Breached Keep"
+               },
+               {
+                  "slug":"tremors-in-the-stone",
+                  "name":"Tremors in the Stone"
+               },
+               {
+                  "slug":"machines-of-war",
+                  "name":"Machines of War"
+               },
+               {
+                  "slug":"siegebreaker",
+                  "name":"Siegebreaker"
+               },
+               {
+                  "slug":"heart-of-sin",
+                  "name":"Heart of Sin"
+               }
+            ]
+         },
+         "act4":{
+            "completed":true,
+            "completedQuests":[
+               {
+                  "slug":"fall-of-the-high-heavens",
+                  "name":"Fall of the High Heavens"
+               },
+               {
+                  "slug":"the-light-of-hope",
+                  "name":"The Light of Hope"
+               },
+               {
+                  "slug":"beneath-the-spire",
+                  "name":"Beneath the Spire"
+               },
+               {
+                  "slug":"prime-evil",
+                  "name":"Prime Evil"
+               }
+            ]
+         }
+      },
+      "nightmare":{
+         "act1":{
+            "completed":true,
+            "completedQuests":[
+               {
+                  "slug":"the-fallen-star",
+                  "name":"The Fallen Star"
+               },
+               {
+                  "slug":"the-legacy-of-cain",
+                  "name":"The Legacy of Cain"
+               },
+               {
+                  "slug":"a-shattered-crown",
+                  "name":"A Shattered Crown"
+               },
+               {
+                  "slug":"reign-of-the-black-king",
+                  "name":"Reign of the Black King"
+               },
+               {
+                  "slug":"sword-of-the-stranger",
+                  "name":"Sword of the Stranger"
+               },
+               {
+                  "slug":"the-broken-blade",
+                  "name":"The Broken Blade"
+               },
+               {
+                  "slug":"the-doom-in-wortham",
+                  "name":"The Doom in Wortham"
+               },
+               {
+                  "slug":"trailing-the-coven",
+                  "name":"Trailing the Coven"
+               },
+               {
+                  "slug":"the-imprisoned-angel",
+                  "name":"The Imprisoned Angel"
+               },
+               {
+                  "slug":"return-to-new-tristram",
+                  "name":"Return to New Tristram"
+               }
+            ]
+         },
+         "act2":{
+            "completed":true,
+            "completedQuests":[
+               {
+                  "slug":"shadows-in-the-desert",
+                  "name":"Shadows in the Desert"
+               },
+               {
+                  "slug":"the-road-to-alcarnus",
+                  "name":"The Road to Alcarnus"
+               },
+               {
+                  "slug":"city-of-blood",
+                  "name":"City of Blood"
+               },
+               {
+                  "slug":"a-royal-audience",
+                  "name":"A Royal Audience"
+               },
+               {
+                  "slug":"unexpected-allies",
+                  "name":"Unexpected Allies"
+               },
+               {
+                  "slug":"betrayer-of-the-horadrim",
+                  "name":"Betrayer of the Horadrim"
+               },
+               {
+                  "slug":"blood-and-sand",
+                  "name":"Blood and Sand"
+               },
+               {
+                  "slug":"the-black-soulstone",
+                  "name":"The Black Soulstone"
+               },
+               {
+                  "slug":"the-scouring-of-caldeum",
+                  "name":"The Scouring of Caldeum"
+               },
+               {
+                  "slug":"lord-of-lies",
+                  "name":"Lord of Lies"
+               }
+            ]
+         },
+         "act3":{
+            "completed":true,
+            "completedQuests":[
+               {
+                  "slug":"the-siege-of-bastions-keep",
+                  "name":"The Siege of Bastion's Keep"
+               },
+               {
+                  "slug":"turning-the-tide",
+                  "name":"Turning the Tide"
+               },
+               {
+                  "slug":"the-breached-keep",
+                  "name":"The Breached Keep"
+               },
+               {
+                  "slug":"tremors-in-the-stone",
+                  "name":"Tremors in the Stone"
+               },
+               {
+                  "slug":"machines-of-war",
+                  "name":"Machines of War"
+               },
+               {
+                  "slug":"siegebreaker",
+                  "name":"Siegebreaker"
+               },
+               {
+                  "slug":"heart-of-sin",
+                  "name":"Heart of Sin"
+               }
+            ]
+         },
+         "act4":{
+            "completed":true,
+            "completedQuests":[
+               {
+                  "slug":"fall-of-the-high-heavens",
+                  "name":"Fall of the High Heavens"
+               },
+               {
+                  "slug":"the-light-of-hope",
+                  "name":"The Light of Hope"
+               },
+               {
+                  "slug":"beneath-the-spire",
+                  "name":"Beneath the Spire"
+               },
+               {
+                  "slug":"prime-evil",
+                  "name":"Prime Evil"
+               }
+            ]
+         }
+      },
+      "hell":{
+         "act1":{
+            "completed":true,
+            "completedQuests":[
+               {
+                  "slug":"the-fallen-star",
+                  "name":"The Fallen Star"
+               },
+               {
+                  "slug":"the-legacy-of-cain",
+                  "name":"The Legacy of Cain"
+               },
+               {
+                  "slug":"a-shattered-crown",
+                  "name":"A Shattered Crown"
+               },
+               {
+                  "slug":"reign-of-the-black-king",
+                  "name":"Reign of the Black King"
+               },
+               {
+                  "slug":"sword-of-the-stranger",
+                  "name":"Sword of the Stranger"
+               },
+               {
+                  "slug":"the-broken-blade",
+                  "name":"The Broken Blade"
+               },
+               {
+                  "slug":"the-doom-in-wortham",
+                  "name":"The Doom in Wortham"
+               },
+               {
+                  "slug":"trailing-the-coven",
+                  "name":"Trailing the Coven"
+               },
+               {
+                  "slug":"the-imprisoned-angel",
+                  "name":"The Imprisoned Angel"
+               },
+               {
+                  "slug":"return-to-new-tristram",
+                  "name":"Return to New Tristram"
+               }
+            ]
+         },
+         "act2":{
+            "completed":true,
+            "completedQuests":[
+               {
+                  "slug":"shadows-in-the-desert",
+                  "name":"Shadows in the Desert"
+               },
+               {
+                  "slug":"the-road-to-alcarnus",
+                  "name":"The Road to Alcarnus"
+               },
+               {
+                  "slug":"city-of-blood",
+                  "name":"City of Blood"
+               },
+               {
+                  "slug":"a-royal-audience",
+                  "name":"A Royal Audience"
+               },
+               {
+                  "slug":"unexpected-allies",
+                  "name":"Unexpected Allies"
+               },
+               {
+                  "slug":"betrayer-of-the-horadrim",
+                  "name":"Betrayer of the Horadrim"
+               },
+               {
+                  "slug":"blood-and-sand",
+                  "name":"Blood and Sand"
+               },
+               {
+                  "slug":"the-black-soulstone",
+                  "name":"The Black Soulstone"
+               },
+               {
+                  "slug":"the-scouring-of-caldeum",
+                  "name":"The Scouring of Caldeum"
+               },
+               {
+                  "slug":"lord-of-lies",
+                  "name":"Lord of Lies"
+               }
+            ]
+         },
+         "act3":{
+            "completed":true,
+            "completedQuests":[
+               {
+                  "slug":"the-siege-of-bastions-keep",
+                  "name":"The Siege of Bastion's Keep"
+               },
+               {
+                  "slug":"turning-the-tide",
+                  "name":"Turning the Tide"
+               },
+               {
+                  "slug":"the-breached-keep",
+                  "name":"The Breached Keep"
+               },
+               {
+                  "slug":"tremors-in-the-stone",
+                  "name":"Tremors in the Stone"
+               },
+               {
+                  "slug":"machines-of-war",
+                  "name":"Machines of War"
+               },
+               {
+                  "slug":"siegebreaker",
+                  "name":"Siegebreaker"
+               },
+               {
+                  "slug":"heart-of-sin",
+                  "name":"Heart of Sin"
+               }
+            ]
+         },
+         "act4":{
+            "completed":true,
+            "completedQuests":[
+               {
+                  "slug":"fall-of-the-high-heavens",
+                  "name":"Fall of the High Heavens"
+               },
+               {
+                  "slug":"the-light-of-hope",
+                  "name":"The Light of Hope"
+               },
+               {
+                  "slug":"beneath-the-spire",
+                  "name":"Beneath the Spire"
+               },
+               {
+                  "slug":"prime-evil",
+                  "name":"Prime Evil"
+               }
+            ]
+         }
+      },
+      "inferno":{
+         "act1":{
+            "completed":true,
+            "completedQuests":[
+               {
+                  "slug":"the-fallen-star",
+                  "name":"The Fallen Star"
+               },
+               {
+                  "slug":"the-legacy-of-cain",
+                  "name":"The Legacy of Cain"
+               },
+               {
+                  "slug":"a-shattered-crown",
+                  "name":"A Shattered Crown"
+               },
+               {
+                  "slug":"reign-of-the-black-king",
+                  "name":"Reign of the Black King"
+               },
+               {
+                  "slug":"sword-of-the-stranger",
+                  "name":"Sword of the Stranger"
+               },
+               {
+                  "slug":"the-broken-blade",
+                  "name":"The Broken Blade"
+               },
+               {
+                  "slug":"the-doom-in-wortham",
+                  "name":"The Doom in Wortham"
+               },
+               {
+                  "slug":"trailing-the-coven",
+                  "name":"Trailing the Coven"
+               },
+               {
+                  "slug":"the-imprisoned-angel",
+                  "name":"The Imprisoned Angel"
+               },
+               {
+                  "slug":"return-to-new-tristram",
+                  "name":"Return to New Tristram"
+               }
+            ]
+         },
+         "act2":{
+            "completed":true,
+            "completedQuests":[
+               {
+                  "slug":"shadows-in-the-desert",
+                  "name":"Shadows in the Desert"
+               },
+               {
+                  "slug":"the-road-to-alcarnus",
+                  "name":"The Road to Alcarnus"
+               },
+               {
+                  "slug":"city-of-blood",
+                  "name":"City of Blood"
+               },
+               {
+                  "slug":"a-royal-audience",
+                  "name":"A Royal Audience"
+               },
+               {
+                  "slug":"unexpected-allies",
+                  "name":"Unexpected Allies"
+               },
+               {
+                  "slug":"betrayer-of-the-horadrim",
+                  "name":"Betrayer of the Horadrim"
+               },
+               {
+                  "slug":"blood-and-sand",
+                  "name":"Blood and Sand"
+               },
+               {
+                  "slug":"the-black-soulstone",
+                  "name":"The Black Soulstone"
+               },
+               {
+                  "slug":"the-scouring-of-caldeum",
+                  "name":"The Scouring of Caldeum"
+               },
+               {
+                  "slug":"lord-of-lies",
+                  "name":"Lord of Lies"
+               }
+            ]
+         },
+         "act3":{
+            "completed":true,
+            "completedQuests":[
+               {
+                  "slug":"the-siege-of-bastions-keep",
+                  "name":"The Siege of Bastion's Keep"
+               },
+               {
+                  "slug":"turning-the-tide",
+                  "name":"Turning the Tide"
+               },
+               {
+                  "slug":"the-breached-keep",
+                  "name":"The Breached Keep"
+               },
+               {
+                  "slug":"tremors-in-the-stone",
+                  "name":"Tremors in the Stone"
+               },
+               {
+                  "slug":"machines-of-war",
+                  "name":"Machines of War"
+               },
+               {
+                  "slug":"siegebreaker",
+                  "name":"Siegebreaker"
+               },
+               {
+                  "slug":"heart-of-sin",
+                  "name":"Heart of Sin"
+               }
+            ]
+         },
+         "act4":{
+            "completed":true,
+            "completedQuests":[
+               {
+                  "slug":"fall-of-the-high-heavens",
+                  "name":"Fall of the High Heavens"
+               },
+               {
+                  "slug":"the-light-of-hope",
+                  "name":"The Light of Hope"
+               },
+               {
+                  "slug":"beneath-the-spire",
+                  "name":"Beneath the Spire"
+               },
+               {
+                  "slug":"prime-evil",
+                  "name":"Prime Evil"
+               }
+            ]
+         }
+      }
+   },
+   "hardcoreProgression":{
+      "normal":{
+         "act1":{
+            "completed":true,
+            "completedQuests":[
+               {
+                  "slug":"the-fallen-star",
+                  "name":"The Fallen Star"
+               },
+               {
+                  "slug":"the-legacy-of-cain",
+                  "name":"The Legacy of Cain"
+               },
+               {
+                  "slug":"a-shattered-crown",
+                  "name":"A Shattered Crown"
+               },
+               {
+                  "slug":"reign-of-the-black-king",
+                  "name":"Reign of the Black King"
+               },
+               {
+                  "slug":"sword-of-the-stranger",
+                  "name":"Sword of the Stranger"
+               },
+               {
+                  "slug":"the-broken-blade",
+                  "name":"The Broken Blade"
+               },
+               {
+                  "slug":"the-doom-in-wortham",
+                  "name":"The Doom in Wortham"
+               },
+               {
+                  "slug":"trailing-the-coven",
+                  "name":"Trailing the Coven"
+               },
+               {
+                  "slug":"the-imprisoned-angel",
+                  "name":"The Imprisoned Angel"
+               },
+               {
+                  "slug":"return-to-new-tristram",
+                  "name":"Return to New Tristram"
+               }
+            ]
+         },
+         "act2":{
+            "completed":true,
+            "completedQuests":[
+               {
+                  "slug":"shadows-in-the-desert",
+                  "name":"Shadows in the Desert"
+               },
+               {
+                  "slug":"the-road-to-alcarnus",
+                  "name":"The Road to Alcarnus"
+               },
+               {
+                  "slug":"city-of-blood",
+                  "name":"City of Blood"
+               },
+               {
+                  "slug":"a-royal-audience",
+                  "name":"A Royal Audience"
+               },
+               {
+                  "slug":"unexpected-allies",
+                  "name":"Unexpected Allies"
+               },
+               {
+                  "slug":"betrayer-of-the-horadrim",
+                  "name":"Betrayer of the Horadrim"
+               },
+               {
+                  "slug":"blood-and-sand",
+                  "name":"Blood and Sand"
+               },
+               {
+                  "slug":"the-black-soulstone",
+                  "name":"The Black Soulstone"
+               },
+               {
+                  "slug":"the-scouring-of-caldeum",
+                  "name":"The Scouring of Caldeum"
+               },
+               {
+                  "slug":"lord-of-lies",
+                  "name":"Lord of Lies"
+               }
+            ]
+         },
+         "act3":{
+            "completed":true,
+            "completedQuests":[
+               {
+                  "slug":"the-siege-of-bastions-keep",
+                  "name":"The Siege of Bastion's Keep"
+               },
+               {
+                  "slug":"turning-the-tide",
+                  "name":"Turning the Tide"
+               },
+               {
+                  "slug":"the-breached-keep",
+                  "name":"The Breached Keep"
+               },
+               {
+                  "slug":"tremors-in-the-stone",
+                  "name":"Tremors in the Stone"
+               },
+               {
+                  "slug":"machines-of-war",
+                  "name":"Machines of War"
+               },
+               {
+                  "slug":"siegebreaker",
+                  "name":"Siegebreaker"
+               },
+               {
+                  "slug":"heart-of-sin",
+                  "name":"Heart of Sin"
+               }
+            ]
+         },
+         "act4":{
+            "completed":true,
+            "completedQuests":[
+               {
+                  "slug":"fall-of-the-high-heavens",
+                  "name":"Fall of the High Heavens"
+               },
+               {
+                  "slug":"the-light-of-hope",
+                  "name":"The Light of Hope"
+               },
+               {
+                  "slug":"beneath-the-spire",
+                  "name":"Beneath the Spire"
+               },
+               {
+                  "slug":"prime-evil",
+                  "name":"Prime Evil"
+               }
+            ]
+         }
+      },
+      "nightmare":{
+         "act1":{
+            "completed":true,
+            "completedQuests":[
+               {
+                  "slug":"the-fallen-star",
+                  "name":"The Fallen Star"
+               },
+               {
+                  "slug":"the-legacy-of-cain",
+                  "name":"The Legacy of Cain"
+               },
+               {
+                  "slug":"a-shattered-crown",
+                  "name":"A Shattered Crown"
+               },
+               {
+                  "slug":"reign-of-the-black-king",
+                  "name":"Reign of the Black King"
+               },
+               {
+                  "slug":"sword-of-the-stranger",
+                  "name":"Sword of the Stranger"
+               },
+               {
+                  "slug":"the-broken-blade",
+                  "name":"The Broken Blade"
+               },
+               {
+                  "slug":"the-doom-in-wortham",
+                  "name":"The Doom in Wortham"
+               },
+               {
+                  "slug":"trailing-the-coven",
+                  "name":"Trailing the Coven"
+               },
+               {
+                  "slug":"the-imprisoned-angel",
+                  "name":"The Imprisoned Angel"
+               },
+               {
+                  "slug":"return-to-new-tristram",
+                  "name":"Return to New Tristram"
+               }
+            ]
+         },
+         "act2":{
+            "completed":false,
+            "completedQuests":[
+               {
+                  "slug":"shadows-in-the-desert",
+                  "name":"Shadows in the Desert"
+               },
+               {
+                  "slug":"the-road-to-alcarnus",
+                  "name":"The Road to Alcarnus"
+               },
+               {
+                  "slug":"city-of-blood",
+                  "name":"City of Blood"
+               },
+               {
+                  "slug":"a-royal-audience",
+                  "name":"A Royal Audience"
+               },
+               {
+                  "slug":"unexpected-allies",
+                  "name":"Unexpected Allies"
+               }
+            ]
+         },
+         "act3":{
+            "completed":false,
+            "completedQuests":[
+
+            ]
+         },
+         "act4":{
+            "completed":false,
+            "completedQuests":[
+
+            ]
+         }
+      },
+      "hell":{
+         "act1":{
+            "completed":false,
+            "completedQuests":[
+
+            ]
+         },
+         "act2":{
+            "completed":false,
+            "completedQuests":[
+
+            ]
+         },
+         "act3":{
+            "completed":false,
+            "completedQuests":[
+
+            ]
+         },
+         "act4":{
+            "completed":false,
+            "completedQuests":[
+
+            ]
+         }
+      },
+      "inferno":{
+         "act1":{
+            "completed":false,
+            "completedQuests":[
+
+            ]
+         },
+         "act2":{
+            "completed":false,
+            "completedQuests":[
+
+            ]
+         },
+         "act3":{
+            "completed":false,
+            "completedQuests":[
+
+            ]
+         },
+         "act4":{
+            "completed":false,
+            "completedQuests":[
+
+            ]
+         }
+      }
+   }
+}
