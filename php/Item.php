@@ -22,7 +22,7 @@ class Item
 		$sql,
 		$profile,
 		$info,
-		$profileJson,
+		$json,
 		$userIp;
 	
 	
@@ -37,7 +37,7 @@ class Item
 		$this->userIp = $p_userIp;
 		$this->profile = NULL;
 		$this->info = NULL;
-		$this->profileJson = NULL;
+		$this->json = NULL;
 		$this->load();
 	}
 	
@@ -52,7 +52,7 @@ class Item
 			$this->sql,
 			$this->profile,
 			$this->info,
-			$this->profileJson,
+			$this->json,
 			$this->userIp
 		);
 	}
@@ -66,25 +66,25 @@ class Item
 		$this->info = $this->sql->getItem( $this->itemId );
 		if ( Tool::isArray($this->info) )
 		{
-			$this->profileJson = $this->info['profile_json'];
+			$this->json = $this->info['item_json'];
 		}
 		// If that fails, then try to get it from Battle.net.
-		if ( !Tool::isString($this->profileJson) )
+		if ( !Tool::isString($this->json) )
 		{
 			// Request the profile from BattleNet.
-			$profileJson = $this->dqi->getProfile( $this->itemId );
+			$json = $this->dqi->getItem( $this->itemId );
 			$responseCode = $this->dqi->responseCode();
 			$url = $this->dqi->getUrl();
 			// Log the request.
 			$this->sql->addRequest( $this->itemId, $url, $this->userIp );
 			if ( $responseCode == 200 )
 			{
-				$this->profileJson = $profileJson;
+				$this->json = $json;
 				$this->save();
 			}
 		}
 		
-		return $this->profileJson;
+		return $this->json;
 	}
 	
 	/**
@@ -113,9 +113,9 @@ class Item
 	*/
 	public function getRawData()
 	{
-		if ( $this->profileJson !== NULL )
+		if ( $this->json !== NULL )
 		{
-			return $this->profileJson;
+			return $this->json;
 		}
 		return NULL;
 	}
@@ -128,9 +128,9 @@ class Item
 		// Get the profile from local database.
 		$this->getJson( $this->itemId );
 		// Convert the JSON to an associative array.
-		if ( Tool::isString($this->profileJson) )
+		if ( Tool::isString($this->json) )
 		{
-			$profile = Tool::parseJson( $this->profileJson );
+			$profile = Tool::parseJson( $this->json );
 			if ( Tool::isArray($profile) )
 			{
 				$this->profile = $profile;
@@ -145,7 +145,7 @@ class Item
 	*/
 	protected function save()
 	{
-		return $this->sql->saveProfile( $this->itemId, $this->profileJson, $this->userIp );
+		return $this->sql->saveProfile( $this->itemId, $this->json, $this->userIp );
 	}
 }
 ?>

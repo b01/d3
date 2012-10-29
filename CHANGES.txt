@@ -1,3 +1,12 @@
+List of changes as 10/29/2012 12:31 PM
+-------------------------------
+	- Updated BattleNetDqi to take the battleNet ID on construct.
+	- Updated the readme.
+	- Added TODO item.
+	- Added insert statement to Sql class for items pull from battleNet web API.
+	- Updated get-item form to take a battle net ID as well.
+	- Fixed bug in BattleNetDqi class.
+	
 List of changes as 10/29/2012 07:26 PM
 -------------------------------
 	- Aded form to submit an item hash.

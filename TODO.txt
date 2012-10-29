@@ -20,3 +20,4 @@
 	dps
  - Setup basic Google analytics and webmaster tools.
  - present the profile as  UL list at resolutions higher than 800x600, otherwise as a selection list for anything below that.
+ - Require battleNet ID for all web API request.

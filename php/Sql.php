@@ -4,11 +4,12 @@ class Sql
 {
 	const
 		SELECT_PROFILE = "SELECT `battle_net_id`, `profile_json`, `ip_address`, `last_updated`, `date_added` FROM `%s`.`d3_profiles` WHERE `battle_net_id` = :battleNetId;",
-		SELECT_ITEM = "SELECT `item_id`, `name`, `item_type`, `item_json`, `ip_address`, `last_updated`, `date_added` FROM `%s`.`d3_profiles` WHERE `item_id` = :itemId;",
-		SELECT_ITEM_BY_NAME = "SELECT `item_id`, `name`, `item_type`, `item_json`, `ip_address`, `last_updated`, `date_added` FROM `%s`.`d3_profiles` WHERE `name` = :name;",
 		INSERT_PROFILE = "INSERT INTO `%1\$s`.`d3_profiles` (`battle_net_id`, `profile_json`, `ip_address`, `last_updated`, `date_added`) VALUES(:battleNetId, :profileJson, :ipAddress, :lastUpdated, :dateAdded) ON DUPLICATE KEY UPDATE `profile_json` = VALUES(profile_json), `ip_address` = VALUES(ip_address), `last_updated` = VALUES(last_updated);",
 		INSERT_REQUEST = "INSERT INTO `%1\$s`.`battlenet_api_request` (`battle_net_id`, `ip_address`, `url`, `date_number`, `date_added`) VALUES(:battleNetId, :ipAddress, :url, :dateNumber, :dateAdded);",
-		SELECT_REQUEST = "SELECT `ip_address`, `url`, `date`, `date_added` FROM `%1\$s`.`battlenet_api_request` WHERE  `date` = :date;";
+		SELECT_REQUEST = "SELECT `ip_address`, `url`, `date`, `date_added` FROM `%1\$s`.`battlenet_api_request` WHERE  `date` = :date;",
+		SELECT_ITEM = "SELECT `item_id`, `name`, `item_type`, `item_json`, `ip_address`, `last_updated`, `date_added` FROM `%s`.`d3_items` WHERE `item_id` = :itemId;",
+		SELECT_ITEM_BY_NAME = "SELECT `item_id`, `name`, `item_type`, `item_json`, `ip_address`, `last_updated`, `date_added` FROM `%s`.`d3_items` WHERE `name` = :name;",
+		INSERT_ITEM = "INSERT INTO `%1\$s`.`d3_items` ( `item_id`, `name`, `item_type`, `item_json`, `ip_address`, `last_updated`, `date_added` ) VALUES( :itemId, :name, :itemType, :itemJson, :ipAddress, :lastUpdate, :dateAdded );";
 		
 	protected 
 		$pdoh;
@@ -141,6 +142,37 @@ class Sql
 			// TODO: Log error.
 			// echo $p_error->getMessage();
 			echo "Unable to retrieve your profile, please try again later.";
+		}
+		return $returnValue;
+	}
+	
+	/**
+	* Cache a battle.net user profile.
+	*/
+	public function saveItem( $p_itemId, $p_item, $p_itemJson, $p_ipAddress )
+	{
+		$returnValue = FALSE;
+		try
+		{
+			if ($this->pdoh !== NULL)
+			{
+				$query = sprintf( self::INSERT_PROFILE, DB_NAME );
+				$stmt = $this->pdoh->prepare( $query );
+				$stmt->bindValue( ":itemId", $p_itemId, \PDO::PARAM_STR );
+				$stmt->bindValue( ":name", $p_item['name'], \PDO::PARAM_STR );
+				$stmt->bindValue( ":itemType", $p_item['type'], \PDO::PARAM_STR );
+				$stmt->bindValue( ":itemJson", $p_itemJson, \PDO::PARAM_STR );
+				$stmt->bindValue( ":ipAddress", $p_ipAddress, \PDO::PARAM_STR );
+				$stmt->bindValue( ":lastUpdate", date("Y-m-d H:i:s"), \PDO::PARAM_STR );
+				$stmt->bindValue( ":dateAdded", date("Y-m-d H:i:s"), \PDO::PARAM_STR );
+				$returnValue = $this->pdoQuery( $stmt, FALSE );
+			}
+		}
+		catch ( \Exception $p_error )
+		{
+			// TODO: Log error.
+			// echo $p_error->getMessage();
+			echo "Unable to save your profile, something fishy is going on here; Don't worry we'll get to the bottom of this.";
 		}
 		return $returnValue;
 	}

@@ -5,6 +5,7 @@ namespace d3cb; // Diablo 3 Character Builder
 class BattleNetDqi
 {
 	protected 
+		$battleNetId,
 		$domain,
 		$requestInfo,
 		$responseText,
@@ -14,8 +15,9 @@ class BattleNetDqi
 	/**
 	* Constructor
 	*/
-	public function __construct()
+	public function __construct( $p_battleNetId )
 	{
+		$this->battleNetId = $p_battleNetId;
 		$this->domain = BATTLENET_D3_API_DOMAIN;
 		$this->requestInfo = NULL;
 		$this->url = '';
@@ -28,6 +30,7 @@ class BattleNetDqi
 	public function __destruct()
 	{
 		unset(
+			$this->battleNetId,
 			$this->domain,
 			$this->requestInfo,
 			$this->responseText,
@@ -57,7 +60,7 @@ class BattleNetDqi
 		}
 		else
 		{
-			throw new Exception( "Invalid BattleNet ID given: '{$p_battleNetId}'; here's a correct example: myBattleNetName#1234" );
+			throw new \Exception( "Invalid BattleNet ID given: '{$p_battleNetId}'; here's a correct example: myBattleNetName#1234" );
 		}
 		return $returnValue;
 	}
