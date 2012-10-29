@@ -19,4 +19,4 @@
 	crit damage,
 	dps
  - Setup basic Google analytics and webmaster tools.
- - Implement code to track the number of BattleNet request (DONE)
+ - present the profile as  UL list at resolutions higher than 800x600, otherwise as a selection list for anything below that.

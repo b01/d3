@@ -2,7 +2,7 @@ Diablo 3: Web API (subset)
 ------------------------------------------
 NOTE: Blizzard Entertainment reserves the right to change the location and definition of what constitutes an application and Blizzard Entertainment Web API resources at any time.
 
-Resources - any data that can be accessed through HTTP requests to URLs on the Battle.net website that begin with ì/apiî.
+Resources - any data that can be accessed through HTTP requests to URLs on the Battle.net website that begin with ‚Äú/api‚Äù.
 
 	Example applications include, but are not limited to:
 
@@ -30,6 +30,6 @@ Applications may not imply any association with, or endorsement by, Blizzard Ent
 
 Applications must not contain offensive or objectionable material.
 
-Applications may not use names based on Blizzardís trademarks or taken from Blizzard's products as the name, or part of the name, of the application.
+Applications may not use names based on Blizzard‚Äôs trademarks or taken from Blizzard's products as the name, or part of the name, of the application.
 
 Applications that use Blizzard Entertainment intellectual property, such as Blizzard Web API resources, require a license for that use.

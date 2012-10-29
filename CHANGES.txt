@@ -1,3 +1,11 @@
+List of changes as 10/29/2012 07:26 PM
+-------------------------------
+	- Implement profile request (alreday methioned as other task below; but these were moved from the TODO list, to clean it up)
+		- first time request the users profile from battle net.
+		- store the battlenet profile in local database along with the users IP, their battleNetID, and date the profile request was made.
+		- present the profile to the user as a list
+	- Converted all most files to UTF-8 w/o BOM and Unix EOL.
+
 List of changes as 10/28/2012 11:51 PM
 -------------------------------
 	- Implemented code to track the number of BattleNet request
