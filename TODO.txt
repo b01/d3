@@ -1,9 +1,9 @@
  - Implement profile request (DONE)
 	- first time request
 		- request the users profile from battle net (DONE).
-		- store the battlenet profile in local database
-			- store the users IP, along with their battleNetID, and date the profile request was made.
-		- present the profile to the user
+		- store the battlenet profile in local database (DONE)
+			- store the users IP, along with their battleNetID, and date the profile request was made. (DONE)
+		- present the profile to the user (DONE)
  - Store each item requested:
 	- implement a form that takes an item name
 	- get the item data
@@ -19,4 +19,4 @@
 	crit damage,
 	dps
  - Setup basic Google analytics and webmaster tools.
- - Implement code to track the numver of BattleNet request
+ - Implement code to track the number of BattleNet request

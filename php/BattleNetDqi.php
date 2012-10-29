@@ -61,18 +61,14 @@ class BattleNetDqi
 		}
 		return $returnValue;
 	}
-
+	
 	/**
-	* 
+	* Get the URL of the request.
 	*/
-	// protected function buildUrl()
-	// {
-		// if ( Tool::isArray($this->queryParameters) ) 
-		// {
-			// $this->url = "http://{$this->domain}/{$this->queryString}{$signature}";
-		// }
-		// return $this->url;
-	// }
+	public function getUrl()
+	{
+		return $this->url;
+	}
 	
 	/**
 	* Get the HTTP response code of the request.

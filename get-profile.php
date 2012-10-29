@@ -13,7 +13,7 @@ require_once( "php/Sql.php" );
 		
 		$dsn = "mysql:host=" . DB_SERVER . ";dbname=" . DB_NAME . ";charset=UTF-8";
 		$sql = new Sql( $dsn, DB_USER, DB_PSWD );
-		$battleNetProfile = new Api\Profile( $battleNetId, $battleNetDqi, $sql );
+		$battleNetProfile = new Api\Profile( $battleNetId, $battleNetDqi, $sql, USER_IP_ADDRESS );
 		
 		$heroes = $battleNetProfile->getHeroes();
 	}

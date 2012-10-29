@@ -4,7 +4,9 @@ class Sql
 {
 	const
 		SELECT_PROFILE = "SELECT `battle_net_id`, `profile_json`, `ip_address`, `last_updated`, `date_added` FROM `%s`.`d3_profiles` WHERE `battle_net_id` = :battleNetId;",
-		INSERT_PROFILE = "INSERT INTO `%1\$s`.`d3_profiles` (`battle_net_id`, `profile_json`, `ip_address`, `last_updated`, `date_added`) VALUES(:battleNetId, :profileJson, :ipAddress, :lastUpdated, :addedDate) ON DUPLICATE KEY UPDATE `profile_json` = :profileJson, `ip_address` = :ipAddress, `last_updated` = :lastUpdated;";
+		INSERT_PROFILE = "INSERT INTO `%1\$s`.`d3_profiles` (`battle_net_id`, `profile_json`, `ip_address`, `last_updated`, `date_added`) VALUES(:battleNetId, :profileJson, :ipAddress, :lastUpdated, :dateAdded) ON DUPLICATE KEY UPDATE `profile_json` = VALUES(profile_json), `ip_address` = VALUES(ip_address), `last_updated` = VALUES(last_updated);",
+		INSERT_REQUEST = "INSERT INTO `%1\$s`.`battlenet_api_request` (`battle_net_id`, `ip_address`, `url`, `date_number`, `date_added`) VALUES(:battleNetId, :ipAddress, :url, :dateNumber, :dateAdded);",
+		SELECT_REQUEST = "SELECT `ip_address`, `url`, `date`, `date_added` FROM `%1\$s`.`battlenet_api_request` WHERE  `date` = :date;";
 		
 	protected 
 		$pdoh;
@@ -23,6 +25,38 @@ class Sql
 	public function __destruct()
 	{
 		$this->pdoh = NULL;
+	}
+	
+	/**
+	* Add record of Battle.net Web API request.
+	* @param $p_url string The Battle.net url web API URL requested.
+	* @param $p_ipAddress IP adress of the user requesting.
+	* @return bool
+	*/
+	public function addRequest( $p_battleNetId, $p_url, $p_ipAddress )
+	{
+		$returnValue = FALSE;
+		try
+		{
+			if ($this->pdoh !== NULL)
+			{
+				$today = date( "Y-m-d" );
+				$query = sprintf( self::INSERT_REQUEST, DB_NAME );
+				$stmt = $this->pdoh->prepare( $query );
+				$stmt->bindValue( ":battleNetId", $p_battleNetId, \PDO::PARAM_STR );
+				$stmt->bindValue( ":ipAddress", $p_ipAddress, \PDO::PARAM_STR );
+				$stmt->bindValue( ":url", $p_url, \PDO::PARAM_STR );
+				$stmt->bindValue( ":dateNumber", strtotime($today), \PDO::PARAM_STR );
+				$stmt->bindValue( ":dateAdded", date("Y-m-d H:i:s"), \PDO::PARAM_STR );
+				$returnValue = $this->pdoQuery( $stmt, FALSE );
+			}
+		}
+		catch ( \Exception $p_error )
+		{
+			// TODO: Log error.
+			// echo $p_error->getMessage();
+		}
+		return $returnValue;
 	}
 	
 	/**
@@ -96,7 +130,7 @@ class Sql
 				$stmt->bindValue( ":profileJson", $p_profileJson, \PDO::PARAM_STR );
 				$stmt->bindValue( ":ipAddress", $p_ipAddress, \PDO::PARAM_STR );
 				$stmt->bindValue( ":lastUpdated", date("Y-m-d H:i:s"), \PDO::PARAM_STR );
-				$stmt->bindValue( ":addedDate", date("Y-m-d H:i:s"), \PDO::PARAM_STR );
+				$stmt->bindValue( ":dateAdded", date("Y-m-d H:i:s"), \PDO::PARAM_STR );
 				$returnValue = $this->pdoQuery( $stmt, FALSE );
 			}
 		}
@@ -132,6 +166,7 @@ class Sql
 		}
 		catch ( \Exception $p_error )
 		{
+		echo $p_stmt->queryString;
 			// TODO: Log error.
 			// echo $p_error->getMessage();
 			echo "Uh-oh, where experiencing some technical difficulties. Please bear with this website, while it alerts a developer.";
@@ -161,7 +196,8 @@ class Sql
 		}
 		catch ( \Exception $p_error )
 		{
-			echo $p_error->getMessage();
+			// TODO: Log error.
+			// echo $p_error->getMessage();
 		}
 		return $returnArray;
 	}
