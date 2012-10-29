@@ -1,3 +1,7 @@
+List of changes as 10/28/2012 11:51 PM
+-------------------------------
+	- Implemented code to track the number of BattleNet request
+ 
 List of changes as 10/28/2012 07:07 PM
 -------------------------------
 	- Added hero list to get-profile page.

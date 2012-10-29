@@ -19,4 +19,4 @@
 	crit damage,
 	dps
  - Setup basic Google analytics and webmaster tools.
- - Implement code to track the number of BattleNet request
+ - Implement code to track the number of BattleNet request (DONE)
