@@ -4,6 +4,8 @@ class Sql
 {
 	const
 		SELECT_PROFILE = "SELECT `battle_net_id`, `profile_json`, `ip_address`, `last_updated`, `date_added` FROM `%s`.`d3_profiles` WHERE `battle_net_id` = :battleNetId;",
+		SELECT_ITEM = "SELECT `item_id`, `name`, `item_type`, `item_json`, `ip_address`, `last_updated`, `date_added` FROM `%s`.`d3_profiles` WHERE `item_id` = :itemId;",
+		SELECT_ITEM_BY_NAME = "SELECT `item_id`, `name`, `item_type`, `item_json`, `ip_address`, `last_updated`, `date_added` FROM `%s`.`d3_profiles` WHERE `name` = :name;",
 		INSERT_PROFILE = "INSERT INTO `%1\$s`.`d3_profiles` (`battle_net_id`, `profile_json`, `ip_address`, `last_updated`, `date_added`) VALUES(:battleNetId, :profileJson, :ipAddress, :lastUpdated, :dateAdded) ON DUPLICATE KEY UPDATE `profile_json` = VALUES(profile_json), `ip_address` = VALUES(ip_address), `last_updated` = VALUES(last_updated);",
 		INSERT_REQUEST = "INSERT INTO `%1\$s`.`battlenet_api_request` (`battle_net_id`, `ip_address`, `url`, `date_number`, `date_added`) VALUES(:battleNetId, :ipAddress, :url, :dateNumber, :dateAdded);",
 		SELECT_REQUEST = "SELECT `ip_address`, `url`, `date`, `date_added` FROM `%1\$s`.`battlenet_api_request` WHERE  `date` = :date;";
@@ -83,6 +85,35 @@ class Sql
 			}
 		}
 		return $this->pdoh;
+	}
+	
+	/**
+	* Get battle.net item.
+	*/
+	public function getItem( $p_itemId )
+	{
+		$returnValue = NULL;
+		try
+		{
+			$query = sprintf( self::SELECT_ITEM, DB_NAME );
+			if ($this->pdoh !== NULL)
+			{
+				$stmt = $this->pdoh->prepare( $query );
+				$stmt->bindValue( ":itemId", $p_itemId, \PDO::PARAM_STR );
+				$itemRecord = $this->pdoQuery( $stmt );
+				if ( Tool::isArray($itemRecord) )
+				{
+					$returnValue = $itemRecord[0];
+				}
+			}
+		}
+		catch ( \Exception $p_error )
+		{
+			// TODO: Log error.
+			// echo $p_error->getMessage();
+			echo "Unable to retrieve your item, please try again later.";
+		}
+		return $returnValue;
 	}
 	
 	/**

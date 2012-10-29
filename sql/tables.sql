@@ -21,3 +21,17 @@ CREATE TABLE `battlenet_api_request` (
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Daily log of request made to Battle.net web API.'$$
 
+delimiter $$
+
+CREATE TABLE `d3_items` (
+  `item_id` varchar(255) NOT NULL,
+  `name` varchar(45) NOT NULL,
+  `item_type` varchar(45) NOT NULL,
+  `item_json` text NOT NULL,
+  `ip_address` varchar(45) DEFAULT NULL,
+  `last_updated` datetime NOT NULL,
+  `date_added` datetime NOT NULL,
+  PRIMARY KEY (`item_id`),
+  KEY `SORTING` (`name`,`item_type`)
+) ENGINE=InnoDB DEFAULT CHARSET=utf8 COMMENT='Diablo 3 items'$$
+

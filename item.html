@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Diablo 3 Character Builder by Khalifah Shabazz</title>
+		<script type="text/javascript" src="/js/jquery-1.8.2.min.js"></script>
+		<script type="text/javascript" src="/js/jquery.ui.core.min.js"></script>
+		<script type="text/javascript" src="/js/jquery.ui.widget.min.js"></script>
+		<script type="text/javascript">
+			jQuery( document ).ready(function ()
+			{
+				
+			});
+		</script>
+	</head>
+	<body>
+		<form id="battlenet-get-item" action="/get-item.php" method="post">
+			<fieldset>
+				<div class="field">
+					<label class="label">Item Hash</label>
+					<input class="input" type="text" name="itemId" size="100" value="CPvK9pADEgcIBBU69U5dHTIL5KIdAn-SATAJOPUDQABIFVAIYPUD" />
+					<div class="checkbox">
+						<input class="checkbox" type="checkbox" name="byName" value="true" /> <label class="label">Check this box to search for an item by name (not gauranteed to get the item back).</label>
+					</div>
+				</div>
+				<input type="submit" value="Get Item" />
+			</fieldset>
+		</form>
+	</body>
+</html>
