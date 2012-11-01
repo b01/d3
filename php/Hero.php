@@ -9,18 +9,19 @@ namespace d3cb\Api;
 use \d3cb\Tool;
 
 /**
-* var $p_itemHash string User BattleNet ID.
+* var $p_heroId string User BattleNet ID.
 * var $p_dqi object Data Query Interface.
 * var $p_sql object SQL.
 * var $p_userIp string User IP address.
 */
-class Item
+class Hero
 {
 	protected 
 		$dqi,
 		$info,
-		$item,
-		$itemHash,
+		$items,
+		$hero,
+		$heroId,
 		$json,
 		$loadedFromBattleNet,
 		$sql,
@@ -30,13 +31,14 @@ class Item
 	/**
 	* Constructor
 	*/
-	public function __construct( $p_itemHash, \d3cb\BattleNetDqi $p_dqi, \d3cb\Sql $p_sql, $p_userIp )
+	public function __construct( $p_heroId, \d3cb\BattleNetDqi $p_dqi, \d3cb\Sql $p_sql, $p_userIp )
 	{
-		$this->itemHash = $p_itemHash;
+		$this->heroId = $p_heroId;
 		$this->dqi = $p_dqi;
 		$this->sql = $p_sql;
 		$this->userIp = $p_userIp;
-		$this->item = NULL;
+		$this->hero = NULL;
+		$this->items = NULL;
 		$this->info = NULL;
 		$this->json = NULL;
 		$this->loadedFromBattleNet = FALSE;
@@ -51,8 +53,9 @@ class Item
 		unset(
 			$this->dqi,
 			$this->info,
-			$this->item,
-			$this->itemHash,
+			$this->items,
+			$this->hero,
+			$this->heroId,
 			$this->json,
 			$this->loadedFromBattleNet,
 			$this->sql,
@@ -65,19 +68,29 @@ class Item
 	*
 	* @return string JSON item data.
 	*/
+	public function getItems()
+	{
+		return $this->items;
+	}
+	
+	/**
+	* Get the item, first check the local DB, otherwise pull from Battle.net.
+	*
+	* @return string JSON item data.
+	*/
 	protected function getJson()
 	{
 		// Get the item from local database.
-		$this->info = $this->sql->getItem( $this->itemHash );
+		$this->info = NULL;//$this->sql->getHero( $this->heroId );
 		if ( Tool::isArray($this->info) )
 		{
-			$this->json = $this->info['item_json'];
+			$this->json = $this->info['hero_json'];
 		}
 		// If that fails, then try to get it from Battle.net.
 		if ( !Tool::isString($this->json) )
 		{
-			// Request the item from BattleNet.
-			$json = $this->dqi->getItem( $this->itemHash );
+			// Request the hero from BattleNet.
+			$json = $this->dqi->getHero( $this->heroId );
 			$responseCode = $this->dqi->responseCode();
 			$url = $this->dqi->getUrl();
 			// Log the request.
@@ -105,35 +118,36 @@ class Item
 	}
 	
 	/**
-	* Load the users item into this class
+	* Load the users hero into this class
 	*/
 	protected function load()
 	{
-		// Get the item.
+		// Get the hero.
 		$this->getJson();
 		// Convert the JSON to an associative array.
 		if ( Tool::isString($this->json) )
 		{
-			$item = Tool::parseJson( $this->json );
-			if ( Tool::isArray($item) )
+			$hero = Tool::parseJson( $this->json );
+			if ( Tool::isArray($hero) )
 			{
-				$this->item = $item;
-				if ($this->loadedFromBattleNet)
+				$this->hero = $hero;
+				$this->items = $hero['items'];
+				if ( $this->loadedFromBattleNet )
 				{
 					$this->save();
 				}
 			}
 		}
 		
-		return $this->item;
+		return $this->hero;
 	}
 	
 	/**
-	* Save the users item locally, in this case a database
+	* Save the users hero locally, in this case a database
 	*/
 	protected function save()
 	{
-		return $this->sql->saveItem( $this->itemHash, $this->item, $this->json, $this->userIp );
+		// return $this->sql->saveItem( $this->heroId, $this->hero, $this->json, $this->userIp );
 	}
 }
 ?>

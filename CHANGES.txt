@@ -1,3 +1,11 @@
+List of changes as 10/31/2012 11:44 PM
+-------------------------------
+	- Added Hero class.
+	- Added hero.json to sample data.
+	- Added link to hero on the profile page.
+	- Added hero query to the BattleNetDqi class.
+	- Added urls for item images to the hero page.
+	
 List of changes as 10/29/2012 12:31 PM
 -------------------------------
 	- Updated BattleNetDqi to take the battleNet ID on construct.

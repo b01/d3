@@ -9,7 +9,7 @@ class Sql
 		SELECT_REQUEST = "SELECT `ip_address`, `url`, `date`, `date_added` FROM `%1\$s`.`battlenet_api_request` WHERE  `date` = :date;",
 		SELECT_ITEM = "SELECT `item_id`, `name`, `item_type`, `item_json`, `ip_address`, `last_updated`, `date_added` FROM `%s`.`d3_items` WHERE `item_id` = :itemId;",
 		SELECT_ITEM_BY_NAME = "SELECT `item_id`, `name`, `item_type`, `item_json`, `ip_address`, `last_updated`, `date_added` FROM `%s`.`d3_items` WHERE `name` = :name;",
-		INSERT_ITEM = "INSERT INTO `%1\$s`.`d3_items` ( `item_id`, `name`, `item_type`, `item_json`, `ip_address`, `last_updated`, `date_added` ) VALUES( :itemId, :name, :itemType, :itemJson, :ipAddress, :lastUpdate, :dateAdded );";
+		INSERT_ITEM = "INSERT INTO `%1\$s`.`d3_items` (`hash`, `item_id`, `name`, `item_type`, `item_json`, `ip_address`, `last_updated`, `date_added`) VALUES(:hash, :itemId, :name, :itemType, :itemJson, :ipAddress, :lastUpdate, :dateAdded);";
 		
 	protected 
 		$pdoh;
@@ -149,18 +149,19 @@ class Sql
 	/**
 	* Cache a battle.net user profile.
 	*/
-	public function saveItem( $p_itemId, $p_item, $p_itemJson, $p_ipAddress )
+	public function saveItem( $p_itemHash, $p_item, $p_itemJson, $p_ipAddress )
 	{
 		$returnValue = FALSE;
 		try
 		{
 			if ($this->pdoh !== NULL)
 			{
-				$query = sprintf( self::INSERT_PROFILE, DB_NAME );
+				$query = sprintf( self::INSERT_ITEM, DB_NAME );
 				$stmt = $this->pdoh->prepare( $query );
-				$stmt->bindValue( ":itemId", $p_itemId, \PDO::PARAM_STR );
+				$stmt->bindValue( ":hash", $p_itemHash, \PDO::PARAM_STR );
+				$stmt->bindValue( ":itemId", $p_item['id'], \PDO::PARAM_STR );
 				$stmt->bindValue( ":name", $p_item['name'], \PDO::PARAM_STR );
-				$stmt->bindValue( ":itemType", $p_item['type'], \PDO::PARAM_STR );
+				$stmt->bindValue( ":itemType", $p_item['type']['id'], \PDO::PARAM_STR );
 				$stmt->bindValue( ":itemJson", $p_itemJson, \PDO::PARAM_STR );
 				$stmt->bindValue( ":ipAddress", $p_ipAddress, \PDO::PARAM_STR );
 				$stmt->bindValue( ":lastUpdate", date("Y-m-d H:i:s"), \PDO::PARAM_STR );
@@ -171,8 +172,8 @@ class Sql
 		catch ( \Exception $p_error )
 		{
 			// TODO: Log error.
-			// echo $p_error->getMessage();
-			echo "Unable to save your profile, something fishy is going on here; Don't worry we'll get to the bottom of this.";
+			echo $p_error->getMessage();
+			echo "Unable to save item {$p_itemId}.";
 		}
 		return $returnValue;
 	}
@@ -229,10 +230,9 @@ class Sql
 		}
 		catch ( \Exception $p_error )
 		{
-		echo $p_stmt->queryString;
 			// TODO: Log error.
 			// echo $p_error->getMessage();
-			echo "Uh-oh, where experiencing some technical difficulties. Please bear with this website, while it alerts a developer.";
+			echo "Uh-oh, where experiencing some technical difficulties. Please bear with this website.";
 		}
 		return $returnValue;
 	}

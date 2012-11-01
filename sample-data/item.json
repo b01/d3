@@ -1,0 +1,80 @@
+{
+   "id":"Helm_104",
+   "name":"Wild Casque of Invasion",
+   "icon":"helm_104_demonhunter_male",
+   "displayColor":"blue",
+   "tooltipParams":"item/CicI-8r2kAMSBwgEFTr1Tl0dMgvkoh0Cf5IBMAk49QNAAEgVUAhg9QMY9NT31As",
+   "requiredLevel":44,
+   "itemLevel":46,
+   "bonusAffixes":0,
+   "typeName":"Magic Helm",
+   "type":{
+      "id":"GenericHelm",
+      "twoHanded":false
+   },
+   "armor":{
+      "min":214.0,
+      "max":214.0
+   },
+   "attributes":[
+      "+59 Strength",
+      "+60 Dexterity",
+      "+56 Vitality"
+   ],
+   "attributesRaw":{
+      "Durability_Max":{
+         "min":501.0,
+         "max":501.0
+      },
+      "Vitality_Item":{
+         "min":56.0,
+         "max":56.0
+      },
+      "Dexterity_Item":{
+         "min":60.0,
+         "max":60.0
+      },
+      "Armor_Item":{
+         "min":214.0,
+         "max":214.0
+      },
+      "Strength_Item":{
+         "min":59.0,
+         "max":59.0
+      },
+      "Durability_Cur":{
+         "min":501.0,
+         "max":501.0
+      }
+   },
+   "socketEffects":[
+
+   ],
+   "salvage":[
+      {
+         "chance":1.0,
+         "item":{
+            "id":"Crafting_Tier_02B",
+            "name":"Shimmering Essence",
+            "icon":"crafting_tier_02b_demonhunter_male",
+            "displayColor":"blue",
+            "tooltipParams":"item/shimmering-essence"
+         },
+         "quantity":1
+      },
+      {
+         "chance":0.15,
+         "item":{
+            "id":"Crafting_Tier_02C",
+            "name":"Lizard Eye",
+            "icon":"crafting_tier_02c_demonhunter_male",
+            "displayColor":"yellow",
+            "tooltipParams":"item/lizard-eye"
+         },
+         "quantity":1
+      }
+   ],
+   "gems":[
+
+   ]
+}

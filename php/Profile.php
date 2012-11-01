@@ -58,7 +58,9 @@ class Profile
 	}
 	
 	/**
-	* Destructor
+	* Get the user hero profiles, first check the local DB, otherwise pull from Battle.net.
+	*
+	* @return string JSON item data.
 	*/
 	protected function getJson()
 	{
@@ -88,7 +90,10 @@ class Profile
 	}
 	
 	/**
-	* Destructor
+	* Get Hero(s) data.
+	*
+	* @param $p_heroByName string Optional name to specify a single hero to return.
+	* @return mixed Heroes(s) data as an array, or null if none.
 	*/
 	public function getHeroes( $p_heroByName = NULL )
 	{
@@ -109,7 +114,7 @@ class Profile
 	}
 	
 	/**
-	* Destructor
+	* Get raw JSON data returned from Battle.net.
 	*/
 	public function getRawData()
 	{
@@ -126,7 +131,7 @@ class Profile
 	protected function load()
 	{
 		// Get the profile from local database.
-		$this->getJson( $this->battleNetId );
+		$this->getJson();
 		// Convert the JSON to an associative array.
 		if ( Tool::isString($this->profileJson) )
 		{

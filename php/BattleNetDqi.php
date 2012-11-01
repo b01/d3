@@ -6,6 +6,7 @@ class BattleNetDqi
 {
 	protected 
 		$battleNetId,
+		$battleNetUrlSafeId,
 		$domain,
 		$requestInfo,
 		$responseText,
@@ -21,6 +22,7 @@ class BattleNetDqi
 		$this->domain = BATTLENET_D3_API_DOMAIN;
 		$this->requestInfo = NULL;
 		$this->url = '';
+		$this->battleNetUrlSafeId = str_replace( '#', '-', $this->battleNetId );
 	}
 	
 	
@@ -31,11 +33,72 @@ class BattleNetDqi
 	{
 		unset(
 			$this->battleNetId,
+			$this->battleNetUrlSafeId,
 			$this->domain,
 			$this->requestInfo,
 			$this->responseText,
 			$this->url
 		);
+	}
+	
+	/**
+	* Get BattleNet ID
+	*
+	* @return string BattleNet ID
+	*/
+	public function getBattleNetId()
+	{
+		return $this->battleNetId;
+	}
+	
+	/**
+	* Example: 
+	* url ::= <host> "/api/d3/data/item/" <item-data>
+	* GET /api/d3/data/item/COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD
+	* Host: us.battle.net
+	* Note: Leave off the trailing '/' when setting
+	*	/api/d3/profile/<battleNetIdName>-<battleNetIdNumber>
+	* @param $p_battleNetId string Battle.Net ID with the "#code"
+	*/
+	public function getHero( $p_heroId )
+	{
+		$returnValue = NULL;
+		if ( Tool::isString($p_heroId) )
+		{
+			$this->url = sprintf( HERO_URL, $this->battleNetUrlSafeId, $p_heroId );
+			// Return the response text.
+			$returnValue = $this->send();
+		}
+		else
+		{
+			throw new \Exception( "Invalid item ID (hash) given: '{$p_itemId}'; here's a correct example: COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD" );
+		}
+		return $returnValue;
+	}
+	
+	/**
+	* Example: 
+	* url ::= <host> "/api/d3/data/item/" <item-data>
+	* GET /api/d3/data/item/COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD
+	* Host: us.battle.net
+	* Note: Leave off the trailing '/' when setting
+	*	/api/d3/profile/<battleNetIdName>-<battleNetIdNumber>
+	* @param $p_battleNetId string Battle.Net ID with the "#code"
+	*/
+	public function getItem( $p_itemId )
+	{
+		$returnValue = NULL;
+		if ( Tool::isString($p_itemId) )
+		{
+			$this->url = "http://{$this->domain}/data/item/{$p_itemId}";
+			// Return the response text.
+			$returnValue = $this->send();
+		}
+		else
+		{
+			throw new \Exception( "Invalid item ID (hash) given: '{$p_itemId}'; here's a correct example: COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD" );
+		}
+		return $returnValue;
 	}
 	
 	/**
@@ -52,7 +115,7 @@ class BattleNetDqi
 		$returnValue = NULL;
 		if ( Tool::isString($p_battleNetId) && substr_count($p_battleNetId, '#') === 1 )
 		{
-		// Replace the pound sign in the BattleNet id with a dash (I assume for safe URL transport).
+			// Replace the pound sign in the BattleNet id with a dash (I assume for safe URL transport).
 			$battleNetId = str_replace( '#', '-', $p_battleNetId );
 			$this->url = "http://{$this->domain}/profile/{$battleNetId}/";
 			// Return the response text.
