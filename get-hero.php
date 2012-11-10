@@ -21,6 +21,7 @@ $heroId = "3955832";
 		<?php if ( Tool::isArray($items) ): ?>
 			<?php foreach ( $items as $key => $item ): ?>
 			<div class="hero">
+				<div class=="item-tooltipParams"><?= $item['tooltipParams']; ?></div>
 				<div class=="item-<?= $key ?>">
 					<img src="http://media.blizzard.com/d3/icons/items/large/<?= $item['icon'] ?>.png" alt="<?= $key ?>" />
 				<div class=="item-<?= $item['id'] ?>"><?= $item['id'] ?></div>

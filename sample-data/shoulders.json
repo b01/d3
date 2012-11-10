@@ -1,0 +1,106 @@
+{
+   "id":"Shoulders_205",
+   "name":"Thief's Armor",
+   "icon":"shoulders_205_monk_male",
+   "displayColor":"yellow",
+   "tooltipParams":"item/CkgIlcnd9AISBwgEFc_4yBUd9tdDBR2lN-1LHYTpSwwd50ghfB06HSgqHY-8lrciCwgAFcNEAwAYCiAWMAk4_ANAAEgEUBBg_QMYnuPH3AJQCFgA",
+   "requiredLevel":60,
+   "itemLevel":62,
+   "bonusAffixes":0,
+   "typeName":"Rare Shoulders",
+   "type":{
+      "id":"Shoulders",
+      "twoHanded":false
+   },
+   "armor":{
+      "min":549.0,
+      "max":549.0
+   },
+   "attributes":[
+      "+71 Strength",
+      "+135 Dexterity",
+      "+53 Intelligence",
+      "+43 Poison Resistance",
+      "+217 Armor",
+      "+19% Extra Gold from Monsters"
+   ],
+   "attributesRaw":{
+      "Armor_Bonus_Item":{
+         "min":217.0,
+         "max":217.0
+      },
+      "Resistance#Poison":{
+         "min":43.0,
+         "max":43.0
+      },
+      "Strength_Item":{
+         "min":71.0,
+         "max":71.0
+      },
+      "Dexterity_Item":{
+         "min":135.0,
+         "max":135.0
+      },
+      "Armor_Item":{
+         "min":332.0,
+         "max":332.0
+      },
+      "Durability_Max":{
+         "min":509.0,
+         "max":509.0
+      },
+      "Gold_Find":{
+         "min":0.19,
+         "max":0.19
+      },
+      "Durability_Cur":{
+         "min":508.0,
+         "max":508.0
+      },
+      "Intelligence_Item":{
+         "min":53.0,
+         "max":53.0
+      }
+   },
+   "socketEffects":[
+
+   ],
+   "salvage":[
+      {
+         "chance":1.0,
+         "item":{
+            "id":"Crafting_Tier_04B",
+            "name":"Exquisite Essence",
+            "icon":"crafting_tier_04b_demonhunter_male",
+            "displayColor":"blue",
+            "tooltipParams":"item/exquisite-essence"
+         },
+         "quantity":1
+      },
+      {
+         "chance":1.0,
+         "item":{
+            "id":"Crafting_Tier_04C",
+            "name":"Iridescent Tear",
+            "icon":"crafting_tier_04c_demonhunter_male",
+            "displayColor":"yellow",
+            "tooltipParams":"item/iridescent-tear"
+         },
+         "quantity":1
+      },
+      {
+         "chance":0.0010,
+         "item":{
+            "id":"Crafting_Tier_04D",
+            "name":"Fiery Brimstone",
+            "icon":"crafting_tier_04d_demonhunter_male",
+            "displayColor":"orange",
+            "tooltipParams":"item/fiery-brimstone"
+         },
+         "quantity":1
+      }
+   ],
+   "gems":[
+
+   ]
+}

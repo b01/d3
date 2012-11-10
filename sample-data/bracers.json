@@ -1,0 +1,96 @@
+{
+   "id":"Bracers_206",
+   "name":"Glistening Deflectors",
+   "icon":"bracers_206_demonhunter_male",
+   "displayColor":"yellow",
+   "tooltipParams":"item/CjwI09jupQwSBwgEFdksyssdslfV7h2UPeO5HZbVw50dKP59ASILCAAVrUQDABgUIAIwCTjmAkAAUAxg5wIYzcyuwwZQCFgA",
+   "requiredLevel":60,
+   "itemLevel":63,
+   "bonusAffixes":0,
+   "typeName":"Rare Bracers",
+   "type":{
+      "id":"Bracers",
+      "twoHanded":false
+   },
+   "armor":{
+      "min":502.0,
+      "max":502.0
+   },
+   "attributes":[
+      "+31 Fire Resistance",
+      "+68 Resistance to All Elements",
+      "+258 Armor",
+      "Critical Hit Chance Increased by 3.5%"
+   ],
+   "attributesRaw":{
+      "Resistance_All":{
+         "min":68.0,
+         "max":68.0
+      },
+      "Armor_Bonus_Item":{
+         "min":258.0,
+         "max":258.0
+      },
+      "Durability_Cur":{
+         "min":358.0,
+         "max":358.0
+      },
+      "Durability_Max":{
+         "min":359.0,
+         "max":359.0
+      },
+      "Resistance#Fire":{
+         "min":31.0,
+         "max":31.0
+      },
+      "Crit_Percent_Bonus_Capped":{
+         "min":0.035,
+         "max":0.035
+      },
+      "Armor_Item":{
+         "min":244.8333282470703,
+         "max":244.8333282470703
+      }
+   },
+   "socketEffects":[
+
+   ],
+   "salvage":[
+      {
+         "chance":1.0,
+         "item":{
+            "id":"Crafting_Tier_04B",
+            "name":"Exquisite Essence",
+            "icon":"crafting_tier_04b_demonhunter_male",
+            "displayColor":"blue",
+            "tooltipParams":"item/exquisite-essence"
+         },
+         "quantity":1
+      },
+      {
+         "chance":1.0,
+         "item":{
+            "id":"Crafting_Tier_04C",
+            "name":"Iridescent Tear",
+            "icon":"crafting_tier_04c_demonhunter_male",
+            "displayColor":"yellow",
+            "tooltipParams":"item/iridescent-tear"
+         },
+         "quantity":1
+      },
+      {
+         "chance":0.0010,
+         "item":{
+            "id":"Crafting_Tier_04D",
+            "name":"Fiery Brimstone",
+            "icon":"crafting_tier_04d_demonhunter_male",
+            "displayColor":"orange",
+            "tooltipParams":"item/fiery-brimstone"
+         },
+         "quantity":1
+      }
+   ],
+   "gems":[
+
+   ]
+}

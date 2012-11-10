@@ -1,0 +1,106 @@
+{
+   "id":"SpiritStone_204",
+   "name":"Intrepid Witness",
+   "icon":"spiritstone_204_demonhunter_male",
+   "displayColor":"yellow",
+   "tooltipParams":"item/CkEIuJ_Kxw0SBwgEFRm-hfEd3Ubxtx3na9W3HR_KXUkdmtKhJx0_pFAHIgsIABWtRAMAGBwgBDAJOIcDQABQDmCIAxjNh9LnAVAIWAA",
+   "requiredLevel":60,
+   "itemLevel":62,
+   "bonusAffixes":0,
+   "typeName":"Rare Spirit Stone",
+   "type":{
+      "id":"SpiritStone_Monk",
+      "twoHanded":false
+   },
+   "armor":{
+      "min":724.0,
+      "max":724.0
+   },
+   "attributes":[
+      "+56 Dexterity",
+      "+78 Vitality",
+      "+43 Physical Resistance",
+      "+7% Life",
+      "+327 Armor",
+      "Increases Sweeping Wind Damage by 7% (Monk Only)"
+   ],
+   "attributesRaw":{
+      "Power_Damage_Percent_Bonus#Monk_SweepingWind":{
+         "min":0.07,
+         "max":0.07
+      },
+      "Armor_Bonus_Item":{
+         "min":327.0,
+         "max":327.0
+      },
+      "Dexterity_Item":{
+         "min":56.0,
+         "max":56.0
+      },
+      "Resistance#Physical":{
+         "min":43.0,
+         "max":43.0
+      },
+      "Armor_Item":{
+         "min":397.0,
+         "max":397.0
+      },
+      "Vitality_Item":{
+         "min":78.0,
+         "max":78.0
+      },
+      "Durability_Max":{
+         "min":392.0,
+         "max":392.0
+      },
+      "Durability_Cur":{
+         "min":391.0,
+         "max":391.0
+      },
+      "Hitpoints_Max_Percent_Bonus_Item":{
+         "min":0.07,
+         "max":0.07
+      }
+   },
+   "socketEffects":[
+
+   ],
+   "salvage":[
+      {
+         "chance":1.0,
+         "item":{
+            "id":"Crafting_Tier_04B",
+            "name":"Exquisite Essence",
+            "icon":"crafting_tier_04b_demonhunter_male",
+            "displayColor":"blue",
+            "tooltipParams":"item/exquisite-essence"
+         },
+         "quantity":1
+      },
+      {
+         "chance":1.0,
+         "item":{
+            "id":"Crafting_Tier_04C",
+            "name":"Iridescent Tear",
+            "icon":"crafting_tier_04c_demonhunter_male",
+            "displayColor":"yellow",
+            "tooltipParams":"item/iridescent-tear"
+         },
+         "quantity":1
+      },
+      {
+         "chance":0.0010,
+         "item":{
+            "id":"Crafting_Tier_04D",
+            "name":"Fiery Brimstone",
+            "icon":"crafting_tier_04d_demonhunter_male",
+            "displayColor":"orange",
+            "tooltipParams":"item/fiery-brimstone"
+         },
+         "quantity":1
+      }
+   ],
+   "gems":[
+
+   ]
+}

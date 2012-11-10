@@ -1,0 +1,111 @@
+{
+   "id":"Belt_206",
+   "name":"War Denial",
+   "icon":"belt_206_monk_male",
+   "displayColor":"yellow",
+   "tooltipParams":"item/CkYInrKb0AQSBwgEFb6nQtQdRpPTiR2EHJ0nHTZpS5Md50ghfB3MnIAnHVtOgMkiCwgBFbVEAwAYAiAMMAk4_QJAAFAQYP4CGIPh6rsFUAhYAA",
+   "requiredLevel":60,
+   "itemLevel":63,
+   "bonusAffixes":0,
+   "typeName":"Rare Belt",
+   "type":{
+      "id":"GenericBelt",
+      "twoHanded":false
+   },
+   "armor":{
+      "min":502.0,
+      "max":502.0
+   },
+   "attributes":[
+      "+58 Strength",
+      "+67 Dexterity",
+      "+40 Intelligence",
+      "+44 Lightning Resistance",
+      "+77 Resistance to All Elements",
+      "+230 Armor",
+      "+16% Extra Gold from Monsters"
+   ],
+   "attributesRaw":{
+      "Durability_Cur":{
+         "min":381.0,
+         "max":381.0
+      },
+      "Resistance#Lightning":{
+         "min":44.0,
+         "max":44.0
+      },
+      "Strength_Item":{
+         "min":58.0,
+         "max":58.0
+      },
+      "Armor_Item":{
+         "min":272.0,
+         "max":272.0
+      },
+      "Resistance_All":{
+         "min":77.0,
+         "max":77.0
+      },
+      "Durability_Max":{
+         "min":382.0,
+         "max":382.0
+      },
+      "Gold_Find":{
+         "min":0.16,
+         "max":0.16
+      },
+      "Intelligence_Item":{
+         "min":40.0,
+         "max":40.0
+      },
+      "Armor_Bonus_Item":{
+         "min":230.0,
+         "max":230.0
+      },
+      "Dexterity_Item":{
+         "min":67.0,
+         "max":67.0
+      }
+   },
+   "socketEffects":[
+
+   ],
+   "salvage":[
+      {
+         "chance":1.0,
+         "item":{
+            "id":"Crafting_Tier_04B",
+            "name":"Exquisite Essence",
+            "icon":"crafting_tier_04b_demonhunter_male",
+            "displayColor":"blue",
+            "tooltipParams":"item/exquisite-essence"
+         },
+         "quantity":1
+      },
+      {
+         "chance":1.0,
+         "item":{
+            "id":"Crafting_Tier_04C",
+            "name":"Iridescent Tear",
+            "icon":"crafting_tier_04c_demonhunter_male",
+            "displayColor":"yellow",
+            "tooltipParams":"item/iridescent-tear"
+         },
+         "quantity":1
+      },
+      {
+         "chance":0.0010,
+         "item":{
+            "id":"Crafting_Tier_04D",
+            "name":"Fiery Brimstone",
+            "icon":"crafting_tier_04d_demonhunter_male",
+            "displayColor":"orange",
+            "tooltipParams":"item/fiery-brimstone"
+         },
+         "quantity":1
+      }
+   ],
+   "gems":[
+
+   ]
+}

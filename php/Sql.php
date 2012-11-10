@@ -7,9 +7,8 @@ class Sql
 		INSERT_PROFILE = "INSERT INTO `%1\$s`.`d3_profiles` (`battle_net_id`, `profile_json`, `ip_address`, `last_updated`, `date_added`) VALUES(:battleNetId, :profileJson, :ipAddress, :lastUpdated, :dateAdded) ON DUPLICATE KEY UPDATE `profile_json` = VALUES(profile_json), `ip_address` = VALUES(ip_address), `last_updated` = VALUES(last_updated);",
 		INSERT_REQUEST = "INSERT INTO `%1\$s`.`battlenet_api_request` (`battle_net_id`, `ip_address`, `url`, `date_number`, `date_added`) VALUES(:battleNetId, :ipAddress, :url, :dateNumber, :dateAdded);",
 		SELECT_REQUEST = "SELECT `ip_address`, `url`, `date`, `date_added` FROM `%1\$s`.`battlenet_api_request` WHERE  `date` = :date;",
-		SELECT_ITEM = "SELECT `item_id`, `name`, `item_type`, `item_json`, `ip_address`, `last_updated`, `date_added` FROM `%s`.`d3_items` WHERE `item_id` = :itemId;",
-		SELECT_ITEM_BY_NAME = "SELECT `item_id`, `name`, `item_type`, `item_json`, `ip_address`, `last_updated`, `date_added` FROM `%s`.`d3_items` WHERE `name` = :name;",
-		INSERT_ITEM = "INSERT INTO `%1\$s`.`d3_items` (`hash`, `item_id`, `name`, `item_type`, `item_json`, `ip_address`, `last_updated`, `date_added`) VALUES(:hash, :itemId, :name, :itemType, :itemJson, :ipAddress, :lastUpdate, :dateAdded);";
+		SELECT_ITEM = "SELECT `id`, `name`, `item_type`, `json`, `ip_address`, `last_updated`, `date_added` FROM `%s`.`d3_items` WHERE `%s` = :itemPrimaryValue;",
+		INSERT_ITEM = "INSERT INTO `%1\$s`.`d3_items` (`hash`, `id`, `name`, `item_type`, `json`, `ip_address`, `last_updated`, `date_added`) VALUES(:hash, :id, :name, :itemType, :json, :ipAddress, :lastUpdate, :dateAdded);";
 		
 	protected 
 		$pdoh;
@@ -76,36 +75,37 @@ class Sql
 				// Show human readable errors from the database server when they occur.
 				$this->pdoh->setAttribute( \PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION );
 				$this->pdoh->setAttribute( \PDO::ATTR_EMULATE_PREPARES, FALSE );
+				$this->pdoh->setAttribute( \PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC ); 
 			}
-			catch ( \PDOException $p_error )
+			catch ( \Exception $p_error )
 			{
 				$this->pdoh = NULL;
 				// TODO: Log error.
 				// echo $p_error->getMessage();
-				echo  "Unable to establis a connection with the database.";
+				echo  "Unable to establish a connection with the database.";
 			}
 		}
 		return $this->pdoh;
 	}
 	
 	/**
-	* Get battle.net item.
+	* Get battle.net item data.
+	* @param string $p_primaryColumnValue Value of the primary column to use for selection.
+	* @param string $p_primaryColumn Name of the primary column to use for selection.
+	* @return array
 	*/
-	public function getItem( $p_itemId )
+	public function getItem( $p_primaryColumnValue, $p_primaryColumn = "hash" )
 	{
 		$returnValue = NULL;
 		try
 		{
-			$query = sprintf( self::SELECT_ITEM, DB_NAME );
-			if ($this->pdoh !== NULL)
+			$query = sprintf( self::SELECT_ITEM, DB_NAME, $p_primaryColumn );
+			$stmt = $this->pdoh->prepare( $query );
+			$stmt->bindValue( ":itemPrimaryValue", $p_primaryColumnValue, \PDO::PARAM_STR );
+			$itemRecord = $this->pdoQuery( $stmt );
+			if ( Tool::isArray($itemRecord) )
 			{
-				$stmt = $this->pdoh->prepare( $query );
-				$stmt->bindValue( ":itemId", $p_itemId, \PDO::PARAM_STR );
-				$itemRecord = $this->pdoQuery( $stmt );
-				if ( Tool::isArray($itemRecord) )
-				{
-					$returnValue = $itemRecord[0];
-				}
+				$returnValue = $itemRecord[0];
 			}
 		}
 		catch ( \Exception $p_error )
@@ -159,10 +159,10 @@ class Sql
 				$query = sprintf( self::INSERT_ITEM, DB_NAME );
 				$stmt = $this->pdoh->prepare( $query );
 				$stmt->bindValue( ":hash", $p_itemHash, \PDO::PARAM_STR );
-				$stmt->bindValue( ":itemId", $p_item['id'], \PDO::PARAM_STR );
+				$stmt->bindValue( ":id", $p_item['id'], \PDO::PARAM_STR );
 				$stmt->bindValue( ":name", $p_item['name'], \PDO::PARAM_STR );
 				$stmt->bindValue( ":itemType", $p_item['type']['id'], \PDO::PARAM_STR );
-				$stmt->bindValue( ":itemJson", $p_itemJson, \PDO::PARAM_STR );
+				$stmt->bindValue( ":json", $p_itemJson, \PDO::PARAM_STR );
 				$stmt->bindValue( ":ipAddress", $p_ipAddress, \PDO::PARAM_STR );
 				$stmt->bindValue( ":lastUpdate", date("Y-m-d H:i:s"), \PDO::PARAM_STR );
 				$stmt->bindValue( ":dateAdded", date("Y-m-d H:i:s"), \PDO::PARAM_STR );
@@ -173,7 +173,7 @@ class Sql
 		{
 			// TODO: Log error.
 			echo $p_error->getMessage();
-			echo "Unable to save item {$p_itemId}.";
+			echo "Unable to save item {$p_itemHash}.";
 		}
 		return $returnValue;
 	}
@@ -231,8 +231,8 @@ class Sql
 		catch ( \Exception $p_error )
 		{
 			// TODO: Log error.
-			// echo $p_error->getMessage();
-			echo "Uh-oh, where experiencing some technical difficulties. Please bear with this website.";
+			echo $p_error->getMessage();
+			//echo "Uh-oh, where experiencing some technical difficulties. Please bear with this website.";
 		}
 		return $returnValue;
 	}

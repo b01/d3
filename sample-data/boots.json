@@ -1,0 +1,101 @@
+{
+   "id":"Boots_206",
+   "name":"Obsidian Talons",
+   "icon":"boots_206_monk_male",
+   "displayColor":"yellow",
+   "tooltipParams":"item/CkgIupS0hgMSBwgEFZ5Fm38dBlQFFx12Tww1HbpN-CodTGFJ1B3n5anwHSGHPlYiCwgAFbP-AQAYBCAGMAk41QRAAEgOUBBg1gQYvJba-Q9QCFgA",
+   "requiredLevel":60,
+   "itemLevel":63,
+   "bonusAffixes":0,
+   "typeName":"Rare Boots",
+   "type":{
+      "id":"Boots",
+      "twoHanded":false
+   },
+   "armor":{
+      "min":345.0,
+      "max":345.0
+   },
+   "attributes":[
+      "+133 Strength",
+      "+226 Dexterity",
+      "+68 Intelligence",
+      "+57 Fire Resistance",
+      "14% Better Chance of Finding Magical Items"
+   ],
+   "attributesRaw":{
+      "Durability_Max":{
+         "min":598.0,
+         "max":598.0
+      },
+      "Resistance#Fire":{
+         "min":57.0,
+         "max":57.0
+      },
+      "Dexterity_Item":{
+         "min":226.0,
+         "max":226.0
+      },
+      "Intelligence_Item":{
+         "min":68.0,
+         "max":68.0
+      },
+      "Armor_Item":{
+         "min":345.1666564941406,
+         "max":345.1666564941406
+      },
+      "Magic_Find":{
+         "min":0.14,
+         "max":0.14
+      },
+      "Strength_Item":{
+         "min":133.0,
+         "max":133.0
+      },
+      "Durability_Cur":{
+         "min":597.0,
+         "max":597.0
+      }
+   },
+   "socketEffects":[
+
+   ],
+   "salvage":[
+      {
+         "chance":1.0,
+         "item":{
+            "id":"Crafting_Tier_04B",
+            "name":"Exquisite Essence",
+            "icon":"crafting_tier_04b_demonhunter_male",
+            "displayColor":"blue",
+            "tooltipParams":"item/exquisite-essence"
+         },
+         "quantity":1
+      },
+      {
+         "chance":1.0,
+         "item":{
+            "id":"Crafting_Tier_04C",
+            "name":"Iridescent Tear",
+            "icon":"crafting_tier_04c_demonhunter_male",
+            "displayColor":"yellow",
+            "tooltipParams":"item/iridescent-tear"
+         },
+         "quantity":1
+      },
+      {
+         "chance":0.0010,
+         "item":{
+            "id":"Crafting_Tier_04D",
+            "name":"Fiery Brimstone",
+            "icon":"crafting_tier_04d_demonhunter_male",
+            "displayColor":"orange",
+            "tooltipParams":"item/fiery-brimstone"
+         },
+         "quantity":1
+      }
+   ],
+   "gems":[
+
+   ]
+}

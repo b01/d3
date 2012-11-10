@@ -6,7 +6,9 @@
 */
 namespace d3cb\Api;
 
+require( "php/classes/Item.php" );
 use \d3cb\Tool;
+use \d3cb\ItemX;
 
 /**
 * var $p_itemHash string User BattleNet ID.
@@ -40,7 +42,7 @@ class Item
 		$this->info = NULL;
 		$this->json = NULL;
 		$this->loadedFromBattleNet = FALSE;
-		$this->load();
+		$this->load( $p_itemHash );
 	}
 	
 	/**
@@ -65,13 +67,18 @@ class Item
 	*
 	* @return string JSON item data.
 	*/
-	protected function getJson()
+	protected function getJson( $p_value, $p_column )
 	{
-		// Get the item from local database.
-		$this->info = $this->sql->getItem( $this->itemHash );
+		// Get the item info locally from the database.
+		if ( !Tool::isString($p_value) && !Tool::isString($p_column) )
+		{
+			throw new \Exception( "Invalid data used to retrieve an item." );
+		}
+		
+		$this->info = $this->sql->getItem( $p_value, $p_column );
 		if ( Tool::isArray($this->info) )
 		{
-			$this->json = $this->info['item_json'];
+			$this->json = $this->info['json'];
 		}
 		// If that fails, then try to get it from Battle.net.
 		if ( !Tool::isString($this->json) )
@@ -107,20 +114,21 @@ class Item
 	/**
 	* Load the users item into this class
 	*/
-	protected function load()
+	protected function load( $p_id, $p_column = "hash" )
 	{
 		// Get the item.
-		$this->getJson();
+		$this->getJson( $p_id, $p_column );
 		// Convert the JSON to an associative array.
 		if ( Tool::isString($this->json) )
 		{
-			$item = Tool::parseJson( $this->json );
-			if ( Tool::isArray($item) )
+			$item = new \d3cb\Item( $this->json );
+			var_dump( $item );
+			if ( $item instanceof \d3cb\Item )
 			{
 				$this->item = $item;
-				if ($this->loadedFromBattleNet)
+				if ( $this->loadedFromBattleNet )
 				{
-					$this->save();
+					$this->save( "item" );
 				}
 			}
 		}

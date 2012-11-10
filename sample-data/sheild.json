@@ -1,0 +1,122 @@
+{
+   "id":"Shield_207_104",
+   "name":"Loathing Castle",
+   "icon":"shield_207_104_demonhunter_male",
+   "displayColor":"yellow",
+   "tooltipParams":"item/CkYIqM-J7g8SBwgEFWWbSewdnlUNWx2_UqRHHb9b6Egdt_HsGh3k5anwHeRElDUiCwgAFar-AQAYGCAKMAk4tQVAAFAQYLYFGLWSs7sCUAhYAA",
+   "requiredLevel":60,
+   "itemLevel":63,
+   "bonusAffixes":0,
+   "typeName":"Rare Shield",
+   "type":{
+      "id":"Shield",
+      "twoHanded":false
+   },
+   "armor":{
+      "min":1206.0,
+      "max":1206.0
+   },
+   "attributes":[
+      "+107 Dexterity",
+      "+91 Intelligence",
+      "+208 Vitality",
+      "Melee attackers take 2011 damage per hit.",
+      "Critical Hit Chance Increased by 8.5%",
+      "Health Globes and Potions Grant +2021 Life."
+   ],
+   "attributesRaw":{
+      "Crit_Percent_Bonus_Capped":{
+         "min":0.085,
+         "max":0.085
+      },
+      "Thorns_Fixed#Physical":{
+         "min":2011.0,
+         "max":2011.0
+      },
+      "Health_Globe_Bonus_Health":{
+         "min":2021.0,
+         "max":2021.0
+      },
+      "Block_Chance_Item":{
+         "min":0.18,
+         "max":0.18
+      },
+      "Dexterity_Item":{
+         "min":107.0,
+         "max":107.0
+      },
+      "Armor_Item":{
+         "min":1206.0,
+         "max":1206.0
+      },
+      "Vitality_Item":{
+         "min":208.0,
+         "max":208.0
+      },
+      "Durability_Max":{
+         "min":694.0,
+         "max":694.0
+      },
+      "Block_Amount_Item_Delta":{
+         "min":1000.0,
+         "max":1000.0
+      },
+      "Durability_Cur":{
+         "min":693.0,
+         "max":693.0
+      },
+      "Intelligence_Item":{
+         "min":91.0,
+         "max":91.0
+      },
+      "Block_Amount_Item_Min":{
+         "min":3706.0,
+         "max":3706.0
+      }
+   },
+   "socketEffects":[
+
+   ],
+   "salvage":[
+      {
+         "chance":1.0,
+         "item":{
+            "id":"Crafting_Tier_04B",
+            "name":"Exquisite Essence",
+            "icon":"crafting_tier_04b_demonhunter_male",
+            "displayColor":"blue",
+            "tooltipParams":"item/exquisite-essence"
+         },
+         "quantity":1
+      },
+      {
+         "chance":1.0,
+         "item":{
+            "id":"Crafting_Tier_04C",
+            "name":"Iridescent Tear",
+            "icon":"crafting_tier_04c_demonhunter_male",
+            "displayColor":"yellow",
+            "tooltipParams":"item/iridescent-tear"
+         },
+         "quantity":1
+      },
+      {
+         "chance":0.0010,
+         "item":{
+            "id":"Crafting_Tier_04D",
+            "name":"Fiery Brimstone",
+            "icon":"crafting_tier_04d_demonhunter_male",
+            "displayColor":"orange",
+            "tooltipParams":"item/fiery-brimstone"
+         },
+         "quantity":1
+      }
+   ],
+   "gems":[
+
+   ],
+   "blockChance":{
+      "min":0.18,
+      "max":0.18
+   }
+}

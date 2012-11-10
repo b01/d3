@@ -1,0 +1,146 @@
+{
+   "id":"Axe_1H_207",
+   "name":"Hunter's Scale",
+   "icon":"axe_1h_207_demonhunter_male",
+   "displayColor":"yellow",
+   "tooltipParams":"item/Cm0Ixsq-7QYSBwgEFa4sB2MdTmNPMB2UvzSKHfI3LRQdqF7udR3o5anwHfX5_38iCwgAFa7-AQAYFCA2MAk4qQRAAFAQYKoEaiUKDAgAEPGbqraBgIDgIRIVCLLxhcIOEgcIBBUblq6YMA04AEABGNyyubAMUAhYAA",
+   "requiredLevel":60,
+   "itemLevel":63,
+   "bonusAffixes":0,
+   "typeName":"Rare Axe",
+   "type":{
+      "id":"Axe",
+      "twoHanded":false
+   },
+   "dps":{
+      "min":931.553965830803,
+      "max":931.553965830803
+   },
+   "attacksPerSecond":{
+      "min":1.403999948501587,
+      "max":1.403999948501587
+   },
+   "minDamage":{
+      "min":151.0,
+      "max":151.0
+   },
+   "maxDamage":{
+      "min":278.0,
+      "max":278.0
+   },
+   "attributes":[
+      "+272–626 Poison Damage",
+      "+63 Strength",
+      "+253 Dexterity",
+      "Increases Attack Speed by 8%",
+      "2.40% of Damage Dealt Is Converted to Life"
+   ],
+   "attributesRaw":{
+      "Damage_Weapon_Min#Physical":{
+         "min":151.0,
+         "max":151.0
+      },
+      "Durability_Cur":{
+         "min":553.0,
+         "max":553.0
+      },
+      "Dexterity_Item":{
+         "min":253.0,
+         "max":253.0
+      },
+      "Attacks_Per_Second_Item_Percent":{
+         "min":0.08,
+         "max":0.08
+      },
+      "Damage_Weapon_Delta#Physical":{
+         "min":127.0,
+         "max":127.0
+      },
+      "Attacks_Per_Second_Item":{
+         "min":1.2999999523162842,
+         "max":1.2999999523162842
+      },
+      "Durability_Max":{
+         "min":554.0,
+         "max":554.0
+      },
+      "Sockets":{
+         "min":1.0,
+         "max":1.0
+      },
+      "Steal_Health_Percent":{
+         "min":0.024,
+         "max":0.024
+      },
+      "Damage_Weapon_Delta#Poison":{
+         "min":354.0,
+         "max":354.0
+      },
+      "Damage_Weapon_Min#Poison":{
+         "min":272.0,
+         "max":272.0
+      },
+      "Strength_Item":{
+         "min":63.0,
+         "max":63.0
+      }
+   },
+   "socketEffects":[
+
+   ],
+   "salvage":[
+      {
+         "chance":1.0,
+         "item":{
+            "id":"Crafting_Tier_04B",
+            "name":"Exquisite Essence",
+            "icon":"crafting_tier_04b_demonhunter_male",
+            "displayColor":"blue",
+            "tooltipParams":"item/exquisite-essence"
+         },
+         "quantity":1
+      },
+      {
+         "chance":1.0,
+         "item":{
+            "id":"Crafting_Tier_04C",
+            "name":"Iridescent Tear",
+            "icon":"crafting_tier_04c_demonhunter_male",
+            "displayColor":"yellow",
+            "tooltipParams":"item/iridescent-tear"
+         },
+         "quantity":1
+      },
+      {
+         "chance":0.0010,
+         "item":{
+            "id":"Crafting_Tier_04D",
+            "name":"Fiery Brimstone",
+            "icon":"crafting_tier_04d_demonhunter_male",
+            "displayColor":"orange",
+            "tooltipParams":"item/fiery-brimstone"
+         },
+         "quantity":1
+      }
+   ],
+   "gems":[
+      {
+         "item":{
+            "id":"Emerald_11",
+            "name":"Star Emerald",
+            "icon":"emerald_11_demonhunter_male",
+            "displayColor":"white",
+            "tooltipParams":"item/ChUIsvGFwg4SBwgEFRuWrpgwDTgAQAEYyaeL9Qw"
+         },
+         "attributesRaw":{
+            "Crit_Damage_Percent":{
+               "min":0.7,
+               "max":0.7
+            }
+         },
+         "attributes":[
+            "Critical Hit Damage Increased by 70%"
+         ]
+      }
+   ]
+}
