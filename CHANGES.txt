@@ -1,5 +1,9 @@
 List of changes as of 11/09/2012 08:01 PM
 -------------------------------
+	- Moved methods out of the Tool class directly into the namespace, and removed the Tool class.
+
+List of changes as of 11/09/2012 08:01 PM
+-------------------------------
 	- Added new Item class for battle.net json data
 
 List of changes as of 11/07/2012 06:33 PM

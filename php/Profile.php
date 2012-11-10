@@ -66,12 +66,12 @@ class Profile
 	{
 		// Get the profile from local database.
 		$this->info = $this->sql->getProfile( $this->battleNetId );
-		if ( Tool::isArray($this->info) )
+		if ( isArray($this->info) )
 		{
 			$this->profileJson = $this->info['profile_json'];
 		}
 		// If that fails, then try to get it from Battle.net.
-		if ( !Tool::isString($this->profileJson) )
+		if ( !isString($this->profileJson) )
 		{
 			// Request the profile from BattleNet.
 			$profileJson = $this->dqi->getProfile( $this->battleNetId );
@@ -98,7 +98,7 @@ class Profile
 	public function getHeroes( $p_heroByName = NULL )
 	{
 		$returnValue = NULL;
-		if ( Tool::isArray($this->profile) )
+		if ( isArray($this->profile) )
 		{
 			if ( $p_heroByName !== NULL && array_key_exists($p_heroByName, $this->profile['heroes']) )
 			{
@@ -133,10 +133,10 @@ class Profile
 		// Get the profile from local database.
 		$this->getJson();
 		// Convert the JSON to an associative array.
-		if ( Tool::isString($this->profileJson) )
+		if ( isString($this->profileJson) )
 		{
-			$profile = Tool::parseJson( $this->profileJson );
-			if ( Tool::isArray($profile) )
+			$profile = parseJson( $this->profileJson );
+			if ( isArray($profile) )
 			{
 				$this->profile = $profile;
 			}

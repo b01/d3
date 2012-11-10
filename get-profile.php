@@ -6,9 +6,9 @@ require_once( "php/BattleNetDqi.php" );
 require_once( "php/Profile.php" );
 require_once( "php/Sql.php" );
 
-$battleNetId = Tool::getPostStr( "battleNetId" );
+$battleNetId = getPostStr( "battleNetId" );
 ?>
-	<?php if ( Tool::isString($battleNetId) ):
+	<?php if ( isString($battleNetId) ):
 		$battleNetDqi = new BattleNetDqi( $battleNetId );
 		$dsn = "mysql:host=" . DB_SERVER . ";dbname=" . DB_NAME . ";charset=UTF-8";
 		$sql = new Sql( $dsn, DB_USER, DB_PSWD );

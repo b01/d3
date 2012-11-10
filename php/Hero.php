@@ -82,12 +82,12 @@ class Hero
 	{
 		// Get the item from local database.
 		$this->info = NULL;//$this->sql->getHero( $this->heroId );
-		if ( Tool::isArray($this->info) )
+		if ( isArray($this->info) )
 		{
 			$this->json = $this->info['hero_json'];
 		}
 		// If that fails, then try to get it from Battle.net.
-		if ( !Tool::isString($this->json) )
+		if ( !isString($this->json) )
 		{
 			// Request the hero from BattleNet.
 			$json = $this->dqi->getHero( $this->heroId );
@@ -125,10 +125,10 @@ class Hero
 		// Get the hero.
 		$this->getJson();
 		// Convert the JSON to an associative array.
-		if ( Tool::isString($this->json) )
+		if ( isString($this->json) )
 		{
-			$hero = Tool::parseJson( $this->json );
-			if ( Tool::isArray($hero) )
+			$hero = parseJson( $this->json );
+			if ( isArray($hero) )
 			{
 				$this->hero = $hero;
 				$this->items = $hero['items'];

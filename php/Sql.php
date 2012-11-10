@@ -1,5 +1,6 @@
 <?php
 namespace d3cb;
+
 class Sql
 {
 	const
@@ -103,7 +104,7 @@ class Sql
 			$stmt = $this->pdoh->prepare( $query );
 			$stmt->bindValue( ":itemPrimaryValue", $p_primaryColumnValue, \PDO::PARAM_STR );
 			$itemRecord = $this->pdoQuery( $stmt );
-			if ( Tool::isArray($itemRecord) )
+			if ( isArray($itemRecord) )
 			{
 				$returnValue = $itemRecord[0];
 			}
@@ -131,7 +132,7 @@ class Sql
 				$stmt = $this->pdoh->prepare( $query );
 				$stmt->bindValue( ":battleNetId", $p_battleNetId, \PDO::PARAM_STR );
 				$profileRecord = $this->pdoQuery( $stmt );
-				if ( Tool::isArray($profileRecord) )
+				if ( isArray($profileRecord) )
 				{
 					$returnValue = $profileRecord[0];
 				}
@@ -221,7 +222,7 @@ class Sql
 			{
 				// Fetch all rows into an array.
 				$rows = $p_stmt->fetchAll( \PDO::FETCH_ASSOC );
-				if ( Tool::isArray($rows) )
+				if ( isArray($rows) )
 				{
 					$returnValue = $rows;
 				}
@@ -251,7 +252,7 @@ class Sql
 			$stmt->execute();
 			// Fetch all rows into an array.
 			$rows = $stmt->fetchAll( \PDO::FETCH_ASSOC );
-			if ( Tool::isArray($rows) )
+			if ( isArray($rows) )
 			{
 				$returnArray = $rows;
 			}

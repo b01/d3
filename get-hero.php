@@ -6,19 +6,19 @@ require_once( "php/BattleNetDqi.php" );
 require_once( "php/Hero.php" );
 require_once( "php/Sql.php" );
 
-$battleNetId = Tool::getPostStr( "battleNetId" );
-$heroId = Tool::getPostStr( "heroId" );
+$battleNetId = getPostStr( "battleNetId" );
+$heroId = getPostStr( "heroId" );
 $battleNetId = "msuBREAKER#1374";
 $heroId = "3955832";
 ?>
-	<?php if ( Tool::isString($battleNetId) && Tool::isString($heroId) ):
+	<?php if ( isString($battleNetId) && isString($heroId) ):
 		$battleNetDqi = new BattleNetDqi( $battleNetId );
 		$dsn = "mysql:host=" . DB_SERVER . ";dbname=" . DB_NAME . ";charset=UTF-8";
 		$sql = new Sql( $dsn, DB_USER, DB_PSWD );
 		$hero = new Api\Hero( $heroId, $battleNetDqi, $sql, USER_IP_ADDRESS );
 		$items = $hero->getItems();
 	?>
-		<?php if ( Tool::isArray($items) ): ?>
+		<?php if ( isArray($items) ): ?>
 			<?php foreach ( $items as $key => $item ): ?>
 			<div class="hero">
 				<div class=="item-tooltipParams"><?= $item['tooltipParams']; ?></div>

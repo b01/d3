@@ -84,7 +84,7 @@ class Item // TODO: implements BattleNetObject
 	public function __construct( $p_json )
 	{
 		$jsonArray = json_decode( $p_json, TRUE );
-		if ( Tool::isArray($jsonArray) )
+		if ( \d3cb\isArray($jsonArray) )
 		{
 			$this->json = $p_json;
 			$this->__cast( $jsonArray );
