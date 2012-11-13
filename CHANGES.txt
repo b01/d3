@@ -1,5 +1,9 @@
 List of changes as of 11/12/2012 09:24 PM
 -------------------------------
+	- Moved IP address parameter from multiple classes solely to the Sql class.
+
+List of changes as of 11/12/2012 09:24 PM
+-------------------------------
 	- Added new __cast method for which initilized an item from an stdClass object.
 	- Moved Profile and Hero classes out of sub-namespace Api.
 	
@@ -9,7 +13,9 @@ List of changes as of 11/09/2012 08:01 PM
 
 List of changes as of 11/09/2012 08:01 PM
 -------------------------------
-	- Added new Item class for battle.net json data
+	- Added new Item class for objectifying the following battle.net json data:
+		- Armor: Amulet, Belt, Boot, Bracers, Chest, Helm, Legs, Ring, Shoulder
+		- Weapons: All
 
 List of changes as of 11/07/2012 06:33 PM
 -------------------------------

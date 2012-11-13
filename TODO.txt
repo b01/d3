@@ -22,15 +22,6 @@
  - present the profile as  UL list at resolutions higher than 800x600, otherwise as a selection list for anything below that.
  - Require battleNet ID for all web API request.
  - Get all the paths to the images and place them in the settings file.
- - Create different item classes for the following:
-  - Armor
-    - Amulet
-    - Belt
-    - Boot
-	- Bracers
-	- Chest
-	- Helm
-	- Legs
-	- Ring
-	- Shoulder
-  - Weapon
+ - Build the following classes
+   - JsonSaver - save any JSON to the database, takes JSON string and Sql object in the constructor
+   - ImageSaver - takes an iamge url and fileStream object and save a file to disk.

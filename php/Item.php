@@ -15,7 +15,6 @@ use \d3cb\Sql;
 * var $p_itemHash string User BattleNet ID.
 * var $p_dqi object Data Query Interface.
 * var $p_sql object SQL.
-* var $p_userIp string User IP address.
 */
 class Item
 {
@@ -26,18 +25,16 @@ class Item
 		$itemHash,
 		$json,
 		$loadedFromBattleNet,
-		$sql,
-		$userIp;
+		$sql;
 	
 	/**
 	* Constructor
 	*/
-	public function __construct( $p_itemHash, BattleNetDqi $p_dqi, Sql $p_sql, $p_userIp )
+	public function __construct( $p_itemHash, BattleNetDqi $p_dqi, Sql $p_sql )
 	{
 		$this->itemHash = $p_itemHash;
 		$this->dqi = $p_dqi;
 		$this->sql = $p_sql;
-		$this->userIp = $p_userIp;
 		$this->item = NULL;
 		$this->info = NULL;
 		$this->json = NULL;
@@ -57,8 +54,7 @@ class Item
 			$this->itemHash,
 			$this->json,
 			$this->loadedFromBattleNet,
-			$this->sql,
-			$this->userIp
+			$this->sql
 		);
 	}
 	
@@ -88,7 +84,7 @@ class Item
 			$responseCode = $this->dqi->responseCode();
 			$url = $this->dqi->getUrl();
 			// Log the request.
-			$this->sql->addRequest( $this->dqi->getBattleNetId(), $url, $this->userIp );
+			$this->sql->addRequest( $this->dqi->getBattleNetId(), $url );
 			if ( $responseCode == 200 )
 			{
 				$this->json = $json;
@@ -140,7 +136,7 @@ class Item
 	*/
 	protected function save()
 	{
-		return $this->sql->saveItem( $this->itemHash, $this->item, $this->json, $this->userIp );
+		return $this->sql->saveItem( $this->itemHash, $this->item, $this->json );
 	}
 }
 ?>

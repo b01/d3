@@ -15,8 +15,8 @@ require_once( "php/Sql.php" );
 		$battleNetDqi = new BattleNetDqi( $battleNetId );
 		
 		$dsn = "mysql:host=" . DB_SERVER . ";dbname=" . DB_NAME . ";charset=UTF-8";
-		$sql = new Sql( $dsn, DB_USER, DB_PSWD );
-		$item = new Item( $itemId, $battleNetDqi, $sql, USER_IP_ADDRESS );
+		$sql = new Sql( $dsn, DB_USER, DB_PSWD, USER_IP_ADDRESS );
+		$item = new Item( $itemId, $battleNetDqi, $sql );
 		if ( isString($itemName) )
 		{
 			$item->loadByName( $itemName );
@@ -27,3 +27,6 @@ require_once( "php/Sql.php" );
 		}
 	}
 ?>
+
+<?php if ( is_object($item) ): ?>
+<?php endif; ?>

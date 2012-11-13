@@ -12,14 +12,16 @@ class Sql
 		INSERT_ITEM = "INSERT INTO `%1\$s`.`d3_items` (`hash`, `id`, `name`, `item_type`, `json`, `ip_address`, `last_updated`, `date_added`) VALUES(:hash, :id, :name, :itemType, :json, :ipAddress, :lastUpdate, :dateAdded);";
 		
 	protected 
-		$pdoh;
+		$pdoh,
+		$ipAddress;
 
 	/**
 	* Constructor
 	*/
-	public function __construct( $p_dsn, $p_dbUser, $p_dbPass )
+	public function __construct( $p_dsn, $p_dbUser, $p_dbPass, $p_ipAddress = NULL )
 	{
 		$this->getPDO( $p_dsn, $p_dbUser, $p_dbPass );
+		$this->ipAddress = $p_ipAddress;
 	}
 
 	/**
@@ -33,10 +35,9 @@ class Sql
 	/**
 	* Add record of Battle.net Web API request.
 	* @param $p_url string The Battle.net url web API URL requested.
-	* @param $p_ipAddress IP adress of the user requesting.
 	* @return bool
 	*/
-	public function addRequest( $p_battleNetId, $p_url, $p_ipAddress )
+	public function addRequest( $p_battleNetId, $p_url )
 	{
 		$returnValue = FALSE;
 		try
@@ -47,7 +48,7 @@ class Sql
 				$query = sprintf( self::INSERT_REQUEST, DB_NAME );
 				$stmt = $this->pdoh->prepare( $query );
 				$stmt->bindValue( ":battleNetId", $p_battleNetId, \PDO::PARAM_STR );
-				$stmt->bindValue( ":ipAddress", $p_ipAddress, \PDO::PARAM_STR );
+				$stmt->bindValue( ":ipAddress", $this->ipAddress, \PDO::PARAM_STR );
 				$stmt->bindValue( ":url", $p_url, \PDO::PARAM_STR );
 				$stmt->bindValue( ":dateNumber", strtotime($today), \PDO::PARAM_STR );
 				$stmt->bindValue( ":dateAdded", date("Y-m-d H:i:s"), \PDO::PARAM_STR );
@@ -150,7 +151,7 @@ class Sql
 	/**
 	* Cache a battle.net user profile.
 	*/
-	public function saveItem( $p_itemHash, $p_item, $p_itemJson, $p_ipAddress )
+	public function saveItem( $p_itemHash, $p_item, $p_itemJson )
 	{
 		$returnValue = FALSE;
 		try
@@ -164,7 +165,7 @@ class Sql
 				$stmt->bindValue( ":name", $p_item['name'], \PDO::PARAM_STR );
 				$stmt->bindValue( ":itemType", $p_item['type']['id'], \PDO::PARAM_STR );
 				$stmt->bindValue( ":json", $p_itemJson, \PDO::PARAM_STR );
-				$stmt->bindValue( ":ipAddress", $p_ipAddress, \PDO::PARAM_STR );
+				$stmt->bindValue( ":ipAddress", $this->ipAddress, \PDO::PARAM_STR );
 				$stmt->bindValue( ":lastUpdate", date("Y-m-d H:i:s"), \PDO::PARAM_STR );
 				$stmt->bindValue( ":dateAdded", date("Y-m-d H:i:s"), \PDO::PARAM_STR );
 				$returnValue = $this->pdoQuery( $stmt, FALSE );
@@ -182,7 +183,7 @@ class Sql
 	/**
 	* Cache a battle.net user profile.
 	*/
-	public function saveProfile( $p_battleNetId, $p_profileJson, $p_ipAddress )
+	public function saveProfile( $p_battleNetId, $p_profileJson )
 	{
 		$returnValue = FALSE;
 		try
@@ -193,7 +194,7 @@ class Sql
 				$stmt = $this->pdoh->prepare( $query );
 				$stmt->bindValue( ":battleNetId", $p_battleNetId, \PDO::PARAM_STR );
 				$stmt->bindValue( ":profileJson", $p_profileJson, \PDO::PARAM_STR );
-				$stmt->bindValue( ":ipAddress", $p_ipAddress, \PDO::PARAM_STR );
+				$stmt->bindValue( ":ipAddress", $this->ipAddress, \PDO::PARAM_STR );
 				$stmt->bindValue( ":lastUpdated", date("Y-m-d H:i:s"), \PDO::PARAM_STR );
 				$stmt->bindValue( ":dateAdded", date("Y-m-d H:i:s"), \PDO::PARAM_STR );
 				$returnValue = $this->pdoQuery( $stmt, FALSE );

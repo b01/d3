@@ -12,7 +12,6 @@ use \d3cb\Tool;
 * var $p_heroId string User BattleNet ID.
 * var $p_dqi object Data Query Interface.
 * var $p_sql object SQL.
-* var $p_userIp string User IP address.
 */
 class Hero
 {
@@ -24,19 +23,17 @@ class Hero
 		$heroId,
 		$json,
 		$loadedFromBattleNet,
-		$sql,
-		$userIp;
+		$sql;
 	
 	
 	/**
 	* Constructor
 	*/
-	public function __construct( $p_heroId, \d3cb\BattleNetDqi $p_dqi, \d3cb\Sql $p_sql, $p_userIp )
+	public function __construct( $p_heroId, \d3cb\BattleNetDqi $p_dqi, \d3cb\Sql $p_sql )
 	{
 		$this->heroId = $p_heroId;
 		$this->dqi = $p_dqi;
 		$this->sql = $p_sql;
-		$this->userIp = $p_userIp;
 		$this->hero = NULL;
 		$this->items = NULL;
 		$this->info = NULL;
@@ -58,8 +55,7 @@ class Hero
 			$this->heroId,
 			$this->json,
 			$this->loadedFromBattleNet,
-			$this->sql,
-			$this->userIp
+			$this->sql
 		);
 	}
 	
@@ -94,7 +90,7 @@ class Hero
 			$responseCode = $this->dqi->responseCode();
 			$url = $this->dqi->getUrl();
 			// Log the request.
-			$this->sql->addRequest( $this->dqi->getBattleNetId(), $url, $this->userIp );
+			$this->sql->addRequest( $this->dqi->getBattleNetId(), $url );
 			if ( $responseCode == 200 )
 			{
 				$this->json = $json;
@@ -147,7 +143,7 @@ class Hero
 	*/
 	protected function save()
 	{
-		// return $this->sql->saveItem( $this->heroId, $this->hero, $this->json, $this->userIp );
+		// return $this->sql->saveItem( $this->heroId, $this->hero, $this->json );
 	}
 }
 ?>

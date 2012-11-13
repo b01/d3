@@ -11,8 +11,8 @@ $battleNetId = getPostStr( "battleNetId" );
 	<?php if ( isString($battleNetId) ):
 		$battleNetDqi = new BattleNetDqi( $battleNetId );
 		$dsn = "mysql:host=" . DB_SERVER . ";dbname=" . DB_NAME . ";charset=UTF-8";
-		$sql = new Sql( $dsn, DB_USER, DB_PSWD );
-		$battleNetProfile = new Profile( $battleNetId, $battleNetDqi, $sql, USER_IP_ADDRESS );
+		$sql = new Sql( $dsn, DB_USER, DB_PSWD, USER_IP_ADDRESS );
+		$battleNetProfile = new Profile( $battleNetId, $battleNetDqi, $sql );
 		$heroes = $battleNetProfile->getHeroes();
 		$battleNetUrlSafeId = str_replace( '#', '-', $battleNetId );
 	?>

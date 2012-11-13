@@ -12,7 +12,6 @@ use \d3cb\Tool;
 * var $p_battleNetId string User BattleNet ID.
 * var $p_dqi object Data Query Interface.
 * var $p_sql object SQL.
-* var $p_userIp string User IP address.
 */
 class Profile
 {
@@ -22,19 +21,17 @@ class Profile
 		$sql,
 		$profile,
 		$info,
-		$profileJson,
-		$userIp;
+		$profileJson;
 	
 	
 	/**
 	* Constructor
 	*/
-	public function __construct( $p_battleNetId, \d3cb\BattleNetDqi $p_dqi, \d3cb\Sql $p_sql, $p_userIp )
+	public function __construct( $p_battleNetId, \d3cb\BattleNetDqi $p_dqi, \d3cb\Sql $p_sql )
 	{
 		$this->battleNetId = $p_battleNetId;
 		$this->dqi = $p_dqi;
 		$this->sql = $p_sql;
-		$this->userIp = $p_userIp;
 		$this->profile = NULL;
 		$this->info = NULL;
 		$this->profileJson = NULL;
@@ -52,8 +49,7 @@ class Profile
 			$this->sql,
 			$this->profile,
 			$this->info,
-			$this->profileJson,
-			$this->userIp
+			$this->profileJson
 		);
 	}
 	
@@ -78,7 +74,7 @@ class Profile
 			$responseCode = $this->dqi->responseCode();
 			$url = $this->dqi->getUrl();
 			// Log the request.
-			$this->sql->addRequest( $this->battleNetId, $url, $this->userIp );
+			$this->sql->addRequest( $this->battleNetId, $url );
 			if ( $responseCode == 200 )
 			{
 				$this->profileJson = $profileJson;
@@ -150,7 +146,7 @@ class Profile
 	*/
 	protected function save()
 	{
-		return $this->sql->saveProfile( $this->battleNetId, $this->profileJson, $this->userIp );
+		return $this->sql->saveProfile( $this->battleNetId, $this->profileJson );
 	}
 }
 ?>

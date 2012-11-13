@@ -14,8 +14,8 @@ $heroId = "3955832";
 	<?php if ( isString($battleNetId) && isString($heroId) ):
 		$battleNetDqi = new BattleNetDqi( $battleNetId );
 		$dsn = "mysql:host=" . DB_SERVER . ";dbname=" . DB_NAME . ";charset=UTF-8";
-		$sql = new Sql( $dsn, DB_USER, DB_PSWD );
-		$hero = new Hero( $heroId, $battleNetDqi, $sql, USER_IP_ADDRESS );
+		$sql = new Sql( $dsn, DB_USER, DB_PSWD, USER_IP_ADDRESS );
+		$hero = new Hero( $heroId, $battleNetDqi, $sql );
 		$items = $hero->getItems();
 	?>
 		<?php if ( isArray($items) ): ?>
