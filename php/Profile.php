@@ -4,7 +4,7 @@
 * The profile will only be updated after a few ours of retrieving it.
 *
 */
-namespace d3cb\Api;
+namespace d3cb;
 
 use \d3cb\Tool;
 

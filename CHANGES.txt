@@ -1,3 +1,8 @@
+List of changes as of 11/12/2012 09:24 PM
+-------------------------------
+	- Added new __cast method for which initilized an item from an stdClass object.
+	- Moved Profile and Hero classes out of sub-namespace Api.
+	
 List of changes as of 11/09/2012 08:01 PM
 -------------------------------
 	- Moved methods out of the Tool class directly into the namespace, and removed the Tool class.

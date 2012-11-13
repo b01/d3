@@ -1,10 +1,10 @@
 <?php
+namespace d3cb;
 /**
 * Get the users item from Battle.Net and present it to the user; store it locally in a database behind the scenes.
 * The item will only be updated after a few ours of retrieving it.
 *
 */
-namespace d3cb\Api;
 
 require( "php/classes/Item.php" );
 use \d3cb\Tool;
@@ -121,8 +121,7 @@ class Item
 		// Convert the JSON to an associative array.
 		if ( \d3cb\isString($this->json) )
 		{
-			$item = new \d3cb\Item( $this->json );
-			var_dump( $item );
+			$item = new ItemModel( $this->json );
 			if ( $item instanceof \d3cb\Item )
 			{
 				$this->item = $item;
