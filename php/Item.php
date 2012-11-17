@@ -138,5 +138,14 @@ class Item
 	{
 		return $this->sql->saveItem( $this->itemHash, $this->item, $this->json );
 	}
+
+	/**
+	* Convert this object to a string.
+	* @return string
+	*/
+	public function __toString()
+	{
+		return json_encode( $this->item, JSON_PRETTY_PRINT );
+	}
 }
 ?>

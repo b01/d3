@@ -12,7 +12,7 @@ namespace d3cb;
 * var $p_sql object SQL.
 * var $p_userIp string User IP address.
 */
-class ItemModel
+class ItemModel implements \JsonSerializable 
 {
 	private
 		$_array;
@@ -131,6 +131,47 @@ class ItemModel
 			$this->salvage,
 			$this->gems
 		);
+	}
+	
+	/**
+	* Convert this object to a string.
+	* @return string
+	*/
+	public function __toString()
+	{
+		return json_encode( $this, JSON_PRETTY_PRINT );
+	}
+	
+
+	/**
+	* Specify how this object is to be used with json_encode.
+	* @return array
+	*/
+	public function jsonSerialize()
+	{
+		return [
+			// "_array" => $this->_array,
+			"dateAdded" => $this->dateAdded,
+			"ipAddress" => $this->ipAddress,
+			"json" => $this->json,
+			"lastUpdated" => $this->lastUpdated,
+			"id" => $this->id,
+			"name" => $this->name,
+			"icon" => $this->icon,
+			"displayColor" => $this->displayColor,
+			"tooltipParams" => $this->tooltipParams,
+			"requiredLevel" => $this->requiredLevel,
+			"itemLevel" => $this->itemLevel,
+			"bonusAffixes" => $this->bonusAffixes,
+			"typeName" => $this->typeName,
+			"type" => $this->type,
+			"armor" => $this->armor,
+			"attributes" => $this->attributes,
+			"attributesRaw" => $this->attributesRaw,
+			"socketEffects" => $this->socketEffects,
+			"salvage" => $this->salvage,
+			"gems" => $this->gems
+		];
 	}
 }
 ?>
