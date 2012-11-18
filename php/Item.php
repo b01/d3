@@ -112,23 +112,25 @@ class Item
 	*/
 	protected function load( $p_id, $p_column = "hash" )
 	{
+		$returnValue = FALSE;
 		// Get the item.
 		$this->getJson( $p_id, $p_column );
 		// Convert the JSON to an associative array.
 		if ( \d3cb\isString($this->json) )
 		{
 			$item = new ItemModel( $this->json );
-			if ( $item instanceof \d3cb\Item )
+			if ( $item instanceof \d3cb\ItemModel )
 			{
 				$this->item = $item;
 				if ( $this->loadedFromBattleNet )
 				{
 					$this->save( "item" );
+					$returnValue = TRUE;
 				}
 			}
 		}
 		
-		return $this->item;
+		return $returnValue;
 	}
 	
 	/**

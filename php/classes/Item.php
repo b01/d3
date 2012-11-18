@@ -68,6 +68,27 @@ class ItemModel implements \JsonSerializable
 	}
 	
 	/**
+	*
+	*/
+	public function __get( $p_name )
+	{
+		if ( isset($this->$p_name) )
+		{
+			return $this->$p_name;
+		}
+		
+		$trace = debug_backtrace();
+		trigger_error(
+			'Undefined property via __get(): ' . $name .
+			' in ' . $trace[0]['file'] .
+			' on line ' . $trace[0]['line'],
+			E_USER_NOTICE
+		);
+		
+		return NULL;
+	}
+	
+	/**
 	* Initialize this object.
 	*/
 	private function __init()
@@ -150,7 +171,6 @@ class ItemModel implements \JsonSerializable
 	public function jsonSerialize()
 	{
 		return [
-			// "_array" => $this->_array,
 			"dateAdded" => $this->dateAdded,
 			"ipAddress" => $this->ipAddress,
 			"json" => $this->json,
@@ -173,5 +193,28 @@ class ItemModel implements \JsonSerializable
 			"gems" => $this->gems
 		];
 	}
+
+	// public function offsetSet( $p_offset, $p_value )
+	// {
+		// $trace = debug_backtrace();
+		// trigger_error(
+			// "Attempting to set a read-only property via array indices []: " . $p_offset .
+			// " in  {$trace[0]['file']} on line {$trace[0]['line']}" . E_USER_NOTICE
+		// );
+		// return NULL;
+	// }
+	
+	// public function offsetExists( $p_offset )
+	// {
+		// return isset($this->container[$p_offset]);
+	// }
+	// public function offsetUnset($p_offset)
+	// {
+		// unset($this->container[$p_offset]);
+	// }
+	// public function offsetGet($p_offset)
+	// {
+		// return isset($this->container[$p_offset]) ? $this->container[$p_offset] : null;
+	// }
 }
 ?>
