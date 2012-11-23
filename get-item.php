@@ -33,7 +33,7 @@ require_once( "php/Sql.php" );
 		}
 	}
 	else
-	{
+	{// Redirect if no data.
 		header( "Location: /item.html" );
 	}
 ?>
@@ -42,91 +42,174 @@ require_once( "php/Sql.php" );
 	<head>
 		<title></title>
 		<style type="text/css">
-		.inline-block {
-			display: inline-block;
-		}
-		
-		.tool-tip {
-			background: black;
-			padding: 10px;
-			color: rgb(207, 185, 145);
-			font-size: 12px;
-		}
-		.tool-tip .icon {
-			border-color: rgb(81, 63, 46);
-			border-radius: 4px;
-			border: 1px solid black;
-			margin-right: 10px;
-			margin-bottom: 11px;
-		}
-		.tool-tip .header {
-			font: 22px "Palatino Linotype", "Times", serif;
-			height: 40px;
-			line-height: 37px;
-			text-align: center;
-			overflow: hidden;
-			white-space: nowrap;
-			text-overflow: ellipsis;
-		}
-		
-		/* item colors */
-		.item .icon.brown {
-			background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/brown.png");
-			background-color: rgb(42, 32, 23);
-		}
-		
-		.item .icon.orange {
-			border-color: rgb(176, 123, 56);
-			background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/orange.png");
-			background-color: rgb(51, 35, 20);
-		}
-		
-		.item .icon.gray {
-			border-color: #513f2e;
-			background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/brown.png");
-			background-color: #2a2017;
-		}
-		a:hover .item .icon.gray,
-		.hover .item .icon.gray,
-		.icon-active .item .icon.gray {
-			border-color: #7a5f45;
-		}
+			.json-data {
+			}
+			
+			.inline-block {
+				display: inline-block;
+			}
+			
+			.tool-tip {
+				background-color: black;
+				padding: 10px;
+				color: rgb(207, 185, 145);
+				font-size: 12px;
+			}
+			.tool-tip .icon {
+				border-color: rgb(81, 63, 46);
+				border-radius: 4px;
+				border: 1px solid black;
+				margin-right: 10px;
+				margin-bottom: 11px;
+			}
+			.tool-tip .header {
+				font: 22px "Palatino Linotype", "Times", serif;
+				height: 40px;
+				line-height: 37px;
+				text-align: center;
+				overflow: hidden;
+				white-space: nowrap;
+				text-overflow: ellipsis;
+			}
+			
+			/* item colors */
 
-		/* white */
-		.item .icon.white { border-color: #513f2e; background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/brown.png"); background-color: #2a2017; }
-		a:hover .item .icon.white,
-		.hover .item .icon.white,
-		.icon-active .item .icon.white { border-color: #7a5f45; }
+			.item .icon.blue {
+				border-color: #6091a6;
+				background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/blue.png");
+				background-color: #232227;
+			}
+				a:hover .item .icon.blue,
+				.hover .item .icon.blue,
+				.icon-active .item .icon.blue {
+					border-color: #90c8d3;
+				}
+			
+			.item .icon.brown {
+				background-color: rgb(42, 32, 23);
+				background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/brown.png");
+			}
+			
+			.item .icon.gray {
+				background-color: #2a2017;
+				background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/brown.png");
+				border-color: #513f2e;
+			}
+				a:hover .item .icon.gray,
+				.hover .item .icon.gray,
+				.icon-active .item .icon.gray {
+					border-color: #7a5f45;
+				}
 
-		/* blue */
-		.item .icon.blue {
-			border-color: #6091a6; background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/blue.png"); background-color: #232227; }
-		a:hover .item .icon.blue,
-		.hover .item .icon.blue,
-		.icon-active .item .icon.blue { border-color: #90c8d3; }
+			.item .icon.green {
+				border-color: #748e3d;
+				background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/green.png");
+				background-color: #262f14;
+			}
+				a:hover .item .icon.green,
+				.hover .item .icon.green,
+				.icon-active .item .icon.green {
+					border-color: #aec75c;
+				}
+			
+			.item .icon.orange {
+				background-color: rgb(51, 35, 20);
+				background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/orange.png");
+				border-color: rgb(176, 123, 56);
+			}
 
-		/* yellow */
-		.item .icon.yellow { border-color: #9b8e3c; background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/yellow.png"); background-color: #322914; }
-		a:hover .item .icon.yellow,
-		.hover .item .icon.yellow,
-		.icon-active .item .icon.yellow { border-color: #cdc75a; }
+			.item .icon.orange {
+				border-color: #b07b38;
+				background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/orange.png");
+				background-color: #332314;
+			}
+				a:hover .item .icon.orange,
+				.hover .item .icon.orange,
+				.icon-active .item .icon.orange {
+					border-color: #d8b954;
+				}
 
-		/* orange */
-		.item .icon.orange { border-color: #b07b38; background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/orange.png"); background-color: #332314; }
-		a:hover .item .icon.orange,
-		.hover .item .icon.orange,
-		.icon-active .item .icon.orange { border-color: #d8b954; }
+			.item .icon.white {
+				background-color: #2a2017;
+				background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/brown.png");
+				border-color: #513f2e;
+			}
+				a:hover .item .icon.white,
+				.hover .item .icon.white,
+				.icon-active .item .icon.white {
+					border-color: #7a5f45;
+				}
 
-		/* green */
-		.item .icon.green { border-color: #748e3d; background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/green.png"); background-color: #262f14; }
-		a:hover .item .icon.green,
-		.hover .item .icon.green,
-		.icon-active .item .icon.green { border-color: #aec75c; }
-/*
-	CSS code shared between the D3 Community Site and the Tooltip Script.
+			/* yellow */
+			.item .icon.yellow {
+				border-color: #9b8e3c;
+				background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/yellow.png");
+				background-color: #322914;
+			}
+				a:hover .item .icon.yellow,
+				.hover .item .icon.yellow,
+				.icon-active .item .icon.yellow {
+					border-color: #cdc75a;
+				}
 
-	Note: All global styles should be prefixed with d3- to avoid affecting 3rd party sites.
-*/
+	.item .d3-icon-item {
+		float: left;
+		margin-right: 10px;
+		margin-bottom: 11px;
+	}
+
+	.item .item-armor-weapon {
+		clear: right;
+	}
+	.item .item-before-effects {
+		display: block !important;
+		clear: both;
+	}
+	.item .item-description {
+		margin-top: 10px;
+	}
+	.item .item-itemset {
+		font-size: 12px;
+	}
+	
+	.item .effect-bg {
+		background-position: 10px 10px;
+		background-repeat: no-repeat;
+	}
+	.item .effect-bg.arcane {
+		background-image: url("http://us.battle.net/d3/static/images/item/effect-bgs/arcane.jpg");
+	}
+	.item .effect-bg.cold {
+		background-image: url("http://us.battle.net/d3/static/images/item/effect-bgs/cold.jpg");
+	}
+	.item .effect-bg.fire {
+		background-image: url("http://us.battle.net/d3/static/images/item/effect-bgs/fire.jpg");
+	}
+	.item .effect-bg.holy {
+		background-image: url("http://us.battle.net/d3/static/images/item/effect-bgs/holy.jpg");
+	}
+	.item .effect-bg.lightning {
+		background-image: url("http://us.battle.net/d3/static/images/item/effect-bgs/lightning.jpg");
+	}
+	.item .effect-bg.poison {
+		background-image: url("http://us.battle.net/d3/static/images/item/effect-bgs/poison.jpg");
+	}
+	.item .effect-bg.armor {
+		background-image: url("http://us.battle.net/d3/static/images/item/effect-bgs/armor.jpg");
+		background-position: 78px 20px;
+	}
+	.item .effect-bg.armor-square {
+		background-position: 78px 14px;
+	}
+	.item .effect-bg.armor-big {
+		background-position: 96px 20px;
+	}
+	
+	/* makes the text readable when a background is used */
+	.item .effect-bg .item-type,
+	.item .effect-bg .item-armor-weapon {
+		text-shadow: 0 0 5px black, 0 0 5px black, 0 0 5px black;
+	}
 
 /* item properties (shared between item detail page, item browsing, and item tooltips */
 .d3-item-properties ul,
@@ -220,7 +303,6 @@ require_once( "php/Sql.php" );
 	.d3-tooltip-item .item-before-effects { display: block !important; clear: both; }
 	.d3-tooltip-item .item-description { margin-top: 10px; }
 	.d3-tooltip-item .item-itemset { font-size: 12px; }
-	.d3-tooltip-item .item-reqlevel { float: right; }
 	
 	.d3-tooltip-item .effect-bg { background-position: 10px 10px; background-repeat: no-repeat; }
 	.d3-tooltip-item .effect-bg-arcane { background-image: url("http://us.battle.net/d3/static/images/item/effect-bgs/arcane.jpg"); }
@@ -427,14 +509,25 @@ require_once( "php/Sql.php" );
 	</head>
 	<body>
 		<?php if ( is_object($itemModel) ): ?>
-		<div class="json-data"><?= $itemModel; ?></div>
+		<pre class="json-data"><?= $itemModel; ?></pre>
 		<div class="item tool-tip">
 			<h3 class="header d3-color-<?= $itemModel->displayColor; ?>"><?= $itemModel->name; ?></h3>
-			<div class="icon <?= $itemModel->displayColor; ?> inline-block">
-				<img src="http://media.blizzard.com/d3/icons/items/large/<?= $itemModel->icon; ?>.png" alt="<?= $itemModel->name; ?>" />
+			<div class="effect-bg poison">
+				<div class="icon <?= $itemModel->displayColor; ?> inline-block">
+					<img src="http://media.blizzard.com/d3/icons/items/large/<?= $itemModel->icon; ?>.png" alt="<?= $itemModel->name; ?>" />
+				</div>
 			</div>
-			<?= $itemModel->requiredLevel; ?>
-			<?= $itemModel->itemLevel; ?>
+			<?php if ( isArray($itemModel->attributes) ): ?>
+			<ul>
+				<?php for ( $i = 0; $i < count($itemModel->attributes); $i++ ): ?>
+				<li><?= $itemModel->attributes[ $i ]; ?></li>
+				<?php endfor; ?>
+			</ul>
+			<?php endif; ?>
+			<div class="levels">			
+				<div class="required inline-block"><span class="d3-color-gold">Required Level: </span><?= $itemModel->requiredLevel; ?></div>
+				<div class="max inline-block"><span class="d3-color-gold">Item Level: </span><?= $itemModel->itemLevel; ?></div>
+			</div>
 		</div>
 		<div class="tooltip">
 			<div class="tooltip-content">

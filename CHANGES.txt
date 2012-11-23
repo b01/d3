@@ -1,3 +1,7 @@
+List of changes as of 11/23/2012 07:29 AM
+-------------------------------
+	- Updated HTML and CSS for item tool-tip
+
 List of changes as of 11/17/2012 08:32 AM
 -------------------------------
 	- Worked on item tool-tip	
@@ -10,7 +14,7 @@ List of changes as of 11/12/2012 09:24 PM
 -------------------------------
 	- Added new __cast method for which initilized an item from an stdClass object.
 	- Moved Profile and Hero classes out of sub-namespace Api.
-	
+
 List of changes as of 11/09/2012 08:01 PM
 -------------------------------
 	- Moved methods out of the Tool class directly into the namespace, and removed the Tool class.
@@ -37,7 +41,7 @@ List of changes as of 10/31/2012 11:44 PM
 	- Added link to hero on the profile page.
 	- Added hero query to the BattleNetDqi class.
 	- Added urls for item images to the hero page.
-	
+
 List of changes as of 10/29/2012 12:31 PM
 -------------------------------
 	- Updated BattleNetDqi to take the battleNet ID on construct.
@@ -64,7 +68,7 @@ List of changes as of 10/29/2012 07:26 PM
 List of changes as of 10/28/2012 11:51 PM
 -------------------------------
 	- Implemented code to track the number of BattleNet request
- 
+
 List of changes as of 10/28/2012 07:07 PM
 -------------------------------
 	- Added hero list to get-profile page.
@@ -83,7 +87,7 @@ List of changes as of 10/28/2012 08:53 AM
 	- Added database table to store profile JSON pulled from Battle.net Web API service.
 	- Added Sql class to make database PDO calls easier, copied from a previous project and modified to suit this one.
 		- added method to save profiles locally, and call them up when needed. 
-	
+
 List of changes as of 10/28/2012 08:53 AM
 -------------------------------
 	- Moved parseJson method from BattleNetDqi class to the Tool (utility) class.
@@ -101,7 +105,7 @@ List of changes as of 10/27/2012 16:57
 	- Added form to input BattleNet ID.
 	- Implemented BattleNetDqi, Profile, Tool classes to load profile from BattleNet (simply loads the JSON and decodes it to an array).
 	- Added jQuery and jQuery UI (just core, and widget) for furture use.
-	
+
 List of changes as of 10/27/2012 11:12 AM
 -------------------------------
 	- Added readme, license, and change log files.
