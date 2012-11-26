@@ -1,3 +1,14 @@
+List of changes as of 11/26/2012 08:25 AM
+-------------------------------
+	- ItemModel now throws an exception when json_decode does not return and array.
+	- Refactored get-item and Item class.
+	- Updated item.html to pass item name, hash, and id as seperate inputs.
+	- Mode official D3 CSS to tooltips.css, and moved new item CSS into item.css
+	
+List of changes as of 11/23/2012 07:29 AM
+-------------------------------
+	- Added site and hero CSS
+
 List of changes as of 11/23/2012 07:29 AM
 -------------------------------
 	- Updated HTML and CSS for item tool-tip

@@ -30,16 +30,15 @@ class Item
 	/**
 	* Constructor
 	*/
-	public function __construct( $p_itemHash, BattleNetDqi $p_dqi, Sql $p_sql )
+	public function __construct( $p_id, $p_column, BattleNetDqi $p_dqi, Sql $p_sql )
 	{
-		$this->itemHash = $p_itemHash;
 		$this->dqi = $p_dqi;
 		$this->sql = $p_sql;
 		$this->item = NULL;
 		$this->info = NULL;
 		$this->json = NULL;
 		$this->loadedFromBattleNet = FALSE;
-		$this->load( $p_itemHash );
+		$this->load( $p_id,  $p_column );
 	}
 	
 	/**
@@ -80,7 +79,7 @@ class Item
 		if ( !\d3cb\isString($this->json) )
 		{
 			// Request the item from BattleNet.
-			$json = $this->dqi->getItem( $this->itemHash );
+			$json = $this->dqi->getItem( $p_value );
 			$responseCode = $this->dqi->responseCode();
 			$url = $this->dqi->getUrl();
 			// Log the request.
@@ -110,7 +109,7 @@ class Item
 	/**
 	* Load the users item into this class
 	*/
-	protected function load( $p_id, $p_column = "hash" )
+	public function load( $p_id, $p_column = "hash" )
 	{
 		$returnValue = FALSE;
 		// Get the item.
@@ -121,6 +120,8 @@ class Item
 			$item = new ItemModel( $this->json );
 			if ( $item instanceof \d3cb\ItemModel )
 			{
+				$this->itemHash = $p_id;
+				$this->column = $p_column;
 				$this->item = $item;
 				if ( $this->loadedFromBattleNet )
 				{

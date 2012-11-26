@@ -122,6 +122,10 @@ class ItemModel implements \JsonSerializable
 			$this->json = $p_json;
 			$this->__init();
 		}
+		else
+		{
+			throw new \Exception( "Tried to initialize ItemModel with invalid JSON." );
+		}
 	}
 	
 	/**

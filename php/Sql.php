@@ -161,9 +161,9 @@ class Sql
 				$query = sprintf( self::INSERT_ITEM, DB_NAME );
 				$stmt = $this->pdoh->prepare( $query );
 				$stmt->bindValue( ":hash", $p_itemHash, \PDO::PARAM_STR );
-				$stmt->bindValue( ":id", $p_item['id'], \PDO::PARAM_STR );
-				$stmt->bindValue( ":name", $p_item['name'], \PDO::PARAM_STR );
-				$stmt->bindValue( ":itemType", $p_item['type']['id'], \PDO::PARAM_STR );
+				$stmt->bindValue( ":id", $p_item->id, \PDO::PARAM_STR );
+				$stmt->bindValue( ":name", $p_item->name, \PDO::PARAM_STR );
+				$stmt->bindValue( ":itemType", $p_item->type['id'], \PDO::PARAM_STR );
 				$stmt->bindValue( ":json", $p_itemJson, \PDO::PARAM_STR );
 				$stmt->bindValue( ":ipAddress", $this->ipAddress, \PDO::PARAM_STR );
 				$stmt->bindValue( ":lastUpdate", date("Y-m-d H:i:s"), \PDO::PARAM_STR );

@@ -1,0 +1,72 @@
+.hero {
+	border: 1px solid rgb(0, 0, 0);
+	border-radius: 5px;
+	min-height: 59em;
+	max-height: 800px;
+	position: relative;
+	max-width: 30em;
+	min-width: 50em
+}
+
+.hero .tooltipParams, .hero .id {
+	display: none
+}
+
+.hero .item {
+	border: 1px solid rgb(0, 0, 0);
+	border-radius: 5px;
+	position: absolute;
+}
+
+.hero .item.bracers {
+	left: 15em;
+	top: 11em
+}
+.hero .item.feet {
+	left: 8.8em;
+	top: 47em
+}
+.hero .item.hands {
+	left: 1em;
+	top: 13em
+}
+.hero .item.head {
+	left: 8.6em;
+	top: 1em
+}
+.hero .item.leftFinger {
+	left: 15em;
+	top: 23em
+}
+.hero .item.legs {
+	left: 8.8em;
+	top: 35em
+}
+.hero .item.mainHand {
+	left: 1em;
+	top: 30em
+}
+.hero .item.neck {
+	left: 15em;
+	top: 4em
+}
+.hero .item.offHand {
+	left: 15em;
+	top: 30em
+}
+.hero .item.rightFinger {
+	left: 1em;
+	top: 23em;
+}
+.hero .item.shoulders {
+	left: 10px;
+	top: 10px;
+}
+.hero .item.torso {
+	left: 7.8em;
+	top: 13em
+}
+.hero .item.waist {
+    left: 8.5em;
+    top: 28em;
+}

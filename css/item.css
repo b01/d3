@@ -1,0 +1,110 @@
+
+	.json-data {
+	}
+
+	.inline-block {
+		display: inline-block;
+	}
+
+	.tool-tip {
+		background-color: black;
+		padding: 10px;
+		color: rgb(207, 185, 145);
+		font-size: 12px;
+	}
+	.tool-tip .icon {
+		border-color: rgb(81, 63, 46);
+		border-radius: 4px;
+		border: 1px solid black;
+		margin-right: 10px;
+		margin-bottom: 11px;
+	}
+	.tool-tip .header {
+		font: 22px "Palatino Linotype", "Times", serif;
+		height: 40px;
+		line-height: 37px;
+		text-align: center;
+		overflow: hidden;
+		white-space: nowrap;
+		text-overflow: ellipsis;
+	}
+			
+			/* item colors */
+
+			.item .icon.blue {
+				border-color: #6091a6;
+				background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/blue.png");
+				background-color: #232227;
+			}
+				a:hover .item .icon.blue,
+				.hover .item .icon.blue,
+				.icon-active .item .icon.blue {
+					border-color: #90c8d3;
+				}
+			
+			.item .icon.brown {
+				background-color: rgb(42, 32, 23);
+				background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/brown.png");
+			}
+			
+			.item .icon.gray {
+				background-color: #2a2017;
+				background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/brown.png");
+				border-color: #513f2e;
+			}
+				a:hover .item .icon.gray,
+				.hover .item .icon.gray,
+				.icon-active .item .icon.gray {
+					border-color: #7a5f45;
+				}
+
+			.item .icon.green {
+				border-color: #748e3d;
+				background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/green.png");
+				background-color: #262f14;
+			}
+				a:hover .item .icon.green,
+				.hover .item .icon.green,
+				.icon-active .item .icon.green {
+					border-color: #aec75c;
+				}
+			
+			.item .icon.orange {
+				background-color: rgb(51, 35, 20);
+				background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/orange.png");
+				border-color: rgb(176, 123, 56);
+			}
+
+			.item .icon.orange {
+				border-color: #b07b38;
+				background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/orange.png");
+				background-color: #332314;
+			}
+				a:hover .item .icon.orange,
+				.hover .item .icon.orange,
+				.icon-active .item .icon.orange {
+					border-color: #d8b954;
+				}
+
+			.item .icon.white {
+				background-color: #2a2017;
+				background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/brown.png");
+				border-color: #513f2e;
+			}
+				a:hover .item .icon.white,
+				.hover .item .icon.white,
+				.icon-active .item .icon.white {
+					border-color: #7a5f45;
+				}
+
+			/* yellow */
+			.item .icon.yellow {
+				border-color: #9b8e3c;
+				background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/yellow.png");
+				background-color: #322914;
+			}
+				a:hover .item .icon.yellow,
+				.hover .item .icon.yellow,
+				.icon-active .item .icon.yellow {
+					border-color: #cdc75a;
+				}

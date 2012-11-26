@@ -24,6 +24,22 @@ function getPostStr( $p_key )
 }
 
 /**
+* Get a value from the global GET array as a string, even if it is a numercal value.
+* @param $p_key string Variable to retrieve from the post array.
+* @return string 
+*/
+function getStr( $p_key )
+{
+	$returnValue = NULL;
+	
+	if ( array_key_exists($p_key, $_GET) )
+	{
+		$returnValue = ( string )$_GET[ $p_key ];
+	}
+	return $returnValue;
+}
+
+/**
 * Check if a variable is an array of length greater than 0.
 * @return bool TRUE is yes, false otherwise.
 */
