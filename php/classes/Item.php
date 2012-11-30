@@ -21,7 +21,14 @@ class ItemModel implements \JsonSerializable
 		$dateAdded,
 		$ipAddress,
 		$json,
-		$lastUpdated;
+		$lastUpdated,
+		$effects = [
+			"Hitpoints_Max_Percent_Bonus_Item" => "<span class=\"value\">%+.0f%s%%</span> Life",
+			"Crit_Percent_Bonus_Capped" => "Critical Hit Chance Increased by <span class=\"value\">%.1f%%</span>",
+			"Resistance#Fire" => "<span class=\"value\">%+d</span> Fire Resistance",
+			"Intelligence_Item" => "<span class=\"value\">%+d</span> Intelligence",
+			"Armor_Bonus_Item" => "<span class=\"value\">%+d</span> Armor"
+		];
 
 	// Seperated because they are the top-level properties of the JSON returned from battle.net.
 	protected
@@ -68,7 +75,55 @@ class ItemModel implements \JsonSerializable
 	}
 	
 	/**
-	*
+	* Constructor
+	*/
+	public function __construct( $p_json )
+	{
+		$this->_array = json_decode( $p_json, TRUE );
+		if ( \d3cb\isArray($this->_array) )
+		{
+			$this->json = $p_json;
+			$this->__init();
+		}
+		else
+		{
+			throw new \Exception( "Tried to initialize ItemModel with invalid JSON." );
+		}
+	}
+	
+	/**
+	* Destructor
+	*/
+	public function __destruct()
+	{
+		unset(
+			$this->_array,
+			$this->dateAdded,
+			$this->ipAddress,
+			$this->json,
+			$this->lastUpdated,
+			$this->id,
+			$this->name,
+			$this->icon,
+			$this->displayColor,
+			$this->tooltipParams,
+			$this->requiredLevel,
+			$this->itemLevel,
+			$this->bonusAffixes,
+			$this->typeName,
+			$this->type,
+			$this->armor,
+			$this->attributes,
+			$this->attributesRaw,
+			$this->socketEffects,
+			$this->salvage,
+			$this->gems,
+			$this->effects
+		);
+	}
+	
+	/**
+	* Get property
 	*/
 	public function __get( $p_name )
 	{
@@ -112,59 +167,33 @@ class ItemModel implements \JsonSerializable
 	}
 	
 	/**
-	* Constructor
-	*/
-	public function __construct( $p_json )
-	{
-		$this->_array = json_decode( $p_json, TRUE );
-		if ( \d3cb\isArray($this->_array) )
-		{
-			$this->json = $p_json;
-			$this->__init();
-		}
-		else
-		{
-			throw new \Exception( "Tried to initialize ItemModel with invalid JSON." );
-		}
-	}
-	
-	/**
-	* Destructor
-	*/
-	public function __destruct()
-	{
-		unset(
-			$this->_array,
-			$this->dateAdded,
-			$this->ipAddress,
-			$this->json,
-			$this->lastUpdated,
-			$this->id,
-			$this->name,
-			$this->icon,
-			$this->displayColor,
-			$this->tooltipParams,
-			$this->requiredLevel,
-			$this->itemLevel,
-			$this->bonusAffixes,
-			$this->typeName,
-			$this->type,
-			$this->armor,
-			$this->attributes,
-			$this->attributesRaw,
-			$this->socketEffects,
-			$this->salvage,
-			$this->gems
-		);
-	}
-	
-	/**
 	* Convert this object to a string.
 	* @return string
 	*/
 	public function __toString()
 	{
 		return json_encode( $this, JSON_PRETTY_PRINT );
+	}
+	
+	/**
+	* @param $p_effect Name of an effect (a.k.a attribute).
+	* @return string
+	*/
+	public function getEffect( $p_effect, $p_min, $p_max )
+	{
+		$returnValue = '';
+		if ( array_key_exists($p_effect, $this->effects) )
+		{
+			$mapValue = $this->effects[ $p_effect ];
+			// Convert some decimals to percents.
+			if ( $p_min < 1 ) {
+				$p_min = $p_min * 100;
+				$p_max = $p_max * 100;
+			}
+			$max = ( $p_min === $p_max ) ? '' : '-' . $p_max;
+			$returnValue = sprintf( $mapValue, $p_min, $max );
+		}
+		return $returnValue;
 	}
 	
 

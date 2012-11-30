@@ -1,3 +1,10 @@
+List of changes as of 11/30/2012 08:39 AM
+-------------------------------
+	- Applied more styling to the item tool-tip.
+	- Added new tool function for displaying item-tool-tip values as a single number/range.
+	- Added method to Item class for displaying attributes.
+	- Added d3.css from Battle.net.
+
 List of changes as of 11/26/2012 08:25 AM
 -------------------------------
 	- Modified the links on the hero page to use AJAX to retrieve the item tool-tip.

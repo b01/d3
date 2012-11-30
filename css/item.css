@@ -1,110 +1,257 @@
 
 	.json-data {
+		
 	}
 
 	.inline-block {
 		display: inline-block;
 	}
 
-	.tool-tip {
-		background-color: black;
-		padding: 10px;
-		color: rgb(207, 185, 145);
-		font-size: 12px;
+	.item-tool-tip-wrapper {
+		background: #1d180e;
+		border: 1px solid #322a20;
+		border-radius: 2px;
+		box-shadow: 0 0 10px #000;
+		max-width: 355px;
+		padding: 1px;
+		z-index: 1;
 	}
-	.tool-tip .icon {
+	.item-tool-tip {
+		background-color: black;
+		color: #c7b377;
+		font: normal 12px/1.5 Arial, sans-serif;
+		padding: 2px;
+	}
+	
+	.item-tool-tip .value {
+		color: rgb(255, 255, 255)
+	}
+	.item-tool-tip .icon {
+		background-repeat: no-repeat;
+		background-position: 50% 100%;
+		border: 1px solid black;
 		border-color: rgb(81, 63, 46);
 		border-radius: 4px;
-		border: 1px solid black;
 		margin-right: 10px;
 		margin-bottom: 11px;
 	}
-	.tool-tip .header {
-		font: 22px "Palatino Linotype", "Times", serif;
-		height: 40px;
-		line-height: 37px;
-		text-align: center;
-		overflow: hidden;
-		white-space: nowrap;
-		text-overflow: ellipsis;
+	.item-tool-tip .icon .gradient {
+		background-image: url('http://us.battle.net/d3/static/images/item/icon-bgs/gradient.png'); /* fallback */
+		background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0));
+		background-image:    -moz-linear-gradient(top, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0));
+		background-image:     -ms-linear-gradient(top, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0));
+		background-image:      -o-linear-gradient(top, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0));
+		background-image:         linear-gradient(top, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0));
+		border-radius: 4px;
+		display: block;
+	}
+
+	/* scale border radius accordingly */
+	.item-tool-tip.small,
+	.item-tool-tip.small .icon .gradient,
+	.item-tool-tip.small .icon .inner,
+	.item-tool-tip.32,
+	.item-tool-tip.32 .icon .gradient,
+	.item-tool-tip.32 .icon .inner {
+		border-radius: 2px;
 	}
 			
-			/* item colors */
+	/* item colors */
 
-			.item .icon.blue {
-				border-color: #6091a6;
-				background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/blue.png");
-				background-color: #232227;
-			}
-				a:hover .item .icon.blue,
-				.hover .item .icon.blue,
-				.icon-active .item .icon.blue {
-					border-color: #90c8d3;
-				}
+	.item-tool-tip .icon.blue {
+		border-color: #6091a6;
+		background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/blue.png");
+		background-color: #232227;
+	}
+		a:hover .item-tool-tip .icon.blue,
+		.hover .item-tool-tip .icon.blue,
+		.icon-active .item-tool-tip .icon.blue {
+			border-color: #90c8d3;
+		}
+	
+	.item-tool-tip .icon.brown {
+		background-color: rgb(42, 32, 23);
+		background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/brown.png");
+	}
+	
+	.item-tool-tip .icon.gray {
+		background-color: #2a2017;
+		background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/brown.png");
+		border-color: #513f2e;
+	}
+		a:hover .item-tool-tip .icon.gray,
+		.hover .item-tool-tip .icon.gray,
+		.icon-active .item-tool-tip .icon.gray {
+			border-color: #7a5f45;
+		}
+
+	.item-tool-tip .icon.green {
+		border-color: #748e3d;
+		background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/green.png");
+		background-color: #262f14;
+	}
+		a:hover .item-tool-tip .icon.green,
+		.hover .item-tool-tip .icon.green,
+		.icon-active .item-tool-tip .icon.green {
+			border-color: #aec75c;
+		}
+	
+	.item-tool-tip .icon.orange {
+		background-color: rgb(51, 35, 20);
+		background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/orange.png");
+		border-color: rgb(176, 123, 56);
+	}
+
+	.item-tool-tip .icon.orange {
+		border-color: #b07b38;
+		background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/orange.png");
+		background-color: #332314;
+	}
+		a:hover .item-tool-tip .icon.orange,
+		.hover .item-tool-tip .icon.orange,
+		.icon-active .item-tool-tip .icon.orange {
+			border-color: #d8b954;
+		}
+
+	.item-tool-tip .icon.white {
+		background-color: #2a2017;
+		background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/brown.png");
+		border-color: #513f2e;
+	}
+		a:hover .item-tool-tip .icon.white,
+		.hover .item-tool-tip .icon.white,
+		.icon-active .item-tool-tip .icon.white {
+			border-color: #7a5f45;
+		}
+
+	/* yellow */
+	.item-tool-tip .icon.yellow {
+		border-color: #9b8e3c;
+		background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/yellow.png");
+		background-color: #322914;
+	}
+		a:hover .item-tool-tip .icon.yellow,
+		.hover .item-tool-tip .icon.yellow,
+		.icon-active .item-tool-tip .icon.yellow {
+			border-color: #cdc75a;
+		}
+				
 			
-			.item .icon.brown {
-				background-color: rgb(42, 32, 23);
-				background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/brown.png");
-			}
-			
-			.item .icon.gray {
-				background-color: #2a2017;
-				background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/brown.png");
-				border-color: #513f2e;
-			}
-				a:hover .item .icon.gray,
-				.hover .item .icon.gray,
-				.icon-active .item .icon.gray {
-					border-color: #7a5f45;
-				}
+	/* head */
+	.item-tool-tip .header {
+		background-image: url('http://us.battle.net/d3/static/images/ui/tooltip-title.jpg');
+		background-repeat: no-repeat;
+		color: #F3E6D0;
+		height: 40px;
+		font-size: 22px;
+		font-family: "Palatino Linotype", "Times", serif;
+		line-height: 37px;
+		height: 40px;
+		overflow: hidden;
+		padding: 0 15px;
+		text-align: center;
+		text-overflow: ellipsis;
+		white-space: nowrap;
+		width: 320px;
+	}
+	.item-tool-tip .header .smaller {
+		font-size: 18px; line-height: 40px;
+	}
+	.item-tool-tip .header .smallest {
+		font-size: 14px; line-height: 42px;
+	}
+	.item-tool-tip .header.blue {
+		background-position: 0 -80px;
+	}
+	.item-tool-tip .header.gray,
+	.item-tool-tip .header.white {
+		background-position: 0 -40px;
+	}
+	.item-tool-tip .header.green {
+		background-position: 0 -240px;
+	}
+	.item-tool-tip .header.orange {
+		background-position: 0 -160px;
+	}
+	.item-tool-tip .header.purple {
+		background-position: 0 -200px;
+	}
+	.item-tool-tip .header.yellow {
+		background-position: 0 -120px;
+	}
+	
+/* colors */
 
-			.item .icon.green {
-				border-color: #748e3d;
-				background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/green.png");
-				background-color: #262f14;
-			}
-				a:hover .item .icon.green,
-				.hover .item .icon.green,
-				.icon-active .item .icon.green {
-					border-color: #aec75c;
-				}
-			
-			.item .icon.orange {
-				background-color: rgb(51, 35, 20);
-				background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/orange.png");
-				border-color: rgb(176, 123, 56);
-			}
+	/* general */
+	.default, .default a { color: rgb(255, 255, 255); }
+	.blue, .blue a { color: rgb(105, 105, 255); }
+	.gray, .gray a { color: #909090; }
+	.gold, .gold a { color: #c7b377; }
+	.green, .green a { color: #00ff00; }
+	.orange, .orange a { color: #bf642f; }
+	.purple, .purple a { color: #a335ee; }
+	.red, .red a { color: #ff0000; }
+	.white, .white a { color: #fff; }
+	.yellow, .yellow a { color: #ffff00; }
 
-			.item .icon.orange {
-				border-color: #b07b38;
-				background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/orange.png");
-				background-color: #332314;
-			}
-				a:hover .item .icon.orange,
-				.hover .item .icon.orange,
-				.icon-active .item .icon.orange {
-					border-color: #d8b954;
-				}
+	a.blue:hover, .blue a:hover, a:hover .blue,
+	a.gray:hover, .gray a:hover, a:hover .gray,
+	a.gold:hover, .gold a:hover, a:hover .gold,
+	a.green:hover, .green a:hover, a:hover .green,
+	a.orange:hover, .orange a:hover, a:hover .orange,
+	a.purple:hover, .purple a:hover, a:hover .purple,
+	a.red:hover, .red a:hover, a:hover .red,
+	a.white:hover, .white a:hover, a:hover .white,
+	a.yellow:hover, .yellow a:hover a:hover .yellow { color: rgb(255, 255, 255); }
 
-			.item .icon.white {
-				background-color: #2a2017;
-				background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/brown.png");
-				border-color: #513f2e;
-			}
-				a:hover .item .icon.white,
-				.hover .item .icon.white,
-				.icon-active .item .icon.white {
-					border-color: #7a5f45;
-				}
+	/* runes */
+	.rune { color: #F3E6D0; }
+	.rune-a { color: #e52817; }
+	.rune-b { color: #6e7ee5; }
+	.rune-c { color: #948b91; }
+	.rune-d { color: #fa8b14; }
+	.rune-e { color: #f7e9b7; }
 
-			/* yellow */
-			.item .icon.yellow {
-				border-color: #9b8e3c;
-				background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/yellow.png");
-				background-color: #322914;
-			}
-				a:hover .item .icon.yellow,
-				.hover .item .icon.yellow,
-				.icon-active .item .icon.yellow {
-					border-color: #cdc75a;
-				}
+.item-tool-tip .properties {
+	list-style: none;
+	margin: 10px 0 0;
+	padding: 0
+}
+.item-tool-tip .properties .effect {
+	margin: 1px 0
+}
+
+.item-tool-tip .value {
+	color: rgb(189, 166, 219)
+}
+.item-tool-tip .big {
+	font-family: "Palatino Linotype", "Times", serif;
+	font-size: 400%;
+	line-height: 100%;
+	text-shadow: 0 0 5px black, 0 0 5px black, 0 0 5px black
+}
+.item-tool-tip .item-requirement {
+	color: #A99877
+}
+.item-tool-tip .blue .value {
+	color: #bda6db
+}
+.item-tool-tip .gold .value { color: white; }
+.item-tool-tip .item-type { color: white; }
+.item-tool-tip .item-slot { color: #909090; }
+.item-tool-tip .item-unique-equipped { text-align:left; clear:both }
+.item-tool-tip .item-armor-weapon .item { color: #909090; }
+.item-tool-tip .item-armor-weapon .value { color: white; }
+.item-tool-tip .item-before-effects { display: none; }
+.item-tool-tip .properties .effect {
+	background-image: url('http://us.battle.net/d3/static/images/icons/bullet.gif');
+	background-position: 2px 5px;
+	background-repeat: no-repeat;
+	padding-left: 16px
+}
+.item-tool-tip .list .effect.empty-socket {
+	background: url("http://us.battle.net/d3/static/images/item/empty-socket.png") 0 center no-repeat;
+}
+.item-tool-tip .list .effect.full-socket { line-height:18px; min-height:18px; background: none; padding-left:0; padding-top:7px; white-space:nowrap }
+.item-tool-tip .list .effect.full-socket .gem { float:left; width:17px; height:17px; margin-right:4px }
+.item-tool-tip .list .effect.full-socket .socket-effect { padding-left: 16px; background: url("http://us.battle.net/d3/static/images/icons/bullet.gif") 2px 5px no-repeat; display:inline-block; min-height:18px; line-height:18px; white-space:normal }
