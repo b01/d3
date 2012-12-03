@@ -54,39 +54,39 @@ require_once( "php/Sql.php" );
 	</head>
 	<body>
 		<?php if ( is_object($itemModel) ): ?>
-		<pre class="json-data"><?= $itemModel; ?></pre>
-		<div class="item-tool-tip-wrapper">
-		<div class="item-tool-tip">
-			<h3 class="header <?= $itemModel->displayColor; ?>"><?= $itemModel->name; ?></h3>
-			<div class="effect-bg poison">
-				<div class="icon <?= $itemModel->displayColor; ?> inline-block">
-					<img class="gradient" src="http://media.blizzard.com/d3/icons/items/large/<?= $itemModel->icon; ?>.png" alt="<?= $itemModel->name; ?>" />
+		<div class="item-tool-tip-wrapper inline-block top">
+			<div class="item-tool-tip">
+				<h3 class="header smaller <?= $itemModel->displayColor; ?>"><?= $itemModel->name; ?></h3>
+				<div class="effect-bg armor">
+					<div class="icon <?= $itemModel->displayColor; ?> inline-block top">
+						<img class="gradient" src="http://media.blizzard.com/d3/icons/items/large/<?= $itemModel->icon; ?>.png" alt="<?= $itemModel->name; ?>" />
+					</div>
+					<div class="inline-block top">
+						<div class="type-name inline-block <?= $itemModel->displayColor; ?>"><?= $itemModel->typeName; ?></div>
+						<div class="type-name inline-block slot"><?= getItemSlot( $itemModel->type['id'] ) ?></div>
+						<div class="big value"><?= displayRange( $itemModel->armor ); ?></div>
+					</div>
 				</div>
-				<div class="inline-block">
-					<div class="type-name <?= $itemModel->displayColor; ?>"><?= $itemModel->typeName; ?></div>
-					<div class="big inline-block"><?= displayRange( $itemModel->armor ); ?></div>
+				<?php if ( isArray($itemModel->attributes) ): ?>
+				<ul class="properties blue">
+					<?php foreach ( $itemModel->attributesRaw as $key => $value ):?>
+					<?php
+						$effect = $itemModel->getEffect( $key, $value['min'], $value['max'] );
+						if ( empty($effect) ): continue; endif;
+					?>
+					<li class="effect"><?= $effect ?></li>
+					<?php endforeach; ?>
+				</ul>
+				<?php endif; ?>
+				<div class="levels">			
+					<div class="required inline-block"><span class="d3-color-gold">Required Level: </span><?= $itemModel->requiredLevel; ?></div>
+					<div class="max inline-block"><span class="d3-color-gold">Item Level: </span><?= $itemModel->itemLevel; ?></div>
 				</div>
 			</div>
-			<?php if ( isArray($itemModel->attributes) ): ?>
-			<ul class="properties blue">
-				<?php foreach ( $itemModel->attributesRaw as $key => $value ):?>
-				<?php
-					$effect = $itemModel->getEffect( $key, $value['min'], $value['max'] );
-					if ( empty($effect) ): continue; endif;
-				?>
-				<li class="effect"><?= $effect ?></li>
-				<?php endforeach; ?>
-			</ul>
-			<?php endif; ?>
-			<div class="levels">			
-				<div class="required inline-block"><span class="d3-color-gold">Required Level: </span><?= $itemModel->requiredLevel; ?></div>
-				<div class="max inline-block"><span class="d3-color-gold">Item Level: </span><?= $itemModel->itemLevel; ?></div>
-			</div>
-		</div>
 		</div>
 		
 		<!-- D# Official HTML -->
-		<div xmlns="http://www.w3.org/1999/xhtml" class="ui-tooltip">
+		<div class="inline-block top ui-tooltip">
 			<div class="tooltip-content">
 				<div class="d3-tooltip d3-tooltip-item">
 					<div class="tooltip-head tooltip-head-green">
@@ -164,6 +164,8 @@ require_once( "php/Sql.php" );
 				</div>
 			</div>
 		</div>
+		
+		<pre class="json-data scroll"><?= $itemModel; ?></pre>
 		<?php endif; ?>
 	</body>
 </html>

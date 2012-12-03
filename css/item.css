@@ -4,7 +4,11 @@
 	}
 
 	.inline-block {
-		display: inline-block;
+		display: inline-block
+	}
+	
+	.top {
+		vertical-align: top
 	}
 
 	.item-tool-tip-wrapper {
@@ -13,27 +17,44 @@
 		border-radius: 2px;
 		box-shadow: 0 0 10px #000;
 		max-width: 355px;
+		padding: 0 5px;
 		padding: 1px;
-		z-index: 1;
+		z-index: 1
 	}
 	.item-tool-tip {
 		background-color: black;
 		color: #c7b377;
 		font: normal 12px/1.5 Arial, sans-serif;
-		padding: 2px;
+		padding: 2px
 	}
 	
 	.item-tool-tip .value {
 		color: rgb(255, 255, 255)
 	}
+	
+	.effect-bg {
+		margin: 0 20px 10px
+	}
+	.item-tool-tip .effect-bg { background-position: 10px 10px; background-repeat: no-repeat; }
+	.item-tool-tip .effect-bg.arcane { background-image: url("http://us.battle.net/d3/static/images/item/effect-bgs/arcane.jpg"); }
+	.item-tool-tip .effect-bg.cold { background-image: url("http://us.battle.net/d3/static/images/item/effect-bgs/cold.jpg"); }
+	.item-tool-tip .effect-bg.fire { background-image: url("http://us.battle.net/d3/static/images/item/effect-bgs/fire.jpg"); }
+	.item-tool-tip .effect-bg.holy { background-image: url("http://us.battle.net/d3/static/images/item/effect-bgs/holy.jpg"); }
+	.item-tool-tip .effect-bg.lightning { background-image: url("http://us.battle.net/d3/static/images/item/effect-bgs/lightning.jpg"); }
+	.item-tool-tip .effect-bg.poison { background-image: url("http://us.battle.net/d3/static/images/item/effect-bgs/poison.jpg"); }
+	.item-tool-tip .effect-bg.armor { background-image: url("http://us.battle.net/d3/static/images/item/effect-bgs/armor.jpg"); background-position: 78px 20px; }
+	.item-tool-tip .effect-bg.armor-square { background-position: 78px 14px; }
+	.item-tool-tip .effect-bg.armor-big { background-position: 96px 20px; }
+	.item-tool-tip .effect-bg .item-type,
+	.item-tool-tip .effect-bg .item-armor-weapon { text-shadow: 0 0 5px black, 0 0 5px black, 0 0 5px black; } /* makes the text readable when a background is used */
+
+	
 	.item-tool-tip .icon {
 		background-repeat: no-repeat;
 		background-position: 50% 100%;
-		border: 1px solid black;
-		border-color: rgb(81, 63, 46);
+		border: 1px solid rgb(81, 63, 46);
 		border-radius: 4px;
-		margin-right: 10px;
-		margin-bottom: 11px;
+		margin-right: 10px
 	}
 	.item-tool-tip .icon .gradient {
 		background-image: url('http://us.battle.net/d3/static/images/item/icon-bgs/gradient.png'); /* fallback */
@@ -43,7 +64,7 @@
 		background-image:      -o-linear-gradient(top, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0));
 		background-image:         linear-gradient(top, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0));
 		border-radius: 4px;
-		display: block;
+		display: block
 	}
 
 	/* scale border radius accordingly */
@@ -138,26 +159,29 @@
 				
 			
 	/* head */
-	.item-tool-tip .header {
+	.header {
 		background-image: url('http://us.battle.net/d3/static/images/ui/tooltip-title.jpg');
 		background-repeat: no-repeat;
-		color: #F3E6D0;
+		color: rgb(243, 230, 208);
 		height: 40px;
-		font-size: 22px;
 		font-family: "Palatino Linotype", "Times", serif;
+		font-size: 22px;
 		line-height: 37px;
-		height: 40px;
+		margin: 0 0 10px;
 		overflow: hidden;
-		padding: 0 15px;
 		text-align: center;
 		text-overflow: ellipsis;
 		white-space: nowrap;
-		width: 320px;
+		width: 360px;
 	}
-	.item-tool-tip .header .smaller {
+	.slot {
+		color: #909090;
+		text-transform: capitalize
+	}
+	.item-tool-tip .header.smaller {
 		font-size: 18px; line-height: 40px;
 	}
-	.item-tool-tip .header .smallest {
+	.item-tool-tip .header.smallest {
 		font-size: 14px; line-height: 42px;
 	}
 	.item-tool-tip .header.blue {
@@ -187,7 +211,9 @@
 	.blue, .blue a { color: rgb(105, 105, 255); }
 	.gray, .gray a { color: #909090; }
 	.gold, .gold a { color: #c7b377; }
-	.green, .green a { color: #00ff00; }
+	.green, .green a {
+		color: #00ff00;
+	}
 	.orange, .orange a { color: #bf642f; }
 	.purple, .purple a { color: #a335ee; }
 	.red, .red a { color: #ff0000; }
@@ -214,7 +240,7 @@
 
 .item-tool-tip .properties {
 	list-style: none;
-	margin: 10px 0 0;
+	margin: 10px 20px 0;
 	padding: 0
 }
 .item-tool-tip .properties .effect {

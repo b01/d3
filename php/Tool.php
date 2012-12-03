@@ -1,13 +1,11 @@
-<?php
+<?php namespace d3cb;
 /**
 * Tools to help simplify repetitive task.
 *
 * @author Khalifah Shabazz <shabazzk@gmail.com>
 *
 */
-namespace d3cb;
 
-	
 	/**
 	* Display a value as a single number or a range if min and max are different.
 	* @param array Containing the min and max values of a property.
@@ -54,6 +52,68 @@ namespace d3cb;
 		if ( array_key_exists($p_key, $_GET) )
 		{
 			$returnValue = ( string )$_GET[ $p_key ];
+		}
+		return $returnValue;
+	}
+
+	/**
+	* Get item name, by type id.
+	* @param $p_itemType Item type id
+	* @return string 
+	*/
+	function getItemType( $p_itemType )
+	{
+		$returnValue = '';
+		switch ( strtolower($p_itemType) )
+		{
+			case 'amulet':
+				$returnValue = "neck";
+				break;
+		}
+		return $returnValue;
+	}
+
+	/**
+	* Get slot the you equipe the item, by type id.
+	* @param $p_itemType Item type id
+	* @return string 
+	*/
+	function getItemSlot( $p_itemType )
+	{
+		$returnValue = '';
+		switch ( strtolower($p_itemType) )
+		{
+			case 'amulet':
+				$returnValue = "neck";
+				break;
+			case 'belt':
+				$returnValue = "waist";
+				break;
+			case 'boots':
+				$returnValue = "foot";
+				break;
+			case 'chest':
+				$returnValue = "torso";
+				break;
+			case 'gloves':
+				$returnValue = "hands";
+				break;
+			case 'helm':
+				$returnValue = "head";
+				break;
+			case 'shield':
+			case 'quiver':
+				$returnValue = "Off Hand";
+				break;
+			case 'ring':
+				$returnValue = "finger";
+				break;
+			case 'shoulders':
+				$returnValue = "shoulders";
+				break;
+			case 'weapon':
+				$returnValue = "1-hand";
+				break;
 		}
 		return $returnValue;
 	}

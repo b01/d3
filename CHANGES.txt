@@ -1,5 +1,10 @@
 List of changes as of 11/30/2012 08:39 AM
 -------------------------------
+	- Updated style on item page.
+	- Added new function to translate item-slot name.
+
+List of changes as of 11/30/2012 08:39 AM
+-------------------------------
 	- Applied more styling to the item tool-tip.
 	- Added new tool function for displaying item-tool-tip values as a single number/range.
 	- Added method to Item class for displaying attributes.
