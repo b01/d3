@@ -4,9 +4,9 @@
 * The item will only be updated after a few ours of retrieving it.
 *
 */
-namespace d3cb;
+namespace d3;
 
-use \d3cb\Tool;
+use \d3\Tool;
 
 /**
 * var $p_heroId string User BattleNet ID.
@@ -29,7 +29,7 @@ class Hero
 	/**
 	* Constructor
 	*/
-	public function __construct( $p_heroId, \d3cb\BattleNetDqi $p_dqi, \d3cb\Sql $p_sql )
+	public function __construct( $p_heroId, \d3\BattleNetDqi $p_dqi, \d3\Sql $p_sql )
 	{
 		$this->heroId = $p_heroId;
 		$this->dqi = $p_dqi;

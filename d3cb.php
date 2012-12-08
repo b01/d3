@@ -7,7 +7,7 @@
 * Only const, define, include, and require statements are allowed here! So no logic code please.
 *  Then LOCK THIS FILE DOWN like the Pentagon, or your nerd pron (commic books) collection.
 */
-namespace d3cb;
+namespace d3;
 // load some setting that the site will need in order to function.
 require_once( "php/settings.php" );
 

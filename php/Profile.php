@@ -4,9 +4,9 @@
 * The profile will only be updated after a few ours of retrieving it.
 *
 */
-namespace d3cb;
+namespace d3;
 
-use \d3cb\Tool;
+use \d3\Tool;
 
 /**
 * var $p_battleNetId string User BattleNet ID.
@@ -27,7 +27,7 @@ class Profile
 	/**
 	* Constructor
 	*/
-	public function __construct( $p_battleNetId, \d3cb\BattleNetDqi $p_dqi, \d3cb\Sql $p_sql )
+	public function __construct( $p_battleNetId, \d3\BattleNetDqi $p_dqi, \d3\Sql $p_sql )
 	{
 		$this->battleNetId = $p_battleNetId;
 		$this->dqi = $p_dqi;

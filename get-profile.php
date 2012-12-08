@@ -1,6 +1,6 @@
 <?php
 // Get the profile and store it.
-namespace d3cb;
+namespace d3;
 require_once( "php/Tool.php" );
 require_once( "php/BattleNetDqi.php" );
 require_once( "php/Profile.php" );

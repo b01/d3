@@ -1,3 +1,13 @@
+List of changes as of 12/08/2012 08:41 AM
+-------------------------------
+	- Added Calculate class with methods for damage, and effectiveness of items.
+	- Added a way to compose an array of all items equipped from head to foot.
+	- Added tooltip.js and d3.js from battle.net for reference.
+	- Added 'set' item info into the string output of the item model class.
+	- Changed name-space to d3 and upadated all instances.
+	- Change project folder name to diablo-3 from diablo-3-character-builder.
+	- Updated TODO items.
+
 List of changes as of 11/30/2012 08:39 AM
 -------------------------------
 	- Updated style on item page.

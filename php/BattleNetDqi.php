@@ -1,5 +1,5 @@
 <?php
-namespace d3cb; // Diablo 3 Character Builder
+namespace d3; // Diablo 3 Character Builder
 
 class BattleNetDqi
 {

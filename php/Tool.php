@@ -1,4 +1,4 @@
-<?php namespace d3cb;
+<?php namespace d3;
 /**
 * Tools to help simplify repetitive task.
 *

@@ -1,5 +1,5 @@
 <?php
-namespace d3cb;
+namespace d3;
 
 class Sql
 {

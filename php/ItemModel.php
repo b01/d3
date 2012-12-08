@@ -1,5 +1,5 @@
 <?php
-namespace d3cb;
+namespace d3;
 /**
 * Get the users item from Battle.Net and present it to the user; store it locally in a database
 * behind the scenes. The item will only be updated after a few ours of retrieving it.
@@ -47,40 +47,16 @@ class ItemModel implements \JsonSerializable
 		$attributesRaw, // associative array
 		$socketEffects, // array
 		$salvage, // array
+		$set, // array
 		$gems; // array
-	
-	/**
-	* I named this cast in the hopes that PHP will implement bug: https://bugs.php.net/bug.php?id=46128
-	*/
-	static public function __cast( \stdClass $p_object )
-	{
-		$instance = new ItemModel( NULL );
-		$instance->id = ( string ) $p_object->id;
-		$instance->name = ( string ) $p_object->name;
-		$instance->icon = ( string ) $p_object->icon;
-		$instance->displayColor = ( string ) $p_object->displayColor;
-		$instance->tooltipParams = ( string ) $p_object->tooltipParams;
-		$instance->requiredLevel = ( int ) $p_object->requiredLevel;
-		$instance->itemLevel = ( int ) $p_object->itemLevel;
-		$instance->bonusAffixes = ( int ) $p_object->bonusAffixes;
-		$instance->typeName = ( string ) $p_object->typeName;
-		$instance->type = ( array ) $p_object->type;
-		$instance->armor = ( array ) $p_object->armor;
-		$instance->attributes = ( array ) $p_object->attributes;
-		$instance->attributesRaw = ( array ) $p_object->attributesRaw;
-		$instance->socketEffects = ( array ) $p_object->socketEffects;
-		$instance->salvage = ( array ) $p_object->salvage;
-		$instance->gems = ( array ) $p_object->gems;
-		return $instance;
-	}
-	
+		
 	/**
 	* Constructor
 	*/
 	public function __construct( $p_json )
 	{
 		$this->_array = json_decode( $p_json, TRUE );
-		if ( \d3cb\isArray($this->_array) )
+		if ( \d3\isArray($this->_array) )
 		{
 			$this->json = $p_json;
 			$this->__init();
@@ -117,6 +93,7 @@ class ItemModel implements \JsonSerializable
 			$this->attributesRaw,
 			$this->socketEffects,
 			$this->salvage,
+			$this->set,
 			$this->gems,
 			$this->effects
 		);
@@ -134,7 +111,7 @@ class ItemModel implements \JsonSerializable
 		
 		$trace = debug_backtrace();
 		trigger_error(
-			'Undefined property via __get(): ' . $name .
+			'Undefined property: ' . $name .
 			' in ' . $trace[0]['file'] .
 			' on line ' . $trace[0]['line'],
 			E_USER_NOTICE
@@ -158,11 +135,18 @@ class ItemModel implements \JsonSerializable
 		$this->bonusAffixes = ( int ) $this->_array['bonusAffixes'];
 		$this->typeName = ( string ) $this->_array['typeName'];
 		$this->type = ( array ) $this->_array['type'];
-		$this->armor = ( array ) $this->_array['armor'];
+		if ( array_key_exists('armor', $this->_array) )
+		{
+			$this->armor = ( array ) $this->_array['armor'];
+		}
 		$this->attributes = ( array ) $this->_array['attributes'];
 		$this->attributesRaw = ( array ) $this->_array['attributesRaw'];
 		$this->socketEffects = ( array ) $this->_array['socketEffects'];
 		$this->salvage = ( array ) $this->_array['salvage'];
+		if ( array_key_exists('set', $this->_array) )
+		{
+			$this->set = ( array ) $this->_array['set'];
+		}
 		$this->gems = ( array ) $this->_array['gems'];
 	}
 	
@@ -204,26 +188,26 @@ class ItemModel implements \JsonSerializable
 	public function jsonSerialize()
 	{
 		return [
-			"dateAdded" => $this->dateAdded,
-			"ipAddress" => $this->ipAddress,
-			"json" => $this->json,
-			"lastUpdated" => $this->lastUpdated,
-			"id" => $this->id,
-			"name" => $this->name,
-			"icon" => $this->icon,
-			"displayColor" => $this->displayColor,
-			"tooltipParams" => $this->tooltipParams,
-			"requiredLevel" => $this->requiredLevel,
-			"itemLevel" => $this->itemLevel,
-			"bonusAffixes" => $this->bonusAffixes,
-			"typeName" => $this->typeName,
-			"type" => $this->type,
 			"armor" => $this->armor,
 			"attributes" => $this->attributes,
 			"attributesRaw" => $this->attributesRaw,
-			"socketEffects" => $this->socketEffects,
+			"bonusAffixes" => $this->bonusAffixes,
+			"dateAdded" => $this->dateAdded,
+			"displayColor" => $this->displayColor,
+			"gems" => $this->gems,
+			"icon" => $this->icon,
+			"id" => $this->id,
+			"ipAddress" => $this->ipAddress,
+			"itemLevel" => $this->itemLevel,
+			"lastUpdated" => $this->lastUpdated,
+			"name" => $this->name,
+			"requiredLevel" => $this->requiredLevel,
 			"salvage" => $this->salvage,
-			"gems" => $this->gems
+			"set" => $this->set,
+			"socketEffects" => $this->socketEffects,
+			"tooltipParams" => $this->tooltipParams,
+			"type" => $this->type,
+			"typeName" => $this->typeName
 		];
 	}
 

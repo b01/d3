@@ -19,9 +19,13 @@
 	crit damage,
 	dps
  - Setup basic Google analytics and webmaster tools.
- - present the profile as  UL list at resolutions higher than 800x600, otherwise as a selection list for anything below that.
+ - Present the profile as UL list at resolutions higher than 800x600, otherwise as a selection list for anything below that.
  - Require battleNet ID for all web API request.
  - Get all the paths to the images and place them in the settings file.
  - Build the following classes
    - JsonSaver - save any JSON to the database, takes JSON string and Sql object in the constructor
    - ImageSaver - takes an iamge url and fileStream object and save a file to disk.
+ - Turn display of an item into a class.
+ - Move dsn to .user.ini
+ - Move site settings to JSON.
+ - Only store items in the DB for an limited time, asjustable in the settings.

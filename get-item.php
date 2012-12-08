@@ -1,4 +1,4 @@
-<?php namespace d3cb;
+<?php namespace d3;
 // Get the profile and store it.
 require_once( "php/Tool.php" );
 require_once( "php/BattleNetDqi.php" );
@@ -69,8 +69,7 @@ require_once( "php/Sql.php" );
 				</div>
 				<?php if ( isArray($itemModel->attributes) ): ?>
 				<ul class="properties blue">
-					<?php foreach ( $itemModel->attributesRaw as $key => $value ):?>
-					<?php
+					<?php foreach ( $itemModel->attributesRaw as $key => $value ):
 						$effect = $itemModel->getEffect( $key, $value['min'], $value['max'] );
 						if ( empty($effect) ): continue; endif;
 					?>

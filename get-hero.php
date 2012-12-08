@@ -1,9 +1,10 @@
-<?php namespace d3cb;
+<?php namespace d3;
 // Get the profile and store it.
-require_once( "php/Tool.php" );
 require_once( "php/BattleNetDqi.php" );
 require_once( "php/Hero.php" );
+require_once( "php/Item.php" );
 require_once( "php/Sql.php" );
+require_once( "php/Tool.php" );
 
 	$urlBattleNetId = getStr( "battleNetId" );
 	$heroId = getStr( "heroId" );
@@ -58,7 +59,11 @@ require_once( "php/Sql.php" );
 	<body>
 		<?php if ( isArray($items) ): ?>
 		<div class="hero">
-			<?php foreach ( $items as $key => $item ): ?>
+			<?php foreach ( $items as $key => $item ):
+				$hash = $item[ 'tooltipParams' ];
+				$d3Item = new Item( str_replace("item/", '', $hash), "hash", $battleNetDqi, $sql );
+				$itemModels[ $key ] = new ItemModel( $d3Item->getRawData() );
+			?>
 				<a class="item <?= $key ?>" href="/get-item.php?<?= "battleNetId=" . $urlBattleNetId . '&' . str_replace( '/', "Hash=", $item['tooltipParams'] ) ?>">
 					<div class="tooltipParams"><?= $item['tooltipParams'] ?></div>
 					<img src="http://media.blizzard.com/d3/icons/items/large/<?= $item['icon'] ?>.png" alt="<?= $key ?>" />
@@ -66,6 +71,9 @@ require_once( "php/Sql.php" );
 				</a>
 			<?php endforeach; ?>
 		</div>
+		<pre>
+			<?php print_r( $itemModels ); ?>
+		</pre>
 		<?php endif; ?>
 	</body>
 </html>
