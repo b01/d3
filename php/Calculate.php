@@ -70,5 +70,31 @@ class Calculate
 		// BASE X SPEED x CRIT x SKILL x CARAC = your total dps
 		$this->baseWepaondamage * $this->attackSpeed & $this->criticalHitDamage * $this->classDamage;
 	}
+	
+	/**
+	* Tally speed
+	* @return null
+	*/
+	public function tallySpeed()
+	{
+		// Speed is based on the following:
+		for ( $this->items as $item )
+		{
+			if ( $item )
+			{
+				$this->attackSpeed = 0.0;
+			}
+		}
+	}
+	
+	/**
+	* Prep dampage attributes
+	* @return null
+	*/
+	public function PrepDps()
+	{
+		// BASE X SPEED x CRIT x SKILL x CARAC = your total dps
+		$this->baseWepaondamage = $this->items['mainHand']['max'];
+	}
 }
 ?>

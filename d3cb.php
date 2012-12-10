@@ -9,8 +9,21 @@
 */
 namespace d3;
 // load some setting that the site will need in order to function.
-require_once( "php/settings.php" );
-
+$settingsJson = file_get_contents( "php/settings.json" );
+$settings = json_decode( $settingsJson, TRUE );
+if ( $settings === NULL )
+{
+	echo json_last_error();
+}
+else
+{
+	// Grab the namespace first, if it exists.
+	$nameSpace = array_key_exists("namespace", $settings) ? $settings[ 'namespace' ] : '';
+	foreach ( $settings as $name => $value )
+	{
+		define( $nameSpace . $name, $value );
+	}
+}
 // Run any setup code you want done on every page of your site.
 
 //DO NOT PUT ANY CHARACTERS OR EVEN WHITE-SPACE after the closing php tag, or headers may be sent before intended.

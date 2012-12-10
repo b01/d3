@@ -27,5 +27,6 @@
    - ImageSaver - takes an iamge url and fileStream object and save a file to disk.
  - Turn display of an item into a class.
  - Move dsn to .user.ini
- - Move site settings to JSON.
  - Only store items in the DB for an limited time, asjustable in the settings.
+ - Email errors to site email address in settings.
+ - Set a variable in the users session for errors that have been logged and do not send them again when the user refreshes.

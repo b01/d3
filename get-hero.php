@@ -72,7 +72,10 @@ require_once( "php/Tool.php" );
 			<?php endforeach; ?>
 		</div>
 		<pre>
-			<?php print_r( $itemModels ); ?>
+			<?php foreach ( $itemModels as $key => $model ): ?>
+			<?= $key ?>
+			<?= $model ?>
+			<?php endforeach; ?>
 		</pre>
 		<?php endif; ?>
 	</body>

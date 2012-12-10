@@ -58,6 +58,20 @@ class Item
 	}
 	
 	/**
+	* Get hero data from local database.
+	*/
+	protected function getItem()
+	{
+		if ( $this->id !== NULL )
+		{
+			return $this->sql->getData( Sql::SELECT_ITEM, [
+				"itemPrimaryValue" => [ $this->id, \PDO::PARAM_STR ]
+			]);
+		}
+		return NULL;
+	}
+	
+	/**
 	* Get the item, first check the local DB, otherwise pull from Battle.net.
 	*
 	* @return string JSON item data.
@@ -65,19 +79,19 @@ class Item
 	protected function getJson( $p_value, $p_column )
 	{
 		// Get the item info locally from the database.
-		if ( !\d3\isString($p_value) && !\d3\isString($p_column) )
-		{
-			throw new \Exception( "Invalid data used to retrieve an item." );
-		}
+		// if ( !isString($p_value) && !isString($p_column) )
+		// {
+			// throw new \Exception( "Invalid data used to retrieve an item." );
+		// }
 		
-		$this->info = $this->sql->getItem( $p_value, $p_column );
-		if ( \d3\isArray($this->info) )
-		{
-			$this->json = $this->info['json'];
-		}
-		// If that fails, then try to get it from Battle.net.
-		if ( !\d3\isString($this->json) )
-		{
+		// $this->info = $this->getItem();
+		// if ( isArray($this->info) )
+		// {
+			// $this->json = $this->info['json'];
+		// }
+		// // If that fails, then try to get it from Battle.net.
+		// if ( !isString($this->json) )
+		// {
 			// Request the item from BattleNet.
 			$json = $this->dqi->getItem( $p_value );
 			$responseCode = $this->dqi->responseCode();
@@ -89,7 +103,7 @@ class Item
 				$this->json = $json;
 				$this->loadedFromBattleNet = TRUE;
 			}
-		}
+		// }
 		
 		return $this->json;
 	}
@@ -115,7 +129,7 @@ class Item
 		// Get the item.
 		$this->getJson( $p_id, $p_column );
 		// Convert the JSON to an associative array.
-		if ( \d3\isString($this->json) )
+		if ( isString($this->json) )
 		{
 			$item = new ItemModel( $this->json );
 			if ( $item instanceof \d3\ItemModel )
@@ -125,7 +139,7 @@ class Item
 				$this->item = $item;
 				if ( $this->loadedFromBattleNet )
 				{
-					$this->save( "item" );
+					// $this->save( "item" );
 					$returnValue = TRUE;
 				}
 			}
@@ -139,6 +153,17 @@ class Item
 	*/
 	protected function save()
 	{
+		// $timeStamp = date( "Y-m-d H:i:s" );
+		// $this->sql->save( self::INSERT_ITEM, [
+			// ":hash" => $p_itemHash, \PDO::PARAM_STR,
+			// ":id" => $p_item->id, \PDO::PARAM_STR,
+			// ":name" => $p_item->name, \PDO::PARAM_STR,
+			// ":itemType" => $p_item->type['id'], \PDO::PARAM_STR,
+			// ":json" => $p_itemJson, \PDO::PARAM_STR,
+			// ":ipAddress" => $this->ipAddress, \PDO::PARAM_STR,
+			// ":lastUpdate" => $timeStamp, \PDO::PARAM_STR,
+			// ":dateAdded" => $timeStamp, \PDO::PARAM_STR
+		// ]);
 		return $this->sql->saveItem( $this->itemHash, $this->item, $this->json );
 	}
 

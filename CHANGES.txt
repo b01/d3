@@ -1,3 +1,14 @@
+List of changes as of 12/09/2012 11:59 PM
+-------------------------------
+	- Added new generic methods (save, getData) to Sql class for saving and retrieving data.
+	- Added d3_heroes table with corresponding INSERT and SELECT SQL statments.
+	- Added new methods "logError" and "showUserFriendlyError".
+	- Updated Hero class to use the generic "save" and "getData" methods on Sql Class.
+	- Removed saving and pulling items from local database for now.
+	- Stopped prepending the database name to the table in the Sql class prepared statements.
+	- Moved settings from PHP file to JSON. Now all settings are stored in php/settings.json.
+	- Added "php/settings.json" to .gitignore.
+
 List of changes as of 12/08/2012 08:41 AM
 -------------------------------
 	- Added Calculate class with methods for damage, and effectiveness of items.

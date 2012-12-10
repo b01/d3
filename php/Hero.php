@@ -77,10 +77,10 @@ class Hero
 	protected function getJson()
 	{
 		// Get the item from local database.
-		$this->info = NULL;//$this->sql->getHero( $this->heroId );
+		$this->info = $this->getHero( $this->heroId );
 		if ( isArray($this->info) )
 		{
-			$this->json = $this->info['hero_json'];
+			$this->json = $this->info[0]['json'];
 		}
 		// If that fails, then try to get it from Battle.net.
 		if ( !isString($this->json) )
@@ -99,6 +99,20 @@ class Hero
 		}
 		
 		return $this->json;
+	}
+	
+	/**
+	* Get hero data from local database.
+	*/
+	protected function getHero()
+	{
+		if ( $this->heroId !== NULL )
+		{
+			return $this->sql->getData( Sql::SELECT_HERO, [
+				"id" => [ $this->heroId, \PDO::PARAM_STR ]
+			]);
+		}
+		return NULL;
 	}
 	
 	/**
@@ -139,11 +153,20 @@ class Hero
 	}
 	
 	/**
-	* Save the users hero locally, in this case a database
+	* Save the users hero in a local database.
+	* @return bool Indicates success (TRUE) or failure (FALSE).
 	*/
 	protected function save()
 	{
-		// return $this->sql->saveItem( $this->heroId, $this->hero, $this->json );
+		$timeStamp = date( "Y-m-d H:i:s" );
+		return $this->sql->save( Sql::INSERT_HERO, [
+			"heroId" => [ $this->heroId, \PDO::PARAM_STR ],
+			"battleNetId" => [ $this->dqi->getBattleNetId(), \PDO::PARAM_STR ],
+			"json" => [ $this->json, \PDO::PARAM_STR ],
+			"ipAddress" => [ $this->sql->getIpAddress(), \PDO::PARAM_STR ],
+			"lastUpdated" => [ $timeStamp, \PDO::PARAM_STR ],
+			"dateAdded" => [ $timeStamp, \PDO::PARAM_STR ]
+		]);
 	}
 }
 ?>

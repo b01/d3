@@ -137,6 +137,18 @@
 	}
 
 	/**
+	* Check if a variable is a string of length greater than 0.
+	* @return bool TRUE is yes, false otherwise.
+	*/
+	function logError( \Exception $p_error, $p_devMessage, $p_userMessage )
+	{
+		$trace = debug_backtrace();
+		echo $p_error->getMessage();
+		echo sprintf( $p_devMessage, $trace[0]['file'], $trace[0]['line'] );
+		showUserFriendlyError( $p_userMessage );
+	}
+
+	/**
 	* Random x elements from an array.
 	*/
 	function randomElementsFromArray( $p_arraySource, $p_quantity = 5 )
@@ -172,7 +184,15 @@
 		}
 		return $returnValue;
 	}
-		
+
+	/**
+	* Generate an array of random numbers within a specified range.
+	* @credit Taken from a Stack Overflow answeer: http://stackoverflow.com/questions/5612656/generating-unique-random-numbers-within-a-range-php
+	*/
+	function showUserFriendlyError( $p_message )
+	{
+		echo "<div class=\"error\">{$p_message}</div>";
+	}
 	/**
 	* Generate an array of random numbers within a specified range.
 	* @credit Taken from a Stack Overflow answeer: http://stackoverflow.com/questions/5612656/generating-unique-random-numbers-within-a-range-php
