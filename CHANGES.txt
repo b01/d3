@@ -1,3 +1,8 @@
+List of changes as of 12/10/2012 12:52 AM
+-------------------------------
+	- Moved DSN to settings.json file.
+	- Removed unused constants from settings.json
+
 List of changes as of 12/09/2012 11:59 PM
 -------------------------------
 	- Added new generic methods (save, getData) to Sql class for saving and retrieving data.

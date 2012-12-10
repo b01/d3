@@ -11,7 +11,6 @@ require_once( "php/Sql.php" );
 	$itemName = getPostStr( "itemName" );
 	$item = NULL;
 	$itemModel = NULL;
-	$dsn = "mysql:host=" . DB_SERVER . ";dbname=" . DB_NAME . ";charset=UTF-8";
 	if ( isString($itemHash) )
 	{
 		$itemUID = $itemHash;
@@ -31,7 +30,7 @@ require_once( "php/Sql.php" );
 	if ( isString($battleNetId) && isString($itemUID) )
 	{
 		$battleNetDqi = new BattleNetDqi( $battleNetId );
-		$sql = new Sql( $dsn, DB_USER, DB_PSWD, USER_IP_ADDRESS );
+		$sql = new Sql( DSN, DB_USER, DB_PSWD, USER_IP_ADDRESS );
 		$item = new Item(  $itemUID, $itemIdType, $battleNetDqi, $sql );
 		// Init item as an object.
 		if ( is_object($item) )

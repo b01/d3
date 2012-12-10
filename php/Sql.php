@@ -5,11 +5,11 @@ class Sql
 {
 	const
 		SELECT_PROFILE = "SELECT `battle_net_id`, `profile_json`, `ip_address`, `last_updated`, `date_added` FROM `%s`.`d3_profiles` WHERE `battle_net_id` = :battleNetId;",
-		INSERT_PROFILE = "INSERT INTO `%1\$s`.`d3_profiles` (`battle_net_id`, `profile_json`, `ip_address`, `last_updated`, `date_added`) VALUES(:battleNetId, :profileJson, :ipAddress, :lastUpdated, :dateAdded) ON DUPLICATE KEY UPDATE `profile_json` = VALUES(profile_json), `ip_address` = VALUES(ip_address), `last_updated` = VALUES(last_updated);",
-		INSERT_REQUEST = "INSERT INTO `%1\$s`.`battlenet_api_request` (`battle_net_id`, `ip_address`, `url`, `date_number`, `date_added`) VALUES(:battleNetId, :ipAddress, :url, :dateNumber, :dateAdded);",
-		SELECT_REQUEST = "SELECT `ip_address`, `url`, `date`, `date_added` FROM `%1\$s`.`battlenet_api_request` WHERE  `date` = :date;",
+		INSERT_PROFILE = "INSERT INTO `d3_profiles` (`battle_net_id`, `profile_json`, `ip_address`, `last_updated`, `date_added`) VALUES(:battleNetId, :profileJson, :ipAddress, :lastUpdated, :dateAdded) ON DUPLICATE KEY UPDATE `profile_json` = VALUES(profile_json), `ip_address` = VALUES(ip_address), `last_updated` = VALUES(last_updated);",
+		INSERT_REQUEST = "INSERT INTO `battlenet_api_request` (`battle_net_id`, `ip_address`, `url`, `date_number`, `date_added`) VALUES(:battleNetId, :ipAddress, :url, :dateNumber, :dateAdded);",
+		SELECT_REQUEST = "SELECT `ip_address`, `url`, `date`, `date_added` FROM `battlenet_api_request` WHERE  `date` = :date;",
 		SELECT_ITEM = "SELECT `id`, `name`, `item_type`, `json`, `ip_address`, `last_updated`, `date_added` FROM `%s`.`d3_items` WHERE `%s` = :itemPrimaryValue;",
-		INSERT_ITEM = "INSERT INTO `%1\$s`.`d3_items` (`hash`, `id`, `name`, `item_type`, `json`, `ip_address`, `last_updated`, `date_added`) VALUES(:hash, :id, :name, :itemType, :json, :ipAddress, :lastUpdate, :dateAdded);",
+		INSERT_ITEM = "INSERT INTO `d3_items` (`hash`, `id`, `name`, `item_type`, `json`, `ip_address`, `last_updated`, `date_added`) VALUES(:hash, :id, :name, :itemType, :json, :ipAddress, :lastUpdate, :dateAdded);",
 		SELECT_HERO = "SELECT `id`, `battle_net_id`, `json`, `ip_address`, `last_updated`, `date_added` FROM `d3_heroes` WHERE `id` = :id;",
 		INSERT_HERO = "INSERT INTO `d3_heroes` (`id`, `battle_net_id`, `json`, `ip_address`, `last_updated`, `date_added`) VALUES(:heroId, :battleNetId, :json, :ipAddress, :lastUpdated, :dateAdded) ON DUPLICATE KEY UPDATE `json` = VALUES(json), `ip_address` = VALUES(ip_address), `last_updated` = VALUES(last_updated);";
 		
@@ -47,8 +47,7 @@ class Sql
 			if ($this->pdoh !== NULL)
 			{
 				$today = date( "Y-m-d" );
-				$query = sprintf( self::INSERT_REQUEST, DB_NAME );
-				$stmt = $this->pdoh->prepare( $query );
+				$stmt = $this->pdoh->prepare( self::INSERT_REQUEST );
 				$stmt->bindValue( ":battleNetId", $p_battleNetId, \PDO::PARAM_STR );
 				$stmt->bindValue( ":ipAddress", $this->ipAddress, \PDO::PARAM_STR );
 				$stmt->bindValue( ":url", $p_url, \PDO::PARAM_STR );
@@ -145,7 +144,7 @@ class Sql
 		$returnValue = NULL;
 		try
 		{
-			$query = sprintf( self::SELECT_ITEM, DB_NAME, $p_primaryColumn );
+			$query = sprintf( self::SELECT_ITEM, $p_primaryColumn );
 			$stmt = $this->pdoh->prepare( $query );
 			$stmt->bindValue( ":itemPrimaryValue", $p_primaryColumnValue, \PDO::PARAM_STR );
 			$itemRecord = $this->pdoQuery( $stmt );
@@ -171,10 +170,9 @@ class Sql
 		$returnValue = NULL;
 		try
 		{
-			$query = sprintf( self::SELECT_PROFILE, DB_NAME );
 			if ($this->pdoh !== NULL)
 			{
-				$stmt = $this->pdoh->prepare( $query );
+				$stmt = $this->pdoh->prepare( self::SELECT_PROFILE );
 				$stmt->bindValue( ":battleNetId", $p_battleNetId, \PDO::PARAM_STR );
 				$profileRecord = $this->pdoQuery( $stmt );
 				if ( isArray($profileRecord) )
@@ -202,8 +200,7 @@ class Sql
 		{
 			if ($this->pdoh !== NULL)
 			{
-				$query = sprintf( self::INSERT_ITEM, DB_NAME );
-				$stmt = $this->pdoh->prepare( $query );
+				$stmt = $this->pdoh->prepare( self::INSERT_ITEM );
 				$stmt->bindValue( ":hash", $p_itemHash, \PDO::PARAM_STR );
 				$stmt->bindValue( ":id", $p_item->id, \PDO::PARAM_STR );
 				$stmt->bindValue( ":name", $p_item->name, \PDO::PARAM_STR );
@@ -236,8 +233,7 @@ class Sql
 		{
 			if ($this->pdoh !== NULL)
 			{
-				$query = sprintf( self::INSERT_PROFILE, DB_NAME );
-				$stmt = $this->pdoh->prepare( $query );
+				$stmt = $this->pdoh->prepare( self::INSERT_PROFILE );
 				$stmt->bindValue( ":battleNetId", $p_battleNetId, \PDO::PARAM_STR );
 				$stmt->bindValue( ":profileJson", $p_profileJson, \PDO::PARAM_STR );
 				$stmt->bindValue( ":ipAddress", $this->ipAddress, \PDO::PARAM_STR );

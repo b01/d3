@@ -13,9 +13,8 @@ require_once( "php/Tool.php" );
 	if ( isString($urlBattleNetId) && isString($heroId) )
 	{
 		$battleNetId = str_replace( '-', '#', $urlBattleNetId );
-		$dsn = "mysql:host=" . DB_SERVER . ";dbname=" . DB_NAME . ";charset=UTF-8";
 		$battleNetDqi = new BattleNetDqi( $battleNetId );
-		$sql = new Sql( $dsn, DB_USER, DB_PSWD, USER_IP_ADDRESS );
+		$sql = new Sql( DSN, DB_USER, DB_PSWD, USER_IP_ADDRESS );
 		$hero = new Hero( $heroId, $battleNetDqi, $sql );
 		$items = $hero->getItems();
 	}
