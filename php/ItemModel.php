@@ -18,6 +18,7 @@ class ItemModel implements \JsonSerializable
 		$_array;
 
 	protected
+		$attributeMap,
 		$dateAdded,
 		$ipAddress,
 		$json,
@@ -55,6 +56,26 @@ class ItemModel implements \JsonSerializable
 	*/
 	public function __construct( $p_json )
 	{
+		$this->attributeMap = [
+			"armor" => "array",
+			"attributes" => "array",
+			"attributesRaw" => "array",
+			"bonusAffixes" => "int",
+			"displayColor" => "string",
+			"dps" => "array",
+			"gems" => "array",
+			"icon" => "string",
+			"id" => "string",
+			"itemLevel" => "int",
+			"name" => "string",
+			"requiredLevel" => "int",
+			"salvage" => "array",
+			"set" => "array",
+			"socketEffects" => "array",
+			"tooltipParams" => "string",
+			"type" => "array",
+			"typeName" => "string"
+		];
 		$this->_array = json_decode( $p_json, TRUE );
 		if ( \d3\isArray($this->_array) )
 		{
@@ -108,10 +129,14 @@ class ItemModel implements \JsonSerializable
 		{
 			return $this->$p_name;
 		}
+		else if ( array_key_exists($p_name, $this->_array) )
+		{
+			return $this->$p_name = $this->_array[ $p_name ];
+		}
 		
 		$trace = debug_backtrace();
 		trigger_error(
-			'Undefined property: ' . $name .
+			'Undefined property: ' . $p_name .
 			' in ' . $trace[0]['file'] .
 			' on line ' . $trace[0]['line'],
 			E_USER_NOTICE
@@ -125,29 +150,16 @@ class ItemModel implements \JsonSerializable
 	*/
 	private function __init()
 	{
-		$this->id = ( string ) $this->_array['id'];
-		$this->name = ( string ) $this->_array['name'];
-		$this->icon = ( string ) $this->_array['icon'];
-		$this->displayColor = ( string ) $this->_array['displayColor'];
-		$this->tooltipParams = ( string ) $this->_array['tooltipParams'];
-		$this->requiredLevel = ( int ) $this->_array['requiredLevel'];
-		$this->itemLevel = ( int ) $this->_array['itemLevel'];
-		$this->bonusAffixes = ( int ) $this->_array['bonusAffixes'];
-		$this->typeName = ( string ) $this->_array['typeName'];
-		$this->type = ( array ) $this->_array['type'];
-		if ( array_key_exists('armor', $this->_array) )
+		foreach ( $this->_array as $name => $value )
 		{
-			$this->armor = ( array ) $this->_array['armor'];
+			if ( array_key_exists($name, $this->attributeMap) )
+			{
+				if ( setType( $value, $this->attributeMap[$name]) )
+				{
+					$this->$name = $value;
+				}
+			}
 		}
-		$this->attributes = ( array ) $this->_array['attributes'];
-		$this->attributesRaw = ( array ) $this->_array['attributesRaw'];
-		$this->socketEffects = ( array ) $this->_array['socketEffects'];
-		$this->salvage = ( array ) $this->_array['salvage'];
-		if ( array_key_exists('set', $this->_array) )
-		{
-			$this->set = ( array ) $this->_array['set'];
-		}
-		$this->gems = ( array ) $this->_array['gems'];
 	}
 	
 	/**
@@ -180,7 +192,6 @@ class ItemModel implements \JsonSerializable
 		return $returnValue;
 	}
 	
-
 	/**
 	* Specify how this object is to be used with json_encode.
 	* @return array
@@ -210,28 +221,5 @@ class ItemModel implements \JsonSerializable
 			"typeName" => $this->typeName
 		];
 	}
-
-	// public function offsetSet( $p_offset, $p_value )
-	// {
-		// $trace = debug_backtrace();
-		// trigger_error(
-			// "Attempting to set a read-only property via array indices []: " . $p_offset .
-			// " in  {$trace[0]['file']} on line {$trace[0]['line']}" . E_USER_NOTICE
-		// );
-		// return NULL;
-	// }
-	
-	// public function offsetExists( $p_offset )
-	// {
-		// return isset($this->container[$p_offset]);
-	// }
-	// public function offsetUnset($p_offset)
-	// {
-		// unset($this->container[$p_offset]);
-	// }
-	// public function offsetGet($p_offset)
-	// {
-		// return isset($this->container[$p_offset]) ? $this->container[$p_offset] : null;
-	// }
 }
 ?>

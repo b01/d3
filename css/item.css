@@ -174,9 +174,15 @@
 		white-space: nowrap;
 		width: 360px;
 	}
+	.type-name {
+		width: 125px
+	}
+	
 	.slot {
 		color: #909090;
-		text-transform: capitalize
+		text-align: right;
+		text-transform: capitalize;
+		width: 93px
 	}
 	.item-tool-tip .header.smaller {
 		font-size: 18px; line-height: 40px;
@@ -246,7 +252,12 @@
 .item-tool-tip .properties .effect {
 	margin: 1px 0
 }
-
+.required {
+	margin-left: 20px
+}
+.max {
+	
+}
 .item-tool-tip .value {
 	color: rgb(189, 166, 219)
 }

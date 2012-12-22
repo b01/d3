@@ -1,6 +1,7 @@
 <?php namespace d3;
 // Get the profile and store it.
 require_once( "php/BattleNetDqi.php" );
+require_once( "php/Calculator.php" );
 require_once( "php/Hero.php" );
 require_once( "php/Item.php" );
 require_once( "php/Sql.php" );
@@ -10,6 +11,7 @@ require_once( "php/Tool.php" );
 	$heroId = getStr( "heroId" );
 	$heroId = "3955832";
 	$items = NULL;
+	$heroItems = [];
 	if ( isString($urlBattleNetId) && isString($heroId) )
 	{
 		$battleNetId = str_replace( '-', '#', $urlBattleNetId );
@@ -61,7 +63,7 @@ require_once( "php/Tool.php" );
 			<?php foreach ( $items as $key => $item ):
 				$hash = $item[ 'tooltipParams' ];
 				$d3Item = new Item( str_replace("item/", '', $hash), "hash", $battleNetDqi, $sql );
-				$itemModels[ $key ] = new ItemModel( $d3Item->getRawData() );
+				$heroItems[ $key ] = new ItemModel( $d3Item->getRawData() );
 			?>
 				<a class="item <?= $key ?>" href="/get-item.php?<?= "battleNetId=" . $urlBattleNetId . '&' . str_replace( '/', "Hash=", $item['tooltipParams'] ) ?>">
 					<div class="tooltipParams"><?= $item['tooltipParams'] ?></div>
@@ -70,12 +72,13 @@ require_once( "php/Tool.php" );
 				</a>
 			<?php endforeach; ?>
 		</div>
-		<pre>
-			<?php foreach ( $itemModels as $key => $model ): ?>
-			<?= $key ?>
-			<?= $model ?>
-			<?php endforeach; ?>
-		</pre>
+		<?php endif; ?>
+		<?php if ( isArray($heroItems) ): ?>
+		<ul>
+			<?php  $calculator = new Calculator( $heroItems ); ?>
+			<li><?= $calculator->baseDamage(); ?></li>
+			<li><?= $calculator->totalSpeed(); ?></li>
+		</ul>
 		<?php endif; ?>
 	</body>
 </html>
