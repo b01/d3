@@ -1,9 +1,10 @@
 <?php namespace d3;
 // Get the profile and store it.
-require_once( "php/Tool.php" );
 require_once( "php/BattleNetDqi.php" );
 require_once( "php/Item.php" );
+require_once( "php/ItemModel.php" );
 require_once( "php/Sql.php" );
+require_once( "php/Tool.php" );
 
 	$battleNetId = getPostStr( "battleNetId" );
 	$itemHash = getPostStr( "itemHash" );
@@ -11,6 +12,7 @@ require_once( "php/Sql.php" );
 	$itemName = getPostStr( "itemName" );
 	$item = NULL;
 	$itemModel = NULL;
+	$showExtra = getPostBool( "extra" );
 	if ( isString($itemHash) )
 	{
 		$itemUID = $itemHash;
@@ -105,7 +107,8 @@ require_once( "php/Sql.php" );
 				<div class="flavor"><?= $itemModel->flavorText; ?></div>
 			</div>
 		</div>
-		
+		<?php endif ?>
+		<?php if ( $showExtra ): ?>
 		<!-- D# Official HTML -->
 		<div class="inline-block top ui-tooltip">
 			<div class="tooltip-content">

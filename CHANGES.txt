@@ -1,5 +1,9 @@
 List of changes as of 12/30/2012 3:52 PM
 -------------------------------
+	- Added flag to toggle extra info on item tool-tips.
+
+List of changes as of 12/30/2012 3:52 PM
+-------------------------------
 	- Removed item model from the item class.
 	- Added flavor text to item tool-tip.
 

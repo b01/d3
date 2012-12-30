@@ -6,7 +6,6 @@ namespace d3;
 *
 */
 
-require( "php/ItemModel.php" );
 use \d3\Tool;
 use \d3\BattleNetDqi;
 use \d3\Sql;

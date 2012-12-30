@@ -23,7 +23,7 @@
 		}
 		return $returnValue;
 	}
-		
+
 	/**
 	* Get a value from the global POST array as a string, even if it is a numercal value.
 	* @param $p_key string Variable to retrieve from the post array.
@@ -36,6 +36,22 @@
 		if ( array_key_exists($p_key, $_POST) )
 		{
 			$returnValue = ( string )$_POST[ $p_key ];
+		}
+		return $returnValue;
+	}
+
+	/**
+	* Get a value from the global POST array as a boolean.
+	* @param $p_key string Variable to retrieve from the post array.
+	* @return string 
+	*/
+	function getPostBool( $p_key )
+	{
+		$returnValue = FALSE;
+		
+		if ( array_key_exists($p_key, $_POST) )
+		{
+			$returnValue = ( bool )$_POST[ $p_key ];
 		}
 		return $returnValue;
 	}

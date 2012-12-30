@@ -4,6 +4,7 @@ require_once( "php/BattleNetDqi.php" );
 require_once( "php/Calculator.php" );
 require_once( "php/Hero.php" );
 require_once( "php/Item.php" );
+require_once( "php/ItemModel.php" );
 require_once( "php/Sql.php" );
 require_once( "php/Tool.php" );
 
@@ -65,7 +66,7 @@ require_once( "php/Tool.php" );
 				$d3Item = new Item( str_replace("item/", '', $hash), "hash", $battleNetDqi, $sql );
 				$heroItems[ $key ] = new ItemModel( $d3Item->getRawData() );
 			?>
-				<a class="item <?= $key ?>" href="/get-item.php?<?= "battleNetId=" . $urlBattleNetId . '&' . str_replace( '/', "Hash=", $item['tooltipParams'] ) ?>">
+				<a class="item <?= $key ?>" href="/get-item.php?<?= "battleNetId=" . $urlBattleNetId . '&' . str_replace( '/', "Hash=", $item['tooltipParams'] ) ?>&extra=0">
 					<div class="tooltipParams"><?= $item['tooltipParams'] ?></div>
 					<img src="http://media.blizzard.com/d3/icons/items/large/<?= $item['icon'] ?>.png" alt="<?= $key ?>" />
 					<div class="id"><?= $item['id'] ?></div>
