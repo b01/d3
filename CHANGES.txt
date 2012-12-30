@@ -1,3 +1,8 @@
+List of changes as of 12/30/2012 1:44 PM
+-------------------------------
+	- Add some labels to hero stats to the get-hero page.
+	- Added set and gem stats to get-item page.
+
 List of changes as of 12/21/2012 11:00 PM
 -------------------------------
 	- Fixed a bug in the itemModel class.

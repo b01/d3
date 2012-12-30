@@ -76,8 +76,8 @@ require_once( "php/Tool.php" );
 		<?php if ( isArray($heroItems) ): ?>
 		<ul>
 			<?php  $calculator = new Calculator( $heroItems ); ?>
-			<li><?= $calculator->baseDamage(); ?></li>
-			<li><?= $calculator->totalSpeed(); ?></li>
+			<li><span class="label">Base Damage</span>: <?= $calculator->baseDamage(); ?></li>
+			<li><span class="label">Attack Speed</span>: <?= $calculator->totalSpeed(); ?></li>
 		</ul>
 		<?php endif; ?>
 	</body>

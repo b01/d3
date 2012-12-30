@@ -76,6 +76,28 @@ require_once( "php/Sql.php" );
 					<?php endforeach; ?>
 				</ul>
 				<?php endif; ?>
+				<?php if ( isArray($itemModel->gems) ): ?>
+				<li class="full-socket d3-color-<?= $itemModel->gems[0]['item']['displayColor'] ?>">
+					<img class="gem" src="http://media.blizzard.com/d3/icons/items/small/<?= $itemModel->gems[0]['item']['icon'] ?>.png">
+					<?= $itemModel->gems[0]['attributes'][0] ?>
+				</li>
+				<?php endif; ?>
+				<?php if ( isArray($itemModel->set) ): ?>
+				<ul class="item-itemset">
+					<li class="item-itemset-name d3-color-green"><?= $itemModel->set['name'] ?></li>
+					<?php foreach ( $itemModel->set['items'] as $key => $value ): ?>
+					<li class="item-itemset-piece indent"><?= $value['name'] ?></li>
+					<?php endforeach; ?>
+					<?php foreach ( $itemModel->set['ranks'] as $key => $value ): ?>
+					<li class="item-itemset-piece indent">(<?= $value['required'] ?>) Set:</li>
+					<?php if ( isArray($value['attributes']) ): ?>
+					<?php foreach ( $value['attributes'] as $key => $value ): ?>
+					<li class="item-itemset-piece indent"><?= $value ?></li>
+					<?php endforeach; ?>
+					<?php endif; ?>
+					<?php endforeach; ?>
+				</ul>
+				<?php endif; ?>
 				<div class="levels">			
 					<div class="required inline-block"><span class="d3-color-gold">Required Level: </span><?= $itemModel->requiredLevel; ?></div>
 					<div class="max inline-block"><span class="d3-color-gold">Item Level: </span><?= $itemModel->itemLevel; ?></div>
