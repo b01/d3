@@ -102,6 +102,7 @@ require_once( "php/Sql.php" );
 					<div class="required inline-block"><span class="d3-color-gold">Required Level: </span><?= $itemModel->requiredLevel; ?></div>
 					<div class="max inline-block"><span class="d3-color-gold">Item Level: </span><?= $itemModel->itemLevel; ?></div>
 				</div>
+				<div class="flavor"><?= $itemModel->flavorText; ?></div>
 			</div>
 		</div>
 		

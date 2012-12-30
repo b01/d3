@@ -21,7 +21,6 @@ class Item
 	protected 
 		$dqi,
 		$info,
-		$item,
 		$itemHash,
 		$json,
 		$loadedFromBattleNet,
@@ -34,7 +33,6 @@ class Item
 	{
 		$this->dqi = $p_dqi;
 		$this->sql = $p_sql;
-		$this->item = NULL;
 		$this->info = NULL;
 		$this->json = NULL;
 		$this->loadedFromBattleNet = FALSE;
@@ -49,7 +47,6 @@ class Item
 		unset(
 			$this->dqi,
 			$this->info,
-			$this->item,
 			$this->itemHash,
 			$this->json,
 			$this->loadedFromBattleNet,
@@ -131,17 +128,12 @@ class Item
 		// Convert the JSON to an associative array.
 		if ( isString($this->json) )
 		{
-			$item = new ItemModel( $this->json );
-			if ( $item instanceof \d3\ItemModel )
+			$this->itemHash = $p_id;
+			$this->column = $p_column;
+			if ( $this->loadedFromBattleNet )
 			{
-				$this->itemHash = $p_id;
-				$this->column = $p_column;
-				$this->item = $item;
-				if ( $this->loadedFromBattleNet )
-				{
-					// $this->save( "item" );
-					$returnValue = TRUE;
-				}
+				// $this->save( "item" );
+				$returnValue = TRUE;
 			}
 		}
 		
@@ -153,18 +145,19 @@ class Item
 	*/
 	protected function save()
 	{
-		// $timeStamp = date( "Y-m-d H:i:s" );
-		// $this->sql->save( self::INSERT_ITEM, [
-			// ":hash" => $p_itemHash, \PDO::PARAM_STR,
-			// ":id" => $p_item->id, \PDO::PARAM_STR,
-			// ":name" => $p_item->name, \PDO::PARAM_STR,
-			// ":itemType" => $p_item->type['id'], \PDO::PARAM_STR,
-			// ":json" => $p_itemJson, \PDO::PARAM_STR,
-			// ":ipAddress" => $this->ipAddress, \PDO::PARAM_STR,
-			// ":lastUpdate" => $timeStamp, \PDO::PARAM_STR,
-			// ":dateAdded" => $timeStamp, \PDO::PARAM_STR
-		// ]);
-		return $this->sql->saveItem( $this->itemHash, $this->item, $this->json );
+		$timeStamp = date( "Y-m-d H:i:s" );
+		return $this->sql->save( self::INSERT_ITEM, [
+			":hash" => $p_itemHash, \PDO::PARAM_STR,
+			":id" => $p_item->id, \PDO::PARAM_STR,
+			":name" => $p_item->name, \PDO::PARAM_STR,
+			":itemType" => $p_item->type['id'], \PDO::PARAM_STR,
+			":json" => $p_itemJson, \PDO::PARAM_STR,
+			":ipAddress" => $this->ipAddress, \PDO::PARAM_STR,
+			":lastUpdate" => $timeStamp, \PDO::PARAM_STR,
+			":dateAdded" => $timeStamp, \PDO::PARAM_STR
+		]);
+		// OBSOLETE, use above instead.
+		// return $this->sql->saveItem( $this->itemHash, $this->item, $this->json );
 	}
 
 	/**
@@ -173,7 +166,7 @@ class Item
 	*/
 	public function __toString()
 	{
-		return json_encode( $this->item, JSON_PRETTY_PRINT );
+		return json_encode( $this, JSON_PRETTY_PRINT );
 	}
 }
 ?>

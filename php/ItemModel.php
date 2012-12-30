@@ -62,6 +62,7 @@ class ItemModel implements \JsonSerializable
 			"attributesRaw" => "array",
 			"bonusAffixes" => "int",
 			"displayColor" => "string",
+			"flavorText" => "string",
 			"dps" => "array",
 			"gems" => "array",
 			"icon" => "string",
@@ -198,28 +199,15 @@ class ItemModel implements \JsonSerializable
 	*/
 	public function jsonSerialize()
 	{
-		return [
-			"armor" => $this->armor,
-			"attributes" => $this->attributes,
-			"attributesRaw" => $this->attributesRaw,
-			"bonusAffixes" => $this->bonusAffixes,
-			"dateAdded" => $this->dateAdded,
-			"displayColor" => $this->displayColor,
-			"gems" => $this->gems,
-			"icon" => $this->icon,
-			"id" => $this->id,
-			"ipAddress" => $this->ipAddress,
-			"itemLevel" => $this->itemLevel,
-			"lastUpdated" => $this->lastUpdated,
-			"name" => $this->name,
-			"requiredLevel" => $this->requiredLevel,
-			"salvage" => $this->salvage,
-			"set" => $this->set,
-			"socketEffects" => $this->socketEffects,
-			"tooltipParams" => $this->tooltipParams,
-			"type" => $this->type,
-			"typeName" => $this->typeName
-		];
+		$returnValue = [];
+		foreach ( $this as $property => $value )
+		{
+			if ( array_key_exists($property, $this->attributeMap) )
+			{
+				$returnValue[ $property ] = $value;
+			}
+		}
+		return $returnValue;
 	}
 }
 ?>
