@@ -1,4 +1,8 @@
-List of changes as of 12/31/2012 11:56 PM
+List of changes as of 12/31/2012 10:20 PM
+-------------------------------
+	- Updated TODO list.
+
+List of changes as of 12/31/2012 10:20 PM
 -------------------------------
 	- Added method to format attributes.
 	- Removed use of attributes raw in item tool-tip.
