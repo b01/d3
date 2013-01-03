@@ -22,40 +22,14 @@ class ItemModel implements \JsonSerializable
 		$dateAdded,
 		$ipAddress,
 		$json,
-		$lastUpdated,
-		$effects = [
-			"Hitpoints_Max_Percent_Bonus_Item" => "<span class=\"value\">%+.0f%s%%</span> Life",
-			"Crit_Percent_Bonus_Capped" => "Critical Hit Chance Increased by <span class=\"value\">%.1f%%</span>",
-			"Resistance#Fire" => "<span class=\"value\">%+d</span> Fire Resistance",
-			"Intelligence_Item" => "<span class=\"value\">%+d</span> Intelligence",
-			"Armor_Bonus_Item" => "<span class=\"value\">%+d</span> Armor"
-		];
-
-	// Seperated because they are the top-level properties of the JSON returned from battle.net.
-	protected
-		$id, // string
-		$name, // string
-		$icon, // string
-		$displayColor, // string
-		$tooltipParams, // string
-		$requiredLevel, // int
-		$itemLevel, // int
-		$bonusAffixes, // int
-		$typeName, // string
-		$type, // associative array
-		$armor, // associative array
-		$attributes, // array
-		$attributesRaw, // associative array
-		$socketEffects, // array
-		$salvage, // array
-		$set, // array
-		$gems; // array
+		$lastUpdated;
 		
 	/**
 	* Constructor
 	*/
 	public function __construct( $p_json )
 	{
+		// Top-level properties required of the JSON returned from battle.net.
 		$this->attributeMap = [
 			"armor" => "array",
 			"attributes" => "array",
@@ -170,6 +144,15 @@ class ItemModel implements \JsonSerializable
 	public function __toString()
 	{
 		return json_encode( $this, JSON_PRETTY_PRINT );
+	}
+	
+	/**
+	* Determine if a variable is set.
+	* @return bool
+	*/
+	public function __isset( $p_property )
+	{
+		return isset( $this->$p_property );
 	}
 	
 	/**

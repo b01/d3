@@ -11,6 +11,45 @@
 		vertical-align: top
 	}
 
+	.list {
+		list-style: none;
+		padding: 10px 20px;
+	}
+	
+	.set {
+		color: rgb(144, 144, 144)
+	}
+	.set .piece {
+		margin-left: 20px
+	}
+	.set .piece .value {
+		color: rgb(255, 255, 255)
+	}
+	
+	.levels {
+		clear: both;
+		margin: 10px 20px
+	}
+	.levels .level {
+		width: 12.5em
+	}
+	.levels .max {
+		text-align: right
+	}
+	.levels .value {
+		color: rgb(255, 255, 255)
+	}
+
+	.flavor {
+		border-top: 2px solid rgb(50, 42, 32);
+		color: rgb(173, 131, 90);
+		font-family: "Palatino Linotype", "Times", serif;
+		font-size: 16px;
+		font-style: italic;
+		margin: 10px 8px;
+		padding: 10px 2px 0
+	}
+	
 	.item-tool-tip-wrapper {
 		background: #1d180e;
 		border: 1px solid #322a20;
@@ -251,12 +290,6 @@
 }
 .item-tool-tip .properties .effect {
 	margin: 1px 0
-}
-.required {
-	margin-left: 20px
-}
-.max {
-	
 }
 .item-tool-tip .value {
 	color: rgb(189, 166, 219)

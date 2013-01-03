@@ -1,3 +1,15 @@
+List of changes as of 12/31/2012 11:56 PM
+-------------------------------
+	- Added method to format attributes.
+	- Removed use of attributes raw in item tool-tip.
+	- Add magic isset to item model class.
+	- Beefed up the styling on item tool-tip.
+
+List of changes as of 12/31/2012 11:56 PM
+-------------------------------
+	- Updated TODO list.
+	- Fixed some issues with get item.
+
 List of changes as of 12/30/2012 3:52 PM
 -------------------------------
 	- Added flag to toggle extra info on item tool-tips.

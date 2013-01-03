@@ -65,46 +65,50 @@ require_once( "php/Tool.php" );
 					<div class="inline-block top">
 						<div class="type-name inline-block <?= $itemModel->displayColor; ?>"><?= $itemModel->typeName; ?></div>
 						<div class="type-name inline-block slot"><?= getItemSlot( $itemModel->type['id'] ) ?></div>
+						<?php if ( isset($itemModel->armor) ): ?>
 						<div class="big value"><?= displayRange( $itemModel->armor ); ?></div>
+						<?php endif; ?>
 					</div>
 				</div>
 				<?php if ( isArray($itemModel->attributes) ): ?>
 				<ul class="properties blue">
-					<?php foreach ( $itemModel->attributesRaw as $key => $value ):
-						$effect = $itemModel->getEffect( $key, $value['min'], $value['max'] );
-						if ( empty($effect) ): continue; endif;
-					?>
-					<li class="effect"><?= $effect ?></li>
+					<?php foreach ( $itemModel->attributes as $key => $value ): ?>
+					<li class="effect"><?= formatAttribute( $value, "value" ) ?></li>
 					<?php endforeach; ?>
 				</ul>
 				<?php endif; ?>
 				<?php if ( isArray($itemModel->gems) ): ?>
-				<li class="full-socket d3-color-<?= $itemModel->gems[0]['item']['displayColor'] ?>">
-					<img class="gem" src="http://media.blizzard.com/d3/icons/items/small/<?= $itemModel->gems[0]['item']['icon'] ?>.png">
-					<?= $itemModel->gems[0]['attributes'][0] ?>
-				</li>
+				<ul class="list gems">
+					<li class="full-socket d3-color-<?= $itemModel->gems[0]['item']['displayColor'] ?>">
+						<img class="gem" src="http://media.blizzard.com/d3/icons/items/small/<?= $itemModel->gems[0]['item']['icon'] ?>.png">
+						<?= $itemModel->gems[0]['attributes'][0] ?>
+					</li>
+				</ul>
 				<?php endif; ?>
-				<?php if ( isArray($itemModel->set) ): ?>
-				<ul class="item-itemset">
-					<li class="item-itemset-name d3-color-green"><?= $itemModel->set['name'] ?></li>
+				<?php if ( isset($itemModel->set) && isArray($itemModel->set) ): ?>
+				<ul class="list set">
+					<li class="name d3-color-green"><?= $itemModel->set['name'] ?></li>
 					<?php foreach ( $itemModel->set['items'] as $key => $value ): ?>
-					<li class="item-itemset-piece indent"><?= $value['name'] ?></li>
+					<li class="piece"><?= $value['name'] ?></li>
 					<?php endforeach; ?>
 					<?php foreach ( $itemModel->set['ranks'] as $key => $value ): ?>
-					<li class="item-itemset-piece indent">(<?= $value['required'] ?>) Set:</li>
+					<li class="rank">(<?= $value['required'] ?>) Set:</li>
 					<?php if ( isArray($value['attributes']) ): ?>
 					<?php foreach ( $value['attributes'] as $key => $value ): ?>
-					<li class="item-itemset-piece indent"><?= $value ?></li>
+					<li class="piece"><?= formatAttribute( $value, "value" ); ?></li>
 					<?php endforeach; ?>
 					<?php endif; ?>
 					<?php endforeach; ?>
 				</ul>
 				<?php endif; ?>
 				<div class="levels">			
-					<div class="required inline-block"><span class="d3-color-gold">Required Level: </span><?= $itemModel->requiredLevel; ?></div>
-					<div class="max inline-block"><span class="d3-color-gold">Item Level: </span><?= $itemModel->itemLevel; ?></div>
+					<div class="level left required inline-block">Required Level: <span class="value"><?= $itemModel->requiredLevel; ?></span></div>
+					<div class="level right max inline-block">Item Level: <span class="value"><?= $itemModel->itemLevel; ?></span></div>
 				</div>
+				<?php if ( isset($itemModel->flavorText) ): ?>
 				<div class="flavor"><?= $itemModel->flavorText; ?></div>
+				<?php endif; ?>
+				<div><?= $itemModel->tooltipParams; ?></div>
 			</div>
 		</div>
 		<?php endif ?>

@@ -13,11 +13,11 @@
 				- pass the data stored back to the app
 	- present the data to a user
  - Store each profile requested
- - Calculate damage formula in JS.
- - Calculate the following in JavaScript:
-	crit chance,
-	crit damage,
-	dps
+ - Implement damage calculate formula.
+ - Calculate the following:
+	- critcal hit chance
+	- critcal hit damage
+	- Damage per second
  - Setup basic Google analytics and webmaster tools.
  - Present the profile as UL list at resolutions higher than 800x600, otherwise as a selection list for anything below that.
  - Require battleNet ID for all web API request.

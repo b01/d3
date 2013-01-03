@@ -25,6 +25,18 @@
 	}
 
 	/**
+	* Parse number in string and add HTML tags around it.
+	* @param $p_key CSS class to add to the element.
+	* @return string 
+	*/
+	function formatAttribute( $p_attribute, $p_class = NULL )
+	{
+		$returnValue = NULL;
+		$cssClass = empty( $p_class ) ? '' : " class=\"{$p_class}\"";
+		return preg_replace( ['/(\+?\d+\.?\d*%?)/', '/(\(.*\))/'], ["<span{$cssClass}>$1</span>", "<span class=\"d3-color-red\">$1</span>"], $p_attribute );
+	}
+
+	/**
 	* Get a value from the global POST array as a string, even if it is a numercal value.
 	* @param $p_key string Variable to retrieve from the post array.
 	* @return string 
