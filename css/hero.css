@@ -70,3 +70,7 @@
     left: 8.5em;
     top: 28em;
 }
+
+.item .hash {
+	display: none
+}

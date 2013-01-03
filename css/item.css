@@ -50,52 +50,47 @@
 		padding: 10px 2px 0
 	}
 	
-	.item-tool-tip-wrapper {
-		background: #1d180e;
+	.item {
+		background-color: black;
 		border: 1px solid #322a20;
 		border-radius: 2px;
 		box-shadow: 0 0 10px #000;
+		color: #c7b377;
 		max-width: 355px;
-		padding: 0 5px;
-		padding: 1px;
+		padding: 2px 5px;
+		font: normal 12px/1.5 Arial, sans-serif;
 		z-index: 1
 	}
-	.item-tool-tip {
-		background-color: black;
-		color: #c7b377;
-		font: normal 12px/1.5 Arial, sans-serif;
-		padding: 2px
-	}
 	
-	.item-tool-tip .value {
+	.item .value {
 		color: rgb(255, 255, 255)
 	}
 	
 	.effect-bg {
 		margin: 0 20px 10px
 	}
-	.item-tool-tip .effect-bg { background-position: 10px 10px; background-repeat: no-repeat; }
-	.item-tool-tip .effect-bg.arcane { background-image: url("http://us.battle.net/d3/static/images/item/effect-bgs/arcane.jpg"); }
-	.item-tool-tip .effect-bg.cold { background-image: url("http://us.battle.net/d3/static/images/item/effect-bgs/cold.jpg"); }
-	.item-tool-tip .effect-bg.fire { background-image: url("http://us.battle.net/d3/static/images/item/effect-bgs/fire.jpg"); }
-	.item-tool-tip .effect-bg.holy { background-image: url("http://us.battle.net/d3/static/images/item/effect-bgs/holy.jpg"); }
-	.item-tool-tip .effect-bg.lightning { background-image: url("http://us.battle.net/d3/static/images/item/effect-bgs/lightning.jpg"); }
-	.item-tool-tip .effect-bg.poison { background-image: url("http://us.battle.net/d3/static/images/item/effect-bgs/poison.jpg"); }
-	.item-tool-tip .effect-bg.armor { background-image: url("http://us.battle.net/d3/static/images/item/effect-bgs/armor.jpg"); background-position: 78px 20px; }
-	.item-tool-tip .effect-bg.armor-square { background-position: 78px 14px; }
-	.item-tool-tip .effect-bg.armor-big { background-position: 96px 20px; }
-	.item-tool-tip .effect-bg .item-type,
-	.item-tool-tip .effect-bg .item-armor-weapon { text-shadow: 0 0 5px black, 0 0 5px black, 0 0 5px black; } /* makes the text readable when a background is used */
+	.item .effect-bg { background-position: 10px 10px; background-repeat: no-repeat; }
+	.item .effect-bg.arcane { background-image: url("http://us.battle.net/d3/static/images/item/effect-bgs/arcane.jpg"); }
+	.item .effect-bg.cold { background-image: url("http://us.battle.net/d3/static/images/item/effect-bgs/cold.jpg"); }
+	.item .effect-bg.fire { background-image: url("http://us.battle.net/d3/static/images/item/effect-bgs/fire.jpg"); }
+	.item .effect-bg.holy { background-image: url("http://us.battle.net/d3/static/images/item/effect-bgs/holy.jpg"); }
+	.item .effect-bg.lightning { background-image: url("http://us.battle.net/d3/static/images/item/effect-bgs/lightning.jpg"); }
+	.item .effect-bg.poison { background-image: url("http://us.battle.net/d3/static/images/item/effect-bgs/poison.jpg"); }
+	.item .effect-bg.armor { background-image: url("http://us.battle.net/d3/static/images/item/effect-bgs/armor.jpg"); background-position: 78px 20px; }
+	.item .effect-bg.armor-square { background-position: 78px 14px; }
+	.item .effect-bg.armor-big { background-position: 96px 20px; }
+	.item .effect-bg .item-type,
+	.item .effect-bg .item-armor-weapon { text-shadow: 0 0 5px black, 0 0 5px black, 0 0 5px black; } /* makes the text readable when a background is used */
 
 	
-	.item-tool-tip .icon {
+	.item .icon {
 		background-repeat: no-repeat;
 		background-position: 50% 100%;
 		border: 1px solid rgb(81, 63, 46);
 		border-radius: 4px;
 		margin-right: 10px
 	}
-	.item-tool-tip .icon .gradient {
+	.item .icon .gradient {
 		background-image: url('http://us.battle.net/d3/static/images/item/icon-bgs/gradient.png'); /* fallback */
 		background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0));
 		background-image:    -moz-linear-gradient(top, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0));
@@ -118,7 +113,7 @@
 			
 	/* item colors */
 
-	.item-tool-tip .icon.blue {
+	.item .icon.blue {
 		border-color: #6091a6;
 		background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/blue.png");
 		background-color: #232227;
