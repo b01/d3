@@ -12,6 +12,8 @@ class Calculator
 		$baseWepaondamage,
 		$bodyMap,
 		$classDamage,
+		$criticalHitChanceData,
+		$criticalHitChance,
 		$criticalHitDamage,
 		$duelWield,
 		$items;
@@ -40,6 +42,8 @@ class Calculator
 			"waist"
 		];
 		$this->classDamage = 0.0;
+		$this->criticalHitChance = 0.0;
+		$this->criticalHitChanceData = [];
 		$this->criticalHitDamage = 0.0;
 		$this->duelWield = FALSE;
 		$this->items = $p_items;
@@ -57,10 +61,29 @@ class Calculator
 			$this->baseWepaondamage,
 			$this->bodyMap,
 			$this->classDamage,
+			$this->criticalHitChance,
 			$this->criticalHitDamage,
 			$this->duelWield,
 			$this->items
 		);
+	}
+	
+	/**
+	* Total attack speed for all items equipped.
+	* @return float
+	*/
+	public function attackSpeed()
+	{
+		return $this->attackSpeed;
+	}
+	
+	/**
+	* Attack speed for each items equipped.
+	* @return array
+	*/
+	public function attackSpeedData()
+	{
+		return $this->attackSpeedData;
 	}
 	
 	/**
@@ -75,7 +98,8 @@ class Calculator
 			{
 				$this->$placement = $item;
 				// compute some things.
-				$this->itemSpeed( $item );
+				$this->tallyAttackSpeed( $placement, $item );
+				$this->tallyCriticalHitChance( $placement, $item );
 			}
 		}
 	}
@@ -111,7 +135,7 @@ class Calculator
 	*/
 	public function dualWields()
 	{
-		return FALSE;
+		return $this->duelWield;
 	}
 	
 	/**
@@ -126,25 +150,51 @@ class Calculator
 	}
 	
 	/**
+	* Critical hit chance.
+	* @return float
+	*/
+	public function getCriticalHitChance()
+	{
+		return $this->criticalHitChance;
+	}
+	
+	/**
+	* Critical hit chance data.
+	* @return float
+	*/
+	public function getCriticalHitChanceData()
+	{
+		return $this->criticalHitChanceData;
+	}
+	
+	/**
 	* Tally speed for an item.
 	* @return float
 	*/
-	public function itemSpeed( $p_item )
+	public function tallyAttackSpeed( $p_placement, $p_item )
 	{
 		if ( array_key_exists("Attacks_Per_Second_Item_Percent", $p_item->attributesRaw) )
 		{
-			$this->attackSpeed += ( float ) $p_item->attributesRaw[ 'Attacks_Per_Second_Item_Percent' ]['max'];
+			$value = ( float ) $p_item->attributesRaw[ 'Attacks_Per_Second_Item_Percent' ][ 'max' ] * 100;
+			$this->attackSpeedData[ $p_placement ] = $value;
+			$this->attackSpeed += $value;
 		}
 		return $this->attackSpeed;
 	}
 	
 	/**
-	* Tally speed for all items in this class.
-	* @return null
+	* Tally critical hit chance.
+	* @return float
 	*/
-	public function totalSpeed()
+	protected function tallyCriticalHitChance( $p_placement, $p_item )
 	{
-		return $this->attackSpeed;
+		if ( array_key_exists("Crit_Percent_Bonus_Capped", $p_item->attributesRaw) )
+		{
+			$value = ( float ) $p_item->attributesRaw[ 'Crit_Percent_Bonus_Capped' ][ 'max' ] * 100;
+			$this->criticalHitChanceData[ $p_placement ] = $value;
+			$this->criticalHitChance += $value;
+		}
+		return $this;
 	}
 	
 	/**

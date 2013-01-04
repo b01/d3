@@ -45,6 +45,11 @@ require_once( "php/Tool.php" );
 				});
 			}
 			
+			function clickStatToggle( p_event )
+			{
+				p_event.data.$expandable.slideToggle();
+			}
+			
 			function showItemTooltip( p_data )
 			{
 				$( "body" ).append( p_data );
@@ -54,6 +59,25 @@ require_once( "php/Tool.php" );
 				$( ".item" ).each(function ()
 				{
 					$( this ).on( "click", clickItemLink );
+				});
+				$( ".stat .toggle" ).each(function ()
+				{
+					var $this = $( this ),
+						$expandable = $this.parents( '.stat' ).find( ".expandable" );
+					if ( $expandable.length > 0 )
+					{
+						$this.toggle(function ()
+						{
+							$( this ).text( '-' );
+							$expandable.slideToggle();
+						}, function ()
+						{
+							$( this ).text( '+' );
+							$expandable.slideToggle();
+						});
+						
+						// $this.on( "click", {"$expandable": $expandable}, clickStatToggle );
+					}
 				});
 			});
 		</script>
@@ -77,8 +101,19 @@ require_once( "php/Tool.php" );
 		<?php if ( isArray($heroItems) ): ?>
 		<ul>
 			<?php  $calculator = new Calculator( $heroItems ); ?>
-			<li><span class="label">Base Damage</span>: <?= $calculator->baseDamage(); ?></li>
-			<li><span class="label">Attack Speed</span>: <?= $calculator->totalSpeed(); ?></li>
+			<li class="stat"><span class="label">Base Damage</span>: <?= $calculator->baseDamage(); ?></li>
+			<li class="stat">
+				<span class="label"><span class="toggle">+</span> Attack Speed</span>: <?= $calculator->attackSpeed(); ?>%
+				<ul class="expandable">
+					<?= output( "<li><span class=\"label\">%s</span>:%s%%</li>", $calculator->attackSpeedData() ) ?>
+				</ul>
+			</li>
+			<li class="stat">
+				<span class="label"><span class="toggle">+</span> Critical Hit Chance</span>: <?= $calculator->getCriticalHitChance(); ?>%
+				<ul class="expandable">
+					<?= output( "<li><span class=\"label\">%s</span>:%s%%</li>", $calculator->getCriticalHitChanceData() ) ?>
+				</ul>
+			</li>
 		</ul>
 		<?php endif; ?>
 	</body>

@@ -177,6 +177,20 @@
 	}
 
 	/**
+	* Output an associative array in sprintf fasion.
+	* @return bool TRUE is yes, false otherwise.
+	*/
+	function  output( $p_format, array $p_array )
+	{
+		$returnValue = '';
+		foreach ( $p_array as $key => $value )
+		{
+			$returnValue .= sprintf( $p_format, $key, $value );
+		}
+		return $returnValue;
+	}
+
+	/**
 	* Random x elements from an array.
 	*/
 	function randomElementsFromArray( $p_arraySource, $p_quantity = 5 )

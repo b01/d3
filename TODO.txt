@@ -20,6 +20,5 @@
      - Hash values tie fixed attributes to items, so hashes are unique, but and item ID can have numerous hash values associated with it.
  - Calculate the following:
    - Implement damage formula.
-   - critcal hit chance
    - critcal hit damage
    - Damage per second
