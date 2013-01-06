@@ -92,11 +92,7 @@
 	}
 	.item .icon .gradient {
 		background-image: url('http://us.battle.net/d3/static/images/item/icon-bgs/gradient.png'); /* fallback */
-		background-image: -webkit-linear-gradient(top, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0));
-		background-image:    -moz-linear-gradient(top, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0));
-		background-image:     -ms-linear-gradient(top, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0));
-		background-image:      -o-linear-gradient(top, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0));
-		background-image:         linear-gradient(top, rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0));
+		background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0));
 		border-radius: 4px;
 		display: block
 	}
@@ -105,9 +101,9 @@
 	.item-tool-tip.small,
 	.item-tool-tip.small .icon .gradient,
 	.item-tool-tip.small .icon .inner,
-	.item-tool-tip.32,
-	.item-tool-tip.32 .icon .gradient,
-	.item-tool-tip.32 .icon .inner {
+	.item-tool-tip-32,
+	.item-tool-tip-32 .icon .gradient,
+	.item-tool-tip-32 .icon .inner {
 		border-radius: 2px;
 	}
 			

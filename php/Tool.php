@@ -165,6 +165,25 @@
 	}
 
 	/**
+	* Check if an item is a weapon.
+	*/
+	function isWeapon( ItemModel $p_item )
+	{
+		$returnValue = FALSE;
+		$weaponTypes = [
+			"axe",
+			"sword"
+		];
+		$itemType = $p_item->type[ 'id' ];
+		var_dump( $itemType );
+		if ( array_key_exists($itemType, $weaponTypes) )
+		{
+			$returnValue = TRUE;
+		}
+		return $returnValue;
+	}
+
+	/**
 	* Check if a variable is a string of length greater than 0.
 	* @return bool TRUE is yes, false otherwise.
 	*/

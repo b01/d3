@@ -16,14 +16,15 @@ use \d3\Tool;
 class Hero
 {
 	protected 
+		$characterClass,
 		$dqi,
+		$heroId,
 		$info,
 		$items,
-		$hero,
-		$heroId,
 		$json,
 		$loadedFromBattleNet,
-		$sql;
+		$sql,
+		$stats;
 	
 	
 	/**
@@ -31,15 +32,17 @@ class Hero
 	*/
 	public function __construct( $p_heroId, \d3\BattleNetDqi $p_dqi, \d3\Sql $p_sql )
 	{
-		$this->heroId = $p_heroId;
+		$this->characterClass = NULL;
 		$this->dqi = $p_dqi;
-		$this->sql = $p_sql;
-		$this->hero = NULL;
-		$this->items = NULL;
+		$this->heroId = $p_heroId;
 		$this->info = NULL;
+		$this->items = NULL;
 		$this->json = NULL;
 		$this->loadedFromBattleNet = FALSE;
-		$this->load();
+		$this->sql = $p_sql;
+		$this->stats = NULL;
+		
+		$this->init();
 	}
 	
 	/**
@@ -49,24 +52,45 @@ class Hero
 	{
 		unset(
 			$this->dqi,
+			$this->characterClass,
+			$this->heroId,
 			$this->info,
 			$this->items,
-			$this->hero,
-			$this->heroId,
 			$this->json,
 			$this->loadedFromBattleNet,
-			$this->sql
+			$this->sql,
+			$this->stats
 		);
+	}
+	
+	/**
+	* Character class
+	*
+	* @return string
+	*/
+	public function getCharacterClass()
+	{
+		return $this->characterClass;
 	}
 	
 	/**
 	* Get the item, first check the local DB, otherwise pull from Battle.net.
 	*
-	* @return string JSON item data.
+	* @return array
 	*/
 	public function getItems()
 	{
 		return $this->items;
+	}
+	
+	/**
+	* Get character stats.
+	*
+	* @return array
+	*/
+	public function getStats()
+	{
+		return $this->stats;
 	}
 	
 	/**
@@ -130,7 +154,7 @@ class Hero
 	/**
 	* Load the users hero into this class
 	*/
-	protected function load()
+	protected function init()
 	{
 		// Get the hero.
 		$this->getJson();
@@ -140,16 +164,15 @@ class Hero
 			$hero = parseJson( $this->json );
 			if ( isArray($hero) )
 			{
-				$this->hero = $hero;
 				$this->items = $hero['items'];
+				$this->characterClass = $hero['class'];
 				if ( $this->loadedFromBattleNet )
 				{
 					$this->save();
 				}
 			}
 		}
-		
-		return $this->hero;
+		return $this;
 	}
 	
 	/**

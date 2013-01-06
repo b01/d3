@@ -47,7 +47,12 @@ require_once( "php/Tool.php" );
 			
 			function clickStatToggle( p_event )
 			{
-				p_event.data.$expandable.slideToggle();
+				var $toggle = p_event.data.$toggle,
+					updateSign = $toggle.text() === '-' ? '+' : '-';
+				p_event.data.$expandable.slideToggle( "fast", function ()
+				{
+					$toggle.text( updateSign );
+				});
 			}
 			
 			function showItemTooltip( p_data )
@@ -56,27 +61,35 @@ require_once( "php/Tool.php" );
 			}
 			jQuery( document ).ready(function ($)
 			{
+				// Load an items details via HTTP request.
 				$( ".item" ).each(function ()
 				{
 					$( this ).on( "click", clickItemLink );
 				});
-				$( ".stat .toggle" ).each(function ()
+				// Toggle stat details.
+				$( ".stat" ).each(function ()
 				{
 					var $this = $( this ),
-						$expandable = $this.parents( '.stat' ).find( ".expandable" );
-					if ( $expandable.length > 0 )
+						$expandable = $this.find( ".expandable" ),
+						$label = $this.children( ".label" ),
+						$toggle;
+					if ( $expandable.length > 0 && $label.length > 0 )
 					{
-						$this.toggle(function ()
+						$toggle = $label.children( ".toggle" );
+						if ( $toggle.length > 0 )
 						{
-							$( this ).text( '-' );
-							$expandable.slideToggle();
-						}, function ()
-						{
-							$( this ).text( '+' );
-							$expandable.slideToggle();
-						});
-						
-						// $this.on( "click", {"$expandable": $expandable}, clickStatToggle );
+							// $label.toggle(function ()
+							// {
+								// $toggle.text( '-' );
+								// $expandable.slideUp( "fast" );
+							// }, function ()
+							// {
+								// $toggle.text( '+' );
+								// $expandable.slideDown( "fast" );
+							// });
+							
+							$label.on( "click.d3", {"$expandable": $expandable, "$toggle": $toggle}, clickStatToggle );
+						}
 					}
 				});
 			});
@@ -84,7 +97,7 @@ require_once( "php/Tool.php" );
 	</head>
 	<body>
 		<?php if ( isArray($items) ): ?>
-		<div class="hero">
+		<div class="hero inline-block">
 			<?php foreach ( $items as $key => $item ):
 				$hash = $item[ 'tooltipParams' ];
 				$d3Item = new Item( str_replace("item/", '', $hash), "hash", $battleNetDqi, $sql );
@@ -100,18 +113,40 @@ require_once( "php/Tool.php" );
 		<?php endif; ?>
 		<?php if ( isArray($heroItems) ): ?>
 		<ul>
-			<?php  $calculator = new Calculator( $heroItems ); ?>
-			<li class="stat"><span class="label">Base Damage</span>: <?= $calculator->baseDamage(); ?></li>
+			<?php  $calculator = new Calculator( $heroItems, $hero->getCharacterClass() ); ?>
 			<li class="stat">
-				<span class="label"><span class="toggle">+</span> Attack Speed</span>: <?= $calculator->attackSpeed(); ?>%
+				<span class="label"><span class="toggle inline-block">-</span> Weapon Damage</span>: <?= $calculator->getWeaponDamage(); ?>
+				<ul class="expandable">
+					<?= output( "<li><span class=\"label\">%s</span>:%s</li>", $calculator->getWeaponDamageData() ) ?>
+				</ul></li>
+			<li class="stat">
+				<span class="label"><span class="toggle inline-block">-</span> Attack Speed</span>: <?= $calculator->attackSpeed(); ?>%
 				<ul class="expandable">
 					<?= output( "<li><span class=\"label\">%s</span>:%s%%</li>", $calculator->attackSpeedData() ) ?>
 				</ul>
 			</li>
 			<li class="stat">
-				<span class="label"><span class="toggle">+</span> Critical Hit Chance</span>: <?= $calculator->getCriticalHitChance(); ?>%
+				<span class="label"><span class="toggle inline-block">-</span> Critical Hit Chance</span>: <?= $calculator->getCriticalHitChance(); ?>%
 				<ul class="expandable">
 					<?= output( "<li><span class=\"label\">%s</span>:%s%%</li>", $calculator->getCriticalHitChanceData() ) ?>
+				</ul>
+			</li>
+			<li class="stat">
+				<span class="label"><span class="toggle inline-block">-</span> Critical Hit Damage</span>: <?= $calculator->getCriticalHitDamage(); ?>%
+				<ul class="expandable">
+					<?= output( "<li><span class=\"label\">%s</span>:%s%%</li>", $calculator->getCriticalHitDamageData() ) ?>
+				</ul>
+			</li>
+			<li class="stat">
+				<span class="label"><span class="toggle inline-block">-</span> Primary Attribute Damage</span>: <?= $calculator->getPrimaryAttributeDamage() . ' ' . str_replace( "_Item", '', $calculator->getPrimaryAttribute() ) ?>
+				<ul class="expandable">
+					<?= output( "<li><span class=\"label\">%s</span>:%s</li>", $calculator->getPrimaryAttributeDamageData() ) ?>
+				</ul>
+			</li>
+			<li class="stat">
+				<span class="label"><span class="toggle inline-block">-</span> Damage Per Second</span>: <?= $calculator->getDps(); ?>
+				<ul class="expandable">
+					<?= output( "<li><span class=\"label\">%s</span>:%s</li>", $calculator->getDpsData() ) ?>
 				</ul>
 			</li>
 		</ul>
