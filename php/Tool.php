@@ -171,7 +171,7 @@
 	{
 		$returnValue = FALSE;
 		$weaponTypes = [
-			"axe",
+			"FistWeapon",
 			"sword"
 		];
 		$itemType = $p_item->type[ 'id' ];

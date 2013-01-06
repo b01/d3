@@ -29,5 +29,4 @@
 	   - Check if the image exists, if not, download it from Battle.net.
  - Calculate the following:
    - Skill multiplier
-   - Damage per second
  - Beef up styling on the hero page.
