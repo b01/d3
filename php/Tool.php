@@ -250,10 +250,26 @@
 	* Generate an array of random numbers within a specified range.
 	* @credit Taken from a Stack Overflow answeer: http://stackoverflow.com/questions/5612656/generating-unique-random-numbers-within-a-range-php
 	*/
+	function saveFile( $p_fileName, $p_content )
+	{
+		$directory = dirname( $p_fileName );
+		if ( !is_dir($directory) )
+		{
+			mkdir( $directory, 0755, TRUE );
+		}
+		// Save image data to a file.
+		file_put_contents( $p_fileName, $p_content, LOCK_EX );
+	}
+
+	/**
+	* Generate an array of random numbers within a specified range.
+	* @credit Taken from a Stack Overflow answeer: http://stackoverflow.com/questions/5612656/generating-unique-random-numbers-within-a-range-php
+	*/
 	function showUserFriendlyError( $p_message )
 	{
 		echo "<div class=\"error\">{$p_message}</div>";
 	}
+
 	/**
 	* Generate an array of random numbers within a specified range.
 	* @credit Taken from a Stack Overflow answeer: http://stackoverflow.com/questions/5612656/generating-unique-random-numbers-within-a-range-php
