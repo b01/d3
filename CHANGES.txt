@@ -1,5 +1,9 @@
 List of changes as of 01/07/2012 08:36 PM
 -------------------------------
+	- ImageSaver Class - takes an iamge url and fileStream object and save a file to disk.
+
+List of changes as of 01/07/2012 08:36 PM
+-------------------------------
 	- Added BattleNetModel abstract class for model extending.
 	- Added class autoload magic method.
 	- Fixed date typos in the CHANGES file.

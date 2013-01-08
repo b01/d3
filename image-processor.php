@@ -1,6 +1,10 @@
 <?php
 /**
 * Get an image via HTTP request and serve it up.
+* - ImageSaver Class - takes an iamge url and fileStream object and save a file to disk.
+*   - When an image is not found on the server execute a special script.
+*     - Process all remote image URLs through this image class
+*       - Check if the image exists, if not, download it from Battle.net.
 *
 */
 require_once( "php/Tool.php" );
