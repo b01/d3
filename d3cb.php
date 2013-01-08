@@ -8,6 +8,7 @@
 *  Then LOCK THIS FILE DOWN like the Pentagon, or your nerd pron (commic books) collection.
 */
 namespace d3;
+require_once( "php/Tool.php" );
 // load some setting that the site will need in order to function.
 $settingsJson = file_get_contents( "php/settings.json" );
 $settings = json_decode( $settingsJson, TRUE );

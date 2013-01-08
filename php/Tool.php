@@ -1,10 +1,24 @@
-<?php namespace d3;
+<?php
 /**
 * Tools to help simplify repetitive task.
 *
 * @author Khalifah Shabazz <shabazzk@gmail.com>
 *
 */
+
+	/**
+	* Automatically load classes instead of using require/include statements.
+	*
+	*/
+	function __autoload( $p_className )
+	{
+		// Single quote strings are used to optimize/prevent PHP from parsing the string.
+		$classFilePath = 'php/' . basename( $p_className ) . '.php';
+		if ( file_exists($classFilePath) )
+		{
+			require_once( $classFilePath );
+		}
+	}
 
 	/**
 	* Display a value as a single number or a range if min and max are different.
@@ -167,7 +181,7 @@
 	/**
 	* Check if an item is a weapon.
 	*/
-	function isWeapon( ItemModel $p_item )
+	function isWeapon( \d3\ItemModel $p_item )
 	{
 		$returnValue = FALSE;
 		$weaponTypes = [
@@ -187,7 +201,7 @@
 	* Check if a variable is a string of length greater than 0.
 	* @return bool TRUE is yes, false otherwise.
 	*/
-	function logError( \Exception $p_error, $p_devMessage, $p_userMessage )
+	function logError( Exception $p_error, $p_devMessage, $p_userMessage )
 	{
 		$trace = debug_backtrace();
 		echo $p_error->getMessage();

@@ -6,8 +6,6 @@
 */
 namespace d3;
 
-use \d3\Tool;
-
 /**
 * var $p_battleNetId string User BattleNet ID.
 * var $p_dqi object Data Query Interface.

@@ -12,37 +12,20 @@ namespace d3;
 * var $p_sql object SQL.
 * var $p_userIp string User IP address.
 */
-class ItemModel extends BattleNetModel 
+abstract class BattleNetModel implements \JsonSerializable 
 {
+	protected
+		$_array,
+		$attributeMap,
+		$json;
+		
 	/**
 	* Constructor
 	*/
 	public function __construct( $p_json )
 	{
-		parent::__construct( $p_json );
-		// Top-level properties required of the JSON returned from battle.net.
-		$this->attributeMap = [
-			"armor" => "array",
-			"attributes" => "array",
-			"attributesRaw" => "array",
-			"bonusAffixes" => "int",
-			"displayColor" => "string",
-			"flavorText" => "string",
-			"dps" => "array",
-			"gems" => "array",
-			"icon" => "string",
-			"id" => "string",
-			"itemLevel" => "int",
-			"name" => "string",
-			"requiredLevel" => "int",
-			"salvage" => "array",
-			"set" => "array",
-			"socketEffects" => "array",
-			"tooltipParams" => "string",
-			"type" => "array",
-			"typeName" => "string"
-		];
-		$this->__init();
+		$this->_array = json_decode( $p_json, TRUE );
+		$this->json = $p_json;
 	}
 	
 	/**
@@ -50,7 +33,10 @@ class ItemModel extends BattleNetModel
 	*/
 	public function __destruct()
 	{
-		parent::__destruct();
+		foreach ( $this as $name => $value )
+		{
+			unset( $this->$name );
+		}
 	}
 	
 	/**
@@ -79,6 +65,30 @@ class ItemModel extends BattleNetModel
 	}
 	
 	/**
+	* Initialize this object.
+	*/
+	protected function __init()
+	{
+		if ( isArray($this->_array) )
+		{
+			foreach ( $this->_array as $name => $value )
+			{
+				if ( array_key_exists($name, $this->attributeMap) )
+				{
+					if ( setType( $value, $this->attributeMap[$name]) )
+					{
+						$this->$name = $value;
+					}
+				}
+			}
+		}
+		else
+		{
+			throw new \Exception( "Tried to initialize ItemModel with invalid JSON." );
+		}
+	}
+	
+	/**
 	* Convert this object to a string.
 	* @return string
 	*/
@@ -94,6 +104,16 @@ class ItemModel extends BattleNetModel
 	public function __isset( $p_property )
 	{
 		return isset( $this->$p_property );
+	}
+
+	/**
+	* Get the item, first check the local DB, otherwise pull from Battle.net.
+	*
+	* @return string JSON item data.
+	*/
+	public function getJson()
+	{
+		return $this->json;
 	}
 	
 	/**

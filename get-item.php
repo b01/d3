@@ -1,10 +1,7 @@
 <?php namespace d3;
 // Get the profile and store it.
-require_once( "php/BattleNetDqi.php" );
-require_once( "php/Item.php" );
-require_once( "php/ItemModel.php" );
-require_once( "php/Sql.php" );
 require_once( "php/Tool.php" );
+// All classes are loaded on-the-fly, so no need to require them.
 
 	$battleNetId = getPostStr( "battleNetId" );
 	$itemHash = getPostStr( "itemHash" );
@@ -111,86 +108,6 @@ require_once( "php/Tool.php" );
 		</div>
 		<?php endif ?>
 		<?php if ( $showExtra ): ?>
-		<!-- D# Official HTML -->
-		<div class="inline-block top ui-tooltip">
-			<div class="tooltip-content">
-				<div class="d3-tooltip d3-tooltip-item">
-					<div class="tooltip-head tooltip-head-green">
-						<h3 class="d3-color-green smaller">Tal Rasha's Guise of Wisdom</h3>
-					</div>
-					<div class="tooltip-body effect-bg effect-bg-armor effect-bg-armor-default">
-						<span class="d3-icon d3-icon-item d3-icon-item-large  d3-icon-item-green">
-							<span class="icon-item-gradient">
-								<span class="icon-item-inner icon-item-default" style="background-image: url(http://media.blizzard.com/d3/icons/items/large/unique_helm_010_104_demonhunter_male.png);"></span>
-							</span>
-						</span>
-						<div class="d3-item-properties">
-							<ul class="item-type-right">
-								<li class="item-slot">Head</li>
-							</ul>
-							<ul class="item-type">
-								<li>
-									<span class="d3-color-green">Set Helm</span>
-								</li>
-							</ul>
-							<ul class="item-armor-weapon item-armor-armor">
-								<li class="big"><span class="value">727</span></li>
-								<li>Armor</li>
-							</ul>
-							<div class="item-before-effects"></div>
-							<ul class="item-effects">
-								<li class="d3-color-blue"><p><span class="value">+94</span> Intelligence</p></li>
-								<li class="d3-color-blue"><p><span class="value">+</span><span class="value">41</span> Fire Resistance</p></li>
-								<li class="d3-color-blue"><p><span class="value">+11</span><span class="value">%</span> Life</p></li>
-								<li class="d3-color-blue"><p><span class="value">+275</span> Armor</p></li>
-								<li class="d3-color-blue"><p>Critical Hit Chance Increased by <span class="value">5.5</span><span class="value">%</span></p></li>
-								<li class="d3-color-white full-socket">
-									<img class="gem" src="http://media.blizzard.com/d3/icons/items/small/topaz_08_demonhunter_male.png" />
-									<span class="socket-effect">
-										19% Better Chance of Finding Magical Items
-									</span>
-								</li>
-							</ul>
-							<ul class="item-itemset">
-								<li class="item-itemset-name"><span class="d3-color-green">Tal Rasha's Sacrifice</span></li>
-								<li class="item-itemset-piece indent">
-									<span class="d3-color-gray">Tal Rasha's Allegiance</span>
-								</li>
-								<li class="item-itemset-piece indent">
-									<span class="d3-color-gray">Tal Rasha's Brace</span>
-								</li>
-								<li class="item-itemset-piece indent">
-									<span class="d3-color-white">Tal Rasha's Guise of Wisdom</span>
-								</li>
-								<li class="item-itemset-piece indent">
-									<span class="d3-color-gray">Tal Rasha's Relentless Pursuit</span>
-								</li>
-								<li class="item-itemset-piece indent">
-									<span class="d3-color-gray">Tal Rasha's Unwavering Glare</span>
-								</li>
-								<li class="d3-color-gray item-itemset-bonus-amount">(2) Set:</li>
-								<li class="d3-color-gray item-itemset-bonus-desc indent">Fire skills deal <span class="value">3</span><span class="value">%</span> more damage.</li>
-								<li class="d3-color-gray item-itemset-bonus-amount">(3) Set:</li>
-								<li class="d3-color-gray item-itemset-bonus-desc indent">Lightning skills deal <span class="value">3</span><span class="value">%</span> more damage.</li>
-								<li class="d3-color-gray item-itemset-bonus-amount">(4) Set:</li>
-								<li class="d3-color-gray item-itemset-bonus-desc indent">Cold skills deal <span class="value">3</span><span class="value">%</span> more damage.</li>
-								<li class="d3-color-gray item-itemset-bonus-desc indent">Increases Arcane Power Regeneration by <span class="value">2.00</span> per Second <span class="d3-color-red">(Wizard Only)</span></li>
-							</ul>
-							<ul class="item-extras">			
-								<li class="item-reqlevel"><span class="d3-color-gold">Required Level: </span><span class="value">60</span></li>
-								<li class="item-ilvl">Item Level: <span class="value">63</span></li>
-							</ul>
-							<span class="item-unique-equipped">Unique Equipped</span>	
-							<span class="clear"><!-- --></span>
-						</div>
-					</div>
-					<div class="tooltip-extension ">
-						<div class="flavor">The symbol of the Horadric order.</div>
-					</div>
-				</div>
-			</div>
-		</div>
-		
 		<pre class="json-data scroll"><?= $itemModel; ?></pre>
 		<?php endif; ?>
 	</body>

@@ -1,17 +1,12 @@
 <?php namespace d3;
 // Get the profile and store it.
-require_once( "php/BattleNetDqi.php" );
-require_once( "php/Calculator.php" );
-require_once( "php/Hero.php" );
-require_once( "php/Item.php" );
-require_once( "php/ItemModel.php" );
-require_once( "php/Sql.php" );
-require_once( "php/Tool.php" );
 
 	$urlBattleNetId = getStr( "battleNetId" );
 	$heroId = getStr( "heroId" );
 	$heroId = "3955832";
 	$items = NULL;
+	$hero = NULL;
+	$heroModel = NULL;
 	$heroItems = [];
 	if ( isString($urlBattleNetId) && isString($heroId) )
 	{
@@ -19,12 +14,13 @@ require_once( "php/Tool.php" );
 		$battleNetDqi = new BattleNetDqi( $battleNetId );
 		$sql = new Sql( DSN, DB_USER, DB_PSWD, USER_IP_ADDRESS );
 		$hero = new Hero( $heroId, $battleNetDqi, $sql );
+		$heroModel = new HeroModel( $hero->getJson() );
 		$items = $hero->getItems();
-	}
+	
 ?><!DOCTYPE html>
 <html>
 	<head>
-		<title>Hero <?= "name" ?></title>
+		<title>Hero <?= $heroModel->name ?></title>
 		<meta name="charset" content="utf-8" />
 		<meta name="author" content="Khalifah Shabazz" />
 		<script type="text/javascript" src="/js/jquery-1.8.2.min.js"></script>
@@ -80,11 +76,11 @@ require_once( "php/Tool.php" );
 						{
 							// $label.toggle(function ()
 							// {
-								// $toggle.text( '-' );
+								// $toggle.text( '+' );
 								// $expandable.slideUp( "fast" );
 							// }, function ()
 							// {
-								// $toggle.text( '+' );
+								// $toggle.text( '-' );
 								// $expandable.slideDown( "fast" );
 							// });
 							
@@ -105,7 +101,7 @@ require_once( "php/Tool.php" );
 			?>
 				<a class="item <?= $key ?>" href="/get-item.php?<?= "battleNetId=" . $urlBattleNetId . '&' . str_replace( '/', "Hash=", $item['tooltipParams'] ) ?>&extra=0">
 					<div class="tooltipParams"><?= $item['tooltipParams'] ?></div>
-					<img src="http://media.blizzard.com/d3/icons/items/large/<?= $item['icon'] ?>.png" alt="<?= $key ?>" />
+					<img src="/media/images/icons/items/large/<?= $item['icon'] ?>.png" alt="<?= $key ?>" />
 					<div class="id"><?= $item['id'] ?></div>
 				</a>
 			<?php endforeach; ?>
@@ -153,3 +149,6 @@ require_once( "php/Tool.php" );
 		<?php endif; ?>
 	</body>
 </html>
+<?php
+	}
+?>

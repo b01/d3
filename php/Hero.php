@@ -96,7 +96,7 @@ class Hero
 	*
 	* @return string JSON item data.
 	*/
-	protected function getJson()
+	public function getJson()
 	{
 		// Get the item from local database.
 		$this->info = $this->getHero( $this->heroId );
