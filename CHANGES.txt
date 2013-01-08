@@ -1,3 +1,7 @@
+List of changes as of 01/07/2012 09:53 PM
+-------------------------------
+	- Repositioned the tool-tips on the get item page.
+
 List of changes as of 01/07/2012 08:36 PM
 -------------------------------
 	- ImageSaver Class - takes an iamge url and fileStream object and save a file to disk.

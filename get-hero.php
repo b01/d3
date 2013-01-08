@@ -35,7 +35,20 @@
 				$.ajax({
 					"data": this.search.substr( 1 ),
 					"dataType": "html",
-					"success": showItemTooltip,
+					"success": function ( p_data )
+					{
+						var $data = $( p_data );
+					
+						$( "body" ).append( $data );
+						$data.css({
+							"position": "absolute",
+							"left": p_event.offsetX + "px",
+							"top": p_event.offsetY + "px",
+						}).click(function ()
+						{
+							$( this ).fadeOut();
+						});
+					},
 					"type": "post",
 					"url": $this.attr( "href" )
 				});

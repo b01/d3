@@ -41,7 +41,7 @@ require_once( "php/Tool.php" );
 	{// Redirect if no data.
 		header( "Location: /item.html" );
 	}
-?>
+?><?php if ( $showExtra ): ?>
 <!DOCTYPE html>
 <html>
 	<head>
@@ -51,6 +51,7 @@ require_once( "php/Tool.php" );
 		<link rel="stylesheet" href="/css/item.css" />
 	</head>
 	<body>
+<?php endif; ?>
 		<?php if ( is_object($itemModel) ): ?>
 		<div class="item-tool-tip item">
 			<h3 class="header smaller <?= $itemModel->displayColor; ?>"><?= $itemModel->name; ?></h3>
@@ -107,8 +108,8 @@ require_once( "php/Tool.php" );
 			<div class="hash"><?= $itemModel->tooltipParams; ?></div>
 		</div>
 		<?php endif ?>
-		<?php if ( $showExtra ): ?>
+<?php if ( $showExtra ): ?>
 		<pre class="json-data scroll"><?= $itemModel; ?></pre>
-		<?php endif; ?>
 	</body>
 </html>
+<?php endif; ?>
