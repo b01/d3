@@ -1,12 +1,18 @@
-List of changes as of 01/07/2012 09:53 PM
+List of changes as of 01/08/2013 09:53 PM
+-------------------------------
+	- Added more helper methods to tool belt "sessionTimeExpired" and "timeElapsed".
+	- Added new site constant MINUTES_10 and set to 600.
+	- Cache hero profile for 10 minutes.
+
+List of changes as of 01/07/2013 09:53 PM
 -------------------------------
 	- Repositioned the tool-tips on the get item page.
 
-List of changes as of 01/07/2012 08:36 PM
+List of changes as of 01/07/2013 08:36 PM
 -------------------------------
 	- ImageSaver Class - takes an iamge url and fileStream object and save a file to disk.
 
-List of changes as of 01/07/2012 08:36 PM
+List of changes as of 01/07/2013 08:36 PM
 -------------------------------
 	- Added BattleNetModel abstract class for model extending.
 	- Added class autoload magic method.

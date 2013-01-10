@@ -14,7 +14,7 @@
 		$battleNetDqi = new BattleNetDqi( $battleNetId );
 		$sql = new Sql( DSN, DB_USER, DB_PSWD, USER_IP_ADDRESS );
 		$hero = new Hero( $heroId, $battleNetDqi, $sql );
-		$heroModel = new HeroModel( $hero->getJson() );
+		$heroModel = new HeroModel( $hero->getRawData() );
 		$items = $hero->getItems();
 	
 ?><!DOCTYPE html>
@@ -42,8 +42,8 @@
 						$( "body" ).append( $data );
 						$data.css({
 							"position": "absolute",
-							"left": p_event.offsetX + "px",
-							"top": p_event.offsetY + "px",
+							"left": p_event.pageX + "px",
+							"top": p_event.pageY + "px",
 						}).click(function ()
 						{
 							$( this ).fadeOut();
@@ -159,6 +159,8 @@
 				</ul>
 			</li>
 		</ul>
+		<?php $time = microtime( TRUE ) - $_SERVER[ "REQUEST_TIME_FLOAT" ]; ?>
+		<!-- Page output in <?= $time ?> seconds -->
 		<?php endif; ?>
 	</body>
 </html>

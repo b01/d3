@@ -98,25 +98,34 @@ class Hero
 	*/
 	public function getJson()
 	{
-		// Get the item from local database.
-		$this->info = $this->getHero( $this->heroId );
-		if ( isArray($this->info) )
+		
+		$tenMinutesPassed = sessionTimeExpired( "heroTime", MINUTES_10 );
+		if ( $tenMinutesPassed )
 		{
-			$this->json = $this->info[0]['json'];
-		}
-		// If that fails, then try to get it from Battle.net.
-		if ( !isString($this->json) )
-		{
-			// Request the hero from BattleNet.
-			$json = $this->dqi->getHero( $this->heroId );
-			$responseCode = $this->dqi->responseCode();
-			$url = $this->dqi->getUrl();
-			// Log the request.
-			$this->sql->addRequest( $this->dqi->getBattleNetId(), $url );
-			if ( $responseCode == 200 )
+			$_SESSION[ 'heroTime' ] = time();
+			// If that fails, then try to get it from Battle.net.
+			if ( !isString($this->json) )
 			{
-				$this->json = $json;
-				$this->loadedFromBattleNet = TRUE;
+				// Request the hero from BattleNet.
+				$json = $this->dqi->getHero( $this->heroId );
+				$responseCode = $this->dqi->responseCode();
+				$url = $this->dqi->getUrl();
+				// Log the request.
+				$this->sql->addRequest( $this->dqi->getBattleNetId(), $url );
+				if ( $responseCode == 200 )
+				{
+					$this->json = $json;
+					$this->loadedFromBattleNet = TRUE;
+				}
+			}
+		}
+		else
+		{
+			// Get the item from local database.
+			$this->info = $this->getHero( $this->heroId );
+			if ( isArray($this->info) )
+			{
+				$this->json = $this->info[0]['json'];
 			}
 		}
 		

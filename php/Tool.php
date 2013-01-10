@@ -285,6 +285,43 @@
 	}
 
 	/**
+	* Determine if time in a session has lapsed.
+	*
+	* @param $p_key string Session time variable.
+	* @param $p_elapse int Time in seconds.
+	* @return bool
+	*/
+	function sessionTimeExpired( $p_key, $p_elapse )
+	{
+		$timePassed = TRUE;
+		if ( array_key_exists( $p_key, $_SESSION) )
+		{
+			$timeElapsed = timeElapsed( $_SESSION[$p_key] );
+			$timePassed = $timeElapsed > $p_elapse;
+		var_dump( $timeElapsed );
+		var_dump( $p_elapse );
+		}
+		var_dump( $timePassed );
+		return $timePassed;
+	}
+
+	/**
+	* Take a date time, and return how much time has elapsed since then.
+	* 	A negative number indicates a time in the future. Rquired your clock to be set.
+	* @param int Time in seconds.
+	* @return int seconds since epoch date.
+	*/
+	function timeElapsed( $p_time )
+	{
+		$now = time();
+		if ( is_numeric($p_time) )
+		{
+			return $now - $p_time;
+		}
+		return FALSE;
+	}
+
+	/**
 	* Generate an array of random numbers within a specified range.
 	* @credit Taken from a Stack Overflow answeer: http://stackoverflow.com/questions/5612656/generating-unique-random-numbers-within-a-range-php
 	*/
