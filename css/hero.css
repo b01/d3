@@ -1,11 +1,7 @@
 .hero {
-	border: 1px solid rgb(0, 0, 0);
-	border-radius: 5px;
-	min-height: 59em;
-	max-height: 800px;
+	height: 39em;
 	position: relative;
-	max-width: 30em;
-	min-width: 50em
+	width: 24em
 }
 
 .hero .tooltipParams, .hero .id {
@@ -13,62 +9,67 @@
 }
 
 .hero .item {
+/*
 	border: 1px solid rgb(0, 0, 0);
 	border-radius: 5px;
-	position: absolute;
+*/
+	border: none;
+	background-color: transparent;
+	box-shadow: none;
+	position: absolute
 }
 
 .hero .item.bracers {
-	left: 15em;
-	top: 11em
+	left: 16em;
+	top: 10em
 }
 .hero .item.feet {
-	left: 8.8em;
-	top: 47em
+	left: 8.65em;
+	top: 30em
 }
 .hero .item.hands {
-	left: 1em;
-	top: 13em
+	left: 0;
+	top: 11em
 }
 .hero .item.head {
 	left: 8.6em;
-	top: 1em
+	top: -2em
 }
 .hero .item.leftFinger {
-	left: 15em;
-	top: 23em
+	left: 17em;
+	top: 20em
 }
 .hero .item.legs {
-	left: 8.8em;
-	top: 35em
+	left: 8.65em;
+	top: 20em
 }
 .hero .item.mainHand {
-	left: 1em;
-	top: 30em
+	left: em;
+	top: 26em
 }
 .hero .item.neck {
 	left: 15em;
 	top: 4em
 }
 .hero .item.offHand {
-	left: 15em;
-	top: 30em
+	left: 17em;
+	top: 26em
 }
 .hero .item.rightFinger {
-	left: 1em;
-	top: 23em;
+	left: -1em;
+	top: 20em
 }
 .hero .item.shoulders {
-	left: 10px;
-	top: 10px;
+	left: 2em;
+	top: 2em
 }
 .hero .item.torso {
 	left: 7.8em;
-	top: 13em
+	top: 5em
 }
 .hero .item.waist {
-    left: 8.5em;
-    top: 28em;
+    left: 8.65em;
+    top: 17em
 }
 .stat .label {
 	cursor: pointer

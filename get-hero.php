@@ -23,7 +23,7 @@
 		<title>Hero <?= $heroModel->name ?></title>
 		<meta name="charset" content="utf-8" />
 		<meta name="author" content="Khalifah Shabazz" />
-		<script type="text/javascript" src="/js/jquery-1.8.2.min.js"></script>
+		<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
 		<link rel="stylesheet" type="text/css" href="/css/site.css" />
 		<link rel="stylesheet" type="text/css" href="/css/hero.css" />
 		<link rel="stylesheet" type="text/css" href="/css/item.css" />
@@ -121,7 +121,7 @@
 		</div>
 		<?php endif; ?>
 		<?php if ( isArray($heroItems) ): ?>
-		<ul>
+		<ul class="list stats inline-block">
 			<?php  $calculator = new Calculator( $heroItems, $hero->getCharacterClass() ); ?>
 			<li class="stat">
 				<span class="label"><span class="toggle inline-block">-</span> Weapon Damage</span>: <?= $calculator->getWeaponDamage(); ?>

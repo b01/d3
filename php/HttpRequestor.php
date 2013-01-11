@@ -31,15 +31,11 @@ class HttpRequestor
 	}
 
 	/**
-	* Example: 
-	* url ::= <host> "/api/d3/data/item/" <item-data>
-	* GET /api/d3/data/item/COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD
-	* Host: us.battle.net
-	* Note: Leave off the trailing '/' when setting
-	*	/api/d3/profile/<battleNetIdName>-<battleNetIdNumber>
-	* @param $p_battleNetId string Battle.Net ID with the "#code"
+	* Shortcut: Set the URL and returns a response.
+	* @param string $p_url
+	* @return string HTTP response.
 	*/
-	public function getJson( $p_url )
+	public function get( $p_url )
 	{
 		$returnValue = NULL;
 		if ( isString($p_url) )
@@ -50,7 +46,7 @@ class HttpRequestor
 		}
 		else
 		{
-			throw new \Exception( "Invalid item ID (hash) given: '{$p_itemId}'; here's a correct example: COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD" );
+			throw new \Exception( "There was a problem getting a response from '{$p_url}'" );
 		}
 		return $returnValue;
 	}

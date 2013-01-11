@@ -49,8 +49,8 @@ class Hero
 	public function __destruct()
 	{
 		unset(
-			$this->dqi,
 			$this->characterClass,
+			$this->dqi,
 			$this->heroId,
 			$this->info,
 			$this->items,
@@ -96,27 +96,26 @@ class Hero
 	*
 	* @return string JSON item data.
 	*/
+	/**
+	* Example: 
+	* url ::= <host> "/api/d3/data/item/" <item-data>
+	* GET /api/d3/data/item/COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD
+	* Host: us.battle.net
+	* Note: Leave off the trailing '/' when setting
+	*	/api/d3/profile/<battleNetIdName>-<battleNetIdNumber>
+	* @param $p_battleNetId string Battle.Net ID with the "#code"
+	*/
 	public function getJson()
 	{
-		
-		$tenMinutesPassed = sessionTimeExpired( "heroTime", MINUTES_10 );
-		if ( $tenMinutesPassed )
+		$cacheExpired = $this->hasCacheExpired();
+		if ( $cacheExpired )
 		{
-			$_SESSION[ 'heroTime' ] = time();
-			// If that fails, then try to get it from Battle.net.
-			if ( !isString($this->json) )
+			// Get it from Battle.net.
+			if ( !isString($this->json) && isString($this->heroId) )
 			{
-				// Request the hero from BattleNet.
-				$json = $this->dqi->getHero( $this->heroId );
-				$responseCode = $this->dqi->responseCode();
-				$url = $this->dqi->getUrl();
+				$this->getJsonFromBattleNet();
 				// Log the request.
-				$this->sql->addRequest( $this->dqi->getBattleNetId(), $url );
-				if ( $responseCode == 200 )
-				{
-					$this->json = $json;
-					$this->loadedFromBattleNet = TRUE;
-				}
+				$this->sql->addRequest( $this->dqi->getBattleNetId(), $this->url );
 			}
 		}
 		else
@@ -131,7 +130,28 @@ class Hero
 		
 		return $this->json;
 	}
-	
+
+	/**
+	* Example: 
+	* url ::= <host> "/api/d3/data/item/" <item-data>
+	* GET /api/d3/data/item/COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD
+	* Note: Leave off the trailing '/' when setting
+	*	/api/d3/profile/<battleNetIdName>-<battleNetIdNumber>
+	*/
+	protected function getJsonFromBattleNet()
+	{
+		// Request the hero from BattleNet.
+		$this->url = sprintf( BATTLENET_D3_API_HERO_URL, $this->dqi->battleNetUrlSafeId(), $this->heroId );
+		$responseText = $this->dqi->get( $this->url );
+		$responseCode = $this->dqi->responseCode();
+		if ( $responseCode === 200 )
+		{
+			$this->json = $responseText;
+			$this->loadedFromBattleNet = TRUE;
+		}
+		return $this;
+	}
+
 	/**
 	* Get hero data from local database.
 	*/
@@ -156,6 +176,14 @@ class Hero
 			return $this->json;
 		}
 		return NULL;
+	}
+	
+	/**
+	* Check if the cache has expired for the JSON.
+	*/
+	protected function hasCacheExpired()
+	{
+		return sessionTimeExpired( "heroTime", BATTLENET_CACHE_LIMIT, TRUE );
 	}
 	
 	/**

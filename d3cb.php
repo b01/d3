@@ -9,21 +9,12 @@
 */
 namespace d3;
 require_once( "php/Tool.php" );
-// load some setting that the site will need in order to function.
-$settingsJson = file_get_contents( "php/settings.json" );
-$settings = json_decode( $settingsJson, TRUE );
-if ( $settings === NULL )
+require_once( "php/settings.php" );
+// We have to specify the namespace when defining constants.
+$nameSpace = array_key_exists( "namespace", $siteSettings ) ? $siteSettings[ 'namespace' ] : '';
+foreach ( $siteSettings as $name => $value )
 {
-	echo json_last_error();
-}
-else
-{
-	// Grab the namespace first, if it exists.
-	$nameSpace = array_key_exists("namespace", $settings) ? $settings[ 'namespace' ] : '';
-	foreach ( $settings as $name => $value )
-	{
-		define( $nameSpace . $name, $value );
-	}
+	define( $nameSpace . $name, $value );
 }
 // Run any setup code you want done on every page of your site.
 

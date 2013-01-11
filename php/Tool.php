@@ -189,7 +189,6 @@
 			"sword"
 		];
 		$itemType = $p_item->type[ 'id' ];
-		var_dump( $itemType );
 		if ( array_key_exists($itemType, $weaponTypes) )
 		{
 			$returnValue = TRUE;
@@ -288,21 +287,24 @@
 	* Determine if time in a session has lapsed.
 	*
 	* @param $p_key string Session time variable.
-	* @param $p_elapse int Time in seconds.
+	* @param $p_duration int Amount of time to check against.
 	* @return bool
 	*/
-	function sessionTimeExpired( $p_key, $p_elapse )
+	function sessionTimeExpired( $p_key, $p_duration, $p_setExpiredToNow = FALSE )
 	{
-		$timePassed = TRUE;
+		$timeExpired = TRUE;
 		if ( array_key_exists( $p_key, $_SESSION) )
 		{
 			$timeElapsed = timeElapsed( $_SESSION[$p_key] );
-			$timePassed = $timeElapsed > $p_elapse;
-		var_dump( $timeElapsed );
-		var_dump( $p_elapse );
+			$timeExpired = $timeElapsed > $p_duration;
+			echo "<div class=\"time-elapsed\">timeElapsed = {$timeElapsed}</div>";
 		}
-		var_dump( $timePassed );
-		return $timePassed;
+		// if the session key has not been set, or it expired, then (re)set it to now.
+		if ( $timeExpired && $p_setExpiredToNow )
+		{
+			$_SESSION[ $p_key ] = time();
+		}
+		return $timeExpired;
 	}
 
 	/**

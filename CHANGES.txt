@@ -1,3 +1,12 @@
+List of changes as of 01/11/2013 09:53 PM
+-------------------------------
+	- Fixed bug with loading Hero from Battle.net
+	- Updated jQuery and added jQuery UI custom.
+	- Updated Hero styling.
+	- Reworked how site constants are loaded and set, removed use of JSON.
+	- Refactored BattleNetDqi class.
+	- Refactored cache methods in tool.
+
 List of changes as of 01/08/2013 09:53 PM
 -------------------------------
 	- Added more helper methods to tool belt "sessionTimeExpired" and "timeElapsed".
