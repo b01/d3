@@ -41,23 +41,23 @@ require_once( "php/Tool.php" );
 	{// Redirect if no data.
 		header( "Location: /item.html" );
 	}
-?><?php if ( $showExtra ): ?>
+?><?php if ( is_object($itemModel) ): ?>
+<?php if ( $showExtra ): ?>
 <!DOCTYPE html>
 <html>
 	<head>
-		<title></title>
+		<title><?= $itemModel->name ?></title>
 		<link rel="stylesheet" href="/css/d3.css" />
 		<link rel="stylesheet" href="/css/tooltips.css" />
 		<link rel="stylesheet" href="/css/item.css" />
 	</head>
 	<body>
 <?php endif; ?>
-		<?php if ( is_object($itemModel) ): ?>
 		<div class="item-tool-tip item">
 			<h3 class="header smaller <?= $itemModel->displayColor; ?>"><?= $itemModel->name; ?></h3>
-			<div class="effect-bg armor">
-				<div class="icon <?= $itemModel->displayColor; ?> inline-block top">
-					<img class="gradient" src="http://media.blizzard.com/d3/icons/items/large/<?= $itemModel->icon; ?>.png" alt="<?= $itemModel->name; ?>" />
+			<div class="effect-bg <?= "armor" ?>">
+				<div class="icon <?= $itemModel->displayColor; ?> inline-block top" data-hash="<?= substr( $itemModel->tooltipParams, 5 ); ?>" data-type="<?= getItemSlot( $itemModel->type['id'] ) ?>">
+					<img class="gradient" src="/media/images/icons/items/large/<?= $itemModel->icon; ?>.png" alt="<?= $itemModel->name; ?>" />
 				</div>
 				<div class="inline-block top">
 					<div class="type-name inline-block <?= $itemModel->displayColor; ?>"><?= $itemModel->typeName; ?></div>
@@ -105,7 +105,6 @@ require_once( "php/Tool.php" );
 			<?php if ( isset($itemModel->flavorText) ): ?>
 			<div class="flavor"><?= $itemModel->flavorText; ?></div>
 			<?php endif; ?>
-			<div class="hash"><?= $itemModel->tooltipParams; ?></div>
 		</div>
 		<?php endif ?>
 <?php if ( $showExtra ): ?>

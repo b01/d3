@@ -103,13 +103,17 @@
 	* @param $p_itemType Item type id
 	* @return string 
 	*/
-	function getItemType( $p_itemType )
+	function translateSlotName( $p_itemType )
 	{
 		$returnValue = '';
 		switch ( strtolower($p_itemType) )
 		{
-			case 'amulet':
-				$returnValue = "neck";
+			case "leftfinger":
+			case "rightfinger":
+				$returnValue = " finger";
+				break;
+			default:
+				$returnValue = '';
 				break;
 		}
 		return $returnValue;
@@ -123,7 +127,8 @@
 	function getItemSlot( $p_itemType )
 	{
 		$returnValue = '';
-		switch ( strtolower($p_itemType) )
+		$itemType = strtolower( $p_itemType );
+		switch ( $itemType )
 		{
 			case 'amulet':
 				$returnValue = "neck";
@@ -145,9 +150,11 @@
 				break;
 			case 'shield':
 			case 'quiver':
-				$returnValue = "Off Hand";
+				$returnValue = "off-hand";
 				break;
 			case 'ring':
+			case "leftFinger":
+			case "rightFinger":
 				$returnValue = "finger";
 				break;
 			case 'shoulders':
@@ -155,6 +162,9 @@
 				break;
 			case 'weapon':
 				$returnValue = "1-hand";
+				break;
+			default:
+				$returnValue = $itemType;
 				break;
 		}
 		return $returnValue;

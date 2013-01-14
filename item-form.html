@@ -1,0 +1,29 @@
+		<form id="battlenet-get-item" action="/get-item.php" method="post">
+			<fieldset>
+				<div class="field">
+					<div>
+						<label class="label">Battle.Net ID</label>
+						<input class="input" type="text" name="battleNetId" value="msuBREAKER#1374" />
+					</div>
+					<div class="item-hash">
+						<label class="label">Item Hash</label>
+						<input class="input" type="text" name="itemHash" size="100" value="" />
+					</div>
+					<div class="item-id">
+						<label class="label">Item ID</label>
+						<input class="input" type="text" name="itemId" size="100" value="" />
+					</div>
+					<div class="item-name">
+						<label class="label">Item Hash</label>
+						<input class="input" type="text" name="itemName" size="100" value="" />
+					</div>
+					<div class="checkbox">
+						<input class="checkbox" type="checkbox" name="byName" value="true" /> <label class="label">Check this box to search for an item by name (not gauranteed to get the item back).</label>
+					</div>
+					<div class="checkbox">
+						<input class="checkbox" type="checkbox" name="extra" value="1" /> <label class="label">Check this box to show extra data (like the JSON retruned from Battle.net).</label>
+					</div>
+				</div>
+				<input type="submit" value="Get Item" />
+			</fieldset>
+		</form>

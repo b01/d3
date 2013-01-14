@@ -23,98 +23,28 @@
 		<title>Hero <?= $heroModel->name ?></title>
 		<meta name="charset" content="utf-8" />
 		<meta name="author" content="Khalifah Shabazz" />
-		<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
+		<link rel="stylesheet" type="text/css" href="/css/smoothness/jquery-ui-1.9.2.custom.min.css" />
 		<link rel="stylesheet" type="text/css" href="/css/site.css" />
 		<link rel="stylesheet" type="text/css" href="/css/hero.css" />
 		<link rel="stylesheet" type="text/css" href="/css/item.css" />
-		<script type="text/javascript">
-			function clickItemLink( p_event )
-			{
-				var $this = $( this );
-				p_event.preventDefault();
-				$.ajax({
-					"data": this.search.substr( 1 ),
-					"dataType": "html",
-					"success": function ( p_data )
-					{
-						var $data = $( p_data );
-					
-						$( "body" ).append( $data );
-						$data.css({
-							"position": "absolute",
-							"left": p_event.pageX + "px",
-							"top": p_event.pageY + "px",
-						}).click(function ()
-						{
-							$( this ).fadeOut();
-						});
-					},
-					"type": "post",
-					"url": $this.attr( "href" )
-				});
-			}
-			
-			function clickStatToggle( p_event )
-			{
-				var $toggle = p_event.data.$toggle,
-					updateSign = $toggle.text() === '-' ? '+' : '-';
-				p_event.data.$expandable.slideToggle( "fast", function ()
-				{
-					$toggle.text( updateSign );
-				});
-			}
-			
-			function showItemTooltip( p_data )
-			{
-				$( "body" ).append( p_data );
-			}
-			jQuery( document ).ready(function ($)
-			{
-				// Load an items details via HTTP request.
-				$( ".item" ).each(function ()
-				{
-					$( this ).on( "click", clickItemLink );
-				});
-				// Toggle stat details.
-				$( ".stat" ).each(function ()
-				{
-					var $this = $( this ),
-						$expandable = $this.find( ".expandable" ),
-						$label = $this.children( ".label" ),
-						$toggle;
-					if ( $expandable.length > 0 && $label.length > 0 )
-					{
-						$toggle = $label.children( ".toggle" );
-						if ( $toggle.length > 0 )
-						{
-							// $label.toggle(function ()
-							// {
-								// $toggle.text( '+' );
-								// $expandable.slideUp( "fast" );
-							// }, function ()
-							// {
-								// $toggle.text( '-' );
-								// $expandable.slideDown( "fast" );
-							// });
-							
-							$label.on( "click.d3", {"$expandable": $expandable, "$toggle": $toggle}, clickStatToggle );
-						}
-					}
-				});
-			});
-		</script>
+		<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
+		<script type="text/javascript" src="/js/jquery-ui-1.9.2.custom.js"></script>
+		<script type="text/javascript" src="/js/jquery.form.js"></script>
+		<script type="text/javascript" src="/js/hero.js"></script>
 	</head>
-	<body>
+	<body class="hero-page">
 		<?php if ( isArray($items) ): ?>
 		<div class="hero inline-block">
 			<?php foreach ( $items as $key => $item ):
 				$hash = $item[ 'tooltipParams' ];
 				$d3Item = new Item( str_replace("item/", '', $hash), "hash", $battleNetDqi, $sql );
-				$heroItems[ $key ] = new ItemModel( $d3Item->getRawData() );
+				$itemModel = new ItemModel( $d3Item->getRawData() );
+				$heroItems[ $key ] = $itemModel;
 			?>
-				<a class="item <?= $key ?>" href="/get-item.php?<?= "battleNetId=" . $urlBattleNetId . '&' . str_replace( '/', "Hash=", $item['tooltipParams'] ) ?>&extra=0">
-					<div class="tooltipParams"><?= $item['tooltipParams'] ?></div>
-					<img src="/media/images/icons/items/large/<?= $item['icon'] ?>.png" alt="<?= $key ?>" />
+				<a class="item-slot <?= $key . translateSlotName( $key ) ?>" href="/get-item.php?<?= "battleNetId=" . $urlBattleNetId . '&' . str_replace( '/', "Hash=", $hash ) ?>&extra=0">
+					<div class="icon <?= $itemModel->displayColor; ?> inline-block top" data-hash="<?= substr( $hash, 5 ); ?>" data-type="<?= getItemSlot( $itemModel->type['id'] ) ?>">
+						<img class="gradient" src="/media/images/icons/items/large/<?= $item['icon'] ?>.png" alt="<?= $key ?>" />
+					</div>
 					<div class="id"><?= $item['id'] ?></div>
 				</a>
 			<?php endforeach; ?>
@@ -159,11 +89,13 @@
 				</ul>
 			</li>
 		</ul>
-		<?php $time = microtime( TRUE ) - $_SERVER[ "REQUEST_TIME_FLOAT" ]; ?>
+		<div class="inline-block">
+			<div id="item-lookup"></div>
+			<div id="item-lookup-result" class="inline-block"></div>
+			<div id="item-place-holder" class="inline-block"></div>
+		</div>
+		<?php $time = microtime( TRUE ) - $_SERVER[ 'REQUEST_TIME_FLOAT' ]; ?>
 		<!-- Page output in <?= $time ?> seconds -->
 		<?php endif; ?>
 	</body>
-</html>
-<?php
-	}
-?>
+</html><?php } ?>

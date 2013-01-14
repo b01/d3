@@ -1,3 +1,7 @@
+.hero-page .inline-block {
+	vertical-align: top
+}
+
 .hero {
 	height: 39em;
 	position: relative;
@@ -8,69 +12,71 @@
 	display: none
 }
 
-.hero .item {
-/*
+.hero .item-slot {
 	border: 1px solid rgb(0, 0, 0);
 	border-radius: 5px;
-*/
-	border: none;
 	background-color: transparent;
 	box-shadow: none;
-	position: absolute
+	position: absolute;
+	text-align: center
 }
 
-.hero .item.bracers {
+.hero .item-slot.bracers {
 	left: 16em;
 	top: 10em
 }
-.hero .item.feet {
+.hero .item-slot.feet {
 	left: 8.65em;
 	top: 30em
 }
-.hero .item.hands {
+.hero .item-slot.hands {
 	left: 0;
 	top: 11em
 }
-.hero .item.head {
+.hero .item-slot.head {
 	left: 8.6em;
 	top: -2em
 }
-.hero .item.leftFinger {
+.hero .item-slot.leftFinger {
 	left: 17em;
 	top: 20em
 }
-.hero .item.legs {
+.hero .item-slot.legs {
 	left: 8.65em;
 	top: 20em
 }
-.hero .item.mainHand {
-	left: em;
+.hero .item-slot.mainHand {
+	left: 0;
 	top: 26em
 }
-.hero .item.neck {
+.hero .item-slot.neck {
 	left: 15em;
 	top: 4em
 }
-.hero .item.offHand {
+.hero .item-slot.offHand {
 	left: 17em;
 	top: 26em
 }
-.hero .item.rightFinger {
+.hero .item-slot.rightFinger {
 	left: -1em;
 	top: 20em
 }
-.hero .item.shoulders {
+.hero .item-slot.shoulders {
 	left: 2em;
 	top: 2em
 }
-.hero .item.torso {
+.hero .item-slot.torso {
 	left: 7.8em;
 	top: 5em
 }
-.hero .item.waist {
+.hero .item-slot.waist {
     left: 8.65em;
     top: 17em
 }
+.hero .item.ui-state-hover {
+	border-color: red
+}
+
 .stat .label {
 	cursor: pointer
 }
@@ -84,4 +90,10 @@
 
 .item .hash {
 	display: none
+}
+
+#item-lookup {
+	border: none;
+	height: 18em;
+	width: 64em
 }

@@ -1,4 +1,17 @@
-List of changes as of 01/11/2013 09:53 PM
+List of changes as of 01/12/2013 12:01 PM
+-------------------------------
+	- Moved hero javascript to hero.js
+	- Updated hero styling.
+	- Added new item-form.html file, like item.html except it only has the form html.
+	- Added item form with ajax capabilities to hero page.
+	- Add drag-and-drop to hero page for items:
+		- Insert item form in div
+		- Submit item form via XHR.
+		- Make all hero slots droppable
+		- Implement spot to call up an item (currently only by item hash value).
+		- Prevent item slots from taking incompatible items.
+
+List of changes as of 01/11/2013 12:00 AM
 -------------------------------
 	- Fixed bug with loading Hero from Battle.net
 	- Updated jQuery and added jQuery UI custom.
