@@ -8,7 +8,7 @@ class Sql
 		INSERT_PROFILE = "INSERT INTO `d3_profiles` (`battle_net_id`, `profile_json`, `ip_address`, `last_updated`, `date_added`) VALUES(:battleNetId, :profileJson, :ipAddress, :lastUpdated, :dateAdded) ON DUPLICATE KEY UPDATE `profile_json` = VALUES(profile_json), `ip_address` = VALUES(ip_address), `last_updated` = VALUES(last_updated);",
 		INSERT_REQUEST = "INSERT INTO `battlenet_api_request` (`battle_net_id`, `ip_address`, `url`, `date_number`, `date_added`) VALUES(:battleNetId, :ipAddress, :url, :dateNumber, :dateAdded);",
 		SELECT_REQUEST = "SELECT `ip_address`, `url`, `date`, `date_added` FROM `battlenet_api_request` WHERE  `date` = :date;",
-		SELECT_ITEM = "SELECT `id`, `name`, `item_type`, `json`, `ip_address`, `last_updated`, `date_added` FROM `%s`.`d3_items` WHERE `%s` = :itemPrimaryValue;",
+		SELECT_ITEM = "SELECT `hash`, `id`, `name`, `item_type`, `json`, `ip_address`, `last_updated`, `date_added` FROM `%s`.`d3_items` WHERE `%s` = :selectValue;",
 		INSERT_ITEM = "INSERT INTO `d3_items` (`hash`, `id`, `name`, `item_type`, `json`, `ip_address`, `last_updated`, `date_added`) VALUES(:hash, :id, :name, :itemType, :json, :ipAddress, :lastUpdate, :dateAdded);",
 		SELECT_HERO = "SELECT `id`, `battle_net_id`, `json`, `ip_address`, `last_updated`, `date_added` FROM `d3_heroes` WHERE `id` = :id;",
 		INSERT_HERO = "INSERT INTO `d3_heroes` (`id`, `battle_net_id`, `json`, `ip_address`, `last_updated`, `date_added`) VALUES(:heroId, :battleNetId, :json, :ipAddress, :lastUpdated, :dateAdded) ON DUPLICATE KEY UPDATE `json` = VALUES(json), `ip_address` = VALUES(ip_address), `last_updated` = VALUES(last_updated);";
@@ -90,7 +90,7 @@ class Sql
 		{
 			logError(
 				$p_error,
-				"Bad query {$p_query} \n\tin %s on line %s",
+				"Bad query {$p_query} : " . print_r($p_parameters, TRUE) . "\n\tin %s on line %s",
 				"There was a problem with the system, please try again later."
 			);
 		}
@@ -128,7 +128,7 @@ class Sql
 	* Get currently set user IP address.
 	* @return {string|null} IP address or null.
 	*/
-	public function getIpAddress()
+	public function ipAddress()
 	{
 		return $this->ipAddress;
 	}
@@ -146,7 +146,7 @@ class Sql
 		{
 			$query = sprintf( self::SELECT_ITEM, $p_primaryColumn );
 			$stmt = $this->pdoh->prepare( $query );
-			$stmt->bindValue( ":itemPrimaryValue", $p_primaryColumnValue, \PDO::PARAM_STR );
+			$stmt->bindValue( ":selectValue", $p_primaryColumnValue, \PDO::PARAM_STR );
 			$itemRecord = $this->pdoQuery( $stmt );
 			if ( isArray($itemRecord) )
 			{
@@ -186,39 +186,6 @@ class Sql
 			// TODO: Log error.
 			// echo $p_error->getMessage();
 			echo "Unable to retrieve your profile, please try again later.";
-		}
-		return $returnValue;
-	}
-	
-	/**
-	* Cache a battle.net user profile.
-	*/
-	public function saveItem( $p_itemHash, $p_item, $p_itemJson )
-	{
-		$returnValue = FALSE;
-		try
-		{
-			if ($this->pdoh !== NULL)
-			{
-				$stmt = $this->pdoh->prepare( self::INSERT_ITEM );
-				$stmt->bindValue( ":hash", $p_itemHash, \PDO::PARAM_STR );
-				$stmt->bindValue( ":id", $p_item->id, \PDO::PARAM_STR );
-				$stmt->bindValue( ":name", $p_item->name, \PDO::PARAM_STR );
-				$stmt->bindValue( ":itemType", $p_item->type['id'], \PDO::PARAM_STR );
-				$stmt->bindValue( ":json", $p_itemJson, \PDO::PARAM_STR );
-				$stmt->bindValue( ":ipAddress", $this->ipAddress, \PDO::PARAM_STR );
-				$stmt->bindValue( ":lastUpdate", date("Y-m-d H:i:s"), \PDO::PARAM_STR );
-				$stmt->bindValue( ":dateAdded", date("Y-m-d H:i:s"), \PDO::PARAM_STR );
-				$returnValue = $this->pdoQuery( $stmt, FALSE );
-			}
-		}
-		catch ( \Exception $p_error )
-		{
-			// TODO: Log error.
-			logError( $p_error,
-				"Unable to save item {$p_itemHash}.",
-				"Unable to save item."
-			);
 		}
 		return $returnValue;
 	}

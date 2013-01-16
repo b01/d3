@@ -72,7 +72,7 @@ class BattleNetDqi extends HttpRequestor
 		}
 		else
 		{
-			throw new \Exception( "Invalid item ID (hash) given: '{$p_itemId}'; here's a correct example: COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD" );
+			throw new \Exception( "No item found at '{$this->url}'." );
 		}
 		return $returnValue;
 	}
@@ -86,20 +86,18 @@ class BattleNetDqi extends HttpRequestor
 	*	/api/d3/profile/<battleNetIdName>-<battleNetIdNumber>/
 	* @param $p_battleNetId string Battle.Net ID with the "#code"
 	*/
-	public function getProfile( $p_battleNetId )
+	public function getProfile()
 	{
 		$returnValue = NULL;
 		if ( isString($p_battleNetId) && substr_count($p_battleNetId, '#') === 1 )
 		{
-			// Replace the pound sign in the BattleNet id with a dash (I assume for safe URL transport).
-			$battleNetId = str_replace( '#', '-', $p_battleNetId );
-			$this->url = sprintf( BATTLENET_D3_API_PROFILE_URL, $p_battleNetId );
+			$this->url = sprintf( BATTLENET_D3_API_PROFILE_URL, $this->battleNetUrlSafeId );
 			// Return the response text.
 			$returnValue = $this->send();
 		}
 		else
 		{
-			throw new \Exception( "Invalid BattleNet ID given: '{$p_battleNetId}'; here's a correct example: myBattleNetName#1234" );
+			throw new \Exception( "No profile found at '{$this->url}'." );
 		}
 		return $returnValue;
 	}

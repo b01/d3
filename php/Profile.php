@@ -19,7 +19,7 @@ class Profile
 		$sql,
 		$profile,
 		$info,
-		$profileJson;
+		$json;
 	
 	
 	/**
@@ -32,7 +32,7 @@ class Profile
 		$this->sql = $p_sql;
 		$this->profile = NULL;
 		$this->info = NULL;
-		$this->profileJson = NULL;
+		$this->json = NULL;
 		$this->load();
 	}
 	
@@ -47,7 +47,7 @@ class Profile
 			$this->sql,
 			$this->profile,
 			$this->info,
-			$this->profileJson
+			$this->json
 		);
 	}
 	
@@ -59,28 +59,28 @@ class Profile
 	protected function getJson()
 	{
 		// Get the profile from local database.
-		$this->info = $this->sql->getProfile( $this->battleNetId );
+		$this->info = $this->sql->getProfile();
 		if ( isArray($this->info) )
 		{
-			$this->profileJson = $this->info['profile_json'];
+			$this->json = $this->info['profile_json'];
 		}
 		// If that fails, then try to get it from Battle.net.
-		if ( !isString($this->profileJson) )
+		if ( !isString($this->json) )
 		{
 			// Request the profile from BattleNet.
-			$profileJson = $this->dqi->getProfile( $this->battleNetId );
+			$json = $this->dqi->getProfile();
 			$responseCode = $this->dqi->responseCode();
 			$url = $this->dqi->getUrl();
 			// Log the request.
 			$this->sql->addRequest( $this->battleNetId, $url );
 			if ( $responseCode == 200 )
 			{
-				$this->profileJson = $profileJson;
+				$this->json = $json;
 				$this->save();
 			}
 		}
 		
-		return $this->profileJson;
+		return $this->json;
 	}
 	
 	/**
@@ -112,9 +112,9 @@ class Profile
 	*/
 	public function getRawData()
 	{
-		if ( $this->profileJson !== NULL )
+		if ( $this->json !== NULL )
 		{
-			return $this->profileJson;
+			return $this->json;
 		}
 		return NULL;
 	}
@@ -127,9 +127,9 @@ class Profile
 		// Get the profile from local database.
 		$this->getJson();
 		// Convert the JSON to an associative array.
-		if ( isString($this->profileJson) )
+		if ( isString($this->json) )
 		{
-			$profile = parseJson( $this->profileJson );
+			$profile = parseJson( $this->json );
 			if ( isArray($profile) )
 			{
 				$this->profile = $profile;
@@ -140,11 +140,19 @@ class Profile
 	}
 	
 	/**
-	* Save the users profile locally, in this case a database
+	* Save the users profile locally to the database.
+	* @return bool
 	*/
 	protected function save()
 	{
-		return $this->sql->saveProfile( $this->battleNetId, $this->profileJson );
+		$utcTime = gmdate( "Y-m-d H:i:s" );
+		return $this->sql->save( Sql::INSERT_PROFILE, [
+			"battleNetId" => [ $this->battleNetId, \PDO::PARAM_STR ],
+			"json" => [ $this->json, \PDO::PARAM_STR ],
+			"ipAddress" => [ $this->sql->ipAddress(), \PDO::PARAM_STR ],
+			"lastUpdated" => [ $utcTime, \PDO::PARAM_STR ],
+			"dateAdded" => [ $utcTime, \PDO::PARAM_STR ]
+		]);
 	}
 }
 ?>

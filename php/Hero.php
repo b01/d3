@@ -216,14 +216,14 @@ class Hero
 	*/
 	protected function save()
 	{
-		$timeStamp = date( "Y-m-d H:i:s" );
+		$utcTime = gmdate( "Y-m-d H:i:s" );
 		return $this->sql->save( Sql::INSERT_HERO, [
 			"heroId" => [ $this->heroId, \PDO::PARAM_STR ],
 			"battleNetId" => [ $this->dqi->getBattleNetId(), \PDO::PARAM_STR ],
 			"json" => [ $this->json, \PDO::PARAM_STR ],
-			"ipAddress" => [ $this->sql->getIpAddress(), \PDO::PARAM_STR ],
-			"lastUpdated" => [ $timeStamp, \PDO::PARAM_STR ],
-			"dateAdded" => [ $timeStamp, \PDO::PARAM_STR ]
+			"ipAddress" => [ $this->sql->ipAddress(), \PDO::PARAM_STR ],
+			"lastUpdated" => [ $utcTime, \PDO::PARAM_STR ],
+			"dateAdded" => [ $utcTime, \PDO::PARAM_STR ]
 		]);
 	}
 }

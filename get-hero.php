@@ -38,7 +38,7 @@
 			<?php foreach ( $items as $key => $item ):
 				$hash = $item[ 'tooltipParams' ];
 				$d3Item = new Item( str_replace("item/", '', $hash), "hash", $battleNetDqi, $sql );
-				$itemModel = new ItemModel( $d3Item->getRawData() );
+				$itemModel = new ItemModel( $d3Item->json() );
 				$heroItems[ $key ] = $itemModel;
 			?>
 				<a class="item-slot <?= $key . translateSlotName( $key ) ?>" href="/get-item.php?<?= "battleNetId=" . $urlBattleNetId . '&' . str_replace( '/', "Hash=", $hash ) ?>&extra=0">

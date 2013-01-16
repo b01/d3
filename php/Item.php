@@ -17,9 +17,11 @@ use \d3\Sql;
 class Item
 {
 	protected 
+		$column,
 		$dqi,
+		$hash,
+		$id,
 		$info,
-		$itemHash,
 		$json,
 		$loadedFromBattleNet,
 		$sql;
@@ -27,14 +29,18 @@ class Item
 	/**
 	* Constructor
 	*/
-	public function __construct( $p_id, $p_column, BattleNetDqi $p_dqi, Sql $p_sql )
+	public function __construct( $p_hash, $p_column, BattleNetDqi $p_dqi, Sql $p_sql )
 	{
+		$this->column = $p_column;
 		$this->dqi = $p_dqi;
-		$this->sql = $p_sql;
+		$this->hash = $p_hash;
+		$this->id = NULL;
 		$this->info = NULL;
 		$this->json = NULL;
 		$this->loadedFromBattleNet = FALSE;
-		$this->load( $p_id,  $p_column );
+		$this->sql = $p_sql;
+		$this->pullJson()
+			->processJson();
 	}
 	
 	/**
@@ -53,17 +59,26 @@ class Item
 	}
 	
 	/**
-	* Get hero data from local database.
+	* Get item data from local database.
+	* @return $this Chainable.
 	*/
-	protected function getItem()
+	protected function pullJsonFromDb()
 	{
-		if ( $this->id !== NULL )
+		$returnValue = NULL;
+		if ( $this->hash !== NULL )
 		{
-			return $this->sql->getData( Sql::SELECT_ITEM, [
-				"itemPrimaryValue" => [ $this->id, \PDO::PARAM_STR ]
+			$query = sprintf( Sql::SELECT_ITEM, DB_NAME, $this->column );
+			$result = $this->sql->getData( $query, [
+				"selectValue" => [ $this->hash, \PDO::PARAM_STR ]
 			]);
+			
+			if ( isArray($result) )
+			{
+				$this->info = $result[ 0 ];
+				$this->json = $this->info[ 'json' ];
+			}
 		}
-		return NULL;
+		return $this;
 	}
 	
 	/**
@@ -71,71 +86,56 @@ class Item
 	*
 	* @return string JSON item data.
 	*/
-	protected function getJson( $p_value, $p_column )
+	protected function pullJson()
 	{
-		// Get the item info locally from the database.
-		// if ( !isString($p_value) && !isString($p_column) )
-		// {
-			// throw new \Exception( "Invalid data used to retrieve an item." );
-		// }
-		
-		// $this->info = $this->getItem();
-		// if ( isArray($this->info) )
-		// {
-			// $this->json = $this->info['json'];
-		// }
-		// // If that fails, then try to get it from Battle.net.
-		// if ( !isString($this->json) )
-		// {
+		// Attempt to get it from the local DB.
+		$this->pullJsonFromDb();
+		// If that fails, then try to get it from Battle.net.
+		if ( !isString($this->json) )
+		{
 			// Request the item from BattleNet.
-			$json = $this->dqi->getItem( $p_value );
+			$json = $this->dqi->getItem( $this->hash );
 			$responseCode = $this->dqi->responseCode();
 			$url = $this->dqi->getUrl();
 			// Log the request.
 			$this->sql->addRequest( $this->dqi->getBattleNetId(), $url );
 			if ( $responseCode == 200 )
 			{
+				$loadedFromBattleNet = TRUE;
 				$this->json = $json;
-				$this->loadedFromBattleNet = TRUE;
 			}
-		// }
+		}
 		
-		return $this->json;
+		return $this;
 	}
 	
 	/**
 	* Get raw JSON data returned from Battle.net.
 	*/
-	public function getRawData()
+	public function json()
 	{
-		if ( $this->json !== NULL )
-		{
-			return $this->json;
-		}
-		return NULL;
+		return $this->json;
 	}
 	
 	/**
-	* Load the users item into this class
+	* Load properties from the JSON into this object.
+	* @return $this Chainable.
 	*/
-	public function load( $p_id, $p_column = "hash" )
+	protected function processJson()
 	{
-		$returnValue = FALSE;
-		// Get the item.
-		$this->getJson( $p_id, $p_column );
-		// Convert the JSON to an associative array.
-		if ( isString($this->json) )
+		$this->info = json_decode( $this->json, TRUE );
+		if ( isArray($this->info) )
 		{
-			$this->itemHash = $p_id;
-			$this->column = $p_column;
+			$this->name = $this->info[ 'name' ];
+			$this->type = $this->info[ 'type' ];
+			$this->hash = substr( $this->info[ 'tooltipParams' ], 5 );
+			$this->id = $this->info[ 'id' ];
 			if ( $this->loadedFromBattleNet )
 			{
-				// $this->save( "item" );
-				$returnValue = TRUE;
+				$this->save();
 			}
 		}
-		
-		return $returnValue;
+		return $this;
 	}
 	
 	/**
@@ -143,19 +143,18 @@ class Item
 	*/
 	protected function save()
 	{
-		$timeStamp = date( "Y-m-d H:i:s" );
-		return $this->sql->save( self::INSERT_ITEM, [
-			":hash" => $p_itemHash, \PDO::PARAM_STR,
-			":id" => $p_item->id, \PDO::PARAM_STR,
-			":name" => $p_item->name, \PDO::PARAM_STR,
-			":itemType" => $p_item->type['id'], \PDO::PARAM_STR,
-			":json" => $p_itemJson, \PDO::PARAM_STR,
-			":ipAddress" => $this->ipAddress, \PDO::PARAM_STR,
-			":lastUpdate" => $timeStamp, \PDO::PARAM_STR,
-			":dateAdded" => $timeStamp, \PDO::PARAM_STR
-		]);
-		// OBSOLETE, use above instead.
-		// return $this->sql->saveItem( $this->itemHash, $this->item, $this->json );
+		$utcTime = gmdate( "Y-m-d H:i:s" );
+		$array = [
+			"hash" => [ $this->hash, \PDO::PARAM_STR ],
+			"id" => [ $this->id, \PDO::PARAM_STR ],
+			"name" => [ $this->name, \PDO::PARAM_STR ],
+			"itemType" => [ $this->type['id'], \PDO::PARAM_STR ],
+			"json" => [ $this->json, \PDO::PARAM_STR ],
+			"ipAddress" => [ $this->sql->ipAddress(), \PDO::PARAM_STR ],
+			"lastUpdate" => [ $utcTime, \PDO::PARAM_STR ],
+			"dateAdded" => [ $utcTime, \PDO::PARAM_STR ]
+		];
+		return $this->sql->save( Sql::INSERT_ITEM, $array );
 	}
 
 	/**

@@ -34,7 +34,7 @@ require_once( "php/Tool.php" );
 		// Init item as an object.
 		if ( is_object($item) )
 		{
-			$itemModel = new ItemModel( $item->getRawData() );
+			$itemModel = new ItemModel( $item->json() );
 		}
 	}
 	else

@@ -1,3 +1,13 @@
+List of changes as of 01/15/2013 10:00 PM
+-------------------------------
+	- Updated SQL tables.
+	- Refactored Item class.
+	- Updated save method for Profile class.
+	- Added new constant to site settings.
+	- Updated item table store items by hash and id once pulled from Battle.net
+	- Check item table before pulling from Battle.net again.
+	- Added tooltip html for sampleing how D3 tooltip JavaScript works.
+
 List of changes as of 01/12/2013 12:01 PM
 -------------------------------
 	- Moved hero javascript to hero.js
