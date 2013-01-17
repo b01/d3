@@ -40,8 +40,9 @@
 				$d3Item = new Item( str_replace("item/", '', $hash), "hash", $battleNetDqi, $sql );
 				$itemModel = new ItemModel( $d3Item->json() );
 				$heroItems[ $key ] = $itemModel;
+				$heroJson[ $key ] = substr( $itemModel->tooltipParams, 5 );
 			?>
-				<a class="item-slot <?= $key . translateSlotName( $key ) ?>" href="/get-item.php?<?= "battleNetId=" . $urlBattleNetId . '&' . str_replace( '/', "Hash=", $hash ) ?>&extra=0">
+				<a class="item-slot <?= $key . translateSlotName( $key ) ?>" href="/get-item.php?<?= "battleNetId=" . $urlBattleNetId . '&' . str_replace( '/', "Hash=", $hash ) ?>&extra=0" data-slot="<?= $key ?>">
 					<div class="icon <?= $itemModel->displayColor; ?> inline-block top" data-hash="<?= substr( $hash, 5 ); ?>" data-type="<?= getItemSlot( $itemModel->type['id'] ) ?>">
 						<img class="gradient" src="/media/images/icons/items/large/<?= $item['icon'] ?>.png" alt="<?= $key ?>" />
 					</div>
@@ -94,6 +95,12 @@
 			<div id="item-lookup-result" class="inline-block"></div>
 			<div id="item-place-holder" class="inline-block"></div>
 		</div>
+		<script type="text/javascript">
+			// Store this stuff in a cookie.
+			var heroJson = <?= json_encode( $heroJson ) ?>,
+				battleNetId = "<?= $urlBattleNetId ?>",
+				heroClass = "<?= $hero->getCharacterClass() ?>";
+		</script>
 		<?php $time = microtime( TRUE ) - $_SERVER[ 'REQUEST_TIME_FLOAT' ]; ?>
 		<!-- Page output in <?= $time ?> seconds -->
 		<?php endif; ?>

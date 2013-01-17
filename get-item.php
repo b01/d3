@@ -30,7 +30,7 @@ require_once( "php/Tool.php" );
 	{
 		$battleNetDqi = new BattleNetDqi( $battleNetId );
 		$sql = new Sql( DSN, DB_USER, DB_PSWD, USER_IP_ADDRESS );
-		$item = new Item(  $itemUID, $itemIdType, $battleNetDqi, $sql );
+		$item = new Item( $itemUID, $itemIdType, $battleNetDqi, $sql );
 		// Init item as an object.
 		if ( is_object($item) )
 		{

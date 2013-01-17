@@ -56,6 +56,20 @@
 				$( "#item-place-holder" ).html( p_data );
 			}
 			
+			function updateCalculations()
+			{
+				$.ajax({
+					"data": "battleNetId=" + window[ "battleNetId" ] + "&heroClass=" + window["heroClass"] + "&json=" + JSON.stringify( window["heroJson"] ),
+					"dataType": "html",
+					"success": function ( p_data )
+					{
+						$( ".list.stats" ).replaceWith( p_data );
+					},
+					"type": "post",
+					"url": "/get-calculations.php"
+				});
+			}
+			
 			jQuery( document ).ready(function ($)
 			{
 				// Load an items details via HTTP request.
@@ -102,7 +116,8 @@
 					{
 						var $this = $( this ),
 							oldHash = $this.attr( "href" ),
-							newHash;
+							newHash,
+							slot = $this.data( "slot" );
 						// swap the two items.
 						$oldItem = $this.find(".icon");
 						if ( $oldItem.length > 0 )
@@ -111,6 +126,8 @@
 							p_ui.draggable.css({ "left": 0, "top": 0 });
 							newHash = oldHash.replace( /.+\?(.+itemHash=)[^&]+(.*)$/, "$1" + $oldItem.data("hash") + "$2" );
 							postTo( "/get-item.php", newHash, updateReplaced );
+							window[ "heroJson" ][ slot ] = p_ui.draggable.data( "hash" );
+							updateCalculations();
 						}
 					}
 				});

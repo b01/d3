@@ -82,10 +82,10 @@
 }
 .stat .toggle {
 	border: 1px solid rgb(130, 130, 255);
-	line-height: 0.8em;
-	height: 0.8em;
+	line-height: 0.9em;
+	height: 0.9em;
 	text-align: center;
-	width: 0.8em
+	width: 0.9em
 }
 
 .item .hash {

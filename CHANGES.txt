@@ -1,3 +1,11 @@
+List of changes as of 01/16/2013 11:53 PM
+-------------------------------
+   - Update calculations after droping a new item.
+
+List of changes as of 01/15/2013 10:00 PM
+-------------------------------
+	- Updated styling on hero page.
+
 List of changes as of 01/15/2013 10:00 PM
 -------------------------------
 	- Updated SQL tables.

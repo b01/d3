@@ -10,7 +10,9 @@
    - Skill multiplier
    - Add in character level stats.
  - Add drag-and-drop to hero page for items
-   - Update calculations after droping a new item.
+   - Make sure all items can be dropped in proper slots.
  - Holding alt key over an item reveals its hash key.
  - Integrate pulling an item by name (currently spotty)
  - Implment button that pulls from battle net immediately, and resets cache time.
+ - Store data in cookies instead of printing script tags.
+ - Alert when cookies are not enabled.
