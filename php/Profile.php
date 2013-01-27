@@ -59,10 +59,10 @@ class Profile
 	protected function getJson()
 	{
 		// Get the profile from local database.
-		$this->info = $this->sql->getProfile();
+		$this->info = $this->sql->getProfile( $this->battleNetId );
 		if ( isArray($this->info) )
 		{
-			$this->json = $this->info['profile_json'];
+			$this->json = $this->info['json'];
 		}
 		// If that fails, then try to get it from Battle.net.
 		if ( !isString($this->json) )

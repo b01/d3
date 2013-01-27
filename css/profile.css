@@ -1,0 +1,62 @@
+.heroes {
+	list-style: none
+}
+.heroes .profile {
+	background-image: url('http://us.battle.net/d3/static/images/profile/hero/hero-nav-portraits.jpg');
+	background-repeat: no-repeat;
+	height: 70px;
+	width: 85px
+}
+
+.heroes .profile.barbarian {
+	background-position: 0 0
+}
+
+.heroes .profile.demon-hunter {
+	background-position: 0 -65px
+}
+
+.heroes .profile.monk {
+	background-position: 0 -130px
+}
+
+.heroes .profile.witch-doctor {
+	background-position: 0 -195px
+}
+
+.heroes .profile.wizard {
+	background-position: 0 -260px
+}
+
+.heroes .profile.barbarian.woman {
+	background-position: -80px 0
+}
+
+.heroes .profile.demon-hunter.woman {
+	background-position: -80px -65px
+}
+
+.heroes .profile.monk.woman {
+	background-position: -80px -130px
+}
+
+.heroes .profile.witch-doctor.woman {
+	background-position: -80px -195px
+}
+
+.heroes .profile.wizard.woman {
+	background-position: -80px -260px
+}
+
+.heroes .profile:hover .name {
+	color: rgb(255, 10, 10)
+}
+.heroes .profile .name {
+	background-color: rgb(225, 225, 225);
+	color: rgb(10, 10, 255);
+	padding: 2px 3px;
+	text-decoration: none
+}
+.heroes .profile .level {
+	color: rgb(0, 0, 225)
+}

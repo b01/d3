@@ -16,6 +16,7 @@ class Hero
 	protected 
 		$characterClass,
 		$dqi,
+		$forceLoadFromBattleNet,
 		$heroId,
 		$info,
 		$items,
@@ -23,15 +24,15 @@ class Hero
 		$loadedFromBattleNet,
 		$sql,
 		$stats;
-	
-	
+
 	/**
 	* Constructor
 	*/
-	public function __construct( $p_heroId, \d3\BattleNetDqi $p_dqi, \d3\Sql $p_sql )
+	public function __construct( $p_heroId, \d3\BattleNetDqi $p_dqi, \d3\Sql $p_sql, $p_forceLoadFromBattleNet )
 	{
 		$this->characterClass = NULL;
 		$this->dqi = $p_dqi;
+		$this->forceLoadFromBattleNet = $p_forceLoadFromBattleNet;
 		$this->heroId = $p_heroId;
 		$this->info = NULL;
 		$this->items = NULL;
@@ -42,7 +43,7 @@ class Hero
 		
 		$this->init();
 	}
-	
+
 	/**
 	* Destructor
 	*/
@@ -51,6 +52,7 @@ class Hero
 		unset(
 			$this->characterClass,
 			$this->dqi,
+			$this->forceLoadFromBattleNet,
 			$this->heroId,
 			$this->info,
 			$this->items,
@@ -60,7 +62,7 @@ class Hero
 			$this->stats
 		);
 	}
-	
+
 	/**
 	* Character class
 	*
@@ -70,7 +72,7 @@ class Hero
 	{
 		return $this->characterClass;
 	}
-	
+
 	/**
 	* Get the item, first check the local DB, otherwise pull from Battle.net.
 	*
@@ -80,7 +82,7 @@ class Hero
 	{
 		return $this->items;
 	}
-	
+
 	/**
 	* Get character stats.
 	*
@@ -90,7 +92,7 @@ class Hero
 	{
 		return $this->stats;
 	}
-	
+
 	/**
 	* Get the item, first check the local DB, otherwise pull from Battle.net.
 	*
@@ -165,17 +167,13 @@ class Hero
 		}
 		return NULL;
 	}
-	
+
 	/**
 	* Get raw JSON data returned from Battle.net.
 	*/
-	public function getRawData()
+	public function json()
 	{
-		if ( $this->json !== NULL )
-		{
-			return $this->json;
-		}
-		return NULL;
+		return $this->json;
 	}
 	
 	/**
@@ -183,9 +181,9 @@ class Hero
 	*/
 	protected function hasCacheExpired()
 	{
-		return sessionTimeExpired( "heroTime", BATTLENET_CACHE_LIMIT, TRUE );
+		return sessionTimeExpired( "heroTime", BATTLENET_CACHE_LIMIT, $this->forceLoadFromBattleNet );
 	}
-	
+
 	/**
 	* Load the users hero into this class
 	*/
@@ -199,8 +197,8 @@ class Hero
 			$hero = parseJson( $this->json );
 			if ( isArray($hero) )
 			{
-				$this->items = $hero['items'];
-				$this->characterClass = $hero['class'];
+				$this->items = $hero[ 'items' ];
+				$this->characterClass = $hero[ 'class' ];
 				if ( $this->loadedFromBattleNet )
 				{
 					$this->save();
@@ -209,7 +207,7 @@ class Hero
 		}
 		return $this;
 	}
-	
+
 	/**
 	* Save the users hero in a local database.
 	* @return bool Indicates success (TRUE) or failure (FALSE).

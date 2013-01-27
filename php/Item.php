@@ -101,7 +101,7 @@ class Item
 			$this->sql->addRequest( $this->dqi->getBattleNetId(), $url );
 			if ( $responseCode == 200 )
 			{
-				$loadedFromBattleNet = TRUE;
+				$this->loadedFromBattleNet = TRUE;
 				$this->json = $json;
 			}
 		}

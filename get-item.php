@@ -35,28 +35,31 @@ require_once( "php/Tool.php" );
 		if ( is_object($item) )
 		{
 			$itemModel = new ItemModel( $item->json() );
+			$itemHash = substr( $itemModel->tooltipParams, 5 );
 		}
 	}
 	else
 	{// Redirect if no data.
 		header( "Location: /item.html" );
 	}
-?><?php if ( is_object($itemModel) ): ?>
+?>
+<?php if ( $itemModel instanceof ItemModel ): ?>
 <?php if ( $showExtra ): ?>
 <!DOCTYPE html>
 <html>
 	<head>
 		<title><?= $itemModel->name ?></title>
 		<link rel="stylesheet" href="/css/d3.css" />
+		<link rel="stylesheet" href="/css/site.css" />
 		<link rel="stylesheet" href="/css/tooltips.css" />
 		<link rel="stylesheet" href="/css/item.css" />
 	</head>
 	<body>
 <?php endif; ?>
 		<div class="item-tool-tip item">
-			<h3 class="header smaller <?= $itemModel->displayColor; ?>"><?= $itemModel->name; ?></h3>
-			<div class="effect-bg <?= "armor" ?>">
-				<div class="icon <?= $itemModel->displayColor; ?> inline-block top" data-hash="<?= substr( $itemModel->tooltipParams, 5 ); ?>" data-type="<?= getItemSlot( $itemModel->type['id'] ) ?>">
+			<h3 class="header smaller <?= $itemModel->displayColor; ?>"><?= $itemModel->name ?><span class="close">Close</span></h3>
+			<div class="effect-bg <?= $itemModel->effects() ?>">
+				<div class="icon <?= $itemModel->displayColor ?> inline-block top" data-hash="<?= $itemHash ?>" data-type="<?= getItemSlot( $itemModel->type['id'] ) ?>">
 					<img class="gradient" src="/media/images/icons/items/large/<?= $itemModel->icon; ?>.png" alt="<?= $itemModel->name; ?>" />
 				</div>
 				<div class="inline-block top">
@@ -64,6 +67,11 @@ require_once( "php/Tool.php" );
 					<div class="type-name inline-block slot"><?= getItemSlot( $itemModel->type['id'] ) ?></div>
 					<?php if ( isset($itemModel->armor) ): ?>
 					<div class="big value"><?= displayRange( $itemModel->armor ); ?></div>
+					<?php endif; ?>
+					<?php if ( isWeapon($itemModel) ): ?>
+					<div class="big value"><?= number_format( $itemModel->dps['min'], 1 ); ?></div>
+					<div class="damage"><span class="value"><?= displayRange( $itemModel->damage ); ?></span> Damage</div>
+					<div class="small"><span class="value"><?= number_format( $itemModel->attacksPerSecond['min'], 2 ); ?></span> Attacks per Second</div>
 					<?php endif; ?>
 				</div>
 			</div>
@@ -102,6 +110,16 @@ require_once( "php/Tool.php" );
 				<div class="level left required inline-block">Required Level: <span class="value"><?= $itemModel->requiredLevel; ?></span></div>
 				<div class="level right max inline-block">Item Level: <span class="value"><?= $itemModel->itemLevel; ?></span></div>
 			</div>
+			<ul class="list stats inline-block">
+				<li class="stat">
+					<span class="label"><span class="toggle inline-block">+</span> Hash</span>
+					<div class="expandable" ><textarea><?= $itemHash ?></textarea></div>
+				</li>
+				<li class="stat">
+					<span class="label"><span class="toggle inline-block">+</span> Json</span>
+					<div class="expandable" ><textarea><?= $item->json() ?></textarea></div>
+				</li>
+			</ul>
 			<?php if ( isset($itemModel->flavorText) ): ?>
 			<div class="flavor"><?= $itemModel->flavorText; ?></div>
 			<?php endif; ?>

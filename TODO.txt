@@ -11,8 +11,9 @@
    - Add in character level stats.
  - Add drag-and-drop to hero page for items
    - Make sure all items can be dropped in proper slots.
- - Holding alt key over an item reveals its hash key.
  - Integrate pulling an item by name (currently spotty)
  - Implment button that pulls from battle net immediately, and resets cache time.
  - Store data in cookies instead of printing script tags.
  - Alert when cookies are not enabled.
+ - Make sure duel wield do not indicate true for two-handed weaponse.
+ - Implement a stash, so users can easily access items when they return.

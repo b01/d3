@@ -14,124 +14,132 @@ namespace d3;
 */
 class ItemModel extends BattleNetModel 
 {
+	public static $offHandTypes = [
+			"offhandother",
+			"orb",
+			"mojo",
+			"quiver",
+			"shield"
+		],
+		$oneHandWeaponTypes = [
+			"axe",
+			"bow",
+			"ceremonialdagger",
+			"crossbow",
+			"dagger",
+			"fistweapon",
+			"handxbow",
+			"mace",
+			"mightyweapon1h",
+			"spear",
+			"sword",
+			"wand"
+		],
+		$twoHandedWeaponTypes = [
+			"combatstaff",
+			"mightyweapon2h",
+			"sword2h",
+			"polearm",
+			"mace2h",
+			"axe2h",
+			"staff",
+			"crossbow",
+			"bow"
+		];
+
+	protected
+		$damage,
+		$damageAttributes;
+
 	/**
 	* Constructor
 	*/
 	public function __construct( $p_json )
 	{
 		parent::__construct( $p_json );
-		// Top-level properties required of the JSON returned from battle.net.
-		$this->attributeMap = [
-			"armor" => "array",
-			"attributes" => "array",
-			"attributesRaw" => "array",
-			"bonusAffixes" => "int",
-			"displayColor" => "string",
-			"flavorText" => "string",
-			"dps" => "array",
-			"gems" => "array",
-			"icon" => "string",
-			"id" => "string",
-			"itemLevel" => "int",
-			"name" => "string",
-			"requiredLevel" => "int",
-			"salvage" => "array",
-			"set" => "array",
-			"socketEffects" => "array",
-			"tooltipParams" => "string",
-			"type" => "array",
-			"typeName" => "string"
+
+		// if ( isset($this->attacksPerSecond) )
+		if ( isWeapon($this) )
+		{
+			$this->calculateDamage();
+		}
+		$this->getEffects();
+
+	}
+
+	/** BEGIN GETTER/SETTER **/
+
+	public function damage()
+	{
+		return $this->damage;
+	}
+	
+	/**
+	* Get list string of item effect.
+	* @return string
+	*/
+	public function effects()
+	{
+		return $this->effects;
+	}
+
+	/**
+	* Get the item type.
+	* @return string
+	*/
+	public function type()
+	{
+		return $this->type;
+	}
+
+	/** END	GETTER/SETTER **/
+
+	/**
+	* Compute min - max damage range for the tool-tip.
+	* @return ItemModel
+	*/
+	protected function calculateDamage()
+	{
+		$this->damage = [
+			"min" => 0.0,
+			"max" => 0.0
 		];
-		$this->__init();
-	}
-	
-	/**
-	* Destructor
-	*/
-	public function __destruct()
-	{
-		parent::__destruct();
-	}
-	
-	/**
-	* Get property
-	*/
-	public function __get( $p_name )
-	{
-		if ( isset($this->$p_name) )
+		$this->damageAttributes = [];
+		foreach ( $this->attributesRaw as $attribute => $value )
 		{
-			return $this->$p_name;
-		}
-		else if ( array_key_exists($p_name, $this->_array) )
-		{
-			return $this->$p_name = $this->_array[ $p_name ];
-		}
-		
-		$trace = debug_backtrace();
-		trigger_error(
-			'Undefined property: ' . $p_name .
-			' in ' . $trace[0]['file'] .
-			' on line ' . $trace[0]['line'],
-			E_USER_NOTICE
-		);
-		
-		return NULL;
-	}
-	
-	/**
-	* Convert this object to a string.
-	* @return string
-	*/
-	public function __toString()
-	{
-		return json_encode( $this, JSON_PRETTY_PRINT );
-	}
-	
-	/**
-	* Determine if a variable is set.
-	* @return bool
-	*/
-	public function __isset( $p_property )
-	{
-		return isset( $this->$p_property );
-	}
-	
-	/**
-	* @param $p_effect Name of an effect (a.k.a attribute).
-	* @return string
-	*/
-	public function getEffect( $p_effect, $p_min, $p_max )
-	{
-		$returnValue = '';
-		if ( array_key_exists($p_effect, $this->effects) )
-		{
-			$mapValue = $this->effects[ $p_effect ];
-			// Convert some decimals to percents.
-			if ( $p_min < 1 ) {
-				$p_min = $p_min * 100;
-				$p_max = $p_max * 100;
-			}
-			$max = ( $p_min === $p_max ) ? '' : '-' . $p_max;
-			$returnValue = sprintf( $mapValue, $p_min, $max );
-		}
-		return $returnValue;
-	}
-	
-	/**
-	* Specify how this object is to be used with json_encode.
-	* @return array
-	*/
-	public function jsonSerialize()
-	{
-		$returnValue = [];
-		foreach ( $this as $property => $value )
-		{
-			if ( array_key_exists($property, $this->attributeMap) )
+			if ( strpos($attribute, "Damage_Weapon_Min") !== FALSE )
 			{
-				$returnValue[ $property ] = $value;
+				$this->damage[ 'min' ] += ( float ) $value[ 'min' ];
+				$this->damage[ 'max' ] += ( float ) $value[ 'min' ];
+				$this->damageAttributes[ $attribute ] = $value;
+			}
+			if ( strpos($attribute, "Damage_Weapon_Delta") !== FALSE )
+			{
+				$this->damage[ 'max' ] += ( float ) $value[ 'min' ];
+				$this->damageAttributes[ $attribute ] = $value;
 			}
 		}
-		return $returnValue;
+		return $this;
+	}
+	
+	/**
+	*  Get name of an items special effects.
+	*
+	* @return ItemModel Chainable
+	*/
+	protected function getEffects()
+	{
+		$effects = '';
+		if ( array_key_exists("Damage_Weapon_Min#Poison", $this->attributesRaw) )
+		{
+			$effects .= " poison";
+		}
+		if ( array_key_exists("Armor_Item", $this->attributesRaw) )
+		{
+			$effects .= " armor";
+		}
+		$this->effects = $effects;
+		return $this;
 	}
 }
 ?>

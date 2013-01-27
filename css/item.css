@@ -1,12 +1,4 @@
 
-	.json-data {
-		
-	}
-
-	.inline-block {
-		display: inline-block
-	}
-	
 	.top {
 		vertical-align: top
 	}
@@ -199,11 +191,23 @@
 		line-height: 37px;
 		margin: 0 0 10px;
 		overflow: hidden;
+		position: relative;
 		text-align: center;
 		text-overflow: ellipsis;
 		white-space: nowrap;
 		width: 360px;
 	}
+	.header .close {
+		color: rgb(255, 255, 255);
+		cursor: pointer;
+		font-size: 0.9em;
+		position: absolute;
+		right: 20px;
+	}
+	.header .close:hover {
+		color: rgb(255, 0, 0)
+	}
+
 	.type-name {
 		width: 125px
 	}
@@ -284,6 +288,13 @@
 }
 .item-tool-tip .value {
 	color: rgb(189, 166, 219)
+}
+.item-tool-tip .top {
+	color: rgb(144, 144, 144)
+}
+.item-tool-tip .top .value,
+.item-tool-tip .level .value {
+	color: rgb(255, 255, 255)
 }
 .item-tool-tip .big {
 	font-family: "Palatino Linotype", "Times", serif;

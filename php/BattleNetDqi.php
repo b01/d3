@@ -89,13 +89,13 @@ class BattleNetDqi extends HttpRequestor
 	public function getProfile()
 	{
 		$returnValue = NULL;
-		if ( isString($p_battleNetId) && substr_count($p_battleNetId, '#') === 1 )
+		try
 		{
 			$this->url = sprintf( BATTLENET_D3_API_PROFILE_URL, $this->battleNetUrlSafeId );
 			// Return the response text.
 			$returnValue = $this->send();
 		}
-		else
+		catch ( \Exception $p_error )
 		{
 			throw new \Exception( "No profile found at '{$this->url}'." );
 		}

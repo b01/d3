@@ -1,3 +1,43 @@
+List of changes as of 01/26/2013 08:57 PM
+-------------------------------
+	- Fixed some styling to item.
+	- Added close button and toggle list to tool-top.
+
+List of changes as of 01/26/2013 08:57 PM
+-------------------------------
+	- Added damage attibute for weapon items.
+	- Fixed bug in displayRange method.
+
+
+List of changes as of 01/26/2013 01:00 PM
+-------------------------------
+	- Refactored ItemModel.
+	- Updated item style.
+	- Add item hash link which reveals its hash key.
+	- Add item JSON link which reveals its JSON key.
+
+List of changes as of 01/21/2013 05:48 PM
+-------------------------------
+	- Many improvements to a number of classes, due to further research into forumlas.
+	- Fixed retrieving the profile from Battle.Net, broken from previous SQL changes.
+	- Removed debugging code from "get hero" page which caused same hero to be pulled every time.
+	- Converted various files to UTF-8 without BOM and Unix line endings.
+	- Added profile pics to the profile page and updated style.
+	- Added check for offHand before use in Calculator class.
+	- Fixed property typo in Item class preventing saving items.
+
+List of changes as of 01/17/2013 09:20PM
+-------------------------------
+	- Added new item to the git ignore file.
+	- Converted stats toggle to a jQuery UI widget.
+	- Updated jQuery UI to 1.10.
+	- Updated jQuery to 1.9.
+	- Added Battle.net calculated stats to the hero page.
+	- Improved hero stat calculations.
+	- Fixed bugs in Calculations class.
+		- All stats not counted from gems.
+
+
 List of changes as of 01/16/2013 11:53 PM
 -------------------------------
    - Update calculations after droping a new item.

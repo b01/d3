@@ -4,8 +4,8 @@ namespace d3;
 class Sql
 {
 	const
-		SELECT_PROFILE = "SELECT `battle_net_id`, `profile_json`, `ip_address`, `last_updated`, `date_added` FROM `%s`.`d3_profiles` WHERE `battle_net_id` = :battleNetId;",
-		INSERT_PROFILE = "INSERT INTO `d3_profiles` (`battle_net_id`, `profile_json`, `ip_address`, `last_updated`, `date_added`) VALUES(:battleNetId, :profileJson, :ipAddress, :lastUpdated, :dateAdded) ON DUPLICATE KEY UPDATE `profile_json` = VALUES(profile_json), `ip_address` = VALUES(ip_address), `last_updated` = VALUES(last_updated);",
+		SELECT_PROFILE = "SELECT `battle_net_id`, `json`, `ip_address`, `last_updated`, `date_added` FROM `%s`.`d3_profiles` WHERE `battle_net_id` = :battleNetId;",
+		INSERT_PROFILE = "INSERT INTO `d3_profiles` (`battle_net_id`, `json`, `ip_address`, `last_updated`, `date_added`) VALUES(:battleNetId, :profileJson, :ipAddress, :lastUpdated, :dateAdded) ON DUPLICATE KEY UPDATE `json` = VALUES(json), `ip_address` = VALUES(ip_address), `last_updated` = VALUES(last_updated);",
 		INSERT_REQUEST = "INSERT INTO `battlenet_api_request` (`battle_net_id`, `ip_address`, `url`, `date_number`, `date_added`) VALUES(:battleNetId, :ipAddress, :url, :dateNumber, :dateAdded);",
 		SELECT_REQUEST = "SELECT `ip_address`, `url`, `date`, `date_added` FROM `battlenet_api_request` WHERE  `date` = :date;",
 		SELECT_ITEM = "SELECT `hash`, `id`, `name`, `item_type`, `json`, `ip_address`, `last_updated`, `date_added` FROM `%s`.`d3_items` WHERE `%s` = :selectValue;",
@@ -172,7 +172,8 @@ class Sql
 		{
 			if ($this->pdoh !== NULL)
 			{
-				$stmt = $this->pdoh->prepare( self::SELECT_PROFILE );
+				$query = sprintf( self::SELECT_PROFILE, "kshabazz" );
+				$stmt = $this->pdoh->prepare( $query );
 				$stmt->bindValue( ":battleNetId", $p_battleNetId, \PDO::PARAM_STR );
 				$profileRecord = $this->pdoQuery( $stmt );
 				if ( isArray($profileRecord) )
@@ -183,9 +184,11 @@ class Sql
 		}
 		catch ( \Exception $p_error )
 		{
-			// TODO: Log error.
-			// echo $p_error->getMessage();
-			echo "Unable to retrieve your profile, please try again later.";
+			logError( 
+				$p_error,
+				$p_error->getMessage(),
+				"Unable to retrieve your profile, please try again later."
+			);
 		}
 		return $returnValue;
 	}
@@ -265,18 +268,18 @@ class Sql
 				$stmt = $this->pdoh->prepare( $p_sqlStatement );
 				foreach ( $p_values as $parameterName => $data )
 				{
-					$stmt->bindValue( ":{$parameterName}", $data[0], $data[1] );
+					$stmt->bindValue( ':' . $parameterName, $data[0], $data[1] );
 				}
 				// Run the query
-				$returnValue = $this->pdoQuery( $stmt, FALSE );
+				$returnValue = @$this->pdoQuery( $stmt, FALSE );
 			}
 		}
 		catch ( \Exception $p_error )
 		{
 			logError(
 				$p_error,
-				"Bad query {$p_sqlStatement} \n\tin %s on line %s.",
-				"Failed to save data; Alerting system admin. Please try again later."
+				"Bad query {$p_sqlStatement} \n\twith values:" . print_r( $p_values, TRUE) . "\n\tin %s on line %s.",
+				"Failed to save data; Which could mean lots of request to battle.net for the same data. Alerting system admin. You don't need to worry about this though"
 			);
 		}
 		return $returnValue;

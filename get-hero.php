@@ -3,7 +3,7 @@
 
 	$urlBattleNetId = getStr( "battleNetId" );
 	$heroId = getStr( "heroId" );
-	$heroId = "3955832";
+	$refreshCache = ( bool )getStr( "cache" );
 	$items = NULL;
 	$hero = NULL;
 	$heroModel = NULL;
@@ -13,8 +13,8 @@
 		$battleNetId = str_replace( '-', '#', $urlBattleNetId );
 		$battleNetDqi = new BattleNetDqi( $battleNetId );
 		$sql = new Sql( DSN, DB_USER, DB_PSWD, USER_IP_ADDRESS );
-		$hero = new Hero( $heroId, $battleNetDqi, $sql );
-		$heroModel = new HeroModel( $hero->getRawData() );
+		$hero = new Hero( $heroId, $battleNetDqi, $sql, $refreshCache );
+		$heroModel = new HeroModel( $hero->json() );
 		$items = $hero->getItems();
 	
 ?><!DOCTYPE html>
@@ -23,13 +23,14 @@
 		<title>Hero <?= $heroModel->name ?></title>
 		<meta name="charset" content="utf-8" />
 		<meta name="author" content="Khalifah Shabazz" />
-		<link rel="stylesheet" type="text/css" href="/css/smoothness/jquery-ui-1.9.2.custom.min.css" />
+		<link rel="stylesheet" type="text/css" href="/css/smoothness/jquery-ui-1.10.0.custom.min.css" />
 		<link rel="stylesheet" type="text/css" href="/css/site.css" />
-		<link rel="stylesheet" type="text/css" href="/css/hero.css" />
 		<link rel="stylesheet" type="text/css" href="/css/item.css" />
-		<script type="text/javascript" src="/js/jquery-1.8.3.min.js"></script>
-		<script type="text/javascript" src="/js/jquery-ui-1.9.2.custom.js"></script>
+		<link rel="stylesheet" type="text/css" href="/css/hero.css" />
+		<script type="text/javascript" src="/js/jquery-1.9.0.min.js"></script>
+		<script type="text/javascript" src="/js/jquery-ui-1.10.0.custom.min.js"></script>
 		<script type="text/javascript" src="/js/jquery.form.js"></script>
+		<script type="text/javascript" src="/js/jquery.ui.toggleList.js"></script>
 		<script type="text/javascript" src="/js/hero.js"></script>
 	</head>
 	<body class="hero-page">
@@ -47,6 +48,7 @@
 						<img class="gradient" src="/media/images/icons/items/large/<?= $item['icon'] ?>.png" alt="<?= $key ?>" />
 					</div>
 					<div class="id"><?= $item['id'] ?></div>
+					<!-- img src="http://media.blizzard.com/d3/icons/items/small/dye_10_demonhunter_male.png" / -->
 				</a>
 			<?php endforeach; ?>
 		</div>
@@ -55,38 +57,46 @@
 		<ul class="list stats inline-block">
 			<?php  $calculator = new Calculator( $heroItems, $hero->getCharacterClass() ); ?>
 			<li class="stat">
-				<span class="label"><span class="toggle inline-block">-</span> Weapon Damage</span>: <?= $calculator->getWeaponDamage(); ?>
-				<ul class="expandable">
-					<?= output( "<li><span class=\"label\">%s</span>:%s</li>", $calculator->getWeaponDamageData() ) ?>
-				</ul></li>
-			<li class="stat">
-				<span class="label"><span class="toggle inline-block">-</span> Attack Speed</span>: <?= $calculator->attackSpeed(); ?>%
+				<span class="label"><span class="toggle inline-block">-</span> Attack Speed</span>: <?= $calculator->attackSpeed(); ?>
 				<ul class="expandable">
 					<?= output( "<li><span class=\"label\">%s</span>:%s%%</li>", $calculator->attackSpeedData() ) ?>
 				</ul>
 			</li>
 			<li class="stat">
-				<span class="label"><span class="toggle inline-block">-</span> Critical Hit Chance</span>: <?= $calculator->getCriticalHitChance(); ?>%
+				<span class="label"><span class="toggle inline-block">-</span> Base Weapon Damage</span>: <?= $calculator->baseWeaponDamage(); ?>
 				<ul class="expandable">
-					<?= output( "<li><span class=\"label\">%s</span>:%s%%</li>", $calculator->getCriticalHitChanceData() ) ?>
+					<?= output( "<li><span class=\"label\">%s</span>:%s</li>", $calculator->baseWeaponDamageData() ) ?>
 				</ul>
 			</li>
 			<li class="stat">
-				<span class="label"><span class="toggle inline-block">-</span> Critical Hit Damage</span>: <?= $calculator->getCriticalHitDamage(); ?>%
+				<span class="label"><span class="toggle inline-block">-</span> Critical Hit Chance</span>: <?= $calculator->criticalHitChance(); ?>%
 				<ul class="expandable">
-					<?= output( "<li><span class=\"label\">%s</span>:%s%%</li>", $calculator->getCriticalHitDamageData() ) ?>
+					<?= output( "<li><span class=\"label\">%s</span>:%s%%</li>", $calculator->criticalHitChanceData() ) ?>
 				</ul>
 			</li>
 			<li class="stat">
-				<span class="label"><span class="toggle inline-block">-</span> Primary Attribute Damage</span>: <?= $calculator->getPrimaryAttributeDamage() . ' ' . str_replace( "_Item", '', $calculator->getPrimaryAttribute() ) ?>
+				<span class="label"><span class="toggle inline-block">-</span> Critical Hit Damage</span>: <?= $calculator->criticalHitDamage(); ?>%
 				<ul class="expandable">
-					<?= output( "<li><span class=\"label\">%s</span>:%s</li>", $calculator->getPrimaryAttributeDamageData() ) ?>
+					<?= output( "<li><span class=\"label\">%s</span>:%s%%</li>", $calculator->criticalHitDamageData() ) ?>
 				</ul>
 			</li>
 			<li class="stat">
-				<span class="label"><span class="toggle inline-block">-</span> Damage Per Second</span>: <?= $calculator->getDps(); ?>
+				<span class="label"><span class="toggle inline-block">-</span> Damage Per Second</span>: <?= $calculator->damagePerSecond(); ?>
 				<ul class="expandable">
-					<?= output( "<li><span class=\"label\">%s</span>:%s</li>", $calculator->getDpsData() ) ?>
+					<?= output( "<li><span class=\"label\">%s</span>:%s</li>", $calculator->damagePerSecondData() ) ?>
+				</ul>
+			</li>
+			<li class="stat">
+				<span class="label"><span class="toggle inline-block">-</span> Primary Attribute Damage</span>:
+				<?= $calculator->primaryAttributeDamage() . ' ' . str_replace( "_Item", '', $calculator->primaryAttribute() ) ?>
+				<ul class="expandable">
+					<?= output( "<li><span class=\"label\">%s</span>:%s</li>", $calculator->primaryAttributeDamageData() ) ?>
+				</ul>
+			</li>
+			<li class="stat">
+				<span class="label"><span class="toggle inline-block">+</span> D3 Calculated Stats</span>:
+				<ul class="expandable">
+					<?= output( "<li><span class=\"label\">%s</span>:%s</li>", $heroModel->stats ) ?>
 				</ul>
 			</li>
 		</ul>
@@ -103,6 +113,8 @@
 		</script>
 		<?php $time = microtime( TRUE ) - $_SERVER[ 'REQUEST_TIME_FLOAT' ]; ?>
 		<!-- Page output in <?= $time ?> seconds -->
+		<?php else: ?>
+			<p>This hero does NOT have any items equipped.</p>
 		<?php endif; ?>
 	</body>
 </html><?php } ?>

@@ -1,4 +1,27 @@
 body {
 	font-family: arial;
-	font-size: 12px;
+	font-size: 12px
+}
+
+.inline-block {
+	display: inline-block
+}
+
+/* toggle list */
+.list .label {
+	cursor: pointer
+}
+.list .toggle {
+	border: 1px solid rgb(130, 130, 255);
+	line-height: 0.9em;
+	height: 0.9em;
+	text-align: center;
+	width: 0.9em
+}
+
+.error {
+	background-color: rgb(255, 0, 0);
+	color: rgb(225, 255, 255);
+	padding: 0.3em;
+	z-index: 20
 }

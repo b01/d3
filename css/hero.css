@@ -77,21 +77,6 @@
 	border-color: red
 }
 
-.stat .label {
-	cursor: pointer
-}
-.stat .toggle {
-	border: 1px solid rgb(130, 130, 255);
-	line-height: 0.9em;
-	height: 0.9em;
-	text-align: center;
-	width: 0.9em
-}
-
-.item .hash {
-	display: none
-}
-
 #item-lookup {
 	border: none;
 	height: 18em;

@@ -8,30 +8,25 @@
 					"dataType": "html",
 					"success": function ( p_data )
 					{
-						var $data = $( p_data );
-					
+						var $data = $( $.parseHTML(p_data) );
+						// Style a few things.
 						$( "body" ).append( $data );
 						$data.css({
 							"position": "absolute",
 							"left": p_event.pageX + "px",
 							"top": p_event.pageY + "px",
-						}).click(function ()
-						{
-							$( this ).fadeOut();
+							"opacity": 1
 						});
+						// Add close button functionality.
+						$data.find( ".close" ).on( "click.d3", {"$toolTip": $data}, function (p_event)
+						{
+							p_event.data.$toolTip.fadeOut();
+						});
+						// Add list toggle functionality.
+						$data.find( ".list" ).toggleList();
 					},
 					"type": "post",
 					"url": $this.attr( "href" )
-				});
-			}
-			
-			function clickStatToggle( p_event )
-			{
-				var $toggle = p_event.data.$toggle,
-					updateSign = $toggle.text() === '-' ? '+' : '-';
-				p_event.data.$expandable.slideToggle( "fast", function ()
-				{
-					$toggle.text( updateSign );
 				});
 			}
 			
@@ -63,7 +58,9 @@
 					"dataType": "html",
 					"success": function ( p_data )
 					{
-						$( ".list.stats" ).replaceWith( p_data );
+						var $newStats = $( $.parseHTML(p_data) );
+						$newStats.statsToggle();
+						$( ".list.stats" ).replaceWith( $newStats );
 					},
 					"type": "post",
 					"url": "/get-calculations.php"
@@ -78,31 +75,7 @@
 					$( this ).on( "click", clickItemLink );
 				});
 				// Toggle stat details.
-				$( ".stat" ).each(function ()
-				{
-					var $this = $( this ),
-						$expandable = $this.find( ".expandable" ),
-						$label = $this.children( ".label" ),
-						$toggle;
-					if ( $expandable.length > 0 && $label.length > 0 )
-					{
-						$toggle = $label.children( ".toggle" );
-						if ( $toggle.length > 0 )
-						{
-							// $label.toggle(function ()
-							// {
-								// $toggle.text( '+' );
-								// $expandable.slideUp( "fast" );
-							// }, function ()
-							// {
-								// $toggle.text( '-' );
-								// $expandable.slideDown( "fast" );
-							// });
-							
-							$label.on( "click.d3", {"$expandable": $expandable, "$toggle": $toggle}, clickStatToggle );
-						}
-					}
-				});
+				$( ".list" ).toggleList();
 			
 				$( ".item-slot" ).droppable({
 					activeClass: "ui-state-hover",
@@ -138,22 +111,30 @@
 				"statusCode": {
 					200: function ( p_data )
 					{
-						$form = $( p_data ).ajaxForm({
-							"success": function ( p_responseText, statusText )
-							{
-								var $itemToolTip = $( p_responseText );
-								if ( $itemToolTip.find( ".icon" ).length > 0 )
+						var $form;
+						// Something different in jQuery 1.9 prevents building a jQuery object by passing in p_data.
+						// To get around that, we add it to the DOM first, then query it.
+						$( "#item-lookup" ).append( p_data );
+						$form = $( "#battlenet-get-item" );
+						if ( $form.length > 0 )
+						{
+							$form.ajaxForm({
+								"success": function ( p_responseText, statusText )
 								{
-									$( "#item-lookup-result" ).html( $itemToolTip );
-									$itemToolTip.find( ".icon" ).draggable({ "revert": "invalid", "helper": "clone" });
+									var $itemToolTip = [];
+									var $itemToolTip = $( $.parseHTML(p_responseText) );
+									if ( $itemToolTip.find( ".icon" ).length > 0 )
+									{
+										$( "#item-lookup-result" ).html( $itemToolTip );
+										$itemToolTip.find( ".icon" ).draggable({ "revert": "invalid", "helper": "clone" });
+									}
+									else
+									{
+										$( "#item-lookup-result" ).text( "No item found" );
+									}
 								}
-								else
-								{
-									$( "#item-lookup-result" ).text( "No item found" );
-								}
-							}
-						});
-						$( "#item-lookup" ).append( $form );
+							});
+						}
 					}
 				}
 			});

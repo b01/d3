@@ -7,62 +7,77 @@
 */
 class Calculator
 {
+	const APS_DUAL_WIELD_BONUS = 0.15;
 	protected
 		$attackSpeed,
 		$attackSpeedData,
-		$bodyMap,
+		$attributeMap,
+		$attributeSlots,
+		$attributeTotals,
 		$criticalHitChance,
 		$criticalHitChanceData,
 		$criticalHitDamage,
 		$criticalHitDamageData,
 		$dps,
 		$dpsData,
-		$duelWield,
+		$dualWield,
 		$gems,
 		$heroClass,
+		$heroLevel,
+		$increasedAttackBonus,
 		$items,
 		$primaryAttribute,
 		$primaryAttributeDamage,
-		$weaponDamage;
+		$baseWeaponDamage,
+		$weaponAttacksPerSecond;
 
 	/**
 	* Constructor
 	*/
-	public function __construct( array $p_items, $heroClass )
+	public function __construct( array $p_items, $p_heroClass, $p_heroLevel = 60 )
 	{
 		$this->attackSpeed = 0.0;
 		$this->attackSpeedData = [];
-		$this->bodyMap = [
-			"bracers",
-			"feet",
-			"hands",
-			"head",
-			"leftFinger",
-			"legs",
-			"mainHand",
-			"neck",
-			"offHand",
-			"rightFinger",
-			"shoulders",
-			"special",
-			"torso",
-			"waist"
+		$this->attributeMap = [
+			"Attacks_Per_Second_Item_Percent" => "attackSpeed",
+			"Crit_Percent_Bonus_Capped" => "criticalHitChance",
+			"Crit_Damage_Percent" => "criticalHitDamage"
 		];
-		$this->bodyMap = [];
+		$this->attributeSlots = [];
+		$this->attributeTotals = [];
+		// $this->bodyMap = [
+			// "bracers",
+			// "feet",
+			// "hands",
+			// "head",
+			// "leftFinger",
+			// "legs",
+			// "mainHand",
+			// "neck",
+			// "offHand",
+			// "rightFinger",
+			// "shoulders",
+			// "special",
+			// "torso",
+			// "waist"
+		// ];
 		$this->criticalDamage = 0.0;
-		$this->criticalHitChance = 0.05;
+		$this->criticalHitChance = 0.08;
 		$this->criticalHitChanceData = [];
 		$this->criticalHitDamage = 0.50;
 		$this->criticalHitDamageData = [];
 		$this->dps = 0.0;
 		$this->dpsData = [];
-		$this->duelWield = FALSE;
+		$this->dualWield = FALSE;
 		$this->gems = [];
-		$this->heroClass = $heroClass;
+		$this->heroClass = $p_heroClass;
 		$this->items = $p_items;
+		$this->increasedAttackBonus = 0.0;
 		$this->primaryAttribute = NULL;
 		$this->primaryAttributeDamage = 0.0;
-		$this->weaponDamage = 0.00;
+		$this->baseWeaponDamage = 0.00;
+		$this->weaponAttacksPerSecond = 0.0;
+		$this->heroLevel = $p_heroLevel;
 		
 		$this->init();
 	}
@@ -75,39 +90,24 @@ class Calculator
 		unset(
 			$this->attackSpeed,
 			$this->attackSpeedData,
-			$this->bodyMap,
+			$this->attributeSlots,
+			$this->attributeTotals,
 			$this->criticalHitChance,
 			$this->criticalHitChanceData,
 			$this->criticalHitDamage,
 			$this->criticalHitDamageData,
 			$this->dps,
 			$this->dpsData,
-			$this->duelWield,
+			$this->dualWield,
 			$this->gems,
 			$this->heroClass,
 			$this->items,
+			$this->increasedAttackBonus,
 			$this->primaryAttribute,
 			$this->primaryAttributeDamage,
-			$this->weaponDamage
+			$this->baseWeaponDamage,
+			$this->weaponAttacksPerSecond
 		);
-	}
-	
-	/**
-	* Total attack speed for all items equipped.
-	* @return float
-	*/
-	public function attackSpeed()
-	{
-		return $this->attackSpeed;
-	}
-	
-	/**
-	* Attack speed for each items equipped.
-	* @return array
-	*/
-	public function attackSpeedData()
-	{
-		return $this->attackSpeedData;
 	}
 	
 	/**
@@ -115,40 +115,61 @@ class Calculator
 	*/
 	protected function init()
 	{
-		$primaryAttribute = $this->determinePrimaryAttribute();
 		// Transfer the items from an array to properties.
 		if ( isArray($this->items) )
 		{
 			foreach ( $this->items as $placement => $item )
 			{
-				// Build a map of positions available to the hero.
-				$this->bodyMap[] = $placement;
 				$this->$placement = $item;
-				// Collect the gems for later calculations.
-				$this->gems[ $placement ] = $item->gems;
 				// Compute some things.
-				$this->tallyAttribute( $placement, $item, "Attacks_Per_Second_Item_Percent", "attackSpeed" );
-				$this->tallyAttribute( $placement, $item, "Crit_Percent_Bonus_Capped", "criticalHitChance" );
-				$this->tallyAttribute( $placement, $item, "Crit_Damage_Percent", "criticalHitDamage" );
-				$this->tallyAttribute( $placement, $item, $primaryAttribute, "primaryAttributeDamage" );
-			}
-		}
-		// Transfer the items from an array to properties.
-		if ( isArray($this->gems) )
-		{
-			foreach ( $this->gems as $placement => $gem )
-			{
-				if ( isArray($gem) )
+				$this->tallyAttributes( $item->attributesRaw, $placement );
+				// Tally gems.
+				if ( isArray($item->gems) )
 				{
-					// Compute some things.
-					$this->tallyGemAttribute( $placement, $gem, "Attacks_Per_Second_Item_Percent", "attackSpeed" );
-					$this->tallyGemAttribute( $placement, $gem, "Crit_Percent_Bonus_Capped", "criticalHitChance" );
-					$this->tallyGemAttribute( $placement, $gem, "Crit_Damage_Percent", "criticalHitDamage" );
+					for ( $i = 0; $i < count($item->gems); $i++ )
+					{
+						$gem = $item->gems[ $i ];
+						if ( isArray($gem) )
+						{
+							$this->tallyAttributes( $gem['attributesRaw'], "{$placement} gem slot {$i}" );
+						}
+					}
 				}
 			}
 		}
 		
-		$this->weaponDamage();
+		$this->determinePrimaryAttribute();
+
+		$this->dualWield = ( isset($this->offHand) && isWeapon($this->offHand) );
+
+		// Set some properties for easy access.
+		if ( array_key_exists("Attacks_Per_Second_Item_Percent", $this->attributeTotals) )
+		{
+			$this->attackSpeed = $this->attributeTotals[ 'Attacks_Per_Second_Item_Percent' ];
+			$this->attackSpeedData = $this->attributeSlots[ 'Attacks_Per_Second_Item_Percent' ];
+		}
+		
+		if ( array_key_exists("Crit_Percent_Bonus_Capped", $this->attributeTotals) )
+		{
+			$this->criticalHitChance += $this->attributeTotals[ 'Crit_Percent_Bonus_Capped' ];
+			$this->criticalHitChanceData = $this->attributeSlots[ 'Crit_Percent_Bonus_Capped' ];
+			$this->criticalHitChanceData[ 'base' ] = 0.05;
+		}
+		if ( array_key_exists("Crit_Damage_Percent", $this->attributeTotals) )
+		{
+			$this->criticalHitDamage += $this->attributeTotals[ 'Crit_Damage_Percent' ];
+			$this->criticalHitDamageData = $this->attributeSlots[ 'Crit_Damage_Percent' ];
+			$this->criticalHitDamageData[ 'base' ] = 0.50;
+		}
+		if ( array_key_exists($this->primaryAttribute, $this->attributeTotals) )
+		{
+			$levelBonus = $this->heroLevel * 3;
+			$this->primaryAttributeDamage = $this->attributeTotals[ $this->primaryAttribute ];
+			$this->primaryAttributeDamageData = $this->attributeSlots[ $this->primaryAttribute ];
+			$this->primaryAttributeDamageData[ 'levelBonus' ] = $levelBonus;
+		}
+		
+		$this->calculateBaseWeaponDamage();
 		$this->dps();
 	}
 	
@@ -180,17 +201,7 @@ class Calculator
 					E_USER_NOTICE
 				);
 		}
-		return $this->primaryAttribute;
-	}
-	
-	/**
-	* Detect use of two weapons.
-	* This calculation is take from:http://eu.battle.net/d3/en/forum/topic/4903361857
-	* @return 
-	*/
-	public function duelWields()
-	{
-		return $this->duelWield;
+		return $this;
 	}
 	
 	/**
@@ -200,10 +211,11 @@ class Calculator
 	*/
 	protected function dps()
 	{	
-		if ( $this->weaponDamage > 0.0 )
+		// BASE X SPEED x CRIT x SKILL x CARAC = your total dps
+		if ( $this->baseWeaponDamage > 0.0 )
 		{
-			$this->dpsData[ 'weaponDamage' ] = $this->weaponDamage;
-			$this->dps = $this->weaponDamage;
+			$this->dpsData[ 'baseWeaponDamage' ] = $this->baseWeaponDamage;
+			$this->dps = $this->baseWeaponDamage;
 		}
 		if ( $this->criticalHitChance > 0.0 && $this->criticalHitDamage > 0.0 )
 		{
@@ -212,27 +224,116 @@ class Calculator
 			$this->dpsData[ 'criticalDamage' ] = $criticalDamageMultiplier;
 			$this->dps *= $criticalDamageMultiplier;
 		}
-		if ( $this->attackSpeed > 0.0 )
-		{
-			$attackSpeedMultiplier = 1 + $this->attackSpeed;
-			$this->dpsData[ 'attackSpeed' ] = $attackSpeedMultiplier;
-			$this->dps *= $attackSpeedMultiplier;
-		}
+		
+		$this->calculateAttacksPerSecond();
+		$this->dpsData[ 'attackSpeed' ] = $this->attackSpeed;
+		$this->dps *= $this->attackSpeed;
+		
 		if ( $this->primaryAttributeDamage > 0.0 )
 		{
 			$primaryAttributeDamageMultiplier = 1 + ( $this->primaryAttributeDamage / 100 );
 			$this->dpsData[ 'primaryAttributeDamage' ] = $primaryAttributeDamageMultiplier;
 			$this->dps *= $primaryAttributeDamageMultiplier;
 		}
-		// BASE X SPEED x CRIT x SKILL x CARAC = your total dps
-		return $this->dps;
+		return $this;
+	}
+	
+	/**
+	* Tally raw attributes.
+	* @return float
+	*/
+	protected function tallyAttributes( $p_attributesRaw, $p_slot )
+	{
+		foreach ( $p_attributesRaw as $attribute => $values )
+		{
+			$value = $values[ 'min' ];
+			if ( !array_key_exists($attribute, $this->attributeTotals) )
+			{
+				$this->attributeTotals[ $attribute ] = 0.0;
+				// A break-down of attributes.
+				$this->attributeSlots[ $attribute ] = [];
+			}
+			$this->attributeTotals[ $attribute ] += ( float ) $value;
+			$this->attributeSlots[ $attribute ][ $p_slot ] = $value;
+		}
+		return $this;
+	}
+	
+	/**
+	* Base Weapon Damage
+	* This calculation is take from: http://eu.battle.net/d3/en/forum/topic/4903361857
+	* @return Calculation Chainable.
+	*/
+	protected function calculateBaseWeaponDamage()
+	{
+		// DPS Value of weapon (as shown on tooltip) / weapon attack spead : this is your BASE weapon damage.
+		if ( is_object($this->mainHand) )
+		{
+			$this->baseWeaponDamage = ( float ) $this->mainHand->dps[ 'min' ];
+			$this->baseWeaponDamageData[ 'mainHand' ] = $this->baseWeaponDamage;
+			$this->weaponAttacksPerSecond = ( float ) $this->mainHand->attacksPerSecond[ 'min' ];
+		}
+		
+		if ( $this->dualWield )
+		{
+			$offHandDamage = ( (float) $this->offHand->dps['min'] + (float) $this->offHand->dps['max'] ) / 2;
+		}
+		return $this;
+	}
+	
+	/** CALCULATORS BEGIN **/
+	
+	protected function calculateAttacksPerSecond()
+	{
+		$dualWieldBonus = 0.0;
+		// Remove any weapon IAS, as that are already factored into weapon attacks per second.
+		foreach ( $this->attackSpeedData as $slot => $speed )
+		{
+			if ( $slot !== "offHand" && $slot !== "mainHand" )
+			{
+				$this->increasedAttackBonus += $speed;
+			}
+		}
+		if ( $this->dualWield )
+		{
+			$dualWieldBonus = self::APS_DUAL_WIELD_BONUS;
+		}
+		
+		$this->attackSpeed = $this->weaponAttacksPerSecond * ( 1 + $dualWieldBonus + $this->increasedAttackBonus );
+		$this->timeBetweenAttacks = 1 / $this->attackSpeed;
+		$this->attackSpeedData[ 'increasedAttackBonus' ] = $this->increasedAttackBonus;
+		$this->attackSpeedData[ 'dualWieldBonus' ] = $dualWieldBonus;
+		$this->attackSpeedData[ 'weaponAttacksPerSecond' ] = $this->weaponAttacksPerSecond;
+		return $this;
+	}
+	
+	/** CALCULATORS END **/
+	
+	/** PROPERTIES BEGIN **/
+	
+	/**
+	* Total attack speed for all items equipped.
+	* @return float
+	*/
+	public function attackSpeed()
+	{
+		return $this->attackSpeed;
+	}
+	
+	/**
+	* Attack speed for each items equipped.
+	* @return array
+	*/
+	public function attackSpeedData()
+	{
+		return $this->attackSpeedData;
 	}
 	
 	/**
 	* Critical hit chance percent.
 	* @return float
 	*/
-	public function getCriticalHitChance()
+	public function criticalHitChance()
 	{
 		return $this->criticalHitChance * 100;
 	}
@@ -241,7 +342,7 @@ class Calculator
 	* Critical hit chance data.
 	* @return float
 	*/
-	public function getCriticalHitChanceData()
+	public function criticalHitChanceData()
 	{
 		return $this->criticalHitChanceData;
 	}
@@ -250,7 +351,7 @@ class Calculator
 	* Critical hit damage percent.
 	* @return float
 	*/
-	public function getCriticalHitDamage()
+	public function criticalHitDamage()
 	{
 		return $this->criticalHitDamage * 100;
 	}
@@ -259,7 +360,7 @@ class Calculator
 	* Critical hit damage data.
 	* @return array
 	*/
-	public function getCriticalHitDamageData()
+	public function criticalHitDamageData()
 	{
 		return $this->criticalHitDamageData;
 	}
@@ -268,7 +369,7 @@ class Calculator
 	* Damage per second.
 	* @return float
 	*/
-	public function getDps()
+	public function damagePerSecond()
 	{
 		return $this->dps;
 	}
@@ -277,16 +378,25 @@ class Calculator
 	* Damage per second data.
 	* @return float
 	*/
-	public function getDpsData()
+	public function damagePerSecondData()
 	{
 		return $this->dpsData;
+	}
+	
+	/**
+	* Get the heros' primary attribute.
+	* @return string
+	*/
+	public function primaryAttribute()
+	{
+		return $this->primaryAttribute;
 	}
 	
 	/**
 	* Primary attribute damage percent.
 	* @return float
 	*/
-	public function getPrimaryAttributeDamage()
+	public function primaryAttributeDamage()
 	{
 		return $this->primaryAttributeDamage;
 	}
@@ -295,7 +405,7 @@ class Calculator
 	* Primary attribute damage data.
 	* @return float
 	*/
-	public function getPrimaryAttributeDamageData()
+	public function primaryAttributeDamageData()
 	{
 		return $this->primaryAttributeDamageData;
 	}
@@ -304,109 +414,20 @@ class Calculator
 	* Primary attribute.
 	* @return float
 	*/
-	public function getWeaponDamage()
+	public function baseWeaponDamage()
 	{
-		return $this->weaponDamage;
+		return $this->baseWeaponDamage;
 	}
 	
 	/**
 	* Primary attribute.
 	* @return float
 	*/
-	public function getWeaponDamageData()
+	public function baseWeaponDamageData()
 	{
-		return $this->weaponDamageData;
+		return $this->baseWeaponDamageData;
 	}
 	
-	/**
-	* Primary attribute.
-	* @return float
-	*/
-	public function getPrimaryAttribute()
-	{
-		return $this->primaryAttribute;
-	}
-	
-	/**
-	* Tally speed for an item.
-	* @return float
-	*/
-	protected function tallyAttribute( $p_placement, $p_item, $p_key, $p_property )
-	{
-		if ( array_key_exists($p_key, $p_item->attributesRaw) )
-		{
-			$value = ( float ) $p_item->attributesRaw[ $p_key ][ 'max' ];
-			$this->{$p_property . "Data"}[ $p_placement ] = $value;
-			$this->$p_property += $value;
-		}
-		return $this;
-	}
-	
-	/**
-	* Tally speed for an item.
-	* @return float
-	*/
-	protected function tallyGemAttribute( $p_placement, $p_gem, $p_key, $p_property )
-	{
-		$gem = $p_gem[ 0 ];
-		if ( array_key_exists($p_key, $gem['attributesRaw']) )
-		{
-			$value = ( float ) $gem['attributesRaw'][ $p_key ][ 'max' ];
-			$this->{$p_property . "Data"}[ $p_placement ] = $value;
-			$this->$p_property += $value;
-		}
-		return $this;
-	}
-	
-	/**
-	* Add an item, one at a time.
-	* @return bool
-	*/
-	public function updateEquippedItem( $p_item, $p_placement )
-	{
-		if ( array_key_exists($p_placement, $this->bodyMap) && is_object($p_item) )
-		{
-			$this->$p_placement = $p_item;
-			return TRUE;
-		}
-		// Else, bad items should NOT be getting passed in.
-		$trace = debug_backtrace();
-		trigger_error(
-			'Undefined property: ' . $p_placement .
-			' in ' . $trace[0]['file'] .
-			' on line ' . $trace[0]['line'],
-			E_USER_NOTICE
-		);
-	}
-	
-	/**
-	* Base Weapon Damage
-	* This calculation is take from: http://eu.battle.net/d3/en/forum/topic/4903361857
-	* @return 
-	*/
-	public function weaponDamage()
-	{
-		if ( is_object($this->mainHand) )
-		{
-			if ( isWeapon($this->offHand) )
-			{
-				$this->duelWield = TRUE;
-			}
-			// DPS Value of weapon (as shown on tooltip) / weapon attack spead : this is your BASE weapon damage. 
-			$this->weaponDamage = ( float ) $this->mainHand->dps['max'];
-			$this->weaponDamageData[ 'mainHand' ] = $this->weaponDamage;
-			if ( $this->duelWield )
-			{
-				$offHandDamage = ( (float) $this->offHand->dps['min'] + (float) $this->offHand->dps['max'] ) / 2;
-				// Add in the average damage of your offhand (min + max) / 2.
-				$this->weaponDamage = $offHandDamage;
-				$this->weaponDamageData[ 'offHand' ] = $offHandDamage;
-			}
-			else
-			{
-			}
-		}
-		return $this->weaponDamage;
-	}
+	/** PROPERTIES END **/
 }
 ?>

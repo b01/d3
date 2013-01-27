@@ -15,8 +15,8 @@ namespace d3;
 abstract class BattleNetModel implements \JsonSerializable 
 {
 	protected
-		$_array,
-		$attributeMap,
+		$effectsMap,
+		$forcePropertyType,
 		$json;
 		
 	/**
@@ -24,8 +24,31 @@ abstract class BattleNetModel implements \JsonSerializable
 	*/
 	public function __construct( $p_json )
 	{
-		$this->_array = json_decode( $p_json, TRUE );
 		$this->json = $p_json;
+		$this->forcePropertyType = [
+			"attributes" => "array",
+			"attributesRaw" => "array",
+			"bonusAffixes" => "int",
+			"displayColor" => "string",
+			"flavorText" => "string", // optional
+			"gems" => "array",
+			"id" => "string",
+			"icon" => "string",
+			"itemLevel" => "int",
+			"name" => "string",
+			"requiredLevel" => "int",
+			"salvage" => "array",
+			"set" => "array", // optional
+			"socketEffects" => "array", // optional
+			"tooltipParams" => "string",
+			"type" => "array",
+			"typeName" => "string"
+		];
+		$this->effectsMap = [
+			"" => "armor",
+			"" => "poison"
+		];
+		$this->init();
 	}
 	
 	/**
@@ -48,10 +71,6 @@ abstract class BattleNetModel implements \JsonSerializable
 		{
 			return $this->$p_name;
 		}
-		else if ( array_key_exists($p_name, $this->_array) )
-		{
-			return $this->$p_name = $this->_array[ $p_name ];
-		}
 		
 		$trace = debug_backtrace();
 		trigger_error(
@@ -62,30 +81,6 @@ abstract class BattleNetModel implements \JsonSerializable
 		);
 		
 		return NULL;
-	}
-	
-	/**
-	* Initialize this object.
-	*/
-	protected function __init()
-	{
-		if ( isArray($this->_array) )
-		{
-			foreach ( $this->_array as $name => $value )
-			{
-				if ( array_key_exists($name, $this->attributeMap) )
-				{
-					if ( setType( $value, $this->attributeMap[$name]) )
-					{
-						$this->$name = $value;
-					}
-				}
-			}
-		}
-		else
-		{
-			throw new \Exception( "Tried to initialize ItemModel with invalid JSON." );
-		}
 	}
 	
 	/**
@@ -105,37 +100,50 @@ abstract class BattleNetModel implements \JsonSerializable
 	{
 		return isset( $this->$p_property );
 	}
+	
+	/**
+	* Initialize all the properties for this object.
+	*/
+	protected function init()
+	{
+		$jsonArray = json_decode( $this->json, TRUE );
+		if ( isArray($jsonArray) )
+		{
+			foreach ( $jsonArray as $name => $value )
+			{
+				if ( array_key_exists($name, $this->forcePropertyType) )
+				{
+					if ( setType($value, $this->forcePropertyType[$name]) )
+					{
+						$this->$name = $value;
+					}
+				}
+				else
+				{
+					$this->$name = $value;
+				}
+			}
+		}
+		else
+		{
+			$exception = new \Exception( "Tried to initialize ItemModel with invalid JSON." );
+			logError( $exception, "Tried to initialize ItemModel with invalid JSON.", "An application error has occured. Please try again later" );
+		}
+	}
+
+	/** BEGIN GETTER/SETTER SECTION **/
 
 	/**
 	* Get the item, first check the local DB, otherwise pull from Battle.net.
 	*
 	* @return string JSON item data.
 	*/
-	public function getJson()
+	public function json()
 	{
 		return $this->json;
 	}
-	
-	/**
-	* @param $p_effect Name of an effect (a.k.a attribute).
-	* @return string
-	*/
-	public function getEffect( $p_effect, $p_min, $p_max )
-	{
-		$returnValue = '';
-		if ( array_key_exists($p_effect, $this->effects) )
-		{
-			$mapValue = $this->effects[ $p_effect ];
-			// Convert some decimals to percents.
-			if ( $p_min < 1 ) {
-				$p_min = $p_min * 100;
-				$p_max = $p_max * 100;
-			}
-			$max = ( $p_min === $p_max ) ? '' : '-' . $p_max;
-			$returnValue = sprintf( $mapValue, $p_min, $max );
-		}
-		return $returnValue;
-	}
+
+	/** END GETTER/SETTER SECTION **/
 	
 	/**
 	* Specify how this object is to be used with json_encode.
@@ -146,9 +154,13 @@ abstract class BattleNetModel implements \JsonSerializable
 		$returnValue = [];
 		foreach ( $this as $property => $value )
 		{
-			if ( array_key_exists($property, $this->attributeMap) )
+			if ( array_key_exists($property, $this->forcePropertyType) )
 			{
-				$returnValue[ $property ] = $value;
+				$returnValue[ $property ] = [ gettype($value), $value ];
+			}
+			else
+			{
+				$returnValue[ $property ] = [ gettype($value), $value ];
 			}
 		}
 		return $returnValue;

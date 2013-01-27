@@ -19,14 +19,37 @@ class HeroModel extends BattleNetModel
 	public function __construct( $p_json )
 	{
 		parent::__construct( $p_json );
-		// Top-level properties required of the JSON returned from battle.net.
-		$this->attributeMap = [
-			"class", "string",
-			"items", "array",
-			"name", "string",
-			"stats", "array"
-		];
-		$this->__init();
+	}
+	
+	/**
+	* Based on class.
+	* @return float
+	*/
+	protected function determinePrimaryAttribute()
+	{
+		switch( $this->{"class"} )
+		{
+			case "monk":
+			case "demon hunter":
+				$this->primaryAttribute = "Dexterity_Item";
+				break;
+			case "barbarian":
+				$this->primaryAttribute = "Strength_Item";
+				break;
+			case "wizard":
+			case "shaman":
+				$this->primaryAttribute = "Intelligence_Item";
+				break;
+			default:
+				$trace = debug_backtrace();
+				trigger_error(
+					'Undefined property: ' . $p_placement .
+					' in ' . $trace[0]['file'] .
+					' on line ' . $trace[0]['line'],
+					E_USER_NOTICE
+				);
+		}
+		return $this;
 	}
 	
 	/**
@@ -57,6 +80,16 @@ class HeroModel extends BattleNetModel
 	public function getStats()
 	{
 		return $this->stats;
+	}
+	
+	/**
+	* Detect use of two weapons.
+	* This calculation is take from:http://eu.battle.net/d3/en/forum/topic/4903361857
+	* @return 
+	*/
+	public function duelWields()
+	{
+		return $this->dualWield;
 	}
 }
 ?>

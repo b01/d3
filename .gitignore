@@ -5,3 +5,4 @@ php/settings.json
 IIRF.ini
 logs*
 media*
+aspnet_client

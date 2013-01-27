@@ -33,7 +33,7 @@
 			$min = $p_values['min'];
 			$max = $p_values['max'];
 			$returnValue = $min;
-			$returnValue .= ( $min === $max ) ? '' : '-' . $p_max;
+			$returnValue .= ( $min === $max ) ? '' : " - " . $max;
 		}
 		return $returnValue;
 	}
@@ -48,6 +48,80 @@
 		$returnValue = NULL;
 		$cssClass = empty( $p_class ) ? '' : " class=\"{$p_class}\"";
 		return preg_replace( ['/(\+?\d+\.?\d*%?)/', '/(\(.*\))/'], ["<span{$cssClass}>$1</span>", "<span class=\"d3-color-red\">$1</span>"], $p_attribute );
+	}
+	
+	/**
+	* Convert an array of item hashes to item models.
+	*
+	* @return array
+	*/
+	function getItemModels( $p_items, $p_battleNetDqi, $p_sql )
+	{
+		$itemModels = [];
+
+		foreach ( $p_items as $key => $item )
+		{
+			$hash = $item[ 'tooltipParams' ];
+			$d3Item = new Item( str_replace("item/", '', $hash), "hash", $p_battleNetDqi, $p_sql );
+			$itemModel = new ItemModel( $d3Item->json() );
+			$this->itemModels[ $key ] = $itemModel;
+		}
+
+		$returnValue = ( isArray($itemModels) ) ? $itemModels : NULL;
+
+		return $returnValue;
+	}
+
+	/**
+	* Get slot the you equipe the item, by type id.
+	* @param $p_itemType Item type id
+	* @return string 
+	*/
+	function getItemSlot( $p_itemType )
+	{
+		$returnValue = '';
+		$itemType = strtolower( $p_itemType );
+		switch ( $itemType )
+		{
+			case 'amulet':
+				$returnValue = "neck";
+				break;
+			case 'belt':
+				$returnValue = "waist";
+				break;
+			case 'boots':
+				$returnValue = "foot";
+				break;
+			case 'chest':
+				$returnValue = "torso";
+				break;
+			case 'gloves':
+				$returnValue = "hands";
+				break;
+			case 'helm':
+				$returnValue = "head";
+				break;
+			case 'shield':
+			case 'quiver':
+				$returnValue = "off-hand";
+				break;
+			case 'ring':
+			case "leftFinger":
+			case "rightFinger":
+				$returnValue = "finger";
+				break;
+			case 'shoulders':
+				$returnValue = "shoulders";
+				break;
+			case 'fistweapon':
+			case 'axe':
+				$returnValue = "weapon";
+				break;
+			default:
+				$returnValue = $itemType;
+				break;
+		}
+		return $returnValue;
 	}
 
 	/**
@@ -99,78 +173,6 @@
 	}
 
 	/**
-	* Get item name, by type id.
-	* @param $p_itemType Item type id
-	* @return string 
-	*/
-	function translateSlotName( $p_itemType )
-	{
-		$returnValue = '';
-		switch ( strtolower($p_itemType) )
-		{
-			case "leftfinger":
-			case "rightfinger":
-				$returnValue = " finger";
-				break;
-			default:
-				$returnValue = '';
-				break;
-		}
-		return $returnValue;
-	}
-
-	/**
-	* Get slot the you equipe the item, by type id.
-	* @param $p_itemType Item type id
-	* @return string 
-	*/
-	function getItemSlot( $p_itemType )
-	{
-		$returnValue = '';
-		$itemType = strtolower( $p_itemType );
-		switch ( $itemType )
-		{
-			case 'amulet':
-				$returnValue = "neck";
-				break;
-			case 'belt':
-				$returnValue = "waist";
-				break;
-			case 'boots':
-				$returnValue = "foot";
-				break;
-			case 'chest':
-				$returnValue = "torso";
-				break;
-			case 'gloves':
-				$returnValue = "hands";
-				break;
-			case 'helm':
-				$returnValue = "head";
-				break;
-			case 'shield':
-			case 'quiver':
-				$returnValue = "off-hand";
-				break;
-			case 'ring':
-			case "leftFinger":
-			case "rightFinger":
-				$returnValue = "finger";
-				break;
-			case 'shoulders':
-				$returnValue = "shoulders";
-				break;
-			case 'weapon':
-				$returnValue = "1-hand";
-				break;
-			default:
-				$returnValue = $itemType;
-				break;
-		}
-		return $returnValue;
-	}
-
-	/**
 	* Check if a variable is an array of length greater than 0.
 	* @return bool TRUE is yes, false otherwise.
 	*/
@@ -193,17 +195,8 @@
 	*/
 	function isWeapon( \d3\ItemModel $p_item )
 	{
-		$returnValue = FALSE;
-		$weaponTypes = [
-			"FistWeapon",
-			"sword"
-		];
-		$itemType = $p_item->type[ 'id' ];
-		if ( array_key_exists($itemType, $weaponTypes) )
-		{
-			$returnValue = TRUE;
-		}
-		return $returnValue;
+		$itemType = strtolower( $p_item->type['id'] );
+		return ( in_array($itemType, \d3\ItemModel::$oneHandWeaponTypes) );
 	}
 
 	/**
@@ -213,8 +206,9 @@
 	function logError( Exception $p_error, $p_devMessage, $p_userMessage )
 	{
 		$trace = debug_backtrace();
-		echo $p_error->getMessage();
-		echo sprintf( $p_devMessage, $trace[0]['file'], $trace[0]['line'] );
+		$loggableErrorMessage = $p_error->getMessage();
+		$loggableErrorMessage .= "\n". sprintf( $p_devMessage, $trace[0]['file'], $trace[0]['line'] );
+		error_log( $loggableErrorMessage );
 		showUserFriendlyError( $p_userMessage );
 	}
 
@@ -271,7 +265,8 @@
 
 	/**
 	* Generate an array of random numbers within a specified range.
-	* @credit Taken from a Stack Overflow answeer: http://stackoverflow.com/questions/5612656/generating-unique-random-numbers-within-a-range-php
+	* @credit Taken from a Stack Overflow answeer:
+	* 	http://stackoverflow.com/questions/5612656/generating-unique-random-numbers-within-a-range-php
 	*/
 	function saveFile( $p_fileName, $p_content )
 	{
@@ -286,7 +281,8 @@
 
 	/**
 	* Generate an array of random numbers within a specified range.
-	* @credit Taken from a Stack Overflow answeer: http://stackoverflow.com/questions/5612656/generating-unique-random-numbers-within-a-range-php
+	* @credit Taken from a Stack Overflow answeer:
+	* 	http://stackoverflow.com/questions/5612656/generating-unique-random-numbers-within-a-range-php
 	*/
 	function showUserFriendlyError( $p_message )
 	{
@@ -300,17 +296,17 @@
 	* @param $p_duration int Amount of time to check against.
 	* @return bool
 	*/
-	function sessionTimeExpired( $p_key, $p_duration, $p_setExpiredToNow = FALSE )
+	function sessionTimeExpired( $p_key, $p_duration, $p_setToExpireNow = FALSE )
 	{
 		$timeExpired = TRUE;
-		if ( array_key_exists( $p_key, $_SESSION) )
+		if ( array_key_exists( $p_key, $_SESSION) && !$p_setToExpireNow )
 		{
 			$timeElapsed = timeElapsed( $_SESSION[$p_key] );
 			$timeExpired = $timeElapsed > $p_duration;
 			echo "<div class=\"time-elapsed\">timeElapsed = {$timeElapsed}</div>";
 		}
 		// if the session key has not been set, or it expired, then (re)set it to now.
-		if ( $timeExpired && $p_setExpiredToNow )
+		if ( $timeExpired )
 		{
 			$_SESSION[ $p_key ] = time();
 		}
@@ -334,8 +330,34 @@
 	}
 
 	/**
+	* Get item name, by type id.
+	* @param $p_itemType Item type id
+	* @return string 
+	*/
+	function translateSlotName( $p_itemType )
+	{
+		$returnValue = '';
+		switch ( strtolower($p_itemType) )
+		{
+			case "leftfinger":
+			case "rightfinger":
+				$returnValue = " finger";
+				break;
+			case "mainhand":
+			case "offhand":
+				$returnValue = " weapon";
+				break;
+			default:
+				$returnValue = '';
+				break;
+		}
+		return $returnValue;
+	}
+
+	/**
 	* Generate an array of random numbers within a specified range.
-	* @credit Taken from a Stack Overflow answeer: http://stackoverflow.com/questions/5612656/generating-unique-random-numbers-within-a-range-php
+	* @credit Taken from a Stack Overflow answeer:
+	* 	http://stackoverflow.com/questions/5612656/generating-unique-random-numbers-within-a-range-php
 	*/
 	function UniqueRandomNumbersWithinRange( $p_min, $p_max, $p_quantity )
 	{
