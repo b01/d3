@@ -22,8 +22,6 @@ class Calculator
 		$dpsData,
 		$dualWield,
 		$gems,
-		$heroClass,
-		$heroLevel,
 		$increasedAttackBonus,
 		$items,
 		$primaryAttribute,
@@ -34,7 +32,7 @@ class Calculator
 	/**
 	* Constructor
 	*/
-	public function __construct( array $p_items, $p_heroClass, $p_heroLevel = 60 )
+	public function __construct( array $p_items, $p_hero )
 	{
 		$this->attackSpeed = 0.0;
 		$this->attackSpeedData = [];
@@ -70,14 +68,13 @@ class Calculator
 		$this->dpsData = [];
 		$this->dualWield = FALSE;
 		$this->gems = [];
-		$this->heroClass = $p_heroClass;
+		$this->hero = $p_hero;
 		$this->items = $p_items;
 		$this->increasedAttackBonus = 0.0;
 		$this->primaryAttribute = NULL;
 		$this->primaryAttributeDamage = 0.0;
 		$this->baseWeaponDamage = 0.00;
 		$this->weaponAttacksPerSecond = 0.0;
-		$this->heroLevel = $p_heroLevel;
 		
 		$this->init();
 	}
@@ -100,7 +97,6 @@ class Calculator
 			$this->dpsData,
 			$this->dualWield,
 			$this->gems,
-			$this->heroClass,
 			$this->items,
 			$this->increasedAttackBonus,
 			$this->primaryAttribute,
@@ -138,7 +134,7 @@ class Calculator
 			}
 		}
 		
-		$this->determinePrimaryAttribute();
+		$this->primaryAttribute = $this->hero->primaryAttribute();
 
 		$this->dualWield = ( isset($this->offHand) && isWeapon($this->offHand) );
 
@@ -163,45 +159,19 @@ class Calculator
 		}
 		if ( array_key_exists($this->primaryAttribute, $this->attributeTotals) )
 		{
-			$levelBonus = $this->heroLevel * 3;
+			$attributeFound = array_key_exists( $this->primaryAttribute, $this->hero->noItemsStats() );
+			if ( $attributeFound )
+			{
+				$attributeValue = $this->hero->noItemsStats()[ $this->primaryAttribute ][ 'value' ];
+				$this->attributeTotals[ $this->primaryAttribute ] += $attributeValue;
+			}
 			$this->primaryAttributeDamage = $this->attributeTotals[ $this->primaryAttribute ];
 			$this->primaryAttributeDamageData = $this->attributeSlots[ $this->primaryAttribute ];
-			$this->primaryAttributeDamageData[ 'levelBonus' ] = $levelBonus;
+			$this->primaryAttributeDamageData[ 'levelBonus' ] = $attributeValue;
 		}
 		
 		$this->calculateBaseWeaponDamage();
 		$this->dps();
-	}
-	
-	/**
-	* Based on class.
-	* @return float
-	*/
-	protected function determinePrimaryAttribute()
-	{
-		switch( $this->heroClass )
-		{
-			case "monk":
-			case "demon hunter":
-				$this->primaryAttribute = "Dexterity_Item";
-				break;
-			case "barbarian":
-				$this->primaryAttribute = "Strength_Item";
-				break;
-			case "wizard":
-			case "shaman":
-				$this->primaryAttribute = "Intelligence_Item";
-				break;
-			default:
-				$trace = debug_backtrace();
-				trigger_error(
-					'Undefined property: ' . $p_placement .
-					' in ' . $trace[0]['file'] .
-					' on line ' . $trace[0]['line'],
-					E_USER_NOTICE
-				);
-		}
-		return $this;
 	}
 	
 	/**

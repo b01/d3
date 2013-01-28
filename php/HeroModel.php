@@ -13,14 +13,58 @@ namespace d3;
 */
 class HeroModel extends BattleNetModel
 {
+	protected
+		$armor,
+		$dexterity,
+		$intelligence,
+		$noItemsStats,
+		$strength,
+		$vitality;
 	/**
 	* Constructor
 	*/
 	public function __construct( $p_json )
 	{
 		parent::__construct( $p_json );
+		$this->armor = 7;
+		$this->criticalHitChance = 0.05;
+		$this->criticalHitDamage = 0.50;
+		$this->dexterity = 7;
+		$this->dodgeChance = 0.01;
+		$this->intelligence = 7;
+		$this->strength = 7;
+		$this->vitality = 7;
+		$this->coldResist = 1;
+		$this->fireResist = 1;
+		$this->lightingResist = 1;
+		$this->poisonResist = 1;
+		$this->physicalResist = 1;
+		$this->noItemsStats = [
+			"Dexterity_Item" => [
+				"value" => 7,
+				"muliplier" => 1
+			],
+			"Intelligence_Item" => [
+				"value" => 7,
+				"muliplier" => 1
+			],
+			"Strength_Item" => [
+				"value" => 7,
+				"muliplier" => 1
+			]
+		];
+		// Increase to 8% above level 59
+		if ($this->level > 59 )
+		{
+			$this->criticalHitChance = 0.08;
+		}
+
+		$this->determinePrimaryAttribute();
+		$this->noItemsStats[ $this->primaryAttribute ][ 'muliplier' ] = 3;
+		$this->noItemsStats[ $this->primaryAttribute ][ 'primary' ] = TRUE;
+		$this->levelUpBonuses();
 	}
-	
+
 	/**
 	* Based on class.
 	* @return float
@@ -51,7 +95,30 @@ class HeroModel extends BattleNetModel
 		}
 		return $this;
 	}
-	
+
+	/**
+	* Add in addition attributes from level bonus.
+	*/
+	protected function levelUpBonuses()
+	{
+		$dexMultiplier = ( $this->primaryAttribute === "Dexterity_Item" ) ? 3 : 1;
+		$intMultiplier = ( $this->primaryAttribute === "Intelligence_Item" ) ? 3 : 1;
+		$strMultiplier = ( $this->primaryAttribute === "Strength_Item" ) ? 3 : 1;
+		$this->dexterity += ( $this->level + $this->paragonLevel ) * $dexMultiplier;
+		$this->intelligence += ( $this->level * $intMultiplier );
+		$this->strength += ( $this->level * $strMultiplier );
+
+		foreach( $this->noItemsStats as $attribute => &$values )
+		{
+			$multiplier = $values[ 'muliplier' ];
+			$values[ 'value' ] += ( $this->level + $this->paragonLevel ) * $multiplier;
+		}
+
+		return $this;
+	}
+
+	/** BEGIN	GETTER/SETTER **/
+
 	/**
 	* Character class
 	*
@@ -61,7 +128,7 @@ class HeroModel extends BattleNetModel
 	{
 		return $this->characterClass;
 	}
-	
+
 	/**
 	* Get the item, first check the local DB, otherwise pull from Battle.net.
 	*
@@ -71,7 +138,7 @@ class HeroModel extends BattleNetModel
 	{
 		return $this->items;
 	}
-	
+
 	/**
 	* Get character stats.
 	*
@@ -81,15 +148,44 @@ class HeroModel extends BattleNetModel
 	{
 		return $this->stats;
 	}
-	
+
+	/**
+	* Get base dexterity.
+	* @return int
+	*/
+	public function dexterity()
+	{
+		return $this->dexterity;
+	}
+
 	/**
 	* Detect use of two weapons.
 	* This calculation is take from:http://eu.battle.net/d3/en/forum/topic/4903361857
-	* @return 
+	* @return
 	*/
 	public function duelWields()
 	{
 		return $this->dualWield;
 	}
+
+	/**
+	*  Get stats when no items are equipped attribute.
+	* @return string
+	*/
+	public function noItemsStats()
+	{
+		return $this->noItemsStats;
+	}
+
+	/**
+	*  Get primary attribute.
+	* @return string
+	*/
+	public function primaryAttribute()
+	{
+		return $this->primaryAttribute;
+	}
+
+	/** END	GETTER/SETTER **/
 }
 ?>

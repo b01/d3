@@ -1,4 +1,9 @@
-List of changes as of 01/26/2013 08:57 PM
+List of changes as of 01/28/2013 9: 23 AM
+-------------------------------
+	- Fixed issue with calculating base attributes, thanks to "WMFX" and "Welyn" from the D3 Community API forum.
+	- Changed the Calculator class to take an HeroModel object on construction.
+
+List of changes as of 01/27/2013 08:57 PM
 -------------------------------
 	- Fixed some styling to item.
 	- Added close button and toggle list to tool-top.
@@ -231,7 +236,7 @@ List of changes as of 11/26/2012 08:25 AM
 	- Refactored get-item and Item class.
 	- Updated item.html to pass item name, hash, and id as seperate inputs.
 	- Mode official D3 CSS to tooltips.css, and moved new item CSS into item.css
-	
+
 List of changes as of 11/23/2012 07:29 AM
 -------------------------------
 	- Added site and hero CSS
@@ -242,7 +247,7 @@ List of changes as of 11/23/2012 07:29 AM
 
 List of changes as of 11/17/2012 08:32 AM
 -------------------------------
-	- Worked on item tool-tip	
+	- Worked on item tool-tip
 
 List of changes as of 11/12/2012 09:24 PM
 -------------------------------
@@ -288,7 +293,7 @@ List of changes as of 10/29/2012 12:31 PM
 	- Added insert statement to Sql class for items pull from battleNet web API.
 	- Updated get-item form to take a battle net ID as well.
 	- Fixed bug in BattleNetDqi class.
-	
+
 List of changes as of 10/29/2012 07:26 PM
 -------------------------------
 	- Aded form to submit an item hash.
@@ -324,7 +329,7 @@ List of changes as of 10/28/2012 08:53 AM
 -------------------------------
 	- Added database table to store profile JSON pulled from Battle.net Web API service.
 	- Added Sql class to make database PDO calls easier, copied from a previous project and modified to suit this one.
-		- added method to save profiles locally, and call them up when needed. 
+		- added method to save profiles locally, and call them up when needed.
 
 List of changes as of 10/28/2012 08:53 AM
 -------------------------------

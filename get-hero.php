@@ -55,7 +55,7 @@
 		<?php endif; ?>
 		<?php if ( isArray($heroItems) ): ?>
 		<ul class="list stats inline-block">
-			<?php  $calculator = new Calculator( $heroItems, $hero->getCharacterClass() ); ?>
+			<?php  $calculator = new Calculator( $heroItems, $heroModel ); ?>
 			<li class="stat">
 				<span class="label"><span class="toggle inline-block">-</span> Attack Speed</span>: <?= $calculator->attackSpeed(); ?>
 				<ul class="expandable">
