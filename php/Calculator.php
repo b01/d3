@@ -75,10 +75,10 @@ class Calculator
 		$this->primaryAttributeDamage = 0.0;
 		$this->baseWeaponDamage = 0.00;
 		$this->weaponAttacksPerSecond = 0.0;
-		
+
 		$this->init();
 	}
-	
+
 	/**
 	* Descructor
 	*/
@@ -105,7 +105,7 @@ class Calculator
 			$this->weaponAttacksPerSecond
 		);
 	}
-	
+
 	/**
 	* Initialize this object.
 	*/
@@ -133,7 +133,7 @@ class Calculator
 				}
 			}
 		}
-		
+
 		$this->primaryAttribute = $this->hero->primaryAttribute();
 
 		$this->dualWield = ( isset($this->offHand) && isWeapon($this->offHand) );
@@ -144,7 +144,7 @@ class Calculator
 			$this->attackSpeed = $this->attributeTotals[ 'Attacks_Per_Second_Item_Percent' ];
 			$this->attackSpeedData = $this->attributeSlots[ 'Attacks_Per_Second_Item_Percent' ];
 		}
-		
+
 		if ( array_key_exists("Crit_Percent_Bonus_Capped", $this->attributeTotals) )
 		{
 			$this->criticalHitChance += $this->attributeTotals[ 'Crit_Percent_Bonus_Capped' ];
@@ -169,45 +169,69 @@ class Calculator
 			$this->primaryAttributeDamageData = $this->attributeSlots[ $this->primaryAttribute ];
 			$this->primaryAttributeDamageData[ 'levelBonus' ] = $attributeValue;
 		}
-		
+
 		$this->calculateBaseWeaponDamage();
 		$this->dps();
 	}
-	
+
 	/**
 	* Dampage Per Second
 	* This calculation is take from:http://eu.battle.net/d3/en/forum/topic/4903361857
-	* @return 
+	* 	dual wield dps = 1.15 * (main-hand damage + off-hand damage) /
+	*		( (1 / main-hand attacks per second) + (1 / off-hand attacks per second))
+	* @return
 	*/
 	protected function dps()
-	{	
+	{
 		// BASE X SPEED x CRIT x SKILL x CARAC = your total dps
 		if ( $this->baseWeaponDamage > 0.0 )
 		{
 			$this->dpsData[ 'baseWeaponDamage' ] = $this->baseWeaponDamage;
 			$this->dps = $this->baseWeaponDamage;
 		}
-		if ( $this->criticalHitChance > 0.0 && $this->criticalHitDamage > 0.0 )
-		{
-			// Calculate Critial damage
-			$criticalDamageMultiplier = 1 + ( $this->criticalHitChance * $this->criticalHitDamage );
-			$this->dpsData[ 'criticalDamage' ] = $criticalDamageMultiplier;
-			$this->dps *= $criticalDamageMultiplier;
-		}
-		
+
+		// if ( $this->criticalHitChance > 0.0 && $this->criticalHitDamage > 0.0 )
+		// {
+			// // Calculate Critial damage
+			// $criticalDamageMultiplier = 1 + ( $this->criticalHitChance * $this->criticalHitDamage );
+			// $this->dpsData[ 'criticalDamage' ] = $criticalDamageMultiplier;
+			// $this->dps *= $criticalDamageMultiplier;
+		// }
+
 		$this->calculateAttacksPerSecond();
 		$this->dpsData[ 'attackSpeed' ] = $this->attackSpeed;
 		$this->dps *= $this->attackSpeed;
-		
+
 		if ( $this->primaryAttributeDamage > 0.0 )
 		{
 			$primaryAttributeDamageMultiplier = 1 + ( $this->primaryAttributeDamage / 100 );
 			$this->dpsData[ 'primaryAttributeDamage' ] = $primaryAttributeDamageMultiplier;
 			$this->dps *= $primaryAttributeDamageMultiplier;
 		}
+
+		$base_weapon_damage = $this->baseWeaponDamage;
+		$primary_stat = $this->primaryAttributeDamage;
+		$skill_damage = 0;
+		$attacks_per_second = $this->attackSpeed;
+
+		$weapon_damage = $base_weapon_damage * $skill_damage
+			* ( 1 + $primary_stat / 100 )
+			* ( 1 + $first_damage_bonus )
+			* ( 1 + $second_other_damage_bonus_etc );
+
+		$damage_per_second = $weapon_damage * $attacks_per_second;
+
+		$first_damage_bonus = 0;
+		$second_other_damage_bonus_etc = 0;
+		$monster_vulnerability_bonuses = 0;
+		$total_damage_per_hit = $base_weapon_damage * $skill_damage
+			* ( 1 + $primary_stat / 100 )
+			* ( 1 + $first_damage_bonus )
+			* ( 1 + $second_other_damage_bonus_etc )
+			* ( 1 + $monster_vulnerability_bonuses );
 		return $this;
 	}
-	
+
 	/**
 	* Tally raw attributes.
 	* @return float
@@ -228,7 +252,7 @@ class Calculator
 		}
 		return $this;
 	}
-	
+
 	/**
 	* Base Weapon Damage
 	* This calculation is take from: http://eu.battle.net/d3/en/forum/topic/4903361857
@@ -243,16 +267,24 @@ class Calculator
 			$this->baseWeaponDamageData[ 'mainHand' ] = $this->baseWeaponDamage;
 			$this->weaponAttacksPerSecond = ( float ) $this->mainHand->attacksPerSecond[ 'min' ];
 		}
-		
+
 		if ( $this->dualWield )
 		{
 			$offHandDamage = ( (float) $this->offHand->dps['min'] + (float) $this->offHand->dps['max'] ) / 2;
+			echo "<div>{$this->baseWeaponDamage}</div>";
+			echo "<div>{$this->mainHand->dps['min']}</div>";
+			echo "<div>{$this->offHand->dps['min']}</div>";
+			echo "<div>{$this->mainHand->attacksPerSecond['min']}</div>";
+			echo "<div>{$this->offHand->attacksPerSecond['min']}</div>";
+			$dual_wield_dps = 1.15 * ( (float) $this->mainHand->dps['min'] + (float) $this->offHand->dps['min'] ) / ( (1 / (float) $this->mainHand->attacksPerSecond['min']) + (1 / (float) $this->mainHand->attacksPerSecond['min']) );
+			echo "<div>{$dual_wield_dps}</div>";
+			$this->baseWeaponDamage = $dual_wield_dps;
 		}
 		return $this;
 	}
-	
+
 	/** CALCULATORS BEGIN **/
-	
+
 	protected function calculateAttacksPerSecond()
 	{
 		$dualWieldBonus = 0.0;
@@ -268,7 +300,7 @@ class Calculator
 		{
 			$dualWieldBonus = self::APS_DUAL_WIELD_BONUS;
 		}
-		
+
 		$this->attackSpeed = $this->weaponAttacksPerSecond * ( 1 + $dualWieldBonus + $this->increasedAttackBonus );
 		$this->timeBetweenAttacks = 1 / $this->attackSpeed;
 		$this->attackSpeedData[ 'increasedAttackBonus' ] = $this->increasedAttackBonus;
@@ -276,11 +308,11 @@ class Calculator
 		$this->attackSpeedData[ 'weaponAttacksPerSecond' ] = $this->weaponAttacksPerSecond;
 		return $this;
 	}
-	
+
 	/** CALCULATORS END **/
-	
+
 	/** PROPERTIES BEGIN **/
-	
+
 	/**
 	* Total attack speed for all items equipped.
 	* @return float
@@ -289,7 +321,7 @@ class Calculator
 	{
 		return $this->attackSpeed;
 	}
-	
+
 	/**
 	* Attack speed for each items equipped.
 	* @return array
@@ -298,7 +330,7 @@ class Calculator
 	{
 		return $this->attackSpeedData;
 	}
-	
+
 	/**
 	* Critical hit chance percent.
 	* @return float
@@ -307,7 +339,7 @@ class Calculator
 	{
 		return $this->criticalHitChance * 100;
 	}
-	
+
 	/**
 	* Critical hit chance data.
 	* @return float
@@ -316,7 +348,7 @@ class Calculator
 	{
 		return $this->criticalHitChanceData;
 	}
-	
+
 	/**
 	* Critical hit damage percent.
 	* @return float
@@ -325,7 +357,7 @@ class Calculator
 	{
 		return $this->criticalHitDamage * 100;
 	}
-	
+
 	/**
 	* Critical hit damage data.
 	* @return array
@@ -334,7 +366,7 @@ class Calculator
 	{
 		return $this->criticalHitDamageData;
 	}
-	
+
 	/**
 	* Damage per second.
 	* @return float
@@ -343,7 +375,7 @@ class Calculator
 	{
 		return $this->dps;
 	}
-	
+
 	/**
 	* Damage per second data.
 	* @return float
@@ -352,7 +384,7 @@ class Calculator
 	{
 		return $this->dpsData;
 	}
-	
+
 	/**
 	* Get the heros' primary attribute.
 	* @return string
@@ -361,7 +393,7 @@ class Calculator
 	{
 		return $this->primaryAttribute;
 	}
-	
+
 	/**
 	* Primary attribute damage percent.
 	* @return float
@@ -370,7 +402,7 @@ class Calculator
 	{
 		return $this->primaryAttributeDamage;
 	}
-	
+
 	/**
 	* Primary attribute damage data.
 	* @return float
@@ -379,7 +411,7 @@ class Calculator
 	{
 		return $this->primaryAttributeDamageData;
 	}
-	
+
 	/**
 	* Primary attribute.
 	* @return float
@@ -388,7 +420,7 @@ class Calculator
 	{
 		return $this->baseWeaponDamage;
 	}
-	
+
 	/**
 	* Primary attribute.
 	* @return float
@@ -397,7 +429,7 @@ class Calculator
 	{
 		return $this->baseWeaponDamageData;
 	}
-	
+
 	/** PROPERTIES END **/
 }
 ?>

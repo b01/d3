@@ -1,0 +1,376 @@
+{
+	"barbarian": {
+		"active": {
+			"bash": {
+				"Generate_Fury": 8,
+				"Damage_Delta#Weapon": 1.65,
+				"Knock_Back_Chance": 0.20,
+				"runes": {
+					"Clobber": {
+						"Stun_Chance": 0.35
+					},
+					"Onslaught": {
+						"Damage_Delta#Weapon": 0.25,
+						"Reduce_Knock_Back_Chance": 0.20
+					},
+					"Punish": {
+						"Damage_Delta": 0.08
+					},
+					"Instigation": {
+						"Generate_Fury": 4
+					},
+					"Pulverize": {
+						"Damage_Delta#Weapon": 0.38,
+					}
+				}
+			},
+			"hammer-of-the-ancients": {
+				"Uses_Fury": 20,
+				"Damage_Delta#Weapon": 3.25,
+				"Crit_Damage_Percent": 0.01,
+				"runes": {
+					"rolling-thunder": {
+						"Damage_Delta#Weapon": 2.75
+					},
+					"smash": {
+						Strike a smaller area for 406% weapon damage.
+					},
+					"the-devils-anvil": {
+						"Slows_Movement": 0.8
+					},
+					"": {
+						Thunderstrike
+Whenever you kill an enemy with Hammer of the Ancients every other enemy within 10 yards is stunned for 3 seconds.
+					},
+					"": {
+						Birthright
+Critical Hits have a 10% chance to cause enemies to drop treasure or health globes.
+					}
+				},
+			"cleave": {
+				"": ,
+				"runes": {
+					"": {
+					},
+					"": {
+					},
+					"": {
+					},
+					"": {
+					},
+					"": {
+					}
+				}
+			},
+			"ground-stomp": {
+				"": ,
+				"runes": {
+					"": {
+					},
+					"": {
+					},
+					"": {
+					},
+					"": {
+					},
+					"": {
+					}
+				}
+			},
+			"rend": {
+				"": ,
+				"runes": {
+					"": {
+					},
+					"": {
+					},
+					"": {
+					},
+					"": {
+					},
+					"": {
+					}
+				}
+			},
+			"leap": {
+				"": ,
+				"runes": {
+					"": {
+					},
+					"": {
+					},
+					"": {
+					},
+					"": {
+					},
+					"": {
+					}
+				}
+			},
+			"ancient-spear": {
+				"": ,
+				"runes": {
+					"": {
+					},
+					"": {
+					},
+					"": {
+					},
+					"": {
+					},
+					"": {
+					}
+				}
+			},
+			"frenzy": {
+				"": ,
+				"runes": {
+					"": {
+					},
+					"": {
+					},
+					"": {
+					},
+					"": {
+					},
+					"": {
+					}
+				}
+			},
+			"seismic-slam": {
+				"": ,
+				"runes": {
+					"": {
+					},
+					"": {
+					},
+					"": {
+					},
+					"": {
+					},
+					"": {
+					}
+				}
+			},
+			"revenge": {
+				"": ,
+				"runes": {
+					"": {
+					},
+					"": {
+					},
+					"": {
+					},
+					"": {
+					},
+					"": {
+					}
+				}
+			},
+			"weapon-throw": {
+				"": ,
+				"runes": {
+					"": {
+					},
+					"": {
+					},
+					"": {
+					},
+					"": {
+					},
+					"": {
+					}
+				}
+			},
+			"sprint": {
+				"": ,
+				"runes": {
+					"": {
+					},
+					"": {
+					},
+					"": {
+					},
+					"": {
+					},
+					"": {
+					}
+				}
+			},
+			"threatening-shout": {
+				"": ,
+				"runes": {
+					"": {
+					},
+					"": {
+					},
+					"": {
+					},
+					"": {
+					},
+					"": {
+					}
+				}
+			},
+			"earthquake": {
+				"": ,
+				"runes": {
+					"": {
+					},
+					"": {
+					},
+					"": {
+					},
+					"": {
+					},
+					"": {
+					}
+				}
+			},
+			"whirlwind": {
+				"": ,
+				"runes": {
+					"": {
+					},
+					"": {
+					},
+					"": {
+					},
+					"": {
+					},
+					"": {
+					}
+				}
+			},
+			"furious-charge": {
+				"": ,
+				"runes": {
+					"": {
+					},
+					"": {
+					},
+					"": {
+					},
+					"": {
+					},
+					"": {
+					}
+				}
+			},
+			"ignore-pain": {
+				"": ,
+				"runes": {
+					"": {
+					},
+					"": {
+					},
+					"": {
+					},
+					"": {
+					},
+					"": {
+					}
+				}
+			},
+			"battle-rage": {
+				"": ,
+				"runes": {
+					"": {
+					},
+					"": {
+					},
+					"": {
+					},
+					"": {
+					},
+					"": {
+					}
+				}
+			},
+			"call-of-the-ancients": {
+				"": ,
+				"runes": {
+					"": {
+					},
+					"": {
+					},
+					"": {
+					},
+					"": {
+					},
+					"": {
+					}
+				}
+			},
+			"overpower": {
+				"": ,
+				"runes": {
+					"": {
+					},
+					"": {
+					},
+					"": {
+					},
+					"": {
+					},
+					"": {
+					}
+				}
+			},
+			"war-cry": {
+				"": ,
+				"runes": {
+					"": {
+					},
+					"": {
+					},
+					"": {
+					},
+					"": {
+					},
+					"": {
+					}
+				}
+			},
+			"wrath-of-the-berserker": {
+				"": ,
+				"runes": {
+					"": {
+					},
+					"": {
+					},
+					"": {
+					},
+					"": {
+					},
+					"": {
+					}
+				}
+			}
+		},
+		passive: {
+			"sixth-sense": {
+			   "description":"Your dodge chance is increased by an amount equal to 30% of your Critical Hit Chance.",
+			   "flavor":"The final test of the Serpent's Form takes place in \"The Pit of 12 Vipers.\" The initiates are not told about the 13th.",
+			},
+			"transcendence": {
+			   "name":"Transcendence",
+			   "icon":"monk_passive_transcendence",
+			   "tooltipUrl":"skill/monk/transcendence",
+			   "description":"Every point of Spirit spent heals you for 62.0 Life.",
+			   "flavor":"A life unlived is no different than death.",
+			   "skillCalcId":"Y",
+			   "level":16
+			},
+			"seize-the-initiative": {
+			   "name":"Seize the Initiative",
+			   "icon":"monk_passive_seizetheinitiative",
+			   "tooltipUrl":"skill/monk/seize-the-initiative",
+			   "description":"Your Armor is increased by 100% of your Dexterity.",
+			   "flavor":"The Monks of Ivgorod are trained to move like water—flowing freely into open spaces and crashing hard against their foes.",
+			   "skillCalcId":"X",
+			   "level":20
+			}
+		}
+	}
+}

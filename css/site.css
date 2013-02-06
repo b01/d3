@@ -1,5 +1,5 @@
 body {
-	font-family: arial;
+	font-family: Arial, sans-serif;
 	font-size: 12px
 }
 
@@ -7,6 +7,10 @@ body {
 	display: inline-block
 }
 
+.list {
+	list-style: none;
+	padding: 10px 20px;
+}
 /* toggle list */
 .list .label {
 	cursor: pointer
@@ -24,4 +28,8 @@ body {
 	color: rgb(225, 255, 255);
 	padding: 0.3em;
 	z-index: 20
+}
+
+.top {
+	vertical-align: top
 }

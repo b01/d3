@@ -1,13 +1,16 @@
 
-	.top {
-		vertical-align: top
+
+	.item-tool-tip {
+		background-color: black;
+		border: 1px solid #322a20;
+		border-radius: 2px;
+		box-shadow: 0 0 10px #000;
+		color: #c7b377;
+		width: 29em;
+		padding: 2px 5px;
+		z-index: 1
 	}
 
-	.list {
-		list-style: none;
-		padding: 10px 20px;
-	}
-	
 	.set {
 		color: rgb(144, 144, 144)
 	}
@@ -17,7 +20,7 @@
 	.set .piece .value {
 		color: rgb(255, 255, 255)
 	}
-	
+
 	.levels {
 		clear: both;
 		margin: 10px 20px
@@ -41,23 +44,11 @@
 		margin: 10px 8px;
 		padding: 10px 2px 0
 	}
-	
-	.item {
-		background-color: black;
-		border: 1px solid #322a20;
-		border-radius: 2px;
-		box-shadow: 0 0 10px #000;
-		color: #c7b377;
-		max-width: 355px;
-		padding: 2px 5px;
-		font: normal 12px/1.5 Arial, sans-serif;
-		z-index: 1
-	}
-	
+
 	.item .value {
 		color: rgb(255, 255, 255)
 	}
-	
+
 	.effect-bg {
 		margin: 0 20px 10px
 	}
@@ -74,7 +65,7 @@
 	.item .effect-bg .item-type,
 	.item .effect-bg .item-armor-weapon { text-shadow: 0 0 5px black, 0 0 5px black, 0 0 5px black; } /* makes the text readable when a background is used */
 
-	
+
 	.item .icon {
 		background-repeat: no-repeat;
 		background-position: 50% 100%;
@@ -98,7 +89,7 @@
 	.item-tool-tip-32 .icon .inner {
 		border-radius: 2px;
 	}
-			
+
 	/* item colors */
 
 	.item .icon.blue {
@@ -111,12 +102,12 @@
 		.icon-active .item-tool-tip .icon.blue {
 			border-color: #90c8d3;
 		}
-	
+
 	.item-tool-tip .icon.brown {
 		background-color: rgb(42, 32, 23);
 		background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/brown.png");
 	}
-	
+
 	.item-tool-tip .icon.gray {
 		background-color: #2a2017;
 		background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/brown.png");
@@ -138,7 +129,7 @@
 		.icon-active .item-tool-tip .icon.green {
 			border-color: #aec75c;
 		}
-	
+
 	.item-tool-tip .icon.orange {
 		background-color: rgb(51, 35, 20);
 		background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/orange.png");
@@ -178,8 +169,8 @@
 		.icon-active .item-tool-tip .icon.yellow {
 			border-color: #cdc75a;
 		}
-				
-			
+
+
 	/* head */
 	.header {
 		background-image: url('http://us.battle.net/d3/static/images/ui/tooltip-title.jpg');
@@ -202,7 +193,7 @@
 		cursor: pointer;
 		font-size: 0.9em;
 		position: absolute;
-		right: 20px;
+		right: 1.501em;
 	}
 	.header .close:hover {
 		color: rgb(255, 0, 0)
@@ -211,7 +202,7 @@
 	.type-name {
 		width: 125px
 	}
-	
+
 	.slot {
 		color: #909090;
 		text-align: right;
@@ -243,7 +234,7 @@
 	.item-tool-tip .header.yellow {
 		background-position: 0 -120px;
 	}
-	
+
 /* colors */
 
 	/* general */

@@ -16,7 +16,7 @@
 		$hero = new Hero( $heroId, $battleNetDqi, $sql, $refreshCache );
 		$heroModel = new HeroModel( $hero->json() );
 		$items = $hero->getItems();
-	
+
 ?><!DOCTYPE html>
 <html>
 	<head>
@@ -71,13 +71,13 @@
 			<li class="stat">
 				<span class="label"><span class="toggle inline-block">-</span> Critical Hit Chance</span>: <?= $calculator->criticalHitChance(); ?>%
 				<ul class="expandable">
-					<?= output( "<li><span class=\"label\">%s</span>:%s%%</li>", $calculator->criticalHitChanceData() ) ?>
+					<?= output( "<li><span class=\"label\">%s</span>:%s</li>", $calculator->criticalHitChanceData() ) ?>
 				</ul>
 			</li>
 			<li class="stat">
 				<span class="label"><span class="toggle inline-block">-</span> Critical Hit Damage</span>: <?= $calculator->criticalHitDamage(); ?>%
 				<ul class="expandable">
-					<?= output( "<li><span class=\"label\">%s</span>:%s%%</li>", $calculator->criticalHitDamageData() ) ?>
+					<?= output( "<li><span class=\"label\">%s</span>:%s</li>", $calculator->criticalHitDamageData() ) ?>
 				</ul>
 			</li>
 			<li class="stat">

@@ -1,4 +1,14 @@
-List of changes as of 01/28/2013 9: 23 AM
+List of changes as of 02/05/2013 11:01 PM
+-------------------------------
+	- Updated CSS styling.
+	- Removed percent sign from stats on hero page that did not require them.
+	- Removed unused fields from the form item forms.
+	- Minor JavaScript tweaks to the AJAX form on the hero page.
+	- New damage per second calculation.
+	- Added new skill JSON files to sample-data folder (WIP).
+	- Made script to parse HTML from Battle.Net and generate JSON stubs for hero skills.
+
+List of changes as of 01/28/2013 9:23 AM
 -------------------------------
 	- Fixed issue with calculating base attributes, thanks to "WMFX" and "Welyn" from the D3 Community API forum.
 	- Changed the Calculator class to take an HeroModel object on construction.
@@ -12,7 +22,6 @@ List of changes as of 01/26/2013 08:57 PM
 -------------------------------
 	- Added damage attibute for weapon items.
 	- Fixed bug in displayRange method.
-
 
 List of changes as of 01/26/2013 01:00 PM
 -------------------------------

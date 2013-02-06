@@ -29,12 +29,12 @@
 					"url": $this.attr( "href" )
 				});
 			}
-			
+
 			function showItemTooltip( p_data )
 			{
 				$( "body" ).append( p_data );
 			}
-			
+
 			function postTo( p_url, p_data, p_function )
 			{
 				$.ajax({
@@ -45,12 +45,12 @@
 					"url": p_url
 				});
 			}
-			
+
 			function updateReplaced( p_data )
 			{
 				$( "#item-place-holder" ).html( p_data );
 			}
-			
+
 			function updateCalculations()
 			{
 				$.ajax({
@@ -66,7 +66,7 @@
 					"url": "/get-calculations.php"
 				});
 			}
-			
+
 			jQuery( document ).ready(function ($)
 			{
 				// Load an items details via HTTP request.
@@ -76,7 +76,7 @@
 				});
 				// Toggle stat details.
 				$( ".list" ).toggleList();
-			
+
 				$( ".item-slot" ).droppable({
 					activeClass: "ui-state-hover",
 					hoverClass: "ui-state-active",
@@ -105,24 +105,24 @@
 					}
 				});
 			});
-			
+
 			$.ajax( "/item-form.html", {
 				"dataType": "html",
 				"statusCode": {
 					200: function ( p_data )
 					{
-						var $form;
-						// Something different in jQuery 1.9 prevents building a jQuery object by passing in p_data.
-						// To get around that, we add it to the DOM first, then query it.
-						$( "#item-lookup" ).append( p_data );
-						$form = $( "#battlenet-get-item" );
+						var $form = $( $.parseHTML(p_data) ),
+							battleNetId = window.battleNetId;
+						console.log( $form );
 						if ( $form.length > 0 )
 						{
+							$form.find( "input[name='battleNetId']" ).val( battleNetId );
+							$form.find( "input[name='battleNetId']" ).attr( "type", "hidden" );
 							$form.ajaxForm({
 								"success": function ( p_responseText, statusText )
 								{
-									var $itemToolTip = [];
-									var $itemToolTip = $( $.parseHTML(p_responseText) );
+									var $itemToolTip = [],
+										$itemToolTip = $( $.parseHTML(p_responseText) );
 									if ( $itemToolTip.find( ".icon" ).length > 0 )
 									{
 										$( "#item-lookup-result" ).html( $itemToolTip );
@@ -134,6 +134,7 @@
 									}
 								}
 							});
+							$( "#item-lookup" ).append( $form );
 						}
 					}
 				}
