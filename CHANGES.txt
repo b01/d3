@@ -1,3 +1,10 @@
+List of changes as of 02/07/2013 01:18 AM
+-------------------------------
+	- Build JavaScript to parse Battle.Net skills HTML.
+	- Added page to retrieve skills HTML from Battle.Net.
+	- Build module to convert Battle.Net skills HTML into usable JSON stub.
+	- Updated all hero skill json samples.
+
 List of changes as of 02/05/2013 11:01 PM
 -------------------------------
 	- Updated CSS styling.

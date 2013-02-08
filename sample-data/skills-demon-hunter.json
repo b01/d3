@@ -1,370 +1,664 @@
 {
-	"demon-hunter": {
-		"active": {
-			"": {
-				"": ,
-				"runes": {
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					}
-				}
-			},
-			"": {
-				"": ,
-				"runes": {
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					}
-				}
-			},
-			"": {
-				"": ,
-				"runes": {
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					}
-				}
-			},
-			"": {
-				"": ,
-				"runes": {
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					}
-				}
-			},
-			"": {
-				"": ,
-				"runes": {
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					}
-				}
-			},
-			"": {
-				"": ,
-				"runes": {
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					}
-				}
-			},
-			"": {
-				"": ,
-				"runes": {
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					}
-				}
-			},
-			"": {
-				"": ,
-				"runes": {
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					}
-				}
-			},
-			"": {
-				"": ,
-				"runes": {
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					}
-				}
-			},
-			"": {
-				"": ,
-				"runes": {
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					}
-				}
-			},
-			"": {
-				"": ,
-				"runes": {
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					}
-				}
-			},
-			"": {
-				"": ,
-				"runes": {
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					}
-				}
-			},
-			"": {
-				"": ,
-				"runes": {
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					}
-				}
-			},
-			"": {
-				"": ,
-				"runes": {
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					}
-				}
-			},
-			"": {
-				"": ,
-				"runes": {
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					}
-				}
-			},
-			"": {
-				"": ,
-				"runes": {
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					}
-				}
-			},
-			"": {
-				"": ,
-				"runes": {
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					}
-				}
-			},
-			"": {
-				"": ,
-				"runes": {
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					}
-				}
-			},
-			"": {
-				"": ,
-				"runes": {
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					}
-				}
-			},
-			"": {
-				"": ,
-				"runes": {
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					}
-				}
-			},
-			"": {
-				"": ,
-				"runes": {
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					}
-				}
-			},
-			"": {
-				"": ,
-				"runes": {
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					},
-					"": {
-					}
-				}
-			}
-		},
-		passive: {
-			"": {
-			},
-			"": {
-			},
-			"": {
-			},
-			"": {
-			},
-			"": {
-			},
-			"": {
-			},
-			"": {
-			},
-			"": {
-			},
-			"": {
-			},
-			"": {
-			},
-			"": {
-			},
-			"": {
-			},
-			"": {
-			},
-			"": {
-			},
-			"": {
-			},
-			"": {
-			}
-		}
-	}
+   "active":{
+      "hungering-arrow":{
+         "desc":"Generate: 3 HatredFire a magically imbued arrow that seeks out targets for 115% weapon damage and has a 35% chance to pierce through targets.",
+         "unknown":" 3 115% 35% .",
+         "runes":{
+            "puncturing-arrow":{
+               "desc":"Increase the chance for the arrow to pierce to 50%.",
+               "unknown":" 50%."
+            },
+            "cinder-arrow":{
+               "desc":"Light the arrow on fire, dealing 35% additional weapon damage as Fire over 3 seconds.",
+               "unknown":" 35% 3 ."
+            },
+            "shatter-shot":{
+               "desc":"If the arrow successfully pierces the first target, the arrow splits into 3 arrows.",
+               "unknown":" 3 ."
+            },
+            "devouring-arrow":{
+               "desc":"Each consecutive pierce increases the damage of the arrow by 70%.",
+               "unknown":" 70%."
+            },
+            "spray-of-teeth":{
+               "desc":"Successful Critical Hits cause a burst of bone to explode from the target, dealing 50% weapon damage to enemies in that area.",
+               "unknown":" 50% ."
+            }
+         }
+      },
+      "impale":{
+         "desc":"Cost: 25 HatredImpale a target for 265% weapon damage.",
+         "unknown":" 25 265% .",
+         "runes":{
+            "impact":{
+               "desc":"Impale causes Knockback and has a 65% chance to Stun enemies for 1.5 seconds.",
+               "unknown":" 65% 1.5 ."
+            },
+            "chemical-burn":{
+               "desc":"Your target will also Bleed for 220% weapon damage as Physical over 2 seconds.",
+               "unknown":" 220% 2 ."
+            },
+            "overpenetration":{
+               "desc":"The knife will pierce through all enemies in a straight line.",
+               "unknown":" ."
+            },
+            "awareness":{
+               "desc":"After the initial throw, release multiple blades centered on you, dealing 75% weapon damage to all enemies within 10 yards.",
+               "unknown":" 75% 10 ."
+            },
+            "grievous-wounds":{
+               "desc":"Critical Hits cause 100% additional damage.",
+               "unknown":" 100% ."
+            }
+         }
+      },
+      "entangling-shot":{
+         "desc":"Generate: 3 HatredImbue an arrow with shadow energy that deals 90% weapon damage and entangles up to 2 enemies, slowing their movement by 60% for 2 seconds.",
+         "unknown":" 3 90% 2 60% 2 .",
+         "runes":{
+            "chain-gang":{
+               "desc":"Hit up to 4 targets.",
+               "unknown":" 4 ."
+            },
+            "shock-collar":{
+               "desc":"Strike targets with electrified chains that do an additional 70% weapon damage as Lightning over 2 seconds.",
+               "unknown":" 70% 2 ."
+            },
+            "heavy-burden":{
+               "desc":"Increase the movement slow duration to 4 seconds.",
+               "unknown":" 4 ."
+            },
+            "justice-is-served":{
+               "desc":"Increase the Hatred generated to 6 per shot.",
+               "unknown":" 6 ."
+            },
+            "bounty-hunter":{
+               "desc":"Gain 6% of the damage dealt as Life.",
+               "unknown":" 6% ."
+            }
+         }
+      },
+      "caltrops":{
+         "desc":"Cost: 6 DisciplineLay a trap of caltrops on the ground that activates when an enemy approaches. Once sprung, the caltrops Slow the movement of enemies within 12 yards by 60%. This trap lasts 6 seconds.",
+         "unknown":" 6 . 12 60%. 6 .",
+         "runes":{
+            "hooked-spines":{
+               "desc":"Increase the slowing amount to 80%.",
+               "unknown":" 80%."
+            },
+            "torturous-ground":{
+               "desc":"When the trap is sprung, all enemies in the area are immobilized for 2 seconds.",
+               "unknown":" 2 ."
+            },
+            "jagged-spikes":{
+               "desc":"Enemies in the area also take 270% weapon damage as Physical over 6 seconds.",
+               "unknown":" 270% 6 ."
+            },
+            "carved-stakes":{
+               "desc":"Reduces the cost of Caltrops to 4 Discipline.",
+               "unknown":" 4 ."
+            },
+            "bait-the-trap":{
+               "desc":"Become empowered while standing in the area of effect, gaining an additional 10% Critical Hit Chance with all attacks.",
+               "unknown":" 10% ."
+            }
+         }
+      },
+      "rapid-fire":{
+         "desc":"Cost: 20 Hatred initially, and an additional 10 Hatred while channelingRapidly fire for 276% weapon damage as Physical.",
+         "unknown":" 20 10 276% .",
+         "runes":{
+            "withering-fire":{
+               "desc":"Reduces the initial Hatred cost to 5, and ignites your arrows, causing them to deal Fire damage.",
+               "unknown":" 5 ."
+            },
+            "web-shot":{
+               "desc":"Slows the movement of affected targets by 80% for 1 seconds.",
+               "unknown":" 80% 1 ."
+            },
+            "fire-support":{
+               "desc":"While channeling Rapid Fire, launch 2 homing rockets every second. Each rocket deals 35% weapon damage as Physical to nearby targets.",
+               "unknown":" 2 . 35% ."
+            },
+            "high-velocity":{
+               "desc":"Fire poison arrows that have a 40% chance to pierce through enemies.",
+               "unknown":" 40% ."
+            },
+            "bombardment":{
+               "desc":"Rapidly fire grenades that explode for 345% weapon damage as Fire to all enemies within a 4 yard radius.",
+               "unknown":" 345% 4 ."
+            }
+         }
+      },
+      "smoke-screen":{
+         "desc":"Cost: 14 DisciplineVanish behind a wall of smoke, becoming momentarily invisible for 1 seconds.",
+         "unknown":" 14 1 .",
+         "runes":{
+            "displacement":{
+               "desc":"Gain 35% movement speed when activated.",
+               "unknown":" 35% ."
+            },
+            "lingering-fog":{
+               "desc":"Increase the duration of the effect to 1.5 seconds.",
+               "unknown":" 1.5 ."
+            },
+            "breathe-deep":{
+               "desc":"While invisible you gain 12 Hatred per second.",
+               "unknown":" 12 ."
+            },
+            "special-recipe":{
+               "desc":"Reduce the cost to 12 Discipline.",
+               "unknown":" 12 ."
+            },
+            "choking-gas":{
+               "desc":"Leave behind a cloud of gas that deals 700% weapon damage as Physical to enemies in the area over 5 seconds.",
+               "unknown":" 700% 5 ."
+            }
+         }
+      },
+      "vault":{
+         "desc":"Cost: 8 DisciplineTumble acrobatically 35 yards.",
+         "unknown":" 8 35 .",
+         "runes":{
+            "action-shot":{
+               "desc":"As you travel, shoot arrows for 75% weapon damage at nearby targets.",
+               "unknown":" 75% ."
+            },
+            "rattling-roll":{
+               "desc":"All enemies within 8 yards of your destination are knocked back and stunned for 1.5 seconds.",
+               "unknown":" 8 1.5 ."
+            },
+            "tumble":{
+               "desc":"After using Vault, your next Vault within 6 seconds has its Discipline cost reduced by 50%.",
+               "unknown":" 6 50%."
+            },
+            "acrobatics":{
+               "desc":"Removes the Discipline cost but adds a 10 second cooldown.",
+               "unknown":" 10 ."
+            },
+            "trail-of-cinders":{
+               "desc":"Leave a trail of fire in your wake that inflicts 300% weapon damage as Fire over 3 seconds.",
+               "unknown":" 300% 3 ."
+            }
+         }
+      },
+      "bola-shot":{
+         "desc":"Generate: 3 HatredShoot out an explosive bola that wraps itself around its target. After 1 second, the bola explodes dealing 160% weapon damage as Fire to the target and an additional 110% weapon damage as Fire to all other targets within 14 yards.",
+         "unknown":" 3 . 1 160% 110% 14 .",
+         "runes":{
+            "volatile-explosives":{
+               "desc":"Increase the explosion radius to 20 yards.",
+               "unknown":" 20 ."
+            },
+            "thunder-ball":{
+               "desc":"When the bola explodes, it deals 160% weapon damage as Lightning and has a 35% chance to Stun the primary target for 1.5 seconds.",
+               "unknown":" 160% 35% 1.5 ."
+            },
+            "acid-strike":{
+               "desc":"Shoot 3 bolas that each deal 160% weapon damage as Poison. The bolas no longer explode for area damage to nearby targets.",
+               "unknown":" 3 160% . ."
+            },
+            "bitter-pill":{
+               "desc":"When the bola explodes, you have a 15% chance to gain 2 Discipline.",
+               "unknown":" 15% 2 ."
+            },
+            "imminent-doom":{
+               "desc":"Augment the bola to deal 216% weapon damage as Arcane to the target and 149% weapon damage as Arcane to all other targets within 14 yards, but increases the explosion delay to 2 seconds.",
+               "unknown":" 216% 149% 14 2 ."
+            }
+         }
+      },
+      "chakram":{
+         "desc":"Cost: 10 HatredFire a swirling Chakram that does 170% weapon damage as Physical to enemies along its path.",
+         "unknown":" 10 170% .",
+         "runes":{
+            "twin-chakrams":{
+               "desc":"A second Chakram mirrors the first.  Each Chakram deals 114% weapon damage as Physical.",
+               "unknown":" . 114% ."
+            },
+            "serpentine":{
+               "desc":"The Chakram follows a slow curve, dealing 230% weapon damage as Poison to enemies along the path.",
+               "unknown":" 230% ."
+            },
+            "razor-disk":{
+               "desc":"The Chakram spirals out from the targeted location dealing 187% weapon damage as Arcane to enemies along the path.",
+               "unknown":" 187% ."
+            },
+            "boomerang":{
+               "desc":"The Chakram path turns into a loop, dealing 230% weapon damage as Lightning to enemies along the path.",
+               "unknown":" 230% ."
+            },
+            "shuriken-cloud":{
+               "desc":"Surround yourself with spinning Chakrams for 120 seconds, dealing 34% weapon damage per second as Physical to nearby enemies.",
+               "unknown":" 120 34% ."
+            }
+         }
+      },
+      "preparation":{
+         "desc":"Cooldown: 45 secondsInstantly restore all Discipline.",
+         "unknown":" 45 .",
+         "runes":{
+            "invigoration":{
+               "desc":"Increase maximum Discipline by 10 for 5 seconds when using Preparation.",
+               "unknown":" 10 5 ."
+            },
+            "punishment":{
+               "desc":"Restore all Hatred for 25 Discipline. Preparation has no cooldown.",
+               "unknown":" 25 . ."
+            },
+            "battle-scars":{
+               "desc":"Gain 60% Life after using Preparation.",
+               "unknown":" 60% ."
+            },
+            "focused-mind":{
+               "desc":"Gain 45 Discipline over 15 seconds instead of restoring it immediately.",
+               "unknown":" 45 15 ."
+            },
+            "backup-plan":{
+               "desc":"There is a 30% chance that Preparation's cooldown will not be triggered.",
+               "unknown":" 30% ."
+            }
+         }
+      },
+      "evasive-fire":{
+         "desc":"Generate: 4 HatredCost: 4 Discipline if you backflipShoot for 130% weapon damage. If an enemy is in front of you at close range, you will also backflip away 15 yards.",
+         "unknown":" 4 4 130% . 15 .",
+         "runes":{
+            "hardened":{
+               "desc":"Instead of backflipping, your Armor is increased by 25% for 3 seconds. This does not cost Discipline.",
+               "unknown":" 25% 3 . ."
+            },
+            "parting-gift":{
+               "desc":"Whenever a backflip is triggered, leave a poison bomb behind that explodes for 55% weapon damage as Poison in a 12 yard radius after 0.6 seconds. Turns Evasive Fire into Poison damage.",
+               "unknown":" 55% 12 0.6 . ."
+            },
+            "covering-fire":{
+               "desc":"Shoot a spread of bolts that hit up to 3 targets for 130% weapon damage each.",
+               "unknown":" 3 130% ."
+            },
+            "displace":{
+               "desc":"Increase the distance of the backflip to 30 yards.",
+               "unknown":" 30 ."
+            },
+            "surge":{
+               "desc":"Reduces the cost of the backflip to 2 Discipline. Turns Evasive Fire into Lightning damage.",
+               "unknown":" 2 . ."
+            }
+         }
+      },
+      "grenades":{
+         "desc":"Generate: 3 HatredThrow out three grenades that explode for 95% weapon damage as Fire each.",
+         "unknown":" 3 95% .",
+         "runes":{
+            "tinkerer":{
+               "desc":"Increases Hatred generation to 6 Hatred.",
+               "unknown":" 6 ."
+            },
+            "cluster-grenades":{
+               "desc":"Throw cluster grenades that deal 112% weapon damage as Fire over an 8 yard radius.",
+               "unknown":" 112% 8 ."
+            },
+            "fire-bomb":{
+               "desc":"Throw a single grenade that deals 124% weapon damage as Fire.",
+               "unknown":" 124% ."
+            },
+            "stun-grenades":{
+               "desc":"Hurl grenades that have a 25% chance to Stun enemies for 1.5 seconds.",
+               "unknown":" 25% 1.5 ."
+            },
+            "gas-grenades":{
+               "desc":"Throw gas grenades that explode for 95% weapon damage as Poison and leave a cloud that deals an additional 25% weapon damage per second as Poison for 3 seconds to enemies who stand in the area.",
+               "unknown":" 95% 25% 3 ."
+            }
+         }
+      },
+      "shadow-power":{
+         "desc":"Cost: 14 DisciplineDraw in the power of the shadows, gaining 15% of all damage done as Life for 5 seconds.",
+         "unknown":" 14 15% 5 .",
+         "runes":{
+            "night-bane":{
+               "desc":"Gain an additional 3 Hatred per second while Shadow Power is active.",
+               "unknown":" 3 ."
+            },
+            "blood-moon":{
+               "desc":"Increases damage done as Life to 25%.",
+               "unknown":" 25%."
+            },
+            "well-of-darkness":{
+               "desc":"Decreases the Discipline cost to 12.",
+               "unknown":" 12."
+            },
+            "gloom":{
+               "desc":"Reduce incoming damage by 35% while Shadow Power is active.",
+               "unknown":" 35% ."
+            },
+            "shadow-glide":{
+               "desc":"Gain 30% bonus to movement speed while Shadow Power is active.",
+               "unknown":" 30% ."
+            }
+         }
+      },
+      "fan-of-knives":{
+         "desc":"Cost: 20 HatredCooldown: 10 secondsThrow knives out in a spiral around you, doing 320% weapon damage to all enemies within 10 yards of you. Your knives will also Slow the movement of enemies by 60% for 2 seconds.",
+         "unknown":" 20 10 320% 10 . 60% 2 .",
+         "runes":{
+            "crippling-razors":{
+               "desc":"Increase the amount enemies are slowed to 80% for 2 seconds.",
+               "unknown":" 80% 2 ."
+            },
+            "retaliate":{
+               "desc":"Surround yourself with whirling blades that deal 464% weapon damage to all enemies if you are struck in the next 10 seconds.",
+               "unknown":" 464% 10 ."
+            },
+            "hail-of-knives":{
+               "desc":"Increase the radius to damage all enemies within 20 yards.",
+               "unknown":" 20 ."
+            },
+            "fan-of-daggers":{
+               "desc":"Imbue your knives with a 65% chance to Stun enemies for 2 seconds.",
+               "unknown":" 65% 2 ."
+            },
+            "assassin's-knives":{
+               "desc":"Throw long-range knives that deal 70% weapon damage to 5 additional targets.",
+               "unknown":" 70% 5 ."
+            }
+         }
+      },
+      "companion":{
+         "desc":"Cost: 10 DisciplineCooldown: 30 secondsSummon a raven companion. Your raven companion will periodically peck at enemies for 38% of your weapon damage as Physical.",
+         "unknown":" 10 30 . 38% .",
+         "runes":{
+            "spider-companion":{
+               "desc":"Summon a spider instead of a raven. The spider's attacks also Slow the movement of enemies by 60% for 2 seconds.",
+               "unknown":" . 60% 2 ."
+            },
+            "bat-companion":{
+               "desc":"Summon a bat instead of a raven. The bat grants you 3 Hatred per second.",
+               "unknown":" . 3 ."
+            },
+            "boar-companion":{
+               "desc":"Summon a boar instead of a raven. The boar increases your Life regeneration by 155 per second. In addition the boar increases your resistances to all damage types by 15%.",
+               "unknown":" . 155 . 15%."
+            },
+            "ferret-companion":{
+               "desc":"Summon ferrets instead of a raven. The ferrets collect gold for you and increase gold found on monsters by 10%.",
+               "unknown":" . 10%."
+            },
+            "wolf-companion":{
+               "desc":"Summon a wolf instead of a raven. The wolf attacks for 94% of your weapon damage as Physical.",
+               "unknown":" . 94% ."
+            }
+         }
+      },
+      "strafe":{
+         "desc":"Cost: 12 HatredShoot at random nearby enemies for 156% weapon damage while moving at 75% of normal movement speed.",
+         "unknown":" 12 156% 75% .",
+         "runes":{
+            "emberstrafe":{
+               "desc":"Leave a trail of fire in your wake that inflicts 65% weapon damage as Fire over 2 seconds.",
+               "unknown":" 65% 2 ."
+            },
+            "drifting-shadow":{
+               "desc":"Movement speed increased to 100% of normal running speed while strafing.",
+               "unknown":" 100% ."
+            },
+            "stinging-steel":{
+               "desc":"Throw out knives rather than arrows that do an extra 100% damage on successful Critical Hits.",
+               "unknown":" 100% ."
+            },
+            "rocket-storm":{
+               "desc":"In addition to regular firing, fire off homing rockets for 60% weapon damage as Fire.",
+               "unknown":" 60% ."
+            },
+            "demolition":{
+               "desc":"Throw out bouncy grenades that explode for 187% weapon damage to targets within 9 yards.",
+               "unknown":" 187% 9 ."
+            }
+         }
+      },
+      "elemental-arrow":{
+         "desc":"Cost: 10 HatredShoot a fire arrow that deals 155% weapon damage as Fire to all targets it passes through.",
+         "unknown":" 10 155% .",
+         "runes":{
+            "ball-lightning":{
+               "desc":"Fire a slow-moving arrow that electrocutes enemies along its path for 155% weapon damage as Lightning.",
+               "unknown":" 155% ."
+            },
+            "frost-arrow":{
+               "desc":"Fire a frost arrow that splits into multiple arrows after hitting its target, dealing 170% weapon damage as Cold. Affected enemies have their movement speed slowed by 60% for 1 seconds.",
+               "unknown":" 170% . 60% 1 ."
+            },
+            "screaming-skull":{
+               "desc":"Grants a 40% chance to shoot a skull that will Fear affected enemies for 1.5 seconds.",
+               "unknown":" 40% 1.5 ."
+            },
+            "lightning-bolts":{
+               "desc":"Fire electrified bolts that Stun enemies for 1.5 seconds on a Critical Hit.",
+               "unknown":" 1.5 ."
+            },
+            "nether-tentacles":{
+               "desc":"Shadow tentacles deal 155% weapon damage to enemies along its path and return 3% of damage dealt as Life for you.",
+               "unknown":" 155% 3% ."
+            }
+         }
+      },
+      "marked-for-death":{
+         "desc":"Cost: 3 DisciplineMarks an enemy. The marked enemy will take 12% additional damage for the next 30 seconds.",
+         "unknown":" 3 . 12% 30 .",
+         "runes":{
+            "contagion":{
+               "desc":"When the target is killed, the ability spreads to 2 other nearby targets. This effect can chain repeatedly.",
+               "unknown":" 2 . ."
+            },
+            "valley-of-death":{
+               "desc":"Mark an area on the ground 12 yards wide for 15 seconds.  Enemies in the area take 12% additional damage.",
+               "unknown":" 12 15 . 12% ."
+            },
+            "grim-reaper":{
+               "desc":"An additional 12% of damage done to the target is also divided among all enemies within 20 yards.",
+               "unknown":" 12% 20 ."
+            },
+            "mortal-enemy":{
+               "desc":"Attacks you make against the marked target generate 3 Hatred.",
+               "unknown":" 3 ."
+            },
+            "death-toll":{
+               "desc":"Heal attackers for 1% of the damage done to the marked target.",
+               "unknown":" 1% ."
+            }
+         }
+      },
+      "multishot":{
+         "desc":"Cost: 30 HatredFire a massive volley of arrows dealing 165% weapon damage to all enemies in the area.",
+         "unknown":" 30 165% .",
+         "runes":{
+            "fire-at-will":{
+               "desc":"Cost reduced to 15 Hatred. Deals 165% weapon damage as Lightning.",
+               "unknown":" 15 . 165% ."
+            },
+            "burst-fire":{
+               "desc":"Every time you fire, generate a shock pulse that damages nearby enemies for 65% weapon damage as Arcane.",
+               "unknown":" 65% ."
+            },
+            "suppression-fire":{
+               "desc":"Every enemy hit grants 1 Discipline.",
+               "unknown":" 1 ."
+            },
+            "full-broadside":{
+               "desc":"Increase the damage of Multishot to 215% weapon damage.",
+               "unknown":" 215% ."
+            },
+            "arsenal":{
+               "desc":"Every use also fires 3 rockets at nearby enemies that deal 60% weapon damage as Fire each.",
+               "unknown":" 3 60% ."
+            }
+         }
+      },
+      "spike-trap":{
+         "desc":"Cost: 30 HatredLay a trap that arms after 1.2 seconds and triggers when an enemy approaches. The trap does 275% weapon damage to all enemies within 8 yards.You can have a maximum of 3 Spike Traps active at one time.",
+         "unknown":" 30 1.2 . 275% 8 . 3 .",
+         "runes":{
+            "echoing-blast":{
+               "desc":"Your Spike Traps can explode up to 3 times, dealing 275% weapon damage as Poison to all enemies within 8 yards each time.",
+               "unknown":" 3 275% 8 ."
+            },
+            "sticky-trap":{
+               "desc":"Plant a bomb on an enemy rather than on the ground. If the target dies within 30 seconds, the bomb explodes dealing 404% weapon damage to all enemies within 16 yards.",
+               "unknown":" . 30 404% 16 ."
+            },
+            "long-fuse":{
+               "desc":"Increases the arming time to 2 seconds but increases damage to 371% weapon damage.",
+               "unknown":" 2 371% ."
+            },
+            "lightning-rod":{
+               "desc":"When the trap is triggered it releases a pulse of lightning that will bounce to up to 3 enemies for 275% weapon damage as Lightning.",
+               "unknown":" 3 275% ."
+            },
+            "scatter":{
+               "desc":"Simultaneously place all 3 traps.",
+               "unknown":" 3 ."
+            }
+         }
+      },
+      "sentry":{
+         "desc":"Cost: 30 HatredCooldown: 8 secondsDrop a turret on the ground. The turret begins firing at nearby enemies for 175%  weapon damage. Lasts 30 seconds. You may have 2 turrets active at a time.",
+         "unknown":" 30 8 . 175% . 30 . 2 .",
+         "runes":{
+            "spitfire-turret":{
+               "desc":"The turret will also fire homing rockets aimed at random nearby targets for 30% weapon damage as Fire.",
+               "unknown":" 30% ."
+            },
+            "vigilant-watcher":{
+               "desc":"Reduces the cooldown of Sentry to 6 seconds.",
+               "unknown":" 6 ."
+            },
+            "chain-of-torment":{
+               "desc":"Create a tether between you and the Sentry that does 125% weapon damage every second to every enemy it touches.",
+               "unknown":" 125% ."
+            },
+            "aid-station":{
+               "desc":"Heals nearby allies for 1.0% of their maximum Life per second.",
+               "unknown":" 1.0% ."
+            },
+            "guardian-turret":{
+               "desc":"The turret also creates a shield that reduces damage taken by allies by 15%.",
+               "unknown":" 15%."
+            }
+         }
+      },
+      "cluster-arrow":{
+         "desc":"Cost: 50 HatredFire a cluster arrow that explodes for 225% weapon damage as Fire into a series of additional miniature bombs that explode for 100% weapon damage as Fire each.",
+         "unknown":" 50 225% 100% .",
+         "runes":{
+            "dazzling-arrow":{
+               "desc":"Enemies hit by grenades have a 55% chance to be stunned for 2 seconds and changes the damage to Physical.",
+               "unknown":" 55% 2 ."
+            },
+            "shooting-stars":{
+               "desc":"Instead of releasing grenades, shoots up to 3 rockets at nearby enemies dealing 175% weapon damage as Physical each.",
+               "unknown":" 3 175% ."
+            },
+            "maelstrom":{
+               "desc":"Instead of releasing grenades, the cluster releases shadow energy that deals 165% weapon damage as Physical to nearby enemies. You will gain 4% of the damage done as Life.",
+               "unknown":" 165% . 4% ."
+            },
+            "cluster-bombs":{
+               "desc":"Launch the cluster through the air, dropping bombs in a straight line that each explode for 230% weapon damage as Fire.",
+               "unknown":" 230% ."
+            },
+            "loaded-for-bear":{
+               "desc":"Increases the damage of the explosion at the impact location to 304% weapon damage as Fire.",
+               "unknown":" 304% ."
+            }
+         }
+      },
+      "rain-of-vengeance":{
+         "desc":"Cooldown: 30 secondsFire a massive volley of arrows around you. Arrows fall from the sky dealing 715% weapon damage over 5 seconds to all enemies in the area.",
+         "unknown":" 30 . 715% 5 .",
+         "runes":{
+            "dark-cloud":{
+               "desc":"Launch a massive volley of guided arrows that rain down on enemies for 792% weapon damage over 12 seconds.",
+               "unknown":" 792% 12 ."
+            },
+            "beastly-bombs":{
+               "desc":"Summon 20 Shadow Beasts to drop bombs on enemies, dealing 245% weapon damage each.",
+               "unknown":" 20 245% ."
+            },
+            "stampede":{
+               "desc":"Summon a wave of 10 Shadow Beasts to tear across the ground, knocking back enemies and dealing 120% weapon damage each.",
+               "unknown":" 10 120% ."
+            },
+            "anathema":{
+               "desc":"Summon a Shadow Beast that drops grenades from the sky dealing 3300% weapon damage over 15 seconds.",
+               "unknown":" 3300% 15 ."
+            },
+            "flying-strike":{
+               "desc":"A group of 8 Shadow Beasts plummet from the sky at a targeted location dealing 100% weapon damage each and stunning enemies for 2 seconds.",
+               "unknown":" 8 100% 2 ."
+            }
+         }
+      }
+   },
+   "passive":{
+      "thrill-of-the-hunt":{
+         "desc":"Every 7 seconds, your next skill that costs Hatred will immobilize your target for 2 seconds.",
+         "unknown":" 7 2 ."
+      },
+      "tactical-advantage":{
+         "desc":"Whenever you use Vault, Smoke Screen, or backflip with Evasive Fire you gain 60% movement speed for 2 seconds.",
+         "unknown":" 60% 2 ."
+      },
+      "vengeance":{
+         "desc":"Your maximum Hatred is increased by 25. In addition, gain 20 Hatred and 2 Discipline whenever you are healed by a health globe.",
+         "unknown":" 25. 20 2 ."
+      },
+      "steady-aim":{
+         "desc":"As long as there are no enemies within 10 yards, all damage is increased by 20%.",
+         "unknown":" 10 20%."
+      },
+      "cull-the-weak":{
+         "desc":"Damage against slowed enemies increased by 15%.",
+         "unknown":" 15%."
+      },
+      "night-stalker":{
+         "desc":"Critical Hits have a chance to restore 1 Discipline.Discipline is used to fuel many of your tactical and defensive skills.",
+         "unknown":" 1 . ."
+      },
+      "brooding":{
+         "desc":"You gain 1% of your maximum Life per second.",
+         "unknown":" 1% ."
+      },
+      "hot-pursuit":{
+         "desc":"Whenever you are at full Hatred, movement speed is increased by 15%.",
+         "unknown":" 15%."
+      },
+      "archery":{
+         "desc":"Gain a bonus based on the weapon type of your main hand weapon:Bow: 15% increased damageCrossbow: 50% Critical Hit DamageHand Crossbow: 10% Critical Hit Chance",
+         "unknown":" 15% 50% 10% "
+      },
+      "numbing-traps":{
+         "desc":"Enemies hit by Fan of Knives, Spike Trap, Caltrops, Grenades and Sentry fire have their damage reduced by 20% for 3 seconds.",
+         "unknown":" 20% 3 ."
+      },
+      "perfectionist":{
+         "desc":"Reduces the Discipline cost of all skills by 10%. Increases your Life, Armor and all of your resistances by 10%.Discipline is used to fuel many of your tactical and defensive skills.",
+         "unknown":" 10%. 10%. ."
+      },
+      "custom-engineering":{
+         "desc":"The duration of your Caltrops, Marked for Death, Spike Trap, and Sentry is increased by 100%.Increases the maximum number of Sentries to 3 and Spike Traps to 6.",
+         "unknown":" 100%. 3 6."
+      },
+      "grenadier":{
+         "desc":"Increases Hatred generated from Grenades by 2 and reduces the Hatred cost of Cluster Arrow by 10. Upon death, you drop a giant grenade that explodes for 450% weapon damage as Fire.",
+         "unknown":" 2 10. 450% ."
+      },
+      "sharpshooter":{
+         "desc":"Gain 3% Critical Hit Chance every second. This bonus is reset 1 seconds after you successfully critically hit.",
+         "unknown":" 3% . 1 ."
+      },
+      "ballistics":{
+         "desc":"Damage from rockets increased by 50%.Rockets are fired from certain skill rune effects.",
+         "unknown":" 50%. ."
+      }
+   }
 }

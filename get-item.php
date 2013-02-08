@@ -25,7 +25,7 @@ require_once( "php/Tool.php" );
 		$itemUID = $itemName;
 		$itemIdType = "name";
 	}
-	
+
 	if ( isString($battleNetId) && isString($itemUID) )
 	{
 		$battleNetDqi = new BattleNetDqi( $battleNetId );
@@ -106,7 +106,7 @@ require_once( "php/Tool.php" );
 				<?php endforeach; ?>
 			</ul>
 			<?php endif; ?>
-			<div class="levels">			
+			<div class="levels">
 				<div class="level left required inline-block">Required Level: <span class="value"><?= $itemModel->requiredLevel; ?></span></div>
 				<div class="level right max inline-block">Item Level: <span class="value"><?= $itemModel->itemLevel; ?></span></div>
 			</div>

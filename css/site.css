@@ -33,3 +33,7 @@ body {
 .top {
 	vertical-align: top
 }
+
+.hidden {
+	display: none
+}
