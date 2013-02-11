@@ -11,12 +11,16 @@ namespace d3;
 require_once( "php/Tool.php" );
 require_once( "php/settings.php" );
 // We have to specify the namespace when defining constants.
-$nameSpace = array_key_exists( "namespace", $siteSettings ) ? $siteSettings[ 'namespace' ] : '';
-foreach ( $siteSettings as $name => $value )
+$nameSpace = array_key_exists( "namespace", $settings ) ? $settings[ 'namespace' ] : '';
+foreach ( $settings as $name => $value )
 {
 	define( $nameSpace . $name, $value );
 }
 // Run any setup code you want done on every page of your site.
+
+// Get the attribute map file.
+$file = $settings[ 'ATTRIBUTE_MAP_FILE' ];
+$settings[ 'ATTRIBUTE_MAP' ] = ( file_exists($file) ) ? json_decode( file_get_contents($file), TRUE ) : [];
 
 //DO NOT PUT ANY CHARACTERS OR EVEN WHITE-SPACE after the closing php tag, or headers may be sent before intended.
 ?>

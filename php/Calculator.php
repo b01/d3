@@ -36,11 +36,7 @@ class Calculator
 	{
 		$this->attackSpeed = 0.0;
 		$this->attackSpeedData = [];
-		$this->attributeMap = [
-			"Attacks_Per_Second_Item_Percent" => "attackSpeed",
-			"Crit_Percent_Bonus_Capped" => "criticalHitChance",
-			"Crit_Damage_Percent" => "criticalHitDamage"
-		];
+		$this->attributeMap = $GLOBALS[ 'settings' ][ 'ATTRIBUTE_MAP' ];
 		$this->attributeSlots = [];
 		$this->attributeTotals = [];
 		// $this->bodyMap = [
@@ -77,6 +73,8 @@ class Calculator
 		$this->weaponAttacksPerSecond = 0.0;
 
 		$this->init();
+		// Collect unique attributes.
+		saveAttributeMap( $this->attributeMap );
 	}
 
 	/**
@@ -87,6 +85,7 @@ class Calculator
 		unset(
 			$this->attackSpeed,
 			$this->attackSpeedData,
+			$this->attributeMap,
 			$this->attributeSlots,
 			$this->attributeTotals,
 			$this->criticalHitChance,
@@ -213,6 +212,10 @@ class Calculator
 		$primary_stat = $this->primaryAttributeDamage;
 		$skill_damage = 0;
 		$attacks_per_second = $this->attackSpeed;
+		$first_damage_bonus = 0;
+		$second_other_damage_bonus_etc = 0;
+
+		$monster_vulnerability_bonuses = 0;
 
 		$weapon_damage = $base_weapon_damage * $skill_damage
 			* ( 1 + $primary_stat / 100 )
@@ -221,9 +224,6 @@ class Calculator
 
 		$damage_per_second = $weapon_damage * $attacks_per_second;
 
-		$first_damage_bonus = 0;
-		$second_other_damage_bonus_etc = 0;
-		$monster_vulnerability_bonuses = 0;
 		$total_damage_per_hit = $base_weapon_damage * $skill_damage
 			* ( 1 + $primary_stat / 100 )
 			* ( 1 + $first_damage_bonus )
@@ -249,6 +249,12 @@ class Calculator
 			}
 			$this->attributeTotals[ $attribute ] += ( float ) $value;
 			$this->attributeSlots[ $attribute ][ $p_slot ] = $value;
+
+			// Data collection
+			if ( !array_key_exists($attribute, $this->attributeMap) )
+			{
+				$this->attributeMap[ $attribute ] = '';
+			}
 		}
 		return $this;
 	}

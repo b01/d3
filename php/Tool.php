@@ -41,7 +41,7 @@
 	/**
 	* Parse number in string and add HTML tags around it.
 	* @param $p_key CSS class to add to the element.
-	* @return string 
+	* @return string
 	*/
 	function formatAttribute( $p_attribute, $p_class = NULL )
 	{
@@ -49,7 +49,7 @@
 		$cssClass = empty( $p_class ) ? '' : " class=\"{$p_class}\"";
 		return preg_replace( ['/(\+?\d+\.?\d*%?)/', '/(\(.*\))/'], ["<span{$cssClass}>$1</span>", "<span class=\"d3-color-red\">$1</span>"], $p_attribute );
 	}
-	
+
 	/**
 	* Convert an array of item hashes to item models.
 	*
@@ -75,7 +75,7 @@
 	/**
 	* Get slot the you equipe the item, by type id.
 	* @param $p_itemType Item type id
-	* @return string 
+	* @return string
 	*/
 	function getItemSlot( $p_itemType )
 	{
@@ -127,12 +127,12 @@
 	/**
 	* Get a value from the global POST array as a string, even if it is a numercal value.
 	* @param $p_key string Variable to retrieve from the post array.
-	* @return string 
+	* @return string
 	*/
 	function getPostStr( $p_key )
 	{
 		$returnValue = NULL;
-		
+
 		if ( array_key_exists($p_key, $_POST) )
 		{
 			$returnValue = ( string )$_POST[ $p_key ];
@@ -143,12 +143,12 @@
 	/**
 	* Get a value from the global POST array as a boolean.
 	* @param $p_key string Variable to retrieve from the post array.
-	* @return string 
+	* @return string
 	*/
 	function getPostBool( $p_key )
 	{
 		$returnValue = FALSE;
-		
+
 		if ( array_key_exists($p_key, $_POST) )
 		{
 			$returnValue = ( bool )$_POST[ $p_key ];
@@ -159,12 +159,12 @@
 	/**
 	* Get a value from the global GET array as a string, even if it is a numercal value.
 	* @param $p_key string Variable to retrieve from the post array.
-	* @return string 
+	* @return string
 	*/
 	function getStr( $p_key )
 	{
 		$returnValue = NULL;
-		
+
 		if ( array_key_exists($p_key, $_GET) )
 		{
 			$returnValue = ( string )$_GET[ $p_key ];
@@ -216,7 +216,7 @@
 	* Output an associative array in sprintf fasion.
 	* @return bool TRUE is yes, false otherwise.
 	*/
-	function  output( $p_format, array $p_array )
+	function output( $p_format, array $p_array )
 	{
 		$returnValue = '';
 		foreach ( $p_array as $key => $value )
@@ -259,8 +259,22 @@
 		else
 		{
 			// Log error.
+			// logError( Exception new Exception("JSON decode error."), "Unable to decode JSON: {$p_jsonString}.", "" );
 		}
 		return $returnValue;
+	}
+
+	/**
+	* Save the attribute map as JSON to a text file to be easily loaded again at page load.
+	*
+	* @credit Taken from a Stack Overflow answeer:
+	* 	http://stackoverflow.com/questions/5612656/generating-unique-random-numbers-within-a-range-php
+	*/
+	function saveAttributeMap( $p_attributeMap )
+	{
+		$attributeMapOutput = json_encode( $p_attributeMap, TRUE );
+		// Save image data to a file.
+		saveFile( "./media/data-files/attribute-map.txt", $attributeMapOutput );
 	}
 
 	/**
@@ -270,13 +284,28 @@
 	*/
 	function saveFile( $p_fileName, $p_content )
 	{
-		$directory = dirname( $p_fileName );
-		if ( !is_dir($directory) )
+		try
 		{
-			mkdir( $directory, 0755, TRUE );
+			$directory = dirname( $p_fileName );
+			if ( !is_dir($directory) )
+			{
+				$madeDir = @mkdir( $directory, 0755, TRUE );
+				if ( $madeDir === FALSE )
+				{
+					throw new ErrorException( "mkdir: Unable make direcotry '{$directory}'." );
+				}
+			}
+			// Save image data to a file.
+			$fileSaved = @file_put_contents( $p_fileName, $p_content, LOCK_EX );
+			if ( $fileSaved === FALSE )
+			{
+				throw new ErrorException( "file_put_contents: Unable to save file '{$p_fileName}'." );
+			}
 		}
-		// Save image data to a file.
-		file_put_contents( $p_fileName, $p_content, LOCK_EX );
+		catch ( \Exception $p_error )
+		{
+			logError( $p_error, "There is a problem in %s on line %s.", "System hiccup, continuing on." );
+		}
 	}
 
 	/**
@@ -332,7 +361,7 @@
 	/**
 	* Get item name, by type id.
 	* @param $p_itemType Item type id
-	* @return string 
+	* @return string
 	*/
 	function translateSlotName( $p_itemType )
 	{

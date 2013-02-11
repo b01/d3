@@ -7,8 +7,6 @@
 *       - Check if the image exists, if not, download it from Battle.net.
 *
 */
-require_once( "php/Tool.php" );
-
 	$imageUrl = $_GET['url'];
 	$imageFile = '.' . $_GET['file'];
 	$httpRequestor = new d3\HttpRequestor( $imageUrl );
@@ -18,6 +16,8 @@ require_once( "php/Tool.php" );
 	{
 		// Save image data to a file.
 		saveFile( $imageFile, $responseText );
+		// Wait for the file to be saved.
+		sleep( 2 );
 		// Output the image to the browser.
 		header( "Content-Type: image/png" );
 		echo $responseText;
