@@ -1,3 +1,9 @@
+List of changes as of 02/12/2013 11:33 PM
+-------------------------------
+	- Refactored classes to work with namespaces correctly (Windows bug work-a-round).
+	- Removed some deprecated methods from Sql class.
+	- Updated tables.sql file.
+
 List of changes as of 02/10/2013 10:50 PM
 -------------------------------
 	- New feature to capture unique attribute names in a file for easy editing and mapping.

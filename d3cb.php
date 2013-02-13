@@ -10,6 +10,7 @@
 namespace d3;
 require_once( "php/Tool.php" );
 require_once( "php/settings.php" );
+
 // We have to specify the namespace when defining constants.
 $nameSpace = array_key_exists( "namespace", $settings ) ? $settings[ 'namespace' ] : '';
 foreach ( $settings as $name => $value )

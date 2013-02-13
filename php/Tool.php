@@ -5,20 +5,21 @@
 * @author Khalifah Shabazz <shabazzk@gmail.com>
 *
 */
-
 	/**
 	* Automatically load classes instead of using require/include statements.
 	*
 	*/
 	function __autoload( $p_className )
 	{
+		$classPath = str_replace( "\\", '/', $p_className );
 		// Single quote strings are used to optimize/prevent PHP from parsing the string.
-		$classFilePath = 'php/' . basename( $p_className ) . '.php';
+		$classFilePath = 'php/' . $classPath . '.php';
 		if ( file_exists($classFilePath) )
 		{
 			require_once( $classFilePath );
 		}
 	}
+
 
 	/**
 	* Display a value as a single number or a range if min and max are different.

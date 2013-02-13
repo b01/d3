@@ -1,6 +1,8 @@
 <?php
-namespace d3; // Diablo 3 Character Builder
-
+/**
+* Generic methods for retrieving HTML pages.
+*
+*/
 class HttpRequestor
 {
 	protected
@@ -46,7 +48,7 @@ class HttpRequestor
 		}
 		else
 		{
-			throw new \Exception( "There was a problem getting a response from '{$p_url}'" );
+			throw new Exception( "There was a problem getting a response from '{$p_url}'" );
 		}
 		return $returnValue;
 	}
@@ -58,7 +60,7 @@ class HttpRequestor
 	{
 		return $this->url;
 	}
-	
+
 	/**
 	* Get the HTTP response code of the request.
 	* @return int HTTP response code.
@@ -71,7 +73,7 @@ class HttpRequestor
 		}
 		return NULL;
 	}
-	
+
 	/**
 	* Send an HTTP request
 	* @return string HTTP response.
@@ -82,21 +84,21 @@ class HttpRequestor
 		$returnValue = NULL;
 		if ( !empty($this->url) )
 		{
-			$curl = \curl_init();
-			\curl_setopt( $curl, CURLOPT_URL, $this->url );
-			\curl_setopt( $curl, CURLOPT_RETURNTRANSFER, 1 );
+			$curl = curl_init();
+			curl_setopt( $curl, CURLOPT_URL, $this->url );
+			curl_setopt( $curl, CURLOPT_RETURNTRANSFER, 1 );
 			if ( !empty($body) )
 			{
-				\curl_setopt( $curl, CURLOPT_HTTPHEADER, array("Content-Type: application/json; charset=utf-8") );
+				curl_setopt( $curl, CURLOPT_HTTPHEADER, array("Content-Type: application/json; charset=utf-8") );
 
-				\curl_setopt( $curl, CURLOPT_POST, 1 );
-				\curl_setopt( $curl, CURLOPT_POSTFIELDS, $body );
+				curl_setopt( $curl, CURLOPT_POST, 1 );
+				curl_setopt( $curl, CURLOPT_POSTFIELDS, $body );
 			}
 			// Send the request and get a response.
-			$responseText = \curl_exec( $curl );
+			$responseText = curl_exec( $curl );
 			// get the status of the call
 			$this->requestInfo = curl_getinfo( $curl );
-			\curl_close( $curl );
+			curl_close( $curl );
 			if ( !empty($responseText) )
 			{
 				$returnValue = $responseText;
@@ -108,7 +110,7 @@ class HttpRequestor
 		}
 		return $returnValue;
 	}
-	
+
 	/**
 	* Set the URL of the request.
 	*/

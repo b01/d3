@@ -1,12 +1,12 @@
 <?php
 namespace d3; // Diablo 3 Character Builder
 
-class BattleNetDqi extends HttpRequestor
+class BattleNetDqi extends \HttpRequestor
 {
-	protected 
+	protected
 		$battleNetId,
 		$battleNetUrlSafeId;
-	
+
 	/**
 	* Constructor
 	*/
@@ -17,7 +17,7 @@ class BattleNetDqi extends HttpRequestor
 		$this->url = '';
 		$this->battleNetUrlSafeId = str_replace( '#', '-', $this->battleNetId );
 	}
-	
+
 	/**
 	* Destructor
 	*/
@@ -31,7 +31,7 @@ class BattleNetDqi extends HttpRequestor
 			$this->url
 		);
 	}
-	
+
 	/**
 	* Get BattleNet ID
 	*
@@ -41,7 +41,7 @@ class BattleNetDqi extends HttpRequestor
 	{
 		return $this->battleNetUrlSafeId;
 	}
-	
+
 	/**
 	* Get BattleNet ID
 	*
@@ -51,9 +51,9 @@ class BattleNetDqi extends HttpRequestor
 	{
 		return $this->battleNetId;
 	}
-	
+
 	/**
-	* Example: 
+	* Example:
 	* url ::= <host> "/api/d3/data/item/" <item-data>
 	* GET /api/d3/data/item/COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD
 	* Host: us.battle.net
@@ -76,9 +76,9 @@ class BattleNetDqi extends HttpRequestor
 		}
 		return $returnValue;
 	}
-	
+
 	/**
-	* Example: 
+	* Example:
 	* battletag-name ::= <regional battletag allowed characters>
 	* battletag-code ::= <integer>
 	* url ::= <host> "/api/d3/profile/" <battletag-name> "-" <battletag-code> "/"
