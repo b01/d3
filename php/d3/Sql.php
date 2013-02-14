@@ -5,7 +5,7 @@ class Sql extends \Sql
 {
 	const
 		SELECT_PROFILE = "SELECT `battle_net_id`, `json`, `ip_address`, `last_updated`, `date_added` FROM `%s`.`d3_profiles` WHERE `battle_net_id` = :battleNetId;",
-		INSERT_PROFILE = "INSERT INTO `d3_profiles` (`battle_net_id`, `json`, `ip_address`, `last_updated`, `date_added`) VALUES(:battleNetId, :profileJson, :ipAddress, :lastUpdated, :dateAdded) ON DUPLICATE KEY UPDATE `json` = VALUES(json), `ip_address` = VALUES(ip_address), `last_updated` = VALUES(last_updated);",
+		INSERT_PROFILE = "INSERT INTO `%s`.`d3_profiles` (`battle_net_id`, `json`, `ip_address`, `last_updated`, `date_added`) VALUES(:battleNetId, :json, :ipAddress, :lastUpdated, :dateAdded) ON DUPLICATE KEY UPDATE `json` = VALUES(json), `ip_address` = VALUES(ip_address), `last_updated` = VALUES(last_updated);",
 		INSERT_REQUEST = "INSERT INTO `battlenet_api_request` (`battle_net_id`, `ip_address`, `url`, `date_number`, `date_added`) VALUES(:battleNetId, :ipAddress, :url, :dateNumber, :dateAdded);",
 		SELECT_REQUEST = "SELECT `ip_address`, `url`, `date`, `date_added` FROM `battlenet_api_request` WHERE  `date` = :date;",
 		SELECT_ITEM = "SELECT `hash`, `id`, `name`, `item_type`, `json`, `ip_address`, `last_updated`, `date_added` FROM `%s`.`d3_items` WHERE `%s` = :selectValue;",
@@ -44,6 +44,20 @@ class Sql extends \Sql
 	}
 
 	/**
+	* Get hero data from local database.
+	*/
+	public function getHero( $p_heroId )
+	{
+		if ( $p_heroId !== NULL )
+		{
+			return $this->getData( self::SELECT_HERO, [
+				"id" => [ $p_heroId, \PDO::PARAM_STR ]
+			]);
+		}
+		return NULL;
+	}
+
+	/**
 	* Get battle.net user profile.
 	*/
 	public function getProfile( $p_battleNetId )
@@ -53,7 +67,7 @@ class Sql extends \Sql
 		{
 			if ($this->pdoh !== NULL)
 			{
-				$query = sprintf( self::SELECT_PROFILE, "kshabazz" );
+				$query = sprintf( self::SELECT_PROFILE, DB_NAME );
 				$stmt = $this->pdoh->prepare( $query );
 				$stmt->bindValue( ":battleNetId", $p_battleNetId, \PDO::PARAM_STR );
 				$profileRecord = $this->pdoQuery( $stmt );

@@ -15,7 +15,7 @@
 		$sql = new Sql( DSN, DB_USER, DB_PSWD, USER_IP_ADDRESS );
 		$hero = new Hero( $heroId, $battleNetDqi, $sql, $refreshCache );
 		$heroModel = new HeroModel( $hero->json() );
-		$items = $hero->getItems();
+		$items = $hero->items();
 
 ?><!DOCTYPE html>
 <html>
@@ -109,7 +109,7 @@
 			// Store this stuff in a cookie.
 			var heroJson = <?= json_encode( $heroJson ) ?>,
 				battleNetId = "<?= $urlBattleNetId ?>",
-				heroClass = "<?= $hero->getCharacterClass() ?>";
+				heroClass = "<?= $hero->characterClass() ?>";
 		</script>
 		<?php $time = microtime( TRUE ) - $_SERVER[ 'REQUEST_TIME_FLOAT' ]; ?>
 		<!-- Page output in <?= $time ?> seconds -->

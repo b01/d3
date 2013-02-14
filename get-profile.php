@@ -10,7 +10,7 @@
 		$battleNetDqi = new BattleNetDqi( $battleNetId );
 		$sql = new Sql( DSN, DB_USER, DB_PSWD, USER_IP_ADDRESS );
 		$battleNetProfile = new Profile( $battleNetId, $battleNetDqi, $sql );
-		$heroes = $battleNetProfile->getHeroes();
+		$heroes = $battleNetProfile->heroes();
 		$battleNetUrlSafeId = str_replace( '#', '-', $battleNetId );
 		$heroUrl = "/get-hero.php?battleNetId={$battleNetUrlSafeId}&heroId=";
 	}

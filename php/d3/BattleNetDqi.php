@@ -56,6 +56,29 @@ class BattleNetDqi extends \HttpRequestor
 	* Example:
 	* url ::= <host> "/api/d3/data/item/" <item-data>
 	* GET /api/d3/data/item/COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD
+	* Note: Leave off the trailing '/' when setting
+	*	/api/d3/profile/<battleNetIdName>-<battleNetIdNumber>
+	*/
+	public function getHero( $p_heroId )
+	{
+		$returnValue = NULL;
+		if ( isString($p_heroId) )
+		{
+			$this->url = sprintf( BATTLENET_D3_API_HERO_URL, $this->battleNetUrlSafeId(), $p_heroId );
+			var_dump( $this->url );
+			$returnValue = $this->send();
+		}
+		else
+		{
+			throw new \Exception( "Hero '{$p_heroId}' not found." );
+		}
+		return $returnValue;
+	}
+
+	/**
+	* Example:
+	* url ::= <host> "/api/d3/data/item/" <item-data>
+	* GET /api/d3/data/item/COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD
 	* Host: us.battle.net
 	* Note: Leave off the trailing '/' when setting
 	*	/api/d3/profile/<battleNetIdName>-<battleNetIdNumber>
@@ -91,7 +114,7 @@ class BattleNetDqi extends \HttpRequestor
 		$returnValue = NULL;
 		try
 		{
-			$this->url = sprintf( BATTLENET_D3_API_PROFILE_URL, $this->battleNetUrlSafeId );
+			$this->url = BATTLENET_D3_API_PROFILE_URL . '/' . $this->battleNetUrlSafeId . '/';
 			// Return the response text.
 			$returnValue = $this->send();
 		}

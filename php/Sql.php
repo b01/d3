@@ -153,14 +153,14 @@ class Sql
 					$stmt->bindValue( ':' . $parameterName, $data[0], $data[1] );
 				}
 				// Run the query
-				$returnValue = @$this->pdoQuery( $stmt, FALSE );
+				$returnValue = $this->pdoQuery( $stmt, FALSE );
 			}
 		}
 		catch ( \Exception $p_error )
 		{
 			logError(
 				$p_error,
-				"Bad query {$p_sqlStatement} \n\twith values:" . print_r( $p_values, TRUE) . "\n\tin %s on line %s.",
+				"Bad query {$p_sqlStatement} \n\t\n\tin %s on line %s.",
 				"Failed to save data; Which could mean lots of request to battle.net for the same data. Alerting system admin. You don't need to worry about this though"
 			);
 		}

@@ -16,7 +16,7 @@ use \d3\Sql;
 */
 class Item
 {
-	protected 
+	protected
 		$column,
 		$dqi,
 		$hash,
@@ -25,7 +25,7 @@ class Item
 		$json,
 		$loadedFromBattleNet,
 		$sql;
-	
+
 	/**
 	* Constructor
 	*/
@@ -42,7 +42,7 @@ class Item
 		$this->pullJson()
 			->processJson();
 	}
-	
+
 	/**
 	* Destructor
 	*/
@@ -57,7 +57,7 @@ class Item
 			$this->sql
 		);
 	}
-	
+
 	/**
 	* Get item data from local database.
 	* @return $this Chainable.
@@ -71,7 +71,7 @@ class Item
 			$result = $this->sql->getData( $query, [
 				"selectValue" => [ $this->hash, \PDO::PARAM_STR ]
 			]);
-			
+
 			if ( isArray($result) )
 			{
 				$this->info = $result[ 0 ];
@@ -80,7 +80,7 @@ class Item
 		}
 		return $this;
 	}
-	
+
 	/**
 	* Get the item, first check the local DB, otherwise pull from Battle.net.
 	*
@@ -103,12 +103,13 @@ class Item
 			{
 				$this->loadedFromBattleNet = TRUE;
 				$this->json = $json;
+				$this->save();
 			}
 		}
-		
+
 		return $this;
 	}
-	
+
 	/**
 	* Get raw JSON data returned from Battle.net.
 	*/
@@ -116,7 +117,7 @@ class Item
 	{
 		return $this->json;
 	}
-	
+
 	/**
 	* Load properties from the JSON into this object.
 	* @return $this Chainable.
@@ -130,14 +131,10 @@ class Item
 			$this->type = $this->info[ 'type' ];
 			$this->hash = substr( $this->info[ 'tooltipParams' ], 5 );
 			$this->id = $this->info[ 'id' ];
-			if ( $this->loadedFromBattleNet )
-			{
-				$this->save();
-			}
 		}
 		return $this;
 	}
-	
+
 	/**
 	* Save the users item locally, in this case a database
 	*/

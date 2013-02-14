@@ -13,7 +13,7 @@ namespace d3;
 */
 class Hero
 {
-	protected 
+	protected
 		$characterClass,
 		$dqi,
 		$forceLoadFromBattleNet,
@@ -40,8 +40,9 @@ class Hero
 		$this->loadedFromBattleNet = FALSE;
 		$this->sql = $p_sql;
 		$this->stats = NULL;
-		
-		$this->init();
+		$this
+			->pullJson()
+			->processJson();
 	}
 
 	/**
@@ -68,9 +69,17 @@ class Hero
 	*
 	* @return string
 	*/
-	public function getCharacterClass()
+	public function characterClass()
 	{
 		return $this->characterClass;
+	}
+
+	/**
+	* Check if the cache has expired for the JSON.
+	*/
+	protected function hasCacheExpired()
+	{
+		return sessionTimeExpired( "heroTime", BATTLENET_CACHE_LIMIT, $this->forceLoadFromBattleNet );
 	}
 
 	/**
@@ -78,9 +87,17 @@ class Hero
 	*
 	* @return array
 	*/
-	public function getItems()
+	public function items()
 	{
 		return $this->items;
+	}
+
+	/**
+	* Get raw JSON data returned from Battle.net.
+	*/
+	public function json()
+	{
+		return $this->json;
 	}
 
 	/**
@@ -88,7 +105,7 @@ class Hero
 	*
 	* @return array
 	*/
-	public function getStats()
+	public function stats()
 	{
 		return $this->stats;
 	}
@@ -98,54 +115,33 @@ class Hero
 	*
 	* @return string JSON item data.
 	*/
-	/**
-	* Example: 
-	* url ::= <host> "/api/d3/data/item/" <item-data>
-	* GET /api/d3/data/item/COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD
-	* Host: us.battle.net
-	* Note: Leave off the trailing '/' when setting
-	*	/api/d3/profile/<battleNetIdName>-<battleNetIdNumber>
-	* @param $p_battleNetId string Battle.Net ID with the "#code"
-	*/
-	public function getJson()
+	protected function pullJson()
 	{
 		$cacheExpired = $this->hasCacheExpired();
 		if ( $cacheExpired )
 		{
-			// Get it from Battle.net.
-			if ( !isString($this->json) && isString($this->heroId) )
-			{
-				$this->getJsonFromBattleNet();
-				// Log the request.
-				$this->sql->addRequest( $this->dqi->getBattleNetId(), $this->url );
-			}
+			$this->pullJsonFromBattleNet();
 		}
 		else
 		{
-			// Get the item from local database.
-			$this->info = $this->getHero( $this->heroId );
-			if ( isArray($this->info) )
-			{
-				$this->json = $this->info[0]['json'];
-			}
+			// Get the hero from the local database.
+			$this->pullJsonFromDb();
 		}
-		
-		return $this->json;
+		return $this;
 	}
 
 	/**
-	* Example: 
-	* url ::= <host> "/api/d3/data/item/" <item-data>
-	* GET /api/d3/data/item/COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD
-	* Note: Leave off the trailing '/' when setting
-	*	/api/d3/profile/<battleNetIdName>-<battleNetIdNumber>
+	* Get the JSON from Battle.Net.
+	* @return Hero
 	*/
-	protected function getJsonFromBattleNet()
+	protected function pullJsonFromBattleNet()
 	{
 		// Request the hero from BattleNet.
-		$this->url = sprintf( BATTLENET_D3_API_HERO_URL, $this->dqi->battleNetUrlSafeId(), $this->heroId );
-		$responseText = $this->dqi->get( $this->url );
+		$responseText = $this->dqi->getHero( $this->heroId );
 		$responseCode = $this->dqi->responseCode();
+		$this->url = $this->dqi->getUrl();
+		// Log the request.
+		$this->sql->addRequest( $this->dqi->getBattleNetId(), $this->url );
 		if ( $responseCode === 200 )
 		{
 			$this->json = $responseText;
@@ -156,41 +152,23 @@ class Hero
 
 	/**
 	* Get hero data from local database.
+	* @return Hero
 	*/
-	protected function getHero()
+	protected function pullJsonFromDb()
 	{
-		if ( $this->heroId !== NULL )
+		$result = $this->sql->getHero( $this->heroId );
+		if ( isArray($result) )
 		{
-			return $this->sql->getData( Sql::SELECT_HERO, [
-				"id" => [ $this->heroId, \PDO::PARAM_STR ]
-			]);
+			$this->json = $result[ 0 ][ 'json' ];
 		}
-		return NULL;
-	}
-
-	/**
-	* Get raw JSON data returned from Battle.net.
-	*/
-	public function json()
-	{
-		return $this->json;
-	}
-	
-	/**
-	* Check if the cache has expired for the JSON.
-	*/
-	protected function hasCacheExpired()
-	{
-		return sessionTimeExpired( "heroTime", BATTLENET_CACHE_LIMIT, $this->forceLoadFromBattleNet );
+		return $this;
 	}
 
 	/**
 	* Load the users hero into this class
 	*/
-	protected function init()
+	protected function processJson()
 	{
-		// Get the hero.
-		$this->getJson();
 		// Convert the JSON to an associative array.
 		if ( isString($this->json) )
 		{

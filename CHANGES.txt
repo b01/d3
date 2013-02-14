@@ -1,3 +1,9 @@
+List of changes as of 02/13/2013 08:25 PM
+-------------------------------
+	- Refactoring and various bug fixes in Profile class.
+	- Refactored Hero and BattleNetDqi classes.
+	- Updated get-profile and get-hero pages.
+
 List of changes as of 02/12/2013 11:33 PM
 -------------------------------
 	- Refactored classes to work with namespaces correctly (Windows bug work-a-round).

@@ -13,29 +13,33 @@ namespace d3;
 */
 class Profile
 {
-	protected 
+	protected
 		$battleNetId,
+		$column,
 		$dqi,
-		$sql,
+		$json,
+		$loadedFromBattleNet,
 		$profile,
-		$info,
-		$json;
-	
-	
+		$sql;
+
+
 	/**
 	* Constructor
 	*/
 	public function __construct( $p_battleNetId, \d3\BattleNetDqi $p_dqi, \d3\Sql $p_sql )
 	{
 		$this->battleNetId = $p_battleNetId;
+		$this->column = "battle_net_id";
+		$this->loadedFromBattleNet = FALSE;
 		$this->dqi = $p_dqi;
-		$this->sql = $p_sql;
-		$this->profile = NULL;
-		$this->info = NULL;
 		$this->json = NULL;
-		$this->load();
+		$this->profile = NULL;
+		$this->sql = $p_sql;
+		$this
+			->pullJson()
+			->processJson();
 	}
-	
+
 	/**
 	* Destructor
 	*/
@@ -43,102 +47,118 @@ class Profile
 	{
 		unset(
 			$this->battleNetId,
+			$this->column,
 			$this->dqi,
-			$this->sql,
+			$this->json,
+			$this->loadedFromBattleNet,
 			$this->profile,
-			$this->info,
-			$this->json
+			$this->sql
 		);
 	}
-	
+
 	/**
-	* Get the user hero profiles, first check the local DB, otherwise pull from Battle.net.
+	* Get profile json from the database.
 	*
 	* @return string JSON item data.
 	*/
-	protected function getJson()
+	protected function pullJsonFromDb()
 	{
 		// Get the profile from local database.
-		$this->info = $this->sql->getProfile( $this->battleNetId );
-		if ( isArray($this->info) )
+		$result = $this->sql->getProfile( $this->battleNetId );
+		if ( isArray($result) )
 		{
-			$this->json = $this->info['json'];
+			$this->json = $result[ 'json' ];
 		}
-		// If that fails, then try to get it from Battle.net.
-		if ( !isString($this->json) )
-		{
-			// Request the profile from BattleNet.
-			$json = $this->dqi->getProfile();
-			$responseCode = $this->dqi->responseCode();
-			$url = $this->dqi->getUrl();
-			// Log the request.
-			$this->sql->addRequest( $this->battleNetId, $url );
-			if ( $responseCode == 200 )
-			{
-				$this->json = $json;
-				$this->save();
-			}
-		}
-		
-		return $this->json;
+		return $this;
 	}
-	
+
+	/**
+	* Get the item, first check the local DB, otherwise pull from Battle.net.
+	*
+	* @return string JSON item data.
+	*/
+	protected function pullJson()
+	{
+		// Attempt to get it from the local DB.
+		$this->pullJsonFromDb();
+		// If that fails, then try to get it from Battle.net.
+		if ( gettype($this->json) !== "string" )
+		{
+			$this->pullJsonFromBattleNet();
+		}
+		return $this;
+	}
+
+	/**
+	* Example:
+	* url ::= <host> "/api/d3/data/item/" <item-data>
+	* GET /api/d3/data/item/COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD
+	* Note: Leave off the trailing '/' when setting
+	*	/api/d3/profile/<battleNetIdName>-<battleNetIdNumber>
+	*/
+	protected function pullJsonFromBattleNet()
+	{
+		// Request the item from BattleNet.
+		$responseText = $this->dqi->getProfile( $this->battleNetId );
+		$responseCode = $this->dqi->responseCode();
+		$this->url = $this->dqi->getUrl();
+		// Log the request.
+		$this->sql->addRequest( $this->dqi->getBattleNetId(), $this->url );
+		if ( $responseCode === 200 )
+		{
+			$this->json = $responseText;
+			$this->loadedFromBattleNet = TRUE;
+			$this->save();
+		}
+		return $this;
+	}
+
+	/**
+	* Load properties from the JSON into this object.
+	* @return $this Chainable.
+	*/
+	protected function processJson()
+	{
+		$this->profile = json_decode( $this->json, TRUE );
+		if ( isArray($this->profile) )
+		{
+			$this->heroes = $this->profile[ 'heroes' ];
+		}
+		return $this;
+	}
+
 	/**
 	* Get Hero(s) data.
 	*
 	* @param $p_heroByName string Optional name to specify a single hero to return.
 	* @return mixed Heroes(s) data as an array, or null if none.
 	*/
-	public function getHeroes( $p_heroByName = NULL )
+	public function heroes( $p_heroByName = NULL )
 	{
 		$returnValue = NULL;
-		if ( isArray($this->profile) )
+		if ( isArray($this->heroes) )
 		{
-			if ( $p_heroByName !== NULL && array_key_exists($p_heroByName, $this->profile['heroes']) )
+			if ( $p_heroByName !== NULL && array_key_exists($p_heroByName, $this->heroes) )
 			{
-				$returnValue = $this->profile['heroes'][ $p_heroByName ];
+				$returnValue = $this->heroes[ $p_heroByName ];
 			}
 			else
 			{
-				$returnValue = $this->profile['heroes'];
+				$returnValue = $this->heroes;
 			}
 		}
-		
+
 		return $returnValue;
 	}
-	
+
 	/**
 	* Get raw JSON data returned from Battle.net.
 	*/
-	public function getRawData()
+	public function json()
 	{
-		if ( $this->json !== NULL )
-		{
-			return $this->json;
-		}
-		return NULL;
+		return $this->json;
 	}
-	
-	/**
-	* Load the users profile into this class
-	*/
-	protected function load()
-	{
-		// Get the profile from local database.
-		$this->getJson();
-		// Convert the JSON to an associative array.
-		if ( isString($this->json) )
-		{
-			$profile = parseJson( $this->json );
-			if ( isArray($profile) )
-			{
-				$this->profile = $profile;
-			}
-		}
-		
-		return $this->profile;
-	}
-	
+
 	/**
 	* Save the users profile locally to the database.
 	* @return bool
@@ -146,7 +166,8 @@ class Profile
 	protected function save()
 	{
 		$utcTime = gmdate( "Y-m-d H:i:s" );
-		return $this->sql->save( Sql::INSERT_PROFILE, [
+		$query = sprintf( Sql::INSERT_PROFILE, DB_NAME );
+		return $this->sql->save( $query, [
 			"battleNetId" => [ $this->battleNetId, \PDO::PARAM_STR ],
 			"json" => [ $this->json, \PDO::PARAM_STR ],
 			"ipAddress" => [ $this->sql->ipAddress(), \PDO::PARAM_STR ],
