@@ -1,3 +1,14 @@
+List of changes as of 02/14/2013 07:54 PM
+-------------------------------
+	- Removed unused fields from item HTML form.
+	- Fixed bug in Item class.
+	- Updated item tool-tip styling.
+	- Removed get-skills-html page, replaced it with get-url page, now more restricted.
+	- Added select text on mouseup for hash and JSON copy boxes.
+	- Removed var dump statement from BattleNetDqi class.
+	- Removed item-form HTML file.
+	- Uncheck extra when on hero page.
+
 List of changes as of 02/13/2013 08:25 PM
 -------------------------------
 	- Refactoring and various bug fixes in Profile class.

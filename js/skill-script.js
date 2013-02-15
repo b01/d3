@@ -54,9 +54,9 @@ function parser( $p_that, p_i, p_count, p_nameSelector, p_descSelector, p_runes 
 /**
 *
 */
-function getSkillHtml( p_url, p_callBack )
+function getSkillHtml( p_data, p_callBack )
 {
-	$.ajax( "get-skills-html.php?urlPath=" + p_url, {
+	$.ajax( "get-url.php?which=" + p_data, {
 		"dataType": "html",
 		"success": p_callBack
 	});
@@ -94,7 +94,7 @@ function getRuneSkills( p_name )
 {
 	setTimeout( function ()
 	{
-		getSkillHtml( window.heroClass + "/active/" + p_name, function ( p_data )
+		getSkillHtml( "skill-2&class=" + window.heroClass + "&slug=" + p_name, function ( p_data )
 		{
 			$skillsElement = $( $.parseHTML(p_data) ).find( ".rune-details" );
 			if ( $skillsElement.length > 0 )
@@ -110,7 +110,7 @@ jQuery( document ).ready(function ()
 {
 	if ( typeof window["heroClass"] === "string" && window["heroClass"].length > 1 )
 	{
-		getSkillHtml( window.heroClass + "/active/", function ( p_data )
+		getSkillHtml( "skill-1&class=" + window.heroClass, function ( p_data )
 		{
 			$skillsElement = $( $.parseHTML(p_data) ).find( ".skill-details" );
 			if ( $skillsElement.length > 0 )
@@ -118,7 +118,7 @@ jQuery( document ).ready(function ()
 				var json = parseSkills( $skillsElement, ".subheader-3 a", ".skill-description p", true );
 				$( ".pre" ).append( "{\n\"active\": " + json );
 				// Now get the passive skills.
-				getSkillHtml( window.heroClass + "/passive/", function ( p_data )
+				getSkillHtml( "skill-3&class=" + window.heroClass, function ( p_data )
 				{
 					$skillsElement = $( $.parseHTML(p_data) ).find( ".skill-details" );
 					if ( $skillsElement.length > 0 )

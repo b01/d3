@@ -1,5 +1,4 @@
 
-
 	.item-tool-tip {
 		background-color: black;
 		border: 1px solid #322a20;
@@ -11,31 +10,37 @@
 		z-index: 1
 	}
 
-	.set {
+	.item .copy-box {
+		height: 7em;
+		margin: 0.2em 0em 1em;
+		width: 22.3em
+	}
+
+	.item .set {
 		color: rgb(144, 144, 144)
 	}
-	.set .piece {
+	.item .set .piece {
 		margin-left: 20px
 	}
-	.set .piece .value {
+	.item .set .piece .value {
 		color: rgb(255, 255, 255)
 	}
 
-	.levels {
+	.item .levels {
 		clear: both;
 		margin: 10px 20px
 	}
-	.levels .level {
+	.item .levels .level {
 		width: 12.5em
 	}
-	.levels .max {
+	.item .levels .max {
 		text-align: right
 	}
-	.levels .value {
+	.item .levels .value {
 		color: rgb(255, 255, 255)
 	}
 
-	.flavor {
+	.item .flavor {
 		border-top: 2px solid rgb(50, 42, 32);
 		color: rgb(173, 131, 90);
 		font-family: "Palatino Linotype", "Times", serif;
@@ -49,7 +54,7 @@
 		color: rgb(255, 255, 255)
 	}
 
-	.effect-bg {
+	.item .effect-bg {
 		margin: 0 20px 10px
 	}
 	.item .effect-bg { background-position: 10px 10px; background-repeat: no-repeat; }
@@ -191,9 +196,10 @@
 	.header .close {
 		color: rgb(255, 255, 255);
 		cursor: pointer;
-		font-size: 0.9em;
+		font-size: 0.7em;
 		position: absolute;
 		right: 1.501em;
+		top: -1em
 	}
 	.header .close:hover {
 		color: rgb(255, 0, 0)

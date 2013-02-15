@@ -65,7 +65,6 @@ class BattleNetDqi extends \HttpRequestor
 		if ( isString($p_heroId) )
 		{
 			$this->url = sprintf( BATTLENET_D3_API_HERO_URL, $this->battleNetUrlSafeId(), $p_heroId );
-			var_dump( $this->url );
 			$returnValue = $this->send();
 		}
 		else

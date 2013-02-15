@@ -56,6 +56,40 @@
 	*
 	* @return array
 	*/
+	function getHtmlInnerBody( $p_html )
+	{
+		$returnValue = NULL;
+		if ( gettype($p_html) === "string" )
+		{
+			$start = strpos( $p_html, "<body" );
+			$start = strpos( $p_html, '>', $start + 5 );
+			$end = strpos( $p_html, "</body>", $start ) - $start;
+			$returnValue = substr( $p_html, $start + 1, $end );
+		}
+		return $returnValue;
+	}
+
+	/**
+	* Capture the output of an include statment.
+	* Taken from PHP example of include function.
+	*
+	*/
+	function get_include_contents( $p_filename )
+	{
+		if ( is_file($p_filename) )
+		{
+			ob_start();
+			include $p_filename;
+			return ob_get_clean();
+		}
+		return FALSE;
+	}
+
+	/**
+	* Convert an array of item hashes to item models.
+	*
+	* @return array
+	*/
 	function getItemModels( $p_items, $p_battleNetDqi, $p_sql )
 	{
 		$itemModels = [];

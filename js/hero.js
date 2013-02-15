@@ -72,7 +72,7 @@
 				// Load an items details via HTTP request.
 				$( ".item-slot" ).each(function ()
 				{
-					$( this ).on( "click", clickItemLink );
+					$( this ).on( "click.d3", clickItemLink );
 				});
 				// Toggle stat details.
 				$( ".list" ).toggleList();
@@ -104,9 +104,14 @@
 						}
 					}
 				});
+				// Select all text on mouse up.
+				$( document ).on( "mouseup.d3", ".copy-box", function ()
+				{
+					$( this ).select();
+				});
 			});
 
-			$.ajax( "/item-form.html", {
+			$.ajax( "/get-url.php?which=form", {
 				"dataType": "html",
 				"statusCode": {
 					200: function ( p_data )
@@ -118,6 +123,7 @@
 						{
 							$form.find( "input[name='battleNetId']" ).val( battleNetId );
 							$form.find( "input[name='battleNetId']" ).attr( "type", "hidden" );
+							$form.find( "input[name='extra']" ).removeAttr( "checked" );
 							$form.ajaxForm({
 								"success": function ( p_responseText, statusText )
 								{

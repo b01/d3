@@ -103,7 +103,6 @@ class Item
 			{
 				$this->loadedFromBattleNet = TRUE;
 				$this->json = $json;
-				$this->save();
 			}
 		}
 
@@ -131,6 +130,10 @@ class Item
 			$this->type = $this->info[ 'type' ];
 			$this->hash = substr( $this->info[ 'tooltipParams' ], 5 );
 			$this->id = $this->info[ 'id' ];
+			if ( $this->loadedFromBattleNet )
+			{
+				$this->save();
+			}
 		}
 		return $this;
 	}

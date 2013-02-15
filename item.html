@@ -14,8 +14,9 @@
 					</div>
 					<div class="item-hash">
 						<label class="label">Item Hash</label>
-						<input class="input" type="text" name="itemHash" size="100" value="" />
+						<input class="input" type="text" name="itemHash" size="100" value="" autofocus="autofocus" required="required" />
 					</div>
+					<!-- WIP
 					<div class="item-id">
 						<label class="label">Item ID</label>
 						<input class="input" type="text" name="itemId" size="100" value="" />
@@ -24,11 +25,12 @@
 						<label class="label">Item Hash</label>
 						<input class="input" type="text" name="itemName" size="100" value="" />
 					</div>
+					-->
 					<div class="checkbox">
 						<input class="checkbox" type="checkbox" name="byName" value="true" /> <label class="label">Check this box to search for an item by name (not gauranteed to get the item back).</label>
 					</div>
 					<div class="checkbox">
-						<input class="checkbox" type="checkbox" name="extra" value="1" /> <label class="label">Check this box to show extra data (like the JSON retruned from Battle.net).</label>
+						<input class="checkbox" type="checkbox" name="extra" value="1" checked="checked" /> <label class="label">Check this box to show extra data (like the JSON retruned from Battle.net).</label>
 					</div>
 				</div>
 				<input type="submit" value="Get Item" />
