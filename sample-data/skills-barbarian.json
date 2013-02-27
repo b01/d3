@@ -1,642 +1,770 @@
 {
-   "active":{
-      "bash":{
-         "desc":"Generate: 8 Fury per attackBrutally smash an enemy for 165% weapon damage with a 20% chance to Knockback.",
-         "unknown":" 8 165% 20% .",
-         "runes":{
-            "clobber":{
-               "desc":"Instead of Knockback, each hit has a 35% chance to Stun the target for 1.5 seconds.",
-               "unknown":" 35% 1.5 ."
-            },
-            "onslaught":{
-               "desc":"Add 2 reverberations that cause 25% weapon damage per strike. Removes the chance for Knockback.",
-               "unknown":" 2 25% . ."
-            },
-            "punish":{
-               "desc":"Increases the damage of your skills by 8% for 5 seconds after using Bash. This effect stacks up to 3 times.",
-               "unknown":" 8% 5 . 3 ."
-            },
-            "instigation":{
-               "desc":"Generate 4 additional Fury per attack.",
-               "unknown":" 4 ."
-            },
-            "pulverize":{
-               "desc":"Cause a shockwave that inflicts 38% weapon damage to enemies in a 26 yard line behind the targeted enemy.",
-               "unknown":" 38% 26 ."
-            }
-         }
-      },
-      "hammer-of-the-ancients":{
-         "desc":"Cost: 20 FuryCall forth a massive hammer to smash enemies directly in front of you for 325% weapon damage. Hammer of the Ancients has a 1% increased Critical Hit Chance for every 5 Fury that you have.",
-         "unknown":" 20 325% . 1% 5 .",
-         "runes":{
-            "rolling-thunder":{
-               "desc":"Create a shockwave that deals 275% weapon damage to all enemies within 22 yards in front of you.",
-               "unknown":" 275% 22 ."
-            },
-            "smash":{
-               "desc":"Strike a smaller area for 406% weapon damage.",
-               "unknown":" 406% ."
-            },
-            "the-devil's-anvil":{
-               "desc":"Create a tremor at the point of impact for 2 seconds that slows the movement speed of enemies by 80%.",
-               "unknown":" 2 80%."
-            },
-            "thunderstrike":{
-               "desc":"Whenever you kill an enemy with Hammer of the Ancients every other enemy within 10 yards is stunned for 3 seconds.",
-               "unknown":" 10 3 ."
-            },
-            "birthright":{
-               "desc":"Critical Hits have a 10% chance to cause enemies to drop treasure or health globes.",
-               "unknown":" 10% ."
-            }
-         }
-      },
-      "cleave":{
-         "desc":"Generate: 5 Fury per attackSwing your weapon in a wide arc to deal 140% weapon damage to all enemies caught in the swing.",
-         "unknown":" 5 140% .",
-         "runes":{
-            "rupture":{
-               "desc":"Enemies slain by Cleave explode, causing 85% weapon damage to all other enemies within 8 yards.",
-               "unknown":" 85% 8 ."
-            },
-            "reaping-swing":{
-               "desc":"Generate 3 additional Fury per enemy hit.",
-               "unknown":" 3 ."
-            },
-            "scattering-blast":{
-               "desc":"On Critical Hits, knock enemies back 9 yards and inflict 60% weapon damage to enemies where they land.",
-               "unknown":" 9 60% ."
-            },
-            "broad-sweep":{
-               "desc":"Increase damage to 175% weapon damage.",
-               "unknown":" 175% ."
-            },
-            "gathering-storm":{
-               "desc":"Enemies cleaved have their movement speed reduced by 80% for 1 seconds.",
-               "unknown":" 80% 1 ."
-            }
-         }
-      },
-      "ground-stomp":{
-         "desc":"Generate: 15 FuryCooldown: 12 secondsSmash the ground, stunning all enemies within 12 yards for 4 seconds.",
-         "unknown":" 15 12 12 4 .",
-         "runes":{
-            "deafening-crash":{
-               "desc":"Enemies in the area have their movement speed slowed by 60% for 3 seconds after they recover from being stunned.",
-               "unknown":" 60% 3 ."
-            },
-            "wrenching-smash":{
-               "desc":"Increase the area of effect to 24 yards. Enemies are pulled closer before the strike lands.",
-               "unknown":" 24 . ."
-            },
-            "trembling-stomp":{
-               "desc":"Enemies in the area also take 76% weapon damage.",
-               "unknown":" 76% ."
-            },
-            "foot-of-the-mountain":{
-               "desc":"Increase Fury gained to 30.",
-               "unknown":" 30."
-            },
-            "avalanche":{
-               "desc":"Enemies are knocked back 9 yards and inflict 55% weapon damage to enemies in the landing area.",
-               "unknown":" 9 55% ."
-            }
-         }
-      },
-      "rend":{
-         "desc":"Cost: 20 FuryA sweeping strike causes all nearby enemies to Bleed for 700% weapon damage as Physical over 5 seconds.",
-         "unknown":" 20 700% 5 .",
-         "runes":{
-            "ravage":{
-               "desc":"Increase the range of Rend to hit all enemies within 17 yards.",
-               "unknown":" 17 ."
-            },
-            "blood-lust":{
-               "desc":"Gain 9% of the damage done by Rend as Life.",
-               "unknown":" 9% ."
-            },
-            "lacerate":{
-               "desc":"Increase damage to 903% weapon damage as Physical over 5 seconds.",
-               "unknown":" 903% 5 ."
-            },
-            "mutilate":{
-               "desc":"Affected enemies also have their movement speed reduced by 60%.",
-               "unknown":" 60%."
-            },
-            "bloodbath":{
-               "desc":"Enemies killed while bleeding cause all enemies within 10 yards to begin bleeding for 100% weapon damage as Physical over 5 seconds.",
-               "unknown":" 10 100% 5 ."
-            }
-         }
-      },
-      "leap":{
-         "desc":"Generate: 15 FuryCooldown: 10 secondsLeap into the air, dealing 85% weapon damage to all enemies within 8 yards of your destination and slowing their movement speed by 60% for 3 seconds.",
-         "unknown":" 15 10 85% 8 60% 3 .",
-         "runes":{
-            "iron-impact":{
-               "desc":"Gain 100% additional Armor per enemy hit for 3 seconds after landing.",
-               "unknown":" 100% 3 ."
-            },
-            "launch":{
-               "desc":"Jump into the air with such great force that enemies within 8 yards of the origin of the jump are also slowed by 60% for 3 seconds.",
-               "unknown":" 8 60% 3 ."
-            },
-            "toppling-impact":{
-               "desc":"Send enemies hurtling away from where you land.",
-               "unknown":" ."
-            },
-            "call-of-arreat":{
-               "desc":"Shockwaves burst forth from the ground increasing the radius of effect to 16 yards and pulling affected enemies towards you.",
-               "unknown":" 16 ."
-            },
-            "death-from-above":{
-               "desc":"Land with such force that enemies have a 100% chance to be stunned for 3 seconds.",
-               "unknown":" 100% 3 ."
-            }
-         }
-      },
-      "ancient-spear":{
-         "desc":"Generate: 15 FuryCooldown: 10 secondsThrow a spear to pull an enemy back to you, briefly slowing the target's movement by 60% and dealing 185% weapon damage.",
-         "unknown":" 15 10 60% 185% .",
-         "runes":{
-            "grappling-hooks":{
-               "desc":"Throw 3 spears. Each spear will pull back the enemy that it hits.",
-               "unknown":" 3 . ."
-            },
-            "skirmish":{
-               "desc":"Increases Fury gained to 30.",
-               "unknown":" 30."
-            },
-            "dread-spear":{
-               "desc":"Gain Life equal to 60% of the damage inflicted.",
-               "unknown":" 60% ."
-            },
-            "harpoon":{
-               "desc":"Pierce through multiple enemies in a straight line and drag them all back.",
-               "unknown":" ."
-            },
-            "rage-flip":{
-               "desc":"Enemies hit with Ancient Spear are pulled in the opposite direction and damage is increased to 213% weapon damage.",
-               "unknown":" 213% ."
-            }
-         }
-      },
-      "frenzy":{
-         "desc":"Generate: 3 Fury per attackSwing for 110% weapon damage. Frenzy attack speed increases by 15% with each swing. This effect can stack up to 5 times for a total bonus of 75% attack speed.",
-         "unknown":" 3 110% . 15% . 5 75% .",
-         "runes":{
-            "sidearm":{
-               "desc":"Each strike has a 25% chance to throw a piercing axe at a nearby enemy that deals 110% weapon damage to all enemies in its path.",
-               "unknown":" 25% 110% ."
-            },
-            "triumph":{
-               "desc":"Killing an enemy with Frenzy heals you for 8% of your maximum Life over 6 seconds.",
-               "unknown":" 8% 6 ."
-            },
-            "vanguard":{
-               "desc":"While under the effects of Frenzy, you gain 15% increased movement speed.",
-               "unknown":" 15% ."
-            },
-            "smite":{
-               "desc":"Add a 20% chance to call down a bolt of lightning from above, stunning your target for 1.5 seconds.",
-               "unknown":" 20% 1.5 ."
-            },
-            "maniac":{
-               "desc":"Each Frenzy effect also increases your damage by 4%.",
-               "unknown":" 4%."
-            }
-         }
-      },
-      "seismic-slam":{
-         "desc":"Cost: 30 FurySlam the ground and cause a wave of destruction that deals 240% weapon damage and Knockback to targets in a 45 yard arc.",
-         "unknown":" 30 240% 45 .",
-         "runes":{
-            "stagger":{
-               "desc":"Add a 70% chance of stunning enemies for 1.5 seconds.",
-               "unknown":" 70% 1.5 ."
-            },
-            "shattered-ground":{
-               "desc":"Increase damage to 288% weapon damage and increases Knockback distance by 100%.",
-               "unknown":" 288% 100%."
-            },
-            "rumble":{
-               "desc":"The ground continues to shudder after the initial strike, damaging enemies in the area for 60% weapon damage as Physical over 2 seconds.",
-               "unknown":" 60% 2 ."
-            },
-            "strength-from-earth":{
-               "desc":"Reduce Fury cost to 15 Fury.",
-               "unknown":" 15 ."
-            },
-            "cracking-rift":{
-               "desc":"Focus the seismic shockwaves along a narrow path to inflict 340% weapon damage to targets along a 42 yard path.",
-               "unknown":" 340% 42 ."
-            }
-         }
-      },
-      "revenge":{
-         "desc":"Revenge has a 15% chance to become active each time you are hit.Inflict 220% weapon damage to all nearby enemies. You heal 5.0% of your maximum Life for each enemy hit.",
-         "unknown":" 15% . 220% . 5.0% .",
-         "runes":{
-            "vengeance-is-mine":{
-               "desc":"Gain 5 Fury and heal for 8.0% of your maximum Life for each enemy hit.",
-               "unknown":" 5 8.0% ."
-            },
-            "best-served-cold":{
-               "desc":"After using Revenge, your Critical Hit Chance is increased by 10% for 12 seconds.",
-               "unknown":" 10% 12 ."
-            },
-            "retribution":{
-               "desc":"Increase damage to 286% weapon damage.",
-               "unknown":" 286% ."
-            },
-            "grudge":{
-               "desc":"Knocks enemies back 24 yards whenever Revenge is used.",
-               "unknown":" 24 ."
-            },
-            "provocation":{
-               "desc":"Increases the chance Revenge will become active to 30% each time you are hit by an attack.",
-               "unknown":" 30% ."
-            }
-         }
-      },
-      "weapon-throw":{
-         "desc":"Cost: 10 FuryHurl a throwing weapon at an enemy for 130% weapon damage and Slow the movement of the enemy by 60% for 2 seconds.",
-         "unknown":" 10 130% 60% 2 .",
-         "runes":{
-            "mighty-throw":{
-               "desc":"Increase thrown weapon damage to 169% weapon damage.",
-               "unknown":" 169% ."
-            },
-            "ricochet":{
-               "desc":"Cause the weapon to ricochet and hit up to 3 targets within 20 yards of each other.",
-               "unknown":" 3 20 ."
-            },
-            "throwing-hammer":{
-               "desc":"Hurl a hammer with a 50% chance to Stun the target for 1.5 seconds.",
-               "unknown":" 50% 1.5 ."
-            },
-            "stupefy":{
-               "desc":"Aim for the head, gaining a 20% chance of causing your target to be Confused and attack other enemies for 6 seconds.",
-               "unknown":" 20% 6 ."
-            },
-            "dread-bomb":{
-               "desc":"Expend all remaining Fury to throw a corpse which inflicts an additional 3% weapon damage for each point of Fury expended to all enemies within 12 yards of the target.",
-               "unknown":" 3% 12 ."
-            }
-         }
-      },
-      "sprint":{
-         "desc":"Cost: 20 FuryIncrease movement speed by 40% for 3 seconds.",
-         "unknown":" 20 40% 3 .",
-         "runes":{
-            "rush":{
-               "desc":"Increases Dodge Chance by 12% while sprinting.",
-               "unknown":" 12% ."
-            },
-            "run-like-the-wind":{
-               "desc":"Tornadoes rage in your wake, each one inflicting 60% weapon damage as Physical for 3 seconds to nearby enemies.",
-               "unknown":" 60% 3 ."
-            },
-            "marathon":{
-               "desc":"Increases the movement speed bonus to 50% for 5 seconds.",
-               "unknown":" 50% 5 ."
-            },
-            "gangway":{
-               "desc":"Slams through enemies, knocking them back and inflicting 25% weapon damage.",
-               "unknown":" 25% ."
-            },
-            "forced-march":{
-               "desc":"Increase the movement speed of allies within 50 yards by 20% for 3 seconds.",
-               "unknown":" 50 20% 3 ."
-            }
-         }
-      },
-      "threatening-shout":{
-         "desc":"Generate: 15 FuryCooldown: 10 secondsShout with great ferocity, reducing damage done by enemies within 25 yards by 20% for 15 seconds.",
-         "unknown":" 15 10 25 20% 15 .",
-         "runes":{
-            "intimidate":{
-               "desc":"Affected enemies also have their movement speed reduced by 30%.",
-               "unknown":" 30%."
-            },
-            "falter":{
-               "desc":"Affected enemies also have their attack speed reduced by 15% for 5 seconds.",
-               "unknown":" 15% 5 ."
-            },
-            "grim-harvest":{
-               "desc":"Enemies are badly shaken and have a 15% chance to drop additional treasure or health globes.",
-               "unknown":" 15% ."
-            },
-            "demoralize":{
-               "desc":"Affected enemies are also taunted to attack you for 3 seconds.",
-               "unknown":" 3 ."
-            },
-            "terrify":{
-               "desc":"Enemies are severely demoralized. Each enemy has a 35% chance to flee for 2.5 seconds.",
-               "unknown":" . 35% 2.5 ."
-            }
-         }
-      },
-      "earthquake":{
-         "desc":"Cost: 50 FuryCooldown: 120 secondsShake the ground violently, dealing 2000% weapon damage as Fire over 8 seconds to all enemies within 18 yards.",
-         "unknown":" 50 120 2000% 8 18 .",
-         "runes":{
-            "giant's-stride":{
-               "desc":"Secondary tremors follow your movement and inflict 65% weapon damage as Fire.",
-               "unknown":" 65% ."
-            },
-            "chilling-earth":{
-               "desc":"Creates an icy patch, causing Earthquake's damage to turn Cold and Slow the movement of enemies by 80%.",
-               "unknown":" 80%."
-            },
-            "the-mountain's-call":{
-               "desc":"Removes the Fury cost and reduces the cooldown to 105 seconds.",
-               "unknown":" 105 ."
-            },
-            "aftershocks":{
-               "desc":"Secondary tremors knock enemies back and inflict 65% weapon damage as Fire.",
-               "unknown":" 65% ."
-            },
-            "path-of-fire":{
-               "desc":"Project secondary tremors up to 12 yards ahead of you that inflict 65% weapon damage as Fire.",
-               "unknown":" 12 65% ."
-            }
-         }
-      },
-      "whirlwind":{
-         "desc":"Cost: 10 FuryDeliver multiple attacks to everything in your path for 145% weapon damage.",
-         "unknown":" 10 145% .",
-         "runes":{
-            "dust-devils":{
-               "desc":"Generate harsh tornadoes that inflict 40% weapon damage to enemies in their path.",
-               "unknown":" 40% ."
-            },
-            "hurricane":{
-               "desc":"Allows you to move at your movement speed while using Whirlwind.",
-               "unknown":" ."
-            },
-            "blood-funnel":{
-               "desc":"Critical Hits restore 2.0% of your maximum Life.",
-               "unknown":" 2.0% ."
-            },
-            "wind-shear":{
-               "desc":"Gain 1 Fury for every enemy struck.",
-               "unknown":" 1 ."
-            },
-            "volcanic-eruption":{
-               "desc":"Turns Whirlwind into a torrent of magma that inflicts 189% weapon damage as Fire.",
-               "unknown":" 189% ."
-            }
-         }
-      },
-      "furious-charge":{
-         "desc":"Generate: 15 FuryCooldown: 10 secondsRush forward knocking back enemies and inflicting 195% weapon damage to enemies along the path of the charge.",
-         "unknown":" 15 10 195% .",
-         "runes":{
-            "battering-ram":{
-               "desc":"Increase damage at the destination to 283% weapon damage.",
-               "unknown":" 283% ."
-            },
-            "merciless-assault":{
-               "desc":"Cooldown is reduced by 2 seconds for every target hit. This effect can reduce the cooldown by up to 10 seconds.",
-               "unknown":" 2 . 10 ."
-            },
-            "stamina":{
-               "desc":"Generate 8 additional Fury for each target hit while charging.",
-               "unknown":" 8 ."
-            },
-            "bull-rush":{
-               "desc":"Any targets who are critically hit by Furious Charge will be stunned for 2.5 seconds.",
-               "unknown":" 2.5 ."
-            },
-            "dreadnought":{
-               "desc":"Regain 8% of your maximum Life for each target hit by Furious Charge.",
-               "unknown":" 8% ."
-            }
-         }
-      },
-      "ignore-pain":{
-         "desc":"Cooldown: 30 secondsReduces all damage taken by 65% for 5 seconds.",
-         "unknown":" 30 65% 5 .",
-         "runes":{
-            "bravado":{
-               "desc":"When activated, Knockback all enemies within 12 yards and deal 50% weapon damage to them.",
-               "unknown":" 12 50% ."
-            },
-            "iron-hide":{
-               "desc":"Increases duration to 7 seconds.",
-               "unknown":" 7 ."
-            },
-            "ignorance-is-bliss":{
-               "desc":"While Ignore Pain is active, gain 20% of all damage dealt as Life.",
-               "unknown":" 20% ."
-            },
-            "mob-rule":{
-               "desc":"Extend the effect to nearby allies, reducing damage taken by 65% for 5 seconds.",
-               "unknown":" 65% 5 ."
-            },
-            "contempt-for-weakness":{
-               "desc":"Reflects 50% of ignored damage back at the enemy.",
-               "unknown":" 50% ."
-            }
-         }
-      },
-      "battle-rage":{
-         "desc":"Cost: 20 FuryEnter a rage which increases damage by 15% and Critical Hit Chance by 3% for 120 seconds.",
-         "unknown":" 20 15% 3% 120 .",
-         "runes":{
-            "marauder's-rage":{
-               "desc":"Increase damage bonus to 30%.",
-               "unknown":" 30%."
-            },
-            "ferocity":{
-               "desc":"While under the effects of Battle Rage, Critical Hits have a chance to increase the duration of Battle Rage by 2 seconds.",
-               "unknown":" 2 ."
-            },
-            "swords-to-ploughshares":{
-               "desc":"While under the effects of Battle Rage, Critical Hits have up to a 5% chance to cause enemies to drop additional health globes.",
-               "unknown":" 5% ."
-            },
-            "into-the-fray":{
-               "desc":"While under the effects of Battle Rage, Critical Hits have a chance to generate 15 additional Fury.",
-               "unknown":" 15 ."
-            },
-            "bloodshed":{
-               "desc":"While under the effects of Battle Rage, Critical Hits have a chance to cause an explosion of blood dealing 20% of the damage done to all other nearby enemies.",
-               "unknown":" 20% ."
-            }
-         }
-      },
-      "call-of-the-ancients":{
-         "desc":"Cost: 50 FuryCooldown: 120 secondsSummon the ancient Barbarians Talic, Korlic, and Madawc to fight alongside you for 15 seconds. Each deals 60% weapon damage per swing in addition to bonus abilities.Talic wields a sword and shield and uses the Whirlwind skill. Korlic wields a massive polearm and uses the Cleave skill. Madawc dual-wields axes and uses the Weapon Throw skill.",
-         "unknown":" 50 120 15 . 60% . . . .",
-         "runes":{
-            "the-council-rises":{
-               "desc":"The Ancients inflict 66% weapon damage with each attack and have 100% additional Armor.",
-               "unknown":" 66% 100% ."
-            },
-            "duty-to-the-clan":{
-               "desc":"Increase duration to 20 seconds.",
-               "unknown":" 20 ."
-            },
-            "korlic's-might":{
-               "desc":"Korlic gains the skill Furious Charge which deals 200% of your weapon damage to all enemies in a line.",
-               "unknown":" 200% ."
-            },
-            "madawc's-madness":{
-               "desc":"Madawc gains the skill Seismic Slam which deals 180% of your weapon damage to enemies in an arc.",
-               "unknown":" 180% ."
-            },
-            "talic's-anger":{
-               "desc":"Talic gains the skill Leap which deals 250% of your weapon damage to enemies in the area of the leap.",
-               "unknown":" 250% ."
-            }
-         }
-      },
-      "overpower":{
-         "desc":"Cooldown: 12 secondsDeal 165% weapon damage to all targets within 9 yards. Landing a Critical Hit has a chance to lower the cooldown by 1 second.",
-         "unknown":" 12 165% 9 . 1 .",
-         "runes":{
-            "storm-of-steel":{
-               "desc":"Throw up to 3 axes at nearby enemies which inflict 50% weapon damage each.",
-               "unknown":" 3 50% ."
-            },
-            "killing-spree":{
-               "desc":"Your Critical Hit Chance is increased by 10% for 6 seconds.",
-               "unknown":" 10% 6 ."
-            },
-            "crushing-advance":{
-               "desc":"Redirect 35% of incoming melee and ranged damage for 4 seconds after Overpower is activated.",
-               "unknown":" 35% 4 ."
-            },
-            "momentum":{
-               "desc":"Generate 12 Fury for each enemy hit by Overpower.",
-               "unknown":" 12 ."
-            },
-            "revel":{
-               "desc":"Heal 8% of your maximum Life for every enemy hit.",
-               "unknown":" 8% ."
-            }
-         }
-      },
-      "war-cry":{
-         "desc":"Generate: 20 FuryCooldown: 20 secondsUnleash a rallying cry to increase Armor for you and all allies within 50 yards by 20% for 60 seconds.",
-         "unknown":" 20 20 50 20% 60 .",
-         "runes":{
-            "hardened-wrath":{
-               "desc":"Increases the Armor bonus to 40%.",
-               "unknown":" 40%."
-            },
-            "charge!":{
-               "desc":"Increases Fury gained to 40.",
-               "unknown":" 40."
-            },
-            "invigorate":{
-               "desc":"Increases maximum Life by 10% and regenerates 310 Life per second while affected by War Cry.",
-               "unknown":" 10% 310 ."
-            },
-            "veteran's-warning":{
-               "desc":"War Cry also grants a 15% bonus to Dodge Chance.",
-               "unknown":" 15% ."
-            },
-            "impunity":{
-               "desc":"All of your resistances are increased by 20% while affected by War Cry.",
-               "unknown":" 20% ."
-            }
-         }
-      },
-      "wrath-of-the-berserker":{
-         "desc":"Cost: 50 Fury Cooldown: 120 secondsEnter a berserker rage which raises several attributes for 15 seconds.Critical Hit Chance: 10%Attack Speed: 25%Dodge Chance: 20%Movement Speed: 20%",
-         "unknown":" 50 120 15 . 10% 25% 20% 20%",
-         "runes":{
-            "arreat's-wail":{
-               "desc":"Activating Wrath of the Berserker knocks back all enemies within 12 yards and deals 430% weapon damage to them.",
-               "unknown":" 12 430% ."
-            },
-            "insanity":{
-               "desc":"While active your damage is also increased by 100%.",
-               "unknown":" 100%."
-            },
-            "slaughter":{
-               "desc":"While Wrath of the Berserker is active, Critical Hits have a chance to cause an eruption of blood dealing 155% weapon damage to enemies within 15 yards.",
-               "unknown":" 155% 15 ."
-            },
-            "striding-giant":{
-               "desc":"Increases bonus to Dodge Chance to 60%.",
-               "unknown":" 60%."
-            },
-            "thrive-on-chaos":{
-               "desc":"Every 25 Fury gained while Wrath of the Berserker is active adds 1 second to the duration of the effect.",
-               "unknown":" 25 1 ."
-            }
-         }
-      }
-   },
-   "passive":{
-      "pound-of-flesh":{
-         "desc":"Increases the chance of finding a health globe by 25% and you gain 100% additional Life from health globes.",
-         "unknown":" 25% 100% ."
-      },
-      "ruthless":{
-         "desc":"Critical Hit Chance increased by 5%. Critical Hit Damage increased by 50%.Many skills and runes rely on Critical Hits to trigger their effects.",
-         "unknown":" 5%. 50%. ."
-      },
-      "nerves-of-steel":{
-         "desc":"Your Armor is increased by 100% of your Vitality.",
-         "unknown":" 100% ."
-      },
-      "weapons-master":{
-         "desc":"Gain a bonus based on the weapon type of your main hand weapon:Swords/Daggers: 15% increased damageMaces/Axes: 10% Critical Hit ChancePolearms/Spears: 10% attack speedMighty Weapons: 3 Fury per hit",
-         "unknown":" 15% 10% 10% 3 "
-      },
-      "inspiring-presence":{
-         "desc":"The duration of your shouts is doubled. After using a shout you regenerate 2% of your maximum Life per second for 60 seconds.Your shouts are: Battle Rage Threatening Shout War Cry",
-         "unknown":" . 2% 60 . "
-      },
-      "berserker-rage":{
-         "desc":"You inflict an additional 25% damage while at maximum Fury.",
-         "unknown":" 25% ."
-      },
-      "bloodthirst":{
-         "desc":"Gain 3% of all damage done as Life.",
-         "unknown":" 3% ."
-      },
-      "animosity":{
-         "desc":"Increases Fury generation by 20% and maximum Fury is increased by 20.Fury is used to fuel your most powerful attacks.",
-         "unknown":" 20% 20. ."
-      },
-      "superstition":{
-         "desc":"Reduces all non-Physical damage by 20%. Whenever you take damage from a ranged or elemental attack, you have a chance to gain 3 Fury.",
-         "unknown":" 20%. 3 ."
-      },
-      "tough-as-nails":{
-         "desc":"Increases Armor by 25%.Thorns damage dealt increased by 50%.",
-         "unknown":" 25%. 50%."
-      },
-      "no-escape":{
-         "desc":"Increases the damage of Ancient Spear and Weapon Throw by 10%. In addition, a Critical Hit with Ancient Spear resets the cooldown while Critical Hits with Weapon Throw have a chance to return 14 Fury.",
-         "unknown":" 10%. 14 ."
-      },
-      "relentless":{
-         "desc":"While below 20% Life, all skills cost 75% less Fury and all damage taken is reduced by 50%.",
-         "unknown":" 20% 75% 50%."
-      },
-      "brawler":{
-         "desc":"As long as there are 3 enemies within 8 yards, all of your damage is increased by 30%.",
-         "unknown":" 3 8 30%."
-      },
-      "juggernaut":{
-         "desc":"The duration of control impairing effects on you is reduced by 20%. In addition, whenever a Stun, Fear, Immobilize or Charm is cast on you, you have a chance to recover 15% of your maximum Life.",
-         "unknown":" 20%. 15% ."
-      },
-      "unforgiving":{
-         "desc":"You no longer degenerate Fury. Instead, you gain 2 Fury every 1 seconds.",
-         "unknown":" . 2 1 ."
-      },
-      "boon-of-bul-kathos":{
-         "desc":"The cooldown on your Earthquake, Call of the Ancients, and Wrath of the Berserker skills is reduced by 30 seconds.",
-         "unknown":" 30 ."
-      }
-   }
+	"active": {
+		"bash": {
+			"desc": "Generate: 8 Fury per attackBrutally smash an enemy for 165% weapon damage with a 20% chance to Knockback.",
+			"unknown": 8,
+			"unknown": 1.65,
+			"unknown": 0.20,
+			"runes": {
+				"clobber": {
+					"desc": "Instead of Knockback, each hit has a 35% chance to Stun the target for 1.5 seconds.",
+					"unknown": 0.35,
+					"unknown": 1.5
+				},
+				"onslaught": {
+					"desc": "Add 2 reverberations that cause 25% weapon damage per strike. Removes the chance for Knockback.",
+					"unknown": 2,
+					"unknown": 0.25
+				},
+				"punish": {
+					"desc": "Increases the damage of your skills by 8% for 5 seconds after using Bash. This effect stacks up to 3 times.",
+					"unknown": 0.08,
+					"unknown": 5,
+					"unknown": 3
+				},
+				"instigation": {
+					"desc": "Generate 4 additional Fury per attack.",
+					"unknown": 4
+				},
+				"pulverize": {
+					"desc": "Cause a shockwave that inflicts 38% weapon damage to enemies in a 26 yard line behind the targeted enemy.",
+					"unknown": 0.38,
+					"unknown": 26
+				}
+			}
+		},
+		"hammer-of-the-ancients": {
+			"desc": "Cost: 20 FuryCall forth a massive hammer to smash enemies directly in front of you for 325% weapon damage. Hammer of the Ancients has a 1% increased Critical Hit Chance for every 5 Fury that you have.",
+			"unknown": 20,
+			"unknown": 3.25,
+			"unknown": 0.01,
+			"unknown": 5,
+			"runes": {
+				"rolling-thunder": {
+					"desc": "Create a shockwave that deals 275% weapon damage to all enemies within 22 yards in front of you.",
+					"unknown": 2.75,
+					"unknown": 22
+				},
+				"smash": {
+					"desc": "Strike a smaller area for 406% weapon damage.",
+					"unknown": 4.06
+				},
+				"the-devil's-anvil": {
+					"desc": "Create a tremor at the point of impact for 2 seconds that slows the movement speed of enemies by 80%.",
+					"unknown": 2,
+					"unknown": 0.80
+				},
+				"thunderstrike": {
+					"desc": "Whenever you kill an enemy with Hammer of the Ancients every other enemy within 10 yards is stunned for 3 seconds.",
+					"unknown": 10,
+					"unknown": 3
+				},
+				"birthright": {
+					"desc": "Critical Hits have a 10% chance to cause enemies to drop treasure or health globes.",
+					"unknown": 0.10
+				}
+			}
+		},
+		"cleave": {
+			"desc": "Generate: 5 Fury per attackSwing your weapon in a wide arc to deal 140% weapon damage to all enemies caught in the swing.",
+			"unknown": 5,
+			"unknown": 1.40,
+			"runes": {
+				"rupture": {
+					"desc": "Enemies slain by Cleave explode, causing 85% weapon damage to all other enemies within 8 yards.",
+					"unknown": 0.85,
+					"unknown": 8
+				},
+				"reaping-swing": {
+					"desc": "Generate 3 additional Fury per enemy hit.",
+					"unknown": 3
+				},
+				"scattering-blast": {
+					"desc": "On Critical Hits, knock enemies back 9 yards and inflict 60% weapon damage to enemies where they land.",
+					"unknown": 9,
+					"unknown": 0.60
+				},
+				"broad-sweep": {
+					"desc": "Increase damage to 175% weapon damage.",
+					"unknown": 1.75
+				},
+				"gathering-storm": {
+					"desc": "Enemies cleaved have their movement speed reduced by 80% for 1 seconds.",
+					"unknown": 0.80,
+					"unknown": 1
+				}
+			}
+		},
+		"ground-stomp": {
+			"desc": "Generate: 15 Fury  Cooldown: 12 secondsSmash the ground, stunning all enemies within 12 yards for 4 seconds.",
+			"unknown": 15,
+			"unknown": 12,
+			"unknown": 12,
+			"unknown": 4,
+			"runes": {
+				"deafening-crash": {
+					"desc": "Enemies in the area have their movement speed slowed by 60% for 3 seconds after they recover from being stunned.",
+					"unknown": 0.60,
+					"unknown": 3
+				},
+				"wrenching-smash": {
+					"desc": "Increase the area of effect to 24 yards. Enemies are pulled closer before the strike lands.",
+					"unknown": 24
+				},
+				"trembling-stomp": {
+					"desc": "Enemies in the area also take 76% weapon damage.",
+					"unknown": 0.76
+				},
+				"foot-of-the-mountain": {
+					"desc": "Increase Fury gained to 30.",
+					"unknown": 30
+				},
+				"avalanche": {
+					"desc": "Enemies are knocked back 9 yards and inflict 55% weapon damage to enemies in the landing area.",
+					"unknown": 9,
+					"unknown": 0.55
+				}
+			}
+		},
+		"rend": {
+			"desc": "Cost: 20 FuryA sweeping strike causes all nearby enemies to Bleed for 700% weapon damage as Physical over 5 seconds.",
+			"unknown": 20,
+			"unknown": 7.00,
+			"unknown": 5,
+			"runes": {
+				"ravage": {
+					"desc": "Increase the range of Rend to hit all enemies within 17 yards.",
+					"unknown": 17
+				},
+				"blood-lust": {
+					"desc": "Gain 9% of the damage done by Rend as Life.",
+					"unknown": 0.09
+				},
+				"lacerate": {
+					"desc": "Increase damage to 903% weapon damage as Physical over 5 seconds.",
+					"unknown": 9.03,
+					"unknown": 5
+				},
+				"mutilate": {
+					"desc": "Affected enemies also have their movement speed reduced by 60%.",
+					"unknown": 0.60
+				},
+				"bloodbath": {
+					"desc": "Enemies killed while bleeding cause all enemies within 10 yards to begin bleeding for 100% weapon damage as Physical over 5 seconds.",
+					"unknown": 10,
+					"unknown": 1.00,
+					"unknown": 5
+				}
+			}
+		},
+		"leap": {
+			"desc": "Generate: 15 Fury  Cooldown: 10 secondsLeap into the air, dealing 85% weapon damage to all enemies within 8 yards of your destination and slowing their movement speed by 60% for 3 seconds.",
+			"unknown": 15,
+			"unknown": 10,
+			"unknown": 0.85,
+			"unknown": 8,
+			"unknown": 0.60,
+			"unknown": 3,
+			"runes": {
+				"iron-impact": {
+					"desc": "Gain 100% additional Armor per enemy hit for 3 seconds after landing.",
+					"unknown": 1.00,
+					"unknown": 3
+				},
+				"launch": {
+					"desc": "Jump into the air with such great force that enemies within 8 yards of the origin of the jump are also slowed by 60% for 3 seconds.",
+					"unknown": 8,
+					"unknown": 0.60,
+					"unknown": 3
+				},
+				"toppling-impact": {
+					"desc": "Send enemies hurtling away from where you land."
+				},
+				"call-of-arreat": {
+					"desc": "Shockwaves burst forth from the ground increasing the radius of effect to 16 yards and pulling affected enemies towards you.",
+					"unknown": 16
+				},
+				"death-from-above": {
+					"desc": "Land with such force that enemies have a 100% chance to be stunned for 3 seconds.",
+					"unknown": 1.00,
+					"unknown": 3
+				}
+			}
+		},
+		"ancient-spear": {
+			"desc": "Generate: 15 Fury  Cooldown: 10 secondsThrow a spear to pull an enemy back to you, briefly slowing the target's movement by 60% and dealing 185% weapon damage.",
+			"unknown": 15,
+			"unknown": 10,
+			"unknown": 0.60,
+			"unknown": 1.85,
+			"runes": {
+				"grappling-hooks": {
+					"desc": "Throw 3 spears. Each spear will pull back the enemy that it hits.",
+					"unknown": 3
+				},
+				"skirmish": {
+					"desc": "Increases Fury gained to 30.",
+					"unknown": 30
+				},
+				"dread-spear": {
+					"desc": "Gain Life equal to 60% of the damage inflicted.",
+					"unknown": 0.60
+				},
+				"harpoon": {
+					"desc": "Pierce through multiple enemies in a straight line and drag them all back."
+				},
+				"rage-flip": {
+					"desc": "Enemies hit with Ancient Spear are pulled in the opposite direction and damage is increased to 213% weapon damage.",
+					"unknown": 2.13
+				}
+			}
+		},
+		"frenzy": {
+			"desc": "Generate: 3 Fury per attackSwing for 110% weapon damage. Frenzy attack speed increases by 15% with each swing. This effect can stack up to 5 times for a total bonus of 75% attack speed.",
+			"unknown": 3,
+			"unknown": 1.10,
+			"unknown": 0.15,
+			"unknown": 5,
+			"unknown": 0.75,
+			"runes": {
+				"sidearm": {
+					"desc": "Each strike has a 25% chance to throw a piercing axe at a nearby enemy that deals 110% weapon damage to all enemies in its path.",
+					"unknown": 0.25,
+					"unknown": 1.10
+				},
+				"triumph": {
+					"desc": "Killing an enemy with Frenzy heals you for 8% of your maximum Life over 6 seconds.",
+					"unknown": 0.08,
+					"unknown": 6
+				},
+				"vanguard": {
+					"desc": "While under the effects of Frenzy, you gain 15% increased movement speed.",
+					"unknown": 0.15
+				},
+				"smite": {
+					"desc": "Add a 20% chance to call down a bolt of lightning from above, stunning your target for 1.5 seconds.",
+					"unknown": 0.20,
+					"unknown": 1.5
+				},
+				"maniac": {
+					"desc": "Each Frenzy effect also increases your damage by 4%.",
+					"unknown": 0.04
+				}
+			}
+		},
+		"seismic-slam": {
+			"desc": "Cost: 30 FurySlam the ground and cause a wave of destruction that deals 240% weapon damage and Knockback to targets in a 45 yard arc.",
+			"unknown": 30,
+			"unknown": 2.40,
+			"unknown": 45,
+			"runes": {
+				"stagger": {
+					"desc": "Add a 70% chance of stunning enemies for 1.5 seconds.",
+					"unknown": 0.70,
+					"unknown": 1.5
+				},
+				"shattered-ground": {
+					"desc": "Increase damage to 288% weapon damage and increases Knockback distance by 100%.",
+					"unknown": 2.88,
+					"unknown": 1.00
+				},
+				"rumble": {
+					"desc": "The ground continues to shudder after the initial strike, damaging enemies in the area for 60% weapon damage as Physical over 2 seconds.",
+					"unknown": 0.60,
+					"unknown": 2
+				},
+				"strength-from-earth": {
+					"desc": "Reduce Fury cost to 15 Fury.",
+					"unknown": 15
+				},
+				"cracking-rift": {
+					"desc": "Focus the seismic shockwaves along a narrow path to inflict 340% weapon damage to targets along a 42 yard path.",
+					"unknown": 3.40,
+					"unknown": 42
+				}
+			}
+		},
+		"revenge": {
+			"desc": "Revenge has a 15% chance to become active each time you are hit.Inflict 220% weapon damage to all nearby enemies. You heal 5.0% of your maximum Life for each enemy hit.",
+			"unknown": 0.15,
+			"unknown": 2.20,
+			"unknown": "5.0%",
+			"runes": {
+				"vengeance-is-mine": {
+					"desc": "Gain 5 Fury and heal for 8.0% of your maximum Life for each enemy hit.",
+					"unknown": 5,
+					"unknown": "8.0%"
+				},
+				"best-served-cold": {
+					"desc": "After using Revenge, your Critical Hit Chance is increased by 10% for 12 seconds.",
+					"unknown": 0.10,
+					"unknown": 12
+				},
+				"retribution": {
+					"desc": "Increase damage to 286% weapon damage.",
+					"unknown": 2.86
+				},
+				"grudge": {
+					"desc": "Knocks enemies back 24 yards whenever Revenge is used.",
+					"unknown": 24
+				},
+				"provocation": {
+					"desc": "Increases the chance Revenge will become active to 30% each time you are hit by an attack.",
+					"unknown": 0.30
+				}
+			}
+		},
+		"weapon-throw": {
+			"desc": "Cost: 10 FuryHurl a throwing weapon at an enemy for 130% weapon damage and Slow the movement of the enemy by 60% for 2 seconds.",
+			"unknown": 10,
+			"unknown": 1.30,
+			"unknown": 0.60,
+			"unknown": 2,
+			"runes": {
+				"mighty-throw": {
+					"desc": "Increase thrown weapon damage to 169% weapon damage.",
+					"unknown": 1.69
+				},
+				"ricochet": {
+					"desc": "Cause the weapon to ricochet and hit up to 3 targets within 20 yards of each other.",
+					"unknown": 3,
+					"unknown": 20
+				},
+				"throwing-hammer": {
+					"desc": "Hurl a hammer with a 50% chance to Stun the target for 1.5 seconds.",
+					"unknown": 0.50,
+					"unknown": 1.5
+				},
+				"stupefy": {
+					"desc": "Aim for the head, gaining a 20% chance of causing your target to be Confused and attack other enemies for 6 seconds.",
+					"unknown": 0.20,
+					"unknown": 6
+				},
+				"dread-bomb": {
+					"desc": "Expend all remaining Fury to throw a corpse which inflicts an additional 3% weapon damage for each point of Fury expended to all enemies within 12 yards of the target.",
+					"unknown": 0.03,
+					"unknown": 12
+				}
+			}
+		},
+		"sprint": {
+			"desc": "Cost: 20 FuryIncrease movement speed by 40% for 3 seconds.",
+			"unknown": 20,
+			"unknown": 0.40,
+			"unknown": 3,
+			"runes": {
+				"rush": {
+					"desc": "Increases Dodge Chance by 12% while sprinting.",
+					"unknown": 0.12
+				},
+				"run-like-the-wind": {
+					"desc": "Tornadoes rage in your wake, each one inflicting 60% weapon damage as Physical for 3 seconds to nearby enemies.",
+					"unknown": 0.60,
+					"unknown": 3
+				},
+				"marathon": {
+					"desc": "Increases the movement speed bonus to 50% for 5 seconds.",
+					"unknown": 0.50,
+					"unknown": 5
+				},
+				"gangway": {
+					"desc": "Slams through enemies, knocking them back and inflicting 25% weapon damage.",
+					"unknown": 0.25
+				},
+				"forced-march": {
+					"desc": "Increase the movement speed of allies within 50 yards by 20% for 3 seconds.",
+					"unknown": 50,
+					"unknown": 0.20,
+					"unknown": 3
+				}
+			}
+		},
+		"threatening-shout": {
+			"desc": "Generate: 15 Fury  Cooldown: 10 secondsShout with great ferocity, reducing damage done by enemies within 25 yards by 20% for 15 seconds.",
+			"unknown": 15,
+			"unknown": 10,
+			"unknown": 25,
+			"unknown": 0.20,
+			"unknown": 15,
+			"runes": {
+				"intimidate": {
+					"desc": "Affected enemies also have their movement speed reduced by 30%.",
+					"unknown": 0.30
+				},
+				"falter": {
+					"desc": "Affected enemies also have their attack speed reduced by 15% for 5 seconds.",
+					"unknown": 0.15,
+					"unknown": 5
+				},
+				"grim-harvest": {
+					"desc": "Enemies are badly shaken and have a 15% chance to drop additional treasure or health globes.",
+					"unknown": 0.15
+				},
+				"demoralize": {
+					"desc": "Affected enemies are also taunted to attack you for 3 seconds.",
+					"unknown": 3
+				},
+				"terrify": {
+					"desc": "Enemies are severely demoralized. Each enemy has a 35% chance to flee for 2.5 seconds.",
+					"unknown": 0.35,
+					"unknown": 2.5
+				}
+			}
+		},
+		"earthquake": {
+			"desc": "Cost: 50 Fury  Cooldown: 120 secondsShake the ground violently, dealing 2000% weapon damage as Fire over 8 seconds to all enemies within 18 yards.",
+			"unknown": 50,
+			"unknown": 120,
+			"unknown": "2000%",
+			"unknown": 8,
+			"unknown": 18,
+			"runes": {
+				"giant's-stride": {
+					"desc": "Secondary tremors follow your movement and inflict 65% weapon damage as Fire.",
+					"unknown": 0.65
+				},
+				"chilling-earth": {
+					"desc": "Creates an icy patch, causing Earthquake's damage to turn Cold and Slow the movement of enemies by 80%.",
+					"unknown": 0.80
+				},
+				"the-mountain's-call": {
+					"desc": "Removes the Fury cost and reduces the cooldown to 105 seconds.",
+					"unknown": 105
+				},
+				"aftershocks": {
+					"desc": "Secondary tremors knock enemies back and inflict 65% weapon damage as Fire.",
+					"unknown": 0.65
+				},
+				"path-of-fire": {
+					"desc": "Project secondary tremors up to 12 yards ahead of you that inflict 65% weapon damage as Fire.",
+					"unknown": 12,
+					"unknown": 0.65
+				}
+			}
+		},
+		"whirlwind": {
+			"desc": "Cost: 10 FuryDeliver multiple attacks to everything in your path for 145% weapon damage.",
+			"unknown": 10,
+			"unknown": 1.45,
+			"runes": {
+				"dust-devils": {
+					"desc": "Generate harsh tornadoes that inflict 40% weapon damage to enemies in their path.",
+					"unknown": 0.40
+				},
+				"hurricane": {
+					"desc": "Allows you to move at your movement speed while using Whirlwind."
+				},
+				"blood-funnel": {
+					"desc": "Critical Hits restore 2.0% of your maximum Life.",
+					"unknown": "2.0%"
+				},
+				"wind-shear": {
+					"desc": "Gain 1 Fury for every enemy struck.",
+					"unknown": 1
+				},
+				"volcanic-eruption": {
+					"desc": "Turns Whirlwind into a torrent of magma that inflicts 189% weapon damage as Fire.",
+					"unknown": 1.89
+				}
+			}
+		},
+		"furious-charge": {
+			"desc": "Generate: 15 Fury  Cooldown: 10 secondsRush forward knocking back enemies and inflicting 195% weapon damage to enemies along the path of the charge.",
+			"unknown": 15,
+			"unknown": 10,
+			"unknown": 1.95,
+			"runes": {
+				"battering-ram": {
+					"desc": "Increase damage at the destination to 283% weapon damage.",
+					"unknown": 2.83
+				},
+				"merciless-assault": {
+					"desc": "Cooldown is reduced by 2 seconds for every target hit. This effect can reduce the cooldown by up to 10 seconds.",
+					"unknown": 2,
+					"unknown": 10
+				},
+				"stamina": {
+					"desc": "Generate 8 additional Fury for each target hit while charging.",
+					"unknown": 8
+				},
+				"bull-rush": {
+					"desc": "Any targets who are critically hit by Furious Charge will be stunned for 2.5 seconds.",
+					"unknown": 2.5
+				},
+				"dreadnought": {
+					"desc": "Regain 8% of your maximum Life for each target hit by Furious Charge.",
+					"unknown": 0.08
+				}
+			}
+		},
+		"ignore-pain": {
+			"desc": "Cooldown: 30 secondsReduces all damage taken by 65% for 5 seconds.",
+			"unknown": 30,
+			"unknown": 0.65,
+			"unknown": 5,
+			"runes": {
+				"bravado": {
+					"desc": "When activated, Knockback all enemies within 12 yards and deal 50% weapon damage to them.",
+					"unknown": 12,
+					"unknown": 0.50
+				},
+				"iron-hide": {
+					"desc": "Increases duration to 7 seconds.",
+					"unknown": 7
+				},
+				"ignorance-is-bliss": {
+					"desc": "While Ignore Pain is active, gain 20% of all damage dealt as Life.",
+					"unknown": 0.20
+				},
+				"mob-rule": {
+					"desc": "Extend the effect to nearby allies, reducing damage taken by 65% for 5 seconds.",
+					"unknown": 0.65,
+					"unknown": 5
+				},
+				"contempt-for-weakness": {
+					"desc": "Reflects 50% of ignored damage back at the enemy.",
+					"unknown": 0.50
+				}
+			}
+		},
+		"battle-rage": {
+			"desc": "Cost: 20 FuryEnter a rage which increases damage by 15% and Critical Hit Chance by 3% for 120 seconds.",
+			"unknown": 20,
+			"unknown": 0.15,
+			"unknown": 0.03,
+			"unknown": 120,
+			"runes": {
+				"marauder's-rage": {
+					"desc": "Increase damage bonus to 30%.",
+					"unknown": 0.30
+				},
+				"ferocity": {
+					"desc": "While under the effects of Battle Rage, Critical Hits have a chance to increase the duration of Battle Rage by 2 seconds.",
+					"unknown": 2
+				},
+				"swords-to-ploughshares": {
+					"desc": "While under the effects of Battle Rage, Critical Hits have up to a 5% chance to cause enemies to drop additional health globes.",
+					"unknown": 0.05
+				},
+				"into-the-fray": {
+					"desc": "While under the effects of Battle Rage, Critical Hits have a chance to generate 15 additional Fury.",
+					"unknown": 15
+				},
+				"bloodshed": {
+					"desc": "While under the effects of Battle Rage, Critical Hits have a chance to cause an explosion of blood dealing 20% of the damage done to all other nearby enemies.",
+					"unknown": 0.20
+				}
+			}
+		},
+		"call-of-the-ancients": {
+			"desc": "Cost: 50 Fury  Cooldown: 120 secondsSummon the ancient Barbarians Talic, Korlic, and Madawc to fight alongside you for 15 seconds. Each deals 60% weapon damage per swing in addition to bonus abilities.Talic wields a sword and shield and uses the Whirlwind skill.  Korlic wields a massive polearm and uses the Cleave skill.  Madawc dual-wields axes and uses the Weapon Throw skill.",
+			"unknown": 50,
+			"unknown": 120,
+			"unknown": 15,
+			"unknown": 0.60,
+			"runes": {
+				"the-council-rises": {
+					"desc": "The Ancients inflict 66% weapon damage with each attack and have 100% additional Armor.",
+					"unknown": 0.66,
+					"unknown": 1.00
+				},
+				"duty-to-the-clan": {
+					"desc": "Increase duration to 20 seconds.",
+					"unknown": 20
+				},
+				"korlic's-might": {
+					"desc": "Korlic gains the skill Furious Charge which deals 200% of your weapon damage to all enemies in a line.",
+					"unknown": 2.00
+				},
+				"madawc's-madness": {
+					"desc": "Madawc gains the skill Seismic Slam which deals 180% of your weapon damage to enemies in an arc.",
+					"unknown": 1.80
+				},
+				"talic's-anger": {
+					"desc": "Talic gains the skill Leap which deals 250% of your weapon damage to enemies in the area of the leap.",
+					"unknown": 2.50
+				}
+			}
+		},
+		"overpower": {
+			"desc": "Cooldown: 12 secondsDeal 165% weapon damage to all targets within 9 yards. Landing a Critical Hit has a chance to lower the cooldown by 1 second.",
+			"unknown": 12,
+			"unknown": 1.65,
+			"unknown": 9,
+			"unknown": 1,
+			"runes": {
+				"storm-of-steel": {
+					"desc": "Throw up to 3 axes at nearby enemies which inflict 50% weapon damage each.",
+					"unknown": 3,
+					"unknown": 0.50
+				},
+				"killing-spree": {
+					"desc": "Your Critical Hit Chance is increased by 10% for 6 seconds.",
+					"unknown": 0.10,
+					"unknown": 6
+				},
+				"crushing-advance": {
+					"desc": "Redirect 35% of incoming melee and ranged damage for 4 seconds after Overpower is activated.",
+					"unknown": 0.35,
+					"unknown": 4
+				},
+				"momentum": {
+					"desc": "Generate 12 Fury for each enemy hit by Overpower.",
+					"unknown": 12
+				},
+				"revel": {
+					"desc": "Heal 8% of your maximum Life for every enemy hit.",
+					"unknown": 0.08
+				}
+			}
+		},
+		"war-cry": {
+			"desc": "Generate: 20 Fury  Cooldown: 20 secondsUnleash a rallying cry to increase Armor for you and all allies within 50 yards by 20% for 60 seconds.",
+			"unknown": 20,
+			"unknown": 20,
+			"unknown": 50,
+			"unknown": 0.20,
+			"unknown": 60,
+			"runes": {
+				"hardened-wrath": {
+					"desc": "Increases the Armor bonus to 40%.",
+					"unknown": 0.40
+				},
+				"charge!": {
+					"desc": "Increases Fury gained to 40.",
+					"unknown": 40
+				},
+				"invigorate": {
+					"desc": "Increases maximum Life by 10% and regenerates 310 Life per second while affected by War Cry.",
+					"unknown": 0.10,
+					"unknown": 310
+				},
+				"veteran's-warning": {
+					"desc": "War Cry also grants a 15% bonus to Dodge Chance.",
+					"unknown": 0.15
+				},
+				"impunity": {
+					"desc": "All of your resistances are increased by 20% while affected by War Cry.",
+					"unknown": 0.20
+				}
+			}
+		},
+		"wrath-of-the-berserker": {
+			"desc": "Cost: 50 Fury  Cooldown: 120 secondsEnter a berserker rage which raises several attributes for 15 seconds.Critical Hit Chance: 10%  Attack Speed: 25%  Dodge Chance: 20%  Movement Speed: 20%",
+			"unknown": 50,
+			"unknown": 120,
+			"unknown": 15,
+			"unknown": 0.10,
+			"unknown": 0.25,
+			"unknown": 0.20,
+			"unknown": 0.20,
+			"runes": {
+				"arreat's-wail": {
+					"desc": "Activating Wrath of the Berserker knocks back all enemies within 12 yards and deals 430% weapon damage to them.",
+					"unknown": 12,
+					"unknown": 4.30
+				},
+				"insanity": {
+					"desc": "While active your damage is also increased by 100%.",
+					"unknown": 1.00
+				},
+				"slaughter": {
+					"desc": "While Wrath of the Berserker is active, Critical Hits have a chance to cause an eruption of blood dealing 155% weapon damage to enemies within 15 yards.",
+					"unknown": 1.55,
+					"unknown": 15
+				},
+				"striding-giant": {
+					"desc": "Increases bonus to Dodge Chance to 60%.",
+					"unknown": 0.60
+				},
+				"thrive-on-chaos": {
+					"desc": "Every 25 Fury gained while Wrath of the Berserker is active adds 1 second to the duration of the effect.",
+					"unknown": 25,
+					"unknown": 1
+				}
+			}
+		}
+	},
+	"passive": {
+		"pound-of-flesh": {
+			"desc": "Increases the chance of finding a health globe by 25% and you gain 100% additional Life from health globes.",
+			"unknown": 0.25,
+			"unknown": 1.00
+		},
+		"ruthless": {
+			"desc": "Critical Hit Chance increased by 5%. Critical Hit Damage increased by 50%.Many skills and runes rely on Critical Hits to trigger their effects.",
+			"unknown": 0.05,
+			"unknown": 0.50
+		},
+		"nerves-of-steel": {
+			"desc": "Your Armor is increased by 100% of your Vitality.",
+			"unknown": 1.00
+		},
+		"weapons-master": {
+			"desc": "Gain a bonus based on the weapon type of your main hand weapon:  Swords/Daggers: 15% increased damage  Maces/Axes: 10% Critical Hit Chance  Polearms/Spears: 10% attack speed  Mighty Weapons: 3 Fury per hit",
+			"unknown": 0.15,
+			"unknown": 0.10,
+			"unknown": 0.10,
+			"unknown": 3
+		},
+		"inspiring-presence": {
+			"desc": "The duration of your shouts is doubled. After using a shout you regenerate 2% of your maximum Life per second for 60 seconds.Your shouts are:  Battle Rage  Threatening Shout  War Cry",
+			"unknown": 0.02,
+			"unknown": 60
+		},
+		"berserker-rage": {
+			"desc": "You inflict an additional 25% damage while at maximum Fury.",
+			"unknown": 0.25
+		},
+		"bloodthirst": {
+			"desc": "Gain 3% of all damage done as Life.",
+			"unknown": 0.03
+		},
+		"animosity": {
+			"desc": "Increases Fury generation by 20% and maximum Fury is increased by 20.Fury is used to fuel your most powerful attacks.",
+			"unknown": 0.20,
+			"unknown": 20
+		},
+		"superstition": {
+			"desc": "Reduces all non-Physical damage by 20%. Whenever you take damage from a ranged or elemental attack, you have a chance to gain 3 Fury.",
+			"unknown": 0.20,
+			"unknown": 3
+		},
+		"tough-as-nails": {
+			"desc": "Increases Armor by 25%.  Thorns damage dealt increased by 50%.",
+			"unknown": 0.25,
+			"unknown": 0.50
+		},
+		"no-escape": {
+			"desc": "Increases the damage of Ancient Spear and Weapon Throw by 10%. In addition, a Critical Hit with Ancient Spear resets the cooldown while Critical Hits with Weapon Throw have a chance to return 14 Fury.",
+			"unknown": 0.10,
+			"unknown": 14
+		},
+		"relentless": {
+			"desc": "While below 20% Life, all skills cost 75% less Fury and all damage taken is reduced by 50%.",
+			"unknown": 0.20,
+			"unknown": 0.75,
+			"unknown": 0.50
+		},
+		"brawler": {
+			"desc": "As long as there are 3 enemies within 8 yards, all of your damage is increased by 30%.",
+			"unknown": 3,
+			"unknown": 8,
+			"unknown": 0.30
+		},
+		"juggernaut": {
+			"desc": "The duration of control impairing effects on you is reduced by 20%. In addition, whenever a Stun, Fear, Immobilize or Charm is cast on you, you have a chance to recover 15% of your maximum Life.",
+			"unknown": 0.20,
+			"unknown": 0.15
+		},
+		"unforgiving": {
+			"desc": "You no longer degenerate Fury. Instead, you gain 2 Fury every 1 seconds.",
+			"unknown": 2,
+			"unknown": 1
+		},
+		"boon-of-bulkathos": {
+			"desc": "The cooldown on your Earthquake, Call of the Ancients, and Wrath of the Berserker skills is reduced by 30 seconds.",
+			"unknown": 30
+		}
+	}
 }

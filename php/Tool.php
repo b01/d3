@@ -20,7 +20,6 @@
 		}
 	}
 
-
 	/**
 	* Display a value as a single number or a range if min and max are different.
 	* @param array Containing the min and max values of a property.
@@ -49,6 +48,23 @@
 		$returnValue = NULL;
 		$cssClass = empty( $p_class ) ? '' : " class=\"{$p_class}\"";
 		return preg_replace( ['/(\+?\d+\.?\d*%?)/', '/(\(.*\))/'], ["<span{$cssClass}>$1</span>", "<span class=\"d3-color-red\">$1</span>"], $p_attribute );
+	}
+
+	/**
+	* Parse number in string and add HTML tags around it.
+	* @param $p_key CSS class to add to the element.
+	* @return string
+	*/
+	function tidyHtml( $p_html )
+	{
+		$returnValue = NULL;
+
+		$tidy = new tidy;
+		$tidy->parseString( $p_html );
+		$tidy->cleanRepair();
+		$returnValue = $tidy;
+		// Output
+		return $returnValue;
 	}
 
 	/**

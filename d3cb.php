@@ -10,7 +10,10 @@
 namespace d3;
 require_once( "php/Tool.php" );
 require_once( "php/settings.php" );
-
+if ( array_key_exists('HTTP_REFERER', $_SERVER) )
+{
+	echo $_SERVER['HTTP_REFERER'];
+}
 // We have to specify the namespace when defining constants.
 $nameSpace = array_key_exists( "namespace", $settings ) ? $settings[ 'namespace' ] : '';
 foreach ( $settings as $name => $value )

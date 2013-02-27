@@ -1,8 +1,12 @@
 <?php namespace d3;
 
-	$which = getStr( "which" );
-	$class = getStr( "class" );
-	$slug = getStr( "slug" );
+	$which = getStr( 'which' );
+	$class = getStr( 'class' );
+	$slug = getStr( 'slug' );
+	$name = getStr( 'name' );
+	$country = 'us';
+	$lang = 'en';
+	$battleNetUrl = "http://{$country}.battle.net/d3/{$lang}/";
 	if ( !empty($which) )
 	{
 		$local = FALSE;
@@ -10,18 +14,26 @@
 		switch ( trim($which) )
 		{
 			case 'form':
-				$url = "item.html";
+				$url = 'item.html';
 				$local = TRUE;
 				break;
 			case 'skill-1':
-				$url = "http://us.battle.net/d3/en/class/{$class}/active/";
+				$url = "class/{$class}/active/";
 				break;
 			case 'skill-2':
-				$url = "http://us.battle.net/d3/en/class/{$class}/active/{$slug}";
+				$url = "class/{$class}/active/{$slug}";
 				break;
 			case 'skill-3':
-				$url = "http://us.battle.net/d3/en/class/{$class}/passive/";
+				$url = "class/{$class}/passive/";
 				break;
+			case 'build-item':
+				$url = "item/{$class}/";
+				break;
+		}
+
+		if ( !isString($url) )
+		{
+			return null;
 		}
 
 		if ( $local )
@@ -30,7 +42,7 @@
 		}
 		else
 		{
-			$httpRequestor = new \HttpRequestor( $url );
+			$httpRequestor = new \HttpRequestor( $battleNetUrl . $url );
 			$responseText = $httpRequestor->send();
 			if ( $httpRequestor->responseCode() == 200 )
 			{
@@ -40,7 +52,8 @@
 
 		if ( $body !== NULL )
 		{
-			echo getHtmlInnerBody( $body );
+			$html = getHtmlInnerBody( $body );
+			echo tidyHtml( $html );
 		}
 	}
 ?>

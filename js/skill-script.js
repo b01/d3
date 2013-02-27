@@ -5,164 +5,231 @@
 * Example URL: http://us.battle.net/d3/en/class/barbarian/passive/
 */
 
+jQuery( document ).ready(function ()
+{
+	window.ajaxQueue = [];
+	window.currentAjaxRequest = null;
+	$( document ).ajaxComplete( ajaxDone );
+
+	if ( typeof window["heroClass"] === "string" && window["heroClass"].length > 1 )
+	{
+		getSkills( "get-url.php?which=skill-1&class=" + window.heroClass, $(".active") );
+
+		getSkills( "get-url.php?which=skill-3&class=" + window.heroClass, $(".passive") );
+
+		setTimeout(function ()
+		{
+			getRuneSkills( window.heroClass, $(".active .slug") );
+		}, 2000 );
+	}
+});
+
+
+/**
+* Get active/passive skills for a particular hero class.
+* example url = "/get-url.php?which=skill-2&class={class}&slug={slug-name}
+*
+* @param string pClass (barbarian|demon-hunter|monk|witch-doctor|wizard)
+* @return bool
+*/
+function getSkills( pUrl, $pContainer )
+{
+	if ( typeof pUrl !== "string" || pUrl.length === 0 )
+	{
+		return false;
+	}
+
+	ajaxRequest({
+		"url": pUrl,
+		"dataType": "html",
+		"success": ajaxSuccess,
+		"context": $pContainer
+	});
+
+	return true;
+}
+
 /**
 * Battle.net HTML Skills parser.
 *
-* @param jQuery Element being parsed.
+* @param jQuery $p_that Element being parsed.
 * @param int p_i Index of current element being parsed.
 * @param int p_count Number of elements to parse.
 * @param string p_nameSelector CSS selector for the skill name.
 * @param string p_descSelector CSS selector of the skill description.
+* @param string p_tabs number of tabs to indent.
 *
 * @return string
 */
-function parser( $p_that, p_i, p_count, p_nameSelector, p_descSelector, p_runes )
+function parseSkills( $p_that, p_i, p_count, p_nameSelector, p_descSelector, p_tabs )
 {
     var name = $p_that.find( p_nameSelector ).text().trim().toLowerCase().replace( /-/, '' ).replace( / /g, '-' ),
 		$desc = $p_that.find( p_descSelector ),
-        desc = '';
-		if ( $desc.length > 1 )
-		{
-			$desc.each(function ()
-			{
-				desc += $( this ).text().trim().replace( "\n", '' );
-			});
-		}
-		else
-		{
-			desc = $desc.text().trim();
-		}
+        desc = '',
         seperator = ( p_i < p_count ) ? ',' : '',
-        digitRegEx = new RegExp( "[^+?\\d+.?%?]+", 'g' );
+        // matchRegEx = /\+?\d+\.?(-|\s-\s)?\d*%?/g,
+        matchRegEx = /\+?\d+(\.\d+)?(-|\s-\s)?\d*%?/g,
+		spaceRegEx = /\r\n|\n|\s{2,}/g;
+		replaceRegEx = /(\+?\d+\.?\d*%|\+?\d+(-|\s-\s)\d+)/g,
+		tabs = p_tabs || '';
+	if ( $desc.length > 1 )
+	{
+		$desc.each(function ()
+		{
+			desc += $( this ).text().trim().replace( spaceRegEx, ' ' );
+		});
+	}
+	else
+	{
+		desc = $desc.text().trim().replace( spaceRegEx, ' ' );
+	}
 
-    returnValue = "\n\t\"" + name + "\": \{";
+    returnValue = "\n" + tabs + "\t\t\"<span class=\"slug\">" + name + "</span>\": {<span class=\"" + name + "\">";
 
     if ( desc.length > 0 )
     {
-        returnValue += "\n\t\t\"desc\": \"" + desc + '",';
-        returnValue += "\n\t\t\"unknown\": \"" + desc.replace(digitRegEx, " ") + '"';
+        returnValue += "\n" + tabs + "\t\t\t\"desc\": \"" + desc + '"';
+		numbers = desc.match( matchRegEx, ",\n" + tabs + "\t\t\t" + "\"unknown\": ");
+		if ( numbers !== null && numbers.length > 0 )
+		{
+			returnValue += ",\n" + tabs + "\t\t\t\"unknown\": " + numbers.join( ",\n" + tabs + "\t\t\t\"unknown\": " )
+				.replace( replaceRegEx, "\"$1\"" );
+			returnValue = convertPercentToDecimal( returnValue );
+		}
 
     }
-	if ( p_runes )
-	{
-		returnValue += ",\n\t\t\"runes\": " + getRuneSkills( name );
-	}
-    returnValue += "\n\t\}" + seperator;
+    returnValue += "<span class=\"trail\">\n" + tabs + "\t\t</span></span>}" + seperator;
     return returnValue;
 }
 
 /**
+* Queue HTTP request if one is already in process.
+* 	In combination with ajaxDone, will queue an HTTP
+*	request then process them in the order they were
+*	received. Only allowing one at a time.
 *
+* @param object pObject Object suitable for jQuery.ajax.
+* @return bool
 */
-function getSkillHtml( p_data, p_callBack )
+function ajaxRequest( pObject )
 {
-	$.ajax( "get-url.php?which=" + p_data, {
-		"dataType": "html",
-		"success": p_callBack
-	});
+	var queue = window.ajaxQueue;
+		currentRequest = window.currentAjaxRequest;
+
+	if ( typeof pObject !== "object" )
+	{
+		return false;
+	}
+
+	if ( currentRequest === null )
+	{
+		window.currentAjaxRequest = $.ajax( pObject );
+	}
+	else
+	{
+		queue.push( pObject );
+	}
+
+	return true;
 }
 
 /**
-* Parse Passive Skills.
-* Find and format passive skills into JSON stub.
-* http://us.battle.net/d3/en/class/barbarian/passive/
+* Global jQuery.ajaxComplete method.
 */
-function parseSkills( $p_skill, p_name, p_desc, p_runes )
+function ajaxDone()
 {
-	var jsonString = '{',
-		$skills = $p_skill,
-		skillsCount = $skills.length - 1;
+	var queue = window.ajaxQueue;
 
-	$skills.each(function (i)
+	window.currentAjaxRequest = null;
+
+	if ( queue.length > 0 )
 	{
-		var $this = $( this );
-		jsonString += parser( $this, i, skillsCount, p_name, p_desc, p_runes );
-	});
-
-	jsonString += "\n}";
-
-	return jsonString;
+		ajaxRequest( queue.pop() );
+	}
 }
 
 /**
 * Get Rune Skills.
-* http://us.battle.net/d3/en/class/barbarian/active/{p_name}
+* http://us.battle.net/d3/en/class/barbarian/active/{slug-name}
 *
-* @return string
+* @param string pClass
+* @param string pName
+* @return bool
 */
-function getRuneSkills( p_name )
+function getRuneSkills( pClass, $pName )
 {
-	setTimeout( function ()
+	if ( typeof pClass !== "string" || pClass.length === 0 || $pName.length === 0 )
 	{
-		getSkillHtml( "skill-2&class=" + window.heroClass + "&slug=" + p_name, function ( p_data )
-		{
-			$skillsElement = $( $.parseHTML(p_data) ).find( ".rune-details" );
-			if ( $skillsElement.length > 0 )
-			{
-				$( '.' + p_name ).empty().append( parseSkills($skillsElement, ".subheader-3", ".rune-desc", false) );
-			}
-		});
-	}, 2000 );
-	return "<pre class=\"" + p_name + "\">null</pre>";
-}
-
-jQuery( document ).ready(function ()
-{
-	if ( typeof window["heroClass"] === "string" && window["heroClass"].length > 1 )
-	{
-		getSkillHtml( "skill-1&class=" + window.heroClass, function ( p_data )
-		{
-			$skillsElement = $( $.parseHTML(p_data) ).find( ".skill-details" );
-			if ( $skillsElement.length > 0 )
-			{
-				var json = parseSkills( $skillsElement, ".subheader-3 a", ".skill-description p", true );
-				$( ".pre" ).append( "{\n\"active\": " + json );
-				// Now get the passive skills.
-				getSkillHtml( "skill-3&class=" + window.heroClass, function ( p_data )
-				{
-					$skillsElement = $( $.parseHTML(p_data) ).find( ".skill-details" );
-					if ( $skillsElement.length > 0 )
-					{
-						var json = parseSkills( $skillsElement, ".subheader-3 a", ".skill-description p", false );
-						$( ".pre" ).append( ",\n\n\"passive\": " + json + "\n}");
-					}
-				});
-			}
-		});
+		return false;
 	}
 
-	/**
-	* Parse Skill Runes
-	* Find and format active skill runes into JSON stub.
-	* http://us.battle.net/d3/en/class/barbarian/active/bash
-	*/
-	// var jsonString = '{',
-		// $runes = $( ".rune-details" ),
-		// runesCount = $runes.length - 1;
+	$pName.each(function ( pI )
+	{
+		var slug = $( this ).text(),
+			url = "get-url.php?which=skill-2&class=" + pClass + "&slug=" + slug;
 
-	// $runes.each(function (i)
-	// {
-		// var $this = $( this );
-		// jsonString += parser( $this, i, runesCount, ".subheader-3", ".rune-desc", false );
-	// });
-	// jsonString += "\n}";
-	// console.log( jsonString );
+		ajaxRequest({
+			"url": url,
+			"dataType": "html",
+			"success": function ( p_data )
+			{
+				var jsonString = ",\t\n\t\t\t\"runes\": {",
+					$runes = $( $.parseHTML(p_data) ).find( ".rune-details" ),
+					runeCount = $runes.length - 1,
+					$slug;
 
+				if ( $runes.length > 0 )
+				{
+					$runes.each(function (i)
+					{
+						var $this = $( this );
+						jsonString += parseSkills( $this, i, runeCount, ".subheader-3", ".rune-desc", "\t\t" );
+					});
+					jsonString += "\n\t\t\t}\n\t\t";
+					$slug = $( '.' + slug );
+					$slug.find( ".trail" ).remove();
+					$slug.append( jsonString );
+				}
+			}
+		});
+	});
 
-	/**
-	* Parse Active Skills
-	* Find and format active skill runes into JSON stub.
-	* http://us.battle.net/d3/en/class/barbarian/active/bash
-	*/
-	// var jsonString = '{',
-		// $activeSkill = $( ".skill-details" ),
-		// activeSkillCount = $activeSkill.length - 1;
+	return true;
+}
 
-	// $activeSkill.each(function (i)
-	// {
-		// var $this = $( this );
-		// jsonString += parser( $this, i, activeSkillCount, ".subheader-3 a", ".skill-description p", true );
-	// });
-	// jsonString += "\n}";
-	// console.log( jsonString );
-});
+/**
+* Parse skills from HTTP request.
+*/
+function ajaxSuccess( p_data )
+{
+	var jsonString = "{",
+		$skills = $( $.parseHTML(p_data) ).find( ".skill-details" ),
+		skillsCount;
+	if ( $skills.length > 0 )
+	{
+		skillsCount = $skills.length - 1;
+
+		$skills.each(function (i)
+		{
+			var $this = $( this );
+			jsonString += parseSkills( $this, i, skillsCount, ".subheader-3 a", ".skill-description p" );
+		});
+
+		jsonString += "\n\t}";
+
+		$( this ).append( jsonString );
+	}
+}
+
+/**
+* Replace percent values in a string with their decimial equivalent.
+*
+* @param string pPercentString String to be parsed for percent values.
+* @return string String with percent values replaced with decimials.
+*/
+function convertPercentToDecimal( pPercentString )
+{
+	return pPercentString.replace( /"(\d)%"/g, "0.0$1" )
+		.replace( /"(\d\d)%"/g, "0.$1" )
+		.replace( /"(\d)(\d\d)%"/g, "$1.$2" );
+}

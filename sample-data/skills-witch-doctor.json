@@ -1,638 +1,763 @@
 {
-   "active":{
-      "poison-dart":{
-         "desc":"Cost: 10 ManaShoot a deadly Poison Dart that deals 100% weapon damage as Poison and an additional 40% weapon damage as Poison over 2 seconds.",
-         "unknown":" 10 100% 40% 2 .",
-         "runes":{
-            "splinters":{
-               "desc":"Shoot 3 Poison Darts that deal 60% weapon damage as Poison each.",
-               "unknown":" 3 60% ."
-            },
-            "numbing-dart":{
-               "desc":"Toxins in the Poison Dart reduce the target's movement speed by 60% for 2 seconds.",
-               "unknown":" 60% 2 ."
-            },
-            "spined-dart":{
-               "desc":"Gain 29 Mana every time a Poison Dart hits an enemy.",
-               "unknown":" 29 ."
-            },
-            "flaming-dart":{
-               "desc":"Ignite the dart so that it deals 180% weapon damage as Fire at once.",
-               "unknown":" 180% ."
-            },
-            "snake-to-the-face":{
-               "desc":"Transform your Poison Dart into a snake that has a 30% chance to Stun the enemy for 1.5 seconds.",
-               "unknown":" 30% 1.5 ."
-            }
-         }
-      },
-      "grasp-of-the-dead":{
-         "desc":"Cost: 123 ManaCooldown: 8 secondsGhoulish hands reach out from the ground, slowing enemy movement by 60% and dealing 320% weapon damage as Physical over 8 seconds.",
-         "unknown":" 123 8 60% 320% 8 .",
-         "runes":{
-            "unbreakable-grasp":{
-               "desc":"Increases the Slow amount to 80%.",
-               "unknown":" 80%."
-            },
-            "groping-eels":{
-               "desc":"Increases the damage done to 416% weapon damage as Physical.",
-               "unknown":" 416% ."
-            },
-            "death-is-life":{
-               "desc":"Enemies who die while in the area of Grasp of the Dead have a 10% chance to produce a health globe or summon a Zombie Dog.",
-               "unknown":" 10% ."
-            },
-            "desperate-grasp":{
-               "desc":"Reduces the cooldown of Grasp of the Dead to 6 seconds.",
-               "unknown":" 6 ."
-            },
-            "rain-of-corpses":{
-               "desc":"Corpses fall from the sky, dealing 80% weapon damage as Physical over 8 seconds to nearby enemies.",
-               "unknown":" 80% 8 ."
-            }
-         }
-      },
-      "corpse-spiders":{
-         "desc":"Cost: 5 ManaThrow a jar with 4 spiders that attack nearby enemies for a total of 120% weapon damage as Physical before dying.",
-         "unknown":" 5 4 120% .",
-         "runes":{
-            "leaping-spiders":{
-               "desc":"Summon jumping spiders that leap up to 25 yards to reach their target and attack for a total of 144% weapon damage as Physical.",
-               "unknown":" 25 144% ."
-            },
-            "spider-queen":{
-               "desc":"Summon a spider queen that births spiderlings, dealing 630% weapon damage as Poison over 15 seconds. You may only have one spider queen summoned at a time.",
-               "unknown":" 630% 15 . ."
-            },
-            "widowmakers":{
-               "desc":"Summon widowmaker spiders that return 4 Mana to you per hit.",
-               "unknown":" 4 ."
-            },
-            "medusa-spiders":{
-               "desc":"Summon paralyzing spiders that have a 25% chance to Slow enemies' movement by 60% with every attack.",
-               "unknown":" 25% 60% ."
-            },
-            "blazing-spiders":{
-               "desc":"Summon fire spiders that deal a total of 156% weapon damage as Fire.",
-               "unknown":" 156% ."
-            }
-         }
-      },
-      "summon-zombie-dogs":{
-         "desc":"Cost: 49 ManaCooldown: 45 secondsSummon 3 Zombie Dogs from the depths to fight by your side. Each dog deals 9% of your weapon damage as Physical per hit.",
-         "unknown":" 49 45 3 . 9% .",
-         "runes":{
-            "rabid-dogs":{
-               "desc":"Your Zombie Dogs gain an infectious bite that deals 9% of your weapon damage as Poison over 3 seconds.",
-               "unknown":" 9% 3 ."
-            },
-            "final-gift":{
-               "desc":"Your Zombie Dogs have a 15% chance to leave behind a health globe when they die.",
-               "unknown":" 15% ."
-            },
-            "life-link":{
-               "desc":"Your Zombie Dogs absorb 10% of all damage done to you.",
-               "unknown":" 10% ."
-            },
-            "burning-dogs":{
-               "desc":"Your Zombie Dogs burst into flames, burning nearby enemies for 2% of your weapon damage as Fire every second.",
-               "unknown":" 2% ."
-            },
-            "leeching-beasts":{
-               "desc":"Your Zombie Dogs heal 50% of the damage they deal as Life divided evenly between themselves and you.",
-               "unknown":" 50% ."
-            }
-         }
-      },
-      "firebats":{
-         "desc":"Cost: 98 ManaCall forth a swarm of fiery bats to burn enemies in front of you for 180% weapon damage as Fire.",
-         "unknown":" 98 180% .",
-         "runes":{
-            "dire-bats":{
-               "desc":"Summon fewer but larger bats that travel up to 40 yards and hit for 220% weapon damage as Fire.",
-               "unknown":" 40 220% ."
-            },
-            "vampire-bats":{
-               "desc":"Gain 2.5% of damage done by the bats as Life.",
-               "unknown":" 2.5% ."
-            },
-            "plague-bats":{
-               "desc":"Diseased bats fly towards the enemy and infect them. Damage is slow at first, but can increase over time to a maximum of 270% weapon damage as Poison.",
-               "unknown":" . 270% ."
-            },
-            "hungry-bats":{
-               "desc":"Rapidly summon bats that seek out nearby enemies for 350% weapon damage as Fire.",
-               "unknown":" 350% ."
-            },
-            "cloud-of-bats":{
-               "desc":"Call forth a swirl of bats that damage nearby enemies for 234% weapon damage as Fire. The damage of the bats increases by 20% every second, up to a maximum of 100%.",
-               "unknown":" 234% . 20% 100%."
-            }
-         }
-      },
-      "horrify":{
-         "desc":"Cost: 37 ManaCooldown: 16 secondsDon a spectral mask that horrifies all enemies within 12 yards, causing them to run in Fear for 4 seconds.",
-         "unknown":" 37 16 12 4 .",
-         "runes":{
-            "phobia":{
-               "desc":"Increases the duration horrified enemies run in Fear to 6 seconds.",
-               "unknown":" 6 ."
-            },
-            "stalker":{
-               "desc":"Increases movement speed by 20% for 4 seconds after casting Horrify.",
-               "unknown":" 20% 4 ."
-            },
-            "face-of-death":{
-               "desc":"Increases the radius of Horrify to 24 yards.",
-               "unknown":" 24 ."
-            },
-            "frightening-aspect":{
-               "desc":"Gain 100% additional Armor for 8 seconds after casting Horrify.",
-               "unknown":" 100% 8 ."
-            },
-            "ruthless-terror":{
-               "desc":"Gain 27 Mana for every horrified enemy.",
-               "unknown":" 27 ."
-            }
-         }
-      },
-      "soul-harvest":{
-         "desc":"Cost: 59 ManaCooldown: 15 secondsFeed on the life force of up to 5 enemies within 16 yards. Gain 130 Intelligence for each affected enemy. This effect lasts 30 seconds.",
-         "unknown":" 59 15 5 16 . 130 . 30 .",
-         "runes":{
-            "swallow-your-soul":{
-               "desc":"Gain 39 Mana for every enemy harvested.",
-               "unknown":" 39 ."
-            },
-            "siphon":{
-               "desc":"Gain 2171 Life for every enemy harvested.",
-               "unknown":" 2171 ."
-            },
-            "languish":{
-               "desc":"Reduces the movement speed of harvested enemies by 80% for 3 seconds.",
-               "unknown":" 80% 3 ."
-            },
-            "soul-to-waste":{
-               "desc":"Increase the duration of Soul Harvest's effect to 60 seconds.",
-               "unknown":" 60 ."
-            },
-            "vengeful-spirit":{
-               "desc":"Harvested enemies also take 230% weapon damage as Physical.",
-               "unknown":" 230% ."
-            }
-         }
-      },
-      "plague-of-toads":{
-         "desc":"Cost: 12 ManaRelease a handful of toads that deal 130% weapon damage as Poison to enemies they come in contact with.",
-         "unknown":" 12 130% .",
-         "runes":{
-            "explosive-toads":{
-               "desc":"Mutate to fire bullfrogs that explode for 169% weapon damage as Fire.",
-               "unknown":" 169% ."
-            },
-            "toad-of-hugeness":{
-               "desc":"Summon a giant toad that swallows enemies whole for up to 5 seconds, digesting for 20% of your weapon damage per second as Physical. Adds a 5 second cooldown to Plague of Toads.",
-               "unknown":" 5 20% . 5 ."
-            },
-            "rain-of-toads":{
-               "desc":"Cause toads to rain from the sky that deal 130% weapon damage as Poison to enemies in the area over 2 seconds.",
-               "unknown":" 130% 2 ."
-            },
-            "addling-toads":{
-               "desc":"Mutate to yellow frogs that deal 130% weapon damage as Poison and have a 15% chance to Confuse affected enemies for 4 seconds.",
-               "unknown":" 130% 15% 4 ."
-            },
-            "toad-affinity":{
-               "desc":"Removes the Mana cost of Plague of Toads.",
-               "unknown":" ."
-            }
-         }
-      },
-      "haunt":{
-         "desc":"Cost: 98 ManaHaunt an enemy with a spirit, dealing 575% weapon damage as Arcane over 6 seconds. If the target dies, the spirit will haunt another nearby enemy.",
-         "unknown":" 98 575% 6 . .",
-         "runes":{
-            "consuming-spirit":{
-               "desc":"The spirit returns 155 Life per second.",
-               "unknown":" 155 ."
-            },
-            "resentful-spirit":{
-               "desc":"Summon a vengeful spirit that does 383% weapon damage as Arcane over 0 seconds.",
-               "unknown":" 383% 0 ."
-            },
-            "lingering-spirit":{
-               "desc":"If there are no targets left, the spirit will linger for up to 10 seconds looking for new enemies.",
-               "unknown":" 10 ."
-            },
-            "grasping-spirit":{
-               "desc":"Slow the movement of haunted targets by 30%.",
-               "unknown":" 30%."
-            },
-            "draining-spirit":{
-               "desc":"The spirit returns 20.4 Mana per second.",
-               "unknown":" 20.4 ."
-            }
-         }
-      },
-      "sacrifice":{
-         "desc":"Banish your Zombie Dogs and cause them to explode, each dealing 275% of your weapon damage as Physical to all enemies within 12 yards.",
-         "unknown":" 275% 12 .",
-         "runes":{
-            "black-blood":{
-               "desc":"Ichor erupts from the corpses of the Zombie Dogs and Slows enemies by 60% for 8 seconds.",
-               "unknown":" 60% 8 ."
-            },
-            "next-of-kin":{
-               "desc":"Each Zombie Dog you sacrifice has a 35% chance to resurrect as a new Zombie Dog.",
-               "unknown":" 35% ."
-            },
-            "pride":{
-               "desc":"Regain 294 Mana for each Zombie Dog you sacrifice.",
-               "unknown":" 294 ."
-            },
-            "for-the-master":{
-               "desc":"Gain 6202 Life for each Zombie Dog you sacrifice.",
-               "unknown":" 6202 ."
-            },
-            "provoke-the-pack":{
-               "desc":"Each sacrificed Zombie Dog increases your damage by 5% for 30 seconds.",
-               "unknown":" 5% 30 ."
-            }
-         }
-      },
-      "zombie-charger":{
-         "desc":"Cost: 140 ManaCall forth a reckless, suicidal zombie that deals 205% weapon damage as Poison to all enemies in its path before decomposing.",
-         "unknown":" 140 205% .",
-         "runes":{
-            "leperous-zombie":{
-               "desc":"The Zombie Charger leaves behind a cloud of noxious vapors that deals 240% weapon damage as Poison over 3 seconds to enemies caught in it.",
-               "unknown":" 240% 3 ."
-            },
-            "undeath":{
-               "desc":"If the Zombie Charger kills any enemies, it will reanimate and charge nearby enemies for 205% weapon damage as Poison. This effect can repeat up to 2 times.",
-               "unknown":" 205% . 2 ."
-            },
-            "wave-of-zombies":{
-               "desc":"Summon 3 Zombie Chargers that each deal 115% weapon damage as Poison.",
-               "unknown":" 3 115% ."
-            },
-            "explosive-beast":{
-               "desc":"Summon an explosive Zombie Dog that streaks toward your target before exploding, dealing 236% weapon damage as Fire to all enemies within 9 yards.",
-               "unknown":" 236% 9 ."
-            },
-            "zombie-bears":{
-               "desc":"Summon zombie bears that stampede towards your target. Each bear deals 236% weapon damage as Poison to enemies in the area.",
-               "unknown":" . 236% ."
-            }
-         }
-      },
-      "spirit-walk":{
-         "desc":"Cost: 49 ManaCooldown: 15 secondsLeave your physical body and enter the spirit realm for 2 seconds. While in the spirit realm, your movement is unhindered.Your link to the spirit realm will end if your physical body sustains 50% of your maximum Life in damage.",
-         "unknown":" 49 15 2 . . 50% .",
-         "runes":{
-            "jaunt":{
-               "desc":"Increases the duration of Spirit Walk to 3 seconds.",
-               "unknown":" 3 ."
-            },
-            "honored-guest":{
-               "desc":"Gain 15% of your maximum Mana every second while Spirit Walk is active.",
-               "unknown":" 15% ."
-            },
-            "umbral-shock":{
-               "desc":"When Spirit Walk ends, your physical body erupts for 310% weapon damage as Fire to all enemies within 10 yards.",
-               "unknown":" 310% 10 ."
-            },
-            "severance":{
-               "desc":"Damage enemies you walk through in spirit form for 225% weapon damage as Physical every second for 2 seconds.",
-               "unknown":" 225% 2 ."
-            },
-            "healing-journey":{
-               "desc":"Gain 7% of your maximum Life every second while Spirit Walk is active.",
-               "unknown":" 7% ."
-            }
-         }
-      },
-      "spirit-barrage":{
-         "desc":"Cost: 108 ManaBombard a target with a spirit blast that deals 230% weapon damage as Physical.",
-         "unknown":" 108 230% .",
-         "runes":{
-            "the-spirit-is-willing":{
-               "desc":"Gain 44 Mana every time Spirit Barrage hits.",
-               "unknown":" 44 ."
-            },
-            "well-of-souls":{
-               "desc":"An additional 3 spirits seek out other targets and deal 65% weapon damage as Physical.",
-               "unknown":" 3 65% ."
-            },
-            "phantasm":{
-               "desc":"Summon a spectre that deals 225% weapon damage as Physical over 5 seconds to all enemies within 10 yards.",
-               "unknown":" 225% 5 10 ."
-            },
-            "phlebotomize":{
-               "desc":"Regain 3% of damage dealt with Spirit Barrage as Life.",
-               "unknown":" 3% ."
-            },
-            "manitou":{
-               "desc":"Summon a spectre that hovers over you, unleashing spirit bolts at nearby enemies for 1667% weapon damage as Physical over 20 seconds.",
-               "unknown":" 1667% 20 ."
-            }
-         }
-      },
-      "gargantuan":{
-         "desc":"Cost: 147 ManaCooldown: 60 secondsSummon a Gargantuan zombie to fight for you. The Gargantuan attacks for 100% of your weapon damage as Physical.",
-         "unknown":" 147 60 . 100% .",
-         "runes":{
-            "humongoid":{
-               "desc":"The Gargantuan gains the Cleave ability, allowing its attacks to hit multiple targets for 130% of your weapon damage as Physical.",
-               "unknown":" 130% ."
-            },
-            "restless-giant":{
-               "desc":"When the Gargantuan encounters an elite enemy or is near 5 enemies, it enrages for 15 seconds gaining: 20% movement speed 35% attack speed 200% Physical damage This effect cannot occur more than once every 120 seconds. Elite enemies include champions, rares, bosses, and other players.",
-               "unknown":" 5 15 20% 35% 200% 120 . ."
-            },
-            "wrathful-protector":{
-               "desc":"Summon a more powerful Gargantuan that only lasts for 15 seconds. The Gargantuan's fists burn with fire, dealing 110% of your weapon damage as Fire and knocking enemies back.",
-               "unknown":" 15 . 110% ."
-            },
-            "big-stinker":{
-               "desc":"The Gargantuan is surrounded by a poison cloud that deals 15% weapon damage as Poison per second to nearby enemies.",
-               "unknown":" 15% ."
-            },
-            "bruiser":{
-               "desc":"The Gargantuan gains the ability to periodically slam enemies, dealing 200% of your weapon damage as Physical and stunning them for 3 seconds.",
-               "unknown":" 200% 3 ."
-            }
-         }
-      },
-      "locust-swarm":{
-         "desc":"Cost: 196 ManaUnleash a plague of locusts that swarms an enemy, dealing 360% weapon damage as Poison over 8 seconds. The locusts will jump to additional nearby enemies.",
-         "unknown":" 196 360% 8 . .",
-         "runes":{
-            "pestilence":{
-               "desc":"Locust Swarm has a 100% chance to jump to two additional targets instead of one.",
-               "unknown":" 100% ."
-            },
-            "devouring-swarm":{
-               "desc":"Gain 37 Mana for every enemy affected by the swarm.",
-               "unknown":" 37 ."
-            },
-            "cloud-of-insects":{
-               "desc":"Increases the duration of the swarm to 10 seconds.",
-               "unknown":" 10 ."
-            },
-            "diseased-swarm":{
-               "desc":"Enemies killed by Locust Swarm leave behind a cloud of locusts that deal 75% weapon damage as Poison over 3 seconds to enemies who stand in the area.",
-               "unknown":" 75% 3 ."
-            },
-            "searing-locusts":{
-               "desc":"Engulf the target with burning locusts that deal 468% weapon damage as Fire over 8 seconds.",
-               "unknown":" 468% 8 ."
-            }
-         }
-      },
-      "firebomb":{
-         "desc":"Cost: 10 ManaLob an explosive skull that deals 110% weapon damage as Fire to all enemies within 8 yards.",
-         "unknown":" 10 110% 8 .",
-         "runes":{
-            "flash-fire":{
-               "desc":"Rather than exploding for area damage, each Firebomb can bounce to up to 6 additional targets. Damage is reduced by 15% per bounce.",
-               "unknown":" 6 . 15% ."
-            },
-            "roll-the-bones":{
-               "desc":"Allows the skull to bounce up to 2 times.",
-               "unknown":" 2 ."
-            },
-            "fire-pit":{
-               "desc":"The explosion creates a pool of fire that deals 36% weapon damage as Fire over 3 seconds.",
-               "unknown":" 36% 3 ."
-            },
-            "pyrogeist":{
-               "desc":"Create a column of flame that spews fire at the closest enemy for 640% weapon damage as Fire over 6 seconds. You may only have one Pyrogeist active at a time.",
-               "unknown":" 640% 6 . ."
-            },
-            "ghost-bomb":{
-               "desc":"In addition to the base explosion, the skull creates a larger blast that deals an additional 30% weapon damage as Fire to all enemies within 28 yards.",
-               "unknown":" 30% 28 ."
-            }
-         }
-      },
-      "hex":{
-         "desc":"Cost: 49 ManaCooldown: 15 secondsSummon a Fetish Shaman for 12 seconds that will hex enemies into chickens. Hexed enemies are unable to perform offensive actions and take 10% additional damage.",
-         "unknown":" 49 15 12 . 10% .",
-         "runes":{
-            "hedge-magic":{
-               "desc":"The Fetish Shaman will periodically heal allies for 1861 Life.",
-               "unknown":" 1861 ."
-            },
-            "jinx":{
-               "desc":"Hexed targets take 20% additional damage.",
-               "unknown":" 20% ."
-            },
-            "angry-chicken":{
-               "desc":"Transform into an angry chicken for up to 5 seconds that can explode for 215% weapon damage as Physical to all enemies within 12 yards.",
-               "unknown":" 5 215% 12 ."
-            },
-            "painful-transformation":{
-               "desc":"Hex causes the target to Bleed for 12% weapon damage as Physical.",
-               "unknown":" 12% ."
-            },
-            "unstable-form":{
-               "desc":"Hexed targets explode when killed, dealing 135% weapon damage as Poison to all enemies within 8 yards.",
-               "unknown":" 135% 8 ."
-            }
-         }
-      },
-      "acid-cloud":{
-         "desc":"Cost: 172 ManaCause acid to rain down, dealing an initial 115% weapon damage as Poison, followed by 150% weapon damage as Poison over 3 seconds to enemies who remain in the area.",
-         "unknown":" 172 115% 150% 3 .",
-         "runes":{
-            "acid-rain":{
-               "desc":"Increases the initial area of effect of Acid Cloud to 24 yards.",
-               "unknown":" 24 ."
-            },
-            "lob-blob-bomb":{
-               "desc":"The acid on the ground forms into a slime that irradiates nearby enemies for 250% weapon damage as Poison over 5 seconds.",
-               "unknown":" 250% 5 ."
-            },
-            "slow-burn":{
-               "desc":"Increases the duration of the acid pools left behind to deal 300% weapon damage as Poison over 6 seconds.",
-               "unknown":" 300% 6 ."
-            },
-            "kiss-of-death":{
-               "desc":"Spit a cloud of acid that inflicts 127% weapon damage as Poison, followed by 165% weapon damage as Poison over 3 seconds.",
-               "unknown":" 127% 165% 3 ."
-            },
-            "corpse-bomb":{
-               "desc":"Raise a corpse from the ground that explodes for 230% weapon damage as Poison to enemies in the area.",
-               "unknown":" 230% ."
-            }
-         }
-      },
-      "mass-confusion":{
-         "desc":"Cost: 74 ManaCooldown: 60 secondsIncite paranoia in enemies, confusing them and causing some to fight for you for 12 seconds.",
-         "unknown":" 74 60 12 .",
-         "runes":{
-            "unstable-realm":{
-               "desc":"Reduces the cooldown of Mass Confusion to 45 seconds.",
-               "unknown":" 45 ."
-            },
-            "devolution":{
-               "desc":"Enemies killed while Confused have a 50% chance of spawning a Zombie Dog.",
-               "unknown":" 50% ."
-            },
-            "mass-hysteria":{
-               "desc":"Up to 6 enemies who aren't Confused are Stunned for 3 seconds.",
-               "unknown":" 6 3 ."
-            },
-            "paranoia":{
-               "desc":"All enemies in the area of Mass Confusion take 20% additional damage for 12 seconds.",
-               "unknown":" 20% 12 ."
-            },
-            "mass-hallucination":{
-               "desc":"Amid the confusion, a giant spirit rampages through enemies, dealing 22% weapon damage per second as Physical to enemies it passes through.",
-               "unknown":" 22% ."
-            }
-         }
-      },
-      "big-bad-voodoo":{
-         "desc":"Cooldown: 120 secondsConjure a Fetish that begins a ritual dance that increases the attack speed and movement speed of all nearby allies by 20% for 20 seconds.",
-         "unknown":" 120 20% 20 .",
-         "runes":{
-            "jungle-drums":{
-               "desc":"Increases the duration of the ritual to 30 seconds.",
-               "unknown":" 30 ."
-            },
-            "rain-dance":{
-               "desc":"The ritual restores 123 Mana per second while standing in the ritual area.",
-               "unknown":" 123 ."
-            },
-            "slam-dance":{
-               "desc":"The Fetish increases the damage of all nearby allies by 30%.",
-               "unknown":" 30%."
-            },
-            "ghost-trance":{
-               "desc":"The ritual heals all nearby allies for 5% of their maximum Life per second.",
-               "unknown":" 5% ."
-            },
-            "boogie-man":{
-               "desc":"Enemies who die in the ritual area have a 50% chance to resurrect as a Zombie Dog.",
-               "unknown":" 50% ."
-            }
-         }
-      },
-      "wall-of-zombies":{
-         "desc":"Cost: 103 ManaCooldown: 20 secondsRaise a line of zombies from the ground that attacks nearby enemies for 800% weapon damage as Physical over 5 seconds.",
-         "unknown":" 103 20 800% 5 .",
-         "runes":{
-            "barricade":{
-               "desc":"Increases the width of the Wall of Zombies.",
-               "unknown":" ."
-            },
-            "unrelenting-grip":{
-               "desc":"Your Wall of Zombies will Slow the movement of enemies by 60% for 5 seconds.",
-               "unknown":" 60% 5 ."
-            },
-            "creepers":{
-               "desc":"Up to 3 zombies will emerge from the ground and attack nearby enemies for 25% of your weapon damage as Physical per attack.",
-               "unknown":" 3 25% ."
-            },
-            "pile-on":{
-               "desc":"Summon a tower of zombies that falls over, dealing 550% weapon damage as Physical to any enemies it hits and knocks them back. Reduces the cooldown to 10 seconds.",
-               "unknown":" 550% . 10 ."
-            },
-            "dead-rush":{
-               "desc":"Zombies crawl out of the ground and run in all directions, dealing 445% weapon damage as Physical to nearby enemies.",
-               "unknown":" 445% ."
-            }
-         }
-      },
-      "fetish-army":{
-         "desc":"Cooldown: 120 secondsSummon an army of dagger-wielding Fetishes to fight by your side for 20 seconds. The Fetishes attack for 20% of your weapon damage as Physical.",
-         "unknown":" 120 20 . 20% .",
-         "runes":{
-            "fetish-ambush":{
-               "desc":"Each Fetish deals 250% weapon damage as Physical to any nearby enemy as it is summoned.",
-               "unknown":" 250% ."
-            },
-            "devoted-following":{
-               "desc":"Decreases the cooldown of Fetish Army to 90 seconds.",
-               "unknown":" 90 ."
-            },
-            "legion-of-daggers":{
-               "desc":"Increases number of dagger-wielding Fetishes summoned by 3.",
-               "unknown":" 3."
-            },
-            "tiki-torchers":{
-               "desc":"Summon an additional 2 Fetish casters who breathe fire in a cone in front of them that deals 15% of your weapon damage as Fire.",
-               "unknown":" 2 15% ."
-            },
-            "head-hunters":{
-               "desc":"Summon an additional 2 Hunter Fetishes that shoot blowdarts at enemies, dealing 20% of your weapon damage as Poison.",
-               "unknown":" 2 20% ."
-            }
-         }
-      }
-   },
-   "passive":{
-      "jungle-fortitude":{
-         "desc":"Reduces all damage taken by you and your pets by 15%.",
-         "unknown":" 15%."
-      },
-      "circle-of-life":{
-         "desc":"Whenever an enemy dies within 12 yards, there is a 30% chance that a Zombie Dog will automatically emerge. The range of this effect is increased by items that increase your gold pickup radius.",
-         "unknown":" 12 30% . ."
-      },
-      "spiritual-attunement":{
-         "desc":"Maximum Mana is increased by 20%. Regenerate 1% of your maximum Mana per second.Mana is the fuel you use to cast offensive and defensive skills.",
-         "unknown":" 20%. 1% . ."
-      },
-      "gruesome-feast":{
-         "desc":"Whenever you are healed by a health globe, you gain 10% of your maximum Mana and 10% Intelligence for 10 seconds. The Intelligence bonus can stack up to 5 times.",
-         "unknown":" 10% 10% 10 . 5 ."
-      },
-      "blood-ritual":{
-         "desc":"15% of Mana costs are paid with Life. In addition, you regenerate 1% of your maximum Life per second.",
-         "unknown":"15% . 1% ."
-      },
-      "bad-medicine":{
-         "desc":"Whenever you deal Poison damage to an enemy, their damage is reduced by 20% for 3 seconds.",
-         "unknown":" 20% 3 ."
-      },
-      "zombie-handler":{
-         "desc":"You can have 4 Zombie Dogs summoned at one time. The health of your Zombie Dogs and Gargantuan is increased by 20%.",
-         "unknown":" 4 . 20%."
-      },
-      "pierce-the-veil":{
-         "desc":"All of your damage is increased by 20%, but your Mana costs are increased by 30%.",
-         "unknown":" 20% 30%."
-      },
-      "spirit-vessel":{
-         "desc":"Reduces the cooldown of your Horrify, Spirit Walk, and Soul Harvest spells by 2 seconds. In addition, the next time you receive fatal damage, you automatically enter the spirit realm for 2 seconds and heal to 15% of your maximum Life. This effect cannot occur more than once every 90 seconds.",
-         "unknown":" 2 . 2 15% . 90 ."
-      },
-      "fetish-sycophants":{
-         "desc":"Whenever you cast a physical realm spell, you have a 5% chance to summon a dagger-wielding Fetish to fight by your side for 60 seconds.Physical realm spells are: Poison Dart Plague of Toads Zombie Charger Corpse Spiders Firebats Firebomb Locust Swarm Acid Cloud Wall of Zombies",
-         "unknown":" 5% 60 . "
-      },
-      "rush-of-essence":{
-         "desc":"Spirit spells return 49 Mana over 10 seconds.Spirit spells are: Haunt Horrify Mass Confusion Soul Harvest Spirit Barrage Spirit Walk",
-         "unknown":" 49 10 . "
-      },
-      "vision-quest":{
-         "desc":"When you deal damage with Corpse Spiders, Firebomb, Plague of Toads or Poison Dart, your Mana regeneration is increased by 30% for 5 seconds.",
-         "unknown":" 30% 5 ."
-      },
-      "fierce-loyalty":{
-         "desc":"All your pets get 100% of the benefit of your Thorns and Life regeneration items.",
-         "unknown":" 100% ."
-      },
-      "grave-injustice":{
-         "desc":"Whenever an enemy dies within 8 yards, regain 2% of your maximum Life and Mana and the cooldown on all of your abilities is reduced by 1 second. This range is extended by items that increase your gold pickup radius.",
-         "unknown":" 8 2% 1 . ."
-      },
-      "tribal-rites":{
-         "desc":"The cooldowns of your Fetish Army, Big Bad Voodoo, Hex, Gargantuan, Summon Zombie Dogs and Mass Confusion abilities are reduced by 25%.",
-         "unknown":" 25%."
-      }
-   }
+	"active": {
+		"poison-dart": {
+			"desc": "Cost: 10 ManaShoot a deadly Poison Dart that deals 100% weapon damage as Poison and an additional 40% weapon damage as Poison over 2 seconds.",
+			"unknown": 10,
+			"unknown": 1.00,
+			"unknown": 0.40,
+			"unknown": 2,
+			"runes": {
+				"splinters": {
+					"desc": "Shoot 3 Poison Darts that deal 60% weapon damage as Poison each.",
+					"unknown": 3,
+					"unknown": 0.60
+				},
+				"numbing-dart": {
+					"desc": "Toxins in the Poison Dart reduce the target's movement speed by 60% for 2 seconds.",
+					"unknown": 0.60,
+					"unknown": 2
+				},
+				"spined-dart": {
+					"desc": "Gain 29 Mana every time a Poison Dart hits an enemy.",
+					"unknown": 29
+				},
+				"flaming-dart": {
+					"desc": "Ignite the dart so that it deals 180% weapon damage as Fire at once.",
+					"unknown": 1.80
+				},
+				"snake-to-the-face": {
+					"desc": "Transform your Poison Dart into a snake that has a 30% chance to Stun the enemy for 1.5 seconds.",
+					"unknown": 0.30,
+					"unknown": 1.5
+				}
+			}
+		},
+		"grasp-of-the-dead": {
+			"desc": "Cost: 123 Mana  Cooldown: 8 secondsGhoulish hands reach out from the ground, slowing enemy movement by 60% and dealing 320% weapon damage as Physical over 8 seconds.",
+			"unknown": 123,
+			"unknown": 8,
+			"unknown": 0.60,
+			"unknown": 3.20,
+			"unknown": 8,
+			"runes": {
+				"unbreakable-grasp": {
+					"desc": "Increases the Slow amount to 80%.",
+					"unknown": 0.80
+				},
+				"groping-eels": {
+					"desc": "Increases the damage done to 416% weapon damage as Physical.",
+					"unknown": 4.16
+				},
+				"death-is-life": {
+					"desc": "Enemies who die while in the area of Grasp of the Dead have a 10% chance to produce a health globe or summon a Zombie Dog.",
+					"unknown": 0.10
+				},
+				"desperate-grasp": {
+					"desc": "Reduces the cooldown of Grasp of the Dead to 6 seconds.",
+					"unknown": 6
+				},
+				"rain-of-corpses": {
+					"desc": "Corpses fall from the sky, dealing 80% weapon damage as Physical over 8 seconds to nearby enemies.",
+					"unknown": 0.80,
+					"unknown": 8
+				}
+			}
+		},
+		"corpse-spiders": {
+			"desc": "Cost: 5 ManaThrow a jar with 4 spiders that attack nearby enemies for a total of 120% weapon damage as Physical before dying.",
+			"unknown": 5,
+			"unknown": 4,
+			"unknown": 1.20,
+			"runes": {
+				"leaping-spiders": {
+					"desc": "Summon jumping spiders that leap up to 25 yards to reach their target and attack for a total of 144% weapon damage as Physical.",
+					"unknown": 25,
+					"unknown": 1.44
+				},
+				"spider-queen": {
+					"desc": "Summon a spider queen that births spiderlings, dealing 630% weapon damage as Poison over 15 seconds. You may only have one spider queen summoned at a time.",
+					"unknown": 6.30,
+					"unknown": 15
+				},
+				"widowmakers": {
+					"desc": "Summon widowmaker spiders that return 4 Mana to you per hit.",
+					"unknown": 4
+				},
+				"medusa-spiders": {
+					"desc": "Summon paralyzing spiders that have a 25% chance to Slow enemies' movement by 60% with every attack.",
+					"unknown": 0.25,
+					"unknown": 0.60
+				},
+				"blazing-spiders": {
+					"desc": "Summon fire spiders that deal a total of 156% weapon damage as Fire.",
+					"unknown": 1.56
+				}
+			}
+		},
+		"summon-zombie-dogs": {
+			"desc": "Cost: 49 Mana  Cooldown: 45 secondsSummon 3 Zombie Dogs from the depths to fight by your side. Each dog deals 9% of your weapon damage as Physical per hit.",
+			"unknown": 49,
+			"unknown": 45,
+			"unknown": 3,
+			"unknown": 0.09,
+			"runes": {
+				"rabid-dogs": {
+					"desc": "Your Zombie Dogs gain an infectious bite that deals 9% of your weapon damage as Poison over 3 seconds.",
+					"unknown": 0.09,
+					"unknown": 3
+				},
+				"final-gift": {
+					"desc": "Your Zombie Dogs have a 15% chance to leave behind a health globe when they die.",
+					"unknown": 0.15
+				},
+				"life-link": {
+					"desc": "Your Zombie Dogs absorb 10% of all damage done to you.",
+					"unknown": 0.10
+				},
+				"burning-dogs": {
+					"desc": "Your Zombie Dogs burst into flames, burning nearby enemies for 2% of your weapon damage as Fire every second.",
+					"unknown": 0.02
+				},
+				"leeching-beasts": {
+					"desc": "Your Zombie Dogs heal 50% of the damage they deal as Life divided evenly between themselves and you.",
+					"unknown": 0.50
+				}
+			}
+		},
+		"firebats": {
+			"desc": "Cost: 98 ManaCall forth a swarm of fiery bats to burn enemies in front of you for 180% weapon damage as Fire.",
+			"unknown": 98,
+			"unknown": 1.80,
+			"runes": {
+				"dire-bats": {
+					"desc": "Summon fewer but larger bats that travel up to 40 yards and hit for 220% weapon damage as Fire.",
+					"unknown": 40,
+					"unknown": 2.20
+				},
+				"vampire-bats": {
+					"desc": "Gain 2.5% of damage done by the bats as Life.",
+					"unknown": "2.5%"
+				},
+				"plague-bats": {
+					"desc": "Diseased bats fly towards the enemy and infect them. Damage is slow at first, but can increase over time to a maximum of 270% weapon damage as Poison.",
+					"unknown": 2.70
+				},
+				"hungry-bats": {
+					"desc": "Rapidly summon bats that seek out nearby enemies for 350% weapon damage as Fire.",
+					"unknown": 3.50
+				},
+				"cloud-of-bats": {
+					"desc": "Call forth a swirl of bats that damage nearby enemies for 234% weapon damage as Fire. The damage of the bats increases by 20% every second, up to a maximum of 100%.",
+					"unknown": 2.34,
+					"unknown": 0.20,
+					"unknown": 1.00
+				}
+			}
+		},
+		"horrify": {
+			"desc": "Cost: 37 Mana  Cooldown: 16 secondsDon a spectral mask that horrifies all enemies within 12 yards, causing them to run in Fear for 4 seconds.",
+			"unknown": 37,
+			"unknown": 16,
+			"unknown": 12,
+			"unknown": 4,
+			"runes": {
+				"phobia": {
+					"desc": "Increases the duration horrified enemies run in Fear to 6 seconds.",
+					"unknown": 6
+				},
+				"stalker": {
+					"desc": "Increases movement speed by 20% for 4 seconds after casting Horrify.",
+					"unknown": 0.20,
+					"unknown": 4
+				},
+				"face-of-death": {
+					"desc": "Increases the radius of Horrify to 24 yards.",
+					"unknown": 24
+				},
+				"frightening-aspect": {
+					"desc": "Gain 100% additional Armor for 8 seconds after casting Horrify.",
+					"unknown": 1.00,
+					"unknown": 8
+				},
+				"ruthless-terror": {
+					"desc": "Gain 27 Mana for every horrified enemy.",
+					"unknown": 27
+				}
+			}
+		},
+		"soul-harvest": {
+			"desc": "Cost: 59 Mana  Cooldown: 15 secondsFeed on the life force of up to 5 enemies within 16 yards. Gain 130 Intelligence for each affected enemy. This effect lasts 30 seconds.",
+			"unknown": 59,
+			"unknown": 15,
+			"unknown": 5,
+			"unknown": 16,
+			"unknown": 130,
+			"unknown": 30,
+			"runes": {
+				"swallow-your-soul": {
+					"desc": "Gain 39 Mana for every enemy harvested.",
+					"unknown": 39
+				},
+				"siphon": {
+					"desc": "Gain 2171 Life for every enemy harvested.",
+					"unknown": 2171
+				},
+				"languish": {
+					"desc": "Reduces the movement speed of harvested enemies by 80% for 3 seconds.",
+					"unknown": 0.80,
+					"unknown": 3
+				},
+				"soul-to-waste": {
+					"desc": "Increase the duration of Soul Harvest's effect to 60 seconds.",
+					"unknown": 60
+				},
+				"vengeful-spirit": {
+					"desc": "Harvested enemies also take 230% weapon damage as Physical.",
+					"unknown": 2.30
+				}
+			}
+		},
+		"plague-of-toads": {
+			"desc": "Cost: 12 ManaRelease a handful of toads that deal 130% weapon damage as Poison to enemies they come in contact with.",
+			"unknown": 12,
+			"unknown": 1.30,
+			"runes": {
+				"explosive-toads": {
+					"desc": "Mutate to fire bullfrogs that explode for 169% weapon damage as Fire.",
+					"unknown": 1.69
+				},
+				"toad-of-hugeness": {
+					"desc": "Summon a giant toad that swallows enemies whole for up to 5 seconds, digesting for 20% of your weapon damage per second as Physical. Adds a 5 second cooldown to Plague of Toads.",
+					"unknown": 5,
+					"unknown": 0.20,
+					"unknown": 5
+				},
+				"rain-of-toads": {
+					"desc": "Cause toads to rain from the sky that deal 130% weapon damage as Poison to enemies in the area over 2 seconds.",
+					"unknown": 1.30,
+					"unknown": 2
+				},
+				"addling-toads": {
+					"desc": "Mutate to yellow frogs that deal 130% weapon damage as Poison and have a 15% chance to Confuse affected enemies for 4 seconds.",
+					"unknown": 1.30,
+					"unknown": 0.15,
+					"unknown": 4
+				},
+				"toad-affinity": {
+					"desc": "Removes the Mana cost of Plague of Toads."
+				}
+			}
+		},
+		"haunt": {
+			"desc": "Cost: 98 ManaHaunt an enemy with a spirit, dealing 575% weapon damage as Arcane over 6 seconds. If the target dies, the spirit will haunt another nearby enemy.",
+			"unknown": 98,
+			"unknown": 5.75,
+			"unknown": 6,
+			"runes": {
+				"consuming-spirit": {
+					"desc": "The spirit returns 155 Life per second.",
+					"unknown": 155
+				},
+				"resentful-spirit": {
+					"desc": "Summon a vengeful spirit that does 383% weapon damage as Arcane over 2 seconds.",
+					"unknown": 3.83,
+					"unknown": 2
+				},
+				"lingering-spirit": {
+					"desc": "If there are no targets left, the spirit will linger for up to 10 seconds looking for new enemies.",
+					"unknown": 10
+				},
+				"grasping-spirit": {
+					"desc": "Slow the movement of haunted targets by 30%.",
+					"unknown": 0.30
+				},
+				"draining-spirit": {
+					"desc": "The spirit returns 20.4 Mana per second.",
+					"unknown": 20.4
+				}
+			}
+		},
+		"sacrifice": {
+			"desc": "Banish your Zombie Dogs and cause them to explode, each dealing 275% of your weapon damage as Physical to all enemies within 12 yards.",
+			"unknown": 2.75,
+			"unknown": 12,
+			"runes": {
+				"black-blood": {
+					"desc": "Ichor erupts from the corpses of the Zombie Dogs and Slows enemies by 60% for 8 seconds.",
+					"unknown": 0.60,
+					"unknown": 8
+				},
+				"next-of-kin": {
+					"desc": "Each Zombie Dog you sacrifice has a 35% chance to resurrect as a new Zombie Dog.",
+					"unknown": 0.35
+				},
+				"pride": {
+					"desc": "Regain 294 Mana for each Zombie Dog you sacrifice.",
+					"unknown": 294
+				},
+				"for-the-master": {
+					"desc": "Gain 6202 Life for each Zombie Dog you sacrifice.",
+					"unknown": 6202
+				},
+				"provoke-the-pack": {
+					"desc": "Each sacrificed Zombie Dog increases your damage by 5% for 30 seconds.",
+					"unknown": 0.05,
+					"unknown": 30
+				}
+			}
+		},
+		"zombie-charger": {
+			"desc": "Cost: 140 ManaCall forth a reckless, suicidal zombie that deals 205% weapon damage as Poison to all enemies in its path before decomposing.",
+			"unknown": 140,
+			"unknown": 2.05,
+			"runes": {
+				"leperous-zombie": {
+					"desc": "The Zombie Charger leaves behind a cloud of noxious vapors that deals 240% weapon damage as Poison over 3 seconds to enemies caught in it.",
+					"unknown": 2.40,
+					"unknown": 3
+				},
+				"undeath": {
+					"desc": "If the Zombie Charger kills any enemies, it will reanimate and charge nearby enemies for 205% weapon damage as Poison. This effect can repeat up to 2 times.",
+					"unknown": 2.05,
+					"unknown": 2
+				},
+				"wave-of-zombies": {
+					"desc": "Summon 3 Zombie Chargers that each deal 115% weapon damage as Poison.",
+					"unknown": 3,
+					"unknown": 1.15
+				},
+				"explosive-beast": {
+					"desc": "Summon an explosive Zombie Dog that streaks toward your target before exploding, dealing 236% weapon damage as Fire to all enemies within 9 yards.",
+					"unknown": 2.36,
+					"unknown": 9
+				},
+				"zombie-bears": {
+					"desc": "Summon zombie bears that stampede towards your target. Each bear deals 236% weapon damage as Poison to enemies in the area.",
+					"unknown": 2.36
+				}
+			}
+		},
+		"spirit-walk": {
+			"desc": "Cost: 49 Mana  Cooldown: 15 secondsLeave your physical body and enter the spirit realm for 2 seconds. While in the spirit realm, your movement is unhindered.Your link to the spirit realm will end if your physical body sustains 50% of your maximum Life in damage.",
+			"unknown": 49,
+			"unknown": 15,
+			"unknown": 2,
+			"unknown": 0.50,
+			"runes": {
+				"jaunt": {
+					"desc": "Increases the duration of Spirit Walk to 3 seconds.",
+					"unknown": 3
+				},
+				"honored-guest": {
+					"desc": "Gain 15% of your maximum Mana every second while Spirit Walk is active.",
+					"unknown": 0.15
+				},
+				"umbral-shock": {
+					"desc": "When Spirit Walk ends, your physical body erupts for 310% weapon damage as Fire to all enemies within 10 yards.",
+					"unknown": 3.10,
+					"unknown": 10
+				},
+				"severance": {
+					"desc": "Damage enemies you walk through in spirit form for 225% weapon damage as Physical every second for 2 seconds.",
+					"unknown": 2.25,
+					"unknown": 2
+				},
+				"healing-journey": {
+					"desc": "Gain 7% of your maximum Life every second while Spirit Walk is active.",
+					"unknown": 0.07
+				}
+			}
+		},
+		"spirit-barrage": {
+			"desc": "Cost: 108 ManaBombard a target with a spirit blast that deals 230% weapon damage as Physical.",
+			"unknown": 108,
+			"unknown": 2.30,
+			"runes": {
+				"the-spirit-is-willing": {
+					"desc": "Gain 44 Mana every time Spirit Barrage hits.",
+					"unknown": 44
+				},
+				"well-of-souls": {
+					"desc": "An additional 3 spirits seek out other targets and deal 65% weapon damage as Physical.",
+					"unknown": 3,
+					"unknown": 0.65
+				},
+				"phantasm": {
+					"desc": "Summon a spectre that deals 225% weapon damage as Physical over 5 seconds to all enemies within 10 yards.",
+					"unknown": 2.25,
+					"unknown": 5,
+					"unknown": 10
+				},
+				"phlebotomize": {
+					"desc": "Regain 3% of damage dealt with Spirit Barrage as Life.",
+					"unknown": 0.03
+				},
+				"manitou": {
+					"desc": "Summon a spectre that hovers over you, unleashing spirit bolts at nearby enemies for 1667% weapon damage as Physical over 20 seconds.",
+					"unknown": "1667%",
+					"unknown": 20
+				}
+			}
+		},
+		"gargantuan": {
+			"desc": "Cost: 147 Mana  Cooldown: 60 secondsSummon a Gargantuan zombie to fight for you. The Gargantuan attacks for 100% of your weapon damage as Physical.",
+			"unknown": 147,
+			"unknown": 60,
+			"unknown": 1.00,
+			"runes": {
+				"humongoid": {
+					"desc": "The Gargantuan gains the Cleave ability, allowing its attacks to hit multiple targets for 130% of your weapon damage as Physical.",
+					"unknown": 1.30
+				},
+				"restless-giant": {
+					"desc": "When the Gargantuan encounters an elite enemy or is near 5 enemies, it enrages for 15 seconds gaining: 20% movement speed 35% attack speed 200% Physical damage This effect cannot occur more than once every 120 seconds. Elite enemies include champions, rares, bosses, and other players.",
+					"unknown": 5,
+					"unknown": 15,
+					"unknown": 0.20,
+					"unknown": 0.35,
+					"unknown": 2.00,
+					"unknown": 120
+				},
+				"wrathful-protector": {
+					"desc": "Summon a more powerful Gargantuan that only lasts for 15 seconds. The Gargantuan's fists burn with fire, dealing 110% of your weapon damage as Fire and knocking enemies back.",
+					"unknown": 15,
+					"unknown": 1.10
+				},
+				"big-stinker": {
+					"desc": "The Gargantuan is surrounded by a poison cloud that deals 15% weapon damage as Poison per second to nearby enemies.",
+					"unknown": 0.15
+				},
+				"bruiser": {
+					"desc": "The Gargantuan gains the ability to periodically slam enemies, dealing 200% of your weapon damage as Physical and stunning them for 3 seconds.",
+					"unknown": 2.00,
+					"unknown": 3
+				}
+			}
+		},
+		"locust-swarm": {
+			"desc": "Cost: 196 ManaUnleash a plague of locusts that swarms an enemy, dealing 360% weapon damage as Poison over 8 seconds. The locusts will jump to additional nearby enemies.",
+			"unknown": 196,
+			"unknown": 3.60,
+			"unknown": 8,
+			"runes": {
+				"pestilence": {
+					"desc": "Locust Swarm has a 100% chance to jump to two additional targets instead of one.",
+					"unknown": 1.00
+				},
+				"devouring-swarm": {
+					"desc": "Gain 37 Mana for every enemy affected by the swarm.",
+					"unknown": 37
+				},
+				"cloud-of-insects": {
+					"desc": "Increases the duration of the swarm to 10 seconds.",
+					"unknown": 10
+				},
+				"diseased-swarm": {
+					"desc": "Enemies killed by Locust Swarm leave behind a cloud of locusts that deal 75% weapon damage as Poison over 3 seconds to enemies who stand in the area.",
+					"unknown": 0.75,
+					"unknown": 3
+				},
+				"searing-locusts": {
+					"desc": "Engulf the target with burning locusts that deal 468% weapon damage as Fire over 8 seconds.",
+					"unknown": 4.68,
+					"unknown": 8
+				}
+			}
+		},
+		"firebomb": {
+			"desc": "Cost: 10 ManaLob an explosive skull that deals 110% weapon damage as Fire to all enemies within 8 yards.",
+			"unknown": 10,
+			"unknown": 1.10,
+			"unknown": 8,
+			"runes": {
+				"flash-fire": {
+					"desc": "Rather than exploding for area damage, each Firebomb can bounce to up to 6 additional targets. Damage is reduced by 15% per bounce.",
+					"unknown": 6,
+					"unknown": 0.15
+				},
+				"roll-the-bones": {
+					"desc": "Allows the skull to bounce up to 2 times.",
+					"unknown": 2
+				},
+				"fire-pit": {
+					"desc": "The explosion creates a pool of fire that deals 36% weapon damage as Fire over 3 seconds.",
+					"unknown": 0.36,
+					"unknown": 3
+				},
+				"pyrogeist": {
+					"desc": "Create a column of flame that spews fire at the closest enemy for 640% weapon damage as Fire over 6 seconds. You may only have one Pyrogeist active at a time.",
+					"unknown": 6.40,
+					"unknown": 6
+				},
+				"ghost-bomb": {
+					"desc": "In addition to the base explosion, the skull creates a larger blast that deals an additional 30% weapon damage as Fire to all enemies within 28 yards.",
+					"unknown": 0.30,
+					"unknown": 28
+				}
+			}
+		},
+		"hex": {
+			"desc": "Cost: 49 Mana  Cooldown: 15 secondsSummon a Fetish Shaman for 12 seconds that will hex enemies into chickens. Hexed enemies are unable to perform offensive actions and take 10% additional damage.",
+			"unknown": 49,
+			"unknown": 15,
+			"unknown": 12,
+			"unknown": 0.10,
+			"runes": {
+				"hedge-magic": {
+					"desc": "The Fetish Shaman will periodically heal allies for 1861 Life.",
+					"unknown": 1861
+				},
+				"jinx": {
+					"desc": "Hexed targets take 20% additional damage.",
+					"unknown": 0.20
+				},
+				"angry-chicken": {
+					"desc": "Transform into an angry chicken for up to 5 seconds that can explode for 215% weapon damage as Physical to all enemies within 12 yards.",
+					"unknown": 5,
+					"unknown": 2.15,
+					"unknown": 12
+				},
+				"painful-transformation": {
+					"desc": "Hex causes the target to Bleed for 12% weapon damage as Physical.",
+					"unknown": 0.12
+				},
+				"unstable-form": {
+					"desc": "Hexed targets explode when killed, dealing 135% weapon damage as Poison to all enemies within 8 yards.",
+					"unknown": 1.35,
+					"unknown": 8
+				}
+			}
+		},
+		"acid-cloud": {
+			"desc": "Cost: 172 ManaCause acid to rain down, dealing an initial 115% weapon damage as Poison, followed by 150% weapon damage as Poison over 3 seconds to enemies who remain in the area.",
+			"unknown": 172,
+			"unknown": 1.15,
+			"unknown": 1.50,
+			"unknown": 3,
+			"runes": {
+				"acid-rain": {
+					"desc": "Increases the initial area of effect of Acid Cloud to 24 yards.",
+					"unknown": 24
+				},
+				"lob-blob-bomb": {
+					"desc": "The acid on the ground forms into a slime that irradiates nearby enemies for 250% weapon damage as Poison over 5 seconds.",
+					"unknown": 2.50,
+					"unknown": 5
+				},
+				"slow-burn": {
+					"desc": "Increases the duration of the acid pools left behind to deal 300% weapon damage as Poison over 6 seconds.",
+					"unknown": 3.00,
+					"unknown": 6
+				},
+				"kiss-of-death": {
+					"desc": "Spit a cloud of acid that inflicts 127% weapon damage as Poison, followed by 165% weapon damage as Poison over 3 seconds.",
+					"unknown": 1.27,
+					"unknown": 1.65,
+					"unknown": 3
+				},
+				"corpse-bomb": {
+					"desc": "Raise a corpse from the ground that explodes for 230% weapon damage as Poison to enemies in the area.",
+					"unknown": 2.30
+				}
+			}
+		},
+		"mass-confusion": {
+			"desc": "Cost: 74 Mana  Cooldown: 60 secondsIncite paranoia in enemies, confusing them and causing some to fight for you for 12 seconds.",
+			"unknown": 74,
+			"unknown": 60,
+			"unknown": 12,
+			"runes": {
+				"unstable-realm": {
+					"desc": "Reduces the cooldown of Mass Confusion to 45 seconds.",
+					"unknown": 45
+				},
+				"devolution": {
+					"desc": "Enemies killed while Confused have a 50% chance of spawning a Zombie Dog.",
+					"unknown": 0.50
+				},
+				"mass-hysteria": {
+					"desc": "Up to 6 enemies who aren't Confused are Stunned for 3 seconds.",
+					"unknown": 6,
+					"unknown": 3
+				},
+				"paranoia": {
+					"desc": "All enemies in the area of Mass Confusion take 20% additional damage for 12 seconds.",
+					"unknown": 0.20,
+					"unknown": 12
+				},
+				"mass-hallucination": {
+					"desc": "Amid the confusion, a giant spirit rampages through enemies, dealing 22% weapon damage per second as Physical to enemies it passes through.",
+					"unknown": 0.22
+				}
+			}
+		},
+		"big-bad-voodoo": {
+			"desc": "Cooldown: 120 secondsConjure a Fetish that begins a ritual dance that increases the attack speed and movement speed of all nearby allies by 20% for 20 seconds.",
+			"unknown": 120,
+			"unknown": 0.20,
+			"unknown": 20,
+			"runes": {
+				"jungle-drums": {
+					"desc": "Increases the duration of the ritual to 30 seconds.",
+					"unknown": 30
+				},
+				"rain-dance": {
+					"desc": "The ritual restores 123 Mana per second while standing in the ritual area.",
+					"unknown": 123
+				},
+				"slam-dance": {
+					"desc": "The Fetish increases the damage of all nearby allies by 30%.",
+					"unknown": 0.30
+				},
+				"ghost-trance": {
+					"desc": "The ritual heals all nearby allies for 5% of their maximum Life per second.",
+					"unknown": 0.05
+				},
+				"boogie-man": {
+					"desc": "Enemies who die in the ritual area have a 50% chance to resurrect as a Zombie Dog.",
+					"unknown": 0.50
+				}
+			}
+		},
+		"wall-of-zombies": {
+			"desc": "Cost: 103 Mana  Cooldown: 20 secondsRaise a line of zombies from the ground that attacks nearby enemies for 800% weapon damage as Physical over 5 seconds.",
+			"unknown": 103,
+			"unknown": 20,
+			"unknown": 8.00,
+			"unknown": 5,
+			"runes": {
+				"barricade": {
+					"desc": "Increases the width of the Wall of Zombies."
+				},
+				"unrelenting-grip": {
+					"desc": "Your Wall of Zombies will Slow the movement of enemies by 60% for 5 seconds.",
+					"unknown": 0.60,
+					"unknown": 5
+				},
+				"creepers": {
+					"desc": "Up to 3 zombies will emerge from the ground and attack nearby enemies for 25% of your weapon damage as Physical per attack.",
+					"unknown": 3,
+					"unknown": 0.25
+				},
+				"pile-on": {
+					"desc": "Summon a tower of zombies that falls over, dealing 550% weapon damage as Physical to any enemies it hits and knocks them back. Reduces the cooldown to 10 seconds.",
+					"unknown": 5.50,
+					"unknown": 10
+				},
+				"dead-rush": {
+					"desc": "Zombies crawl out of the ground and run in all directions, dealing 445% weapon damage as Physical to nearby enemies.",
+					"unknown": 4.45
+				}
+			}
+		},
+		"fetish-army": {
+			"desc": "Cooldown: 120 secondsSummon an army of dagger-wielding Fetishes to fight by your side for 20 seconds. The Fetishes attack for 20% of your weapon damage as Physical.",
+			"unknown": 120,
+			"unknown": 20,
+			"unknown": 0.20,
+			"runes": {
+				"fetish-ambush": {
+					"desc": "Each Fetish deals 250% weapon damage as Physical to any nearby enemy as it is summoned.",
+					"unknown": 2.50
+				},
+				"devoted-following": {
+					"desc": "Decreases the cooldown of Fetish Army to 90 seconds.",
+					"unknown": 90
+				},
+				"legion-of-daggers": {
+					"desc": "Increases number of dagger-wielding Fetishes summoned by 3.",
+					"unknown": 3
+				},
+				"tiki-torchers": {
+					"desc": "Summon an additional 2 Fetish casters who breathe fire in a cone in front of them that deals 15% of your weapon damage as Fire.",
+					"unknown": 2,
+					"unknown": 0.15
+				},
+				"head-hunters": {
+					"desc": "Summon an additional 2 Hunter Fetishes that shoot blowdarts at enemies, dealing 20% of your weapon damage as Poison.",
+					"unknown": 2,
+					"unknown": 0.20
+				}
+			}
+		}
+	},
+	"passive": {
+		"jungle-fortitude": {
+			"desc": "Reduces all damage taken by you and your pets by 15%.",
+			"unknown": 0.15
+		},
+		"circle-of-life": {
+			"desc": "Whenever an enemy dies within 12 yards, there is a 30% chance that a Zombie Dog will automatically emerge. The range of this effect is increased by items that increase your gold pickup radius.",
+			"unknown": 12,
+			"unknown": 0.30
+		},
+		"spiritual-attunement": {
+			"desc": "Maximum Mana is increased by 20%. Regenerate 1% of your maximum Mana per second.Mana is the fuel you use to cast offensive and defensive skills.",
+			"unknown": 0.20,
+			"unknown": 0.01
+		},
+		"gruesome-feast": {
+			"desc": "Whenever you are healed by a health globe, you gain 10% of your maximum Mana and 10% Intelligence for 10 seconds. The Intelligence bonus can stack up to 5 times.",
+			"unknown": 0.10,
+			"unknown": 0.10,
+			"unknown": 10,
+			"unknown": 5
+		},
+		"blood-ritual": {
+			"desc": "15% of Mana costs are paid with Life. In addition, you regenerate 1% of your maximum Life per second.",
+			"unknown": 0.15,
+			"unknown": 0.01
+		},
+		"bad-medicine": {
+			"desc": "Whenever you deal Poison damage to an enemy, their damage is reduced by 20% for 3 seconds.",
+			"unknown": 0.20,
+			"unknown": 3
+		},
+		"zombie-handler": {
+			"desc": "You can have 4 Zombie Dogs summoned at one time. The health of your Zombie Dogs and Gargantuan is increased by 20%.",
+			"unknown": 4,
+			"unknown": 0.20
+		},
+		"pierce-the-veil": {
+			"desc": "All of your damage is increased by 20%, but your Mana costs are increased by 30%.",
+			"unknown": 0.20,
+			"unknown": 0.30
+		},
+		"spirit-vessel": {
+			"desc": "Reduces the cooldown of your Horrify, Spirit Walk, and Soul Harvest spells by 2 seconds. In addition, the next time you receive fatal damage, you automatically enter the spirit realm for 2 seconds and heal to 15% of your maximum Life. This effect cannot occur twice in succession within 90 seconds.",
+			"unknown": 2,
+			"unknown": 2,
+			"unknown": 0.15,
+			"unknown": 90
+		},
+		"fetish-sycophants": {
+			"desc": "Whenever you cast a physical realm spell, you have a 5% chance to summon a dagger-wielding Fetish to fight by your side for 60 seconds.Physical realm spells are:  Poison Dart  Plague of Toads  Zombie Charger  Corpse Spiders  Firebats  Firebomb  Locust Swarm  Acid Cloud  Wall of Zombies",
+			"unknown": 0.05,
+			"unknown": 60
+		},
+		"rush-of-essence": {
+			"desc": "Spirit spells return 49 Mana over 10 seconds.Spirit spells are:  Haunt  Horrify  Mass Confusion  Soul Harvest  Spirit Barrage  Spirit Walk",
+			"unknown": 49,
+			"unknown": 10
+		},
+		"vision-quest": {
+			"desc": "When you deal damage with Corpse Spiders, Firebomb, Plague of Toads or Poison Dart, your Mana regeneration is increased by 30% for 5 seconds.",
+			"unknown": 0.30,
+			"unknown": 5
+		},
+		"fierce-loyalty": {
+			"desc": "All your pets get 100% of the benefit of your Thorns and Life regeneration items.",
+			"unknown": 1.00
+		},
+		"grave-injustice": {
+			"desc": "Whenever an enemy dies within 8 yards, regain 2% of your maximum Life and Mana and the cooldown on all of your abilities is reduced by 1 second. This range is extended by items that increase your gold pickup radius.",
+			"unknown": 8,
+			"unknown": 0.02,
+			"unknown": 1
+		},
+		"tribal-rites": {
+			"desc": "The cooldowns of your Fetish Army, Big Bad Voodoo, Hex, Gargantuan, Summon Zombie Dogs and Mass Confusion abilities are reduced by 25%.",
+			"unknown": 0.25
+		}
+	}
 }

@@ -1,608 +1,745 @@
 {
-   "active":{
-      "fists-of-thunder":{
-         "desc":"Generate: 6 Spirit per attackUnleash a series of extremely fast punches that deal 110% weapon damage as Lightning. Every third hit deals damage to all enemies in front of you and knocks them back a short distance. Generates Spirit faster than other Spirit-generating skills due to the high attack speed.",
-         "unknown":" 6 110% . . .",
-         "runes":{
-            "thunderclap":{
-               "desc":"Teleport to the target and release an electric shockwave with every punch that hits all enemies within 6 yards of your primary target for 35% weapon damage as Lightning.",
-               "unknown":" 6 35% ."
-            },
-            "lightning-flash":{
-               "desc":"Increases your chance to Dodge by 16% for 2 seconds.",
-               "unknown":" 16% 2 ."
-            },
-            "static-charge":{
-               "desc":"Your primary target is charged with static electricity for 5 seconds and takes 37% weapon damage as Lightning when you attack other enemies with Fists of Thunder.",
-               "unknown":" 5 37% ."
-            },
-            "quickening":{
-               "desc":"Critical Hits generate an additional 15 Spirit for each target hit.",
-               "unknown":" 15 ."
-            },
-            "bounding-light":{
-               "desc":"Every third punch releases chain lightning instead of knocking enemies back.  Each lightning strike inflicts 73% weapon damage as Lightning.",
-               "unknown":" . 73% ."
-            }
-         }
-      },
-      "lashing-tail-kick":{
-         "desc":"Cost: 30 SpiritUnleash a deadly roundhouse kick that knocks enemies back and deals 235% weapon damage.",
-         "unknown":" 30 235% .",
-         "runes":{
-            "vulture-claw-kick":{
-               "desc":"Release a torrent of fire that burns nearby enemies for 259% weapon damage as Fire and causes Knockback.",
-               "unknown":" 259% ."
-            },
-            "sweeping-armada":{
-               "desc":"Increases Knockback distance by 150% and slows the movement speed of struck enemies by 60% for 2 seconds.",
-               "unknown":" 150% 60% 2 ."
-            },
-            "spinning-flame-kick":{
-               "desc":"Hurl a column of fire that burns through enemies, causing 294% weapon damage as Fire to each enemy it strikes.",
-               "unknown":" 294% ."
-            },
-            "scorpion-sting":{
-               "desc":"Enemies have a 50% chance to be stunned for 1.5 seconds instead of being knocked back.",
-               "unknown":" 50% 1.5 ."
-            },
-            "hand-of-ytar":{
-               "desc":"Attack enemies at long range, slowing the movement speed of affected targets by 80% for 2 seconds.",
-               "unknown":" 80% 2 ."
-            }
-         }
-      },
-      "deadly-reach":{
-         "desc":"Generate: 6 Spirit per attackProject lines of pure force over a short distance for 110% weapon damage. Every third hit extends 25 yards.",
-         "unknown":" 6 110% . 25 .",
-         "runes":{
-            "piercing-trident":{
-               "desc":"Increases the area of effect of the second and third strikes.",
-               "unknown":" ."
-            },
-            "keen-eye":{
-               "desc":"The third strike increases your Armor by 50% for 4 seconds.",
-               "unknown":" 50% 4 ."
-            },
-            "scattered-blows":{
-               "desc":"The third strike is replaced with an attack that will hit up to 6 nearby enemies within 15 yards for 170% weapon damage as Lightning.",
-               "unknown":" 6 15 170% ."
-            },
-            "strike-from-beyond":{
-               "desc":"Critical Hits generate an additional 10 Spirit for each target hit.",
-               "unknown":" 10 ."
-            },
-            "foresight":{
-               "desc":"The third strike increases the damage of all attacks by 18% for 30 seconds.",
-               "unknown":" 18% 30 ."
-            }
-         }
-      },
-      "blinding-flash":{
-         "desc":"Cost: 10 SpiritCooldown: 15 secondsCreate a flash of light that blinds all enemies within 20 yards for 3 seconds. Elite enemies recover faster, but suffer a 30% chance to miss with attacks.",
-         "unknown":" 10 15 20 3 . 30% .",
-         "runes":{
-            "self-reflection":{
-               "desc":"Increases the duration enemies are blinded to 4 seconds.",
-               "unknown":" 4 ."
-            },
-            "blinded-and-confused":{
-               "desc":"Blinded enemies have a 25% chance to attack each other.",
-               "unknown":" 25% ."
-            },
-            "blinding-echo":{
-               "desc":"6 seconds after using Blinding Flash, a second flash of light will blind enemies within 20 yards for 0.5 seconds.",
-               "unknown":"6 20 0.5 ."
-            },
-            "searing-light":{
-               "desc":"Increases the chance elite enemies will miss attacks to 60%.",
-               "unknown":" 60%."
-            },
-            "faith-in-the-light":{
-               "desc":"For 3 seconds after using Blinding Flash, all of your attacks are empowered to deal 30% additional weapon damage as Holy.",
-               "unknown":" 3 30% ."
-            }
-         }
-      },
-      "tempest-rush":{
-         "desc":"Cost: 15 Spirit plus an additional 10 Spirit while channelingCharge directly through your enemies, knocking them back and hobbling them, slowing their movement by 60% for 2 seconds. Also deals 85% weapon damage while running.",
-         "unknown":" 15 10 60% 2 . 85% .",
-         "runes":{
-            "northern-breeze":{
-               "desc":"Reduces the channeling cost of Tempest Rush to 8 Spirit.",
-               "unknown":" 8 ."
-            },
-            "tailwind":{
-               "desc":"Increases the movement speed of Tempest Rush by 25%.",
-               "unknown":" 25%."
-            },
-            "flurry":{
-               "desc":"Increases the potency of the hobbling effect, slowing enemy movement by 80%.",
-               "unknown":" 80%."
-            },
-            "slipstream":{
-               "desc":"Reduces damage taken while running by 25%.",
-               "unknown":" 25%."
-            },
-            "bluster":{
-               "desc":"Enemies knocked back have their damage reduced by 20% for the duration of the effect.",
-               "unknown":" 20% ."
-            }
-         }
-      },
-      "breath-of-heaven":{
-         "desc":"Cost: 25 SpiritCooldown: 15 secondsA blast of divine energy heals you and all allies within 12 yards for 6202 - 7442 Life.",
-         "unknown":" 25 15 12 6202 7442 .",
-         "runes":{
-            "circle-of-scorn":{
-               "desc":"Breath of Heaven also sears enemies for 80% weapon damage as Holy.",
-               "unknown":" 80% ."
-            },
-            "circle-of-life":{
-               "desc":"Increases the healing power of Breath of Heaven to 8063 - 9675 Life.",
-               "unknown":" 8063 9675 ."
-            },
-            "blazing-wrath":{
-               "desc":"Breath of Heaven increases the damage of your attacks by 15% for 45 seconds.",
-               "unknown":" 15% 45 ."
-            },
-            "infused-with-light":{
-               "desc":"Gain 8 additional Spirit from Spirit generating attacks for 5 seconds after using Breath of Heaven.",
-               "unknown":" 8 5 ."
-            },
-            "penitent-flame":{
-               "desc":"Enemies exposed to Breath of Heaven run away in Fear for 1.5 seconds.",
-               "unknown":" 1.5 ."
-            }
-         }
-      },
-      "dashing-strike":{
-         "desc":"Cost: 25 SpiritQuickly dash at the targeted enemy or location, striking for 160% weapon damage and rooting the target for 1 second.",
-         "unknown":" 25 160% 1 .",
-         "runes":{
-            "way-of-the-falling-star":{
-               "desc":"After striking an enemy, your movement speed is increased 25% for 3 seconds.",
-               "unknown":" 25% 3 ."
-            },
-            "flying-side-kick":{
-               "desc":"Perform a flying kick that has a 60% chance to Stun your target for 1.5 seconds.",
-               "unknown":" 60% 1.5 ."
-            },
-            "quicksilver":{
-               "desc":"Reduces the cost of Dashing Strike to 10 Spirit.",
-               "unknown":" 10 ."
-            },
-            "soaring-skull":{
-               "desc":"Launch yourself through the air and slow all enemies along your path by 60% for 2 seconds.",
-               "unknown":" 60% 2 ."
-            },
-            "blinding-speed":{
-               "desc":"Receive a 20% increased chance to Dodge for 3 seconds.",
-               "unknown":" 20% 3 ."
-            }
-         }
-      },
-      "crippling-wave":{
-         "desc":"Generate: 7 Spirit per attackUnleash a series of large sweeping attacks that cause 110% weapon damage to all enemies in front of you. Every third hit damages all enemies around you and dazes them, slowing their movement speed by 30% and attack speed by 20% for 3 seconds.",
-         "unknown":" 7 110% . 30% 20% 3 .",
-         "runes":{
-            "mangle":{
-               "desc":"Increase damage to 143% weapon damage.",
-               "unknown":" 143% ."
-            },
-            "concussion":{
-               "desc":"Enemies hit by Crippling Wave inflict 20% less damage for 3 seconds.",
-               "unknown":" 20% 3 ."
-            },
-            "rising-tide":{
-               "desc":"Critical Hits generate an additional 5 Spirit for each target hit.",
-               "unknown":" 5 ."
-            },
-            "tsunami":{
-               "desc":"The range of Crippling Wave's third strike is increased to 17 yards and the effect of the movement speed reduction is increased to 60%.",
-               "unknown":" 17 60%."
-            },
-            "breaking-wave":{
-               "desc":"Enemies hit by Crippling Wave take 10% additional damage from all attacks for 3 seconds.",
-               "unknown":" 10% 3 ."
-            }
-         }
-      },
-      "wave-of-light":{
-         "desc":"Cost: 75 SpiritFocuses a wave of light that crushes enemies for 390% weapon damage as Holy, followed by an additional 45% weapon damage as Holy to all enemies in a line.",
-         "unknown":" 75 390% 45% .",
-         "runes":{
-            "wall-of-light":{
-               "desc":"Increases damage of the initial strike to 566% weapon damage as Holy.",
-               "unknown":" 566% ."
-            },
-            "explosive-light":{
-               "desc":"Release bursts of energy that deal 430% weapon damage as Holy to nearby enemies.",
-               "unknown":" 430% ."
-            },
-            "empowered-wave":{
-               "desc":"Reduces the cost of Wave of Light to 40 Spirit.",
-               "unknown":" 40 ."
-            },
-            "blinding-light":{
-               "desc":"Critical Hits Stun enemies for 3 seconds.",
-               "unknown":" 3 ."
-            },
-            "pillar-of-the-ancients":{
-               "desc":"Summon an ancient pillar that deals 280% weapon damage followed by an additional 280% weapon damage after 2 seconds.",
-               "unknown":" 280% 280% 2 ."
-            }
-         }
-      },
-      "exploding-palm":{
-         "desc":"Cost: 40 SpiritCause a target to Bleed for 745% weapon damage as Physical over 9 seconds. If the target dies while bleeding, it explodes and deals 30% of the target's maximum Life as Physical damage to all nearby enemies.",
-         "unknown":" 40 745% 9 . 30% .",
-         "runes":{
-            "the-flesh-is-weak":{
-               "desc":"Also causes the target to take 12% additional damage for 9 seconds.",
-               "unknown":" 12% 9 ."
-            },
-            "strong-spirit":{
-               "desc":"If the target explodes after bleeding, gain 5 Spirit for each enemy caught in the blast.",
-               "unknown":" 5 ."
-            },
-            "creeping-demise":{
-               "desc":"Also reduces your target's movement speed by 80% for 3 seconds.",
-               "unknown":" 80% 3 ."
-            },
-            "impending-doom":{
-               "desc":"Increases the duration of the Bleed effect to deal 745% weapon damage as Physical over 15 seconds.",
-               "unknown":" 745% 15 ."
-            },
-            "essence-burn":{
-               "desc":"Instead of bleeding, the target will burn for 745% weapon damage as Fire over 9 seconds. If the target dies while burning, it explodes causing all nearby enemies to burn for 60% weapon damage as Fire over 3 seconds. This effect can happen multiple times.",
-               "unknown":" 745% 9 . 60% 3 . ."
-            }
-         }
-      },
-      "cyclone-strike":{
-         "desc":"Cost: 50 SpiritPull all enemies within 24 yards towards you, followed by a furious blast of energy that deals 100% weapon damage as Holy.",
-         "unknown":" 50 24 100% .",
-         "runes":{
-            "eye-of-the-storm":{
-               "desc":"Reduces the Spirit cost of Cyclone Strike to 30 Spirit.",
-               "unknown":" 30 ."
-            },
-            "implosion":{
-               "desc":"Increases the distance enemies will be pulled towards you to 34 yards.",
-               "unknown":" 34 ."
-            },
-            "sunburst":{
-               "desc":"Changes the blast into an explosion of fire that has a 35% chance to Fear enemies for 1.5 seconds.",
-               "unknown":" 35% 1.5 ."
-            },
-            "wall-of-wind":{
-               "desc":"After using Cyclone Strike, gain a 20% chance to dodge attacks for 3 seconds.",
-               "unknown":" 20% 3 ."
-            },
-            "soothing-breeze":{
-               "desc":"Cyclone Strike heals you and all allies within 24 yards for 1240 Life.",
-               "unknown":" 24 1240 ."
-            }
-         }
-      },
-      "way-of-the-hundred-fists":{
-         "desc":"Generate: 8 Spirit per attackUnleash a rapid series of punches that strikes enemies for 140% weapon damage.",
-         "unknown":" 8 140% .",
-         "runes":{
-            "hands-of-lightning":{
-               "desc":"Increases the number of hits in the second strike from 7 to 10.",
-               "unknown":" 7 10."
-            },
-            "blazing-fists":{
-               "desc":"Critical Hits increase your attack speed and movement speed by 5% for 5 seconds. This effect can stack up to 3 times.",
-               "unknown":" 5% 5 . 3 ."
-            },
-            "fists-of-fury":{
-               "desc":"Affected targets will take an additional 100% weapon damage as Holy over 5 seconds. Also adds a short dash to the first strike.",
-               "unknown":" 100% 5 . ."
-            },
-            "spirited-salvo":{
-               "desc":"Every activation of the skill has a 15% chance to generate 15 additional Spirit.",
-               "unknown":" 15% 15 ."
-            },
-            "windforce-flurry":{
-               "desc":"The third strike generates a wave of wind that deals 250% weapon damage as Physical to enemies directly ahead of you.",
-               "unknown":" 250% ."
-            }
-         }
-      },
-      "serenity":{
-         "desc":"Cost: 10 SpiritCooldown: 20 secondsYou are enveloped in a protective shield that absorbs all incoming damage for 3 seconds and grants immunity to all control impairing effects.",
-         "unknown":" 10 20 3 .",
-         "runes":{
-            "peaceful-repose":{
-               "desc":"When activated, Serenity heals you for 6202 - 7752 Life.",
-               "unknown":" 6202 7752 ."
-            },
-            "reap-what-is-sown":{
-               "desc":"When Serenity ends, the shield explodes, dealing 30% of the damage absorbed by Serenity as Holy damage to enemies within 20 yards. The damage to each enemy cannot exceed 100% of your maximum Life.",
-               "unknown":" 30% 20 . 100% ."
-            },
-            "tranquility":{
-               "desc":"Extends the protective shield to allies within 45 yards for 1 seconds, and makes them immune to control impairing effects like Slow and Frozen.",
-               "unknown":" 45 1 ."
-            },
-            "ascension":{
-               "desc":"Increases the duration of Serenity to 4 seconds.",
-               "unknown":" 4 ."
-            },
-            "instant-karma":{
-               "desc":"While Serenity is active, 50% of all projectiles and melee attacks are reflected back at the attacker.",
-               "unknown":" 50% ."
-            }
-         }
-      },
-      "sevensided-strike":{
-         "desc":"Cost: 50 SpiritCooldown: 30 secondsDash rapidly between nearby enemies, dealing 1777% weapon damage over 7 hits.",
-         "unknown":" 50 30 1777% 7 .",
-         "runes":{
-            "sudden-assault":{
-               "desc":"Teleport to the target, increasing damage done to 2310% weapon damage over 7 strikes.",
-               "unknown":" 2310% 7 ."
-            },
-            "severalsided-strike":{
-               "desc":"Increases the number of strikes to 9.",
-               "unknown":" 9."
-            },
-            "pandemonium":{
-               "desc":"Enemies hit by Seven-Sided Strike have a 25% chance to be stunned for 7 seconds by each hit.",
-               "unknown":" 25% 7 ."
-            },
-            "sustained-attack":{
-               "desc":"Reduces the cooldown of Seven-Sided Strike to 23 seconds.",
-               "unknown":" 23 ."
-            },
-            "fulminating-onslaught":{
-               "desc":"Each strike explodes, dealing 254% weapon damage as Holy in a 7 yard radius around the target.",
-               "unknown":" 254% 7 ."
-            }
-         }
-      },
-      "mantra-of-evasion":{
-         "desc":"Cost: 50 SpiritRecite a Mantra that grants you and your allies within 40 yards a 15% chance to dodge attacks for 3 minutes.For 3 seconds after activation, a second effect grants an additional 15% chance to dodge attacks.This is a Mantra. You can only have one Mantra active at a time.",
-         "unknown":" 50 40 15% 3 . 3 15% . . .",
-         "runes":{
-            "hard-target":{
-               "desc":"Mantra of Evasion also increases Armor by 20%.",
-               "unknown":" 20%."
-            },
-            "divine-protection":{
-               "desc":"When you or an ally under the effect of Mantra of Evasion is reduced below 25% Life, a shield of protection forms around that target, reducing damage taken by 80% for 3 seconds. Each target can be protected at most once every 90 seconds by this effect.",
-               "unknown":" 25% 80% 3 . 90 ."
-            },
-            "wind-through-the-reeds":{
-               "desc":"Mantra of Evasion also increases movement speed by 8%.",
-               "unknown":" 8%."
-            },
-            "perseverance":{
-               "desc":"Mantra of Evasion also reduces the duration of all control impairing effects like Slow or Frozen by 20%.",
-               "unknown":" 20%."
-            },
-            "backlash":{
-               "desc":"Successfully dodging an attack has a chance to create a burst of flame dealing 35% weapon damage as Fire to all nearby enemies.",
-               "unknown":" 35% ."
-            }
-         }
-      },
-      "sweeping-wind":{
-         "desc":"Cost: 75 SpiritSurround yourself in a vortex that continuously deals 15% weapon damage to all enemies within 10 yards. The vortex lasts 6 seconds and is refreshed each time you strike an enemy with a melee attack. Landing a Critical Hit has a chance to increase the vortex effect up to 2 times for a total of 45% weapon damage to nearby enemies.",
-         "unknown":" 75 15% 10 . 6 . 2 45% .",
-         "runes":{
-            "master-of-wind":{
-               "desc":"Increases the duration of the vortex to 20 seconds.",
-               "unknown":" 20 ."
-            },
-            "blade-storm":{
-               "desc":"Intensify the vortex, increasing the damage per stack to 20% weapon damage. This increases the damage with 3 stacks to 60% weapon damage.",
-               "unknown":" 20% . 3 60% ."
-            },
-            "fire-storm":{
-               "desc":"Increases the radius of the vortex to 14 yards and changes the damage dealt to Fire.",
-               "unknown":" 14 ."
-            },
-            "inner-storm":{
-               "desc":"As long as your vortex is at the maximum stack count, you gain 3 Spirit per second.",
-               "unknown":" 3 ."
-            },
-            "cyclone":{
-               "desc":"While your vortex is at the maximum stack count, Critical Hits have a chance to spawn a lightning tornado that periodically electrocutes nearby enemies for 20% weapon damage as Lightning. Each spawned lightning tornado lasts 3 seconds.",
-               "unknown":" 20% . 3 ."
-            }
-         }
-      },
-      "mantra-of-retribution":{
-         "desc":"Cost: 50 SpiritRecite a Mantra that causes you and your allies within 40 yards to reflect melee damage back at enemies, dealing Holy damage equal to 40% of the damage sustained. The effect lasts for 3 minutes.For 3 seconds after activation, the effect on you increases to 80% of the damage sustained.This is a Mantra. You can only have one Mantra active at a time.",
-         "unknown":" 50 40 40% . 3 . 3 80% . . .",
-         "runes":{
-            "retaliation":{
-               "desc":"Increases the amount of damage reflected by the Mantra to 60%. The Mantra will now reflect ranged damage as well as melee damage.",
-               "unknown":" 60%. ."
-            },
-            "transgression":{
-               "desc":"Increases attack speed for you and your allies by 8%.",
-               "unknown":" 8%."
-            },
-            "indignation":{
-               "desc":"When taking damage from the Mantra of Retribution, enemies have a 10% chance to be stunned for 2 seconds.",
-               "unknown":" 10% 2 ."
-            },
-            "against-all-odds":{
-               "desc":"When reflecting damage done to you, Mantra of Retribution has a chance to restore 3 Spirit.",
-               "unknown":" 3 ."
-            },
-            "collateral-damage":{
-               "desc":"An attacker that is damaged by Mantra of Retribution has a 30% chance to suffer a feedback blast, dealing 45% weapon damage as Holy to itself and nearby enemies.",
-               "unknown":" 30% 45% ."
-            }
-         }
-      },
-      "inner-sanctuary":{
-         "desc":"Cost: 30 SpiritCooldown: 20 secondsCreate a runic circle of protection on the ground for 5 seconds that cannot be passed by enemies.",
-         "unknown":" 30 20 5 .",
-         "runes":{
-            "safe-haven":{
-               "desc":"You and your allies standing in the area of effect of Inner Sanctuary regenerate 1550 Life per second.",
-               "unknown":" 1550 ."
-            },
-            "sanctified-ground":{
-               "desc":"When Inner Sanctuary expires, it becomes sanctified ground for 6 seconds, slowing the movement of all enemies that move through it by 60%.",
-               "unknown":" 6 60%."
-            },
-            "consecration":{
-               "desc":"Increases the duration of Inner Sanctuary to 7 seconds.",
-               "unknown":" 7 ."
-            },
-            "circle-of-protection":{
-               "desc":"You and your allies standing in the area of effect of Inner Sanctuary take 35% less damage.",
-               "unknown":" 35% ."
-            },
-            "forbidden-palace":{
-               "desc":"You and your allies standing in the area of effect of Inner Sanctuary deal 10% additional damage.",
-               "unknown":" 10% ."
-            }
-         }
-      },
-      "mystic-ally":{
-         "desc":"Cost: 25 SpiritSummon a mystic ally to fight alongside you until it is destroyed. The ally deals 40% of your weapon damage as Physical per swing.",
-         "unknown":" 25 . 40% .",
-         "runes":{
-            "water-ally":{
-               "desc":"Imbue the ally with the essence of water. The ally gains the ability to perform a wave attack that deals 120% of your weapon damage as Physical and slows the movement of affected targets by 30% for 2 seconds.",
-               "unknown":" . 120% 30% 2 ."
-            },
-            "fire-ally":{
-               "desc":"Imbue the ally with the essence of fire. The ally gains the ability to unleash a flaming kick for 80% weapon damage as Fire plus an additional 40% of your weapon damage per second as Fire for 2 seconds to all enemies in a straight line.",
-               "unknown":" . 80% 40% 2 ."
-            },
-            "air-ally":{
-               "desc":"Imbue the ally with the essence of air. Every attack made by the ally has a 2% chance to generate 100 Spirit for you. In addition, the ally is surrounded in a torrent of wind that deals 10% of your weapon damage per second as Physical to all nearby enemies.",
-               "unknown":" . 2% 100 . 10% ."
-            },
-            "eternal-ally":{
-               "desc":"Imbue the ally with the essence of life. When the ally dies, it has a 50% chance to be reborn after 5 seconds. In addition, the physical damage of the ally's basic attack is increased to 44% of your weapon damage per swing.",
-               "unknown":" . 50% 5 . 44% ."
-            },
-            "earth-ally":{
-               "desc":"Imbue the ally with the essence of earth. Maximum Life for you and the ally is increased by 10%. The ally also gains the ability to create a wave of earth, dealing 60% of your weapon damage as Physical to a single enemy and forcing that enemy to attack the ally for 3 seconds.",
-               "unknown":" . 10%. 60% 3 ."
-            }
-         }
-      },
-      "mantra-of-healing":{
-         "desc":"Cost: 50 SpiritRecite a Mantra that causes you and your allies within 40 yards to gain increased Life regeneration by 310 Life per second. The Mantra lasts 3 minutes.For 3 seconds after activation Mantra of Healing shrouds you and your allies with a mystical shield that absorbs up to 930 damage.This is a Mantra. You can only have one Mantra active at a time.",
-         "unknown":" 50 40 310 . 3 . 3 930 . . .",
-         "runes":{
-            "sustenance":{
-               "desc":"Increases the Life regeneration granted by Mantra of Healing to 620 Life per second.",
-               "unknown":" 620 ."
-            },
-            "circular-breathing":{
-               "desc":"Mantra of Healing also regenerates 3 Spirit per second.",
-               "unknown":" 3 ."
-            },
-            "boon-of-inspiration":{
-               "desc":"Mantra of Healing also heals 186 Life when hitting an enemy.",
-               "unknown":" 186 ."
-            },
-            "heavenly-body":{
-               "desc":"Mantra of Healing also increases Vitality by 10%.",
-               "unknown":" 10%."
-            },
-            "time-of-need":{
-               "desc":"Mantra of Healing also increases resistances to all damage types by 20%.",
-               "unknown":" 20%."
-            }
-         }
-      },
-      "mantra-of-conviction":{
-         "desc":"Cost: 50 SpiritRecite a Mantra that causes all enemies within 20 yards of you to take 12% additional damage. The Mantra lasts 3 minutes.For 3 seconds after activation, the effect is increased to 24% additional damage.This is a Mantra. You can only have one Mantra active at a time.",
-         "unknown":" 50 20 12% . 3 . 3 24% . . .",
-         "runes":{
-            "overawe":{
-               "desc":"Increases the strength of Mantra of Conviction so that enemies take 24% additional damage and 48% for the first 3 seconds.",
-               "unknown":" 24% 48% 3 ."
-            },
-            "intimidation":{
-               "desc":"Enemies affected by Mantra of Conviction deal 10% less damage.",
-               "unknown":" 10% ."
-            },
-            "dishearten":{
-               "desc":"Slows the movement of enemies within 20 yards by 30%.",
-               "unknown":" 20 30%."
-            },
-            "reclamation":{
-               "desc":"You and your allies have a 30% chance to be healed for 279 - 341 Life when using melee attacks on an enemy under the effects of Mantra of Conviction.",
-               "unknown":" 30% 279 341 ."
-            },
-            "submission":{
-               "desc":"Enemies affected by Mantra of Conviction take 12% weapon damage per second as Holy.",
-               "unknown":" 12% ."
-            }
-         }
-      }
-   },
-   "passive":{
-      "resolve":{
-         "desc":"Damage you deal reduces enemy damage by 20% for 2.5 seconds.",
-         "unknown":" 20% 2.5 ."
-      },
-      "fleet-footed":{
-         "desc":"Increases movement speed by 10%.",
-         "unknown":" 10%."
-      },
-      "exalted-soul":{
-         "desc":"Increases maximum Spirit by 100 and increases Spirit Regeneration by 1 per second.Spirit fuels your defensive and offensive abilities.",
-         "unknown":" 100 1 . ."
-      },
-      "transcendence":{
-         "desc":"Every point of Spirit spent heals you for 62.0 Life.",
-         "unknown":" 62.0 ."
-      },
-      "chant-of-resonance":{
-         "desc":"Duration of all Mantras increased by 7 minutes. While one of your Mantras is active you gain 2 Spirit every second.",
-         "unknown":" 7 . 2 ."
-      },
-      "seize-the-initiative":{
-         "desc":"Your Armor is increased by 50% of your Dexterity.",
-         "unknown":" 50% ."
-      },
-      "the-guardian's-path":{
-         "desc":"While dual-wielding, you gain a 15% chance to dodge incoming attacks. While using a two-handed weapon, all Spirit generation is increased by 35%.",
-         "unknown":" 15% . 35%."
-      },
-      "sixth-sense":{
-         "desc":"Your dodge chance is increased by an amount equal to 30% of your Critical Hit Chance.",
-         "unknown":" 30% ."
-      },
-      "pacifism":{
-         "desc":"While you are under a Stun, Fear, Immobilize or Charm effect, all damage taken is reduced by 75%.",
-         "unknown":" 75%."
-      },
-      "beacon-of-ytar":{
-         "desc":"Reduces all cooldowns by 20%.",
-         "unknown":" 20%."
-      },
-      "guiding-light":{
-         "desc":"Whenever you use a direct heal skill on another player you and the other player deal 16% more damage for 15 seconds.",
-         "unknown":" 16% 15 ."
-      },
-      "one-with-everything":{
-         "desc":"Your resistance to all elements is equal to your highest elemental resistance.",
-         "unknown":" ."
-      },
-      "combination-strike":{
-         "desc":"Each different Spirit Generator ability you use increases your damage by 8% for 3 seconds.",
-         "unknown":" 8% 3 ."
-      },
-      "near-death-experience":{
-         "desc":"When receiving fatal damage, you are instead restored to 35% of maximum Life and 35% Spirit.This effect cannot occur more than once every 60 seconds.",
-         "unknown":" 35% 35% . 60 ."
-      }
-   }
+	"active": {
+		"fists-of-thunder": {
+			"desc": "Generate: 6 Spirit per attackUnleash a series of extremely fast punches that deal 110% weapon damage as Lightning. Every third hit deals damage to all enemies in front of you and knocks them back a short distance. Generates Spirit faster than other Spirit-generating skills due to the high attack speed.",
+			"unknown": 6,
+			"unknown": 1.10,
+			"runes": {
+				"thunderclap": {
+					"desc": "Teleport to the target and release an electric shockwave with every punch that hits all enemies within 6 yards of your primary target for 35% weapon damage as Lightning.",
+					"unknown": 6,
+					"unknown": 0.35
+				},
+				"lightning-flash": {
+					"desc": "Increases your chance to Dodge by 16% for 2 seconds.",
+					"unknown": 0.16,
+					"unknown": 2
+				},
+				"static-charge": {
+					"desc": "Your primary target is charged with static electricity for 5 seconds and takes 37% weapon damage as Lightning when you attack other enemies with Fists of Thunder.",
+					"unknown": 5,
+					"unknown": 0.37
+				},
+				"quickening": {
+					"desc": "Critical Hits generate an additional 15 Spirit for each target hit.",
+					"unknown": 15
+				},
+				"bounding-light": {
+					"desc": "Every third punch releases chain lightning instead of knocking enemies back. Each lightning strike inflicts 73% weapon damage as Lightning.",
+					"unknown": 0.73
+				}
+			}
+		},
+		"lashing-tail-kick": {
+			"desc": "Cost: 30 SpiritUnleash a deadly roundhouse kick that knocks enemies back and deals 470% weapon damage.",
+			"unknown": 30,
+			"unknown": 4.70,
+			"runes": {
+				"vulture-claw-kick": {
+					"desc": "Release a torrent of fire that burns nearby enemies for 517% weapon damage as Fire and causes Knockback.",
+					"unknown": 5.17
+				},
+				"sweeping-armada": {
+					"desc": "Increases Knockback distance by 150% and slows the movement speed of struck enemies by 60% for 2 seconds.",
+					"unknown": 1.50,
+					"unknown": 0.60,
+					"unknown": 2
+				},
+				"spinning-flame-kick": {
+					"desc": "Hurl a column of fire that burns through enemies, causing 588% weapon damage as Fire to each enemy it strikes.",
+					"unknown": 5.88
+				},
+				"scorpion-sting": {
+					"desc": "Enemies have a 50% chance to be stunned for 1.5 seconds instead of being knocked back.",
+					"unknown": 0.50,
+					"unknown": 1.5
+				},
+				"hand-of-ytar": {
+					"desc": "Attack enemies at long range, slowing the movement speed of affected targets by 80% for 2 seconds.",
+					"unknown": 0.80,
+					"unknown": 2
+				}
+			}
+		},
+		"deadly-reach": {
+			"desc": "Generate: 6 Spirit per attackProject lines of pure force over a short distance for 110% weapon damage. Every third hit extends 25 yards.",
+			"unknown": 6,
+			"unknown": 1.10,
+			"unknown": 25,
+			"runes": {
+				"piercing-trident": {
+					"desc": "Increases the area of effect of the second and third strikes."
+				},
+				"keen-eye": {
+					"desc": "The third strike increases your Armor by 50% for 4 seconds.",
+					"unknown": 0.50,
+					"unknown": 4
+				},
+				"scattered-blows": {
+					"desc": "The third strike is replaced with an attack that will hit up to 6 nearby enemies within 15 yards for 170% weapon damage as Lightning.",
+					"unknown": 6,
+					"unknown": 15,
+					"unknown": 1.70
+				},
+				"strike-from-beyond": {
+					"desc": "Critical Hits generate an additional 10 Spirit for each target hit.",
+					"unknown": 10
+				},
+				"foresight": {
+					"desc": "The third strike increases the damage of all attacks by 18% for 30 seconds.",
+					"unknown": 0.18,
+					"unknown": 30
+				}
+			}
+		},
+		"blinding-flash": {
+			"desc": "Cost: 10 Spirit  Cooldown: 15 secondsCreate a flash of light that blinds all enemies within 20 yards for 3 seconds. Elite enemies recover faster, but suffer a 30% chance to miss with attacks.",
+			"unknown": 10,
+			"unknown": 15,
+			"unknown": 20,
+			"unknown": 3,
+			"unknown": 0.30,
+			"runes": {
+				"self-reflection": {
+					"desc": "Increases the duration enemies are blinded to 4 seconds.",
+					"unknown": 4
+				},
+				"blinded-and-confused": {
+					"desc": "Blinded enemies have a 25% chance to attack each other.",
+					"unknown": 0.25
+				},
+				"blinding-echo": {
+					"desc": "6 seconds after using Blinding Flash, a second flash of light will blind enemies within 20 yards for 0.5 seconds.",
+					"unknown": 6,
+					"unknown": 20,
+					"unknown": 0.5
+				},
+				"searing-light": {
+					"desc": "Increases the chance elite enemies will miss attacks to 60%.",
+					"unknown": 0.60
+				},
+				"faith-in-the-light": {
+					"desc": "For 3 seconds after using Blinding Flash, all of your attacks are empowered to deal 30% additional weapon damage as Holy.",
+					"unknown": 3,
+					"unknown": 0.30
+				}
+			}
+		},
+		"tempest-rush": {
+			"desc": "Cost: 15 Spirit plus an additional 10 Spirit while channelingCharge directly through your enemies, knocking them back and hobbling them, slowing their movement by 60% for 2 seconds. Also deals 155% weapon damage while running.",
+			"unknown": 15,
+			"unknown": 10,
+			"unknown": 0.60,
+			"unknown": 2,
+			"unknown": 1.55,
+			"runes": {
+				"northern-breeze": {
+					"desc": "Reduces the channeling cost of Tempest Rush to 8 Spirit.",
+					"unknown": 8
+				},
+				"tailwind": {
+					"desc": "Increases the movement speed of Tempest Rush by 25%.",
+					"unknown": 0.25
+				},
+				"flurry": {
+					"desc": "Increases the potency of the hobbling effect, slowing enemy movement by 80%.",
+					"unknown": 0.80
+				},
+				"slipstream": {
+					"desc": "Reduces damage taken while running by 25%.",
+					"unknown": 0.25
+				},
+				"bluster": {
+					"desc": "Enemies knocked back have their damage reduced by 20% for the duration of the effect.",
+					"unknown": 0.20
+				}
+			}
+		},
+		"breath-of-heaven": {
+			"desc": "Cost: 25 Spirit  Cooldown: 15 secondsA blast of divine energy heals you and all allies within 12 yards for 6202 - 7442 Life.",
+			"unknown": 25,
+			"unknown": 15,
+			"unknown": 12,
+			"unknown": "6202 - 7442",
+			"runes": {
+				"circle-of-scorn": {
+					"desc": "Breath of Heaven also sears enemies for 80% weapon damage as Holy.",
+					"unknown": 0.80
+				},
+				"circle-of-life": {
+					"desc": "Increases the healing power of Breath of Heaven to 8063 - 9675 Life.",
+					"unknown": "8063 - 9675"
+				},
+				"blazing-wrath": {
+					"desc": "Breath of Heaven increases the damage of your attacks by 15% for 45 seconds.",
+					"unknown": 0.15,
+					"unknown": 45
+				},
+				"infused-with-light": {
+					"desc": "Gain 8 additional Spirit from Spirit generating attacks for 5 seconds after using Breath of Heaven.",
+					"unknown": 8,
+					"unknown": 5
+				},
+				"penitent-flame": {
+					"desc": "Enemies exposed to Breath of Heaven run away in Fear for 1.5 seconds.",
+					"unknown": 1.5
+				}
+			}
+		},
+		"dashing-strike": {
+			"desc": "Cost: 25 SpiritQuickly dash at the targeted enemy or location, striking for 303% weapon damage and rooting the target for 1 second.",
+			"unknown": 25,
+			"unknown": 3.03,
+			"unknown": 1,
+			"runes": {
+				"way-of-the-falling-star": {
+					"desc": "After striking an enemy, your movement speed is increased 25% for 3 seconds.",
+					"unknown": 0.25,
+					"unknown": 3
+				},
+				"flying-side-kick": {
+					"desc": "Perform a flying kick that has a 60% chance to Stun your target for 1.5 seconds.",
+					"unknown": 0.60,
+					"unknown": 1.5
+				},
+				"quicksilver": {
+					"desc": "Reduces the cost of Dashing Strike to 10 Spirit.",
+					"unknown": 10
+				},
+				"soaring-skull": {
+					"desc": "Launch yourself through the air and slow all enemies along your path by 60% for 2 seconds.",
+					"unknown": 0.60,
+					"unknown": 2
+				},
+				"blinding-speed": {
+					"desc": "Receive a 20% increased chance to Dodge for 3 seconds.",
+					"unknown": 0.20,
+					"unknown": 3
+				}
+			}
+		},
+		"crippling-wave": {
+			"desc": "Generate: 7 Spirit per attackUnleash a series of large sweeping attacks that cause 110% weapon damage to all enemies in front of you. Every third hit damages all enemies around you and dazes them, slowing their movement speed by 30% and attack speed by 20% for 3 seconds.",
+			"unknown": 7,
+			"unknown": 1.10,
+			"unknown": 0.30,
+			"unknown": 0.20,
+			"unknown": 3,
+			"runes": {
+				"mangle": {
+					"desc": "Increase damage to 143% weapon damage.",
+					"unknown": 1.43
+				},
+				"concussion": {
+					"desc": "Enemies hit by Crippling Wave inflict 20% less damage for 3 seconds.",
+					"unknown": 0.20,
+					"unknown": 3
+				},
+				"rising-tide": {
+					"desc": "Critical Hits generate an additional 5 Spirit for each target hit.",
+					"unknown": 5
+				},
+				"tsunami": {
+					"desc": "The range of Crippling Wave's third strike is increased to 17 yards and the effect of the movement speed reduction is increased to 60%.",
+					"unknown": 17,
+					"unknown": 0.60
+				},
+				"breaking-wave": {
+					"desc": "Enemies hit by Crippling Wave take 10% additional damage from all attacks for 3 seconds.",
+					"unknown": 0.10,
+					"unknown": 3
+				}
+			}
+		},
+		"wave-of-light": {
+			"desc": "Cost: 75 SpiritFocuses a wave of light that crushes enemies for 829% weapon damage as Holy, followed by an additional 96% weapon damage as Holy to all enemies in a line.",
+			"unknown": 75,
+			"unknown": 8.29,
+			"unknown": 0.96,
+			"runes": {
+				"wall-of-light": {
+					"desc": "Increases damage of the initial strike to 1202% weapon damage as Holy.",
+					"unknown": "1202%"
+				},
+				"explosive-light": {
+					"desc": "Release bursts of energy that deal 914% weapon damage as Holy to nearby enemies.",
+					"unknown": 9.14
+				},
+				"empowered-wave": {
+					"desc": "Reduces the cost of Wave of Light to 40 Spirit.",
+					"unknown": 40
+				},
+				"blinding-light": {
+					"desc": "Critical Hits Stun enemies for 3 seconds.",
+					"unknown": 3
+				},
+				"pillar-of-the-ancients": {
+					"desc": "Summon an ancient pillar that deals 595% weapon damage followed by an additional 595% weapon damage after 2 seconds.",
+					"unknown": 5.95,
+					"unknown": 5.95,
+					"unknown": 2
+				}
+			}
+		},
+		"exploding-palm": {
+			"desc": "Cost: 40 SpiritCause a target to Bleed for 745% weapon damage as Physical over 9 seconds. If the target dies while bleeding, it explodes and deals 50% of the target's maximum Life as Physical damage to all nearby enemies.",
+			"unknown": 40,
+			"unknown": 7.45,
+			"unknown": 9,
+			"unknown": 0.50,
+			"runes": {
+				"the-flesh-is-weak": {
+					"desc": "Also causes the target to take 12% additional damage for 9 seconds.",
+					"unknown": 0.12,
+					"unknown": 9
+				},
+				"strong-spirit": {
+					"desc": "If the target explodes after bleeding, gain 5 Spirit for each enemy caught in the blast.",
+					"unknown": 5
+				},
+				"creeping-demise": {
+					"desc": "Also reduces your target's movement speed by 80% for 3 seconds.",
+					"unknown": 0.80,
+					"unknown": 3
+				},
+				"impending-doom": {
+					"desc": "Increases the duration of the Bleed effect to deal 745% weapon damage as Physical over 15 seconds.",
+					"unknown": 7.45,
+					"unknown": 15
+				},
+				"essence-burn": {
+					"desc": "Instead of bleeding, the target will burn for 745% weapon damage as Fire over 9 seconds. If the target dies while burning, it explodes causing all nearby enemies to burn for 60% weapon damage as Fire over 3 seconds. This effect can happen multiple times.",
+					"unknown": 7.45,
+					"unknown": 9,
+					"unknown": 0.60,
+					"unknown": 3
+				}
+			}
+		},
+		"cyclone-strike": {
+			"desc": "Cost: 50 SpiritPull up to 8 enemies within 24 yards towards you, followed by a furious blast of energy that deals 313% weapon damage as Holy.",
+			"unknown": 50,
+			"unknown": 8,
+			"unknown": 24,
+			"unknown": 3.13,
+			"runes": {
+				"eye-of-the-storm": {
+					"desc": "Reduces the Spirit cost of Cyclone Strike to 30 Spirit.",
+					"unknown": 30
+				},
+				"implosion": {
+					"desc": "Increases the distance enemies will be pulled towards you to 34 yards.",
+					"unknown": 34
+				},
+				"sunburst": {
+					"desc": "Changes the blast into an explosion of fire that has a 35% chance to Fear enemies for 1.5 seconds.",
+					"unknown": 0.35,
+					"unknown": 1.5
+				},
+				"wall-of-wind": {
+					"desc": "After using Cyclone Strike, gain a 20% chance to dodge attacks for 3 seconds.",
+					"unknown": 0.20,
+					"unknown": 3
+				},
+				"soothing-breeze": {
+					"desc": "Cyclone Strike heals you and all allies within 24 yards for 1240 Life.",
+					"unknown": 24,
+					"unknown": 1240
+				}
+			}
+		},
+		"way-of-the-hundred-fists": {
+			"desc": "Generate: 8 Spirit per attackUnleash a rapid series of punches that strikes enemies for 140% weapon damage.",
+			"unknown": 8,
+			"unknown": 1.40,
+			"runes": {
+				"hands-of-lightning": {
+					"desc": "Increases the number of hits in the second strike from 7 to 10.",
+					"unknown": 7,
+					"unknown": 10
+				},
+				"blazing-fists": {
+					"desc": "Critical Hits increase your attack speed and movement speed by 5% for 5 seconds. This effect can stack up to 3 times.",
+					"unknown": 0.05,
+					"unknown": 5,
+					"unknown": 3
+				},
+				"fists-of-fury": {
+					"desc": "Affected targets will take an additional 100% weapon damage as Holy over 5 seconds. Also adds a short dash to the first strike.",
+					"unknown": 1.00,
+					"unknown": 5
+				},
+				"spirited-salvo": {
+					"desc": "Every activation of the skill has a 15% chance to generate 15 additional Spirit.",
+					"unknown": 0.15,
+					"unknown": 15
+				},
+				"windforce-flurry": {
+					"desc": "The third strike generates a wave of wind that deals 250% weapon damage as Physical to enemies directly ahead of you.",
+					"unknown": 2.50
+				}
+			}
+		},
+		"serenity": {
+			"desc": "Cost: 10 Spirit  Cooldown: 20 secondsYou are enveloped in a protective shield that absorbs all incoming damage for 3 seconds and grants immunity to all control impairing effects.",
+			"unknown": 10,
+			"unknown": 20,
+			"unknown": 3,
+			"runes": {
+				"peaceful-repose": {
+					"desc": "When activated, Serenity heals you for 6202 - 7752 Life.",
+					"unknown": "6202 - 7752"
+				},
+				"reap-what-is-sown": {
+					"desc": "When Serenity ends, the shield explodes, dealing 30% of the damage absorbed by Serenity as Holy damage to enemies within 20 yards. The damage to each enemy cannot exceed 100% of your maximum Life.",
+					"unknown": 0.30,
+					"unknown": 20,
+					"unknown": 1.00
+				},
+				"tranquility": {
+					"desc": "Extends the protective shield to allies within 45 yards for 1 seconds, and makes them immune to control impairing effects like Slow and Frozen.",
+					"unknown": 45,
+					"unknown": 1
+				},
+				"ascension": {
+					"desc": "Increases the duration of Serenity to 4 seconds.",
+					"unknown": 4
+				},
+				"instant-karma": {
+					"desc": "While Serenity is active, 50% of all projectiles and melee attacks are reflected back at the attacker.",
+					"unknown": 0.50
+				}
+			}
+		},
+		"sevensided-strike": {
+			"desc": "Cost: 50 Spirit  Cooldown: 30 secondsDash rapidly between nearby enemies, dealing 1777% weapon damage over 7 hits.",
+			"unknown": 50,
+			"unknown": 30,
+			"unknown": "1777%",
+			"unknown": 7,
+			"runes": {
+				"sudden-assault": {
+					"desc": "Teleport to the target, increasing damage done to 2310% weapon damage over 7 strikes.",
+					"unknown": "2310%",
+					"unknown": 7
+				},
+				"severalsided-strike": {
+					"desc": "Increases the number of strikes to 9.",
+					"unknown": 9
+				},
+				"pandemonium": {
+					"desc": "Enemies hit by Seven-Sided Strike have a 25% chance to be stunned for 7 seconds by each hit.",
+					"unknown": 0.25,
+					"unknown": 7
+				},
+				"sustained-attack": {
+					"desc": "Reduces the cooldown of Seven-Sided Strike to 23 seconds.",
+					"unknown": 23
+				},
+				"fulminating-onslaught": {
+					"desc": "Each strike explodes, dealing 254% weapon damage as Holy in a 7 yard radius around the target.",
+					"unknown": 2.54,
+					"unknown": 7
+				}
+			}
+		},
+		"mantra-of-evasion": {
+			"desc": "Cost: 50 SpiritRecite a Mantra that grants you and your allies within 40 yards a 15% chance to dodge attacks for 3 minutes.For 3 seconds after activation, a second effect grants an additional 15% chance to dodge attacks.This is a Mantra. You can only have one Mantra active at a time.",
+			"unknown": 50,
+			"unknown": 40,
+			"unknown": 0.15,
+			"unknown": 3,
+			"unknown": 3,
+			"unknown": 0.15,
+			"runes": {
+				"hard-target": {
+					"desc": "Mantra of Evasion also increases Armor by 20%.",
+					"unknown": 0.20
+				},
+				"divine-protection": {
+					"desc": "When you or an ally under the effect of Mantra of Evasion is reduced below 25% Life, a shield of protection forms around that target, reducing damage taken by 80% for 3 seconds. Each target can be protected at most once every 90 seconds by this effect.",
+					"unknown": 0.25,
+					"unknown": 0.80,
+					"unknown": 3,
+					"unknown": 90
+				},
+				"wind-through-the-reeds": {
+					"desc": "Mantra of Evasion also increases movement speed by 8%.",
+					"unknown": 0.08
+				},
+				"perseverance": {
+					"desc": "Mantra of Evasion also reduces the duration of all control impairing effects like Slow or Frozen by 20%.",
+					"unknown": 0.20
+				},
+				"backlash": {
+					"desc": "Successfully dodging an attack has a chance to create a burst of flame dealing 35% weapon damage as Fire to all nearby enemies.",
+					"unknown": 0.35
+				}
+			}
+		},
+		"sweeping-wind": {
+			"desc": "Cost: 75 SpiritSurround yourself in a vortex that continuously deals 20% weapon damage to all enemies within 10 yards. The vortex lasts 6 seconds and is refreshed each time you strike an enemy with a melee attack. Landing a Critical Hit has a chance to increase the vortex effect up to 2 times for a total of 60% weapon damage to nearby enemies.",
+			"unknown": 75,
+			"unknown": 0.20,
+			"unknown": 10,
+			"unknown": 6,
+			"unknown": 2,
+			"unknown": 0.60,
+			"runes": {
+				"master-of-wind": {
+					"desc": "Increases the duration of the vortex to 20 seconds.",
+					"unknown": 20
+				},
+				"blade-storm": {
+					"desc": "Intensify the vortex, increasing the damage per stack to 26% weapon damage. This increases the damage with 3 stacks to 78% weapon damage.",
+					"unknown": 0.26,
+					"unknown": 3,
+					"unknown": 0.78
+				},
+				"fire-storm": {
+					"desc": "Increases the radius of the vortex to 14 yards and changes the damage dealt to Fire.",
+					"unknown": 14
+				},
+				"inner-storm": {
+					"desc": "As long as your vortex is at the maximum stack count, you gain 3 Spirit per second.",
+					"unknown": 3
+				},
+				"cyclone": {
+					"desc": "While your vortex is at the maximum stack count, Critical Hits have a chance to spawn a lightning tornado that periodically electrocutes nearby enemies for 26% weapon damage as Lightning. Each spawned lightning tornado lasts 3 seconds.",
+					"unknown": 0.26,
+					"unknown": 3
+				}
+			}
+		},
+		"mantra-of-retribution": {
+			"desc": "Cost: 50 SpiritRecite a Mantra that causes you and your allies within 40 yards to reflect melee damage back at enemies, dealing Holy damage equal to 40% of the damage sustained. The effect lasts for 3 minutes.For 3 seconds after activation, the effect on you increases to 80% of the damage sustained.This is a Mantra. You can only have one Mantra active at a time.",
+			"unknown": 50,
+			"unknown": 40,
+			"unknown": 0.40,
+			"unknown": 3,
+			"unknown": 3,
+			"unknown": 0.80,
+			"runes": {
+				"retaliation": {
+					"desc": "Increases the amount of damage reflected by the Mantra to 60%. The Mantra will now reflect ranged damage as well as melee damage.",
+					"unknown": 0.60
+				},
+				"transgression": {
+					"desc": "Increases attack speed for you and your allies by 8%.",
+					"unknown": 0.08
+				},
+				"indignation": {
+					"desc": "When taking damage from the Mantra of Retribution, enemies have a 10% chance to be stunned for 2 seconds.",
+					"unknown": 0.10,
+					"unknown": 2
+				},
+				"against-all-odds": {
+					"desc": "When reflecting damage done to you, Mantra of Retribution has a chance to restore 3 Spirit.",
+					"unknown": 3
+				},
+				"collateral-damage": {
+					"desc": "An attacker that is damaged by Mantra of Retribution has a 30% chance to suffer a feedback blast, dealing 45% weapon damage as Holy to itself and nearby enemies.",
+					"unknown": 0.30,
+					"unknown": 0.45
+				}
+			}
+		},
+		"inner-sanctuary": {
+			"desc": "Cost: 30 Spirit  Cooldown: 20 secondsCreate a runic circle of protection on the ground for 5 seconds that cannot be passed by enemies.",
+			"unknown": 30,
+			"unknown": 20,
+			"unknown": 5,
+			"runes": {
+				"safe-haven": {
+					"desc": "You and your allies standing in the area of effect of Inner Sanctuary regenerate 1550 Life per second.",
+					"unknown": 1550
+				},
+				"sanctified-ground": {
+					"desc": "When Inner Sanctuary expires, it becomes sanctified ground for 6 seconds, slowing the movement of all enemies that move through it by 80%.",
+					"unknown": 6,
+					"unknown": 0.80
+				},
+				"consecration": {
+					"desc": "Increases the duration of Inner Sanctuary to 7 seconds.",
+					"unknown": 7
+				},
+				"circle-of-protection": {
+					"desc": "You and your allies standing in the area of effect of Inner Sanctuary take 35% less damage.",
+					"unknown": 0.35
+				},
+				"forbidden-palace": {
+					"desc": "You and your allies standing in the area of effect of Inner Sanctuary deal 15% additional damage.",
+					"unknown": 0.15
+				}
+			}
+		},
+		"mystic-ally": {
+			"desc": "Cost: 25 SpiritSummon a mystic ally to fight alongside you until it is destroyed. The ally deals 40% of your weapon damage as Physical per swing.",
+			"unknown": 25,
+			"unknown": 0.40,
+			"runes": {
+				"water-ally": {
+					"desc": "Imbue the ally with the essence of water. The ally gains the ability to perform a wave attack that deals 120% of your weapon damage as Physical and slows the movement of affected targets by 60% for 2 seconds.",
+					"unknown": 1.20,
+					"unknown": 0.60,
+					"unknown": 2
+				},
+				"fire-ally": {
+					"desc": "Imbue the ally with the essence of fire. The ally gains the ability to unleash a flaming kick for 80% weapon damage as Fire plus an additional 40% of your weapon damage per second as Fire for 2 seconds to all enemies in a straight line.",
+					"unknown": 0.80,
+					"unknown": 0.40,
+					"unknown": 2
+				},
+				"air-ally": {
+					"desc": "Imbue the ally with the essence of air. Every attack made by the ally has a 2% chance to generate 100 Spirit for you. In addition, the ally is surrounded in a torrent of wind that deals 10% of your weapon damage per second as Physical to all nearby enemies.",
+					"unknown": 0.02,
+					"unknown": 100,
+					"unknown": 0.10
+				},
+				"eternal-ally": {
+					"desc": "Imbue the ally with the essence of life. When the ally dies, it has a 100% chance to be reborn after 3 seconds. In addition, the physical damage of the ally's basic attack is increased to 60% of your weapon damage per swing.",
+					"unknown": 1.00,
+					"unknown": 3,
+					"unknown": 0.60
+				},
+				"earth-ally": {
+					"desc": "Imbue the ally with the essence of earth. Maximum Life for you and the ally is increased by 10%. The ally also gains the ability to create a wave of earth, dealing 60% of your weapon damage as Physical to a single enemy and forcing that enemy to attack the ally for 3 seconds.",
+					"unknown": 0.10,
+					"unknown": 0.60,
+					"unknown": 3
+				}
+			}
+		},
+		"mantra-of-healing": {
+			"desc": "Cost: 50 SpiritRecite a Mantra that causes you and your allies within 40 yards to gain increased Life regeneration by 310 Life per second. The Mantra lasts 3 minutes.For 3 seconds after activation Mantra of Healing shrouds you and your allies with a mystical shield that absorbs up to 930 damage.This is a Mantra. You can only have one Mantra active at a time.",
+			"unknown": 50,
+			"unknown": 40,
+			"unknown": 310,
+			"unknown": 3,
+			"unknown": 3,
+			"unknown": 930,
+			"runes": {
+				"sustenance": {
+					"desc": "Increases the Life regeneration granted by Mantra of Healing to 620 Life per second.",
+					"unknown": 620
+				},
+				"circular-breathing": {
+					"desc": "Mantra of Healing also regenerates 3 Spirit per second.",
+					"unknown": 3
+				},
+				"boon-of-inspiration": {
+					"desc": "Mantra of Healing also heals 186 Life when hitting an enemy.",
+					"unknown": 186
+				},
+				"heavenly-body": {
+					"desc": "Mantra of Healing also increases Vitality by 10%.",
+					"unknown": 0.10
+				},
+				"time-of-need": {
+					"desc": "Mantra of Healing also increases resistances to all damage types by 20%.",
+					"unknown": 0.20
+				}
+			}
+		},
+		"mantra-of-conviction": {
+			"desc": "Cost: 50 SpiritRecite a Mantra that causes all enemies within 20 yards of you to take 12% additional damage. The Mantra lasts 3 minutes.For 3 seconds after activation, the effect is increased to 24% additional damage.This is a Mantra. You can only have one Mantra active at a time.",
+			"unknown": 50,
+			"unknown": 20,
+			"unknown": 0.12,
+			"unknown": 3,
+			"unknown": 3,
+			"unknown": 0.24,
+			"runes": {
+				"overawe": {
+					"desc": "Increases the strength of Mantra of Conviction so that enemies take 24% additional damage and 48% for the first 3 seconds.",
+					"unknown": 0.24,
+					"unknown": 0.48,
+					"unknown": 3
+				},
+				"intimidation": {
+					"desc": "Enemies affected by Mantra of Conviction deal 10% less damage.",
+					"unknown": 0.10
+				},
+				"dishearten": {
+					"desc": "Slows the movement of enemies within 20 yards by 30%.",
+					"unknown": 20,
+					"unknown": 0.30
+				},
+				"reclamation": {
+					"desc": "You and your allies have a 30% chance to be healed for 279 - 341 Life when using melee attacks on an enemy under the effects of Mantra of Conviction.",
+					"unknown": 0.30,
+					"unknown": "279 - 341"
+				},
+				"submission": {
+					"desc": "Enemies affected by Mantra of Conviction take 12% weapon damage per second as Holy.",
+					"unknown": 0.12
+				}
+			}
+		}
+	},
+	"passive": {
+		"resolve": {
+			"desc": "Damage you deal reduces enemy damage by 20% for 2.5 seconds.",
+			"unknown": 0.20,
+			"unknown": 2.5
+		},
+		"fleet-footed": {
+			"desc": "Increases movement speed by 10%.",
+			"unknown": 0.10
+		},
+		"exalted-soul": {
+			"desc": "Increases maximum Spirit by 100 and increases Spirit Regeneration by 1 per second.Spirit fuels your defensive and offensive abilities.",
+			"unknown": 100,
+			"unknown": 1
+		},
+		"transcendence": {
+			"desc": "Every point of Spirit spent heals you for 62.0 Life.",
+			"unknown": 62.0
+		},
+		"chant-of-resonance": {
+			"desc": "Duration of all Mantras increased by 7 minutes. While one of your Mantras is active you gain 2 Spirit every second.",
+			"unknown": 7,
+			"unknown": 2
+		},
+		"seize-the-initiative": {
+			"desc": "Your Armor is increased by 50% of your Dexterity.",
+			"unknown": 0.50
+		},
+		"the-guardian's-path": {
+			"desc": "While dual-wielding, you gain a 15% chance to dodge incoming attacks. While using a two-handed weapon, all Spirit generation is increased by 35%.",
+			"unknown": 0.15,
+			"unknown": 0.35
+		},
+		"sixth-sense": {
+			"desc": "Your dodge chance is increased by an amount equal to 30% of your Critical Hit Chance.",
+			"unknown": 0.30
+		},
+		"pacifism": {
+			"desc": "While you are under a Stun, Fear, Immobilize or Charm effect, all damage taken is reduced by 75%.",
+			"unknown": 0.75
+		},
+		"beacon-of-ytar": {
+			"desc": "Reduces all cooldowns by 20%.",
+			"unknown": 0.20
+		},
+		"guiding-light": {
+			"desc": "Whenever you use a direct heal skill on another player you and the other player deal 16% more damage for 15 seconds.",
+			"unknown": 0.16,
+			"unknown": 15
+		},
+		"one-with-everything": {
+			"desc": "Your resistance to all elements is equal to your highest elemental resistance."
+		},
+		"combination-strike": {
+			"desc": "Each different Spirit Generator ability you use increases your damage by 8% for 3 seconds.",
+			"unknown": 0.08,
+			"unknown": 3
+		},
+		"near-death-experience": {
+			"desc": "When receiving fatal damage, you are instead restored to 35% of maximum Life and 35% Spirit.This effect cannot occur twice in succession within 60 seconds.",
+			"unknown": 0.35,
+			"unknown": 0.35,
+			"unknown": 60
+		}
+	}
 }

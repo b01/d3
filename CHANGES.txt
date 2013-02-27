@@ -1,3 +1,22 @@
+List of changes as of 02/27/2013 09:38 AM
+-------------------------------
+	- Updated skill-script.js with new function to replace percent values with their decimal equivalent.
+	- Cleanup from namespace overhaul in the image-processor.php file.
+	- Decreased sleep time in image-processor to prevent going over PHP script execution time.
+	- Updated all hero skill JSON files with new parsings.
+
+List of changes as of 02/26/2013 09:38 AM
+-------------------------------
+	- Updated script for extracting hero skills from Battale.Net.
+
+List of changes as of 02/20/2013 08:07 PM
+-------------------------------
+	- Added feature to build item JSON from Battle.Net HTML
+
+List of changes as of 02/14/2013 07:54 PM
+-------------------------------
+	- Updated .gitignore.
+
 List of changes as of 02/14/2013 07:54 PM
 -------------------------------
 	- Removed unused fields from item HTML form.

@@ -18,6 +18,9 @@
 		<script type="text/javascript" src="/js/skill-script.js"></script>
 	</head>
 	<body>
-		<pre class="pre"></pre>
+		<pre class="pre">{
+	"active": <span class="active"></span>,
+	"passive": <span class="passive"></span>
+}</pre>
 	</body>
 </html>
