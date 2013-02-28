@@ -118,7 +118,6 @@
 					{
 						var $form = $( $.parseHTML(p_data) ),
 							battleNetId = window.battleNetId;
-						console.log( $form );
 						if ( $form.length > 0 )
 						{
 							$form.find( "input[name='battleNetId']" ).val( battleNetId );

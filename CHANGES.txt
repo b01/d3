@@ -1,3 +1,9 @@
+List of changes as of 02/27/2013 06:30 PM
+-------------------------------
+	- Added starter settings file.
+	- Added instructions in the readme file.
+	- Added server referer value to the settings variable.
+
 List of changes as of 02/27/2013 09:38 AM
 -------------------------------
 	- Updated skill-script.js with new function to replace percent values with their decimal equivalent.

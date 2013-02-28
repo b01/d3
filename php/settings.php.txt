@@ -1,0 +1,42 @@
+<?php
+/**
+* These are the sites constants which get defined in the BOOTSTRAP file. Place all of your PHP application wide settings
+* here that you want available in every PHP script.
+*
+* Do NOT ever put this file in your repo. It contains your
+*	sites classified information which you do NOT want to divulge.
+*
+* Requirements
+* No const, define, include, and require statements, logic code are allowed here! Please and thankyou.
+*
+* LOCK THIS FILE DOWN like the Pentagon, or your nerd pron (commic books) collection.
+*
+* To minimize clutter (clutter refers to multiple define statements), these are run throgh a loop to define them as
+* 	constants.
+*/
+$settings = [
+	"namespace" => "d3\\", // This field is used to place all constants into a namespace.
+	"TITLE" => "Diablo 3 Character Builder by Khalifah Shabazz",
+	"EMAIL" => "your@email.adr",
+	"DOMAIN_NAME" => "your-domain.com",
+	"DSN" => "mysql:host=yourDatabaseServer;dbname=yourDbName;charset=UTF-8",
+	"DB_USER" => "yourDbUser",
+	"DB_PSWD" => "yourDbPassword",
+	"DB_NAME" => "yourDbName",
+	"PHP_DIR" => "php",
+	"IMG_DIR" => "media/images",
+	"DEBUG_SWITCH" => FALSE,
+	"UPLOAD_DIR" => "./uploads/",
+	"WEB_ROOT" => $_SERVER[ 'DOCUMENT_ROOT' ] . "\\\\",
+	"USER_INI" => ini_get( "user_ini.filename" ),
+	"BATTLENET_WEB_API_KEY" => "",
+	"BATTLENET_D3_API_DOMAIN" => "us.battle.net/api/d3",
+	"BATTLENET_D3_API_PROFILE_URL" => "http://us.battle.net/api/d3/profile",
+	"BATTLENET_D3_API_HERO_URL" => "http://us.battle.net/api/d3/profile/%s/hero/%d",
+	"BATTLENET_D3_API_ITEM_URL" => "http://us.battle.net/api/d3/data/item/%s",
+	"USER_IP_ADDRESS" => $_SERVER[ 'REMOTE_ADDR' ],
+	"BATTLENET_CACHE_LIMIT" => 600,
+	"ATTRIBUTE_MAP_FILE" => "./media/data-files/attribute-map.txt"
+];
+// DO NOT WRITE BELOW THIS LINE.
+?>

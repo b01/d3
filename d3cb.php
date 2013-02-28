@@ -10,10 +10,6 @@
 namespace d3;
 require_once( "php/Tool.php" );
 require_once( "php/settings.php" );
-if ( array_key_exists('HTTP_REFERER', $_SERVER) )
-{
-	echo $_SERVER['HTTP_REFERER'];
-}
 // We have to specify the namespace when defining constants.
 $nameSpace = array_key_exists( "namespace", $settings ) ? $settings[ 'namespace' ] : '';
 foreach ( $settings as $name => $value )
@@ -25,6 +21,7 @@ foreach ( $settings as $name => $value )
 // Get the attribute map file.
 $file = $settings[ 'ATTRIBUTE_MAP_FILE' ];
 $settings[ 'ATTRIBUTE_MAP' ] = ( file_exists($file) ) ? json_decode( file_get_contents($file), TRUE ) : [];
+$settings[ 'HTTP_REFERER' ] = ( array_key_exists('HTTP_REFERER', $_SERVER) ) ? $_SERVER[ 'HTTP_REFERER' ] : NULL;
 
 //DO NOT PUT ANY CHARACTERS OR EVEN WHITE-SPACE after the closing php tag, or headers may be sent before intended.
 ?>
