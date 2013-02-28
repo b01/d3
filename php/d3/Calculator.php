@@ -277,13 +277,15 @@ class Calculator
 		if ( $this->dualWield )
 		{
 			$offHandDamage = ( (float) $this->offHand->dps['min'] + (float) $this->offHand->dps['max'] ) / 2;
-			echo "<div>{$this->baseWeaponDamage}</div>";
-			echo "<div>{$this->mainHand->dps['min']}</div>";
-			echo "<div>{$this->offHand->dps['min']}</div>";
-			echo "<div>{$this->mainHand->attacksPerSecond['min']}</div>";
-			echo "<div>{$this->offHand->attacksPerSecond['min']}</div>";
+			echo "<div class=\"debug-info\">";
+			echo "<div>baseWeaponDamage: {$this->baseWeaponDamage}</div>";
+			echo "<div>mainHand( min ):{$this->mainHand->dps['min']}</div>";
+			echo "<div>offHand( min ): {$this->offHand->dps['min']}</div>";
+			echo "<div>mainHand-attacksPerSecond: {$this->mainHand->attacksPerSecond['min']}</div>";
+			echo "<div>offHand-attacksPerSecond: {$this->offHand->attacksPerSecond['min']}</div>";
 			$dual_wield_dps = 1.15 * ( (float) $this->mainHand->dps['min'] + (float) $this->offHand->dps['min'] ) / ( (1 / (float) $this->mainHand->attacksPerSecond['min']) + (1 / (float) $this->mainHand->attacksPerSecond['min']) );
-			echo "<div>{$dual_wield_dps}</div>";
+			echo "<div>dual wield dps: {$dual_wield_dps}</div>";
+			echo "</div>";
 			$this->baseWeaponDamage = $dual_wield_dps;
 		}
 		return $this;

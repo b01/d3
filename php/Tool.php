@@ -2,7 +2,7 @@
 /**
 * Tools to help simplify repetitive task.
 *
-* @author Khalifah Shabazz <shabazzk@gmail.com>
+* @author Khalifah Shabazz
 *
 */
 	/**

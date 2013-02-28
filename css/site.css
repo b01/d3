@@ -37,3 +37,15 @@ body {
 .hidden {
 	display: none
 }
+
+.debug-info:before {
+	content: "debug info:"
+}
+.debug-info {
+	background-color: rgb(225, 225, 225);
+	border: 1px solid rgb(150, 150, 150);
+	border-radius: 0.3em
+}
+.debug-info div {
+	margin: 5px
+}
