@@ -1,21 +1,17 @@
 <?php namespace d3;
-// Get the profile and store it.
 
-	$urlBattleNetId = getStr( "battleNetId" );
+	$battleNetUrlSafeId = getStr( "battleNetId" );
 	$heroId = getStr( "heroId" );
 	$cache = ( bool )getStr( "cache" );
 	$items = NULL;
 	$hero = NULL;
 	$heroModel = NULL;
 	$heroItems = [];
-	if ( isString($urlBattleNetId) && isString($heroId) )
+	if ( isString($battleNetUrlSafeId) && isString($heroId) )
 	{
-
-	/**
-	* Check if the cache has expired for the JSON.
-	*/
+		// Check if the cache has expired for the hero JSON.
 		$loadFromBattleNet = sessionTimeExpired( "heroTime", BATTLENET_CACHE_LIMIT, $cache );
-		$battleNetId = str_replace( '-', '#', $urlBattleNetId );
+		$battleNetId = str_replace( '-', '#', $battleNetUrlSafeId );
 		$battleNetDqi = new BattleNetDqi( $battleNetId );
 		$sql = new Sql( DSN, DB_USER, DB_PSWD, USER_IP_ADDRESS );
 		$hero = new Hero( $heroId, $battleNetDqi, $sql, $loadFromBattleNet );
@@ -39,6 +35,10 @@
 		<script type="text/javascript" src="/js/hero.js"></script>
 	</head>
 	<body class="hero-page">
+		<form action="/get-profile.php" method="post">
+			<input class="input" type="hidden" name="battleNetId" value="<?= $battleNetId ?>" />
+			<input type="submit" value="Back to Heroes" />
+		</form>
 		<?php if ( isArray($items) ): ?>
 		<div class="hero inline-block">
 			<?php foreach ( $items as $key => $item ):
@@ -48,7 +48,7 @@
 				$heroItems[ $key ] = $itemModel;
 				$heroJson[ $key ] = substr( $itemModel->tooltipParams, 5 );
 			?>
-				<a class="item-slot <?= $key . translateSlotName( $key ) ?>" href="/get-item.php?<?= "battleNetId=" . $urlBattleNetId . '&' . str_replace( '/', "Hash=", $hash ) ?>&extra=0&showClose=1" data-slot="<?= $key ?>">
+				<a class="item-slot <?= $key . translateSlotName( $key ) ?>" href="/get-item.php?<?= "battleNetId=" . $battleNetUrlSafeId . '&' . str_replace( '/', "Hash=", $hash ) ?>&extra=0&showClose=1" data-slot="<?= $key ?>">
 					<div class="icon <?= $itemModel->displayColor; ?> inline-block top" data-hash="<?= substr( $hash, 5 ); ?>" data-type="<?= getItemSlot( $itemModel->type['id'] ) ?>">
 						<img class="gradient" src="/media/images/icons/items/large/<?= $item['icon'] ?>.png" alt="<?= $key ?>" />
 					</div>
@@ -113,7 +113,7 @@
 		<script type="text/javascript">
 			// Store this stuff in a cookie.
 			var heroJson = <?= json_encode( $heroJson ) ?>,
-				battleNetId = "<?= $urlBattleNetId ?>",
+				battleNetId = "<?= $battleNetUrlSafeId ?>",
 				heroClass = "<?= $hero->characterClass() ?>";
 		</script>
 		<?php $time = microtime( TRUE ) - $_SERVER[ 'REQUEST_TIME_FLOAT' ]; ?>

@@ -35,5 +35,7 @@
 		way Please try again later.
 		</p>
 	<?php endif; ?>
+	<br />
+	<a href="/">Change BattleNet ID</a>
 	</body>
 </html>
