@@ -383,8 +383,12 @@
 		if ( array_key_exists( $p_key, $_SESSION) && !$p_setToExpireNow )
 		{
 			$timeElapsed = timeElapsed( $_SESSION[$p_key] );
-			$timeExpired = $timeElapsed > $p_duration;
-			echo "<div class=\"time-elapsed\">timeElapsed = {$timeElapsed}</div>";
+			if ( is_numeric($timeElapsed) )
+			{
+				$timeExpired = $timeElapsed > $p_duration;
+				$timeLeft = \d3\BATTLENET_CACHE_LIMIT - $timeElapsed;
+				echo "<div class=\"time-elapsed\">Seconds left till cache expires = {$timeLeft}</div>";
+			}
 		}
 		// if the session key has not been set, or it expired, then (re)set it to now.
 		if ( $timeExpired )
