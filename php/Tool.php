@@ -21,6 +21,44 @@
 	}
 
 	/**
+	* Check the PHP version, and throws an error if it does not meet the minimum version.
+	*
+	* @param int $pMajor Required major version.
+	* @param int $pMinor If set, then the required minor version.
+	* @param int $pRelease If set, then the required release version.
+	* @return string
+	*/
+	function checkPhpVersion( $pMajor, $pMinor = NULL, $pRelease = NULL )
+	{
+		$triggerError = FALSE;
+		$versionString = $pMajor;
+		$phpVersion = phpversion();
+		$version = explode( '.', phpversion() );
+		// Check the major version.
+		if ( $version[0] < $pMajor )
+		{
+			$triggerError = TRUE;
+		}
+		// Check the minor version if set.
+		if ( is_int($pMinor) && $version[1] < $pMinor )
+		{
+			$triggerError = TRUE;
+			$versionString .= '.' . $pMinor;
+		}
+		// Check the release version if set.
+		if ( is_int($pRelease) && $version[1] < $pRelease )
+		{
+			$triggerError = TRUE;
+			$versionString .= '.' . $pRelease;
+		}
+		// Throw the error when the required version is not met.
+		if ( $triggerError )
+		{
+			throw new Exception( "Your PHP version is '{$phpVersion}'. The minimum required PHP version is '{$versionString}'. You'll need to upgrade in order to use this application." );
+		}
+	}
+
+	/**
 	* Display a value as a single number or a range if min and max are different.
 	* @param array Containing the min and max values of a property.
 	* @return string
