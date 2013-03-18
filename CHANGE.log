@@ -1,3 +1,7 @@
+List of changes as of 03/18/2013 07:06 PM
+-------------------------------
+	- Removed debug code.
+
 List of changes as of 03/18/2013 07:03 PM
 -------------------------------
 	- Added a method to the tools to check the PHP version and throw an error it the required version is not met.
