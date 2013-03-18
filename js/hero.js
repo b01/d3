@@ -121,7 +121,7 @@
 						if ( $form.length > 0 )
 						{
 							$form.find( "input[name='battleNetId']" ).val( battleNetId );
-							$form.find( "input[name='battleNetId']" ).attr( "type", "hidden" );
+							$form.find( "input[name='battleNetId']" ).attr( "readonly", "readonly" );
 							$form.find( "input[name='extra']" ).removeAttr( "checked" );
 							$form.ajaxForm({
 								"success": function ( p_responseText, statusText )

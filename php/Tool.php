@@ -367,6 +367,7 @@
 	function showUserFriendlyError( $p_message )
 	{
 		echo "<div class=\"error\">{$p_message}</div>";
+		die();
 	}
 
 	/**

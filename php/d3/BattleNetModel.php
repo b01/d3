@@ -12,13 +12,13 @@ namespace d3;
 * var $p_sql object SQL.
 * var $p_userIp string User IP address.
 */
-abstract class BattleNetModel implements \JsonSerializable 
+abstract class BattleNetModel implements \JsonSerializable
 {
 	protected
 		$effectsMap,
 		$forcePropertyType,
 		$json;
-		
+
 	/**
 	* Constructor
 	*/
@@ -50,7 +50,7 @@ abstract class BattleNetModel implements \JsonSerializable
 		];
 		$this->init();
 	}
-	
+
 	/**
 	* Destructor
 	*/
@@ -61,7 +61,7 @@ abstract class BattleNetModel implements \JsonSerializable
 			unset( $this->$name );
 		}
 	}
-	
+
 	/**
 	* Get property
 	*/
@@ -71,7 +71,7 @@ abstract class BattleNetModel implements \JsonSerializable
 		{
 			return $this->$p_name;
 		}
-		
+
 		$trace = debug_backtrace();
 		trigger_error(
 			'Undefined property: ' . $p_name .
@@ -79,10 +79,10 @@ abstract class BattleNetModel implements \JsonSerializable
 			' on line ' . $trace[0]['line'],
 			E_USER_NOTICE
 		);
-		
+
 		return NULL;
 	}
-	
+
 	/**
 	* Convert this object to a string.
 	* @return string
@@ -91,7 +91,7 @@ abstract class BattleNetModel implements \JsonSerializable
 	{
 		return json_encode( $this, JSON_PRETTY_PRINT );
 	}
-	
+
 	/**
 	* Determine if a variable is set.
 	* @return bool
@@ -100,7 +100,7 @@ abstract class BattleNetModel implements \JsonSerializable
 	{
 		return isset( $this->$p_property );
 	}
-	
+
 	/**
 	* Initialize all the properties for this object.
 	*/
@@ -144,7 +144,7 @@ abstract class BattleNetModel implements \JsonSerializable
 	}
 
 	/** END GETTER/SETTER SECTION **/
-	
+
 	/**
 	* Specify how this object is to be used with json_encode.
 	* @return array

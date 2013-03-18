@@ -3,17 +3,22 @@
 
 	$urlBattleNetId = getStr( "battleNetId" );
 	$heroId = getStr( "heroId" );
-	$refreshCache = ( bool )getStr( "cache" );
+	$cache = ( bool )getStr( "cache" );
 	$items = NULL;
 	$hero = NULL;
 	$heroModel = NULL;
 	$heroItems = [];
 	if ( isString($urlBattleNetId) && isString($heroId) )
 	{
+
+	/**
+	* Check if the cache has expired for the JSON.
+	*/
+		$loadFromBattleNet = sessionTimeExpired( "heroTime", BATTLENET_CACHE_LIMIT, $cache );
 		$battleNetId = str_replace( '-', '#', $urlBattleNetId );
 		$battleNetDqi = new BattleNetDqi( $battleNetId );
 		$sql = new Sql( DSN, DB_USER, DB_PSWD, USER_IP_ADDRESS );
-		$hero = new Hero( $heroId, $battleNetDqi, $sql, $refreshCache );
+		$hero = new Hero( $heroId, $battleNetDqi, $sql, $loadFromBattleNet );
 		$heroModel = new HeroModel( $hero->json() );
 		$items = $hero->items();
 
@@ -23,12 +28,12 @@
 		<title>Hero <?= $heroModel->name ?></title>
 		<meta name="charset" content="utf-8" />
 		<meta name="author" content="Khalifah Shabazz" />
-		<link rel="stylesheet" type="text/css" href="/css/smoothness/jquery-ui-1.10.0.custom.min.css" />
+		<link rel="stylesheet" type="text/css" href="/css/smoothness/jquery-ui-1.10.2.custom.min.css" />
 		<link rel="stylesheet" type="text/css" href="/css/site.css" />
 		<link rel="stylesheet" type="text/css" href="/css/item.css" />
 		<link rel="stylesheet" type="text/css" href="/css/hero.css" />
-		<script type="text/javascript" src="/js/jquery-1.9.0.min.js"></script>
-		<script type="text/javascript" src="/js/jquery-ui-1.10.0.custom.min.js"></script>
+		<script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="/js/jquery-ui-1.10.2.custom.min.js"></script>
 		<script type="text/javascript" src="/js/jquery.form.js"></script>
 		<script type="text/javascript" src="/js/jquery.ui.toggleList.js"></script>
 		<script type="text/javascript" src="/js/hero.js"></script>

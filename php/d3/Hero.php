@@ -40,8 +40,7 @@ class Hero
 		$this->loadedFromBattleNet = FALSE;
 		$this->sql = $p_sql;
 		$this->stats = NULL;
-		$this
-			->pullJson()
+		$this->pullJson()
 			->processJson();
 	}
 
@@ -72,14 +71,6 @@ class Hero
 	public function characterClass()
 	{
 		return $this->characterClass;
-	}
-
-	/**
-	* Check if the cache has expired for the JSON.
-	*/
-	protected function hasCacheExpired()
-	{
-		return sessionTimeExpired( "heroTime", BATTLENET_CACHE_LIMIT, $this->forceLoadFromBattleNet );
 	}
 
 	/**
@@ -117,15 +108,16 @@ class Hero
 	*/
 	protected function pullJson()
 	{
-		$cacheExpired = $this->hasCacheExpired();
-		if ( $cacheExpired )
+		if ( !$this->forceLoadFromBattleNet ) // From DB
 		{
-			$this->pullJsonFromBattleNet();
-		}
-		else
-		{
-			// Get the hero from the local database.
 			$this->pullJsonFromDb();
+			var_dump("loaded from DB");
+		}
+
+		if ( $this->json === null ) // From Battle.Net
+		{
+			var_dump("loaded from Battle.Net");
+			$this->pullJsonFromBattleNet();
 		}
 		return $this;
 	}

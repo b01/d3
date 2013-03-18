@@ -4,14 +4,15 @@ Your battle.net ID is required since request to Battle.net web API are limited p
 
 
 Requirements:
+- PHP 5.4.x
+- How to setup use of PHP's user.ini
+- MySQL 5.x and a MySQL database account with select, insert, and update permissions.
+	note: It is required to set the value DSN in the settings file.
 
 	Notes: In the near future MySQL will not be a requirement. I haven't tested this with any other database server
 	applications. However, it should be trivial for any PHP developer to modify the code to use another DB like
 	Postgres.
 
-- PHP 5.4.x
-- MySQL 5.x and a MySQL database account with select, insert, and update permissions.
-	note: It is required to set the value DSN in the settings file.
 
 Setup Instructions:
 
@@ -42,6 +43,15 @@ STEP 3: Optional
 	locally to your site.
 
 STEP 4:
+-----------------
+	You now need to setup the user.ini. A default user.ini file is provided in the project. Rename "user.ini.txt" to
+	"user.ini", or what ever name your PHP configuration has setup.
+
+	Note: To see what file name your PHP configuration uses, view your sites phpinfo(), and look for "user_ini.filename"
+	setting. The default is ".user.ini". Also check the "user_ini.cache_ttl" setting, this tells you (in seconds), how
+	often the file is refreshed in the webserver, the default for that is 300 (5 minutes) seconds.
+
+STEP 5:
 -----------------
 	Try to load the app in a browser. If your are able to see your characters, then your good to go. Otherwise,
 	you need to comment or file an issue on github.

@@ -185,6 +185,7 @@ class Calculator
 		// BASE X SPEED x CRIT x SKILL x CARAC = your total dps
 		if ( $this->baseWeaponDamage > 0.0 )
 		{
+			// $this->baseWeaponDamage =
 			$this->dpsData[ 'baseWeaponDamage' ] = $this->baseWeaponDamage;
 			$this->dps = $this->baseWeaponDamage;
 		}
@@ -196,14 +197,14 @@ class Calculator
 			// $this->dpsData[ 'criticalDamage' ] = $criticalDamageMultiplier;
 			// $this->dps *= $criticalDamageMultiplier;
 		// }
-
 		$this->calculateAttacksPerSecond();
 		$this->dpsData[ 'attackSpeed' ] = $this->attackSpeed;
 		$this->dps *= $this->attackSpeed;
 
 		if ( $this->primaryAttributeDamage > 0.0 )
 		{
-			$primaryAttributeDamageMultiplier = 1 + ( $this->primaryAttributeDamage / 100 );
+			// $primaryAttributeDamageMultiplier = 1 + ( $this->primaryAttributeDamage / 100 );
+			$primaryAttributeDamageMultiplier = ( $this->primaryAttributeDamage / 100 );
 			$this->dpsData[ 'primaryAttributeDamage' ] = $primaryAttributeDamageMultiplier;
 			$this->dps *= $primaryAttributeDamageMultiplier;
 		}

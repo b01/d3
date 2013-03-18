@@ -14,7 +14,7 @@
 		<script type="text/javascript">
 			var heroClass = "<?= $heroClass ?>";
 		</script>
-		<script type="text/javascript" src="/js/jquery-1.9.0.min.js"></script>
+		<script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
 		<script type="text/javascript" src="/js/skill-script.js"></script>
 	</head>
 	<body>
