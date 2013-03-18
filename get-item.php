@@ -116,7 +116,7 @@ require_once( "php/Tool.php" );
 			<ul class="list stats inline-block">
 				<li class="stat">
 					<span class="label"><span class="toggle inline-block">+</span> Hash</span>
-					<div class="expandable" ><textarea class="copy-box"><?= $itemHash ?></textarea></div>
+					<div class="expandable" ><textarea class="copy-box" readonly="readonly"><?= $itemHash ?></textarea></div>
 				</li>
 				<li class="stat">
 					<span class="label"><span class="toggle inline-block">+</span> Json</span>
