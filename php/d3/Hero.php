@@ -111,12 +111,10 @@ class Hero
 		if ( !$this->forceLoadFromBattleNet ) // From DB
 		{
 			$this->pullJsonFromDb();
-			var_dump("loaded from DB");
 		}
 
 		if ( $this->json === null ) // From Battle.Net
 		{
-			var_dump("loaded from Battle.Net");
 			$this->pullJsonFromBattleNet();
 		}
 		return $this;
