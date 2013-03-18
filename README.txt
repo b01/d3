@@ -53,5 +53,11 @@ STEP 4:
 
 STEP 5:
 -----------------
+	Rename "sample.htaccess" to ".htaccess". This is need for the images to work.
+	Note: Make sure the media/images folder is writeable by PHP in order to save the images from Battle.Net locally.
+		  This will greatly speed up loading time, since the images will be local.
+
+STEP 6:
+-----------------
 	Try to load the app in a browser. If your are able to see your characters, then your good to go. Otherwise,
 	you need to comment or file an issue on github.
