@@ -8,7 +8,7 @@
 					"dataType": "html",
 					"success": function ( p_data )
 					{
-						var $data = $( $.parseHTML(p_data) );
+						var $data = $( $.parseHTML($.trim(p_data)) );
 						// Style a few things.
 						$( "body" ).append( $data );
 						$data.css({

@@ -48,7 +48,7 @@
 				$heroItems[ $key ] = $itemModel;
 				$heroJson[ $key ] = substr( $itemModel->tooltipParams, 5 );
 			?>
-				<a class="item-slot <?= $key . translateSlotName( $key ) ?>" href="/get-item.php?<?= "battleNetId=" . $urlBattleNetId . '&' . str_replace( '/', "Hash=", $hash ) ?>&extra=0" data-slot="<?= $key ?>">
+				<a class="item-slot <?= $key . translateSlotName( $key ) ?>" href="/get-item.php?<?= "battleNetId=" . $urlBattleNetId . '&' . str_replace( '/', "Hash=", $hash ) ?>&extra=0&showClose=1" data-slot="<?= $key ?>">
 					<div class="icon <?= $itemModel->displayColor; ?> inline-block top" data-hash="<?= substr( $hash, 5 ); ?>" data-type="<?= getItemSlot( $itemModel->type['id'] ) ?>">
 						<img class="gradient" src="/media/images/icons/items/large/<?= $item['icon'] ?>.png" alt="<?= $key ?>" />
 					</div>

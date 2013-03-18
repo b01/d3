@@ -7,6 +7,7 @@ require_once( "php/Tool.php" );
 	$itemHash = getPostStr( "itemHash" );
 	$itemId = getPostStr( "itemId" );
 	$itemName = getPostStr( "itemName" );
+	$showClose = getPostBool( "showClose" );
 	$item = NULL;
 	$itemModel = NULL;
 	$showExtra = getPostBool( "extra" );
@@ -57,7 +58,9 @@ require_once( "php/Tool.php" );
 	<body>
 <?php endif; ?>
 		<div class="item-tool-tip item">
-			<h3 class="header smaller <?= $itemModel->displayColor; ?>"><?= $itemModel->name ?><span class="close">Close</span></h3>
+
+			<h3 class="header smaller <?= $itemModel->displayColor; ?>"><?= $itemModel->name ?><?php if ( $showClose ): ?><span class="close">Close</span><?php endif; ?></h3>
+
 			<div class="effect-bg <?= $itemModel->effects() ?>">
 				<div class="icon <?= $itemModel->displayColor ?> inline-block top" data-hash="<?= $itemHash ?>" data-type="<?= getItemSlot( $itemModel->type['id'] ) ?>">
 					<img class="gradient" src="/media/images/icons/items/large/<?= $itemModel->icon; ?>.png" alt="<?= $itemModel->name; ?>" />
