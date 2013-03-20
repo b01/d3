@@ -66,7 +66,7 @@ class Sql
 	* PDO Object Factory
 	* @return
 	*/
-	public function getPDO( $p_dsn, $p_dbUser, $p_dbPass )
+	protected function getPDO( $p_dsn, $p_dbUser, $p_dbPass )
 	{
 		if ( !isset($this->pdoh) )
 		{
@@ -81,7 +81,6 @@ class Sql
 			catch ( \Exception $p_error )
 			{
 				$this->pdoh = NULL;
-				die( $p_error->getMessage() );
 				logError(
 					$p_error,
 					"Unable to establish a connection with the database.\n\tin %s on line %s",

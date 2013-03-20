@@ -120,7 +120,7 @@ require_once( "php/Tool.php" );
 				</li>
 				<li class="stat">
 					<span class="label"><span class="toggle inline-block">+</span> Json</span>
-					<div class="expandable" ><textarea class="copy-box"><?= $item->json() ?></textarea></div>
+					<div class="expandable" ><textarea class="copy-box" readonly="readonly"><?= $item->json() ?></textarea></div>
 				</li>
 			</ul>
 			<?php if ( isset($itemModel->flavorText) ): ?>

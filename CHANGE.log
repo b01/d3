@@ -1,3 +1,8 @@
+List of changes as of 03/19/2013 11:45 PM
+-------------------------------
+	- Made the JSON text area on the item tool tip read only.
+	- Fixed bug in Sql class.
+
 List of changes as of 03/18/2013 07:38 PM
 -------------------------------
 	- Added buttons to change the Battle.Net ID.
