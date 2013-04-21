@@ -18,6 +18,7 @@ class HeroModel extends BattleNetModel
 		$dexterity,
 		$intelligence,
 		$noItemsStats,
+		$primaryAttribute,
 		$strength,
 		$vitality;
 	/**
@@ -39,6 +40,7 @@ class HeroModel extends BattleNetModel
 		$this->lightingResist = 1;
 		$this->poisonResist = 1;
 		$this->physicalResist = 1;
+		$this->characterClass = $this->class;
 		$this->noItemsStats = [
 			"Dexterity_Item" => [
 				"value" => 7,
@@ -53,43 +55,47 @@ class HeroModel extends BattleNetModel
 				"muliplier" => 1
 			]
 		];
+
+		$this->determinePrimaryAttribute();
+		$this->noItemsStats[ $this->primaryAttribute ][ 'muliplier' ] = 3;
+		$this->noItemsStats[ $this->primaryAttribute ][ 'primary' ] = TRUE;
 		// Increase to 8% above level 59
 		if ($this->level > 59 )
 		{
 			$this->criticalHitChance = 0.08;
 		}
-
-		$this->determinePrimaryAttribute();
-		$this->noItemsStats[ $this->primaryAttribute ][ 'muliplier' ] = 3;
-		$this->noItemsStats[ $this->primaryAttribute ][ 'primary' ] = TRUE;
 		$this->levelUpBonuses();
 	}
 
 	/**
-	* Based on class.
-	* @return float
+	* Based on the character's class.
+	*
+	* @return HeroModel
 	*/
 	protected function determinePrimaryAttribute()
 	{
-		switch( $this->{"class"} )
+		switch( $this->characterClass )
 		{
 			case "monk":
 			case "demon hunter":
+			case "demon-hunter":
 				$this->primaryAttribute = "Dexterity_Item";
 				break;
 			case "barbarian":
 				$this->primaryAttribute = "Strength_Item";
 				break;
 			case "wizard":
+			case "witch-doctor":
+			case "witch doctor":
 			case "shaman":
 				$this->primaryAttribute = "Intelligence_Item";
 				break;
 			default:
 				$trace = debug_backtrace();
 				trigger_error(
-					'Undefined property: ' . $p_placement .
-					' in ' . $trace[0]['file'] .
-					' on line ' . $trace[0]['line'],
+					'Undefined property: ' . $this->primaryAttribute .
+					' in ' . $trace[ 0 ][ 'file' ] .
+					' on line ' . $trace[ 0 ][ 'line' ],
 					E_USER_NOTICE
 				);
 		}

@@ -10,7 +10,9 @@
 	if ( isString($battleNetUrlSafeId) && isString($heroId) )
 	{
 		// Check if the cache has expired for the hero JSON.
-		$loadFromBattleNet = sessionTimeExpired( "heroTime", BATTLENET_CACHE_LIMIT, $cache );
+		$loadFromBattleNet = sessionTimeExpired( "heroTime", BATTLENET_CACHE_LIMIT, $cache, $timeElapsed );
+		$timeLeft = \d3\BATTLENET_CACHE_LIMIT - $timeElapsed;
+
 		$battleNetId = str_replace( '-', '#', $battleNetUrlSafeId );
 		$battleNetDqi = new BattleNetDqi( $battleNetId );
 		$sql = new Sql( DSN, DB_USER, DB_PSWD, USER_IP_ADDRESS );
@@ -35,73 +37,88 @@
 		<script type="text/javascript" src="/js/hero.js"></script>
 	</head>
 	<body class="hero-page">
+		<div class=\"time-elapsed\">Seconds left till cache expires <?= $timeLeft ?></div>
 		<form action="/get-profile.php" method="post">
 			<input class="input" type="hidden" name="battleNetId" value="<?= $battleNetId ?>" />
 			<input type="submit" value="Back to Heroes" />
 		</form>
 		<?php if ( isArray($items) ): ?>
-		<div class="hero inline-block">
-			<?php foreach ( $items as $key => $item ):
-				$hash = $item[ 'tooltipParams' ];
-				$d3Item = new Item( str_replace("item/", '', $hash), "hash", $battleNetDqi, $sql );
-				$itemModel = new ItemModel( $d3Item->json() );
-				$heroItems[ $key ] = $itemModel;
-				$heroJson[ $key ] = substr( $itemModel->tooltipParams, 5 );
-			?>
-				<a class="item-slot <?= $key . translateSlotName( $key ) ?>" href="/get-item.php?<?= "battleNetId=" . $battleNetUrlSafeId . '&' . str_replace( '/', "Hash=", $hash ) ?>&extra=0&showClose=1" data-slot="<?= $key ?>">
-					<div class="icon <?= $itemModel->displayColor; ?> inline-block top" data-hash="<?= substr( $hash, 5 ); ?>" data-type="<?= getItemSlot( $itemModel->type['id'] ) ?>">
-						<img class="gradient" src="/media/images/icons/items/large/<?= $item['icon'] ?>.png" alt="<?= $key ?>" />
-					</div>
-					<div class="id"><?= $item['id'] ?></div>
-					<!-- img src="http://media.blizzard.com/d3/icons/items/small/dye_10_demonhunter_male.png" / -->
-				</a>
-			<?php endforeach; ?>
+		<div class="inline-block section one">
+			<div class="hero">
+				<?php foreach ( $items as $key => $item ):
+					$hash = $item[ 'tooltipParams' ];
+					$d3Item = new Item( str_replace("item/", '', $hash), "hash", $battleNetDqi, $sql );
+					$itemModel = new ItemModel( $d3Item->json() );
+					$heroItems[ $key ] = $itemModel;
+					$heroJson[ $key ] = substr( $itemModel->tooltipParams, 5 );
+				?>
+					<a class="item-slot <?= $key . translateSlotName( $key ) ?>" href="/get-item.php?<?= "battleNetId=" . $battleNetUrlSafeId . '&' . str_replace( '/', "Hash=", $hash ) ?>&extra=0&showClose=1" data-slot="<?= $key ?>">
+						<div class="icon <?= $itemModel->displayColor; ?> inline-block top" data-hash="<?= substr( $hash, 5 ); ?>" data-type="<?= getItemSlot( $itemModel->type['id'] ) ?>">
+							<img class="gradient" src="/media/images/icons/items/large/<?= $item['icon'] ?>.png" alt="<?= $key ?>" />
+						</div>
+						<div class="id"><?= $item['id'] ?></div>
+						<!-- img src="http://media.blizzard.com/d3/icons/items/small/dye_10_demonhunter_male.png" / -->
+					</a>
+				<?php endforeach; ?>
+			</div>
+			<div class="skills">
+				<div class="active">
+				<?php foreach ( $heroModel->skills['active'] as $key => $skill ): $skill = $skill['skill']; ?>
+						<img src="http://media.blizzard.com/d3/icons/skills/64/<?= $skill['icon'] ?>.png" />
+				<?php endforeach; ?>
+				</div>
+				<div class="passive">
+				<?php foreach ( $heroModel->skills['passive'] as $key => $skill ): $skill = $skill['skill']; ?>
+						<img src="http://media.blizzard.com/d3/icons/skills/64/<?= $skill['icon'] ?>.png" />
+				<?php endforeach; ?>
+				</div>
+			</div>
 		</div>
 		<?php endif; ?>
 		<?php if ( isArray($heroItems) ): ?>
 		<ul class="list stats inline-block">
 			<?php  $calculator = new Calculator( $heroItems, $heroModel ); ?>
 			<li class="stat">
-				<span class="label"><span class="toggle inline-block">-</span> Attack Speed</span>: <?= $calculator->attackSpeed(); ?>
+				<span class="label"><span class="toggle inline-block">-</span> Attack Speed</span>: <span class="nuetral"><?= $calculator->attackSpeed(); ?></span>
 				<ul class="expandable">
-					<?= output( "<li><span class=\"label\">%s</span>:%s%%</li>", $calculator->attackSpeedData() ) ?>
+					<?= output( "<li><span class=\"label\">%s</span>: %s%%</li>", $calculator->attackSpeedData() ) ?>
 				</ul>
 			</li>
 			<li class="stat">
-				<span class="label"><span class="toggle inline-block">-</span> Base Weapon Damage</span>: <?= $calculator->baseWeaponDamage(); ?>
+				<span class="label"><span class="toggle inline-block">-</span> Base Weapon Damage</span>: <span class="nuetral"><?= $calculator->baseWeaponDamage(); ?></span>
 				<ul class="expandable">
-					<?= output( "<li><span class=\"label\">%s</span>:%s</li>", $calculator->baseWeaponDamageData() ) ?>
+					<?= output( "<li><span class=\"label\">%s</span>: %s</li>", $calculator->baseWeaponDamageData() ) ?>
 				</ul>
 			</li>
 			<li class="stat">
-				<span class="label"><span class="toggle inline-block">-</span> Critical Hit Chance</span>: <?= $calculator->criticalHitChance(); ?>%
+				<span class="label"><span class="toggle inline-block">-</span> Critical Hit Chance</span>: <span class="nuetral"><?= $calculator->criticalHitChance(); ?>%</span>
 				<ul class="expandable">
-					<?= output( "<li><span class=\"label\">%s</span>:%s</li>", $calculator->criticalHitChanceData() ) ?>
+					<?= output( "<li><span class=\"label\">%s</span>: %s</li>", $calculator->criticalHitChanceData() ) ?>
 				</ul>
 			</li>
 			<li class="stat">
-				<span class="label"><span class="toggle inline-block">-</span> Critical Hit Damage</span>: <?= $calculator->criticalHitDamage(); ?>%
+				<span class="label"><span class="toggle inline-block">-</span> Critical Hit Damage</span>: <span class="nuetral"><?= $calculator->criticalHitDamage(); ?>%</span>
 				<ul class="expandable">
-					<?= output( "<li><span class=\"label\">%s</span>:%s</li>", $calculator->criticalHitDamageData() ) ?>
+					<?= output( "<li><span class=\"label\">%s</span>: %s</li>", $calculator->criticalHitDamageData() ) ?>
 				</ul>
 			</li>
 			<li class="stat">
-				<span class="label"><span class="toggle inline-block">-</span> Damage Per Second</span>: <?= $calculator->damagePerSecond(); ?>
+				<span class="label"><span class="toggle inline-block">-</span> Damage Per Second</span>: <span class="nuetral"><?= $calculator->damagePerSecond(); ?></span>
 				<ul class="expandable">
-					<?= output( "<li><span class=\"label\">%s</span>:%s</li>", $calculator->damagePerSecondData() ) ?>
+					<?= output( "<li><span class=\"label\">%s</span>: %s</li>", $calculator->damagePerSecondData() ) ?>
 				</ul>
 			</li>
 			<li class="stat">
 				<span class="label"><span class="toggle inline-block">-</span> Primary Attribute Damage</span>:
-				<?= $calculator->primaryAttributeDamage() . ' ' . str_replace( "_Item", '', $calculator->primaryAttribute() ) ?>
+				<span class="nuetral"><?= $calculator->primaryAttributeDamage() . ' ' . str_replace( "_Item", '', $calculator->primaryAttribute() ) ?></span>
 				<ul class="expandable">
-					<?= output( "<li><span class=\"label\">%s</span>:%s</li>", $calculator->primaryAttributeDamageData() ) ?>
+					<?= output( "<li><span class=\"label\">%s</span>: %s</li>", $calculator->primaryAttributeDamageData() ) ?>
 				</ul>
 			</li>
 			<li class="stat">
-				<span class="label"><span class="toggle inline-block">+</span> D3 Calculated Stats</span>:
+				<span class="label"><span class="toggle inline-block">+</span> Battle.Net Calculated Stats</span>:
 				<ul class="expandable">
-					<?= output( "<li><span class=\"label\">%s</span>:%s</li>", $heroModel->stats ) ?>
+					<?= output( "<li><span class=\"label\">%s</span>: %s</li>", $heroModel->stats ) ?>
 				</ul>
 			</li>
 		</ul>

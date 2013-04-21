@@ -285,7 +285,7 @@
 	function isWeapon( \d3\ItemModel $p_item )
 	{
 		$itemType = strtolower( $p_item->type['id'] );
-		return ( in_array($itemType, \d3\ItemModel::$oneHandWeaponTypes) );
+		return in_array( $itemType, \d3\ItemModel::$oneHandWeaponTypes );
 	}
 
 	/**
@@ -415,7 +415,7 @@
 	* @param $p_duration int Amount of time to check against.
 	* @return bool
 	*/
-	function sessionTimeExpired( $p_key, $p_duration, $p_setToExpireNow = FALSE )
+	function sessionTimeExpired( $p_key, $p_duration, $p_setToExpireNow = FALSE, &$pTimeElapsed )
 	{
 		$timeExpired = TRUE;
 		if ( array_key_exists( $p_key, $_SESSION) && !$p_setToExpireNow )
@@ -424,8 +424,7 @@
 			if ( is_numeric($timeElapsed) )
 			{
 				$timeExpired = $timeElapsed > $p_duration;
-				$timeLeft = \d3\BATTLENET_CACHE_LIMIT - $timeElapsed;
-				echo "<div class=\"time-elapsed\">Seconds left till cache expires = {$timeLeft}</div>";
+				$pTimeElapsed = $timeElapsed;
 			}
 		}
 		// if the session key has not been set, or it expired, then (re)set it to now.

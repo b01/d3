@@ -19,7 +19,7 @@ $settings = [
 	"TITLE" => "Diablo 3 Character Builder by Khalifah Shabazz",
 	"EMAIL" => "your@email.adr",
 	"DOMAIN_NAME" => "your-domain.com",
-	"DSN" => "mysql:host=yourDatabaseServer;dbname=yourDbName;charset=UTF-8",
+	"DSN" => "mysql:host=yourDatabaseServer;dbname=yourDbName;charset=utf8",
 	"DB_USER" => "yourDbUser",
 	"DB_PSWD" => "yourDbPassword",
 	"DB_NAME" => "yourDbName",
