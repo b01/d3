@@ -5,3 +5,4 @@ IIRF.ini
 logs*
 media*
 aspnet_client
+tidy.config
