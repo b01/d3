@@ -51,9 +51,9 @@ function getItemsHtml( pData )
 	json = processItemsHtml.call( this, pData );
 	items = JSON.parse( json );
 	$select = $( "<select></select>" );
-	for ( hashKey in items.items )
+	for ( hashKey in items )
 	{
-		item = items.items[ hashKey ];
+		item = items[ hashKey ];
 		$select.append( "<option>" + item.name + "</option>" );
 	}
 	$( this ).append( $select );
@@ -72,6 +72,7 @@ function processItemsHtml( pData, pFlat )
 	if ( $items.length > 0 )
 	{
 		jsonString = pFlat ? parseItems( $items ) : parseItemsFlat( $items );
+		$( this ).empty();
 		$( this ).append( jsonString );
 	}
 	return jsonString;

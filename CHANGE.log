@@ -1,3 +1,8 @@
+List of changes as of 04/29/2013 05:25 PM
+-------------------------------
+	- Fix bug in item forge.
+	- Cleaned up item forge JSON.
+
 List of changes as of 04/29/2013 01:37 AM
 -------------------------------
 	- Added more to the systesm for building items.
