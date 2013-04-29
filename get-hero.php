@@ -30,7 +30,7 @@
 		<link rel="stylesheet" type="text/css" href="/css/site.css" />
 		<link rel="stylesheet" type="text/css" href="/css/item.css" />
 		<link rel="stylesheet" type="text/css" href="/css/hero.css" />
-		<script type="text/javascript" src="/js/jquery-1.9.1.min.js"></script>
+		<script type="text/javascript" src="/js/jquery-2.0.0.min.js"></script>
 		<script type="text/javascript" src="/js/jquery-ui-1.10.2.custom.min.js"></script>
 		<script type="text/javascript" src="/js/jquery.form.js"></script>
 		<script type="text/javascript" src="/js/jquery.ui.toggleList.js"></script>

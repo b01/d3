@@ -3,18 +3,25 @@
 	<head>
 		<title>Build an Item</title>
 		<link type="text/css" rel="stylesheet" href="/css/site.css" />
+		<script type="text/javascript" src="/js/jquery-2.0.0.min.js"></script>
+		<script type="text/javascript" src="/js/jquery-ui-1.10.2.custom.min.js"></script>
+		<script type="text/javascript" src="/js/skill-script.js"></script>
+		<script type="text/javascript" src="/js/battle-net-url-parsers.js"></script>
+		<script type="text/javascript" src="/js/item-forge.js"></script>
 	</head>
 	<body>
-		<form action="get-url.php" method="get">
-			<input type="hidden" name="which" value="build-item" />
+		<form id="item-forge" action="get-url.php" method="get">
 			<fieldset>
+				<input type="hidden" name="which" value="build-item" />
 				<select name="type">
 					<option>ARMOR</option>
 					<option>WEAPONS</option>
-					<option>OTHER</option>
+					<!-- option>OTHER</option -->
 				</select>
-				<!--  -->
-				<select name="class">
+			</fieldset>
+			<fieldset class="subs">
+				<label for="class">Item</label>
+				<select id="ARMOR" name="class">
 					<optgroup label="head">
 						<option value="helm">Helms</option>
 						<option value="spirit-stone">Spirit Stones ( Monk )</option>
@@ -60,7 +67,7 @@
 						<option value="templar-relic">Templar Relics</option>
 					</optgroup>
 				</select>
-				<select name="WEAPONS">
+				<select id="WEAPONS" name="class" class="hide" disabled="disabled">
 					<optgroup label="one-handed">
 						<option value="axe-1h">Axes</option>
 						<option value="dagger">Daggers</option>
@@ -87,7 +94,8 @@
 						<option value="wand">Wands Wiz</option>
 					</optgroup>
 				</select>
-				<!-- select name="OTHER">
+				<!-- You won't need to customize other itesm, so keep them out of the mix -->
+				<!-- select id="OTHER" name="class" disabled="disabled">
 					<optgroup label="Consumables">
 						<option value="potion">Potions</option>
 					</optgroup>
@@ -101,8 +109,9 @@
 						<option value="misc">Miscellaneous</option>
 					</optgroup>
 				</select -->
-				<input type="submit" value="submit" />
 			</fieldset>
+			<input type="submit" value="submit" />
 		</form>
+		<pre class="pre"></pre>
 	</body>
 </html>

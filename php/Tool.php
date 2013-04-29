@@ -93,12 +93,12 @@
 	* @param $p_key CSS class to add to the element.
 	* @return string
 	*/
-	function tidyHtml( $p_html )
+	function tidyHtml( $p_html, $config = [] )
 	{
 		$returnValue = NULL;
 
 		$tidy = new tidy;
-		$tidy->parseString( $p_html );
+		$tidy->parseString( $p_html, $config, 'utf8' );
 		$tidy->cleanRepair();
 		$returnValue = $tidy;
 		// Output

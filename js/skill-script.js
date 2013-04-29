@@ -13,9 +13,9 @@ jQuery( document ).ready(function ()
 
 	if ( typeof window["heroClass"] === "string" && window["heroClass"].length > 1 )
 	{
-		getSkills( "get-url.php?which=skill-1&class=" + window.heroClass, $(".active") );
+		getBattleNetPage( "get-url.php?which=skill-1&class=" + window.heroClass, $(".active"), ajaxSuccess );
 
-		getSkills( "get-url.php?which=skill-3&class=" + window.heroClass, $(".passive") );
+		getBattleNetPage( "get-url.php?which=skill-3&class=" + window.heroClass, $(".passive"), ajaxSuccess );
 
 		setTimeout(function ()
 		{
@@ -32,9 +32,9 @@ jQuery( document ).ready(function ()
 * @param string pClass (barbarian|demon-hunter|monk|witch-doctor|wizard)
 * @return bool
 */
-function getSkills( pUrl, $pContainer )
+function getBattleNetPage( pUrl, $pContainer, successCallback )
 {
-	if ( typeof pUrl !== "string" || pUrl.length === 0 )
+	if ( typeof pUrl !== "string" || pUrl.length === 0 || typeof successCallback !== "function" )
 	{
 		return false;
 	}
@@ -42,7 +42,7 @@ function getSkills( pUrl, $pContainer )
 	ajaxRequest({
 		"url": pUrl,
 		"dataType": "html",
-		"success": ajaxSuccess,
+		"success": successCallback,
 		"context": $pContainer
 	});
 
