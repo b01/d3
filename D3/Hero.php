@@ -1,22 +1,23 @@
-<?php
+<?php namespace D3;
 /**
 * Get the users item from Battle.Net and present it to the user; store it locally in a database behind the scenes.
 * The item will only be updated after a few ours of retrieving it.
 *
 */
-namespace d3;
 
 /**
 * var $p_heroId string User BattleNet ID.
-* var $p_dqi object Data Query Interface.
-* var $p_sql object SQL.
+* var $pDqi object Data Query Interface.
+* var $pSql object SQL.
 */
-class HeroModel extends BattleNetModel
+class Hero extends Model
 {
 	protected
 		$armor,
 		$dexterity,
+		$dualWield,
 		$intelligence,
+		$itemModels,
 		$noItemsStats,
 		$primaryAttribute,
 		$strength,
@@ -32,7 +33,9 @@ class HeroModel extends BattleNetModel
 		$this->criticalHitDamage = 0.50;
 		$this->dexterity = 7;
 		$this->dodgeChance = 0.01;
+		$this->dualWield = FALSE;
 		$this->intelligence = 7;
+		$this->itemModels = [];
 		$this->strength = 7;
 		$this->vitality = 7;
 		$this->coldResist = 1;
@@ -140,9 +143,9 @@ class HeroModel extends BattleNetModel
 	*
 	* @return array
 	*/
-	public function getItems()
+	public function getItemModels()
 	{
-		return $this->items;
+		return $this->itemModels;
 	}
 
 	/**
@@ -165,12 +168,16 @@ class HeroModel extends BattleNetModel
 	}
 
 	/**
-	* Detect use of two weapons.
-	* This calculation is take from:http://eu.battle.net/d3/en/forum/topic/4903361857
+	* Indicates use of two-hand weapons.
+	*
 	* @return
 	*/
-	public function duelWields()
+	public function dualWield()
 	{
+		if ( !isset($this->dualWield) )
+		{
+			$this->dualWield = $this->items[ 'mainHand' ]->type[ 'twoHanded' ];
+		}
 		return $this->dualWield;
 	}
 

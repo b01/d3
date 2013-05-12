@@ -1,4 +1,4 @@
-<?php namespace d3;
+<?php namespace D3;
 	$itemType = getStr( "type" );
 	$itemClass = getStr( "class" );
 ?><!DOCTYPE html>

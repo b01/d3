@@ -9,15 +9,17 @@
 	* Automatically load classes instead of using require/include statements.
 	*
 	*/
-	function __autoload( $p_className )
+	function __autoload( $pClassName )
 	{
-		$classPath = str_replace( "\\", '/', $p_className );
+		$classPath = str_replace( "\\", '/', $pClassName );
 		// Single quote strings are used to optimize/prevent PHP from parsing the string.
-		$classFilePath = 'php/' . $classPath . '.php';
+		$classFilePath = str_replace('_', '/', $classPath) . '.php';
 		if ( file_exists($classFilePath) )
 		{
 			require_once( $classFilePath );
+			return;
 		}
+		var_dump( $classFilePath );
 	}
 
 	/**
@@ -56,6 +58,21 @@
 		{
 			throw new Exception( "Your PHP version is '{$phpVersion}'. The minimum required PHP version is '{$versionString}'. You'll need to upgrade in order to use this application." );
 		}
+	}
+
+	/**
+	* Handle all errors.
+	*
+	* @param int $pMajor Required major version.
+	* @param int $pMinor If set, then the required minor version.
+	* @param int $pRelease If set, then the required release version.
+	* @return string
+	*/
+	function d3a_notice_error_handler( $pSeverity, $pMessage, $pFilename, $lineNo )
+	{
+		$loggableErrorMessage = "\n{$pMessage} {$pFilename} on line {$lineNo}.";
+		error_log( $loggableErrorMessage );
+		return TRUE;
 	}
 
 	/**
@@ -144,14 +161,14 @@
 	*
 	* @return array
 	*/
-	function getItemModels( $p_items, $p_battleNetDqi, $p_sql )
+	function getItemModels( $p_items, $p_battleNetDqi, $pSql )
 	{
 		$itemModels = [];
 
 		foreach ( $p_items as $key => $item )
 		{
 			$hash = $item[ 'tooltipParams' ];
-			$d3Item = new Item( str_replace("item/", '', $hash), "hash", $p_battleNetDqi, $p_sql );
+			$d3Item = new Item( str_replace("item/", '', $hash), "hash", $p_battleNetDqi, $pSql );
 			$itemModel = new ItemModel( $d3Item->json() );
 			$this->itemModels[ $key ] = $itemModel;
 		}
@@ -282,10 +299,10 @@
 	/**
 	* Check if an item is a weapon.
 	*/
-	function isWeapon( \d3\ItemModel $p_item )
+	function isWeapon( \D3\Item $p_item )
 	{
 		$itemType = strtolower( $p_item->type['id'] );
-		return in_array( $itemType, \d3\ItemModel::$oneHandWeaponTypes );
+		return in_array( $itemType, \D3\Item::$oneHandWeaponTypes );
 	}
 
 	/**

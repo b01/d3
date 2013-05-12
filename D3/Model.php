@@ -1,5 +1,4 @@
-<?php
-namespace d3;
+<?php namespace D3;
 /**
 * Get the users item from Battle.Net and present it to the user; store it locally in a database
 * behind the scenes. The item will only be updated after a few ours of retrieving it.
@@ -8,12 +7,13 @@ namespace d3;
 
 /**
 * var $p_itemHash string User BattleNet ID.
-* var $p_dqi object Data Query Interface.
-* var $p_sql object SQL.
+* var $pDqi object Data Query Interface.
+* var $pSql object SQL.
 * var $p_userIp string User IP address.
 */
-abstract class BattleNetModel implements \JsonSerializable
+abstract class Model implements \JsonSerializable
 {
+	use Shared;
 	protected
 		$effectsMap,
 		$forcePropertyType,
@@ -49,17 +49,6 @@ abstract class BattleNetModel implements \JsonSerializable
 			"" => "poison"
 		];
 		$this->init();
-	}
-
-	/**
-	* Destructor
-	*/
-	public function __destruct()
-	{
-		foreach ( $this as $name => $value )
-		{
-			unset( $this->$name );
-		}
 	}
 
 	/**

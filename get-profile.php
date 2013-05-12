@@ -1,15 +1,20 @@
-<?php namespace d3;
+<?php namespace D3;
 
 // Get the profile and store it.
 
 	$battleNetId = getPostStr( "battleNetId" );
+	$cache = ( bool )getStr( "cache" );
 	$heroes = NULL;
 
 	if ( isString($battleNetId) )
 	{
-		$battleNetDqi = new BattleNetDqi( $battleNetId );
-		$sql = new Sql( DSN, DB_USER, DB_PSWD, USER_IP_ADDRESS );
-		$battleNetProfile = new Profile( $battleNetId, $battleNetDqi, $sql );
+		$battleNetDqi = new BattleNet_Dqi( $battleNetId );
+		$sql = new BattleNet_Sql( DSN, DB_USER, DB_PSWD, USER_IP_ADDRESS );
+
+		$loadFromBattleNet = sessionTimeExpired( "profileTime", D3_CACHE_LIMIT, $cache, $timeElapsed );
+		$timeLeft = D3_CACHE_LIMIT - $timeElapsed;
+
+		$battleNetProfile = new BattleNet_Profile( $battleNetId, $battleNetDqi, $sql, $loadFromBattleNet );
 		$heroes = $battleNetProfile->heroes();
 		$battleNetUrlSafeId = str_replace( '#', '-', $battleNetId );
 		$heroUrl = "/get-hero.php?battleNetId={$battleNetUrlSafeId}&heroId=";
@@ -22,15 +27,16 @@
 		<link rel="stylesheet" type="text/css" href="/css/profile.css" />
 	</head>
 	<body>
-	<?php if ( isArray($heroes) ): ?>
+		<div class=\"time-elapsed\">Seconds left till cache expires <?= $timeLeft ?></div>
+		<?php if ( isArray($heroes) ): ?>
 		<div class="heroes">
-		<?php foreach ( $heroes as $hero ): ?>
+			<?php foreach ( $heroes as $hero ): ?>
 			<a href="<?= $heroUrl . $hero['id'] ?>" class="inline-block profile <?= $hero[ 'class' ] ?><?php echo ($hero[ 'gender' ] == 0) ? " man" : " woman"?>">
 				<span class="name"><?= $hero['name'] ?> <span class="level">(<?= $hero['level'] ?>)</span></span>
 			</a>
-		<?php endforeach; ?>
+			<?php endforeach; ?>
 		</div>
-	<?php else: ?>
+		<?php else: ?>
 		<p>Hmmm...You seem to have no hero profiles. Since that is very unlikey, this app is probably broken in some
 		way Please try again later.
 		</p>

@@ -1,61 +1,34 @@
 <?php
-namespace d3;
+namespace D3;
 /**
 * Get the users item from Battle.Net and present it to the user; store it locally in a database behind the scenes.
 * The item will only be updated after a few ours of retrieving it.
 *
 */
 
-use \d3\BattleNetDqi;
-use \d3\Sql;
-
 /**
 * var $p_itemHash string User BattleNet ID.
-* var $p_dqi object Data Query Interface.
-* var $p_sql object SQL.
+* var $pDqi object Data Query Interface.
+* var $pSql object SQL.
 */
-class Item
+class BattleNet_Item extends BattleNet_Model
 {
 	protected
 		$column,
-		$dqi,
 		$hash,
 		$id,
-		$info,
-		$json,
-		$loadedFromBattleNet,
-		$sql;
+		$info;
 
 	/**
 	* Constructor
 	*/
-	public function __construct( $p_hash, $p_column, BattleNetDqi $p_dqi, Sql $p_sql )
+	public function __construct( $pHash, $pColumn, BattleNet_Dqi $pDqi, BattleNet_Sql $pSql, $force = FALSE )
 	{
-		$this->column = $p_column;
-		$this->dqi = $p_dqi;
-		$this->hash = $p_hash;
+		$this->column = $pColumn;
+		$this->key = $pHash;
 		$this->id = NULL;
 		$this->info = NULL;
-		$this->json = NULL;
-		$this->loadedFromBattleNet = FALSE;
-		$this->sql = $p_sql;
-		$this->pullJson()
-			->processJson();
-	}
-
-	/**
-	* Destructor
-	*/
-	public function __destruct()
-	{
-		unset(
-			$this->dqi,
-			$this->info,
-			$this->itemHash,
-			$this->json,
-			$this->loadedFromBattleNet,
-			$this->sql
-		);
+		parent::__construct( $pHash, $pDqi, $pSql, $force );
 	}
 
 	/**
@@ -65,11 +38,11 @@ class Item
 	protected function pullJsonFromDb()
 	{
 		$returnValue = NULL;
-		if ( $this->hash !== NULL )
+		if ( $this->key !== NULL )
 		{
-			$query = sprintf( Sql::SELECT_ITEM, DB_NAME, $this->column );
+			$query = sprintf( BattleNet_Sql::SELECT_ITEM, DB_NAME, $this->column );
 			$result = $this->sql->getData( $query, [
-				"selectValue" => [ $this->hash, \PDO::PARAM_STR ]
+				'selectValue' => [ $this->key, \PDO::PARAM_STR ]
 			]);
 
 			if ( isArray($result) )
@@ -94,7 +67,7 @@ class Item
 		if ( !isString($this->json) )
 		{
 			// Request the item from BattleNet.
-			$json = $this->dqi->getItem( $this->hash );
+			$json = $this->dqi->getItem( $this->key );
 			$responseCode = $this->dqi->responseCode();
 			$url = $this->dqi->getUrl();
 			// Log the request.
@@ -109,12 +82,8 @@ class Item
 		return $this;
 	}
 
-	/**
-	* Get raw JSON data returned from Battle.net.
-	*/
-	public function json()
+	protected function pullJsonFromBattleNet()
 	{
-		return $this->json;
 	}
 
 	/**
@@ -128,7 +97,7 @@ class Item
 		{
 			$this->name = $this->info[ 'name' ];
 			$this->type = $this->info[ 'type' ];
-			$this->hash = substr( $this->info[ 'tooltipParams' ], 5 );
+			$this->key = substr( $this->info[ 'tooltipParams' ], 5 );
 			$this->id = $this->info[ 'id' ];
 			if ( $this->loadedFromBattleNet )
 			{
@@ -143,18 +112,18 @@ class Item
 	*/
 	protected function save()
 	{
-		$utcTime = gmdate( "Y-m-d H:i:s" );
+		$utcTime = gmdate( 'Y-m-d H:i:s' );
 		$array = [
-			"hash" => [ $this->hash, \PDO::PARAM_STR ],
-			"id" => [ $this->id, \PDO::PARAM_STR ],
-			"name" => [ $this->name, \PDO::PARAM_STR ],
-			"itemType" => [ $this->type['id'], \PDO::PARAM_STR ],
-			"json" => [ $this->json, \PDO::PARAM_STR ],
-			"ipAddress" => [ $this->sql->ipAddress(), \PDO::PARAM_STR ],
-			"lastUpdate" => [ $utcTime, \PDO::PARAM_STR ],
-			"dateAdded" => [ $utcTime, \PDO::PARAM_STR ]
+			'hash' => [ $this->key, \PDO::PARAM_STR ],
+			'id' => [ $this->id, \PDO::PARAM_STR ],
+			'name' => [ $this->name, \PDO::PARAM_STR ],
+			'itemType' => [ $this->type['id'], \PDO::PARAM_STR ],
+			'json' => [ $this->json, \PDO::PARAM_STR ],
+			'ipAddress' => [ $this->sql->ipAddress(), \PDO::PARAM_STR ],
+			'lastUpdate' => [ $utcTime, \PDO::PARAM_STR ],
+			'dateAdded' => [ $utcTime, \PDO::PARAM_STR ]
 		];
-		return $this->sql->save( Sql::INSERT_ITEM, $array );
+		return $this->sql->save( BattleNet_Sql::INSERT_ITEM, $array );
 	}
 
 	/**

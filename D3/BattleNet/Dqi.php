@@ -1,7 +1,7 @@
 <?php
-namespace d3; // Diablo 3 Character Builder
+namespace D3; // Diablo 3 Character Builder
 
-class BattleNetDqi extends \HttpRequestor
+class BattleNet_Dqi extends HttpRequestor
 {
 	protected
 		$battleNetId,

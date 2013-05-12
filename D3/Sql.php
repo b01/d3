@@ -1,4 +1,4 @@
-<?php
+<?php namespace D3;
 /**
 * Generic methods for retrieving data from a database.
 *
@@ -138,7 +138,7 @@ class Sql
 	* Reason: Simplfies writing function that save data to a DB.
 	* @return bool Indication of success or failure.
 	*/
-	public function save( $p_sqlStatement, array $p_values )
+	public function save( $pSqlStatement, array $p_values )
 	{
 		$returnValue = FALSE;
 		try
@@ -146,7 +146,7 @@ class Sql
 			if ( $this->pdoh !== NULL )
 			{
 				// Bind values to the prepared statment.
-				$stmt = $this->pdoh->prepare( $p_sqlStatement );
+				$stmt = $this->pdoh->prepare( $pSqlStatement );
 				foreach ( $p_values as $parameterName => $data )
 				{
 					$stmt->bindValue( ':' . $parameterName, $data[0], $data[1] );
@@ -159,7 +159,7 @@ class Sql
 		{
 			logError(
 				$p_error,
-				"Bad query {$p_sqlStatement} \n\t\n\tin %s on line %s.",
+				"Bad query {$pSqlStatement} \n\t\n\tin %s on line %s.",
 				"Failed to save data; Which could mean lots of request to battle.net for the same data. Alerting system admin. You don't need to worry about this though"
 			);
 		}

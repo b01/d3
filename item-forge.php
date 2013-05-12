@@ -2,7 +2,12 @@
 <html>
 	<head>
 		<title>Build an Item</title>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" rel="stylesheet" href="/css/d3.css" />
 		<link type="text/css" rel="stylesheet" href="/css/site.css" />
+		<link rel="stylesheet" rel="stylesheet" href="/css/tooltips.css" />
+		<link rel="stylesheet" rel="stylesheet" href="/css/item.css" />
+		<script type="text/javascript" src="/js/ie-version-check.js"></script>
 		<script type="text/javascript" src="/js/jquery-2.0.0.min.js"></script>
 		<script type="text/javascript" src="/js/jquery-ui-1.10.2.custom.min.js"></script>
 		<script type="text/javascript" src="/js/skill-script.js"></script>
@@ -113,5 +118,77 @@
 			<input type="submit" value="submit" />
 		</form>
 		<pre class="pre"></pre>
+
+
+		<div class="item-tool-tip item hide">
+
+			<h3 class="header smaller {{displayColor}}">{{itemName}}</h3>
+
+			<div class="effect-bg {{effects}}">
+				<div class="icon {{displayColor}} inline-block top" data-hash="{{Hash}}" data-type="{{slot}}">
+					<img class="gradient" src="/media/images/icons/items/large/{{icon}}.png" alt="{{name}}" />
+				</div>
+				<div class="inline-block top">
+					<div class="type-name inline-block {{displayColor}}">{{type}}</div>
+					<div class="type-name inline-block slot">{{slot}}</div>
+					{{if armor}}
+					<div class="big value armor">{{armorValue}}</div>
+					{{/if armor}}
+					{{if weapon}}
+					<div class="big value weapn">{{ number_format( $itemModel->dps['min'], 1 ); }}</div>
+					<div class="damage"><span class="value">{{ displayRange( $itemModel->damage ); }}</span> Damage</div>
+					<div class="small"><span class="value">{{ number_format( $itemModel->attacksPerSecond['min'], 2 ); }}</span> Attacks per Second</div>
+					{{/if weapon}}
+				</div>
+			</div>
+			{{if attributes}}
+			<ul class="properties blue">
+				{{loop attributes}}
+				<li class="effect">{{formatAttribute( $value, "value" )}}</li>
+				{{/loop attributes}}
+			</ul>
+			{{\if attributes}}
+			{{ if ( isArray($itemModel->gems) ): }}
+			<ul class="list gems">
+				<li class="full-socket d3-color-{{ $itemModel->gems[0]['item']['displayColor'] }}">
+					<img class="gem" src="http://media.blizzard.com/d3/icons/items/small/{{ $itemModel->gems[0]['item']['icon'] }}.png">
+					{{ $itemModel->gems[0]['attributes'][0] }}
+				</li>
+			</ul>
+			{{ endif; }}
+			{{ if ( isset($itemModel->set) && isArray($itemModel->set) ): }}
+			<ul class="list set">
+				<li class="name d3-color-green">{{ $itemModel->set['name'] }}</li>
+				{{ foreach ( $itemModel->set['items'] as $key => $value ): }}
+				<li class="piece">{{ $value['name'] }}</li>
+				{{ endforeach; }}
+				{{ foreach ( $itemModel->set['ranks'] as $key => $value ): }}
+				<li class="rank">({{ $value['required'] }}) Set:</li>
+				{{ if ( isArray($value['attributes']) ): }}
+				{{ foreach ( $value['attributes'] as $key => $value ): }}
+				<li class="piece">{{ formatAttribute( $value, "value" ); }}</li>
+				{{ endforeach; }}
+				{{ endif; }}
+				{{ endforeach; }}
+			</ul>
+			{{ endif; }}
+			<div class="levels">
+				<div class="level left required inline-block">Required Level: <span class="value">{{ $itemModel->requiredLevel; }}</span></div>
+				<div class="level right max inline-block">Item Level: <span class="value">{{ $itemModel->itemLevel; }}</span></div>
+			</div>
+			<ul class="list stats inline-block">
+				<li class="stat">
+					<span class="label"><span class="toggle inline-block">+</span> Hash</span>
+					<div class="expandable" ><textarea class="copy-box" readonly="readonly">{{ $itemHash }}</textarea></div>
+				</li>
+				<li class="stat">
+					<span class="label"><span class="toggle inline-block">+</span> Json</span>
+					<div class="expandable" ><textarea class="copy-box" readonly="readonly">{{ $item->json() }}</textarea></div>
+				</li>
+			</ul>
+			{{ if ( isset($itemModel->flavorText) ): }}
+			<div class="flavor">{{ $itemModel->flavorText; }}</div>
+			{{ endif; }}
+		</div>
 	</body>
 </html>

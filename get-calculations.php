@@ -1,4 +1,4 @@
-<?php namespace d3;
+<?php namespace D3;
 // Get the profile and store it.
 
 	$urlBattleNetId = getPostStr( "battleNetId" );
@@ -12,7 +12,7 @@
 		$heroItems = [];
 		if ( isArray($heroItemHashes) )
 		{
-			$battleNetDqi = new BattleNetDqi( $battleNetId );
+			$battleNetDqi = new BattleNet_Dqi( $battleNetId );
 			$sql = new Sql( DSN, DB_USER, DB_PSWD, USER_IP_ADDRESS );
 			foreach( $heroItemHashes as $slot => $itemHash )
 			{

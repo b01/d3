@@ -32,9 +32,9 @@ jQuery( document ).ready(function ()
 * @param string pClass (barbarian|demon-hunter|monk|witch-doctor|wizard)
 * @return bool
 */
-function getBattleNetPage( pUrl, $pContainer, successCallback )
+function getBattleNetPage( pUrl, $pContainer, pDoneCallback )
 {
-	if ( typeof pUrl !== "string" || pUrl.length === 0 || typeof successCallback !== "function" )
+	if ( typeof pUrl !== "string" || pUrl.length === 0 || typeof pDoneCallback !== "function" )
 	{
 		return false;
 	}
@@ -42,7 +42,7 @@ function getBattleNetPage( pUrl, $pContainer, successCallback )
 	ajaxRequest({
 		"url": pUrl,
 		"dataType": "html",
-		"success": successCallback,
+		"done": pDoneCallback,
 		"context": $pContainer
 	});
 
@@ -67,7 +67,6 @@ function parseSkills( $p_that, p_i, p_count, p_nameSelector, p_descSelector, p_t
 		$desc = $p_that.find( p_descSelector ),
         desc = '',
         seperator = ( p_i < p_count ) ? ',' : '',
-        // matchRegEx = /\+?\d+\.?(-|\s-\s)?\d*%?/g,
         matchRegEx = /\+?\d+(\.\d+)?(-|\s-\s)?\d*%?/g,
 		spaceRegEx = /\r\n|\n|\s{2,}/g;
 		replaceRegEx = /(\+?\d+\.?\d*%|\+?\d+(-|\s-\s)\d+)/g,
@@ -124,6 +123,19 @@ function ajaxRequest( pObject )
 	if ( currentRequest === null )
 	{
 		window.currentAjaxRequest = $.ajax( pObject );
+		// Promise methods that need to be attached to the jXHR object after it is instantiated.
+		if ( pObject.hasOwnProperty('done') )
+		{
+			window.currentAjaxRequest.done( pObject.done );
+		}
+		if ( pObject.hasOwnProperty('fail') )
+		{
+			window.currentAjaxRequest.fail( pObject.fail );
+		}
+		if ( pObject.hasOwnProperty('always') )
+		{
+			window.currentAjaxRequest.always( pObject.always );
+		}
 	}
 	else
 	{
@@ -171,7 +183,7 @@ function getRuneSkills( pClass, $pName )
 		ajaxRequest({
 			"url": url,
 			"dataType": "html",
-			"success": function ( p_data )
+			"done": function ( p_data )
 			{
 				var jsonString = ",\t\n\t\t\t\"runes\": {",
 					$runes = $( $.parseHTML(p_data) ).find( ".rune-details" ),

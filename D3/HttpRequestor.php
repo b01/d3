@@ -1,4 +1,4 @@
-<?php
+<?php namespace D3;
 /**
 * Generic methods for retrieving HTML pages.
 *

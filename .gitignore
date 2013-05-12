@@ -1,6 +1,6 @@
 .htaccess
 .user.ini
-php/settings.php
+settings.php
 IIRF.ini
 logs*
 media*

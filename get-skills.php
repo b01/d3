@@ -1,4 +1,4 @@
-<?php namespace d3;
+<?php namespace D3;
 	$heroClass = getStr( "class" );
 ?><!DOCTYPE html>
 <html>

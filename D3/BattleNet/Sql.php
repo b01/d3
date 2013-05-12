@@ -1,7 +1,7 @@
 <?php
-namespace d3;
+namespace D3;
 
-class Sql extends \Sql
+class BattleNet_Sql extends Sql
 {
 	const
 		SELECT_PROFILE = "SELECT `battle_net_id`, `json`, `ip_address`, `last_updated`, `date_added` FROM `%s`.`d3_profiles` WHERE `battle_net_id` = :battleNetId;",

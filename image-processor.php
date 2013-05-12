@@ -1,4 +1,4 @@
-<?php
+<?php namespace D3;
 /**
 * Get an image via HTTP request and serve it up.
 * - ImageSaver Class - takes an iamge url and fileStream object and save a file to disk.

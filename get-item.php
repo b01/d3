@@ -1,6 +1,5 @@
-<?php namespace d3;
+<?php namespace D3;
 // Get the profile and store it.
-require_once( "php/Tool.php" );
 // All classes are loaded on-the-fly, so no need to require them.
 
 	$battleNetId = getPostStr( "battleNetId" );
@@ -29,14 +28,14 @@ require_once( "php/Tool.php" );
 
 	if ( isString($battleNetId) && isString($itemUID) )
 	{
-		$battleNetDqi = new BattleNetDqi( $battleNetId );
-		$sql = new Sql( DSN, DB_USER, DB_PSWD, USER_IP_ADDRESS );
-		$item = new Item( $itemUID, $itemIdType, $battleNetDqi, $sql );
+		$battleNetDqi = new BattleNet_Dqi( $battleNetId );
+		$sql = new BattleNet_Sql( DSN, DB_USER, DB_PSWD, USER_IP_ADDRESS );
+		$itemModel = new BattleNet_Item( $itemUID, $itemIdType, $battleNetDqi, $sql );
 		// Init item as an object.
-		if ( is_object($item) )
+		if ( is_object($itemModel) )
 		{
-			$itemModel = new ItemModel( $item->json() );
-			$itemHash = substr( $itemModel->tooltipParams, 5 );
+			$item = new Item( $itemModel->json() );
+			$itemHash = substr( $item->tooltipParams, 5 );
 		}
 	}
 	else
@@ -44,62 +43,63 @@ require_once( "php/Tool.php" );
 		header( "Location: /item.html" );
 	}
 ?>
-<?php if ( $itemModel instanceof ItemModel ): ?>
+<?php if ( $item instanceof Item ): ?>
 <?php if ( $showExtra ): ?>
 <!DOCTYPE html>
 <html>
 	<head>
-		<title><?= $itemModel->name ?></title>
-		<link rel="stylesheet" href="/css/d3.css" />
-		<link rel="stylesheet" href="/css/site.css" />
-		<link rel="stylesheet" href="/css/tooltips.css" />
-		<link rel="stylesheet" href="/css/item.css" />
+		<title><?= $item->name ?></title>
+		<meta charset="utf-8" />
+		<link rel="stylesheet" rel="stylesheet" href="/css/d3.css" />
+		<link rel="stylesheet" rel="stylesheet" href="/css/site.css" />
+		<link rel="stylesheet" rel="stylesheet" href="/css/tooltips.css" />
+		<link rel="stylesheet" rel="stylesheet" href="/css/item.css" />
 	</head>
 	<body>
 <?php endif; ?>
 		<div class="item-tool-tip item">
 
-			<h3 class="header smaller <?= $itemModel->displayColor; ?>"><?= $itemModel->name ?><?php if ( $showClose ): ?><span class="close">Close</span><?php endif; ?></h3>
+			<h3 class="header smaller <?= $item->displayColor; ?>"><?= $item->name ?><?php if ( $showClose ): ?><span class="close">Close</span><?php endif; ?></h3>
 
-			<div class="effect-bg <?= $itemModel->effects() ?>">
-				<div class="icon <?= $itemModel->displayColor ?> inline-block top" data-hash="<?= $itemHash ?>" data-type="<?= getItemSlot( $itemModel->type['id'] ) ?>">
-					<img class="gradient" src="/media/images/icons/items/large/<?= $itemModel->icon; ?>.png" alt="<?= $itemModel->name; ?>" />
+			<div class="effect-bg <?= $item->effects() ?>">
+				<div class="icon <?= $item->displayColor ?> inline-block top" data-hash="<?= $itemHash ?>" data-type="<?= getItemSlot( $item->type['id'] ) ?>">
+					<img class="gradient" src="/media/images/icons/items/large/<?= $item->icon; ?>.png" alt="<?= $item->name; ?>" />
 				</div>
 				<div class="inline-block top">
-					<div class="type-name inline-block <?= $itemModel->displayColor; ?>"><?= $itemModel->typeName; ?></div>
-					<div class="type-name inline-block slot"><?= getItemSlot( $itemModel->type['id'] ) ?></div>
-					<?php if ( isset($itemModel->armor) ): ?>
-					<div class="big value"><?= displayRange( $itemModel->armor ); ?></div>
+					<div class="type-name inline-block <?= $item->displayColor; ?>"><?= $item->typeName; ?></div>
+					<div class="type-name inline-block slot"><?= getItemSlot( $item->type['id'] ) ?></div>
+					<?php if ( isset($item->armor) ): ?>
+					<div class="big value"><?= displayRange( $item->armor ); ?></div>
 					<?php endif; ?>
-					<?php if ( isWeapon($itemModel) ): ?>
-					<div class="big value"><?= number_format( $itemModel->dps['min'], 1 ); ?></div>
-					<div class="damage"><span class="value"><?= displayRange( $itemModel->damage ); ?></span> Damage</div>
-					<div class="small"><span class="value"><?= number_format( $itemModel->attacksPerSecond['min'], 2 ); ?></span> Attacks per Second</div>
+					<?php if ( isWeapon($item) ): ?>
+					<div class="big value"><?= number_format( $item->dps['min'], 1 ); ?></div>
+					<div class="damage"><span class="value"><?= displayRange( $item->damage ); ?></span> Damage</div>
+					<div class="small"><span class="value"><?= number_format( $item->attacksPerSecond['min'], 2 ); ?></span> Attacks per Second</div>
 					<?php endif; ?>
 				</div>
 			</div>
-			<?php if ( isArray($itemModel->attributes) ): ?>
+			<?php if ( isArray($item->attributes) ): ?>
 			<ul class="properties blue">
-				<?php foreach ( $itemModel->attributes as $key => $value ): ?>
+				<?php foreach ( $item->attributes as $key => $value ): ?>
 				<li class="effect"><?= formatAttribute( $value, "value" ) ?></li>
 				<?php endforeach; ?>
 			</ul>
 			<?php endif; ?>
-			<?php if ( isArray($itemModel->gems) ): ?>
+			<?php if ( isArray($item->gems) ): ?>
 			<ul class="list gems">
-				<li class="full-socket d3-color-<?= $itemModel->gems[0]['item']['displayColor'] ?>">
-					<img class="gem" src="http://media.blizzard.com/d3/icons/items/small/<?= $itemModel->gems[0]['item']['icon'] ?>.png">
-					<?= $itemModel->gems[0]['attributes'][0] ?>
+				<li class="full-socket d3-color-<?= $item->gems[0]['item']['displayColor'] ?>">
+					<img class="gem" src="http://media.blizzard.com/d3/icons/items/small/<?= $item->gems[0]['item']['icon'] ?>.png">
+					<?= $item->gems[0]['attributes'][0] ?>
 				</li>
 			</ul>
 			<?php endif; ?>
-			<?php if ( isset($itemModel->set) && isArray($itemModel->set) ): ?>
+			<?php if ( isset($item->set) && isArray($item->set) ): ?>
 			<ul class="list set">
-				<li class="name d3-color-green"><?= $itemModel->set['name'] ?></li>
-				<?php foreach ( $itemModel->set['items'] as $key => $value ): ?>
+				<li class="name d3-color-green"><?= $item->set['name'] ?></li>
+				<?php foreach ( $item->set['items'] as $key => $value ): ?>
 				<li class="piece"><?= $value['name'] ?></li>
 				<?php endforeach; ?>
-				<?php foreach ( $itemModel->set['ranks'] as $key => $value ): ?>
+				<?php foreach ( $item->set['ranks'] as $key => $value ): ?>
 				<li class="rank">(<?= $value['required'] ?>) Set:</li>
 				<?php if ( isArray($value['attributes']) ): ?>
 				<?php foreach ( $value['attributes'] as $key => $value ): ?>
@@ -110,8 +110,8 @@ require_once( "php/Tool.php" );
 			</ul>
 			<?php endif; ?>
 			<div class="levels">
-				<div class="level left required inline-block">Required Level: <span class="value"><?= $itemModel->requiredLevel; ?></span></div>
-				<div class="level right max inline-block">Item Level: <span class="value"><?= $itemModel->itemLevel; ?></span></div>
+				<div class="level left required inline-block">Required Level: <span class="value"><?= $item->requiredLevel; ?></span></div>
+				<div class="level right max inline-block">Item Level: <span class="value"><?= $item->itemLevel; ?></span></div>
 			</div>
 			<ul class="list stats inline-block">
 				<li class="stat">
@@ -120,16 +120,16 @@ require_once( "php/Tool.php" );
 				</li>
 				<li class="stat">
 					<span class="label"><span class="toggle inline-block">+</span> Json</span>
-					<div class="expandable" ><textarea class="copy-box" readonly="readonly"><?= $item->json() ?></textarea></div>
+					<div class="expandable" ><textarea class="copy-box" readonly="readonly"><?= $itemModel->json() ?></textarea></div>
 				</li>
 			</ul>
-			<?php if ( isset($itemModel->flavorText) ): ?>
-			<div class="flavor"><?= $itemModel->flavorText; ?></div>
+			<?php if ( isset($item->flavorText) ): ?>
+			<div class="flavor"><?= $item->flavorText; ?></div>
 			<?php endif; ?>
 		</div>
 		<?php endif ?>
 <?php if ( $showExtra ): ?>
-		<pre class="json-data scroll"><?= $itemModel; ?></pre>
+		<pre class="json-data scroll"><?= $item; ?></pre>
 	</body>
 </html>
 <?php endif; ?>

@@ -1,4 +1,4 @@
-<?php namespace d3;
+<?php namespace D3;
 
 	$battleNetUrlSafeId = getStr( "battleNetId" );
 	$heroId = getStr( "heroId" );
@@ -10,14 +10,13 @@
 	if ( isString($battleNetUrlSafeId) && isString($heroId) )
 	{
 		// Check if the cache has expired for the hero JSON.
-		$loadFromBattleNet = sessionTimeExpired( "heroTime", BATTLENET_CACHE_LIMIT, $cache, $timeElapsed );
-		$timeLeft = \d3\BATTLENET_CACHE_LIMIT - $timeElapsed;
-
+		$loadFromBattleNet = sessionTimeExpired( "heroTime", D3_CACHE_LIMIT, $cache, $timeElapsed );
+		$timeLeft = D3_CACHE_LIMIT - $timeElapsed;
 		$battleNetId = str_replace( '-', '#', $battleNetUrlSafeId );
-		$battleNetDqi = new BattleNetDqi( $battleNetId );
-		$sql = new Sql( DSN, DB_USER, DB_PSWD, USER_IP_ADDRESS );
-		$hero = new Hero( $heroId, $battleNetDqi, $sql, $loadFromBattleNet );
-		$heroModel = new HeroModel( $hero->json() );
+		$battleNetDqi = new BattleNet_Dqi( $battleNetId );
+		$sql = new BattleNet_Sql( DSN, DB_USER, DB_PSWD, USER_IP_ADDRESS );
+		$hero = new BattleNet_Hero( $heroId, $battleNetDqi, $sql, $loadFromBattleNet );
+		$heroModel = new Hero( $hero->json() );
 		$items = $hero->items();
 
 ?><!DOCTYPE html>
@@ -47,14 +46,24 @@
 			<div class="hero">
 				<?php foreach ( $items as $key => $item ):
 					$hash = $item[ 'tooltipParams' ];
-					$d3Item = new Item( str_replace("item/", '', $hash), "hash", $battleNetDqi, $sql );
-					$itemModel = new ItemModel( $d3Item->json() );
+					$d3Item = new BattleNet_Item( str_replace("item/", '', $hash), "hash", $battleNetDqi, $sql );
+					$itemModel = new Item( $d3Item->json() );
 					$heroItems[ $key ] = $itemModel;
 					$heroJson[ $key ] = substr( $itemModel->tooltipParams, 5 );
+					$heroModel->getItemModels();
 				?>
 					<a class="item-slot <?= $key . translateSlotName( $key ) ?>" href="/get-item.php?<?= "battleNetId=" . $battleNetUrlSafeId . '&' . str_replace( '/', "Hash=", $hash ) ?>&extra=0&showClose=1" data-slot="<?= $key ?>">
 						<div class="icon <?= $itemModel->displayColor; ?> inline-block top" data-hash="<?= substr( $hash, 5 ); ?>" data-type="<?= getItemSlot( $itemModel->type['id'] ) ?>">
 							<img class="gradient" src="/media/images/icons/items/large/<?= $item['icon'] ?>.png" alt="<?= $key ?>" />
+						<?php if ( isset($itemModel->gems) ): ?>
+							<?php foreach ( $itemModel->gems as $gem ): ?>
+							<?php if ( array_key_exists('item', $gem) && array_key_exists('icon', $gem['item']) ): ?>
+							<div class="socket inline-block">
+								<img class="gem" src="http://media.blizzard.com/d3/icons/items/small/<?= $gem[ 'item' ][ 'icon' ] ?>.png" />
+							</div>
+							<?php endif; ?>
+							<?php endforeach; ?>
+						<?php endif; ?>
 						</div>
 						<div class="id"><?= $item['id'] ?></div>
 						<!-- img src="http://media.blizzard.com/d3/icons/items/small/dye_10_demonhunter_male.png" / -->

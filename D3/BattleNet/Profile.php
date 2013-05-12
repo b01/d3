@@ -1,24 +1,20 @@
-<?php
+<?php namespace D3;
 /**
 * Get the users profile from Battle.Net and present it to the user; store it locally in a database behind the scenes.
 * The profile will only be updated after a few ours of retrieving it.
 *
 */
-namespace d3;
 
 /**
 * var $p_battleNetId string User BattleNet ID.
-* var $p_dqi object Data Query Interface.
-* var $p_sql object SQL.
+* var $pDqi object Data Query Interface.
+* var $pSql object SQL.
 */
-class Profile
+class BattleNet_Profile extends BattleNet_Model
 {
 	protected
 		$battleNetId,
 		$column,
-		$dqi,
-		$json,
-		$loadedFromBattleNet,
 		$profile,
 		$sql;
 
@@ -26,17 +22,12 @@ class Profile
 	/**
 	* Constructor
 	*/
-	public function __construct( $p_battleNetId, \d3\BattleNetDqi $p_dqi, \d3\Sql $p_sql )
+	public function __construct( $pBattleNetId, BattleNet_Dqi $pDqi, BattleNet_Sql $pSql, $pForceLoadFromBattleNet )
 	{
-		$this->battleNetId = $p_battleNetId;
 		$this->column = "battle_net_id";
-		$this->loadedFromBattleNet = FALSE;
-		$this->dqi = $p_dqi;
-		$this->json = NULL;
 		$this->profile = NULL;
-		$this->sql = $p_sql;
-		$this
-			->pullJson()
+		parent::__construct( $pBattleNetId, $pDqi, $pSql, $pForceLoadFromBattleNet );
+		$this->pullJson()
 			->processJson();
 	}
 
@@ -79,8 +70,11 @@ class Profile
 	*/
 	protected function pullJson()
 	{
-		// Attempt to get it from the local DB.
-		$this->pullJsonFromDb();
+		if ( !$this->forceLoadFromBattleNet )
+		{
+			// Attempt to get it from the local DB.
+			$this->pullJsonFromDb();
+		}
 		// If that fails, then try to get it from Battle.net.
 		if ( gettype($this->json) !== "string" )
 		{
@@ -166,9 +160,9 @@ class Profile
 	protected function save()
 	{
 		$utcTime = gmdate( "Y-m-d H:i:s" );
-		$query = sprintf( Sql::INSERT_PROFILE, DB_NAME );
+		$query = sprintf( BattleNet_Sql::INSERT_PROFILE, DB_NAME );
 		return $this->sql->save( $query, [
-			"battleNetId" => [ $this->battleNetId, \PDO::PARAM_STR ],
+			"battleNetId" => [ $this->key, \PDO::PARAM_STR ],
 			"json" => [ $this->json, \PDO::PARAM_STR ],
 			"ipAddress" => [ $this->sql->ipAddress(), \PDO::PARAM_STR ],
 			"lastUpdated" => [ $utcTime, \PDO::PARAM_STR ],

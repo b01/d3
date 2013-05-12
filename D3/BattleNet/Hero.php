@@ -1,47 +1,33 @@
-<?php
+<?php namespace D3;
 /**
 * Get the users item from Battle.Net and present it to the user; store it locally in a database behind the scenes.
 * The item will only be updated after a few ours of retrieving it.
 *
 */
-namespace d3;
 
 /**
 * var $p_heroId string User BattleNet ID.
-* var $p_dqi object Data Query Interface.
-* var $p_sql object SQL.
+* var $pDqi object Data Query Interface.
+* var $pSql object SQL.
 */
-class Hero
+class BattleNet_Hero extends BattleNet_Model
 {
 	protected
 		$characterClass,
-		$dqi,
-		$forceLoadFromBattleNet,
-		$heroId,
-		$info,
 		$items,
-		$json,
-		$loadedFromBattleNet,
-		$sql,
+		$key,
 		$stats;
 
 	/**
 	* Constructor
 	*/
-	public function __construct( $p_heroId, \d3\BattleNetDqi $p_dqi, \d3\Sql $p_sql, $p_forceLoadFromBattleNet )
+	public function __construct( $pKey, BattleNet_Dqi $pDqi, BattleNet_Sql $pSql, $pForceLoadFromBattleNet )
 	{
+		$this->key = $p_heroId;
 		$this->characterClass = NULL;
-		$this->dqi = $p_dqi;
-		$this->forceLoadFromBattleNet = $p_forceLoadFromBattleNet;
-		$this->heroId = $p_heroId;
-		$this->info = NULL;
 		$this->items = NULL;
-		$this->json = NULL;
-		$this->loadedFromBattleNet = FALSE;
-		$this->sql = $p_sql;
 		$this->stats = NULL;
-		$this->pullJson()
-			->processJson();
+		parent::__construct( $pKey, $pDqi, $pSql, $pForceLoadFromBattleNet );
 	}
 
 	/**
@@ -53,7 +39,7 @@ class Hero
 			$this->characterClass,
 			$this->dqi,
 			$this->forceLoadFromBattleNet,
-			$this->heroId,
+			$this->key,
 			$this->info,
 			$this->items,
 			$this->json,
@@ -71,6 +57,29 @@ class Hero
 	public function characterClass()
 	{
 		return $this->characterClass;
+	}
+
+	/**
+	* Get the items.
+	*
+	* @return array
+	*/
+	public function getItemModels()
+	{
+		if ( isArray($this->items) )
+		{
+			echo "<div class=\"debug\">";
+			foreach ( $this->items as $slot => $item )
+			{
+				echo "<div>{$item['tooltipParams']}</div>";
+				// $this->itemModels[ $slot ] = str_replace( "item/", '', $item[ 'tooltipParams' ] );
+				// $d3Item = new Item( str_replace("item/", '', $hash), "hash", $this->battleNetDqi, $this->sql );
+				// $this->itemModels[ $slot ] = new ItemModel( $d3Item->json() );
+			}
+			echo "</div>";
+		}
+
+		return $this->itemModels;
 	}
 
 	/**
@@ -127,7 +136,7 @@ class Hero
 	protected function pullJsonFromBattleNet()
 	{
 		// Request the hero from BattleNet.
-		$responseText = $this->dqi->getHero( $this->heroId );
+		$responseText = $this->dqi->getHero( $this->key );
 		$responseCode = $this->dqi->responseCode();
 		$this->url = $this->dqi->getUrl();
 		// Log the request.
@@ -146,7 +155,7 @@ class Hero
 	*/
 	protected function pullJsonFromDb()
 	{
-		$result = $this->sql->getHero( $this->heroId );
+		$result = $this->sql->getHero( $this->key );
 		if ( isArray($result) )
 		{
 			$this->json = $result[ 0 ][ 'json' ];
@@ -183,8 +192,8 @@ class Hero
 	protected function save()
 	{
 		$utcTime = gmdate( "Y-m-d H:i:s" );
-		return $this->sql->save( Sql::INSERT_HERO, [
-			"heroId" => [ $this->heroId, \PDO::PARAM_STR ],
+		return $this->sql->save( BattleNet_Sql::INSERT_HERO, [
+			"heroId" => [ $this->key, \PDO::PARAM_STR ],
 			"battleNetId" => [ $this->dqi->getBattleNetId(), \PDO::PARAM_STR ],
 			"json" => [ $this->json, \PDO::PARAM_STR ],
 			"ipAddress" => [ $this->sql->ipAddress(), \PDO::PARAM_STR ],

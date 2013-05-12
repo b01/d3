@@ -1,4 +1,4 @@
-<?php namespace d3;
+<?php namespace D3;
 
 	$which = getStr( 'which' );
 	$class = getStr( 'class' );
@@ -26,7 +26,7 @@
 			case 'skill-3':
 				$url = "class/{$class}/passive/";
 				break;
-			case 'build-item':
+			case 'item-forge-json':
 				$url = "item/{$class}/";
 				break;
 		}
@@ -42,7 +42,7 @@
 		}
 		else
 		{
-			$httpRequestor = new \HttpRequestor( $battleNetUrl . $url );
+			$httpRequestor = new HttpRequestor( $battleNetUrl . $url );
 			$responseText = $httpRequestor->send();
 			if ( $httpRequestor->responseCode() == 200 )
 			{

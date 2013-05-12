@@ -1,3 +1,16 @@
+List of changes as of 05/08/2013 09:11 PM
+-------------------------------
+	- WIP new formulas for damage.
+	- Refactored All classes to accomodate PSR-0.
+	- Made the autoloader more compliant with PSR-0.
+
+List of changes as of 05/05/2013 12:55 AM
+-------------------------------
+	- Added file save URL.
+    - Save item-forge JSON to a file.
+	- Added IE version checker so to exclude older versions of IE.
+	- Check and load an item-forge JSON from a local file, if exist, or build from Battle.net.
+
 List of changes as of 04/29/2013 05:25 PM
 -------------------------------
 	- Fix bug in item forge.
@@ -114,14 +127,14 @@ List of changes as of 02/14/2013 07:54 PM
 	- Updated item tool-tip styling.
 	- Removed get-skills-html page, replaced it with get-url page, now more restricted.
 	- Added select text on mouseup for hash and JSON copy boxes.
-	- Removed var dump statement from BattleNetDqi class.
+	- Removed var dump statement from BattleNet_Dqi class.
 	- Removed item-form HTML file.
 	- Uncheck extra when on hero page.
 
 List of changes as of 02/13/2013 08:25 PM
 -------------------------------
 	- Refactoring and various bug fixes in Profile class.
-	- Refactored Hero and BattleNetDqi classes.
+	- Refactored Hero and BattleNet_Dqi classes.
 	- Updated get-profile and get-hero pages.
 
 List of changes as of 02/12/2013 11:33 PM
@@ -237,7 +250,7 @@ List of changes as of 01/11/2013 12:00 AM
 	- Updated jQuery and added jQuery UI custom.
 	- Updated Hero styling.
 	- Reworked how site constants are loaded and set, removed use of JSON.
-	- Refactored BattleNetDqi class.
+	- Refactored BattleNet_Dqi class.
 	- Refactored cache methods in tool.
 
 List of changes as of 01/08/2013 09:53 PM
@@ -439,17 +452,17 @@ List of changes as of 10/31/2012 11:44 PM
 	- Added Hero class.
 	- Added hero.json to sample data.
 	- Added link to hero on the profile page.
-	- Added hero query to the BattleNetDqi class.
+	- Added hero query to the BattleNet_Dqi class.
 	- Added urls for item images to the hero page.
 
 List of changes as of 10/29/2012 12:31 PM
 -------------------------------
-	- Updated BattleNetDqi to take the battleNet ID on construct.
+	- Updated BattleNet_Dqi to take the battleNet ID on construct.
 	- Updated the readme.
 	- Added TODO item.
 	- Added insert statement to Sql class for items pull from battleNet web API.
 	- Updated get-item form to take a battle net ID as well.
-	- Fixed bug in BattleNetDqi class.
+	- Fixed bug in BattleNet_Dqi class.
 
 List of changes as of 10/29/2012 07:26 PM
 -------------------------------
@@ -490,8 +503,8 @@ List of changes as of 10/28/2012 08:53 AM
 
 List of changes as of 10/28/2012 08:53 AM
 -------------------------------
-	- Moved parseJson method from BattleNetDqi class to the Tool (utility) class.
-	- Cleaned up unused code from copy-n-paste job for the BattleNetDqi class.
+	- Moved parseJson method from BattleNet_Dqi class to the Tool (utility) class.
+	- Cleaned up unused code from copy-n-paste job for the BattleNet_Dqi class.
 	- Added method to the BatttleNetDqi class to return the http response code.
 	- Updated the Profiles class to check the http response before attempting to parse Profile JSON returned from battle.net.
 	- Added a real profile returned from battle.net to /sample-data/profile.json.
@@ -503,7 +516,7 @@ List of changes as of 10/27/2012 16:57
 -------------------------------
 	- Added configurable site settings.
 	- Added form to input BattleNet ID.
-	- Implemented BattleNetDqi, Profile, Tool classes to load profile from BattleNet (simply loads the JSON and decodes it to an array).
+	- Implemented BattleNet_Dqi, Profile, Tool classes to load profile from BattleNet (simply loads the JSON and decodes it to an array).
 	- Added jQuery and jQuery UI (just core, and widget) for furture use.
 
 List of changes as of 10/27/2012 11:12 AM
