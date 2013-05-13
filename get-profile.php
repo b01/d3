@@ -8,13 +8,16 @@
 
 	if ( isString($battleNetId) )
 	{
+		$sessionCacheInfo = getSessionExpireInfo( "profileTime", $cache );
+
 		$battleNetDqi = new BattleNet_Dqi( $battleNetId );
 		$sql = new BattleNet_Sql( DSN, DB_USER, DB_PSWD, USER_IP_ADDRESS );
-
-		$loadFromBattleNet = sessionTimeExpired( "profileTime", D3_CACHE_LIMIT, $cache, $timeElapsed );
-		$timeLeft = D3_CACHE_LIMIT - $timeElapsed;
-
-		$battleNetProfile = new BattleNet_Profile( $battleNetId, $battleNetDqi, $sql, $loadFromBattleNet );
+		$battleNetProfile = new BattleNet_Profile(
+			$battleNetId,
+			$battleNetDqi,
+			$sql,
+			$sessionCacheInfo['loadFromBattleNet']
+		);
 		$heroes = $battleNetProfile->heroes();
 		$battleNetUrlSafeId = str_replace( '#', '-', $battleNetId );
 		$heroUrl = "/get-hero.php?battleNetId={$battleNetUrlSafeId}&heroId=";
@@ -27,7 +30,7 @@
 		<link rel="stylesheet" type="text/css" href="/css/profile.css" />
 	</head>
 	<body>
-		<div class=\"time-elapsed\">Seconds left till cache expires <?= $timeLeft ?></div>
+		<div class=\"time-elapsed\"><?= displaySessionTimer( $sessionCacheInfo['timeLeft'] ); ?></div>
 		<?php if ( isArray($heroes) ): ?>
 		<div class="heroes">
 			<?php foreach ( $heroes as $hero ): ?>
@@ -37,9 +40,7 @@
 			<?php endforeach; ?>
 		</div>
 		<?php else: ?>
-		<p>Hmmm...You seem to have no hero profiles. Since that is very unlikey, this app is probably broken in some
-		way Please try again later.
-		</p>
+		<p>Hmmm...You seem to have no hero profiles. Since that is very unlikey, this app is probably broken in some way Please try again later.</p>
 	<?php endif; ?>
 	<br />
 	<a href="/">Change BattleNet ID</a>

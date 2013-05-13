@@ -19,7 +19,6 @@
 			require_once( $classFilePath );
 			return;
 		}
-		var_dump( $classFilePath );
 	}
 
 	/**
@@ -450,6 +449,39 @@
 			$_SESSION[ $p_key ] = time();
 		}
 		return $timeExpired;
+	}
+
+	/**
+	* Get info for a session expiration variable (a variable soley used as a timer/count-down).
+	*
+	* @param $pSessionVarName string Session time variable.
+	* @param $p_duration int Amount of time to check against.
+	* @return bool
+	*/
+	function getSessionExpireInfo( $pSessionVarName, $pExpireNow = FALSE )
+	{
+		$timeElapsed = 0;
+		$loadFromBattleNet = sessionTimeExpired( $pSessionVarName, \D3\CACHE_LIMIT, $pExpireNow, $timeElapsed );
+		$timeLeft = \D3\CACHE_LIMIT - $timeElapsed;
+		return [
+			'loadFromBattleNet' => $loadFromBattleNet,
+			'timeLeft' => $timeLeft,
+			'message' => displaySessionTimer( $timeLeft )
+		];
+	}
+
+	/**
+	* Display a time left.
+
+	* In an effort to unify the format of time left on a session expiration variable's display.
+	*
+	* @param $pTimeLeft int Amount of time left on a session expiration variable.
+	* @return string
+	*/
+	function displaySessionTimer( $pTimeLeft )
+	{
+		return ( is_numeric($pTimeLeft) && $pTimeLeft > 0 ) ?
+			'Seconds left till cache expires ' . $pTimeLeft : 'Reloaded from Battle.Net';
 	}
 
 	/**

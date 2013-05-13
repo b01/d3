@@ -1,3 +1,11 @@
+List of changes as of 05/12/2013 10:29 PM
+-------------------------------
+	- Added a few Tool methods: displaySessionTimer and getSessionExpireInfo.
+	- Changed the name of the cache constant.
+	- Updated README
+	- Styled gems on hero page.
+	- Added tool-tip to skills on hero page.
+
 List of changes as of 05/08/2013 09:11 PM
 -------------------------------
 	- WIP new formulas for damage.

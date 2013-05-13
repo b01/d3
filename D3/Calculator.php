@@ -180,6 +180,10 @@ class Calculator
 		echo "<thead><tr><th>Item</th><th>minimum</th><th>maximum</th></tr></thead>";
 		foreach ( $this->items as $name => $item )
 		{
+			if ($name === 'rightFinger')
+			{
+				// print_r($item);
+			}
 			$this->tallyItemDamage( $name, $item );
 		}
 		echo "</table>";
@@ -215,8 +219,13 @@ class Calculator
 			{
 				if ( strpos($key, "Damage_") > -1 )
 				{
-					if ( strpos($key, "_Bonus") )
+					echo "<div>{$key} = {$value['min']}</div>";
+					if ( strpos($key, "_Reduction") )
 					{
+					}
+					else if ( strpos($key, "_Percent") )
+					{
+						// $minDamage += $value[ 'min' ];
 					}
 					else if ( strpos($key, "_Min#") )
 					{
@@ -480,7 +489,6 @@ class Calculator
 		if ( isset($this->items['mainHand']) )
 		{
 			$this->dualWield = $this->items[ 'mainHand' ]->type[ 'twoHanded' ];
-			var_dump( $this->dualWield );
 		}
 
 		echo '<div class="debug-info">';

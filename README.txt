@@ -1,11 +1,14 @@
 Yes this is yet another Diablo 3 damage calculator. I am currently not satisfied with the existing D3 calculators out there as of 10/27/2012. Even though I feel that I'm almost done with the game, I feel even stronger the need to make this web-app; so it can help make it easier to select new weapons and armor. Plus I got REALLY excited about being able to access raw Diablo 3 data through an official BatttleNet Web API. Since I have a lot of experience with web development and coding around APIs, this should be a breeze for me. So I feel I must do this, tis my duty. :)
 
-Your battle.net ID is required since request to Battle.net web API are limited per day. If the system works, all requests should be logged, and some rules put in to place, will minimize abuse.
-
+UPDATE (05/12/2013): While using Diable 3's API is simple, it is not a breeze to create a robust damage calculator by any means. The API leaves a lot to be desired. I feel that 30% of the functionality my Application provides what because I went the extra mile to implment some (what I feel) missing features from the API. So what started to be a few week-ends project has turned into a dedicated off/on project with no end in sight.
 
 Requirements:
+- Battle.Net ID with Diablo 3 characters.
+	note: Your battle.net ID is required since request to Battle.net web API are limited per day. If the system works, all requests should be logged, and some rules put in to place, will minimize abuse.
 - PHP 5.4.x
-- How to setup use of PHP's user.ini
+- PHP user.ini
+- For Apache ".htaccess" for IIS "IIRF" installed, for URL rewriting.
+- writeable media folder
 - MySQL 5.x and a MySQL database account with select, insert, and update permissions.
 	note: It is required to set the value DSN in the settings file.
 
@@ -18,7 +21,7 @@ Setup Instructions:
 
 STEP 1:
 -----------------
-	You will need to rename "settings.php.txt" to "setttings.php", the sites bootstrap will pick it up.
+	You will need to rename "D3/settings.php.txt" to "D3/setttings.php", the sites bootstrap will pick it up.
 
 	After you remove the .txt extension from the settings file, you will also need to make following required changes:
 
