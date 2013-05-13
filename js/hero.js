@@ -67,13 +67,16 @@ function updateCalculations()
 	});
 }
 
-function centerGems()
+function centerGems( pInterval )
 {
-	$( ".sockets" ).each(function ()
-	{
-		var $this = $( this );
-		$this.position({ of: $this.parent() });
-	});
+	if ( document.readyState === "complete" ) {
+		clearInterval( pInterval );
+		$( ".sockets" ).each(function ()
+		{
+			var $this = $( this );
+			$this.position({ of: $this.parent() });
+		});
+	}
 }
 
 jQuery( document ).ready(function ($)
@@ -119,10 +122,12 @@ jQuery( document ).ready(function ($)
 		$( this ).select();
 	});
 
-	setTimeout(function ()
+	var interval;
+	// setTimeout(function ()
+	interval = setInterval(function ()
 	{
-		centerGems();
-	}, 50 );
+		centerGems( interval );
+	}, 150 );
 });
 
 $.ajax( "/get-url.php?which=form", {

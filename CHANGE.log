@@ -1,3 +1,7 @@
+List of changes as of 05/13/2013 06:59 PM
+-------------------------------
+	- Bug fix for positioning gems on hero page.
+
 List of changes as of 05/12/2013 10:29 PM
 -------------------------------
 	- Added a few Tool methods: displaySessionTimer and getSessionExpireInfo.
