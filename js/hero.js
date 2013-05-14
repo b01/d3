@@ -67,25 +67,30 @@ function updateCalculations()
 	});
 }
 
-function centerGems( pInterval )
+function centerGems()
 {
-	if ( document.readyState === "complete" ) {
-		clearInterval( pInterval );
-		$( ".sockets" ).each(function ()
-		{
-			var $this = $( this );
-			$this.position({ of: $this.parent() });
-		});
-	}
+	$( ".sockets" ).each(function ()
+	{
+		var $this = $( this );
+		$this.position({ of: $this.parent() });
+	});
 }
 
-jQuery( document ).ready(function ($)
+// Wait until document.readySate status is complete.
+jQuery( window ).load(function ()
 {
+	centerGems();
+	getItemForm();
 	// Load an items details via HTTP request.
 	$( ".item-slot" ).each(function ()
 	{
 		$( this ).on( "click.d3", clickItemLink );
 	});
+});
+
+// Run code interactively.
+jQuery( document ).ready(function ($)
+{
 	// Toggle stat details.
 	$( ".list" ).toggleList();
 
@@ -121,45 +126,45 @@ jQuery( document ).ready(function ($)
 	{
 		$( this ).select();
 	});
-
-	var interval;
-	// setTimeout(function ()
-	interval = setInterval(function ()
-	{
-		centerGems( interval );
-	}, 150 );
 });
 
-$.ajax( "/get-url.php?which=form", {
-	"dataType": "html",
-	"statusCode": {
-		200: function ( p_data )
-		{
-			var $form = $( $.parseHTML(p_data) ),
-				battleNetId = window.battleNetId;
-			if ( $form.length > 0 )
+/**
+* Get the item form.
+*/
+function getItemForm()
+{
+	$.ajax( "/get-url.php?which=form", {
+		"dataType": "html",
+		"statusCode": {
+			200: function ( p_data )
 			{
-				$form.find( "input[name='battleNetId']" ).val( battleNetId );
-				$form.find( "input[name='battleNetId']" ).attr( "readonly", "readonly" );
-				$form.find( "input[name='extra']" ).removeAttr( "checked" );
-				$form.ajaxForm({
-					"success": function ( p_responseText, statusText )
-					{
-						var $itemToolTip = [],
-							$itemToolTip = $( $.parseHTML(p_responseText) );
-						if ( $itemToolTip.find( ".icon" ).length > 0 )
+				var $form = $( $.parseHTML(p_data) ),
+					battleNetId = window.battleNetId;
+				if ( $form.length > 0 )
+				{
+					$form.find( "input[name='battleNetId']" ).val( battleNetId );
+					$form.find( "input[name='battleNetId']" ).attr( "readonly", "readonly" );
+					$form.find( "input[name='extra']" ).removeAttr( "checked" );
+					// Turn the form in an Ajax posting form.
+					$form.ajaxForm({
+						"success": function ( p_responseText, statusText )
 						{
-							$( "#item-lookup-result" ).html( $itemToolTip );
-							$itemToolTip.find( ".icon" ).draggable({ "revert": "invalid", "helper": "clone" });
+							var $itemToolTip = [],
+								$itemToolTip = $( $.parseHTML(p_responseText) );
+							if ( $itemToolTip.find( ".icon" ).length > 0 )
+							{
+								$( "#item-lookup-result" ).html( $itemToolTip );
+								$itemToolTip.find( ".icon" ).draggable({ "revert": "invalid", "helper": "clone" });
+							}
+							else
+							{
+								$( "#item-lookup-result" ).text( "No item found" );
+							}
 						}
-						else
-						{
-							$( "#item-lookup-result" ).text( "No item found" );
-						}
-					}
-				});
-				$( "#item-lookup" ).append( $form );
+					});
+					$( "#item-lookup" ).append( $form );
+				}
 			}
 		}
-	}
-});
+	});
+}
