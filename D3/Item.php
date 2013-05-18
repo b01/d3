@@ -53,17 +53,17 @@ class Item extends Model
 	/**
 	* Constructor
 	*/
-	public function __construct( $p_json )
+	public function __construct( $pJson )
 	{
-		parent::__construct( $p_json );
+		parent::__construct( $pJson );
 
-		// if ( isset($this->attacksPerSecond) )
 		if ( isWeapon($this) )
 		{
 			$this->calculateDamage();
 		}
 		$this->getEffects();
 
+		$this->hash = substr( $this->tooltipParams, 5 );
 	}
 
 	/** BEGIN GETTER/SETTER **/
@@ -80,6 +80,15 @@ class Item extends Model
 	public function effects()
 	{
 		return $this->effects;
+	}
+
+	/**
+	* Get web HASH.
+	* @return {string|null}
+	*/
+	public function hash()
+	{
+		return $this->hash;
 	}
 
 	/**

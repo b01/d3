@@ -121,15 +121,19 @@ body {
 	margin-top: 0;
 	text-shadow: 1px 1px 0 rgb(0, 0, 0)
 }
-.list.stats {
-	overflow: hidden;
-	width: 375px
+
+.stats {
+	overflow: hidden
 }
-.list .stat {
+.stats .stat {
 	padding-bottom: 1em;
 }
-.list .stat .nuetral {
+.stats .stat .nuetral {
 	color: rgb(220, 220, 0);
 	font-size: 1.2em;
 	font-weight: bold
+}
+
+.calculated {
+	width: 375px
 }

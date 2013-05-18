@@ -3,10 +3,10 @@
 	<head>
 		<title>Build an Item</title>
 		<meta charset="utf-8" />
-		<link rel="stylesheet" rel="stylesheet" href="/css/d3.css" />
+		<link type="text/css" rel="stylesheet" href="/css/d3.css" />
 		<link type="text/css" rel="stylesheet" href="/css/site.css" />
-		<link rel="stylesheet" rel="stylesheet" href="/css/tooltips.css" />
-		<link rel="stylesheet" rel="stylesheet" href="/css/item.css" />
+		<link type="text/css" rel="stylesheet" href="/css/tooltips.css" />
+		<link type="text/css" rel="stylesheet" href="/css/item.css" />
 		<script type="text/javascript" src="/js/ie-version-check.js"></script>
 		<script type="text/javascript" src="/js/jquery-2.0.0.min.js"></script>
 		<script type="text/javascript" src="/js/jquery-ui-1.10.2.custom.min.js"></script>

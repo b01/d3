@@ -56,7 +56,7 @@
 					<a class="item-slot <?= $key . translateSlotName( $key ) ?>" href="/get-item.php?<?= "battleNetId=" . $battleNetUrlSafeId . '&' . str_replace( '/', "Hash=", $hash ) ?>&extra=0&showClose=1" data-slot="<?= $key ?>">
 						<div class="icon <?= $item->displayColor; ?> inline-block top" data-hash="<?= substr( $hash, 5 ); ?>" data-type="<?= getItemSlot( $item->type['id'] ) ?>">
 							<img class="gradient" src="/media/images/icons/items/large/<?= $itemData['icon'] ?>.png" alt="<?= $key ?>" />
-							<?php require( 'php/gems.php' ); ?>
+							<?php require( 'templates/gems.php' ); ?>
 						</div>
 						<div class="id"><?= $itemData['id'] ?></div>
 						<!-- img src="http://media.blizzard.com/d3/icons/items/small/dye_10_demonhunter_male.png" / -->
@@ -89,7 +89,7 @@
 				<div id="item-lookup-result" class="inline-block"></div>
 				<div id="item-place-holder" class="inline-block"></div>
 			</div><br/>
-			<ul class="list stats inline-block">
+			<ul class="calculated list stats inline-block">
 				<?php  $calculator = new Calculator( $heroItems, $hero ); ?>
 				<li class="stat">
 					<span class="label"><span class="toggle inline-block">-</span> Attack Speed</span>: <span class="nuetral"><?= $calculator->attackSpeed(); ?></span>
@@ -135,7 +135,7 @@
 					</ul>
 				</li>
 			</ul>
-			<ul class="list stats inline-block">
+			<ul class="calculated list stats inline-block">
 				<li class="stat">
 					<span class="label"><span class="toggle inline-block">+</span> Battle.Net Calculated Stats</span>:
 					<ul class="expandable">
@@ -155,5 +155,6 @@
 		<?php else: ?>
 			<p>This hero does NOT have any items equipped.</p>
 		<?php endif; ?>
+		<div id="ajaxed-items"></div>
 	</body>
 </html><?php } ?>

@@ -1,3 +1,12 @@
+List of changes as of 05/18/2013 10:00 AM
+-------------------------------
+	- Renamed "php" directory to "templates"
+	- Fixed HTML mark-up issues on item-forge page.
+	- Refactored code from get-item to a new item template file.
+	- Fixed style issue with list on get-hero page.
+	- Implmented simple caching of items on hero page.
+	- Made item-tool-tips draggable on hero page.
+
 List of changes as of 05/13/2013 08:13 PM
 -------------------------------
 	- Improved stability of positioning gems and setting up item for on hero page.

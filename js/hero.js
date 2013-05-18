@@ -1,44 +1,70 @@
 
-function clickItemLink( p_event )
+/**
+* Show an item Tool-top.
+* @return bool
+*/
+function getItemTooltip( pEvent )
 {
-	var $this = $( this );
-	p_event.preventDefault();
-	$.ajax({
-		"data": this.search.substr( 1 ),
-		"dataType": "html",
-		"success": function ( p_data )
-		{
-			var $data = $( $.parseHTML($.trim(p_data)) );
-			// Style a few things.
-			$( "body" ).append( $data );
-			$data.css({
-				"position": "absolute",
-				"left": p_event.pageX + "px",
-				"top": p_event.pageY + "px",
-				"opacity": 1
-			});
-			// Add close button functionality.
-			$data.find( ".close" ).on( "click.d3", {"$toolTip": $data}, function (p_event)
+	var $this = $( this ),
+		uid = pEvent.data.uid,
+		selector = "[data-hash='" + uid + "'], [data-dbid='" + uid + "']",
+		$item;
+
+	pEvent.preventDefault();
+	// See if item has already been loaded.
+	$item = $( "#ajaxed-items" ).find( selector );
+	if ( $item.length > 0 )
+	{
+		// find the parent tool-tip of the item and show it.
+		showItemTooltip( $item.closest(".item-tool-tip"), pEvent );
+	}
+	// Get remotely.
+	else
+	{
+		$.ajax({
+			"data": this.search.substr( 1 ),
+			"dataType": "html",
+			"type": "post",
+			"url": $this.attr( "href" )
+		}).done(function ( pData )
 			{
-				p_event.data.$toolTip.fadeOut();
+				var $item = $( $.parseHTML($.trim(pData)) );
+				// Style a few things.
+				$( "#ajaxed-items" ).append( $item );
+				// Add close button functionality.
+				$item.find( ".close" ).on( "click.d3", {"$toolTip": $item}, function (pEvent)
+				{
+					pEvent.data.$toolTip.fadeOut();
+				});
+				// Add list toggle functionality.
+				$item.find( ".list" ).toggleList();
+				$item.draggable();
+				showItemTooltip( $item, pEvent );
 			});
-			// Add list toggle functionality.
-			$data.find( ".list" ).toggleList();
-		},
-		"type": "post",
-		"url": $this.attr( "href" )
-	});
+	}
+
+	return false;
 }
 
-function showItemTooltip( p_data )
+function showItemTooltip( $pItem, pEvent )
 {
-	$( "body" ).append( p_data );
+	if ( typeof $pItem === "object" )
+	{
+		// Show the item.
+		$pItem.css({
+			"display": "block",
+			"left": pEvent.pageX + "px",
+			"position": "absolute",
+			"opacity": 1,
+			"top": pEvent.pageY + "px"
+		});
+	}
 }
 
-function postTo( p_url, p_data, p_function )
+function postTo( p_url, pData, p_function )
 {
 	$.ajax({
-		"data": p_data,
+		"data": pData,
 		"dataType": "html",
 		"success": p_function,
 		"type": "post",
@@ -46,9 +72,9 @@ function postTo( p_url, p_data, p_function )
 	});
 }
 
-function updateReplaced( p_data )
+function updateReplaced( pData )
 {
-	$( "#item-place-holder" ).html( p_data );
+	$( "#item-place-holder" ).html( pData );
 }
 
 function updateCalculations()
@@ -56,9 +82,9 @@ function updateCalculations()
 	$.ajax({
 		"data": "battleNetId=" + window[ "battleNetId" ] + "&heroClass=" + window["heroClass"] + "&json=" + JSON.stringify( window["heroJson"] ),
 		"dataType": "html",
-		"success": function ( p_data )
+		"success": function ( pData )
 		{
-			var $newStats = $( $.parseHTML(p_data) );
+			var $newStats = $( $.parseHTML(pData) );
 			$newStats.statsToggle();
 			$( ".list.stats" ).replaceWith( $newStats );
 		},
@@ -84,7 +110,9 @@ jQuery( window ).load(function ()
 	// Load an items details via HTTP request.
 	$( ".item-slot" ).each(function ()
 	{
-		$( this ).on( "click.d3", clickItemLink );
+		var $this = $( this ), $icon = $this.find( ".icon" ),
+			uid = $icon.data( "hash" ) || $icon.data( "dbid" );
+		$( this ).on( "click.d3", {"uid": uid}, getItemTooltip );
 	});
 });
 
@@ -102,7 +130,7 @@ jQuery( document ).ready(function ($)
 			var slot = p_draggable.data( "type" );
 			return $( this ).hasClass( slot );
 		},
-		"drop": function ( p_event, p_ui )
+		"drop": function ( pEvent, p_ui )
 		{
 			var $this = $( this ),
 				oldHash = $this.attr( "href" ),
@@ -136,9 +164,9 @@ function getItemForm()
 	$.ajax( "/get-url.php?which=form", {
 		"dataType": "html",
 		"statusCode": {
-			200: function ( p_data )
+			200: function ( pData )
 			{
-				var $form = $( $.parseHTML(p_data) ),
+				var $form = $( $.parseHTML(pData) ),
 					battleNetId = window.battleNetId;
 				if ( $form.length > 0 )
 				{

@@ -94,7 +94,7 @@
 
 	/**
 	* Parse number in string and add HTML tags around it.
-	* @param $p_key CSS class to add to the element.
+	* @param $pKey CSS class to add to the element.
 	* @return string
 	*/
 	function formatAttribute( $p_attribute, $p_class = NULL )
@@ -106,7 +106,7 @@
 
 	/**
 	* Parse number in string and add HTML tags around it.
-	* @param $p_key CSS class to add to the element.
+	* @param $pKey CSS class to add to the element.
 	* @return string
 	*/
 	function tidyHtml( $p_html, $config = [] )
@@ -231,48 +231,48 @@
 
 	/**
 	* Get a value from the global POST array as a string, even if it is a numercal value.
-	* @param $p_key string Variable to retrieve from the post array.
+	* @param $pKey string Variable to retrieve from the post array.
 	* @return string
 	*/
-	function getPostStr( $p_key )
+	function getPostStr( $pKey, $pDefault = NULL )
 	{
-		$returnValue = NULL;
+		$returnValue = $pDefault;
 
-		if ( array_key_exists($p_key, $_POST) )
+		if ( array_key_exists($pKey, $_POST) )
 		{
-			$returnValue = ( string )$_POST[ $p_key ];
+			$returnValue = ( string )$_POST[ $pKey ];
 		}
 		return $returnValue;
 	}
 
 	/**
 	* Get a value from the global POST array as a boolean.
-	* @param $p_key string Variable to retrieve from the post array.
+	* @param $pKey string Variable to retrieve from the post array.
 	* @return string
 	*/
-	function getPostBool( $p_key )
+	function getPostBool( $pKey )
 	{
 		$returnValue = FALSE;
 
-		if ( array_key_exists($p_key, $_POST) )
+		if ( array_key_exists($pKey, $_POST) )
 		{
-			$returnValue = ( bool )$_POST[ $p_key ];
+			$returnValue = ( bool )$_POST[ $pKey ];
 		}
 		return $returnValue;
 	}
 
 	/**
 	* Get a value from the global GET array as a string, even if it is a numercal value.
-	* @param $p_key string Variable to retrieve from the post array.
+	* @param $pKey string Variable to retrieve from the post array.
 	* @return string
 	*/
-	function getStr( $p_key )
+	function getStr( $pKey )
 	{
 		$returnValue = NULL;
 
-		if ( array_key_exists($p_key, $_GET) )
+		if ( array_key_exists($pKey, $_GET) )
 		{
-			$returnValue = ( string )$_GET[ $p_key ];
+			$returnValue = ( string )$_GET[ $pKey ];
 		}
 		return $returnValue;
 	}
@@ -427,16 +427,16 @@
 	/**
 	* Determine if time in a session has lapsed.
 	*
-	* @param $p_key string Session time variable.
+	* @param $pKey string Session time variable.
 	* @param $p_duration int Amount of time to check against.
 	* @return bool
 	*/
-	function sessionTimeExpired( $p_key, $p_duration, $p_setToExpireNow = FALSE, &$pTimeElapsed )
+	function sessionTimeExpired( $pKey, $p_duration, $p_setToExpireNow = FALSE, &$pTimeElapsed )
 	{
 		$timeExpired = TRUE;
-		if ( array_key_exists( $p_key, $_SESSION) && !$p_setToExpireNow )
+		if ( array_key_exists( $pKey, $_SESSION) && !$p_setToExpireNow )
 		{
-			$timeElapsed = timeElapsed( $_SESSION[$p_key] );
+			$timeElapsed = timeElapsed( $_SESSION[$pKey] );
 			if ( is_numeric($timeElapsed) )
 			{
 				$timeExpired = $timeElapsed > $p_duration;
@@ -446,7 +446,7 @@
 		// if the session key has not been set, or it expired, then (re)set it to now.
 		if ( $timeExpired )
 		{
-			$_SESSION[ $p_key ] = time();
+			$_SESSION[ $pKey ] = time();
 		}
 		return $timeExpired;
 	}
