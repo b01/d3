@@ -1,3 +1,8 @@
+List of changes as of 05/22/2013 11:37 PM
+-------------------------------
+	- Updated item forge.
+	- Refactored battle.net url JavaScript item parser.
+
 List of changes as of 05/18/2013 10:00 AM
 -------------------------------
 	- Renamed "php" directory to "templates"

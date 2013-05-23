@@ -25,12 +25,77 @@ function processItemForgeJson( pItems, pElement )
 	var item, items, hashKey, $select;
 	items = pItems || [];
 	$select = $( "<select><option>select one</option></select>" );
+
 	for ( hashKey in items )
 	{
 		item = items[ hashKey ];
-		$select.append( "<option>" + item.name + "</option>" );
+		$option = $( "<option>" + item.name + "</option>" );
+		$option.data( "item", item );
+		$option.on( "click.d3", function () { console.log(this); } );
+		$select.append( $option );
 	}
+	$select.on( "change.d3", buildItemToolTip );
 	$( pElement ).append( $select );
+}
+
+/**
+* Build item tool-tip
+*
+*/
+function buildItemToolTip()
+{
+	var $toolTip = $( ".item-tool-tip" ),
+		effectTpl = $( "#templates #effect" ).html().trim(), $effect,
+		item = $( this ).find( "option:selected" ).data( "item" ),
+		i;
+	// console.log( item );
+	if ( typeof item === "object" )
+	{
+		$armor = $toolTip.find( ".armor" );
+		$weapon = $toolTip.find( ".weapon" );
+		// item.icon;
+		// Read-only
+		$toolTip.find( ".name" ).text( item.name );
+		$toolTip.find( "[name='class']" ).val( item.class );
+		$toolTip.find( ".slot" ).text( item.slot );
+		$toolTip.find( ".level input" ).val( item.level );
+		$toolTip.find( ".required-level input" ).val( item.requiredLevel );
+		if ( item.type === "armor" )
+		{
+			$armor.removeClass( "hide" );
+			$weapon.addClass( "hide" );
+			// $toolTip.find( "[name='armor']" ).val( item[item.type] );
+			$toolTip.find( "[name='" + item.type + "']" ).val( item.typeValue );
+		}
+		// Generate the effects
+		if ( typeof item.effects === "object" && item.effects.length > 0 )
+		{
+			$effectList = $toolTip.find( ".effects" );
+			for ( i = 0; i < item.effects.length; i++ )
+			{
+				$effect = $( effectTpl );
+				effect = item.effects[ i ];
+				// $effect.find( ".label" ).text( effect );
+				// $effect.find( "input" ).attr( "name", "rawAttribtes[" + effect.name + "]" );
+				$effect.find( "input" ).val( effect );
+				$effectList.append( $effect );
+			}
+		}
+		$toolTip.removeClass( "hide" );
+		generatePsuedoBattleNetItemJson( item );
+	}
+}
+
+/**
+* Generate JSON similar to what Battle.Net would return for an Item.
+*
+* This will not have a web-hash, among other things.
+*
+* @param object pItem Item data used to generate the JSON.
+* @return string
+*/
+function generatePsuedoBattleNetItemJson( pItem )
+{
 }
 
 /**
@@ -45,7 +110,8 @@ function processItemForgeHtml( pData, pFlat )
 
 	if ( $items.length > 0 )
 	{
-		jsonString = pFlat ? parseItems( $items ) : parseItemsFlat( $items );
+		// jsonString = pFlat ? parseItems( $items ) : parseItemsFlat( $items );
+		jsonString = newParseItems( $items, pFlat );
 	}
 
 	return jsonString;
@@ -63,7 +129,7 @@ jQuery( document ).ready(function ($)
 		return $;
 	}
 
-	$selects = $( ".subs select" ), $form = $( "#item-forge" );
+	$selects = $( ".subs select" ), $form = $( "#item-forge" ), $itemSelectors = $( "#ARMOR, #WEAPONS" );
 
 	$( "select[name='type']" ).on( "change.d3", function ()
 	{
@@ -84,32 +150,30 @@ jQuery( document ).ready(function ($)
 		});
 	});
 
-	if ( $form.length > 0 )
+	// $form.on( "submit.d3", function (pEvent)
+	$itemSelectors.on( "change.d3", function (pEvent)
 	{
-		$form.on( "submit.d3", function (pEvent)
-		{
-			var $this = $( this ), url, $pre, itemType, itemClass;
-			pEvent.preventDefault();
-			itemType = $this.find( "[name='type']" ).val();
-			itemClass = $this.find( "[name='class']" ).val();
-			$pre = $( ".pre" );
-			url = "media/data-files/" + itemType + '-' + itemClass + ".json";
-			$.ajax( url, {
-				"dataType": "json"
-			}).done(function (pData)
-				{
-					processItemForgeJson( pData, $pre );
+		var $this = $form, url, $pre, itemType, itemClass;
+		pEvent.preventDefault();
+		itemType = $this.find( "[name='type']" ).val();
+		itemClass = $this.find( "[name='class']" ).val();
+		$pre = $( ".pre" );
+		url = "media/data-files/" + itemType + '-' + itemClass + ".json";
+		$.ajax( url, {
+			"dataType": "json"
+		}).done(function (pData)
+			{
+				processItemForgeJson( pData, $pre );
 
-				}).fail(function ()
+			}).fail(function ()
+			{
+				url = "/get-url.php?which=item-forge-json&type=" + itemType + "&class=" + itemClass;
+				getBattleNetPage( url, $pre, function (pData)
 				{
-					url = "/get-url.php?which=item-forge-json&type=" + itemType + "&class=" + itemClass;
-					getBattleNetPage( url, $pre, function (pData)
-					{
-						getItemsHtml.call( $pre, pData, {"itemType": itemType, "itemClass": itemClass});
-					});
+					getItemsHtml.call( $pre, pData, {"itemType": itemType, "itemClass": itemClass});
 				});
-		});
-	}
+			});
+	});
 
 	if ( typeof itemType === "string" && itemType.length > 0 && itemClass.length > 0 )
 	{

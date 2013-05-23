@@ -27,6 +27,7 @@
 			<fieldset class="subs">
 				<label for="class">Item</label>
 				<select id="ARMOR" name="class">
+					<option>select one</option>
 					<optgroup label="head">
 						<option value="helm">Helms</option>
 						<option value="spirit-stone">Spirit Stones ( Monk )</option>
@@ -115,12 +116,12 @@
 					</optgroup>
 				</select -->
 			</fieldset>
-			<input type="submit" value="submit" />
+			<noscript>
+				<input type="submit" value="submit" />
+			</noscript>
 		</form>
 		<pre class="pre"></pre>
-
-
-		<div class="item-tool-tip item hide">
+		<!-- div class="item-tool-tip item hide">
 
 			<h3 class="header smaller {{displayColor}}">{{itemName}}</h3>
 
@@ -189,6 +190,40 @@
 			{{ if ( isset($itemModel->flavorText) ): }}
 			<div class="flavor">{{ $itemModel->flavorText; }}</div>
 			{{ endif; }}
+		</div -->
+		<div class="item-tool-tip item hide">
+			<h3 class="name">{{name}}</h3>
+			<div class="effect-bg">
+				<div class="icon {{displayColor}} inline-block top" data-hash="" data-dbid="" data-type="{{slot}}">
+					<img class="gradient icon-item-inner icon-item-default"
+						src="//media.blizzard.com/d3/icons/items/large/shoulders_204_demonhunter_male.png"
+						alt="{{name}}" />
+				</div>
+				<div class="inline-block top">
+					<div class="type-name inline-block class {{displayColor}}">
+						<input readonly="readonly" name="class" value="" />
+					</div>
+					<div class="type-name inline-block slot">{{slot}}</div>
+					<div class="armor">
+						<div class="big value armor"><input type="text" name="armor" value="{{armor-points}}" /></div>
+						<div class="class">Armor</div>
+					</div>
+					<div class="weapon">
+						<div class="big value weapn">{{hit-points}}</div>
+						<div class="damage"><span class="value"></span> Damage</div>
+						<div class="small"><span class="value"></span> Attacks per Second</div>
+					</div>
+				</div>
+			</div>
+			<ul class="effects properties">
+			</ul>
+			<div class="level"><span class="label">Item Level</span><input name="level" type="text" readonly="readonly" value="{{level}}" /></div>
+			<div class="required-level">
+				<span class="label">Requires level</span><input name="required-level" type="text" readonly="readonly" value="{{required-level}}" /></span>
+			</div>
+		</div>
+		<div id="templates" class="hide">
+			<code id="effect"><li class="effect"><input type="text"" readonly="readonly" value="" /></li></code>
 		</div>
 	</body>
 </html>
