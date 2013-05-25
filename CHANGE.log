@@ -1,3 +1,11 @@
+List of changes as of 05/24/2013 08:48 PM
+-------------------------------
+	- Added parameter for passing in header array to HttpRequest object.
+	- Removed call to tidy in get-url was removing inline style tag from HTML.
+	- Added tool-tip.css file for refactoring item tool-tip styles.
+	- Added icon for the item in the item forge.
+	- Added background effect to the item.
+
 List of changes as of 05/22/2013 11:37 PM
 -------------------------------
 	- Updated item forge.

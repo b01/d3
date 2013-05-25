@@ -16,15 +16,17 @@ function newParseItems( $pItems, pBeautify )
 			removeWS = /\r|\n|\t|\s{2,}/g,
 			classSlot = $this.find( ".d3-item-properties .item-type span" ).text().replace( removeWS, ' ' ),
 			item = {
+				"background": $this.find( ".item-details-icon" ).attr( "class" ),//.replace( "item-details-icon effect-bg effect-bg-", '' ),
 				"class": '',
-				"typeValue": $this.find( ".item-armor-weapon .value" ).text().replace( removeWS, ' ' ),
-				"name": $this.find( ".subheader-3 a" ).text().replace( removeWS, ' ' ),
-				"type": $this.find( ".item-armor-weapon .big + li" ).text().replace( removeWS, ' ' ).toLowerCase(),
+				"$effects": $this.find( ".item-effects li" ),
+				"icon": $this.find( ".icon-item-inner" ).attr( "style" ).replace( "background-image: url(", '' ).replace( ");", '' ),
 				"level": $this.find( ".item-ilvl .value" ).text().replace( removeWS, ' ' ),
+				"name": $this.find( ".subheader-3 a" ).text().replace( removeWS, ' ' ),
 				"requiredLevel": $this.find( ".detail-level-number" ).text().replace( removeWS, ' ' ),
 				"slot": '',
-				"uniqueEquipped": $this.find( ".item-unique-equipped" ).text(),
-				"$effects": $this.find( ".item-effects li" )
+				"type": $this.find( ".item-armor-weapon .big + li" ).text().replace( removeWS, ' ' ).toLowerCase(),
+				"typeValue": $this.find( ".item-armor-weapon .value" ).text().replace( removeWS, ' ' ),
+				"uniqueEquipped": $this.find( ".item-unique-equipped" ).text()
 			};
 
 			if ( /^Legendary|^Magic|^Rare|^Set/.test(classSlot) )
@@ -53,14 +55,15 @@ function formatItemJson( pItem, pNotLastItem, formatted )
 		eTabs = ( formatted ) ? tabs + '\t' : '',
 		lTab = ( formatted ) ? '\n\t\t' : '';
 
-		jsonString += tabs + '"name": "' + pItem.name + '",'
+		jsonString += tabs + '"background": "' + pItem.background + '",'
 			+ tabs + '"class": "' + pItem.class + '",'
-			+ tabs + '"slot": "' + pItem.slot + '",'
-			+ tabs + '"typeValue": "' + pItem.typeValue + '",'
-			+ tabs + '"' + pItem.type + '": "' + pItem.typeValue + '",'
-			+ tabs + '"type": "' + pItem.type + '",'
+			+ tabs + '"icon": "' + pItem.icon + '",'
 			+ tabs + '"level": "' + pItem.level + '",'
+			+ tabs + '"name": "' + pItem.name + '",'
 			+ tabs + '"requiredLevel": "' + pItem.requiredLevel + '",'
+			+ tabs + '"slot": "' + pItem.slot + '",'
+			+ tabs + '"type": "' + pItem.type + '",'
+			+ tabs + '"typeValue": "' + pItem.typeValue + '",'
 			+ tabs + '"uniqueEquipped": "' + pItem.uniqueEquipped + '",';
 		// Appending effects
 		effectsArray = tabs + '[';

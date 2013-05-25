@@ -53,7 +53,8 @@ function buildItemToolTip()
 	{
 		$armor = $toolTip.find( ".armor" );
 		$weapon = $toolTip.find( ".weapon" );
-		// item.icon;
+		$toolTip.find( ".icon-item-inner" ).attr( "src", item.icon );
+		$toolTip.find( ".icon-item-inner" ).attr( "alt", item.name );
 		// Read-only
 		$toolTip.find( ".name" ).text( item.name );
 		$toolTip.find( "[name='class']" ).val( item.class );

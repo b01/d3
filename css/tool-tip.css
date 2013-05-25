@@ -1,0 +1,28 @@
+/* Rebuild by Khalifah Shabazz <www.kshabazz.net> */
+
+/* BEGIN Effect backgrounds */
+.item.tool-tip .effect {
+	background: left -15px no-repeat;
+	height: 165px;
+	z-index: 1
+}
+/* The extra /images/ is because the image processor removes one. */
+.item.tool-tip .effect .arcane {
+	background-image: url("/media/images/images/item/effect-bgs/arcane.png")
+}
+.item.tool-tip .effect .cold {
+	background-image: url("/media/images/images/item/effect-bgs/cold.png")
+}
+.item.tool-tip .effect .fire {
+	background-image: url("/media/images/images/item/effect-bgs/fire.png")
+}
+.item.tool-tip .effect .holy {
+	background-image: url("/media/images/images/item/effect-bgs/holy.png")
+}
+.item.tool-tip .effect .lightning {
+	background-image: url("/media/images/images/item/effect-bgs/lightning.png")
+}
+.item.tool-tip .effect .poison {
+	background-image: url("/media/images/images/item/effect-bgs/poison.png");
+}
+/* END Effect backgrounds */

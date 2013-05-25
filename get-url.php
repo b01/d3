@@ -42,7 +42,10 @@
 		}
 		else
 		{
-			$httpRequestor = new HttpRequestor( $battleNetUrl . $url );
+			$httpRequestor = new HttpRequestor( $battleNetUrl . $url, [
+				\CURLOPT_HTTPHEADER => [ "Content-Type: text/json; charset=utf-8" ],
+				\CURLOPT_USERAGENT => $_SERVER[ 'HTTP_USER_AGENT' ]
+			]);
 			$responseText = $httpRequestor->send();
 			if ( $httpRequestor->responseCode() == 200 )
 			{
@@ -52,8 +55,7 @@
 
 		if ( $body !== NULL )
 		{
-			$html = getHtmlInnerBody( $body );
-			echo tidyHtml( $html );
+			echo getHtmlInnerBody( $body );
 		}
 	}
 ?>
