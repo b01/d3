@@ -1,6 +1,6 @@
 <?php namespace D3;
 
-	$which = getStr( 'which' );
+	$which = ( !isset($which) ) ? getStr( 'which' ) : $which;
 	$class = getStr( 'class' );
 	$slug = getStr( 'slug' );
 	$name = getStr( 'name' );

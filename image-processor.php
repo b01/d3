@@ -7,8 +7,11 @@
 *       - Check if the image exists, if not, download it from Battle.net.
 *
 */
-	$imageUrl = $_GET['url'];
-	$imageFile = '.' . $_GET['file'];
+	$imageUrl = getStr( 'url' );
+	$imageFile = '.' . getStr( 'file' );
+	// Url translations.
+	$imageUrl = str_replace( 'media.blizzard.com/d3/ui/', "us.battle.net/d3/static/images/ui/", $imageUrl );
+	$imageUrl = str_replace( 'media.blizzard.com/d3/item/icon-bgs/', "us.battle.net/d3/static/images/item/icon-bgs/", $imageUrl );
 	$httpRequestor = new HttpRequestor( $imageUrl );
 	$responseText = $httpRequestor->send();
 	$responseCode = $httpRequestor->responseCode();

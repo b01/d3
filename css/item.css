@@ -1,4 +1,7 @@
-
+/* Official Battle.Net URls */
+	/*background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/yellow.png");*/
+	/*background-image: url('http://us.battle.net/d3/static/images/ui/tooltip-title.jpg');*/
+	/* background: http://us.battle.net/d3/static/images/icons/bullet.gif */
 	.item-tool-tip {
 		background-color: black;
 		border: 1px solid #322a20;
@@ -58,13 +61,13 @@
 		margin: 0 20px 10px
 	}
 	.item .effect-bg { background-position: 10px 10px; background-repeat: no-repeat; }
-	.item .effect-bg.arcane { background-image: url("http://us.battle.net/d3/static/images/item/effect-bgs/arcane.jpg"); }
-	.item .effect-bg.cold { background-image: url("http://us.battle.net/d3/static/images/item/effect-bgs/cold.jpg"); }
-	.item .effect-bg.fire { background-image: url("http://us.battle.net/d3/static/images/item/effect-bgs/fire.jpg"); }
-	.item .effect-bg.holy { background-image: url("http://us.battle.net/d3/static/images/item/effect-bgs/holy.jpg"); }
-	.item .effect-bg.lightning { background-image: url("http://us.battle.net/d3/static/images/item/effect-bgs/lightning.jpg"); }
-	.item .effect-bg.poison { background-image: url("http://us.battle.net/d3/static/images/item/effect-bgs/poison.jpg"); }
-	.item .effect-bg.armor { background-image: url("http://us.battle.net/d3/static/images/item/effect-bgs/armor.jpg"); background-position: 78px 20px; }
+	.item .effect-bg.arcane { background-image: url("/media/images/item/effect-bgs/arcane.jpg"); }
+	.item .effect-bg.cold { background-image: url("/media/images/item/effect-bgs/cold.jpg"); }
+	.item .effect-bg.fire { background-image: url("/media/images/item/effect-bgs/fire.jpg"); }
+	.item .effect-bg.holy { background-image: url("/media/images/item/effect-bgs/holy.jpg"); }
+	.item .effect-bg.lightning { background-image: url("/media/images/item/effect-bgs/lightning.jpg"); }
+	.item .effect-bg.poison { background-image: url("/media/images/item/effect-bgs/poison.jpg"); }
+	.item .effect-bg.armor { background-image: url("/media/images/item/effect-bgs/armor.jpg"); background-position: 78px 20px; }
 	.item .effect-bg.armor-square { background-position: 78px 14px; }
 	.item .effect-bg.armor-big { background-position: 96px 20px; }
 	.item .effect-bg .item-type,
@@ -79,7 +82,7 @@
 		margin-right: 10px
 	}
 	.item .icon .gradient {
-		background-image: url('http://us.battle.net/d3/static/images/item/icon-bgs/gradient.png'); /* fallback */
+		background-image: url('/media/images/item/icon-bgs/gradient.png'); /* fallback */
 		background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0));
 		border-radius: 4px;
 		display: block
@@ -99,7 +102,7 @@
 
 	.item .icon.blue {
 		border-color: #6091a6;
-		background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/blue.png");
+		background-image: url("/media/images/item/icon-bgs/blue.png");
 		background-color: #232227;
 	}
 		a:hover .item-tool-tip .icon.blue,
@@ -110,12 +113,12 @@
 
 	.item-tool-tip .icon.brown {
 		background-color: rgb(42, 32, 23);
-		background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/brown.png");
+		background-image: url("/media/images/item/icon-bgs/brown.png");
 	}
 
 	.item-tool-tip .icon.gray {
 		background-color: #2a2017;
-		background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/brown.png");
+		background-image: url("/media/images/item/icon-bgs/brown.png");
 		border-color: #513f2e;
 	}
 		a:hover .item-tool-tip .icon.gray,
@@ -126,7 +129,7 @@
 
 	.item-tool-tip .icon.green {
 		border-color: #748e3d;
-		background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/green.png");
+		background-image: url("/media/images/item/icon-bgs/green.png");
 		background-color: #262f14;
 	}
 		a:hover .item-tool-tip .icon.green,
@@ -137,13 +140,13 @@
 
 	.item-tool-tip .icon.orange {
 		background-color: rgb(51, 35, 20);
-		background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/orange.png");
+		background-image: url("/media/images/item/icon-bgs/orange.png");
 		border-color: rgb(176, 123, 56);
 	}
 
 	.item-tool-tip .icon.orange {
 		border-color: #b07b38;
-		background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/orange.png");
+		background-image: url("/media/images/item/icon-bgs/orange.png");
 		background-color: #332314;
 	}
 		a:hover .item-tool-tip .icon.orange,
@@ -154,7 +157,7 @@
 
 	.item-tool-tip .icon.white {
 		background-color: #2a2017;
-		background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/brown.png");
+		background-image: url("/media/images/item/icon-bgs/brown.png");
 		border-color: #513f2e;
 	}
 		a:hover .item-tool-tip .icon.white,
@@ -166,7 +169,7 @@
 	/* yellow */
 	.item-tool-tip .icon.yellow {
 		border-color: #9b8e3c;
-		background-image: url("http://us.battle.net/d3/static/images/item/icon-bgs/yellow.png");
+		background-image: url("/media/images/item/icon-bgs/yellow.png");
 		background-color: #322914;
 	}
 		a:hover .item-tool-tip .icon.yellow,
@@ -178,9 +181,10 @@
 
 	/* head */
 	.header {
-		background-image: url('http://us.battle.net/d3/static/images/ui/tooltip-title.jpg');
+		background-image: url('/media/images/ui/tooltip-title.jpg');
 		background-repeat: no-repeat;
 		color: rgb(243, 230, 208);
+		cursor: move;
 		height: 40px;
 		font-family: "Palatino Linotype", "Times", serif;
 		font-size: 22px;
@@ -319,7 +323,7 @@
 	padding-left: 16px
 }
 .item-tool-tip .list .effect.empty-socket {
-	background: url("http://us.battle.net/d3/static/images/item/empty-socket.png") 0 center no-repeat;
+	background: url("/media/images/item/empty-socket.png") 0 center no-repeat;
 }
 .item-tool-tip .list .effect.full-socket { line-height:18px; min-height:18px; background: none; padding-left:0; padding-top:7px; white-space:nowrap }
 .item-tool-tip .list .effect.full-socket .gem { float:left; width:17px; height:17px; margin-right:4px }

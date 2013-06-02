@@ -106,19 +106,24 @@ function centerGems()
 jQuery( window ).load(function ()
 {
 	centerGems();
-	getItemForm();
 	// Load an items details via HTTP request.
 	$( ".item-slot" ).each(function ()
 	{
 		var $this = $( this ), $icon = $this.find( ".icon" ),
 			uid = $icon.data( "hash" ) || $icon.data( "dbid" );
-		$( this ).on( "click.d3", {"uid": uid}, getItemTooltip );
+		$this.on( "click.d3", {"uid": uid}, getItemTooltip );
 	});
 });
 
 // Run code interactively.
 jQuery( document ).ready(function ($)
 {
+	// Turn the form in an Ajax posting form.
+	var $itemForm = $( "#battlenet-get-item" );
+	$itemForm.ajaxForm({ "success": getItemFormSuccess })
+		.find( "[name='extra']" ).parent().remove();
+	$itemForm.find( "[name='battleNetId']" ).attr( "readonly", "readonly" );
+
 	// Toggle stat details.
 	$( ".list" ).toggleList();
 
@@ -154,45 +159,26 @@ jQuery( document ).ready(function ($)
 	{
 		$( this ).select();
 	});
+	var $itemForgeLink = $( "#item-forge" ),
+		href = $itemForgeLink.attr( "href" );
+	// Add the hero class to the item forge link.
+	$itemForgeLink.attr( "href", href + "?class=" + window.heroClass );
 });
 
 /**
-* Get the item form.
+* Allow the item form to submit via jqXHR.
 */
-function getItemForm()
+function getItemFormSuccess( pResponseText )
 {
-	$.ajax( "/get-url.php?which=form", {
-		"dataType": "html",
-		"statusCode": {
-			200: function ( pData )
-			{
-				var $form = $( $.parseHTML(pData) ),
-					battleNetId = window.battleNetId;
-				if ( $form.length > 0 )
-				{
-					$form.find( "input[name='battleNetId']" ).val( battleNetId );
-					$form.find( "input[name='battleNetId']" ).attr( "readonly", "readonly" );
-					$form.find( "input[name='extra']" ).removeAttr( "checked" );
-					// Turn the form in an Ajax posting form.
-					$form.ajaxForm({
-						"success": function ( p_responseText, statusText )
-						{
-							var $itemToolTip = [],
-								$itemToolTip = $( $.parseHTML(p_responseText) );
-							if ( $itemToolTip.find( ".icon" ).length > 0 )
-							{
-								$( "#item-lookup-result" ).html( $itemToolTip );
-								$itemToolTip.find( ".icon" ).draggable({ "revert": "invalid", "helper": "clone" });
-							}
-							else
-							{
-								$( "#item-lookup-result" ).text( "No item found" );
-							}
-						}
-					});
-					$( "#item-lookup" ).append( $form );
-				}
-			}
-		}
-	});
+	var $itemToolTip = $( $.parseHTML(pResponseText) );
+	if ( $itemToolTip.find( ".icon" ).length > 0 )
+	{
+		$( "#item-lookup-result" ).html( $itemToolTip );
+		$itemToolTip.find( ".icon" ).draggable({ "revert": "invalid", "helper": "clone" });
+		$itemToolTip.find( ".list" ).toggleList();
+	}
+	else
+	{
+		$( "#item-lookup-result" ).text( "No item found" );
+	}
 }

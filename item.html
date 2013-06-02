@@ -10,19 +10,19 @@
 					<div>
 						<label class="label">Battle.Net ID</label>
 						<input class="input" type="text" name="battleNetId" value="msuBREAKER#1374" />
-						<a href="/">Change BattleNet ID</a>
+						<a class="inline-block link" href="/">Change BattleNet ID</a>
+						| <a id="item-forge" class="inline-block link" href="item-forge.php">Forge your own item</a>
 					</div>
-					<div class="item-hash">
-						<label class="label">Item Hash</label>
-						<input class="input" type="text" name="itemHash" size="100" value="" autofocus="autofocus" required="required" />
-					</div>
-					<div class="checkbox">
-						<input class="checkbox" type="checkbox" name="byName" value="true" /> <label class="label">Check this box to search for an item by name (not gauranteed to get the item back).</label>
-					</div>
-					<div class="checkbox">
-						<input class="checkbox" type="checkbox" name="extra" value="1" checked="checked" /> <label class="label">Check this box to show extra data (like the JSON retruned from Battle.net).</label>
-					</div>
-					<a href="item-forge.php">Forge Item</a>
+				</div>
+				<div class="field item-hash">
+					<label class="label">Item Hash / ID</label>
+					<input class="input" type="text" name="itemHash" size="100" value="" autofocus="autofocus" required="required" />
+				</div>
+				<div class="field checkbox">
+					<input class="checkbox" type="checkbox" name="byName" value="true" /> <label class="label">Check this box to search for an item by name (not gauranteed to get the item back).</label>
+				</div>
+				<div class="field checkbox">
+					<input class="checkbox" type="checkbox" name="extra" value="1" checked="checked" /> <label class="label">Check this box to show extra data (like the JSON retruned from Battle.net).</label>
 				</div>
 				<input type="submit" value="Get Item" />
 			</fieldset>

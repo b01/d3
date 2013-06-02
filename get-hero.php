@@ -18,6 +18,12 @@
 		$heroModel = new BattleNet_Hero( $id, $battleNetDqi, $sql, $sessionCacheInfo['loadFromBattleNet'] );
 		$hero = new Hero( $heroModel->json() );
 		$items = $heroModel->items();
+		$hardcore = ( $hero->hardcore ) ? 'Hardcore' : '';
+		$deadText = '';
+		if ( $hero->dead )
+		{
+			$deadText = "This {$hardcore} hero fell on " . date( 'm/d/Y', $hero->{'last-updated'} ) . ' :(';
+		}
 
 ?><!DOCTYPE html>
 <html>
@@ -37,7 +43,11 @@
 		<script type="text/javascript" src="//us.battle.net/d3/static/js/tooltips.js"></script>
 	</head>
 	<body class="hero-page">
-		<div class="time-elapsed"><?= displaySessionTimer( $sessionCacheInfo['timeLeft'] ) ?></div>
+		<div class="info">
+			<div class="dead-<?= $hero->dead ?>"><?= $deadText ?></div>
+			<div class="progress"><?= getProgress( $hero->progress ) ?></div>
+			<div class="time-elapsed"><?= displaySessionTimer( $sessionCacheInfo['timeLeft'] ) ?></div>
+		</div>
 		<form action="/get-profile.php" method="post">
 			<input class="input" type="hidden" name="battleNetId" value="<?= $battleNetId ?>" />
 			<input type="submit" value="Back to Heroes" />
@@ -85,7 +95,7 @@
 		<div class="inline-block section two">
 			<?php if ( isArray($heroItems) ): ?>
 			<div>
-				<div id="item-lookup"></div>
+				<div id="item-lookup"><?php $which = "form"; include 'get-url.php';?></div>
 				<div id="item-lookup-result" class="inline-block"></div>
 				<div id="item-place-holder" class="inline-block"></div>
 			</div><br/>
@@ -137,7 +147,7 @@
 			</ul>
 			<ul class="calculated list stats inline-block">
 				<li class="stat">
-					<span class="label"><span class="toggle inline-block">+</span> Battle.Net Calculated Stats</span>:
+					<span class="label"><span class="toggle inline-block">-</span> Battle.Net Calculated Stats</span>:
 					<ul class="expandable">
 						<?= output( "<li><span class=\"label\">%s</span>: %s</li>", $hero->stats ) ?>
 					</ul>
@@ -148,7 +158,7 @@
 			// Store this stuff in a cookie.
 			var heroJson = <?= json_encode( $heroJson ) ?>,
 				battleNetId = "<?= $battleNetUrlSafeId ?>",
-				heroClass = "<?= $heroModel->characterClass() ?>";
+				heroClass = "<?= $hero->class; ?>";
 		</script>
 		<?php $time = microtime( TRUE ) - $_SERVER[ 'REQUEST_TIME_FLOAT' ]; ?>
 		<!-- Page output in <?= $time ?> seconds -->
@@ -156,5 +166,6 @@
 			<p>This hero does NOT have any items equipped.</p>
 		<?php endif; ?>
 		<div id="ajaxed-items"></div>
+		<textarea name="hero-json" class="hide"><?= $heroModel->json() ?></textarea>
 	</body>
 </html><?php } ?>

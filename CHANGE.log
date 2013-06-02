@@ -1,3 +1,18 @@
+List of changes as of 06/02/2013 10:43 AM
+-------------------------------
+	- Added hero class parameter to item forge link on the hero page.
+	- Removed JavaScript to pull item form in via AJAX.
+	- Added PHP include to pull the item form directly into the get-hero page.
+	- Refactored item form JavaScript.
+	- Updated hero page styling.
+	- Updated image processor to handle image URLs in the CSS, support for jpg and gif were added.
+	- Added new tool to display the a hero's highest completed level and act.
+	- Updated hero JSON sample.
+
+List of changes as of 05/31/2013 08:58 PM
+-------------------------------
+	- Fixed bug with getHtmlInnerBody method.
+
 List of changes as of 05/24/2013 08:48 PM
 -------------------------------
 	- Added parameter for passing in header array to HttpRequest object.

@@ -126,30 +126,30 @@
 	*
 	* @return array
 	*/
-	function getHtmlInnerBody( $p_html )
+	function getHtmlInnerBody( $pHtml )
 	{
 		$returnValue = NULL;
-		if ( gettype($p_html) === "string" )
+		if ( gettype($pHtml) === "string" )
 		{
-			$start = strpos( $p_html, "<body" );
-			$start = strpos( $p_html, '>', $start + 5 );
-			$end = strpos( $p_html, "</body>", $start ) - $start;
-			$returnValue = substr( $p_html, $start + 1, $end );
+			$start = strpos( $pHtml, "<body" );
+			$start = strpos( $pHtml, '>', $start + 5 ) + 1;
+			$end = strpos( $pHtml, "</body>", $start ) - $start;
+			$returnValue = substr( $pHtml, $start, $end );
 		}
 		return $returnValue;
 	}
 
 	/**
 	* Capture the output of an include statment.
-	* Taken from PHP example of include function.
+	* Note: Taken from PHP example of include function.
 	*
 	*/
-	function get_include_contents( $p_filename )
+	function get_include_contents( $pFilename )
 	{
-		if ( is_file($p_filename) )
+		if ( is_file($pFilename) )
 		{
 			ob_start();
-			include $p_filename;
+			include $pFilename;
 			return ob_get_clean();
 		}
 		return FALSE;
@@ -186,6 +186,7 @@
 	{
 		$returnValue = '';
 		$itemType = strtolower( $p_itemType );
+		$itemType = str_replace( 'generic', '', $itemType );
 		switch ( $itemType )
 		{
 			case 'amulet':
@@ -273,6 +274,33 @@
 		if ( array_key_exists($pKey, $_GET) )
 		{
 			$returnValue = ( string )$_GET[ $pKey ];
+		}
+		return $returnValue;
+	}
+
+	/**
+	* Detrermine the higest level completed.
+	*
+	* @param $pProgress object Hero progress
+	* @return string
+	*/
+	function getProgress( $pProgress )
+	{
+		// Enjoy the flying V!
+		$returnValue = '';
+		foreach ( $pProgress as $level => $progresssion )
+		{
+			if ( isArray($progresssion) )
+			{
+				foreach ( $progresssion as $act => $progress )
+				{
+					if ( isArray($progress['completedQuests']) )
+					{
+						$length = count( $progress['completedQuests'] ) - 1;
+						$returnValue = "Highest completed: {$level} {$act} {$progress['completedQuests'][ $length ]['name']}";
+					}
+				}
+			}
 		}
 		return $returnValue;
 	}

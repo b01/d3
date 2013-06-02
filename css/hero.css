@@ -1,6 +1,31 @@
 body {
+	background: rgb(26,65,82); /* Old browsers */
+	background: linear-gradient(to right, rgba(22,50,68,1) 0%, rgba(24,58,75,0.51) 50%, rgba(22,50,68,1) 100%);
 	color: rgb(169, 152, 119);
 }
+
+a {
+	color: rgb(217, 101, 0);
+}
+
+a:hover {
+	color: rgb(245, 255, 255);
+}
+
+.input {
+	background: rgb(255, 255, 255);
+	border: none;
+	border-radius: 5px;
+	box-shadow: 0 0 5px rgb(0, 0, 0);
+	font: 12px Arial, sans-serif;
+	padding: 5px 6px;
+}
+.input[readonly] {
+	background-color: rgb(201, 201, 201);
+	color: rgb(134, 134, 134);
+	text-shadow: 1px 1px 0 rgb(231, 231, 231)
+}
+
 .hero-page .inline-block {
 	vertical-align: top
 }
@@ -10,10 +35,19 @@ body {
 	width: 300px
 }
 
+.section.two {
+	margin-left: 10px;
+	width: 833px
+}
+
 .hero {
+	background: rgb(169,152,119); /* Old browsers */
+	background: radial-gradient(ellipse at center, rgb(169,152,119) 0%,rgb(18,17,15) 80%);
+	border-radius: 0.5em;
+	box-shadow: 0 0 6px rgb(0, 0, 0);
 	height: 39em;
 	position: relative;
-	width: 24em
+	width: 23em
 }
 
 .hero .tooltipParams, .hero .id {
@@ -100,14 +134,29 @@ body {
 	background: url('http://us.battle.net/d3/static/images/profile/hero/skill-overlays.png') 0 -71px no-repeat;
 	height: 32px;
 }
-.hero .item.ui-state-hover {
-	border-color: red
+
+.hero .item-slot.ui-state-hover {
+	border-color: rgb(255, 235, 0);
+	box-shadow: 0 0 5px 5px rgba(250, 246, 149, 0.80)
 }
 
 #item-lookup {
-	border: none;
-	width: 64em
+	background-color: rgb(18, 17, 15);
+	border: 0.5em solid rgb(18, 17, 15);
+	border-radius: 0.5em;
+	box-shadow: 0 0 6px rgb(0, 0, 0);
+	text-shadow: 1px 1px 0 rgb(0, 0, 0)
 }
+
+#item-lookup .link {
+	padding: 0 0.5em;
+	vertical-align: middle
+}
+
+.field {
+	padding: 0.5em
+}
+
 
 .skills {
 	margin-top: 2.5em
@@ -136,4 +185,20 @@ body {
 
 .calculated {
 	width: 375px
+}
+
+.dead-0 {
+	display: none
+}
+
+.dead-1, .hardcore-0 {
+	color: rgb(225, 0, 0);
+	font-size: 1.5em;
+	font-weight: bold
+}
+
+.hardcore-1 {
+	color: rgb(225, 0, 0);
+	font-size: 1.5em;
+	font-weight: bold
 }

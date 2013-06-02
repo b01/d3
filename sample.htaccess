@@ -1,7 +1,7 @@
 Options +SymLinksIfOwnerMatch
 RewriteEngine On
 # If it is a png and does NOT exist on the server
-RewriteCond %{REQUEST_URI}	(.png)$   [NC]
+RewriteCond %{REQUEST_URI}	(.png|.jpg|.gif)$   [NC]
 RewriteCond %{REQUEST_FILENAME}	!-f
 # then rewrite as a battle.net URL and forward it to the image processor
-RewriteRule ^media/images/(.+)(png)$	/image-processor.php?url=http://media.blizzard.com/d3/$1$2&file=%{REQUEST_URI} [NC,L]
+RewriteRule ^/media/images/(.+)(png|jpg|gif)$	/image-processor.php?url=http://media.blizzard.com/d3/$1$2&file=%{HTTP_URL} [NC,L]
