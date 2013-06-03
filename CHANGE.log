@@ -1,3 +1,17 @@
+List of changes as of 06/03/2013 06:45 AM
+-------------------------------
+	- Changed title to D3 Assistant.
+	- Refactored site CSS.
+	- Moved my name to author meta tag.
+	- Added description tags to home, hero, and item forge.
+	- Updated image process for CSS item background effect images.
+	- Added effect background to item tool-tip CSS.
+	- Added more styles to the tool-tip CSS file.
+	- Added URL to README file.
+	- Added tool-tip template.
+	- Updated site and tool-tip styles.
+	- Updated TODO list.
+
 List of changes as of 06/02/2013 10:43 AM
 -------------------------------
 	- Added hero class parameter to item forge link on the hero page.

@@ -22,3 +22,7 @@
    - Build a class that takes the item-forge JSON with attributes filled in and converts it to a proper item JSON, with
      the exception of the web hash, and any other un-obtainable values.
 - Make sure to set password credentials (stored in setting) in order to save files with file-save.php.
+- Item forge, allow:
+  - building multiple item with an add button on the page;
+  - saving multiple items with save button on the page;
+  - removing an item with a close button on the tool-tip.

@@ -4,7 +4,7 @@
 *
 * @return string JSON
 */
-function newParseItems( $pItems, pBeautify )
+function parseItems( $pItems, pBeautify )
 {
 	var jsonString = '[',
 		$items = $pItems || $( ".item-details" ),
@@ -16,9 +16,14 @@ function newParseItems( $pItems, pBeautify )
 			removeWS = /\r|\n|\t|\s{2,}/g,
 			classSlot = $this.find( ".d3-item-properties .item-type span" ).text().replace( removeWS, ' ' ),
 			item = {
-				"background": $this.find( ".item-details-icon" ).attr( "class" ),//.replace( "item-details-icon effect-bg effect-bg-", '' ),
-				"class": '',
 				"$effects": $this.find( ".item-effects li" ),
+				"class": '',
+				"iconBg": $this.find( ".d3-icon-item-large" )
+					.attr( "class" )
+					.replace( "d3-icon d3-icon-item d3-icon-item-large  d3-icon-item-", "" ),
+				"effectBg": $this.find( ".item-details-icon" )
+					.attr( "class" )
+					.replace( "item-details-icon effect-bg effect-bg-", "" ),
 				"icon": $this.find( ".icon-item-inner" ).attr( "style" ).replace( "background-image: url(", '' ).replace( ");", '' ),
 				"level": $this.find( ".item-ilvl .value" ).text().replace( removeWS, ' ' ),
 				"name": $this.find( ".subheader-3 a" ).text().replace( removeWS, ' ' ),
@@ -55,9 +60,10 @@ function formatItemJson( pItem, pNotLastItem, formatted )
 		eTabs = ( formatted ) ? tabs + '\t' : '',
 		lTab = ( formatted ) ? '\n\t\t' : '';
 
-		jsonString += tabs + '"background": "' + pItem.background + '",'
-			+ tabs + '"class": "' + pItem.class + '",'
+		jsonString += tabs + '"class": "' + pItem.class + '",'
+			+ tabs + '"effectBg": "' + pItem.effectBg + '",'
 			+ tabs + '"icon": "' + pItem.icon + '",'
+			+ tabs + '"iconBg": "' + pItem.iconBg + '",'
 			+ tabs + '"level": "' + pItem.level + '",'
 			+ tabs + '"name": "' + pItem.name + '",'
 			+ tabs + '"requiredLevel": "' + pItem.requiredLevel + '",'

@@ -1,28 +1,214 @@
 /* Rebuild by Khalifah Shabazz <www.kshabazz.net> */
+.tool-tip {
+	background-color: rgb(0, 0, 0);
+	border: 1px solid rgb(50, 42, 32);
+	border-radius: 2px;
+	box-shadow: 0 0 10px rgb(0, 0, 0);
+	color: rgb(199, 179, 119);
+	padding: 2px 5px;
+	position: relative;
+	width: 29.12em;
+	z-index: 1;
+}
 
 /* BEGIN Effect backgrounds */
-.item.tool-tip .effect {
-	background: left -15px no-repeat;
+.tool-tip .effect-bg {
+	background-position: -35px -10px;
+	background-repeat: no-repeat;
+	margin: 0 10px 10px;
 	height: 165px;
-	z-index: 1
 }
-/* The extra /images/ is because the image processor removes one. */
-.item.tool-tip .effect .arcane {
-	background-image: url("/media/images/images/item/effect-bgs/arcane.png")
+/* The extra /images/ is because the rewrite-rule removes one. */
+.item.tool-tip .effect-bg.arcane {
+	background-image: url("/media/images/effect-bgs/arcane.png")
 }
-.item.tool-tip .effect .cold {
-	background-image: url("/media/images/images/item/effect-bgs/cold.png")
+.item.tool-tip .effect-bg.cold {
+	background-image: url("/media/images/effect-bgs/cold.png")
 }
-.item.tool-tip .effect .fire {
-	background-image: url("/media/images/images/item/effect-bgs/fire.png")
+.item.tool-tip .effect-bg.fire {
+	background-image: url("/media/images/effect-bgs/fire.png")
 }
-.item.tool-tip .effect .holy {
-	background-image: url("/media/images/images/item/effect-bgs/holy.png")
+.item.tool-tip .effect-bg.holy {
+	background-image: url("/media/images/effect-bgs/holy.png")
 }
-.item.tool-tip .effect .lightning {
-	background-image: url("/media/images/images/item/effect-bgs/lightning.png")
+.item.tool-tip .effect-bg.lightning {
+	background-image: url("/media/images/effect-bgs/lightning.png")
 }
-.item.tool-tip .effect .poison {
-	background-image: url("/media/images/images/item/effect-bgs/poison.png");
+.item.tool-tip .effect-bg.poison {
+	background-image: url("/media/images/effect-bgs/poison.png");
 }
 /* END Effect backgrounds */
+
+.item.tool-tip .effect-value {
+	width: 2em
+}
+.item.tool-tip [name="class"] {
+	width: 6em
+}
+.item.tool-tip [name="level"] {
+	width: 2em
+}
+
+/* BEGIN Icon */
+.tool-tip .icon {
+	background-repeat: no-repeat;
+	background-position: 50% 100%;
+	border: 1px solid rgb(81, 63, 46);
+	border-radius: 4px;
+	margin-right: 10px;
+}
+.tool-tip .icon .gradient {
+	background-image: url('/media/images/icon-bgs/gradient.png');
+	background-image: linear-gradient(rgba(0, 0, 0, 0.45), rgba(0, 0, 0, 0));
+	border-radius: 4px;
+	border: none;
+}
+
+.tool-tip .icon.blue {
+	background-image: url("/media/images/icon-bgs/blue.png");
+	background-color: #232227;
+	border-color: #6091a6;
+}
+
+.tool-tip .icon.brown {
+	background-color: rgb(42, 32, 23);
+	background-image: url("/media/images/icon-bgs/brown.png");
+}
+
+.tool-tip .icon.gray {
+	background-color: #2a2017;
+	background-image: url("/media/images/icon-bgs/brown.png");
+	border-color: #513f2e;
+}
+
+.tool-tip .icon.green {
+	border-color: #748e3d;
+	background-image: url("/media/images/icon-bgs/green.png");
+	background-color: #262f14;
+}
+
+.tool-tip .icon.orange {
+	background-color: rgb(51, 35, 20);
+	background-image: url("/media/images/icon-bgs/orange.png");
+	border-color: rgb(176, 123, 56);
+}
+
+.tool-tip .icon.white {
+	background-color: #2a2017;
+	background-image: url("/media/images/icon-bgs/brown.png");
+	border-color: #513f2e;
+}
+.tool-tip .icon.yellow {
+	border-color: #9b8e3c;
+	background-image: url("/media/images/icon-bgs/yellow.png");
+	background-color: #322914;
+}
+
+.tool-tip .icon.blue:hover {
+	border-color: #90c8d3;
+}
+.tool-tip .icon.gray:hover {
+	border-color: #7a5f45;
+}
+.tool-tip .icon.green:hover {
+	border-color: #aec75c;
+}
+.tool-tip .icon.orange:hover {
+	border-color: #d8b954;
+}
+.tool-tip .icon.white:hover {
+	border-color: #7a5f45;
+}
+.tool-tip .icon.yellow:hover {
+	border-color: #cdc75a;
+}
+/* END Icon */
+
+.tool-tip .slot {
+	color: rgb(144, 144, 144);
+	text-align: right;
+	text-transform: capitalize;
+	width: 13.7em;
+}
+
+.tool-tip .details {
+	width: 20.7em
+}
+
+/* head */
+.tool-tip .name {
+	background-image: url('/media/images/ui/tooltip-title.jpg');
+	background-repeat: no-repeat;
+	cursor: move;
+	height: 40px;
+	font-family: "Palatino Linotype", "Times", serif;
+	font-size: 22px;
+	line-height: 37px;
+	margin: 0 0 10px;
+	overflow: hidden;
+	position: relative;
+	text-align: center;
+	text-overflow: ellipsis;
+	white-space: nowrap;
+	width: 360px;
+}
+.tool-tip .name .close {
+	color: rgb(255, 255, 255);
+	cursor: pointer;
+	font-size: 0.7em;
+	position: absolute;
+	right: 1.501em;
+	top: -1em
+}
+.tool-tip .name .close:hover {
+	color: rgb(255, 0, 0)
+}
+
+.tool-tip .name.smaller {
+	font-size: 18px; line-height: 40px;
+}
+.tool-tip .name.smallest {
+	font-size: 14px; line-height: 42px;
+}
+.tool-tip .name.blue {
+	background-position: 0 -80px;
+}
+.tool-tip .name.gray,
+.tool-tip .name.white {
+	background-position: 0 -40px;
+}
+.tool-tip .name.green {
+	background-position: 0 -240px;
+}
+.tool-tip .name.orange {
+	background-position: 0 -160px;
+}
+.tool-tip .name.purple {
+	background-position: 0 -200px;
+}
+.tool-tip .name.yellow {
+	background-position: 0 -120px;
+}
+
+.tool-tip [name="class"], .tool-tip [name="class"] option {
+	background-color: black;
+	border: none;
+	padding: 0.2em
+}
+.tool-tip .input[readonly] {
+	background-color: black;
+	border: none;
+	color: rgb(222, 210, 171)
+}
+
+
+.tool-tip .close {
+	font-weight: bold;
+	position: absolute;
+	right: 15px;
+	top: 10px
+}
+
+.tool-tip .close:hover {
+	color: rgb(255, 0, 0);
+}

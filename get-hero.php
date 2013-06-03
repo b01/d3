@@ -30,7 +30,8 @@
 	<head>
 		<title>Hero <?= $hero->name ?></title>
 		<meta name="charset" content="utf-8" />
-		<meta name="author" content="Khalifah Shabazz" />
+		<meta name="author" content="Khalifah K. Shabazz" />
+		<meta name="description" content="View your hero’s stats, and then try out different items to see if those stats improve or not. Use the item for by pasting the D3 web-hash or ID (of forge generated item), and then drag and drop the item to the appropriate slot, your stats will automatically update. " />
 		<link rel="stylesheet" type="text/css" href="/css/smoothness/jquery-ui-1.10.2.custom.min.css" />
 		<link rel="stylesheet" type="text/css" href="/css/site.css" />
 		<link rel="stylesheet" type="text/css" href="/css/item.css" />

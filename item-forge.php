@@ -1,18 +1,23 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Build an Item</title>
+		<title>D3 Assistant Item Forge</title>
 		<meta charset="utf-8" />
+		<meta name="description" content="Forge items to have your heroes try on. Get if you're planning to spend millions on an item, but want to make sure it will improve your character." />
+		<meta name="author" content="Khalifah Shabazz" />
 		<link type="text/css" rel="stylesheet" href="/css/d3.css" />
 		<link type="text/css" rel="stylesheet" href="/css/site.css" />
 		<link type="text/css" rel="stylesheet" href="/css/tooltips.css" />
-		<link type="text/css" rel="stylesheet" href="/css/item.css" />
+		<link type="text/css" rel="stylesheet" href="/css/tool-tip.css" />
 		<script type="text/javascript" src="/js/ie-version-check.js"></script>
 		<script type="text/javascript" src="/js/jquery-2.0.0.min.js"></script>
 		<script type="text/javascript" src="/js/jquery-ui-1.10.2.custom.min.js"></script>
 		<script type="text/javascript" src="/js/skill-script.js"></script>
 		<script type="text/javascript" src="/js/battle-net-url-parsers.js"></script>
 		<script type="text/javascript" src="/js/item-forge.js"></script>
+		<script type="text/javascript">
+			var heroClass = '<?= getStr( 'class', 'demonhunter' ) ?>';
+		</script>
 	</head>
 	<body>
 		<form id="item-forge" action="get-url.php" method="get">
@@ -121,109 +126,28 @@
 			</noscript>
 		</form>
 		<pre class="pre"></pre>
-		<!-- div class="item-tool-tip item hide">
-
-			<h3 class="header smaller {{displayColor}}">{{itemName}}</h3>
-
-			<div class="effect-bg {{effects}}">
-				<div class="icon {{displayColor}} inline-block top" data-hash="{{Hash}}" data-type="{{slot}}">
-					<img class="gradient" src="/media/images/icons/items/large/{{icon}}.png" alt="{{name}}" />
-				</div>
-				<div class="inline-block top">
-					<div class="type-name inline-block {{displayColor}}">{{type}}</div>
-					<div class="type-name inline-block slot">{{slot}}</div>
-					{{if armor}}
-					<div class="big value armor">{{armorValue}}</div>
-					{{/if armor}}
-					{{if weapon}}
-					<div class="big value weapn">{{ number_format( $itemModel->dps['min'], 1 ); }}</div>
-					<div class="damage"><span class="value">{{ displayRange( $itemModel->damage ); }}</span> Damage</div>
-					<div class="small"><span class="value">{{ number_format( $itemModel->attacksPerSecond['min'], 2 ); }}</span> Attacks per Second</div>
-					{{/if weapon}}
-				</div>
-			</div>
-			{{if attributes}}
-			<ul class="properties blue">
-				{{loop attributes}}
-				<li class="effect">{{formatAttribute( $value, "value" )}}</li>
-				{{/loop attributes}}
-			</ul>
-			{{\if attributes}}
-			{{ if ( isArray($itemModel->gems) ): }}
-			<ul class="list gems">
-				<li class="full-socket d3-color-{{ $itemModel->gems[0]['item']['displayColor'] }}">
-					<img class="gem" src="http://media.blizzard.com/d3/icons/items/small/{{ $itemModel->gems[0]['item']['icon'] }}.png">
-					{{ $itemModel->gems[0]['attributes'][0] }}
+		<?php include "templates/tool-tip.php" ?>
+		<code id="templates" class="hide">
+			<code id="effect">
+				<li class="effect">
+					<input class="effect-value" name="effectValues[]" type="text" value="" />
+					<input class="effect-name" name="effectNames[]" type="text" readonly="readonly" value="" />
 				</li>
-			</ul>
-			{{ endif; }}
-			{{ if ( isset($itemModel->set) && isArray($itemModel->set) ): }}
-			<ul class="list set">
-				<li class="name d3-color-green">{{ $itemModel->set['name'] }}</li>
-				{{ foreach ( $itemModel->set['items'] as $key => $value ): }}
-				<li class="piece">{{ $value['name'] }}</li>
-				{{ endforeach; }}
-				{{ foreach ( $itemModel->set['ranks'] as $key => $value ): }}
-				<li class="rank">({{ $value['required'] }}) Set:</li>
-				{{ if ( isArray($value['attributes']) ): }}
-				{{ foreach ( $value['attributes'] as $key => $value ): }}
-				<li class="piece">{{ formatAttribute( $value, "value" ); }}</li>
-				{{ endforeach; }}
-				{{ endif; }}
-				{{ endforeach; }}
-			</ul>
-			{{ endif; }}
-			<div class="levels">
-				<div class="level left required inline-block">Required Level: <span class="value">{{ $itemModel->requiredLevel; }}</span></div>
-				<div class="level right max inline-block">Item Level: <span class="value">{{ $itemModel->itemLevel; }}</span></div>
-			</div>
-			<ul class="list stats inline-block">
-				<li class="stat">
-					<span class="label"><span class="toggle inline-block">+</span> Hash</span>
-					<div class="expandable" ><textarea class="copy-box" readonly="readonly">{{ $itemHash }}</textarea></div>
-				</li>
-				<li class="stat">
-					<span class="label"><span class="toggle inline-block">+</span> Json</span>
-					<div class="expandable" ><textarea class="copy-box" readonly="readonly">{{ $item->json() }}</textarea></div>
-				</li>
-			</ul>
-			{{ if ( isset($itemModel->flavorText) ): }}
-			<div class="flavor">{{ $itemModel->flavorText; }}</div>
-			{{ endif; }}
-		</div -->
-		<div class="item-tool-tip item hide">
-			<h3 class="name">{{name}}</h3>
-			<div class="effect-bg">
-				<div class="icon {{displayColor}} inline-block top" data-hash="" data-dbid="" data-type="{{slot}}">
-					<img class="gradient icon-item-inner icon-item-default"
-						src="//media.blizzard.com/d3/icons/items/large/shoulders_204_demonhunter_male.png"
-						alt="{{name}}" />
-				</div>
-				<div class="inline-block top">
-					<div class="type-name inline-block class {{displayColor}}">
-						<input readonly="readonly" name="class" value="" />
-					</div>
-					<div class="type-name inline-block slot">{{slot}}</div>
-					<div class="armor">
-						<div class="big value armor"><input type="text" name="armor" value="{{armor-points}}" /></div>
-						<div class="class">Armor</div>
-					</div>
-					<div class="weapon">
-						<div class="big value weapn">{{hit-points}}</div>
-						<div class="damage"><span class="value"></span> Damage</div>
-						<div class="small"><span class="value"></span> Attacks per Second</div>
-					</div>
-				</div>
-			</div>
-			<ul class="effects properties">
-			</ul>
-			<div class="level"><span class="label">Item Level</span><input name="level" type="text" readonly="readonly" value="{{level}}" /></div>
-			<div class="required-level">
-				<span class="label">Requires level</span><input name="required-level" type="text" readonly="readonly" value="{{required-level}}" /></span>
-			</div>
-		</div>
-		<div id="templates" class="hide">
-			<code id="effect"><li class="effect"><input type="text"" readonly="readonly" value="" /></li></code>
-		</div>
+			</code>
+			<li id="random-effect" class="random-effect">
+				<input class="effect-value" name="effectValues[]" type="text" value="" />
+				<!-- build effects from attribute map -->
+				<?php $attributeMap = $GLOBALS[ 'settings' ][ 'ATTRIBUTE_MAP' ]; ?>
+				<select class="effect-name" name="effectNames[]">
+				<?php if ( isArray($attributeMap) ): ?>
+					<?php foreach( $attributeMap as $key => $attribute ): ?>
+					<?php if ( isString($attribute) ): ?>
+					<option data-types="all" value="<?= $key ?>"><?= $attribute ?></option>
+					<?php endif; ?>
+					<?php endforeach; ?>
+				<?php endif; ?>
+				</select>
+			</li>
+		</code>
 	</body>
 </html>

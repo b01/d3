@@ -11,7 +11,9 @@
 	$imageFile = '.' . getStr( 'file' );
 	// Url translations.
 	$imageUrl = str_replace( 'media.blizzard.com/d3/ui/', "us.battle.net/d3/static/images/ui/", $imageUrl );
-	$imageUrl = str_replace( 'media.blizzard.com/d3/item/icon-bgs/', "us.battle.net/d3/static/images/item/icon-bgs/", $imageUrl );
+	$imageUrl = str_replace( 'media.blizzard.com/d3/icon-bgs/', "us.battle.net/d3/static/images/item/icon-bgs/", $imageUrl );
+	$imageUrl = str_replace( 'media.blizzard.com/d3/effect-bgs/', "us.battle.net/d3/static/images/item/effect-bgs/", $imageUrl );
+	// $imageUrl = preg_replace( 'media.blizzard.com/d3/(icon-bgs|effect-bgs)/', "us.battle.net/d3/static/images/item/$1/", $imageUrl );
 	$httpRequestor = new HttpRequestor( $imageUrl );
 	$responseText = $httpRequestor->send();
 	$responseCode = $httpRequestor->responseCode();

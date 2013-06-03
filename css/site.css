@@ -1,10 +1,35 @@
 body {
+	background: rgb(26,65,82); /* Old browsers */
+	background: linear-gradient(to right, rgba(22,50,68,1) 0%, rgba(24,58,75,0.51) 50%, rgba(22,50,68,1) 100%);
+	color: rgb(169, 152, 119);
 	font-family: Arial, sans-serif;
 	font-size: 12px
 }
 
+a {
+	color: rgb(217, 101, 0);
+}
+
+a:hover {
+	color: rgb(245, 255, 255);
+}
+
 .inline-block {
 	display: inline-block
+}
+
+.input {
+	background: rgb(255, 255, 255);
+	border: none;
+	border-radius: 5px;
+	box-shadow: 0 0 5px rgb(0, 0, 0);
+	font: 12px Arial, sans-serif;
+	padding: 5px 6px;
+}
+.input[readonly] {
+	background-color: rgb(201, 201, 201);
+	color: rgb(134, 134, 134);
+	text-shadow: 1px 1px 0 rgb(231, 231, 231)
 }
 
 .list {
@@ -49,3 +74,37 @@ body {
 .debug-info div {
 	margin: 5px
 }
+
+
+/* colors */
+
+.default, .default a { color: rgb(255, 255, 255); }
+.blue, .blue a { color: rgb(105, 105, 255); }
+.gray, .gray a { color: #909090; }
+.gold, .gold a { color: #c7b377; }
+.green, .green a {
+	color: #00ff00;
+}
+.orange, .orange a { color: #bf642f; }
+.purple, .purple a { color: #a335ee; }
+.red, .red a { color: #ff0000; }
+.white, .white a { color: #fff; }
+.yellow, .yellow a { color: #ffff00; }
+
+a.blue:hover, .blue a:hover, a:hover .blue,
+a.gray:hover, .gray a:hover, a:hover .gray,
+a.gold:hover, .gold a:hover, a:hover .gold,
+a.green:hover, .green a:hover, a:hover .green,
+a.orange:hover, .orange a:hover, a:hover .orange,
+a.purple:hover, .purple a:hover, a:hover .purple,
+a.red:hover, .red a:hover, a:hover .red,
+a.white:hover, .white a:hover, a:hover .white,
+a.yellow:hover, .yellow a:hover a:hover .yellow { color: rgb(255, 255, 255); }
+
+/* runes */
+.rune { color: #F3E6D0; }
+.rune-a { color: #e52817; }
+.rune-b { color: #6e7ee5; }
+.rune-c { color: #948b91; }
+.rune-d { color: #fa8b14; }
+.rune-e { color: #f7e9b7; }
