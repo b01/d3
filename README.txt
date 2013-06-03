@@ -1,9 +1,12 @@
 Diablo 3 Assistant (D3A) is an application where any Diablo 3 player can access their characters via the Battle.Net Web-API. This app can assist a player with the build of their character in various ways. For example, if you want to try an item on before you purchase it, you can use the D3A Item-Forge, to replicate an item, and then try out the item on the hero page. This app tries to keep the D3 game feel, rather than just being another calculator. And strongly plays off of the official D3 profile page. This app tries to give you real features that will help improve your game play and enjoyment of Diablo 3, such as:
 
-	- Try-before you buy, with the Item forge – Replicate items in the Item Forge, then go to the hero page to try them on. See if your stats improve or not.
-	- Character survivability for different levels and acts – on the hero page, select a level and act, then a green/yellow/red status will indicate if you’re ready for it (coming soon).
+	- Try-before you buy, with the Item forge – Replicate items in the Item Forge, then go to the hero page to try them
+		on. See if your stats improve or not.
+	- Character survivability for different levels and acts – on the hero page, select a level and act, then a
+		green/yellow/red status will indicate if you’re ready for it (coming soon).
 	- More from suggestions.
-	- Auto notifier - A checkbox on the hero page that let's you know when it's time to go shopping, bacause your next mob could be your last.
+	- Auto notifier - A checkbox on the hero page that let's you know when it's time to go shopping, bacause your next
+		mob could be your last.
 	- Suggest items that are best for your type of character build.
 
 Try this app out at: http://d3.kshabazz.net
