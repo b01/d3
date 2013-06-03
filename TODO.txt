@@ -26,3 +26,9 @@
   - building multiple item with an add button on the page;
   - saving multiple items with save button on the page;
   - removing an item with a close button on the tool-tip.
+- Auto notifier checkbox (let's go shopping), when you check it, autmatically refreshes the hero page, then plays a sound when your
+	character is on a level but not ready for it.
+  - Requires Battle.Net API update - that lets you know what level the character is currently playing;
+  - otherwise default back to the hight level completed.
+- Item suggestions, detemined by probing player characters for the best items, then suggesting those items to other
+	players with similar hero builds (give credit to the hero it was taken from).

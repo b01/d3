@@ -1,15 +1,12 @@
 Diablo 3 Assistant (D3A) is an application where any Diablo 3 player can access their characters via the Battle.Net Web-API. This app can assist a player with the build of their character in various ways. For example, if you want to try an item on before you purchase it, you can use the D3A Item-Forge, to replicate an item, and then try out the item on the hero page. This app tries to keep the D3 game feel, rather than just being another calculator. And strongly plays off of the official D3 profile page. This app tries to give you real features that will help improve your game play and enjoyment of Diablo 3, such as:
-- Try-before you buy, with the Item forge – Replicate items in the Item Forge, then go to the hero page to try them on. See if your stats improve or not.
-- Character survivability for different levels and acts – on the hero page, select a level and act, then a green/yellow/red status will indicate if you’re ready for it (coming soon).
-- More from suggestions.
 
+	- Try-before you buy, with the Item forge – Replicate items in the Item Forge, then go to the hero page to try them on. See if your stats improve or not.
+	- Character survivability for different levels and acts – on the hero page, select a level and act, then a green/yellow/red status will indicate if you’re ready for it (coming soon).
+	- More from suggestions.
+	- Auto notifier - A checkbox on the hero page that let's you know when it's time to go shopping, bacause your next mob could be your last.
+	- Suggest items that are best for your type of character build.
 
 Try this app out at: http://d3.kshabazz.net
-
-Original Description:
-	Yes this is yet another Diablo 3 damage calculator. I am currently not satisfied with the existing D3 calculators out there as of 10/27/2012. Even though I feel that I'm almost done with the game, I feel even stronger the need to make this web-app; so it can help make it easier to select new weapons and armor. Plus I got REALLY excited about being able to access raw Diablo 3 data through an official BatttleNet Web API. Since I have a lot of experience with web development and coding around APIs, this should be a breeze for me. So I feel I must do this, tis my duty. :)
-
-UPDATE (05/12/2013): While using Diable 3's API is simple, it is not a breeze to create a robust damage calculator by any means. The API leaves a lot to be desired. I feel that 30% of the functionality my Application provides what because I went the extra mile to implment some (what I feel) missing features from the API. So what started to be a few week-ends project has turned into a dedicated off/on project with no end in sight.
 
 Requirements:
 - Battle.Net ID with Diablo 3 characters.
