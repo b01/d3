@@ -219,5 +219,12 @@ jQuery( document ).ready(function ($)
 		var url = "/get-url.php?which=build-item&type=" + itemType + "&class=" + itemClass;
 		getBattleNetPage( url, $(".pre"), processItemForgeHtml );
 	}
+
+	// active save button.
+
+	$( "#save-button" ).on( "click", function ()
+	{
+		generatePsuedoBattleNetItemJson();
+	});
 	return $;
 });

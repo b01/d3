@@ -126,7 +126,10 @@
 			</noscript>
 		</form>
 		<pre class="pre"></pre>
-		<?php include "templates/tool-tip.php" ?>
+		<form id="items-saver" name="items-saver" action="items-saver.php" method="post">
+			<?php include "templates/tool-tip.php" ?>
+			<input id="save-button" type="submit" value="save" />
+		</form>
 		<code id="templates" class="hide">
 			<code id="effect">
 				<li class="effect">
