@@ -16,8 +16,6 @@
 		$battleNetDqi = new BattleNet_Dqi( $battleNetId );
 		$sql = new BattleNet_Sql( DSN, DB_USER, DB_PSWD, USER_IP_ADDRESS );
 		$heroModel = new BattleNet_Hero( $id, $battleNetDqi, $sql, $sessionCacheInfo['loadFromBattleNet'] );
-
-		print $heroModel->json();
 		$hero = new Hero( $heroModel->json() );
 		$items = $heroModel->items();
 		$hardcore = ( $hero->hardcore ) ? 'Hardcore' : '';
@@ -46,15 +44,17 @@
 		<script type="text/javascript" src="//us.battle.net/d3/static/js/tooltips.js"></script>
 	</head>
 	<body class="hero-page">
-		<div class="info">
+		<div class="panel info">
 			<div class="dead-<?= $hero->dead ?>"><?= $deadText ?></div>
 			<div class="progress"><?= getProgress( $hero->progress ) ?></div>
-			<div class="time-elapsed"><?= displaySessionTimer( $sessionCacheInfo['timeLeft'] ) ?></div>
+				<form action="/get-profile.php" method="post">
+					<input class="input" type="hidden" name="battleNetId" value="<?= $battleNetId ?>" />
+					<input type="submit" value="Back to Heroes" />
+					<span class="time-elapsed">
+						<?= displaySessionTimer( $sessionCacheInfo['timeLeft'] ) ?>
+					</span>
+				</form>
 		</div>
-		<form action="/get-profile.php" method="post">
-			<input class="input" type="hidden" name="battleNetId" value="<?= $battleNetId ?>" />
-			<input type="submit" value="Back to Heroes" />
-		</form>
 		<div class="inline-block section one">
 			<!-- START ITEMS -->
 			<?php if ( isArray($items) ): ?>
@@ -80,6 +80,7 @@
 			</div>
 			<?php endif; ?>
 			<!-- END ITEMS -->
+			<!-- START SKILLS -->
 			<div class="skills">
 				<div class="active">
 				<?php for ( $i = 0, $len = count($hero->skills['active']); $i < $len; $i++ ):
@@ -103,6 +104,7 @@
 				<?php endfor; ?>
 				</div>
 			</div>
+			<!-- END SKILLS -->
 		</div>
 		<div class="inline-block section two">
 			<?php if ( isArray($heroItems) ): ?>
@@ -110,7 +112,8 @@
 				<div id="item-lookup"><?php $which = "form"; include 'get-url.php';?></div>
 				<div id="item-lookup-result" class="inline-block"></div>
 				<div id="item-place-holder" class="inline-block"></div>
-			</div><br/>
+			</div>
+			<br />
 			<ul class="calculated list stats inline-block">
 				<?php  $calculator = new Calculator( $heroItems, $hero ); ?>
 				<li class="stat">

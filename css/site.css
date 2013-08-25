@@ -108,3 +108,20 @@ a.yellow:hover, .yellow a:hover a:hover .yellow { color: rgb(255, 255, 255); }
 .rune-c { color: #948b91; }
 .rune-d { color: #fa8b14; }
 .rune-e { color: #f7e9b7; }
+
+.panel {
+	background-color: rgb(18, 17, 15);
+	border: 0.5em solid rgb(18, 17, 15);
+	border-radius: 0.5em;
+	box-shadow: 0 0 6px rgb(0, 0, 0);
+	text-shadow: 1px 1px 0 rgb(0, 0, 0)
+}
+
+.panel .link {
+	padding: 0 0.5em;
+	vertical-align: middle
+}
+
+.field {
+	padding: 0.5em
+}
