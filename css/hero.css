@@ -8,8 +8,7 @@
 }
 
 .section.two {
-	margin-left: 10px;
-	width: 833px
+	margin-left: 10px
 }
 
 .hero {
@@ -101,9 +100,12 @@
 	top: 0;
 	width: 32px
 }
+
 .hero .item-slot .socket {
+	background-image: url('http://us.battle.net/d3/static/images/profile/hero/skill-overlays.png');
+	background-position: 0 -71px;
+	background-repeat: no-repeat;
 	display: inline-block;
-	background: url('http://us.battle.net/d3/static/images/profile/hero/skill-overlays.png') 0 -71px no-repeat;
 	height: 32px;
 }
 
@@ -173,4 +175,77 @@
 	color: rgb(225, 0, 0);
 	font-size: 1.5em;
 	font-weight: bold
+}
+
+.skills .active .link {
+	background-image: url('http://us.battle.net/d3/static/images/profile/hero/skill-overlays.png');
+	background-position: -47px 0;
+	display: inline-block;
+	height: 42px;
+	position: relative;
+	width: 42px
+}
+
+.skills .active .skill-2 {
+	background-position: -47px 0
+}
+
+.skills .active .skill-3 {
+	background-position: -89px 0
+}
+
+.skills .active .skill-4 {
+	background-position: -131px 0
+}
+
+.skills .active .skill-5 {
+	background-position: -47px -42px
+}
+.skills .active .skill-6 {
+	background-position: -89px -42px
+}
+
+.slot {
+	background-image: url("http://us.battle.net/d3/static/images/profile/hero/skill-overlays.png");
+	display: block;
+	left: -5px;
+	height: 22px;
+	position: absolute;
+	top: -5px;
+	width: 22px
+}
+.skills .active .skill-2 .slot {
+	background-position: -21px -1px
+}
+.skills .active .skill-3 .slot {
+	background-position: 0 -23px
+}
+.skills .active .skill-4 .slot {
+	background-position: -23px -23px
+}
+.skills .active .skill-5 .slot {
+	background-position: 0 -46px
+}
+.skills .active .skill-6 .slot {
+	background-position: -23px -46px
+}
+
+.skills .passive .link {
+	background: url("http://us.battle.net/d3/static/images/profile/hero/passive-skills.png");
+	background-position: 0 -41px;
+	background-repeat: no-repeat;
+	display: inline-block;
+	height: 31px;
+	padding: 5px;
+	vertical-align: middle;
+	width: 31px;
+}
+.skills .passive .skill-1 {
+	background-position: 0 0
+}
+.skills .passive .skill-2 {
+	background-position: -41px 0
+}
+.skills .passive .skill-3 {
+	background-position: -82px 0
 }

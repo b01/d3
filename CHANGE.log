@@ -1,5 +1,13 @@
 List of changes as of 06/03/2013 09:32 AM
 -------------------------------
+	- Updated broken images for skills on the hero page.
+
+List of changes as of 06/03/2013 09:32 AM
+-------------------------------
+	- Updated TODO with task and spelling corrections.
+
+List of changes as of 06/03/2013 09:32 AM
+-------------------------------
 	- Updated README formatting.
 
 List of changes as of 06/03/2013 09:30 AM
@@ -9,7 +17,7 @@ List of changes as of 06/03/2013 09:30 AM
 List of changes as of 06/03/2013 06:45 AM
 -------------------------------
 	- Changed title to D3 Assistant.
-	- Refactored site CSS.
+	- Re-factored site CSS.
 	- Moved my name to author meta tag.
 	- Added description tags to home, hero, and item forge.
 	- Updated image process for CSS item background effect images.
@@ -25,7 +33,7 @@ List of changes as of 06/02/2013 10:43 AM
 	- Added hero class parameter to item forge link on the hero page.
 	- Removed JavaScript to pull item form in via AJAX.
 	- Added PHP include to pull the item form directly into the get-hero page.
-	- Refactored item form JavaScript.
+	- Re-factored item form JavaScript.
 	- Updated hero page styling.
 	- Updated image processor to handle image URLs in the CSS, support for jpg and gif were added.
 	- Added new tool to display the a hero's highest completed level and act.
@@ -38,24 +46,24 @@ List of changes as of 05/31/2013 08:58 PM
 List of changes as of 05/24/2013 08:48 PM
 -------------------------------
 	- Added parameter for passing in header array to HttpRequest object.
-	- Removed call to tidy in get-url was removing inline style tag from HTML.
-	- Added tool-tip.css file for refactoring item tool-tip styles.
+	- Removed call to tidy in get-url was removing in-line style tag from HTML.
+	- Added tool-tip.css file for re-factoring item tool-tip styles.
 	- Added icon for the item in the item forge.
 	- Added background effect to the item.
 
 List of changes as of 05/22/2013 11:37 PM
 -------------------------------
 	- Updated item forge.
-	- Refactored battle.net url JavaScript item parser.
+	- Re-factored battle.net url JavaScript item parser.
 
 List of changes as of 05/18/2013 10:00 AM
 -------------------------------
 	- Renamed "php" directory to "templates"
 	- Fixed HTML mark-up issues on item-forge page.
-	- Refactored code from get-item to a new item template file.
+	- Re-factored code from get-item to a new item template file.
 	- Fixed style issue with list on get-hero page.
-	- Implmented simple caching of items on hero page.
-	- Made item-tool-tips draggable on hero page.
+	- Implemented simple caching of items on hero page.
+	- Made it so you can drag item tool-tips on the hero page.
 
 List of changes as of 05/13/2013 08:13 PM
 -------------------------------
@@ -76,7 +84,7 @@ List of changes as of 05/12/2013 10:29 PM
 List of changes as of 05/08/2013 09:11 PM
 -------------------------------
 	- WIP new formulas for damage.
-	- Refactored All classes to accomodate PSR-0.
+	- Re-factored All classes to accommodate PSR-0.
 	- Made the autoloader more compliant with PSR-0.
 
 List of changes as of 05/05/2013 12:55 AM
@@ -93,7 +101,7 @@ List of changes as of 04/29/2013 05:25 PM
 
 List of changes as of 04/29/2013 01:37 AM
 -------------------------------
-	- Added more to the systesm for building items.
+	- Added more to the systems for building items.
 	- Updated styles.
 	- Updated jQuery and jQuery mobile.
 	- Added some new routes.
@@ -101,24 +109,24 @@ List of changes as of 04/29/2013 01:37 AM
 
 List of changes as of 04/21/2013 08:05 PM
 -------------------------------
-	- Ignore tidy config file.
+	- Ignore tidy configuration file.
 
 List of changes as of 04/21/2013 06:48 PM
 -------------------------------
 	- Fixed attack speed calculation.
 	- Added active and passive skill icons to the hero detail page.
 	- Moved cache message into the body on hero page.
-	- Added padding between stat details on hero detail page.
+	- Added padding around statistic details on the hero detail page.
 
 List of changes as of 04/21/2013 07:34 AM
 -------------------------------
-	- Refactored Calculator for better understanding and to be a bit more readable.
+	- Re-factored Calculator for better understanding and to be a bit more readable.
 	- Style changes to hero page.
 
 List of changes as of 03/31/2013 11:48 AM
 -------------------------------
-	- Refactored calculations class.
-	- Fixed MySQL charset in the DSN settings file.
+	- Re-factored calculations class.
+	- Fixed MySQL char-set in the DSN settings file.
 
 List of changes as of 03/19/2013 11:45 PM
 -------------------------------
@@ -139,7 +147,7 @@ List of changes as of 03/18/2013 07:03 PM
 
 List of changes as of 03/17/2013 10:54 PM
 -------------------------------
-	- Made textare for hash on item tool-tips read-only.
+	- Made texture for hash on item tool-tips read-only.
 
 List of changes as of 03/17/2013 10:52 PM
 -------------------------------
@@ -156,7 +164,7 @@ List of changes as of 03/17/2013 10:04 PM
 List of changes as of 03/17/2013 07:42 PM
 -------------------------------
 	- Fixed bug with caching hero json.
-	- Refactor hero caching code.
+	- Redactor hero caching code.
 	- Updated jQuery, jQuery UI, and jQuery Mobile.
 	- Changed item form to display the battle net ID as a read-only field.
 	- Moved CHANGES.txt to CHANGE.log
@@ -173,19 +181,19 @@ List of changes as of 02/27/2013 07:48 PM
 List of changes as of 02/27/2013 06:30 PM
 -------------------------------
 	- Added starter settings file.
-	- Added instructions in the readme file.
-	- Added server referer value to the settings variable.
+	- Added instructions in the read-me file.
+	- Added server referrer value to the settings variable.
 
 List of changes as of 02/27/2013 09:38 AM
 -------------------------------
 	- Updated skill-script.js with new function to replace percent values with their decimal equivalent.
-	- Cleanup from namespace overhaul in the image-processor.php file.
+	- Clean-up from name-space overhaul in the image-processor.php file.
 	- Decreased sleep time in image-processor to prevent going over PHP script execution time.
 	- Updated all hero skill JSON files with new parsings.
 
 List of changes as of 02/26/2013 09:38 AM
 -------------------------------
-	- Updated script for extracting hero skills from Battale.Net.
+	- Updated script for extracting hero skills from Battle.Net.
 
 List of changes as of 02/20/2013 08:07 PM
 -------------------------------
@@ -201,27 +209,27 @@ List of changes as of 02/14/2013 07:54 PM
 	- Fixed bug in Item class.
 	- Updated item tool-tip styling.
 	- Removed get-skills-html page, replaced it with get-url page, now more restricted.
-	- Added select text on mouseup for hash and JSON copy boxes.
-	- Removed var dump statement from BattleNet_Dqi class.
+	- Added select text on mouse-up for hash and JSON copy boxes.
+	- Removed var_dump statement from BattleNet_Dqi class.
 	- Removed item-form HTML file.
-	- Uncheck extra when on hero page.
+	- Unchecked extra when on hero page.
 
 List of changes as of 02/13/2013 08:25 PM
 -------------------------------
-	- Refactoring and various bug fixes in Profile class.
-	- Refactored Hero and BattleNet_Dqi classes.
+	- Re-factoring and various bug fixes in Profile class.
+	- Re-factored Hero and BattleNet_Dqi classes.
 	- Updated get-profile and get-hero pages.
 
 List of changes as of 02/12/2013 11:33 PM
 -------------------------------
-	- Refactored classes to work with namespaces correctly (Windows bug work-a-round).
+	- Re-factored classes to work with name-spaces correctly (Windows bug work-a-round).
 	- Removed some deprecated methods from Sql class.
 	- Updated tables.sql file.
 
 List of changes as of 02/10/2013 10:50 PM
 -------------------------------
 	- New feature to capture unique attribute names in a file for easy editing and mapping.
-	- Updated bootstrap to load attribute map (site-wite) on run.
+	- Updated bootstrap to load attribute map (site-wide) on run.
 	- Added new attribute map settings.
 	- Added attribute map file to sample data.
 	- Added URL "/attribute-map.php" to display a list of the current attribute map.
@@ -232,12 +240,12 @@ List of changes as of 02/07/2013 01:18 AM
 	- Build JavaScript to parse Battle.Net skills HTML.
 	- Added page to retrieve skills HTML from Battle.Net.
 	- Build module to convert Battle.Net skills HTML into usable JSON stub.
-	- Updated all hero skill json samples.
+	- Updated all hero skill JSON samples.
 
 List of changes as of 02/05/2013 11:01 PM
 -------------------------------
 	- Updated CSS styling.
-	- Removed percent sign from stats on hero page that did not require them.
+	- Removed percent sign from statistics on hero page that did not require them.
 	- Removed unused fields from the form item forms.
 	- Minor JavaScript tweaks to the AJAX form on the hero page.
 	- New damage per second calculation.
@@ -256,12 +264,12 @@ List of changes as of 01/27/2013 08:57 PM
 
 List of changes as of 01/26/2013 08:57 PM
 -------------------------------
-	- Added damage attibute for weapon items.
+	- Added damage attribute for weapon items.
 	- Fixed bug in displayRange method.
 
 List of changes as of 01/26/2013 01:00 PM
 -------------------------------
-	- Refactored ItemModel.
+	- Re-factored ItemModel.
 	- Updated item style.
 	- Add item hash link which reveals its hash key.
 	- Add item JSON link which reveals its JSON key.
@@ -272,20 +280,20 @@ List of changes as of 01/21/2013 05:48 PM
 	- Fixed retrieving the profile from Battle.Net, broken from previous SQL changes.
 	- Removed debugging code from "get hero" page which caused same hero to be pulled every time.
 	- Converted various files to UTF-8 without BOM and Unix line endings.
-	- Added profile pics to the profile page and updated style.
+	- Added profile pictures to the profile page and updated style.
 	- Added check for offHand before use in Calculator class.
 	- Fixed property typo in Item class preventing saving items.
 
 List of changes as of 01/17/2013 09:20PM
 -------------------------------
 	- Added new item to the git ignore file.
-	- Converted stats toggle to a jQuery UI widget.
+	- Converted statistics toggle to a jQuery UI widget.
 	- Updated jQuery UI to 1.10.
 	- Updated jQuery to 1.9.
-	- Added Battle.net calculated stats to the hero page.
+	- Added Battle.net calculated statistics to the hero page.
 	- Improved hero stat calculations.
 	- Fixed bugs in Calculations class.
-		- All stats not counted from gems.
+		- All statistics not counted from gems.
 
 
 List of changes as of 01/16/2013 11:53 PM
@@ -299,7 +307,7 @@ List of changes as of 01/15/2013 10:00 PM
 List of changes as of 01/15/2013 10:00 PM
 -------------------------------
 	- Updated SQL tables.
-	- Refactored Item class.
+	- Re-factored Item class.
 	- Updated save method for Profile class.
 	- Added new constant to site settings.
 	- Updated item table store items by hash and id once pulled from Battle.net
@@ -325,8 +333,8 @@ List of changes as of 01/11/2013 12:00 AM
 	- Updated jQuery and added jQuery UI custom.
 	- Updated Hero styling.
 	- Reworked how site constants are loaded and set, removed use of JSON.
-	- Refactored BattleNet_Dqi class.
-	- Refactored cache methods in tool.
+	- Re-factored BattleNet_Dqi class.
+	- Re-factored cache methods in tool.
 
 List of changes as of 01/08/2013 09:53 PM
 -------------------------------
@@ -354,7 +362,7 @@ List of changes as of 01/07/2013 08:36 PM
 
 List of changes as of 01/06/2013 12:12 AM
 -------------------------------
-	- Added new http requestor class.
+	- Added new http request class.
 	- Added saving images locally from battle.net.
 
 List of changes as of 01/06/2013 06:05 PM
@@ -369,13 +377,13 @@ List of changes as of 01/06/2013 02:57 AM
 
 List of changes as of 01/06/2013 02:47 AM
 -------------------------------
-	- Added checkbox to toggle extra data on the get item page.
-	- Added critcal hit damage to calculation class.
-	- Refactored calculations class.
+	- Added check-box to toggle extra data on the get item page.
+	- Added critical hit damage to calculation class.
+	- Re-factored calculations class.
 	- Calculation class now takes gems into account for totals.
-	- Optimized the stat details toggle feature.
-	- Updated styling on the stat details toggle feature.
-	- Added new properties "stats" and "characterClass" to hero class.
+	- Optimized the statistic details toggle feature.
+	- Updated styling on the statistic details toggle feature.
+	- Added new properties "statistics" and "characterClass" to hero class.
 	- Added new method to detect duel wielding to the tools class.
 	- Added toggle to weapon damage on hero page.
 	- Fixed some bugs in the dps calculation.
@@ -385,11 +393,11 @@ List of changes as of 01/03/2013 12:57 PM
 	- Added new method to output associative arrays in sprintf fashion.
 	- Calculated critcal hit chance and display it's components.
 	- Beefed up attack speed calculation with item data.
-	- Added slide toggle to stat expandables and also swap +/-.
+	- Added slide toggle to statistic expandables and also swap +/-.
 
 List of changes as of 01/03/2013 12:57 PM
 -------------------------------
-	- Refactored CSS for item.
+	- Re-factored CSS for item.
 	- Hide tool-tip param on item when loading on the get hero page.
 	- Updated TODO list priorities.
 
@@ -420,8 +428,8 @@ List of changes as of 12/30/2012 3:52 PM
 
 List of changes as of 12/30/2012 1:44 PM
 -------------------------------
-	- Add some labels to hero stats to the get-hero page.
-	- Added set and gem stats to get-item page.
+	- Add some labels to hero statistics to the get-hero page.
+	- Added set and gem statistics to get-item page.
 
 List of changes as of 12/21/2012 11:00 PM
 -------------------------------
@@ -431,32 +439,32 @@ List of changes as of 12/21/2012 11:00 PM
 List of changes as of 12/21/2012 08:47 AM
 -------------------------------
 	- Rename class 'Calculate' to 'Calculator'.
-	- Refactored Calculator class.
+	- Re-factored Calculator class.
 
 List of changes as of 12/10/2012 12:52 AM
 -------------------------------
-	- Moved DSN to settings.json file.
-	- Removed unused constants from settings.json
+	- Moved DSN to "settings.json" file.
+	- Removed unused constants from "settings.json"
 
 List of changes as of 12/09/2012 11:59 PM
 -------------------------------
-	- Added new generic methods (save, getData) to Sql class for saving and retrieving data.
-	- Added d3_heroes table with corresponding INSERT and SELECT SQL statments.
+	- Added new generic methods (save, getData) to "Sql" class for saving and retrieving data.
+	- Added d3_heroes table with corresponding INSERT and SELECT SQL statements.
 	- Added new methods "logError" and "showUserFriendlyError".
 	- Updated Hero class to use the generic "save" and "getData" methods on Sql Class.
 	- Removed saving and pulling items from local database for now.
-	- Stopped prepending the database name to the table in the Sql class prepared statements.
-	- Moved settings from PHP file to JSON. Now all settings are stored in php/settings.json.
+	- Stopped pre-pending the database name to the table in the "Sql" class prepared statements.
+	- Moved settings from PHP file to JSON. Now all settings are stored in "php/settings.json".
 	- Added "php/settings.json" to .gitignore.
 
 List of changes as of 12/08/2012 08:41 AM
 -------------------------------
 	- Added Calculate class with methods for damage, and effectiveness of items.
 	- Added a way to compose an array of all items equipped from head to foot.
-	- Added tooltip.js and d3.js from battle.net for reference.
+	- Added "tooltip.js" and "d3.js" from battle.net for reference.
 	- Added 'set' item info into the string output of the item model class.
-	- Changed name-space to d3 and upadated all instances.
-	- Change project folder name to diablo-3 from diablo-3-character-builder.
+	- Changed name-space to d3 and updated all instances.
+	- Change project folder name to "diablo-3" from "diablo-3-character-builder".
 	- Updated TODO items.
 
 List of changes as of 11/30/2012 08:39 AM
@@ -469,7 +477,7 @@ List of changes as of 11/30/2012 08:39 AM
 	- Applied more styling to the item tool-tip.
 	- Added new tool function for displaying item-tool-tip values as a single number/range.
 	- Added method to Item class for displaying attributes.
-	- Added d3.css from Battle.net.
+	- Added "d3.css" from Battle.net.
 
 List of changes as of 11/26/2012 08:25 AM
 -------------------------------
@@ -478,9 +486,9 @@ List of changes as of 11/26/2012 08:25 AM
 List of changes as of 11/26/2012 08:25 AM
 -------------------------------
 	- ItemModel now throws an exception when json_decode does not return and array.
-	- Refactored get-item and Item class.
-	- Updated item.html to pass item name, hash, and id as seperate inputs.
-	- Mode official D3 CSS to tooltips.css, and moved new item CSS into item.css
+	- Re-factored get-item and Item class.
+	- Updated item.html to pass item name, hash, and id as separate inputs.
+	- Mode official D3 CSS to "tooltips.css", and moved new item CSS into "item.css"
 
 List of changes as of 11/23/2012 07:29 AM
 -------------------------------
@@ -496,60 +504,60 @@ List of changes as of 11/17/2012 08:32 AM
 
 List of changes as of 11/12/2012 09:24 PM
 -------------------------------
-	- Moved IP address parameter from multiple classes solely to the Sql class.
+	- Moved IP address parameter from multiple classes solely to the "Sql" class.
 
 List of changes as of 11/12/2012 09:24 PM
 -------------------------------
-	- Added new __cast method for which initilized an item from an stdClass object.
-	- Moved Profile and Hero classes out of sub-namespace Api.
+	- Added new __cast method for which initialized an item from an stdClass object.
+	- Moved Profile and Hero classes out of sub name space "Api".
 
 List of changes as of 11/09/2012 08:01 PM
 -------------------------------
-	- Moved methods out of the Tool class directly into the namespace, and removed the Tool class.
+	- Moved methods out of the Tool class directly into the name space, and removed the Tool class.
 
 List of changes as of 11/09/2012 08:01 PM
 -------------------------------
-	- Added new Item class for objectifying the following battle.net json data:
-		- Armor: Amulet, Belt, Boot, Bracers, Chest, Helm, Legs, Ring, Shoulder
+	- Added new Item class for objectifying the following battle.net JSON data:
+		- Armor: Amulet, Belt, Boot, Bracer's, Chest, Helm, Legs, Ring, Shoulder
 		- Weapons: All
 
 List of changes as of 11/07/2012 06:33 PM
 -------------------------------
-	- Added json samples for each armor type and an axe weapon.
+	- Added JSON samples for each armor type and an axe weapon.
 	- Began re-implementation of Item class.
 	- Added URLs file to sample-data collection.
 	- Updated d3_items table column names.
 	- Added methods "loadByName" and "loadByHash" to the Items class.
-	- Updated Sql class to reflect changes made to the d3_items table.
+	- Updated "Sql" class to reflect changes made to the d3_items table.
 
 List of changes as of 10/31/2012 11:44 PM
 -------------------------------
 	- Added Hero class.
-	- Added hero.json to sample data.
+	- Added "hero.json" to sample data.
 	- Added link to hero on the profile page.
 	- Added hero query to the BattleNet_Dqi class.
-	- Added urls for item images to the hero page.
+	- Added URLs for item images to the hero page.
 
 List of changes as of 10/29/2012 12:31 PM
 -------------------------------
 	- Updated BattleNet_Dqi to take the battleNet ID on construct.
-	- Updated the readme.
+	- Updated the read-me.
 	- Added TODO item.
-	- Added insert statement to Sql class for items pull from battleNet web API.
+	- Added insert statement to "Sql" class for items pull from battleNet web API.
 	- Updated get-item form to take a battle net ID as well.
 	- Fixed bug in BattleNet_Dqi class.
 
 List of changes as of 10/29/2012 07:26 PM
 -------------------------------
-	- Aded form to submit an item hash.
+	- Added form to submit an item hash.
 	- added controller to submit item hash to begin request from battle net server.
 	- added table to store the item data retrieved from battle.net.
 
 List of changes as of 10/29/2012 07:26 PM
 -------------------------------
-	- Implement profile request (alreday methioned as other task below; but these were moved from the TODO list, to clean it up)
+	- Implement profile request (already mentioned as other task below; but these were moved from the TODO list, to clean it up)
 		- first time request the users profile from battle net.
-		- store the battlenet profile in local database along with the users IP, their battleNetID, and date the profile request was made.
+		- store the Battle.net profile in local database along with the users IP, their battleNetID, and date the profile request was made.
 		- present the profile to the user as a list
 	- Converted all most files to UTF-8 w/o BOM and Unix EOL.
 
@@ -573,7 +581,7 @@ List of changes as of 10/28/2012 01:36 PM
 List of changes as of 10/28/2012 08:53 AM
 -------------------------------
 	- Added database table to store profile JSON pulled from Battle.net Web API service.
-	- Added Sql class to make database PDO calls easier, copied from a previous project and modified to suit this one.
+	- Added "Sql" class to make database PDO calls easier, copied from a previous project and modified to suit this one.
 		- added method to save profiles locally, and call them up when needed.
 
 List of changes as of 10/28/2012 08:53 AM
@@ -583,7 +591,7 @@ List of changes as of 10/28/2012 08:53 AM
 	- Added method to the BatttleNetDqi class to return the http response code.
 	- Updated the Profiles class to check the http response before attempting to parse Profile JSON returned from battle.net.
 	- Added a real profile returned from battle.net to /sample-data/profile.json.
-	- Created a mysql table to store the profiles locally.
+	- Created a MySQL Inno-db table to store the profiles locally.
 	- Added /sql/tables.sql file, only contains the profile table used to store profiles locally.
 	- Fixed typo in CHNAGES.txt.
 
@@ -592,8 +600,8 @@ List of changes as of 10/27/2012 16:57
 	- Added configurable site settings.
 	- Added form to input BattleNet ID.
 	- Implemented BattleNet_Dqi, Profile, Tool classes to load profile from BattleNet (simply loads the JSON and decodes it to an array).
-	- Added jQuery and jQuery UI (just core, and widget) for furture use.
+	- Added jQuery and jQuery UI (just core, and widget) for future use.
 
 List of changes as of 10/27/2012 11:12 AM
 -------------------------------
-	- Added readme, license, and change log files.
+	- Added read-me, license, and change log files.

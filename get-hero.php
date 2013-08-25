@@ -16,6 +16,8 @@
 		$battleNetDqi = new BattleNet_Dqi( $battleNetId );
 		$sql = new BattleNet_Sql( DSN, DB_USER, DB_PSWD, USER_IP_ADDRESS );
 		$heroModel = new BattleNet_Hero( $id, $battleNetDqi, $sql, $sessionCacheInfo['loadFromBattleNet'] );
+
+		print $heroModel->json();
 		$hero = new Hero( $heroModel->json() );
 		$items = $heroModel->items();
 		$hardcore = ( $hero->hardcore ) ? 'Hardcore' : '';
@@ -53,8 +55,9 @@
 			<input class="input" type="hidden" name="battleNetId" value="<?= $battleNetId ?>" />
 			<input type="submit" value="Back to Heroes" />
 		</form>
-		<?php if ( isArray($items) ): ?>
 		<div class="inline-block section one">
+			<!-- START ITEMS -->
+			<?php if ( isArray($items) ): ?>
 			<div class="hero">
 				<?php foreach ( $items as $key => $itemData ):
 					$hash = $itemData[ 'tooltipParams' ];
@@ -75,24 +78,32 @@
 					</a>
 				<?php endforeach; ?>
 			</div>
+			<?php endif; ?>
+			<!-- END ITEMS -->
 			<div class="skills">
 				<div class="active">
-				<?php foreach ( $hero->skills['active'] as $key => $skill ): $skill = $skill['skill']; ?>
-					<a class="fake-link" href="//us.battle.net/d3/en/class/<?= $hero->class; ?>/active/<?= $skill['slug']; ?>">
-						<img src="http://media.blizzard.com/d3/icons/skills/64/<?= $skill['icon'] ?>.png" />
+				<?php for ( $i = 0, $len = count($hero->skills['active']); $i < $len; $i++ ):
+					  $skill = $hero->skills['active'][$i]['skill']; ?>
+					<a class="fake-link link skill-<?= $i + 1 ?>" href="//us.battle.net/d3/en/class/<?= $hero->class; ?>/active/<?= $skill['slug']; ?>">
+						<span class="slot slot-1"></span>
+					<?php if (!empty($skill['icon'])): ?>
+						<img src="http://media.blizzard.com/d3/icons/skills/42/<?= $skill['icon'] ?>.png" />
+					<?php endif; ?>
 					</a>
-				<?php endforeach; ?>
+				<?php endfor; ?>
 				</div>
 				<div class="passive">
-				<?php foreach ( $hero->skills['passive'] as $key => $skill ): $skill = $skill['skill']; ?>
-					<a class="fake-link" href="//us.battle.net/d3/en/class/<?= $hero->class; ?>/passive/<?= $skill['slug']; ?>">
+				<?php for ( $i = 0, $len = count($hero->skills['passive']); $i < $len; $i++ ):
+					  $skill = $hero->skills['passive'][$i]['skill']; ?>
+					<a class="fake-link link skill-<?= $i + 1 ?>" href="//us.battle.net/d3/en/class/<?= $hero->class; ?>/passive/<?= $skill['slug']; ?>">
+					<?php if (!empty($skill['icon'])): ?>
 						<img src="http://media.blizzard.com/d3/icons/skills/64/<?= $skill['icon'] ?>.png" />
+					<?php endif; ?>
 					</a>
-				<?php endforeach; ?>
+				<?php endfor; ?>
 				</div>
 			</div>
 		</div>
-		<?php endif; ?>
 		<div class="inline-block section two">
 			<?php if ( isArray($heroItems) ): ?>
 			<div>
