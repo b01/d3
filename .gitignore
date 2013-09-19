@@ -6,3 +6,6 @@ logs*
 media*
 aspnet_client
 tidy.config
+favicon*
+*.log
+vendor

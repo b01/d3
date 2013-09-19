@@ -15,7 +15,7 @@ delimiter $$
 CREATE TABLE `d3_heroes` (
   `id` varchar(200) NOT NULL,
   `battle_net_id` varchar(200) NOT NULL,
-  `json` text NOT NULL,
+  `json` longtext NOT NULL,
   `ip_address` varchar(45) DEFAULT NULL,
   `last_updated` datetime NOT NULL,
   `date_added` datetime NOT NULL,
@@ -27,7 +27,7 @@ delimiter $$
 
 CREATE TABLE `d3_profiles` (
   `battle_net_id` varchar(200) NOT NULL,
-  `json` text NOT NULL,
+  `json` longtext NOT NULL,
   `ip_address` varchar(45) DEFAULT NULL,
   `last_updated` datetime NOT NULL,
   `date_added` datetime NOT NULL,
@@ -41,7 +41,7 @@ CREATE TABLE `d3_items` (
   `id` varchar(255) NOT NULL,
   `name` varchar(45) NOT NULL,
   `item_type` varchar(45) NOT NULL,
-  `json` text NOT NULL,
+  `json` longtext NOT NULL,
   `ip_address` varchar(45) DEFAULT NULL,
   `last_updated` datetime NOT NULL,
   `date_added` datetime NOT NULL,

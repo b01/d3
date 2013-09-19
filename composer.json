@@ -1,0 +1,24 @@
+{
+	"name": "kshabazz/diablo-3-assistant",
+	"description": "A tool to help play improve your game-play.",
+    "require": {
+		"php": ">=5.4.0",
+        "mustache/mustache": "~2.1"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "3.7.*"
+    },
+	"autoload": {
+		"psr-0": { "kshabazz\\": "src/" }
+	},
+	"type": "tool",
+	"keywords": ["diablo 3"],
+	"homepage": "d3.kshabazz.net",
+	"authors": [
+		{
+			"name": "Khalifah Shabazz",
+			"homepage": "http://www.kshabazz.net",
+			"role": "Developer"
+		}
+	]
+}
