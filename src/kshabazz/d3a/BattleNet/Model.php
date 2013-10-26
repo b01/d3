@@ -22,7 +22,7 @@ abstract class BattleNet_Model
 	/**
 	* Constructor
 	*/
-	public function __construct( $pKey, BattleNet_Dqi $pDqi, Sql $pSql, $pForceLoadFromBattleNet )
+	public function __construct( $pKey, BattleNet_Requestor $pDqi, Sql $pSql, $pForceLoadFromBattleNet )
 	{
 		$this->dqi = $pDqi;
 		$this->forceLoadFromBattleNet = $pForceLoadFromBattleNet;

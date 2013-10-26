@@ -1,36 +1,21 @@
 <?php namespace kshabazz\d3a;
 
-	$battleNetUrlSafeId = getStr( "battleNetId" );
-	$id = getStr( "heroId" );
-	$cache = ( bool )getStr( "cache" );
-	$items = NULL;
-	$heroModel = NULL;
-	$hero = NULL;
-	$heroItems = [];
-	if ( isString($battleNetUrlSafeId) && isString($id) )
-	{
-		// Check if the cache has expired for the hero JSON.
-		$sessionCacheInfo = getSessionExpireInfo( "heroTime", $cache );
 
-		$battleNetId = str_replace( '-', '#', $battleNetUrlSafeId );
-		$battleNetDqi = new BattleNet_Dqi( $battleNetId );
-		$sql = new BattleNet_Sql( DSN, DB_USER, DB_PSWD, USER_IP_ADDRESS );
-		$heroModel = new BattleNet_Hero( $id, $battleNetDqi, $sql, $sessionCacheInfo['loadFromBattleNet'] );
-		$hero = new Hero( $heroModel->json() );
-		$items = $heroModel->items();
-		$hardcore = ( $hero->hardcore ) ? 'Hardcore' : '';
-		$deadText = '';
-		$heroJson = [];
-		if ( $hero->dead )
-		{
-			$deadText = "This {$hardcore} hero fell on " . date( 'm/d/Y', $hero->{'last-updated'} ) . ' :(';
-		}
+
+
+	if ( $model instanceof Model_GetHero )
+	{
+		$hero = $model->hero();
+		$items = $model->getItemModels();
 		$attrMapFile = $d3a->retrieve( 'attribute_map' );
+		$calculator = new Calculator( $hero, $attrMapFile, $items );
+
+		$model->getReadyToRender();
 
 ?><!DOCTYPE html>
 <html>
 	<head>
-		<title>Hero <?= $hero->name ?></title>
+		<title>Hero {{name}}</title>
 		<meta name="charset" content="utf-8" />
 		<meta name="author" content="Khalifah K. Shabazz" />
 		<meta name="description" content="View your hero’s stats, and then try out different items to see if those stats improve or not. Use the item for by pasting the D3 web-hash or ID (of forge generated item), and then drag and drop the item to the appropriate slot, your stats will automatically update. " />
@@ -47,41 +32,47 @@
 	</head>
 	<body class="hero-page">
 		<div class="panel info">
-			<div class="dead-<?= $hero->dead ?>"><?= $deadText ?></div>
-			<div class="progress"><?= getProgress( $hero->progress ) ?></div>
+			<div class="dead-{{dead}}">{{deadText}}</div>
+			<div class="progress">{{progress}}</div>
 				<form action="/get-profile.php" method="post">
-					<input class="input" type="hidden" name="battleNetId" value="<?= $battleNetId ?>" />
+					<input class="input" type="hidden" name="battleNetId" value="{{battleNetId}}" />
 					<input type="submit" value="Back to Heroes" />
-					<span class="time-elapsed">
-						<?= displaySessionTimer( $sessionCacheInfo['timeLeft'] ) ?>
-					</span>
+					<span class="time-elapsed">{{sessionTimeLeft}}</span>
 				</form>
 		</div>
 		<div class="inline-block section one">
-			<!-- START ITEMS -->
+			<!-- START ITEMS MODULE -->
+			<div class="hero">
+			{{# items}}
+					{{ .tooltipParams }}
+			{{/ items}}
+			</div>
 			<?php if ( isArray($items) ): ?>
 			<div class="hero">
-				<?php foreach ( $items as $key => $itemData ):
-					$hash = $itemData[ 'tooltipParams' ];
-					$d3Item = new BattleNet_Item( str_replace("item/", '', $hash), "hash", $battleNetDqi, $sql );
-					$item = new Item( $d3Item->json() );
-					$heroItems[ $key ] = $item;
-					$heroJson[ $key ] = substr( $item->tooltipParams, 5 );
-					// $heroItems = $hero->getItemModels();
+				<?php foreach ( $items as $key => $item ):
+					$hash = $item->tooltipParams;
 				?>
-					<a class="item-slot <?= $key . translateSlotName( $key ) ?>" href="/get-item.php?battleNetId=<?= $battleNetUrlSafeId . '&' . str_replace( '/', "Hash=", $hash ) ?>&extra=0&showClose=1" data-slot="<?= $key ?>">
+					<a class="item-slot <?= $key . translateSlotName( $key ) ?>" href="/get-item.php?battleNetId={{battleNetId}}<?= '&' . str_replace( '/', "Hash=", $hash ) ?>&extra=0&showClose=1" data-slot="<?= $key ?>">
 						<div class="icon <?= $item->displayColor; ?> inline-block top" data-hash="<?= substr( $hash, 5 ); ?>" data-type="<?= getItemSlot( $item->type['id'] ) ?>">
-							<img class="gradient" src="/media/images/icons/items/large/<?= $itemData['icon'] ?>.png" alt="<?= $key ?>" />
+							<img class="gradient" src="/media/images/icons/items/large/<?= $item->icon ?>.png" alt="<?= $key ?>" />
 							<?php require( 'templates/gems.php' ); ?>
 						</div>
-						<div class="id"><?= $itemData['id'] ?></div>
+						<div class="id"><?= $item->id ?></div>
 						<!-- img src="http://media.blizzard.com/d3/icons/items/small/dye_10_demonhunter_male.png" / -->
-						<!-- img src="/media/images/icons/items/small/< $itemData['dye'] >.png" / -->
+						<!-- img src="/media/images/icons/items/small/< $item->dye >.png" / -->
 					</a>
 				<?php endforeach; ?>
 			</div>
 			<?php endif; ?>
-			<!-- END ITEMS -->
+			<!-- END ITEMS MODULE -->
+			<?php $stats = $hero->stats; ?>
+			<ul class="list stats inline-block">
+			{{# stats }}
+				<li class="stat">
+					<span class="label"><?= $key ?></span>: <span class="nuetral"><?= $value ?></span>
+				</li>
+			{{/ stats}}
+			</ul>
 			<?php $stats = $hero->stats; ?>
 			<ul class="list stats inline-block">
 			<?php foreach ( $stats as $key => $value ): ?>
@@ -90,7 +81,7 @@
 				</li>
 			<?php endforeach; ?>
 			</ul>
-			<!-- START SKILLS -->
+			<!-- START SKILLS MODULE -->
 			<div class="skills">
 				<div class="active">
 				<?php for ( $i = 0, $len = count($hero->skills['active']); $i < $len; $i++ ):
@@ -114,11 +105,10 @@
 				<?php endfor; ?>
 				</div>
 			</div>
-			<!-- END SKILLS -->
+			<!-- END SKILLS MODULE -->
 		</div>
 		<div class="inline-block section two">
-			<?php if ( isArray($heroItems) ):
-				$hm = new Model_Hero( $hero, $attrMapFile, $heroItems ); ?>
+			<?php if ( $calculator instanceof Calculator ): ?>
 			<div>
 				<div id="item-lookup"><?php $which = "form"; include 'get-url.php';?></div>
 				<div id="item-lookup-result" class="inline-block"></div>
@@ -126,7 +116,6 @@
 			</div>
 			<br />
 			<ul class="calculated list stats inline-block">
-				<?php  $calculator = new Calculator( $hero, $attrMapFile, $heroItems ); ?>
 				<li class="stat">
 					<span class="label"><span class="toggle inline-block">-</span> Attack Speed</span>: <span class="nuetral"><?= $calculator->attackSpeed(); ?></span>
 					<ul class="expandable">
@@ -182,9 +171,9 @@
 		</div>
 		<script type="text/javascript">
 			// Store this stuff in a cookie.
-			var heroJson = <?= json_encode( $heroJson ) ?>,
-				battleNetId = "<?= $battleNetUrlSafeId ?>",
-				heroClass = "<?= $hero->class; ?>";
+			var heroJson = {{heroItemHashes}},
+				battleNetId = "{{battleNetId}}",
+				heroClass = "{{class}}";
 		</script>
 		<?php $time = microtime( TRUE ) - $_SERVER[ 'REQUEST_TIME_FLOAT' ]; ?>
 		<!-- Page output in <?= $time ?> seconds -->
@@ -192,6 +181,7 @@
 			<p>This hero does NOT have any items equipped.</p>
 		<?php endif; ?>
 		<div id="ajaxed-items"></div>
-		<textarea name="hero-json" class="hide"><?= $heroModel->json() ?></textarea>
+		<textarea name="hero-json" class="hide">{{heroJson}}</textarea>
 	</body>
-</html><?php } ?>
+</html><?php }
+?>

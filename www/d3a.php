@@ -21,22 +21,10 @@ foreach ( $settings as $name => $value )
 	define( $nameSpace . $name, $value );
 }
 
-// Get the attribute map file.
-$d3a = new Application( $settings );
-$attrMapFile = loadAttributeMap( $settings['ATTRIBUTE_MAP_FILE'] );
-$controller = convertToClassName( $_SERVER['URL'] );
-$d3a->store( 'attribute_map', $attrMapFile );
-$d3a->store( 'controller', $controller );
-
-// unset any undesired global variables made in this script.
-unset(
-	$attrMapFile,
-	$controller,
-	$nameSpace
-);
-
 // Turn on D3 error handling.
 \set_error_handler( '\kshabazz\d3a\notice_error_handler', E_NOTICE );
+
+require_once __DIR__ . '/../src/kshabazz/d3a/loader.php';
 
 //DO NOT PUT ANY CHARACTERS OR EVEN WHITE-SPACE after the closing PHP tag, or headers may be sent before intended.
 ?>

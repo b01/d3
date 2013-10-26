@@ -1,3 +1,12 @@
+List of changes as of 09/23/2013 05:34 PM
+-------------------------------
+	- Better defined Models and Controller principals through design.
+	- Added controller and model to the get-hero view, of the same name.
+	- Renamed BattleNet_Dqi class to BattleNet_Dqi.
+	- Added method to plug-in a template engine to the application.
+	- Added Mustache as the template engine.
+	- Started converting the get-hero page over to Mustache
+
 List of changes as of 09/20/2013 07:17 AM
 -------------------------------
 	- Added composer and reconfigure application layout to be composer compliant.

@@ -491,7 +491,7 @@ class Calculator
 			$this->dualWield = $this->items[ 'mainHand' ]->type[ 'twoHanded' ];
 		}
 
-		echo '<div class="debug-info">';
+		echo '<div class="calculated list stats inline-block"><div class="debug-info">';
 		$this->computeAverageDamage()
 			->computeAttacksPerSecond()
 			->computeCriticalHitChance()
@@ -505,7 +505,7 @@ class Calculator
 			->computeSkillDamage()
 			->computeWeaponDamage() // Requires skill damage and primary attribute damage.
 			->computeDamagePerSecond(); // Requires just about everything.
-		echo '</div>';
+		echo '</div></div>';
 	}
 
 	/**

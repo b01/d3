@@ -1,14 +1,6 @@
 <?php namespace kshabazz\d3a;
 /**
-* Get the users item from Battle.Net and present it to the user; store it locally in a database behind the scenes.
-* The item will only be updated after a few ours of retrieving it.
-*
-*/
-
-/**
-* var $p_heroId string User BattleNet ID.
-* var $pDqi object Data Query Interface.
-* var $pSql object SQL.
+* Request a hero from BattleNet.
 */
 class BattleNet_Hero extends BattleNet_Model
 {
@@ -21,7 +13,7 @@ class BattleNet_Hero extends BattleNet_Model
 	/**
 	* Constructor
 	*/
-	public function __construct( $pKey, BattleNet_Dqi $pDqi, BattleNet_Sql $pSql, $pForceLoadFromBattleNet )
+	public function __construct( $pKey, BattleNet_Requestor $pDqi, BattleNet_Sql $pSql, $pForceLoadFromBattleNet )
 	{
 		$this->characterClass = NULL;
 		$this->items = NULL;
@@ -56,29 +48,6 @@ class BattleNet_Hero extends BattleNet_Model
 	public function characterClass()
 	{
 		return $this->characterClass;
-	}
-
-	/**
-	* Get the items.
-	*
-	* @return array
-	*/
-	public function getItemModels()
-	{
-		if ( isArray($this->items) )
-		{
-			echo "<div class=\"debug\">";
-			foreach ( $this->items as $slot => $item )
-			{
-				echo "<div>{$item['tooltipParams']}</div>";
-				// $this->itemModels[ $slot ] = str_replace( "item/", '', $item[ 'tooltipParams' ] );
-				// $d3Item = new Item( str_replace("item/", '', $hash), "hash", $this->battleNetDqi, $this->sql );
-				// $this->itemModels[ $slot ] = new ItemModel( $d3Item->json() );
-			}
-			echo "</div>";
-		}
-
-		return $this->itemModels;
 	}
 
 	/**

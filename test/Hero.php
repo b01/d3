@@ -1,32 +1,15 @@
-<?php namespace kshabazz\d3a;
+<?php
 /**
-* Get the users item from Battle.Net and present it to the user; store it locally in a database behind the scenes.
-* The item will only be updated after a few ours of retrieving it.
+* Unit test for: namespace kshabazz\d3a\Hero class.
 *
-* @var $p_heroId string User BattleNet ID.
-* @var $pDqi object Data Query Interface.
-* @var $pSql object SQL.
 */
-class Hero extends Model
+class HeroTest extends PHPUnit_Framework_TestCase
 {
-	protected
-		$armor,
-		$dexterity,
-		$dualWield,
-		$intelligence,
-		$itemModels,
-		$noItemsStats,
-		$primaryAttribute,
-		$strength,
-		$vitality;
-
 	/**
 	* Constructor
-	* @param $pJson Hero JSON from BattleNet query.
 	*/
-	public function __construct( $p_json )
+	public function setup()
 	{
-		parent::__construct( $p_json );
 		$this->armor = 7;
 		$this->criticalHitChance = 0.05;
 		$this->criticalHitDamage = 0.50;
