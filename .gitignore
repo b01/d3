@@ -9,3 +9,4 @@ tidy.config
 favicon*
 *.log
 vendor
+.idea/
