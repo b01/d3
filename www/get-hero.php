@@ -43,9 +43,18 @@
 		<div class="inline-block section one">
 			<!-- START ITEMS MODULE -->
 			<div class="hero">
-			{{# items}}
-					{{ .tooltipParams }}
-			{{/ items}}
+			{% for key, item in items %}
+				{{ item.tooltipParams }}
+				<a class="item-slot {{ $key }} {{ key|translateSlotName }}" href="/get-item.php?battleNetId={{battleNetId}}&{{ item.tooltipParams|str_replace( '/', 'Hash=') }}&extra=0&showClose=1" data-slot="{{ $key }}">
+						<div class="icon <?= $item->displayColor; ?> inline-block top" data-hash="<?= substr( $hash, 5 ); ?>" data-type="{{ item.type.id|getItemSlot( $item->type['id'] ) ?>">
+							<img class="gradient" src="/media/images/icons/items/large/<?= $item->icon ?>.png" alt="<?= $key ?>" />
+							{% include 'templates/gems.php' %}
+						</div>
+						<div class="id">{{ item.id }}</div>
+						<!-- img src="http://media.blizzard.com/d3/icons/items/small/dye_10_demonhunter_male.png" / -->
+						<!-- img src="/media/images/icons/items/small/< $item->dye >.png" / -->
+				</a>
+			{% endfor %}
 			</div>
 			<?php if ( isArray($items) ): ?>
 			<div class="hero">
@@ -67,11 +76,11 @@
 			<!-- END ITEMS MODULE -->
 			<?php $stats = $hero->stats; ?>
 			<ul class="list stats inline-block">
-			{{# stats }}
+			{% for key, stat in stats %}
 				<li class="stat">
-					<span class="label"><?= $key ?></span>: <span class="nuetral"><?= $value ?></span>
+					<span class="label">{{key}}</span>: <span class="nuetral">{{stat}}</span>
 				</li>
-			{{/ stats}}
+			{% endfor %}
 			</ul>
 			<?php $stats = $hero->stats; ?>
 			<ul class="list stats inline-block">

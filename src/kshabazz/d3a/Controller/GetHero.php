@@ -22,7 +22,8 @@ class GetHero extends \kshabazz\d3a\Abstract_Controller
 	public function __construct( \kshabazz\d3a\Application $pApp )
 	{
 		$this->app = $pApp;
-		$this->battleNetUrlSafeId = $this->app->getParam( 'battleNetId' );
+		$this->battleNetUrlSafeId = $this->app->getParam( 'battleNetId', '' );
+		var_dump($this->battleNetUrlSafeId);
 		$this->id = $this->app->getParam( 'heroId' );
 		$this->cache = ( bool )$this->app->getParam( 'cache' );
 		$this->items = NULL;
@@ -91,8 +92,7 @@ class GetHero extends \kshabazz\d3a\Abstract_Controller
 				$this->sessionCacheInfo['loadFromBattleNet']
 			);
 
-			$mdl = '\\kshabazz\\d3a\\Model_' . $this->app->retrieve( 'controller' );
-			$this->model = new $mdl(
+			$this->model = new \kshabazz\d3a\Model_GetHero(
 				$this->bnrHero,
 				$this->app->retrieve('attribute_map'),
 				$this->bnr,

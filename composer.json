@@ -1,15 +1,9 @@
 {
 	"name": "kshabazz/diablo-3-assistant",
 	"description": "A tool to help play improve your game-play.",
-	"repositories": [
-		{
-			"type": "vcs",
-			"url": "https://github.com/b01/mustache.php"
-		}
-	],
     "require": {
 		"php": ">=5.4.0",
-        "mustache/mustache": "dev-feature/section-iterator-key-access"
+		"twig/twig": "1.*"
     },
     "require-dev": {
         "phpunit/phpunit": "3.7.*"

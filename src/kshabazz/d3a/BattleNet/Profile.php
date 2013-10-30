@@ -22,7 +22,7 @@ class BattleNet_Profile extends BattleNet_Model
 	/**
 	* Constructor
 	*/
-	public function __construct( $pBattleNetId, BattleNet_Dqi $pDqi, BattleNet_Sql $pSql, $pForceLoadFromBattleNet )
+	public function __construct( $pBattleNetId, BattleNet_Requestor $pDqi, BattleNet_Sql $pSql, $pForceLoadFromBattleNet )
 	{
 		$this->column = "battle_net_id";
 		$this->profile = NULL;
