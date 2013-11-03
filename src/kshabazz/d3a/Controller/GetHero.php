@@ -1,11 +1,21 @@
 <?php namespace kshabazz\d3a\Controller;
+use \kshabazz\d3a;
 /**
-* Controller for the home page.
-*/
-class GetHero extends \kshabazz\d3a\Abstract_Controller
+ * Diablo 3 Assistant License is under The MIT License (MIT)
+ * [OSI Approved License]. Please read LICENSE.txt, included with this
+ * software for the full licensing information. If no LICENSE.txt accompanied
+ * this software, then no license is granted.
+ *
+ * @package kshabazz\d3a\Controller
+ * @copyright (c) 2012-2013 Khalifah K. Shabazz
+ */
+/**
+ * Class GetHero
+ * @package kshabazz\d3a\Controller
+ */
+class GetHero
 {
 	protected
-		$app,
 		$battleNetUrlSafeId,
 		$id,
 		$cache,
@@ -14,18 +24,19 @@ class GetHero extends \kshabazz\d3a\Abstract_Controller
 		$hero,
 		$heroItems,
 		$model,
+		$supers,
 		$view;
 
 	/**
-	* Controller actions go here.
-	*/
-	public function __construct( \kshabazz\d3a\Application $pApp )
+	 * Controller actions go here.
+	 * @param d3a\SuperGlobals $pSuper
+	 */
+	public function __construct( d3a\SuperGlobals $pSuper )
 	{
-		$this->app = $pApp;
-		$this->battleNetUrlSafeId = $this->app->getParam( 'battleNetId', '' );
-		var_dump($this->battleNetUrlSafeId);
-		$this->id = $this->app->getParam( 'heroId' );
-		$this->cache = ( bool )$this->app->getParam( 'cache' );
+		$this->supers = $pSuper;
+		$this->battleNetUrlSafeId = $this->supers->getParam( 'battleNetId', '' );
+		$this->id = $this->supers->getParam( 'heroId' );
+		$this->cache = ( bool )$this->supers->getParam( 'cache' );
 		$this->items = NULL;
 		$this->bnrHero = NULL;
 		$this->dqi = NULl;
@@ -33,40 +44,17 @@ class GetHero extends \kshabazz\d3a\Abstract_Controller
 		$this->bnrHero = NULL;
 		$this->hero = NULL;
 		$this->heroItems = [];
-
+		// call methods
 		$this->setupModel();
 	}
 
 	/**
-	*
-	*/
+	 * @param null $pModel
+	 * @return mixed
+	 */
 	public function getModel( $pModel = NULL )
 	{
 		return $this->model;
-	}
-
-	/**
-	*
-	*/
-	public function setModel( $pModel = NULL )
-	{
-		$this->model = $pModel;
-	}
-
-	/**
-	*
-	*/
-	public function getView()
-	{
-		return $this->view;
-	}
-
-	/**
-	*
-	*/
-	public function setView( $pView = NULL )
-	{
-		$this->view = $pView;
 	}
 
 	public function setupModel()
@@ -89,15 +77,11 @@ class GetHero extends \kshabazz\d3a\Abstract_Controller
 				$this->id,
 				$this->bnr,
 				$this->sql,
-				$this->sessionCacheInfo['loadFromBattleNet']
+				$this->sessionCacheInfo[ 'loadFromBattleNet' ]
 			);
 
-			$this->model = new \kshabazz\d3a\Model_GetHero(
-				$this->bnrHero,
-				$this->app->retrieve('attribute_map'),
-				$this->bnr,
-				$this->sql
-			);
+			$attributeMap = $this->supers->appProxy( 'retrieve', ['attribute_map'] );
+			$this->model = new \kshabazz\d3a\Model_GetHero( $this->bnrHero, $attributeMap, $this->bnr, $this->sql );
 
 			$this->hero = new \kshabazz\d3a\Hero( $this->bnrHero->json() );
 			$this->model->setHero( $this->hero );
@@ -105,8 +89,8 @@ class GetHero extends \kshabazz\d3a\Abstract_Controller
 	}
 
 	/**
-	* Set BattleNet_Requestor object
-	*/
+	 * Set BattleNet_Requestor object
+	 */
 	public function setBnr( BattleNet_Requestor $pBnr )
 	{
 		// Set a valid BattleNet_Requestor object or throw an exception.
@@ -120,8 +104,8 @@ class GetHero extends \kshabazz\d3a\Abstract_Controller
 	}
 
 	/**
-	* Set BattleNet_Sql object
-	*/
+	 * Set BattleNet_Sql object
+	 */
 	public function setSql( \kshabazz\d3a\BattleNet_Sql $pSql)
 	{
 		// Set a valid BattleNet_Sql object or throw an exception.
@@ -135,11 +119,11 @@ class GetHero extends \kshabazz\d3a\Abstract_Controller
 	}
 
 	/**
-	* Set Hero object
-	*
-	* @param Hero $pHero
-	* @return GetHero
-	*/
+	 * Set Hero object
+	 * @param \kshabazz\d3a\Hero $pHero
+	 * @return $this
+	 * @throws Exception
+	 */
 	public function setHero( \kshabazz\d3a\Hero $pHero )
 	{
 		// Set a valid Hero object or throw an exception.
@@ -152,4 +136,5 @@ class GetHero extends \kshabazz\d3a\Abstract_Controller
 		throw new Exception( 'Must be a valid Hero object, no other values are excepted, not even NULL.' );
 	}
 }
+// DO NOT WRITE BELOW THIS LINE, NOT EVEN WHITE-SPACE CHARS.
 ?>

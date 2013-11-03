@@ -26,6 +26,23 @@ class SuperGlobals
 		 $this->defaultValue = $pValue;
 	}
 
+
+
+	/**
+	 * Get/set something from the application without storing a reference to
+	 * the application object. So as not to cause some kind of circular
+	 * reference. Application object by proxy.
+	 * Which is exactly what we do for the super globals object. By NOT storing
+	 * a reference to any of the super global arrays, we can almost prevent
+	 * unintended circumstances caused by circular reference.
+	 * Like memory leaks for example.
+	 */
+	public function appProxy( $method, array $params = [] )
+	{
+		$app = $GLOBALS[ 'application' ];
+		return \call_user_func_array( [$app, $method], $params );
+	}
+
 	/**
 	* Get a variable from a superglobals array; $_REQUEST is the default.
 	*

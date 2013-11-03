@@ -2,6 +2,10 @@
 	vertical-align: top
 }
 
+#item-lookup .inline-block {
+    vertical-align: middle
+}
+
 .section.one {
 	margin-left: 10px;
 	width: 300px
@@ -17,6 +21,7 @@
 	border-radius: 0.5em;
 	box-shadow: 0 0 6px rgb(0, 0, 0);
 	height: 39em;
+    margin-top: 3em;
 	position: relative;
 	width: 23em
 }
@@ -221,6 +226,10 @@
 	padding: 5px;
 	vertical-align: middle;
 	width: 31px;
+}
+
+.skills .passive img {
+    width: 32px;
 }
 .skills .passive .skill-1 {
 	background-position: 0 0

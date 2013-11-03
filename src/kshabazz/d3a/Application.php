@@ -1,5 +1,4 @@
 <?php namespace kshabazz\d3a;
-
 use \kshabazz\d3a\SuperGlobals;
 
 /**
@@ -28,15 +27,6 @@ class Application
 	}
 
 	/**
-	* Get a specific model by class name.
-	* @return mixed
-	*/
-	public function getModel( $pKey )
-	{
-		return $this->models[ $pKey ];
-	}
-
-	/**
 	* Get SuperGlobals object
 	* @return \kshabazz\d3a\SuperGlobals
 	*/
@@ -46,54 +36,14 @@ class Application
 	}
 
 	/**
-	* Get a variable from a superglobals array, default is $_REQUEST.
-	*
-	* @param string $pKey name of variable in the array.
-	* @param string $pDefault value to return.
-	* @param string $pType to return.
-	* @param string $pSuper name of array.
-	* @return mixed null by default
-	*/
-	public function getParam( $pKey, $pDefault = null, $pType = 'string', $pSuper = 'REQUEST' )
-	{
-		$super = '_' . $pSuper;
-		$returnValue = $pDefault;
-
-		if ( array_key_exists($super, $GLOBALS)
-			 && is_array($GLOBALS[$super])
-			 && array_key_exists($pKey, $GLOBALS[$super]) )
-		{
-			$returnValue =
-			$typeConversion = settype( $GLOBALS[$super][$pKey], $pType );
-			if ( $typeConversion )  {
-				$returnValue = $GLOBALS[$super][$pKey];
-			}
-		}
-		return $returnValue;
-	}
-
-	/**
-	* Set a model on the application
-	* @return kshabazz\d3a\Application
-	*/
-	public function setModel( $pModel )
-	{
-		if ( is_object($pModel) )
-		{
-			$this->models[] = $pModel;
-		}
-
-		return $this;
-	}
-
-	/**
-	* Store a variable in the application.
-	* Note: requires a reference. So you can not use methods as the value parameter
-	* without first assigning their return value to a variable.
-	*
-	* @param string $pKey name assigned to the value that is stored.
-	* @return mixed
-	*/
+	 * Store a variable in the application.
+	 * Note: stores a reference. So you can not use methods as the value parameter
+	 * without first assigning their return value to a variable.
+	 *
+	 * @param string $pKey name assigned to the value that is stored.
+	 * @param mixed
+	 * @return mixed
+	 */
 	public function store( $pKey, & $pValue )
 	{
 		return $this->data[$pKey] = $pValue;

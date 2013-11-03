@@ -11,6 +11,7 @@ class Calculator
 		APS_DUAL_WIELD_BONUS = 0.15,
 		CRITICAL_HIT_CHANCE_BONUS = 0.08,
 		CRITICAL_HIT_DAMAGE_BONUS = 0.05;
+
 	protected
 		$attackSpeed,
 		$attackSpeedData,
@@ -23,6 +24,7 @@ class Calculator
 		$criticalHitChanceData,
 		$criticalHitDamage,
 		$criticalHitDamageData,
+		$debug,
 		$dps,
 		$damagePerSecondData,
 		$dualWield,
@@ -69,6 +71,7 @@ class Calculator
 		$this->damagePerSecond = 0.0;
 		$this->increasedAttackSpeed = 0.0;
 		$this->weaponDamage = 0.0;
+		$this->debug = '';
 
 		$this->init();
 		// Collect unique attributes into the attributes map file.
@@ -139,7 +142,7 @@ class Calculator
 				$this->attributeSlots[ 'Attacks_Per_Second_Item' ]
 			);
 		}
-		echo "<div>attack per second = {$this->attackSpeed}</div>";
+		$this->debug .= "<div>attack per second = {$this->attackSpeed}</div>";
 		return $this;
 	}
 
@@ -162,7 +165,7 @@ class Calculator
 
 		$this->attackSpeed = $this->weaponAttacksPerSecond * ( 1 + $dualWieldBonus + $this->increasedAttackSpeed );
 
-		echo "<div>attack speed = {$this->attackSpeed}</div>";
+		$this->debug .= "<div>attack speed = {$this->attackSpeed}</div>";
 		return $this;
 	}
 
@@ -176,8 +179,8 @@ class Calculator
 	protected function computeAverageDamage()
 	{
 	// print_r( $this->items[ 'mainHand' ] );
-		echo "<table>";
-		echo "<thead><tr><th>Item</th><th>minimum</th><th>maximum</th></tr></thead>";
+		$this->debug .= "<table>";
+		$this->debug .= "<thead><tr><th>Item</th><th>minimum</th><th>maximum</th></tr></thead>";
 		foreach ( $this->items as $name => $item )
 		{
 			if ($name === 'rightFinger')
@@ -186,7 +189,7 @@ class Calculator
 			}
 			$this->tallyItemDamage( $name, $item );
 		}
-		echo "</table>";
+		$this->debug .= "</table>";
 
 		return $this;
 	}
@@ -219,7 +222,7 @@ class Calculator
 			{
 				if ( strpos($key, "Damage_") > -1 )
 				{
-					echo "<div>{$key} = {$value['min']}</div>";
+					$this->debug .= "<div>{$key} = {$value['min']}</div>";
 					if ( strpos($key, "_Reduction") )
 					{
 					}
@@ -268,7 +271,7 @@ class Calculator
 			$this->averageDamageData = [ $pItemName, $minDamage, $maxDamage ];
 			$this->minDamage += $minDamage;
 			$this->maxDamage += $maxDamage;
-			echo "<tr><td>{$pItemName}</td><td>{$minDamage}</td><td>{$maxDamage}</td><td>{$keys}</td></tr>";
+			$this->debug .= "<tr><td>{$pItemName}</td><td>{$minDamage}</td><td>{$maxDamage}</td><td>{$keys}</td></tr>";
 		}
 		return $this;
 	}
@@ -297,10 +300,10 @@ class Calculator
 		{
 			$this->offHandDps = ( float ) $this->items[ 'offHand' ]->dps[ 'min' ];
 			$this->baseWeaponDamageData[ 'mainHand' ] = $this->offHandDps;
-			echo "<div>off-hand dps = {$this->offHandDps}</div>";
+			$this->debug .= "<div>off-hand dps = {$this->offHandDps}</div>";
 		}
 
-		echo "<div>base weapon damage = {$this->baseWeaponDamage}</div>";
+		$this->debug .= "<div>base weapon damage = {$this->baseWeaponDamage}</div>";
 		return $this;
 	}
 
@@ -318,12 +321,12 @@ class Calculator
 			$this->criticalHitChanceData[ 'base' ] = 0.05;
 		}
 
-		echo "<div>critical hit chance = {$this->criticalHitChance}</div>";
+		$this->debug .= "<div>critical hit chance = {$this->criticalHitChance}</div>";
 		return $this;
 	}
 
 	/**
-	* Critical Dampage
+	* Critical Damage
 	*
 	* @return Calculator
 	*/
@@ -336,12 +339,12 @@ class Calculator
 			$this->criticalHitDamageData[ 'base' ] = 0.50;
 		}
 
-		echo "<div>critical damage = {$this->criticalHitDamage}</div>";
+		$this->debug .= "<div>critical damage = {$this->criticalHitDamage}</div>";
 		return $this;
 	}
 
 	/**
-	* Dampage Per Second
+	* Damage Per Second
 	*
 	* Calculation taken from: http://eu.battle.net/d3/en/forum/topic/4903361857
 	*
@@ -359,7 +362,7 @@ class Calculator
 			'weaponDamage' => $this->weaponDamage
 		];
 
-		echo "<div>damage_per_second = {$this->damagePerSecond}</div>";
+		$this->debug .= "<div>damage_per_second = {$this->damagePerSecond}</div>";
 		return $this;
 	}
 
@@ -390,7 +393,7 @@ class Calculator
 			}
 		}
 
-		echo "<div>increased attack speed = {$this->increasedAttackSpeed}</div>";
+		$this->debug .= "<div>increased attack speed = {$this->increasedAttackSpeed}</div>";
 		return $this;
 	}
 
@@ -415,7 +418,7 @@ class Calculator
 			$this->primaryAttributeDamageData[ 'levelBonus' ] = $attributeValue;
 		}
 
-		echo "<div>primary attribute damage = {$this->primaryAttributeDamage}</div>";
+		$this->debug .= "<div>primary attribute damage = {$this->primaryAttributeDamage}</div>";
 		return $this;
 	}
 
@@ -428,7 +431,7 @@ class Calculator
 	{
 		$this->skillDamage = 1;
 
-		echo "<div>skill damage = {$this->skillDamage}</div>";
+		$this->debug .= "<div>skill damage = {$this->skillDamage}</div>";
 		return $this;
 	}
 
@@ -456,7 +459,7 @@ class Calculator
 	{
 		$this->weaponAttacksPerSecond = ( float ) $this->items[ 'mainHand' ]->attacksPerSecond[ 'min' ];
 
-		echo "<div>weapon attacks per second = {$this->weaponAttacksPerSecond}</div>";
+		$this->debug .= "<div>weapon attacks per second = {$this->weaponAttacksPerSecond}</div>";
 		return $this;
 	}
 
@@ -473,7 +476,7 @@ class Calculator
 			* $this->skillDamage
 			* ( 1 + $this->primaryAttributeDamage / 100 );
 
-		echo "<div>weapon damage = {$this->weaponDamage}</div>";
+		$this->debug .= "<div>weapon damage = {$this->weaponDamage}</div>";
 		return $this;
 	}
 
@@ -491,7 +494,7 @@ class Calculator
 			$this->dualWield = $this->items[ 'mainHand' ]->type[ 'twoHanded' ];
 		}
 
-		echo '<div class="calculated list stats inline-block"><div class="debug-info">';
+		$this->debug .= '<div class="calculated list stats inline-block"><div class="debug-info">';
 		$this->computeAverageDamage()
 			->computeAttacksPerSecond()
 			->computeCriticalHitChance()
@@ -505,7 +508,7 @@ class Calculator
 			->computeSkillDamage()
 			->computeWeaponDamage() // Requires skill damage and primary attribute damage.
 			->computeDamagePerSecond(); // Requires just about everything.
-		echo '</div></div>';
+		$this->debug .= '</div></div>';
 	}
 
 	/**
@@ -590,14 +593,14 @@ class Calculator
 
 			// if ( $pSlot === 'mainHand' || $pSlot === 'rightFinger' )
 			// {
-				// echo "<div>$pSlot</div>";
-				// echo "<div>$attribute = $value</div>";
+				// $this->debug .= "<div>$pSlot</div>";
+				// $this->debug .= "<div>$attribute = $value</div>";
 			// }
 			// if ( $attribute === 'Attacks_Per_Second_Item' || $attribute === 'Attacks_Per_Second_Item_Percent' )
 			// {
-				// echo "<div>$pSlot</div>";
-				// echo "<div>$attribute = $value</div>";
-				// echo "<div>totals::$attribute = {$this->attributeTotals[ $attribute ]}</div>";
+				// $this->debug .= "<div>$pSlot</div>";
+				// $this->debug .= "<div>$attribute = $value</div>";
+				// $this->debug .= "<div>totals::$attribute = {$this->attributeTotals[ $attribute ]}</div>";
 			// }
 
 			// Add the attribute to the map collection.
@@ -683,6 +686,14 @@ class Calculator
 	public function damagePerSecondData()
 	{
 		return $this->damagePerSecondData;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function  debug()
+	{
+		return $this->debug;
 	}
 
 	/**

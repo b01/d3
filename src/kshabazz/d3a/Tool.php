@@ -1,25 +1,14 @@
 <?php namespace kshabazz\d3a;
 /**
-* Tools to help simplify repetitive task.
-*
-* @author Khalifah Shabazz
-*
-*/
-	/**
-	* Automatically load classes instead of using require/include statements.
-	*
-	*/
-	function autoload( $pClassName )
-	{
-		$classPath = str_replace( "\\", '/', $pClassName );
-		// Single quote strings are used to optimize/prevent PHP from parsing the string.
-		$classFilePath = str_replace('_', '/', $classPath) . '.php';
-		if ( file_exists($classFilePath) )
-		{
-			require_once( $classFilePath );
-			return;
-		}
-	}
+ * Tools to help simplify repetitive task.
+ * Diablo 3 Assistant License is under The MIT License (MIT)
+ * [OSI Approved License]. Please read LICENSE.txt, included with this
+ * software for the full licensing information. If no LICENSE.txt accompanied
+ * this software, then no license is granted.
+ *
+ * @package kshabazz\d3a\Controller
+ * @copyright (c) 2012-2013 Khalifah K. Shabazz
+ */
 
 	/**
 	* Capitalize the first letter, and every leter after a dash (-).
@@ -34,13 +23,13 @@
 	}
 
 	/**
-	* Check the PHP version, and throws an error if it does not meet the minimum version.
-	*
-	* @param int $pMajor Required major version.
-	* @param int $pMinor If set, then the required minor version.
-	* @param int $pRelease If set, then the required release version.
-	* @return string
-	*/
+	 * Check the PHP version, and throws an error if it does not meet the minimum version.
+	 *
+	 * @param int $pMajor Required major version.
+	 * @param int $pMinor If set, then the required minor version.
+	 * @param int $pRelease If set, then the required release version.
+	 * @throws Exception
+	 */
 	function checkPhpVersion( $pMajor, $pMinor = NULL, $pRelease = NULL )
 	{
 		$triggerError = FALSE;
@@ -132,10 +121,11 @@
 	}
 
 	/**
-	* Convert an array of item hashes to item models.
-	*
-	* @return array
-	*/
+	 * Convert an array of item hashes to item models.
+	 *
+	 * @param string $pHtml
+	 * @return array
+	 */
 	function getHtmlInnerBody( $pHtml )
 	{
 		$returnValue = NULL;
@@ -168,8 +158,11 @@
 	/**
 	* Convert an array of item hashes to item models.
 	*
-	* @return array
-	*/
+	 * @param $p_items
+	 * @param $p_battleNetDqi
+	 * @param $pSql
+	 * @return array|null
+	 */
 	function getItemModels( $p_items, $p_battleNetDqi, $pSql )
 	{
 		$itemModels = [];
@@ -188,16 +181,16 @@
 	}
 
 	/**
-	* Get slot the you equipe the item, by type id.
-	* @param $p_itemType Item type id
+	* Get the name of the slot where you'd equip the item, by type id.
+	* @param $pItemTypeId Item type id
 	* @return string
 	*/
-	function getItemSlot( $p_itemType )
+	function getItemSlot( $pItemTypeId )
 	{
 		$returnValue = '';
-		$itemType = strtolower( $p_itemType );
-		$itemType = str_replace( 'generic', '', $itemType );
-		switch ( $itemType )
+		$itemTypeId = strtolower( $pItemTypeId );
+		$itemTypeId = str_replace( 'generic', '', $itemTypeId );
+		switch ( $itemTypeId )
 		{
 			case 'amulet':
 				$returnValue = "neck";
@@ -234,7 +227,7 @@
 				$returnValue = "weapon";
 				break;
 			default:
-				$returnValue = $itemType;
+				$returnValue = $itemTypeId;
 				break;
 		}
 		return $returnValue;

@@ -1,6 +1,6 @@
 <?php namespace kshabazz\d3a;
 
-use kshabazz\d3a\Application;
+use kshabazz\d3a\SuperGlobals;
 
 /**
 * Put the battle net id in the form field if present in the session, or a
@@ -12,6 +12,7 @@ use kshabazz\d3a\Application;
 */
 class Model_Index
 {
+    const DEFAULT_BATTLE_NET_ID = 'msuBREAKER#1374';
 	public
 		$battleNetId,
 		$urlSafeBattleNetId;
@@ -21,9 +22,9 @@ class Model_Index
 	*
 	* @param Application $d3a
 	*/
-	public function __construct( Application $d3a )
+	public function __construct( SuperGlobals $pSuper )
 	{
-		$this->battleNetId = $d3a->getParam( 'battleNetId', 'msuBREAKER#1374', 'string', 'POST' );
+		$this->battleNetId = $pSuper->getParam( 'battleNetId', self::DEFAULT_BATTLE_NET_ID, 'string', 'POST' );
 	}
 }
 ?>

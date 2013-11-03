@@ -1,0 +1,15 @@
+
+{% for type, skill in skills %}
+<div class="{{ skills.type }}">
+    {% set len = skills|length - 1 %}
+    {% for i in range(0, len) %}
+    {% set skill = hero.skills['active'][i]['skill'] %}
+    <a class="fake-link link skill-{{ i + 1 }}" href="//us.battle.net/d3/en/class/{{ hero.class }}/{{ skills.type }}/{{ skill['slug'] }}">
+        <span class="slot slot-1"></span>
+        {% if skill['icon']|length > 0 %}
+        <img src="http://media.blizzard.com/d3/icons/skills/42/{{ skill['icon'] }}.png" />
+        {% endif %}
+    </a>
+    {% endfor %}
+</div>
+{% endfor %}

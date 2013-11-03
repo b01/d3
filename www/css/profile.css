@@ -28,22 +28,27 @@
 	background-position: 0 -260px
 }
 
+.heroes .profile.barbarian.gender-1,
 .heroes .profile.barbarian.woman {
 	background-position: -80px 0
 }
 
+.heroes .profile.demon-hunter.gender-1,
 .heroes .profile.demon-hunter.woman {
 	background-position: -80px -65px
 }
 
+.heroes .profile.monk.gender-1,
 .heroes .profile.monk.woman {
 	background-position: -80px -130px
 }
 
+.heroes .profile.witch-doctor.gender-1,
 .heroes .profile.witch-doctor.woman {
 	background-position: -80px -195px
 }
 
+.heroes .profile.wizard.gender-1,
 .heroes .profile.wizard.woman {
 	background-position: -80px -260px
 }

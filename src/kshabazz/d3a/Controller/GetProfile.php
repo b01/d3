@@ -1,31 +1,38 @@
 <?php namespace kshabazz\d3a\Controller;
 use \kshabazz\d3a;
-use \kshabazz\d3a\Abstract_Controller;
-use \kshabazz\d3a\Application;
 use \kshabazz\d3a\BattleNet_Requestor;
 use \kshabazz\d3a\Model_GetProfile;
 use \kshabazz\d3a\BattleNet_Sql;
 /**
+ * Diablo 3 Assistant License is under The MIT License (MIT)
+ * [OSI Approved License]. Please read LICENSE.txt, included with this
+ * software for the full licensing information. If no LICENSE.txt accompanied
+ * this software, then no license is granted.
+ *
+ * @package kshabazz\d3a\Controller
+ * @copyright (c) 2012-2013 Khalifah K. Shabazz
+ */
+/**
 * Controller for the home page.
 */
-class GetProfile extends Abstract_Controller
+class GetProfile
 {
 	protected
-		$app,
 		$battleNetId,
 		$dqi,
 		$model,
-		$sql;
+		$sql,
+		$supers;
 
 	/**
 	* Controller actions go here.
 	*/
-	public function __construct( Application $pApp )
+	public function __construct( d3a\SuperGlobals $pSupers )
 	{
-		$this->app = $pApp;
+		$this->supers = $pSupers;
 		$this->dqi = NULL;
 		$this->sql = NULL;
-		$this->battleNetId = $this->app->getParam( 'battleNetId' );
+		$this->battleNetId = $this->supers->getParam( 'battleNetId' );
 
 		$this->setup();
 	}
@@ -39,8 +46,7 @@ class GetProfile extends Abstract_Controller
 			\kshabazz\d3a\DB_PSWD,
 			\kshabazz\d3a\USER_IP_ADDRESS
 		);
-		$this->model = new Model_GetProfile( $this->app->superGlobals(), $this->dqi, $this->sql );
-		$this->app->setModel( $this->model );
+		$this->model = new Model_GetProfile( $this->supers, $this->dqi, $this->sql );
 	}
 
 	/**
@@ -73,22 +79,9 @@ class GetProfile extends Abstract_Controller
 		throw new Exception( 'Must be a valid BattleNet_Sql object, no other values are excepted, not even NULL.' );
 	}
 
-	/**
-	* Set Hero object
-	*
-	* @param Hero $pHero
-	* @return GetHero
-	*/
-	public function setHero( \kshabazz\d3a\Hero $pHero )
+	public function getModel()
 	{
-		// Set a valid Hero object or throw an exception.
-		if ( $pHero instanceof \kshabazz\d3a\Hero )
-		{
-			$this->hero = $pHero;
-			return $this;
-		}
-
-		throw new Exception( 'Must be a valid Hero object, no other values are excepted, not even NULL.' );
+		return $this->model;
 	}
 }
 ?>

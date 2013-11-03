@@ -12,6 +12,10 @@ class Model_GetHero
 		CRITICAL_HIT_CHANCE_BONUS = 0.08,
 		CRITICAL_HIT_DAMAGE_BONUS = 0.05;
 
+	public
+		$itemHashes,
+		$requestTime;
+
 	protected
 		$attributeMap,
 		$bnr,
@@ -22,13 +26,13 @@ class Model_GetHero
 		$stats;
 
 	/**
-	* Constructor
-	*
-	* @param BattleNet_Hero $bnrHero
-	* @param array $attributeMap
-	* @param BattleNet_Requestor $pBnr
-	* @param BattleNet_Sql $pSql
-	*/
+	 * Constructor
+	 *
+	 * @param BattleNet_Hero $bnrHero
+	 * @param array $pAttributeMap
+	 * @param BattleNet_Requestor $pBnr
+	 * @param BattleNet_Sql $pSql
+	 */
 	public function __construct( BattleNet_Hero $bnrHero, array & $pAttributeMap, BattleNet_Requestor $pBnr, BattleNet_Sql $pSql )
 	{
 		$this->attributeMap = $pAttributeMap;
@@ -38,40 +42,51 @@ class Model_GetHero
 		$this->items = NULL;
 		$this->sql = $pSql;
 		$this->stats = [];
-
+		$this->json = $this->bnrHero->json();
+		$this->requestTime = $_SERVER[ 'REQUEST_TIME_FLOAT' ];
 		$this->init();
+		$this->renderSetup();
 	}
 
 	/**
-	* Get Hero
-	*
-	* @return array
-	*/
+	 * Get Hero, used by template engine.
+	 *
+	 * @return array
+	 */
 	public function hero()
 	{
 		return $this->hero;
 	}
 
 	/**
-	* Get item hashes by item slot
-	*
-	* @return array
-	*/
+	 * Get item hashes by item slot
+	 *
+	 * @return array
+	 */
 	public function itemHashes()
 	{
 		return $this->items;
 	}
 
 	/**
-	* Get the items.
-	*
-	* @return array
-	*/
+	 * @return string JSON from battle.net
+	 */
+	public function json()
+	{
+		return $this->json;
+	}
+
+	/**
+	 * Get the items.
+	 *
+	 * @return array
+	 */
 	public function getItemModels()
 	{
 		if ( !isset($this->itemModels) && $this->bnrHero instanceof BattleNet_Hero )
 		{
 			$this->itemModels = [];
+			$this->itemHashes = [];
 			$this->items = $this->bnrHero->items();
 			// It is valid that the bnrHero may not have any items equipped.
 			if ( isArray($this->items) )
@@ -79,8 +94,10 @@ class Model_GetHero
 				foreach ( $this->items as $slot => $item )
 				{
 					$hash = str_replace( "item/", '', $item['tooltipParams'] );
-					$bnItem = new \kshabazz\d3a\BattleNet_Item( $hash, "hash", $this->bnr, $this->sql );
-					$this->itemModels[ $slot ] = new \kshabazz\d3a\Item( $bnItem->json() );
+					$bnItem = new BattleNet_Item( $hash, "hash", $this->bnr, $this->sql );
+					$this->itemModels[ $slot ] = new Item( $bnItem->json() );
+					// for output to JavaScript variable.
+					$this->itemHashes[ $slot ] = $hash;
 				}
 			}
 		}
@@ -89,36 +106,28 @@ class Model_GetHero
 	}
 
 	/**
-	* Initialize this object.
-	*/
+	 * Initialize this object.
+	 */
 	protected function init()
 	{
 		$this->getItemModels();
 		$this->processRawAttributes();
-
-		var_dump($this->stats);
-		// $this->primaryAttribute = $this->hero->primaryAttribute();
 
 		if ( isset($this->itemModels['mainHand']) )
 		{
 			// ??? this just seems all kinds of wrong.
 			$this->dualWield = $this->itemModels[ 'mainHand' ]->type[ 'twoHanded' ];
 		}
+		$this->time = microtime( TRUE ) - $_SERVER[ 'REQUEST_TIME_FLOAT' ];
+		$this->hero = new Hero( $this->bnrHero->json() );
+		$this->primaryAttribute = $this->hero->primaryAttribute();
+		$this->calculator = new Calculator( $this->hero, $this->attributeMap, $this->itemModels );
 	}
 
 	/**
-	* Loop through raw attributes for every item.
-	* @return float
-	*/
-	public function json()
-	{
-		return $this->brnHero->json;
-	}
-
-	/**
-	* Loop through raw attributes for every item.
-	* @return float
-	*/
+	 * Loop through raw attributes for every item.
+	 * @return float
+	 */
 	protected function processRawAttributes()
 	{
 		if ( isArray($this->itemModels) )
@@ -134,11 +143,10 @@ class Model_GetHero
 	}
 
 	/**
-	* Render
-	*
-	* @return Model_GetHero
-	*/
-	public function getReadyToRender()
+	 * Render setup
+	 * @return $this
+	 */
+	public function renderSetup()
 	{
 		$this->name = $this->hero->name;
 		$this->hardcore = ( $this->hero->hardcore ) ? 'Hardcore ' : '';
@@ -153,16 +161,18 @@ class Model_GetHero
 		$this->battleNetUrlSafeId = '';
 		$this->heroItemHashes = json_encode( $this->itemHashes );
 		$this->items = $this->itemModels;
+
 		// $this->class = $this->hero->class;
 		$this->heroJson = $this->hero->json();
 		return $this;
 	}
 
 	/**
-	* Set Hero
-	*
-	* @return Model_GetHero
-	*/
+	 * Set Hero
+	 *
+	 * @param Hero $pHero
+	 * @return $this
+	 */
 	public function setHero( Hero $pHero )
 	{
 		$this->hero = $pHero;
@@ -170,9 +180,11 @@ class Model_GetHero
 	}
 
 	/**
-	* Tally raw attributes.
-	* @return float
-	*/
+	 * Tally raw attributes.
+	 * @param $pRawAttribute
+	 * @param $pSlot
+	 * @return $this
+	 */
 	protected function tallyAttributes( $pRawAttribute, $pSlot )
 	{
 		foreach ( $pRawAttribute as $attribute => $values )

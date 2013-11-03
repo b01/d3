@@ -1,3 +1,10 @@
+List of changes as of 11/03/2013 07:56 AM
+-------------------------------
+	- Added a way to give child objects of the application access to the parent application without causing
+	  circular references or memory leaks.
+	- Removed unused autoload function.
+	- Convert get-hero.php to Twig.
+
 List of changes as of 09/23/2013 05:34 PM
 -------------------------------
 	- Better defined Models and Controller principals through design.
