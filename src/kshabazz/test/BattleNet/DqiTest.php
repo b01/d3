@@ -1,10 +1,10 @@
-<?php
-require_once '../src/kshabazz/d3a/Tool.php';
+<?php namespace kshabazz\d3a;
+
 /**
-*
-* @TODO Rename to BattleNet_Request one done with the initial unit test
-*/
-class BattleNet_DqiTest extends PHPUnit_Framework_TestCase
+ *
+ * @TODO Rename to BattleNet_Request once done with the initial unit test
+ */
+class BattleNet_DqiTest extends \PHPUnit_Framework_TestCase
 {
 	public function testConstruct()
 	{

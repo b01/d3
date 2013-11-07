@@ -1,3 +1,9 @@
+List of changes as of 11/07/2013 08:13 AM
+-------------------------------
+	- Moved unit test folder inside the kshabazz namespace directory.
+	- Fixed PHP Unit configuration XML.
+	- Added Unit test bootstrap file.
+
 List of changes as of 11/03/2013 07:56 AM
 -------------------------------
 	- Added a way to give child objects of the application access to the parent application without causing

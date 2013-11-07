@@ -37,4 +37,5 @@ if ( $responseCode === 200 )
 	header( "Content-Type: image/png" );
 	echo $responseText;
 }
+// Writing below this line can cause headers to be sent before intended
 ?>
