@@ -125,3 +125,7 @@ a.yellow:hover, .yellow a:hover a:hover .yellow { color: rgb(255, 255, 255); }
 .field {
 	padding: 0.5em
 }
+
+.section {
+	margin: 0.417em;
+}

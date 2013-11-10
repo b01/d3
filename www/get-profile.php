@@ -1,12 +1,13 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Profiles</title>
+		<meta charset="utf-8" />
+		<title>{{ pageTitle }} - Profiles</title>
 		<link rel="stylesheet" type="text/css" href="/css/site.css" />
 		<link rel="stylesheet" type="text/css" href="/css/profile.css" />
 	</head>
 	<body>
-		<div class="time-elapsed">{{ sessionTimeLeft(timeLeft) }}</div>
+		<div class="section time-elapsed">{{ sessionTimeLeft(timeLeft) }}</div>
 		{% if isArray(heroes) %}
 		<div class="heroes">
 			{% for key, hero in heroes %}
@@ -18,6 +19,8 @@
 		{% else %}
 		<p>Hmm...You seem to have no hero profiles. Since that is very unlikely, this app is probably broken in some way Please try again later.</p>
 		{% endif %}
-		<a href="/">Change BattleNet ID</a>
+		<div class="section">
+			<a href="/">Change BattleNet ID</a>
+		</div>
 	</body>
 </html>

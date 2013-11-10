@@ -2,11 +2,12 @@
 use \kshabazz\d3a\SuperGlobals;
 
 /**
-* House various kinds of data for the application.
-*
-* @var $data
-* @var $settings
-*/
+ * House various kinds of data for the application.
+ * Class Application
+ * @package kshabazz\d3a
+ * @var $data
+ * @var $settings
+ */
 class Application
 {
 	protected
@@ -16,8 +17,9 @@ class Application
 		$superGlobals;
 
 	/**
-	* Constructor
-	*/
+	 * Constructor
+	 * @param array $pSettings
+	 */
 	public function __construct( array $pSettings )
 	{
 		$this->settings = $pSettings;
@@ -27,9 +29,9 @@ class Application
 	}
 
 	/**
-	* Get SuperGlobals object
-	* @return \kshabazz\d3a\SuperGlobals
-	*/
+	 * Get SuperGlobals object
+	 * @return \kshabazz\d3a\SuperGlobals
+	 */
 	public function superGlobals()
 	{
 		return $this->superGlobals;

@@ -5,6 +5,9 @@
 */
 class HeroTest extends PHPUnit_Framework_TestCase
 {
-
+	public function test_hero()
+	{
+		$this->markTestIncomplete('Incomplete.');
+	}
 }
 ?>

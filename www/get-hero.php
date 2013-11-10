@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>Hero {{name}}</title>
+		<title>{{ pageTitle }} - Hero {{ name }}</title>
 		<meta name="charset" content="utf-8" />
 		<meta name="author" content="Khalifah K. Shabazz" />
 		<meta name="description" content="View your hero’s stats, and then try out different items to see if those stats improve or not. Use the item for by pasting the D3 web-hash or ID (of forge generated item), and then drag and drop the item to the appropriate slot, your stats will automatically update. " />

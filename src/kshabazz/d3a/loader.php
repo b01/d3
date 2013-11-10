@@ -24,6 +24,7 @@ if ( class_exists($className) )
 	$ctrlr = new $className( $d3a->superGlobals() );
 	// Business model
 	$model = $ctrlr->getModel();
+	$model->pageTitle = 'Diablo 3 Assitant';
 }
 // Processing route view by passing the model to the template engine,
 // which in turn, fill in all holes within the view.

@@ -1,20 +1,25 @@
 <?php namespace kshabazz\d3a;
 /**
-* Get an image via HTTP request and serve it up.
-* - ImageSaver Class - takes an iamge url and fileStream object and save a file to disk.
-*   - When an image is not found on the server execute a special script.
-*     - Process all remote image URLs through this image class
-*       - Check if the image exists, if not, download it from Battle.net.
-*
-*/
+ * Get an image via HTTP request and serve it up.
+ * - ImageSaver Class - takes an image url and fileStream object and save a file to disk.
+ *   - When an image is not found on the server execute a special script.
+ *     - Process all remote image URLs through this image class
+ *       - Check if the image exists, if not, download it from Battle.net.
+ *
+ */
 //item:                 http://media.blizzard.com/d3/icons/items/large/shoulders_105_monk_male.png
 //item:                 http://media.blizzard.com/d3/icons/items/large/amulet08_demonhunter_male.png
 //dye:                  http://media.blizzard.com/d3/icons/items/small/dye_19_demonhunter_male.png
 //dye:                  http://media.blizzard.com/d3/icons/items/small/dye_15_demonhunter_male.png
+//dye:                  http://media.blizzard.com/d3/icons/items/small/dye_05_demonhunter_male.png
 //gem:                  http://media.blizzard.com/d3/icons/items/small/amethyst_08_demonhunter_male.png
+// CSS backgrounds and sprites
 //item-bg:              http://us.battle.net/d3/static/images/item/icon-bgs/yellow.png
-//overlays (gem,etc):   http://us.battle.net/d3/static/images/profile/hero/skill-overlays.png
 //item-bg:              http://us.battle.net/d3/static/images/item/icon-bgs/gradient.png
+//overlays (gem,etc):   http://us.battle.net/d3/static/images/profile/hero/skill-overlays.png
+//profile:              http://us.battle.net/d3/static/images/profile/hero/hero-nav-portraits.jpg
+//effect-bgs:           http://us.battle.net/d3/static/images/profile/hero/weapon-elements/lightning.png
+
 $imageFile = getStr( 'file' );
 
 // Url translations.
@@ -22,7 +27,7 @@ $bUrl = str_replace( '/media/images/', "http://media.blizzard.com/d3/", $imageFi
 $imageUrl = str_replace( 'media.blizzard.com/d3/ui/', "us.battle.net/d3/static/images/ui/", $bUrl );
 $imageUrl = str_replace( 'media.blizzard.com/d3/icon-bgs/', "us.battle.net/d3/static/images/item/icon-bgs/", $bUrl );
 $imageUrl = str_replace( 'media.blizzard.com/d3/effect-bgs/', "us.battle.net/d3/static/images/item/effect-bgs/", $bUrl );
-
+//'/media/images/(ui|icon-bgs|effect-bgs)/'/
 // Get the image and save it to a file.
 $httpRequestor = new HttpRequestor( $imageUrl );
 $responseText = $httpRequestor->send();
