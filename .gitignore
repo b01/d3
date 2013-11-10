@@ -10,3 +10,4 @@ favicon*
 *.log
 vendor
 .idea/
+composer.bat
