@@ -18,7 +18,7 @@ class GetHero
 	protected
 		$battleNetUrlSafeId,
 		$id,
-		$cache,
+		$fromCache,
 		$items,
 		$bnrHero,
 		$hero,
@@ -34,9 +34,9 @@ class GetHero
 	public function __construct( d3a\SuperGlobals $pSuper )
 	{
 		$this->supers = $pSuper;
-		$this->battleNetUrlSafeId = $this->supers->getParam( 'battleNetId', '' );
-		$this->id = $this->supers->getParam( 'heroId' );
-		$this->cache = ( bool )$this->supers->getParam( 'cache' );
+		$this->battleNetId = $this->supers->getParam( 'battleNetId', NULL, 'string', 'GET' );
+		$this->id = $this->supers->getParam( 'heroId', NULL, 'string', 'GET' );
+		$this->fromCache = $this->supers->getParam( 'cache', NULL, 'bool', 'GET' );
 		$this->items = NULL;
 		$this->bnrHero = NULL;
 		$this->dqi = NULl;
@@ -59,14 +59,14 @@ class GetHero
 
 	public function setupModel()
 	{
-		if ( \kshabazz\d3a\isString($this->battleNetUrlSafeId) && \kshabazz\d3a\isString($this->id) )
+		if ( \kshabazz\d3a\isString($this->battleNetId) && \kshabazz\d3a\isString($this->id) )
 		{
 			// Check if the cache has expired for the hero JSON.
-			$this->sessionCacheInfo = \kshabazz\d3a\getSessionExpireInfo( 'heroTime', $this->cache );
+			$this->sessionCacheInfo = \kshabazz\d3a\getSessionExpireInfo( 'heroTime', $this->fromCache );
 			// Put the hash back in the BattleNet ID.
-			$battleNetId = \str_replace( '-', '#', $this->battleNetUrlSafeId );
+			$battleNetUrlSafeId = \str_replace( '-', '#', $this->battleNetId );
 			// Build the view model.
-			$this->bnr = new \kshabazz\d3a\BattleNet_Requestor( $battleNetId );
+			$this->bnr = new \kshabazz\d3a\BattleNet_Requestor( $this->battleNetId );
 			$this->sql = new \kshabazz\d3a\BattleNet_Sql(
 				\kshabazz\d3a\DSN,
 				\kshabazz\d3a\DB_USER,

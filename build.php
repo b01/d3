@@ -1,5 +1,6 @@
 <?php
 	define( "JS_COMPILER_CMD", "java -jar C:\\inetpub\\extensions\\closure-compiler\\compiler.jar --js %s  --js_output_file %s" );
+	define( "COMPILE_CSS", "compass compile" );
 
 	/**
 	* Takes a directory and minifies *.js files.

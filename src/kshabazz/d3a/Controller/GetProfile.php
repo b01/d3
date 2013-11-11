@@ -32,7 +32,7 @@ class GetProfile
 		$this->supers = $pSupers;
 		$this->dqi = NULL;
 		$this->sql = NULL;
-		$this->battleNetId = $this->supers->getParam( 'battleNetId' );
+		$this->battleNetId = $this->supers->getParam( 'battleNetId', NULL, 'string', 'POST' );
 
 		$this->setup();
 	}

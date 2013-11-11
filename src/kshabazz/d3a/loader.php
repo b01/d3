@@ -10,7 +10,8 @@ $d3a = new Application( $settings );
 // TODO move loadAttributeMap function into the application and make it private.
 $attrMapFile = loadAttributeMap( $settings['ATTRIBUTE_MAP_FILE'] );
 // TODO change convertToClassName to convertRouteToClassName and move to application class.
-$routeName = convertToClassName( $_SERVER['URL'] );
+$page = basename( $_SERVER['SCRIPT_FILENAME'] );
+$routeName = convertToClassName( $page );
 $d3a->store( 'attribute_map', $attrMapFile );
 $d3a->store( 'routeName', $routeName );
 $GLOBALS[ 'application' ] = $d3a;

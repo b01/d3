@@ -27,13 +27,12 @@ class Model_GetProfile
 	*/
 	public function __construct( SuperGlobals $pSuper, BattleNet_Requestor $pDqi, BattleNet_Sql $pSql )
 	{
-		$this->heroes = NULL;
-		$this->superGlobals = $pSuper;
-		$this->cache = $this->superGlobals->getParam( 'cache' );
-		$this->battleNetId = $this->superGlobals->getParam( 'battleNetId' );
-		$this->battleNetUrlSafeId = $this->superGlobals->getParam( 'battleNetId' );
 		$this->dqi = $pDqi;
 		$this->sql = $pSql;
+		$this->superGlobals = $pSuper;
+		$this->heroes = NULL;
+		$this->cache = $this->superGlobals->getParam( 'cache', TRUE, 'bool', 'GET' );
+		$this->battleNetId = $pDqi->getBattleNetId();
 
 		$this->setup();
 	}
@@ -54,23 +53,6 @@ class Model_GetProfile
 			$this->battleNetUrlSafeId = \str_replace( '#', '-', $this->battleNetId );
 			$this->heroUrl = sprintf(self::HERO_URL, $this->battleNetUrlSafeId);
 		}
-	}
-
-	/**
-	 * @param Hero $pHero
-	 * @return $this
-	 * @throws Exception
-	 */
-	public function setHero( \kshabazz\d3a\Hero $pHero )
-	{
-		// Set a valid Hero object or throw an exception.
-		if ( $pHero instanceof \kshabazz\d3a\Hero )
-		{
-			$this->hero = $pHero;
-			return $this;
-		}
-
-		throw new Exception( 'Must be a valid Hero object, no other values are excepted, not even NULL.' );
 	}
 }
 ?>

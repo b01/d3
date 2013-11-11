@@ -1,7 +1,0 @@
-;Run this php file before calling any other scripts.
-auto_prepend_file = d3cb.php
-;Turn on auto sessions.
-session.auto_start = 1
-;Set save path for session files.
-;session.save_path = ""
-
