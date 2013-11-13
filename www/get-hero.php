@@ -30,14 +30,24 @@
 			<!-- START ITEMS MODULE -->
 			<div class="hero">
 				{% for key, item in items %}
-				<a class="item-slot {{ key }} {{ translateSlotName(key) }}" href="/get-item.php?battleNetId={{ battleNetId }}&{{ str_replace(item.tooltipParams, '/', 'Hash=') }}&extra=0&showClose=1" data-slot="{{ key }}">
-					<div class="icon {{ item.displayColor }} inline-block top" data-hash="{{ substr(item.tooltipParams, 5) }}" data-type="{{ getItemSlot(key) }}">
+				<a class="item-slot {{ key }}{{ translateSlotName(key) }}" href="/get-item.php?battleNetId={{ battleNetUrlSafeId }}&itemHash={{ item.hash }}&extra=0&showClose=1" data-slot="{{ key }}">
+					<div class="icon {{ item.displayColor }} inline-block top" data-hash="{{ item.hash }}" data-type="{{ getItemSlot(key) }}">
 						<img class="gradient" src="/media/images/icons/items/large/{{ item.icon }}.png" alt="{{ key }}" />
 						<!-- include 'templates/gems.php' -->
 					</div>
 					<div class="id">{{ item.id }}</div>
-					<!-- img src="http://media.blizzard.com/d3/icons/items/small/dye_10_demonhunter_male.png" / -->
-					<!-- img src="/media/images/icons/items/small/%s.png" / -->
+
+				<!-- TODO: figure out how to get item dye number
+					Is it on the Hero, item, or tooltip JSON.
+					<img src="http://media.blizzard.com/d3/icons/items/small/dye_10_demonhunter_male.png" />
+					<img src="/media/images/icons/items/small/%s.png" />
+					<a
+						xmlns="http://www.w3.org/1999/xhtml" href="/d3/en/item/cardinal-dye"
+						class="item-dye" data-d3tooltip="item/cardinal-dye">
+						<img src="http://media.blizzard.com/d3/icons/items/small/dye_05_demonhunter_male.png" />
+					</a>
+				-->
+
 				</a>
 				{% endfor %}
 			</div>

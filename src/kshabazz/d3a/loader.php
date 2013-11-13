@@ -51,8 +51,8 @@ if ( $model !== null )
 		return \kshabazz\d3a\translateSlotName( $slot );
 	}));
 
-	$twig->addFunction(new \Twig_SimpleFunction('str_replace', function ($search, $replace, $subject) {
-		return \str_replace($search, $replace, $subject);
+	$twig->addFunction(new \Twig_SimpleFunction('str_replace', function ($needle, $replace, $haystack) {
+		return \str_replace($needle, $replace, $haystack);
 	}));
 
 	$twig->addFunction(new \Twig_SimpleFunction('getItemSlot', function ($key) {

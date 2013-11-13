@@ -14,7 +14,8 @@ class Model_GetHero
 
 	public
 		$itemHashes,
-		$requestTime;
+		$requestTime,
+		$battleNetUrlSafeId;
 
 	protected
 		$attributeMap,
@@ -44,6 +45,7 @@ class Model_GetHero
 		$this->stats = [];
 		$this->json = $this->bnrHero->json();
 		$this->requestTime = $_SERVER[ 'REQUEST_TIME_FLOAT' ];
+		$this->battleNetUrlSafeId = $this->bnr->battleNetUrlSafeId();
 		$this->init();
 		$this->renderSetup();
 	}
@@ -157,8 +159,6 @@ class Model_GetHero
 		}
 		$this->sessionTimeLeft = displaySessionTimer( $this->sessionCacheInfo['timeLeft'] );
 		$this->progress = getProgress( $this->hero->progress );
-		$this->battleNetId = '';
-		$this->battleNetUrlSafeId = '';
 		$this->heroItemHashes = json_encode( $this->itemHashes );
 		$this->items = $this->itemModels;
 

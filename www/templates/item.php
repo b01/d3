@@ -1,4 +1,4 @@
-<?php namespace D3;
+<?php namespace kshabazz\d3a;
 	// Stuff that belongs in a controller.
 	$showClose = getPostBool( 'showClose' );
 	// This was an AJAX request, instead of PHP include.

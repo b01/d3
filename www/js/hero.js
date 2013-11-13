@@ -21,6 +21,9 @@ function getItemTooltip( pEvent )
 	// Get remotely.
 	else
 	{
+		console.log(this);
+		console.log(this.search.substr( 1 ));
+		console.log($this.attr( "href" ));
 		$.ajax({
 			"data": this.search.substr( 1 ),
 			"dataType": "html",
@@ -111,7 +114,7 @@ jQuery( window ).load(function ()
 	{
 		var $this = $( this ), $icon = $this.find( ".icon" ),
 			uid = $icon.data( "hash" ) || $icon.data( "dbid" );
-		$this.on( "click.d3", {"uid": uid}, getItemTooltip );
+		$this.on( "click.d3a", {"uid": uid}, getItemTooltip );
 	});
 });
 
@@ -121,15 +124,15 @@ jQuery( document ).ready(function ($)
 	// Turn the form in an Ajax posting form.
 	var $itemForm = $( "#battlenet-get-item" );
 	$itemForm.ajaxForm({ "success": getItemFormSuccess })
-		.find( "[name='extra']" ).parent().remove();
+			 .find( "[name='extra']" ).parent().remove();
 	$itemForm.find( "[name='battleNetId']" ).attr( "readonly", "readonly" );
 
 	// Toggle stat details.
 	$( ".list" ).toggleList();
 
 	$( ".item-slot" ).droppable({
-		activeClass: "ui-state-hover",
-		hoverClass: "ui-state-active",
+		"activeClass": "ui-state-hover",
+		"hoverClass": "ui-state-active",
 		"accept": function ( p_draggable )
 		{
 			var slot = p_draggable.data( "type" );
@@ -140,7 +143,7 @@ jQuery( document ).ready(function ($)
 			var $this = $( this ),
 				oldHash = $this.attr( "href" ),
 				newHash,
-				slot = $this.data( "slot" );
+				slot = $this.data( "slot"), $oldItem;
 			// swap the two items.
 			$oldItem = $this.find(".icon");
 			if ( $oldItem.length > 0 )

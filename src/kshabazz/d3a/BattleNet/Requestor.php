@@ -9,20 +9,20 @@ class BattleNet_Requestor extends HttpRequestor
 		$battleNetUrlSafeId;
 
 	/**
-	* Constructor
-	*/
+	 * Constructor
+	 *
+	 * @param null $pBattleNetId
+	 */
 	public function __construct( $pBattleNetId = NULL )
 	{
 		parent::__construct( '' );
-		if ( isString($pBattleNetId) )
-		{
-			$this->setBattleNetId( $pBattleNetId );
-		}
+		$this->battleNetId = $pBattleNetId;
+		$this->battleNetUrlSafeId = str_replace( '#', '-', $this->battleNetId );
 	}
 
 	/**
-	* Destructor
-	*/
+	 * Destructor
+	 */
 	public function __destruct()
 	{
 		unset(
@@ -34,74 +34,67 @@ class BattleNet_Requestor extends HttpRequestor
 	}
 
 	/**
-	* Get BattleNet ID
-	*
-	* @return string BattleNet ID
-	*/
+	 * Get BattleNet ID
+	 *
+	 * @return string BattleNet ID
+	 */
 	public function battleNetUrlSafeId()
 	{
 		return $this->battleNetUrlSafeId;
 	}
 
 	/**
-	* Get BattleNet ID
-	*
-	* @return string BattleNet ID
-	*/
+	 * Get BattleNet ID
+	 *
+	 * @return string BattleNet ID
+	 */
 	public function getBattleNetId()
 	{
 		return $this->battleNetId;
 	}
 
 	/**
-	* Set BattleNet ID
-	*
-	* @return string BattleNet ID
-	*/
-	public function setBattleNetId( $pBattleNetId )
-	{
-		$this->battleNetId = $pBattleNetId;
-		$this->battleNetUrlSafeId = str_replace( '#', '-', $this->battleNetId );
-		return $this;
-	}
-
-	/**
-	* Example:
-	* url ::= <host> "/api/d3/data/item/" <item-data>
-	* GET /api/d3/data/item/COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD
-	* Note: Leave off the trailing '/' when setting
-	*	/api/d3/profile/<battleNetIdName>-<battleNetIdNumber>
-	*/
-	public function getHero( $p_heroId )
+	 * Example:
+	 * url ::= <host> "/api/d3/data/item/" <item-data>
+	 * GET /api/d3/data/item/COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD
+	 * Note: Leave off the trailing '/' when setting
+	 *	/api/d3/profile/<battleNetIdName>-<battleNetIdNumber>
+	 * @param $pHeroId
+	 * @return null|string
+	 * @throws \Exception
+	 */
+	public function getHero( $pHeroId )
 	{
 		$returnValue = NULL;
-		if ( isString($p_heroId) )
+		if ( isString($pHeroId) )
 		{
-			$this->url = sprintf( BATTLENET_D3_API_HERO_URL, $this->battleNetUrlSafeId(), $p_heroId );
+			$this->url = sprintf( BATTLENET_D3_API_HERO_URL, $this->battleNetUrlSafeId, $pHeroId );
 			$returnValue = $this->send();
 		}
 		else
 		{
-			throw new \Exception( "Hero '{$p_heroId}' not found." );
+			throw new \Exception( "Hero '{$pHeroId}' not found." );
 		}
 		return $returnValue;
 	}
 
 	/**
-	* Example:
-	* url ::= <host> "/api/d3/data/item/" <item-data>
-	* GET /api/d3/data/item/COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD
-	* Host: us.battle.net
-	* Note: Leave off the trailing '/' when setting
-	*	/api/d3/profile/<battleNetIdName>-<battleNetIdNumber>
-	* @param $p_battleNetId string Battle.Net ID with the "#code"
-	*/
-	public function getItem( $p_itemId )
+	 * Example:
+	 * url ::= <host> "/api/d3/data/item/" <item-data>
+	 * GET /api/d3/data/item/COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD
+	 * Host: us.battle.net
+	 * Note: Leave off the trailing '/' when setting
+	 *	/api/d3/profile/<battleNetIdName>-<battleNetIdNumber>
+	 * @param $pItemId
+	 * @return null|string
+	 * @throws \InvalidArgumentException
+	 */
+	public function getItem( $pItemId )
 	{
 		$returnValue = NULL;
-		if ( isString($p_itemId) )
+		if ( isString($pItemId) )
 		{
-			$this->url = sprintf( BATTLENET_D3_API_ITEM_URL, $p_itemId );;
+			$this->url = sprintf( BATTLENET_D3_API_ITEM_URL, $pItemId );;
 			// Return the response text.
 			$returnValue = $this->send();
 		}
@@ -116,14 +109,16 @@ class BattleNet_Requestor extends HttpRequestor
 	}
 
 	/**
-	* Example:
-	* battletag-name ::= <regional battletag allowed characters>
-	* battletag-code ::= <integer>
-	* url ::= <host> "/api/d3/profile/" <battletag-name> "-" <battletag-code> "/"
-	* Note: Add the trailing '/' when setting
-	*	/api/d3/profile/<battleNetIdName>-<battleNetIdNumber>/
-	* @param $p_battleNetId string Battle.Net ID with the "#code"
-	*/
+	 * Example:
+	 * battletag-name ::= <regional battletag allowed characters>
+	 * battletag-code ::= <integer>
+	 * url ::= <host> "/api/d3/profile/" <battletag-name> "-" <battletag-code> "/"
+	 * Note: Add the trailing '/' when setting
+	 *	/api/d3/profile/<battleNetIdName>-<battleNetIdNumber>/
+	 *
+	 * @return null|string
+	 * @throws \Exception
+	 */
 	public function getProfile()
 	{
 		$returnValue = NULL;
