@@ -4,9 +4,8 @@
 *
 */
 // Get the attribute map file.
-$d3a = new Application( $settings );
-// TODO: move load of settings into the application class, then uncomment the below.
-//$d3a->loadSettings();
+$d3a = new Application( $settings, new SuperGlobals() );
+\set_error_handler( [$d3a, 'notice_error_handler'], E_NOTICE );
 // TODO move loadAttributeMap function into the application and make it private.
 $attrMapFile = loadAttributeMap( $settings['ATTRIBUTE_MAP_FILE'] );
 // TODO change convertToClassName to convertRouteToClassName and move to application class.

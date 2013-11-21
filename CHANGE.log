@@ -1,3 +1,11 @@
+List of changes as of 11/21/2013 07:39 AM
+-------------------------------
+	- Refactored settings code into the Application object.
+	- Changed design to pass SuperGlobas object into the application.
+	- Refactored error handling code into the Application object.
+	- Relocated Unit Test back to root level
+	- Fixed issues with unit test not running.
+
 List of changes as of 11/07/2013 08:13 AM
 -------------------------------
 	- Moved unit test folder inside the kshabazz namespace directory.

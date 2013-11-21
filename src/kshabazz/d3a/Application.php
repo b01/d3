@@ -19,13 +19,47 @@ class Application
 	/**
 	 * Constructor
 	 * @param array $pSettings
+	 * @param $pSuper Access to the super globals.
 	 */
-	public function __construct( array $pSettings )
+	public function __construct( array $pSettings, $pSuper )
 	{
 		$this->settings = $pSettings;
 		$this->data = [];
 		$this->models = [];
-		$this->superGlobals = new SuperGlobals();
+		$this->superGlobals = $pSuper;
+		$this->parseConstants();
+	}
+
+	/**
+	 * Parse constants in the settings array.
+	 */
+	protected function parseConstants()
+	{
+		$constantsKey = 'constants';
+		// We have to specify the namespace when defining constants.
+		if (array_key_exists( $constantsKey, $this->settings) ) {
+			foreach ( $this->settings[$constantsKey] as $name => $value )
+			{
+				define( $name, $value );
+			}
+			unset( $this->settings[$constantsKey] );
+		}
+	}
+
+	/**
+	 * Pass all errors through this handler.
+	 *
+	 * @param $pSeverity
+	 * @param $pMessage
+	 * @param $pFilename
+	 * @param $lineNo
+	 * @return bool
+	 */
+	public function notice_error_handler( $pSeverity, $pMessage, $pFilename, $lineNo )
+	{
+		$loggableErrorMessage = "\n{$pMessage} {$pFilename} on line {$lineNo}.";
+		\error_log( $loggableErrorMessage );
+		return TRUE;
 	}
 
 	/**

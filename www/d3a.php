@@ -14,13 +14,6 @@ require_once __DIR__ . '/../vendor/autoload.php';
 
 checkPhpVersion( 5, 4 );
 
-// We have to specify the namespace when defining constants.
-$nameSpace = array_key_exists( "namespace", $settings ) ? $settings[ 'namespace' ] : '';
-foreach ( $settings as $name => $value )
-{
-	define( $nameSpace . $name, $value );
-}
-
 // Turn on D3 error handling.
 \set_error_handler( '\kshabazz\d3a\notice_error_handler', E_NOTICE );
 

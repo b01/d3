@@ -1,5 +1,4 @@
 <?php namespace kshabazz\d3a;
-
 /**
 * OBSOLETE see BattleNet_Request
 * @TODO Rename to BattleNet_Request one done with the initial unit test

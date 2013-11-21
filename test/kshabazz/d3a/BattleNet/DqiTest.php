@@ -1,5 +1,8 @@
-<?php namespace kshabazz\d3a;
-
+<?php
+/**
+ * BattleNet_Dqi test.
+ * @package \kshabazz\d3a\test
+ */
 /**
  *
  * @TODO Rename to BattleNet_Request once done with the initial unit test
