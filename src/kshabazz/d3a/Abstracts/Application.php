@@ -11,7 +11,9 @@
  */
 /**
  * Class Application
+ *
  * @package kshabazz\d3a\Abstracts
+ * @abstract
  */
 abstract class Application
 {

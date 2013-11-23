@@ -11,3 +11,4 @@ favicon*
 vendor
 .idea/
 composer.bat
+private.ini

@@ -31,19 +31,17 @@ class Application
 	}
 
 	/**
-	 * Parse constants in the settings array.
+	 * Load the attribute map from file.
+	 *
+	 * @param string $pFile attribute map file contents.
+	 * @throw \Exception
+	 * @return array
 	 */
-	protected function parseConstants()
+	function loadJsonFile( $pFile )
 	{
-		$constantsKey = 'constants';
-		// We have to specify the namespace when defining constants.
-		if (array_key_exists( $constantsKey, $this->settings) ) {
-			foreach ( $this->settings[$constantsKey] as $name => $value )
-			{
-				define( $name, $value );
-			}
-			unset( $this->settings[$constantsKey] );
-		}
+		$contents = \file_get_contents( $pFile );
+		$returnValue = \json_decode( $contents, TRUE ) ?: [];
+		return $returnValue;
 	}
 
 	/**
@@ -60,6 +58,44 @@ class Application
 		$loggableErrorMessage = "\n{$pMessage} {$pFilename} on line {$lineNo}.";
 		\error_log( $loggableErrorMessage );
 		return TRUE;
+	}
+
+	/**
+	 * Parse constants in the settings array.
+	 */
+	protected function parseConstants()
+	{
+		$constantsKey = 'constants';
+		// We have to specify the namespace when defining constants.
+		if (array_key_exists( $constantsKey, $this->settings) ) {
+			foreach ( $this->settings[$constantsKey] as $name => $value )
+			{
+				define( $name, $value );
+			}
+			unset( $this->settings[$constantsKey] );
+		}
+	}
+
+	/**
+	 * Retrieve a variable previously stored in the application.
+	 *
+	 * @param string $pKey value to retrieve.
+	 * @return mixed
+	 */
+	public function &retrieve( $pKey )
+	{
+		return $this->data[$pKey];
+	}
+
+	/**
+	 * Get a setting.
+	 *
+	 * @param string $pKey Setting name.
+	 * @return mixed
+	 */
+	public function setting( $pKey )
+	{
+		return $this->settings[ $pKey ];
 	}
 
 	/**
@@ -86,24 +122,13 @@ class Application
 	}
 
 	/**
-	* Retrieve a variable previously stored in the application.
-	*
-	* @param string $pKey value to retrieve.
-	* @return mixed
-	*/
-	public function &retrieve( $pKey )
-	{
-		return $this->data[$pKey];
-	}
-
-	/**
-	* Filter the buffer with a template engine of some sort.
-	* Note: currently this works with the PHP version of Mustache & Twig (~v1.14.*) without modification.
-	*
-	* @param Model $pModel Should contain the necessities to fill in the holes by the template engine.
-	* @param mixed $pParser A template engine to pass the output buffer through.
-	* @return void
-	*/
+	 * Filter the buffer with a template engine of some sort.
+	 * Note: currently this works with the PHP version of Mustache & Twig (~v1.14.*) without modification.
+	 *
+	 * @param object $pModel Should contain the necessities to fill in the holes by the template engine.
+	 * @param mixed $pParser A template engine to pass the output buffer through.
+	 * @return void
+	 */
 	public function templateFilter( $pModel, $pParser )
 	{
 		ob_start();

@@ -1,3 +1,12 @@
+List of changes as of 11/23/2013 08:24 AM
+-------------------------------
+	- Updated and added unit test for Application object.
+	- Added configurable defaults for type and super global for the SuperGlobals object.
+	- Added unit test for SuperGlobals.
+	- Added Hero model class.
+	- Start migration of private data to private.ini file.
+	- Aded private.ini to .gitignore file.
+
 List of changes as of 11/21/2013 07:39 AM
 -------------------------------
 	- Refactored settings code into the Application object.

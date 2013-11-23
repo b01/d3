@@ -13,7 +13,7 @@ use \kshabazz\d3a;
  * Class GetHero
  * @package kshabazz\d3a\Controller
  */
-class GetHero
+class GetHero extends \kshabazz\d3a\Abstracts\Controller
 {
 	protected
 		$battleNetUrlSafeId,
@@ -80,7 +80,7 @@ class GetHero
 				$this->sessionCacheInfo[ 'loadFromBattleNet' ]
 			);
 
-			$attributeMap = $this->supers->appProxy( 'retrieve', ['attribute_map'] );
+			$attributeMap = $this->appProxy( 'loadJsonFile', [\kshabazz\d3a\ATTRIBUTE_MAP_FILE] );
 			$this->model = new \kshabazz\d3a\Model_GetHero( $this->bnrHero, $attributeMap, $this->bnr, $this->sql );
 
 			$this->hero = new \kshabazz\d3a\Hero( $this->bnrHero->json() );
