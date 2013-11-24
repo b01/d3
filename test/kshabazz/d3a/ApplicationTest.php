@@ -117,7 +117,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 
 	public function test_loading_a_json_file()
 	{
-		$filePath = './test/mock/data/attribute-map.txt';
+		$filePath = __DIR__ . '/../../mock/data/attribute-map.txt';
 		$app = new Application( [], $this->supers );
 		$testArray = $app->loadJsonFile( $filePath );
 		$this->assertArrayHasKey( 'test', $testArray, 'Failed to load JSON file.' );
@@ -125,7 +125,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 
 	public function test_loading_json_data_correclty()
 	{
-		$filePath = './test/mock/data/attribute-map.txt';
+		$filePath =  __DIR__ . '/../../mock/data/attribute-map.txt';
 		$app = new Application( [], $this->supers );
 		$testArray = $app->loadJsonFile( $filePath );
 		$this->assertTrue( $testArray['test'] === 1234, 'Failed to load data correctly from JSON file.' );
@@ -133,7 +133,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 
 	public function test_loading_an_empty_json_file()
 	{
-		$filePath = './test/mock/data/empty-map.txt';
+		$filePath =  __DIR__ . '/../../mock/data/empty-map.txt';
 		$app = new Application( [], $this->supers );
 		$testArray = $app->loadJsonFile( $filePath );
 		$this->assertTrue( is_array($testArray), 'Failed to return array.' );
