@@ -25,12 +25,13 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 	/**
 	 *
 	 */
-	public function test_get_param()
+	public function test_get_server_param()
 	{
 		$app = new Application( [], $this->supers );
-		// TODO set a param.
-//		$app->getParam( $pKey, $pDefault, $pType = 'string', $pSuper = 'REQUEST' );
-		$this->markTestIncomplete('This has not been tested');
+		$_SERVER['test'] = 123;
+		$supers = $app->superGlobals();
+		$param = $supers->getParam( 'test', 'failed', 'int', 'SERVER' );
+		$this->assertTrue($param === 123, 'Failed to get parameter from super global _SERVER.' );
 	}
 
 	/**
@@ -102,7 +103,6 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function test_constants_are_set()
 	{
-		$value = 'test';
 		$app = new Application( [
 			'constants' => [
 				'TEST_123' => 123,
@@ -137,6 +137,13 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 		$app = new Application( [], $this->supers );
 		$testArray = $app->loadJsonFile( $filePath );
 		$this->assertTrue( is_array($testArray), 'Failed to return array.' );
+	}
+
+	public function test_custom_error_handler()
+	{
+		$app = new Application( [], $this->supers );
+		$testError = $app->notice_error_handler(1, 'Test error message', __FILE__, 145);
+		$this->assertTrue( $testError, 'Failed to return array.' );
 	}
 }
 ?>

@@ -1,3 +1,7 @@
+List of changes as of 11/24/2013 08:25 AM
+-------------------------------
+	- New application object unit test.
+
 List of changes as of 11/24/2013 06:00 AM
 -------------------------------
 	- Made paths relative in Application objects unit test.

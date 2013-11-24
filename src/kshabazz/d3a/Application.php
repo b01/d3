@@ -55,7 +55,7 @@ class Application
 	 */
 	public function notice_error_handler( $pSeverity, $pMessage, $pFilename, $lineNo )
 	{
-		$loggableErrorMessage = "\n{$pMessage} {$pFilename} on line {$lineNo}.";
+		$loggableErrorMessage = "\n{$pMessage} {$pFilename} on line {$lineNo}: severity({$pSeverity})";
 		\error_log( $loggableErrorMessage );
 		return TRUE;
 	}
