@@ -1,3 +1,13 @@
+List of changes as of 11/30/2013 09:53 AM
+-------------------------------
+	- Added QUnit JavaScript unit testing framework
+	- Added web page to run JavaScript unit test.
+	- Aded first JavaScript unit test.
+
+List of changes as of 11/27/2013 06:05 AM
+-------------------------------
+	- Added QUnit for JavaScript testing.
+
 List of changes as of 11/24/2013 08:25 AM
 -------------------------------
 	- New application object unit test.
