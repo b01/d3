@@ -57,7 +57,7 @@
 	</head>
 	<body>
 <?php endif; ?>
-		<?php include( 'templates/item.php'); ?>
+		<?php include( 'templates/item.php' ); ?>
 		<?php endif ?>
 <?php if ( $showExtra ): ?>
 		<pre class="json-data scroll"><?= $item; ?></pre>

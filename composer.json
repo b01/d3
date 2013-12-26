@@ -10,7 +10,11 @@
 		"squizlabs/php_codesniffer": "1.*"
 	},
 	"autoload": {
-		"psr-0": { "kshabazz\\": "src/" }
+		"psr-0": { "kshabazz\\": "src/" },
+		"files": [
+			"src/kshabazz/d3a/_Constant.php",
+			"src/kshabazz/d3a/_Tool.php"
+		]
 	},
 	"type": "tool",
 	"keywords": ["diablo 3"],

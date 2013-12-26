@@ -4,7 +4,7 @@
 *
 */
 // Get the attribute map file.
-$d3a = new Application( $settings, new SuperGlobals() );
+$d3a = new Application([], new SuperGlobals() );
 unset($settings);
 \set_error_handler( [$d3a, 'notice_error_handler'], E_NOTICE );
 // TODO change convertToClassName to convertRouteToClassName and move to application class.
