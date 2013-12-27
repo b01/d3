@@ -12,11 +12,6 @@
 require_once __DIR__ . '/../d3a/_Settings.php';
 require_once __DIR__ . '/../../../vendor/autoload.php';
 
-checkPhpVersion( 5, 4 );
-
-// Turn on D3 error handling.
-\set_error_handler( '\kshabazz\d3a\notice_error_handler', E_NOTICE );
-
 require_once __DIR__ . '/../d3a/loader.php';
 
 //DO NOT PUT ANY CHARACTERS OR EVEN WHITE-SPACE after the closing PHP tag, or headers may be sent before intended.

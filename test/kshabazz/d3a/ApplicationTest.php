@@ -31,7 +31,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 		$_SERVER['test'] = 123;
 		$supers = $app->superGlobals();
 		$param = $supers->getParam( 'test', 'failed', 'int', 'SERVER' );
-		$this->assertTrue($param === 123, 'Failed to get parameter from super global _SERVER.' );
+		$this->assertEquals(123, $param, 'Failed to get parameter from super global _SERVER.' );
 	}
 
 	/**
@@ -43,7 +43,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 		$inputVar = "test string";
 		$app->store( 'test', $inputVar );
 		$outputVar = $app->retrieve( 'test' );
-		$this->assertTrue( $inputVar === $outputVar, "The string stored is NOT equal to the string retrieved." );
+		$this->assertEquals( $outputVar, $inputVar, "The string stored is NOT equal to the string retrieved." );
 	}
 
 	/**
@@ -57,26 +57,30 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 		$outputVar = $app->retrieve( 'testArray' );
 		$ref1 = &$inputVar;
 		$ref2 = &$outputVar;
-		$this->assertTrue( $ref1 === $ref2, // TODO: Make sure this works!
+		// TODO: Make sure this works!
+		$this->assertEquals( $ref2, $ref1,
 			"The reference value of array stored is NOT equal to the reference of the array retrieved." );
 	}
 
 	/**
 	 *
 	 */
-//	public function test_templateFilter()
-//	{
-//		// TODO: put "{test}" in the buffer.
-//		$app = new \kshabazz\d3a\Application( [], $this->supers );
-//		$twigLoader = new \Twig_Loader_String();
-//		$twig = new \Twig_Environment( $twigLoader );
-//		$model = ( object ) [
-//			"test" => 123
-//		];
-//		$app->templateFilter( $model, $twig );
-//		// TODO: Retrieve the buffer and asset it equals 123.
-//		$this->markTestIncomplete('This has not been tested');
-//	}
+	public function test_templateFilter()
+	{
+		$app = new Application( [], $this->supers );
+		$twigLoader = new \Twig_Loader_String();
+		$twig = new \Twig_Environment( $twigLoader );
+		$model = ( object ) [
+			"test" => 123
+		];
+		// Put '{test}' in the buffer.
+		ob_start();
+		echo '{{ test }}';
+		$app->render( $model, $twig );
+		$output = ob_get_contents();
+		// TODO: Retrieve the buffer and asset it equals 123.
+		$this->assertEquals( '123', $output, 'This has not been tested' );
+	}
 
 	/**
 	 * Verify setting SuperGlobals in application.
@@ -85,7 +89,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 	{
 		$app = new Application( [], $this->supers );
 		$super = $app->superGlobals();
-		$this->assertTrue( $super === $this->supers,
+		$this->assertEquals( $this->supers, $super,
 			"Failed to successfully set and get SuperGlobas in application object." );
 	}
 
@@ -94,25 +98,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 		$value = 'test';
 		$app = new Application( ['test' => $value], $this->supers );
 		$setting = $app->setting( 'test' );
-		$this->assertTrue( $setting === $value,
-			"Failed to get setting." );
-	}
-
-	/**
-	 * Test parsing constants.
-	 */
-	public function test_constants_are_set()
-	{
-		$app = new Application( [
-			'constants' => [
-				'TEST_123' => 123,
-				'kshabazz\\d3a\\TEST_123' => 1234
-			]
-		], $this->supers );
-		$this->assertTrue( \TEST_123 === 123,
-			"TEST_123 constant not set." );
-		$this->assertTrue( \kshabazz\d3a\TEST_123 === 1234,
-			"\\kshabazz\\d3a\\TEST_123 constant not set." );
+		$this->assertEquals( $value, $setting, "Failed to get setting." );
 	}
 
 	public function test_loading_a_json_file()
@@ -128,7 +114,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 		$filePath =  __DIR__ . '/../../mock/data/attribute-map.txt';
 		$app = new Application( [], $this->supers );
 		$testArray = $app->loadJsonFile( $filePath );
-		$this->assertTrue( $testArray['test'] === 1234, 'Failed to load data correctly from JSON file.' );
+		$this->assertEquals( 1234,  $testArray['test'], 'Failed to load data correctly from JSON file.' );
 	}
 
 	public function test_loading_an_empty_json_file()
@@ -144,6 +130,15 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 		$app = new Application( [], $this->supers );
 		$testError = $app->notice_error_handler(1, 'Test error message', __FILE__, 145);
 		$this->assertTrue( $testError, 'Failed to return array.' );
+	}
+
+	/**
+	 * @throws \Exception
+	 */
+	public function test_throwing_a_real_notice_error()
+	{
+		$app = new Application( [], $this->supers );
+		$this->markTestIncomplete('Incomplete.');
 	}
 }
 ?>

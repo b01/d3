@@ -19,15 +19,14 @@ class Application
 	/**
 	 * Constructor
 	 * @param array $pSettings
-	 * @param $pSuper Access to the super globals.
+	 * @param SuperGlobals $pSuper Access to the super globals.
 	 */
-	public function __construct( array $pSettings, $pSuper )
+	public function __construct( array $pSettings, SuperGlobals $pSuper )
 	{
 		$this->settings = $pSettings;
 		$this->data = [];
 		$this->models = [];
 		$this->superGlobals = $pSuper;
-		$this->parseConstants();
 	}
 
 	/**
@@ -47,10 +46,10 @@ class Application
 	/**
 	 * Pass all errors through this handler.
 	 *
-	 * @param $pSeverity
-	 * @param $pMessage
-	 * @param $pFilename
-	 * @param $lineNo
+	 * @param int $pSeverity
+	 * @param string $pMessage
+	 * @param string $pFilename
+	 * @param int $lineNo
 	 * @return bool
 	 */
 	public function notice_error_handler( $pSeverity, $pMessage, $pFilename, $lineNo )
@@ -58,22 +57,6 @@ class Application
 		$loggableErrorMessage = "\n{$pMessage} {$pFilename} on line {$lineNo}: severity({$pSeverity})";
 		\error_log( $loggableErrorMessage );
 		return TRUE;
-	}
-
-	/**
-	 * Parse constants in the settings array.
-	 */
-	protected function parseConstants()
-	{
-		$constantsKey = 'constants';
-		// We have to specify the namespace when defining constants.
-		if (array_key_exists( $constantsKey, $this->settings) ) {
-			foreach ( $this->settings[$constantsKey] as $name => $value )
-			{
-				define( $name, $value );
-			}
-			unset( $this->settings[$constantsKey] );
-		}
 	}
 
 	/**
@@ -122,24 +105,20 @@ class Application
 	}
 
 	/**
-	 * Filter the buffer with a template engine of some sort.
-	 * Note: currently this works with the PHP version of Mustache & Twig (~v1.14.*) without modification.
+	 * Grab the buffer and process it through a template engine.
+	 * Note: currently this works with any template engine that has a method "render"
+	 * which can take a string as the first parameter and an object as the second.
 	 *
 	 * @param object $pModel Should contain the necessities to fill in the holes by the template engine.
 	 * @param mixed $pParser A template engine to pass the output buffer through.
 	 * @return void
 	 */
-	public function templateFilter( $pModel, $pParser )
+	public function render( $pModel, $pParser )
 	{
-		ob_start();
-		// Hi-jack the output buffer.
-		register_shutdown_function(function ($pModel, $pParser)
-		{
-			// grab and remove the content from the current buffer.
-			$template = ob_get_clean();
-			// run all view logic and fill in all place-holders and update the current buffer.
-			echo $pParser->render( $template, \get_object_vars($pModel) );
-		}, $pModel, $pParser );
+		// grab and remove the content from the current buffer.
+		$template = \ob_get_clean();
+		// run all view logic and fill in all place-holders and update the current buffer.
+		echo $pParser->render( $template, \get_object_vars($pModel) );
 	}
 }
 ?>

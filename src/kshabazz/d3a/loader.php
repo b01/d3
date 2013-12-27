@@ -5,7 +5,11 @@
 */
 // Get the attribute map file.
 $d3a = new Application([], new SuperGlobals() );
-unset($settings);
+
+checkPhpVersion( 5, 4 );
+// Turn on D3 error handling.
+\set_error_handler( [$d3a, 'notice_error_handler'], E_NOTICE );
+
 \set_error_handler( [$d3a, 'notice_error_handler'], E_NOTICE );
 // TODO change convertToClassName to convertRouteToClassName and move to application class.
 $page = basename( $_SERVER['SCRIPT_FILENAME'] );
@@ -29,9 +33,14 @@ if ( class_exists($className) )
 // which in turn, fill in all holes within the view.
 if ( $model !== null )
 {
+	// Setup Twig template engine.
 	$twigLoader = new \Twig_Loader_String();
 	$twig = new \Twig_Environment( $twigLoader );
-	$d3a->templateFilter( $model, $twig );
+	// start output buffering.
+	\ob_start();
+	// Set output buffer to be sent through the Twig Engine on shutdown.
+	// We use 'shutdown' because you can even catch most errors and output them how you like.
+	\register_shutdown_function([$d3a, 'render'], $model, $twig );
 
 	$twig->addFunction(new \Twig_SimpleFunction('isArray', function ($pVariable) {
 		return \kshabazz\d3a\isArray( $pVariable );

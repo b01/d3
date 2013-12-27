@@ -379,24 +379,9 @@
 	}
 
 	/**
-	* Handle all errors.
-	*
-	* @param int $pMajor Required major version.
-	* @param int $pMinor If set, then the required minor version.
-	* @param int $pRelease If set, then the required release version.
-	* @return string
-	*/
-	function notice_error_handler( $pSeverity, $pMessage, $pFilename, $lineNo )
-	{
-		$loggableErrorMessage = "\n{$pMessage} {$pFilename} on line {$lineNo}.";
-		error_log( $loggableErrorMessage );
-		return TRUE;
-	}
-
-	/**
-	* Output an associative array in sprintf fasion.
-	* @return bool TRUE is yes, false otherwise.
-	*/
+	 * Output an associative array in sprintf fasion.
+	 * @return bool TRUE is yes, false otherwise.
+	 */
 	function output( $p_format, array $p_array )
 	{
 		$returnValue = '';
@@ -408,8 +393,8 @@
 	}
 
 	/**
-	* Random x elements from an array.
-	*/
+	 * Random x elements from an array.
+	 */
 	function randomElementsFromArray( $p_arraySource, $p_quantity = 5 )
 	{
 		$returnAry = NULL;
