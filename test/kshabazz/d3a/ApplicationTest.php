@@ -17,7 +17,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function test_app_initialized_with_no_settings()
 	{
-		$app = new Application( [], $this->supers );
+		$app = new Application( $this->supers );
 		$this->assertTrue( $app instanceof Application,
 						   'Application initiallized with no settings.');
 	}
@@ -27,7 +27,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function test_get_server_param()
 	{
-		$app = new Application( [], $this->supers );
+		$app = new Application( $this->supers );
 		$_SERVER['test'] = 123;
 		$supers = $app->superGlobals();
 		$param = $supers->getParam( 'test', 'failed', 'int', 'SERVER' );
@@ -39,7 +39,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function test_storing_and_retrieving_a_string()
 	{
-		$app = new Application( [], $this->supers );
+		$app = new Application( $this->supers );
 		$inputVar = "test string";
 		$app->store( 'test', $inputVar );
 		$outputVar = $app->retrieve( 'test' );
@@ -51,7 +51,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function test_storing_and_retrieving_an_array()
 	{
-		$app = new Application( [], $this->supers );
+		$app = new Application( $this->supers );
 		$inputVar = [ "test string" ];
 		$app->store( 'testArray', $inputVar );
 		$outputVar = $app->retrieve( 'testArray' );
@@ -65,9 +65,9 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 	/**
 	 *
 	 */
-	public function test_templateFilter()
+	public function test_render()
 	{
-		$app = new Application( [], $this->supers );
+		$app = new Application( $this->supers );
 		$twigLoader = new \Twig_Loader_String();
 		$twig = new \Twig_Environment( $twigLoader );
 		$model = ( object ) [
@@ -87,7 +87,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function test_set_and_get_of_super_globals()
 	{
-		$app = new Application( [], $this->supers );
+		$app = new Application( $this->supers );
 		$super = $app->superGlobals();
 		$this->assertEquals( $this->supers, $super,
 			"Failed to successfully set and get SuperGlobas in application object." );
@@ -96,7 +96,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 	public function test_getting_a_setting()
 	{
 		$value = 'test';
-		$app = new Application( ['test' => $value], $this->supers );
+		$app = new Application( $this->supers, ['test' => $value] );
 		$setting = $app->setting( 'test' );
 		$this->assertEquals( $value, $setting, "Failed to get setting." );
 	}
@@ -104,7 +104,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 	public function test_loading_a_json_file()
 	{
 		$filePath = __DIR__ . '/../../mock/data/attribute-map.txt';
-		$app = new Application( [], $this->supers );
+		$app = new Application( $this->supers );
 		$testArray = $app->loadJsonFile( $filePath );
 		$this->assertArrayHasKey( 'test', $testArray, 'Failed to load JSON file.' );
 	}
@@ -112,7 +112,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 	public function test_loading_json_data_correclty()
 	{
 		$filePath =  __DIR__ . '/../../mock/data/attribute-map.txt';
-		$app = new Application( [], $this->supers );
+		$app = new Application( $this->supers );
 		$testArray = $app->loadJsonFile( $filePath );
 		$this->assertEquals( 1234,  $testArray['test'], 'Failed to load data correctly from JSON file.' );
 	}
@@ -120,14 +120,14 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 	public function test_loading_an_empty_json_file()
 	{
 		$filePath =  __DIR__ . '/../../mock/data/empty-map.txt';
-		$app = new Application( [], $this->supers );
+		$app = new Application( $this->supers );
 		$testArray = $app->loadJsonFile( $filePath );
 		$this->assertTrue( is_array($testArray), 'Failed to return array.' );
 	}
 
 	public function test_custom_error_handler()
 	{
-		$app = new Application( [], $this->supers );
+		$app = new Application( $this->supers );
 		$testError = $app->notice_error_handler(1, 'Test error message', __FILE__, 145);
 		$this->assertTrue( $testError, 'Failed to return array.' );
 	}
@@ -137,7 +137,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function test_throwing_a_real_notice_error()
 	{
-		$app = new Application( [], $this->supers );
+		$app = new Application( $this->supers );
 		$this->markTestIncomplete('Incomplete.');
 	}
 }

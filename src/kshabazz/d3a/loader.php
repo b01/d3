@@ -4,7 +4,7 @@
 *
 */
 // Get the attribute map file.
-$d3a = new Application([], new SuperGlobals() );
+$d3a = new Application( new SuperGlobals() );
 
 checkPhpVersion( 5, 4 );
 // Turn on D3 error handling.

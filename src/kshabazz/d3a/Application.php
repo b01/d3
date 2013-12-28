@@ -18,10 +18,10 @@ class Application
 
 	/**
 	 * Constructor
-	 * @param array $pSettings
 	 * @param SuperGlobals $pSuper Access to the super globals.
+	 * @param array $pSettings
 	 */
-	public function __construct( array $pSettings, SuperGlobals $pSuper )
+	public function __construct( SuperGlobals $pSuper, array $pSettings = [] )
 	{
 		$this->settings = $pSettings;
 		$this->data = [];
