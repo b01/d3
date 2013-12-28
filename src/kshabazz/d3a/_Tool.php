@@ -95,13 +95,12 @@
 	}
 
 	/**
-	* Display a time left.
-
-	* In an effort to unify the format of time left on a session expiration variable's display.
-	*
-	* @param $pTimeLeft int Amount of time left on a session expiration variable.
-	* @return string
-	*/
+	 * Display a time left.
+	 * In an effort to unify the format of time left on a session expiration variable's display.
+	 *
+	 * @param $pTimeLeft int Amount of time left on a session expiration variable.
+	 * @return string
+	 */
 	function displaySessionTimer( $pTimeLeft )
 	{
 		return ( is_numeric($pTimeLeft) && $pTimeLeft > 0 ) ?
@@ -109,10 +108,12 @@
 	}
 
 	/**
-	* Parse number in string and add HTML tags around it.
-	* @param $pKey CSS class to add to the element.
-	* @return string
-	*/
+	 * Parse number in string and add HTML tags around it.
+	 *
+	 * @param string $p_attribute
+	 * @param string $p_class
+	 * @return string
+	 */
 	function formatAttribute( $p_attribute, $p_class = NULL )
 	{
 		$returnValue = NULL;
@@ -121,7 +122,7 @@
 	}
 
 	/**
-	 * Convert an array of item hashes to item models.
+	 * Get content between <body></body> tags.
 	 *
 	 * @param string $pHtml
 	 * @return array
@@ -140,10 +141,12 @@
 	}
 
 	/**
-	* Capture the output of an include statment.
-	* Note: Taken from PHP example of include function.
-	*
-	*/
+	 * Capture the output of an include statement.
+	 * Note: Taken from PHP example of include function.
+	 *
+	 * @param string $pFilename Name of a PHP file to include.
+	 * @return mixed
+	 */
 	function get_include_contents( $pFilename )
 	{
 		if ( is_file($pFilename) )
@@ -156,8 +159,8 @@
 	}
 
 	/**
-	* Convert an array of item hashes to item models.
-	*
+	 * Convert an array of item hashes to item models.
+	 *
 	 * @param $p_items
 	 * @param $p_battleNetDqi
 	 * @param $pSql
@@ -181,10 +184,10 @@
 	}
 
 	/**
-	* Get the name of the slot where you'd equip the item, by type id.
-	* @param $pItemTypeId Item type id
-	* @return string
-	*/
+	 * Get the name of the slot where you'd equip the item, by type id.
+	 * @param $pItemTypeId Item type id
+	 * @return string
+	 */
 	function getItemSlot( $pItemTypeId )
 	{
 		$returnValue = '';
@@ -234,10 +237,10 @@
 	}
 
 	/**
-	* Get a value from the global POST array as a boolean.
-	* @param $pKey string Variable to retrieve from the post array.
-	* @return string
-	*/
+	 * Get a value from the global POST array as a boolean.
+	 * @param $pKey string Variable to retrieve from the post array.
+	 * @return string
+	 */
 	function getPostBool( $pKey )
 	{
 		$returnValue = FALSE;
@@ -250,10 +253,12 @@
 	}
 
 	/**
-	* Get a value from the global POST array as a string, even if it is a numercal value.
-	* @param $pKey string Variable to retrieve from the post array.
-	* @return string
-	*/
+	 * Get a value from the global POST array as a string, even if it is a numercal value.
+	 *
+	 * @param $pKey string Variable to retrieve from the post array.
+	 * @param mixed $pDefault value to return if the variable is not present.
+	 * @return string
+	 */
 	function getPostStr( $pKey, $pDefault = NULL )
 	{
 		$returnValue = $pDefault;
@@ -266,44 +271,18 @@
 	}
 
 	/**
-	* Detrermine the higest level completed.
-	*
-	* @param $pProgress object Hero progress
-	* @return string
-	*/
-	function getProgress( $pProgress )
-	{
-		// Enjoy the flying V!
-		$returnValue = '';
-		foreach ( $pProgress as $level => $progresssion )
-		{
-			if ( isArray($progresssion) )
-			{
-				foreach ( $progresssion as $act => $progress )
-				{
-					if ( isArray($progress['completedQuests']) )
-					{
-						$length = count( $progress['completedQuests'] ) - 1;
-						$returnValue = "Highest completed: {$level} {$act} {$progress['completedQuests'][ $length ]['name']}";
-					}
-				}
-			}
-		}
-		return $returnValue;
-	}
-
-	/**
-	* Get info for a session expiration variable (a variable soley used as a timer/count-down).
-	*
-	* @param $pSessionVarName string Session time variable.
-	* @param $p_duration int Amount of time to check against.
-	* @return bool
-	*/
-	function getSessionExpireInfo( $pSessionVarName, $pExpireNow = FALSE, $cacheLimit = CACHE_LIMIT)
+	 * Get info for a session expiration variable (a variable soley used as a timer/count-down).
+	 *
+	 * @param string $pSessionVarName string Session time variable.
+	 * @param bool $pClear overwrite the cache starting now.
+	 * @param int $pDuration Amount of time to before cache times out.
+	 * @return bool
+	 */
+	function getSessionExpireInfo( $pSessionVarName, $pClear = FALSE, $pDuration = CACHE_LIMIT)
 	{
 		$timeElapsed = 0;
-		$loadFromBattleNet = sessionTimeExpired( $pSessionVarName, $cacheLimit, $pExpireNow, $timeElapsed );
-		$timeLeft = $cacheLimit - $timeElapsed;
+		$loadFromBattleNet = sessionTimeExpired( $pSessionVarName, $pDuration, $pClear, $timeElapsed );
+		$timeLeft = $pDuration - $timeElapsed;
 		return [
 			'loadFromBattleNet' => $loadFromBattleNet,
 			'timeLeft' => $timeLeft,
@@ -328,47 +307,58 @@
 	}
 
 	/**
-	* Check if a variable is an array of length greater than 0.
-	* @return bool TRUE is yes, false otherwise.
-	*/
-	function isArray( $p_variable )
+	 * Check if a variable is an array of length greater than 0.
+	 *
+	 * @param mixed $pVariable to be checked.
+	 * @return bool TRUE is yes, false otherwise.
+	 */
+	function isArray( $pVariable )
 	{
-		return ( is_array($p_variable) && count($p_variable) > 0 );
+		return ( is_array($pVariable) && count($pVariable) > 0 );
 	}
 
 	/**
-	* Check if a variable is a string of length greater than 0.
-	* @return bool TRUE is yes, false otherwise.
-	*/
-	function isString( $p_value )
+	 * Check if a variable is a string of length greater than 0.
+	 *
+	 * @param mixed $pVariable to be checked.
+	 * @return bool TRUE is yes, false otherwise.
+	 */
+	function isString( $pVariable )
 	{
-		return ( is_string($p_value) && strlen($p_value) > 0 );
+		return ( is_string($pVariable) && strlen($pVariable) > 0 );
 	}
 
 	/**
-	* Check if an item is a weapon.
-	*/
-	function isWeapon( Item $p_item )
+	 * Check if an item is a type of weapon.
+	 *
+	 * @param Item $pItem to be checked.
+	 * @return bool
+	 */
+	function isWeapon( Item $pItem )
 	{
-		$itemType = strtolower( $p_item->type['id'] );
+		$itemType = strtolower( $pItem->type['id'] );
 		return in_array( $itemType, Item::$oneHandWeaponTypes );
 	}
 
 	/**
-	* Load the attribute map from file.
-	*
-	* @param $pFile Attribute map file.
-	* @return array
-	*/
+	 * Load the attribute map from file.
+	 *
+	 * @param $pFile Attribute map file.
+	 * @return array
+	 */
 	function loadAttributeMap( $pFile )
 	{
 		return ( file_exists($pFile) ) ? \json_decode( \file_get_contents($pFile), TRUE ) : [];
 	}
 
 	/**
-	* Check if a variable is a string of length greater than 0.
-	* @return bool TRUE is yes, false otherwise.
-	*/
+	 * Check if a variable is a string of length greater than 0.
+	 *
+	 * @param \Exception $p_error
+	 * @param string $p_devMessage message the developer will see. Usually the error returned from PHP.
+	 * @param string $p_userMessage message the client will see.
+	 * @return bool TRUE is yes, false otherwise.
+	 */
 	function logError( \Exception $p_error, $p_devMessage, $p_userMessage )
 	{
 		$trace = debug_backtrace();
@@ -489,21 +479,23 @@
 	}
 
 	/**
-	* Determine if time in a session has lapsed.
-	*
-	* @param $pKey string Session time variable.
-	* @param $p_duration int Amount of time to check against.
-	* @return bool
-	*/
-	function sessionTimeExpired( $pKey, $p_duration, $p_setToExpireNow = FALSE, &$pTimeElapsed )
+	 * Determine if time in a session has lapsed.
+	 *
+	 * @param string $pKey Session time variable.
+	 * @param int $pTimeLimit Amount of time to check against.
+	 * @param bool $pForceToExpire expires the cache now.
+	 * @param ref $pTimeElapsed how much time has passed since data was cached.
+	 * @return bool
+	 */
+	function sessionTimeExpired( $pKey, $pTimeLimit, $pForceToExpire = FALSE, &$pTimeElapsed )
 	{
 		$timeExpired = TRUE;
-		if ( array_key_exists( $pKey, $_SESSION) && !$p_setToExpireNow )
+		if ( array_key_exists($pKey, $_SESSION) && !$pForceToExpire )
 		{
 			$timeElapsed = timeElapsed( $_SESSION[$pKey] );
 			if ( is_numeric($timeElapsed) )
 			{
-				$timeExpired = $timeElapsed > $p_duration;
+				$timeExpired = $timeElapsed > $pTimeLimit;
 				$pTimeElapsed = $timeElapsed;
 			}
 		}

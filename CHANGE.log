@@ -1,3 +1,11 @@
+List of changes as of 12/28/2013 09:28 AM
+-------------------------------
+ - Organized methods in Application class by alphabetical order.
+ - Fixed bugs in GetHero model.
+ - Refactored session code int a new Session class.
+ - Fixed errors in unit test.
+ - Changed logic in Application::render in order to make it unit testable.
+
 List of changes as of 11/30/2013 10:09 AM
 -------------------------------
 	- Added jquery.mockjax.js library.

@@ -36,7 +36,7 @@ class Application
 	 * @throw \Exception
 	 * @return array
 	 */
-	function loadJsonFile( $pFile )
+	public function loadJsonFile( $pFile )
 	{
 		$contents = \file_get_contents( $pFile );
 		$returnValue = \json_decode( $contents, TRUE ) ?: [];
@@ -52,11 +52,30 @@ class Application
 	 * @param int $lineNo
 	 * @return bool
 	 */
-	public function notice_error_handler( $pSeverity, $pMessage, $pFilename, $lineNo )
+	public function errorHandlerNotice( $pSeverity, $pMessage, $pFilename, $lineNo )
 	{
 		$loggableErrorMessage = "\n{$pMessage} {$pFilename} on line {$lineNo}: severity({$pSeverity})";
 		\error_log( $loggableErrorMessage );
 		return TRUE;
+	}
+
+	/**
+	 * Grab the buffer and process it through a template engine.
+	 * Note: currently this works with any template engine that has a method "render"
+	 * which can take a string as the first parameter and an object as the second.
+	 *
+	 * @param object $pModel Should contain the necessities to fill in the holes by the template engine.
+	 * @param mixed $pParser A template engine to pass the output buffer through.
+	 * @return void
+	 */
+	public function render( $pModel, $pParser )
+	{
+		// grab and remove the content from the current buffer.
+		$template = \ob_get_contents();
+		// clear the current buffer without discarding it.
+		ob_clean();
+		// run all view logic and fill in all place-holders and throw it back into the current buffer.
+		echo $pParser->render( $template, \get_object_vars($pModel) );
 	}
 
 	/**
@@ -82,15 +101,6 @@ class Application
 	}
 
 	/**
-	 * Get SuperGlobals object
-	 * @return \kshabazz\d3a\SuperGlobals
-	 */
-	public function superGlobals()
-	{
-		return $this->superGlobals;
-	}
-
-	/**
 	 * Store a variable in the application.
 	 * Note: stores a reference. So you can not use methods as the value parameter
 	 * without first assigning their return value to a variable.
@@ -105,20 +115,12 @@ class Application
 	}
 
 	/**
-	 * Grab the buffer and process it through a template engine.
-	 * Note: currently this works with any template engine that has a method "render"
-	 * which can take a string as the first parameter and an object as the second.
-	 *
-	 * @param object $pModel Should contain the necessities to fill in the holes by the template engine.
-	 * @param mixed $pParser A template engine to pass the output buffer through.
-	 * @return void
+	 * Get SuperGlobals object
+	 * @return \kshabazz\d3a\SuperGlobals
 	 */
-	public function render( $pModel, $pParser )
+	public function superGlobals()
 	{
-		// grab and remove the content from the current buffer.
-		$template = \ob_get_clean();
-		// run all view logic and fill in all place-holders and update the current buffer.
-		echo $pParser->render( $template, \get_object_vars($pModel) );
+		return $this->superGlobals;
 	}
 }
 ?>

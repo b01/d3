@@ -162,7 +162,7 @@ class BattleNet_Hero extends BattleNet_Model
 		$utcTime = gmdate( "Y-m-d H:i:s" );
 		return $this->sql->save( BattleNet_Sql::INSERT_HERO, [
 			"heroId" => [ $this->key, \PDO::PARAM_STR ],
-			"battleNetId" => [ $this->dqi->getBattleNetId(), \PDO::PARAM_STR ],
+			"battleNetId" => [ $this->dqi->battleNetId(), \PDO::PARAM_STR ],
 			"json" => [ $this->json, \PDO::PARAM_STR ],
 			"ipAddress" => [ $this->sql->ipAddress(), \PDO::PARAM_STR ],
 			"lastUpdated" => [ $utcTime, \PDO::PARAM_STR ],

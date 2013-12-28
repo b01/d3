@@ -22,6 +22,7 @@ class Model_GetHero
 		$bnr,
 		$bnrHero,
 		$itemModels,
+		$sessionCacheInfo,
 		$slotStats,
 		$sql,
 		$stats;
@@ -48,6 +49,33 @@ class Model_GetHero
 		$this->battleNetUrlSafeId = $this->bnr->battleNetUrlSafeId();
 		$this->init();
 		$this->renderSetup();
+	}
+
+	/**
+	 * Determine the highest level completed.
+	 *
+	 * @param $pProgress object Hero progress
+	 * @return string
+	 */
+	protected function getProgress( $pProgress )
+	{
+		// Enjoy the flying V!
+		$returnValue = '';
+		foreach ( $pProgress as $level => $progresssion )
+		{
+			if ( isArray($progresssion) )
+			{
+				foreach ( $progresssion as $act => $progress )
+				{
+					if ( isArray($progress['completedQuests']) )
+					{
+						$length = count( $progress['completedQuests'] ) - 1;
+						$returnValue = "Highest completed: {$level} {$act} {$progress['completedQuests'][ $length ]['name']}";
+					}
+				}
+			}
+		}
+		return $returnValue;
 	}
 
 	/**
@@ -138,8 +166,11 @@ class Model_GetHero
 			{
 				// Compute some things.
 				$this->tallyAttributes( $item->attributesRaw, $slot );
-				// Tally gems.
-				$this->tallyGemAttributes( $pRawAttribute, $slot );
+				// Tally gems when the item has them.
+				if ( isArray($item->gems) )
+				{
+					$this->tallyGemAttributes( $item->gems, $slot );
+				}
 			}
 		}
 	}
@@ -153,12 +184,14 @@ class Model_GetHero
 		$this->name = $this->hero->name;
 		$this->hardcore = ( $this->hero->hardcore ) ? 'Hardcore ' : '';
 		$this->deadText = '';
-		if ( $hero->dead )
+		if ( $this->hero->dead )
 		{
 			$this->deadText = "This {$this->hardcore}hero fell on " . date( 'm/d/Y', $this->hero->{'last-updated'} ) . ' :(';
 		}
+
+		$this->sessionCacheInfo = getSessionExpireInfo( 'hero-' . $this->hero->id );
 		$this->sessionTimeLeft = displaySessionTimer( $this->sessionCacheInfo['timeLeft'] );
-		$this->progress = getProgress( $this->hero->progress );
+		$this->progress = $this->getProgress( $this->hero->progress );
 		$this->heroItemHashes = json_encode( $this->itemHashes );
 		$this->items = $this->itemModels;
 
@@ -213,22 +246,24 @@ class Model_GetHero
 	}
 
 	/**
-	* Tally raw gem attributes.
-	* @return float
-	*/
-	protected function tallyGemAttributes( $pGems, $pSlot )
+	 * Tally raw gem attributes.
+	 *
+	 * @param array $pGems
+	 * @param string $pSlot
+	 * @return $this
+	 */
+	protected function tallyGemAttributes( array $pGems, $pSlot )
 	{
-		if ( isArray($pGems) )
+		for ( $i = 0; $i < count($pGems); $i++ )
 		{
-			for ( $i = 0; $i < count($pGems); $i++ )
+			$gem = $pGems[ $i ];
+			if ( isArray($gem) )
 			{
-				$gem = $pGems[ $i ];
-				if ( isArray($gem) )
-				{
-					$this->tallyAttributes( $gem['attributesRaw'], "{$pSlot} gem slot {$i}" );
-				}
+				$this->tallyAttributes( $gem['attributesRaw'], "{$pSlot} gem slot {$i}" );
 			}
 		}
+
+		return $this;
 	}
 }
 ?>

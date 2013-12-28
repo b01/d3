@@ -1,16 +1,13 @@
 <?php namespace kshabazz\d3a;
 /**
-* Diablo 3 Assistant core load script.
-*
-*/
+ * Diablo 3 Assistant core load script.
+ *
+ */
 // Get the attribute map file.
 $d3a = new Application( new SuperGlobals() );
 
 checkPhpVersion( 5, 4 );
-// Turn on D3 error handling.
-\set_error_handler( [$d3a, 'notice_error_handler'], E_NOTICE );
 
-\set_error_handler( [$d3a, 'notice_error_handler'], E_NOTICE );
 // TODO change convertToClassName to convertRouteToClassName and move to application class.
 $page = basename( $_SERVER['SCRIPT_FILENAME'] );
 $routeName = convertToClassName( $page );
@@ -38,6 +35,8 @@ if ( $model !== null )
 	$twig = new \Twig_Environment( $twigLoader );
 	// start output buffering.
 	\ob_start();
+	// Turn on D3 error handling.
+	\set_error_handler( [$d3a, 'errorHandlerNotice'], E_NOTICE );
 	// Set output buffer to be sent through the Twig Engine on shutdown.
 	// We use 'shutdown' because you can even catch most errors and output them how you like.
 	\register_shutdown_function([$d3a, 'render'], $model, $twig );

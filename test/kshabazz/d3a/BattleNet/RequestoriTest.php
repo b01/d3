@@ -65,36 +65,30 @@ class BattleNet_RequestorTest extends \PHPUnit_Framework_TestCase
 		$this->assertEquals( $this->heroId, $hero->id, 'Unable to retrive Hero from Battle.Net' );
 	}
 
-	/**
-	 *
-	 */
-	public function test_getting_a_valid_item()
-	{
-		$bnr = new \kshabazz\d3a\BattleNet_Requestor( $this->battleNetId );
-		$itemJson = $bnr->getItem( 'item/COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD' );
-		$item = new \kshabazz\d3a\Item( $itemJson );
-		$this->assertEquals( $this->itemParam, $item->tooltipParams, 'Invalid item returned.' );
-	}
+//	/**
+//	 *
+//	 */
+//	public function test_getting_a_valid_item()
+//	{
+//		$bnr = new \kshabazz\d3a\BattleNet_Requestor( $this->battleNetId );
+//		$itemJson = $bnr->getItem( 'item/COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD' );
+//		$item = new \kshabazz\d3a\Item( $itemJson );
+//		$this->assertEquals( $this->itemParam, $item->tooltipParams, 'Invalid item returned.' );
+//	}
+
+//	/**
+//	 *
+//	 */
+//	public function test_getting_a_invalid_item()
+//	{
+//		$bnr = new \kshabazz\d3a\BattleNet_Requestor( $this->battleNetId );
+//		$bnr->getItem( NULL );
+//		$this->markTestIncomplete();
+//	}
 
 	/**
-	 *
+	 * Test retrieving a profile from Battle.Net
 	 */
-	public function test_getting_a_invalid_item()
-	{
-		$bnr = new \kshabazz\d3a\BattleNet_Requestor( $this->battleNetId );
-		$bnr->getItem( NULL );
-		$this->markTestIncomplete();
-	}
-
-	/**
-	* Example:
-	* battletag-name ::= <regional battletag allowed characters>
-	* battletag-code ::= <integer>
-	* url ::= <host> "/api/d3/profile/" <battletag-name> "-" <battletag-code> "/"
-	* Note: Add the trailing '/' when setting
-	*	/api/d3/profile/<battleNetIdName>-<battleNetIdNumber>/
-	* @param $p_battleNetId string Battle.Net ID with the "#code"
-	*/
 	public function test_getting_a_profile()
 	{
 		$this->markTestIncomplete();

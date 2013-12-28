@@ -70,7 +70,7 @@ class BattleNet_Item extends BattleNet_Model
 			$responseCode = $this->dqi->responseCode();
 			$url = $this->dqi->getUrl();
 			// Log the request.
-			$this->sql->addRequest( $this->dqi->getBattleNetId(), $url );
+			$this->sql->addRequest( $this->dqi->battleNetId(), $url );
 			if ( $responseCode == 200 )
 			{
 				$this->loadedFromBattleNet = TRUE;
