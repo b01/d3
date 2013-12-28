@@ -32,7 +32,7 @@ class Model_GetProfile
 		$this->superGlobals = $pSuper;
 		$this->heroes = NULL;
 		$this->cache = $this->superGlobals->getParam( 'cache', TRUE, 'bool', 'GET' );
-		$this->battleNetId = $pDqi->getBattleNetId();
+		$this->battleNetId = $pDqi->battleNetId();
 
 		$this->setup();
 	}

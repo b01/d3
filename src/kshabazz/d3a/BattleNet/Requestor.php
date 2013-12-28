@@ -48,7 +48,7 @@ class BattleNet_Requestor extends HttpRequestor
 	 *
 	 * @return string BattleNet ID
 	 */
-	public function getBattleNetId()
+	public function battleNetId()
 	{
 		return $this->battleNetId;
 	}

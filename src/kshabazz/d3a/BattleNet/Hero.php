@@ -108,7 +108,7 @@ class BattleNet_Hero extends BattleNet_Model
 		$responseCode = $this->dqi->responseCode();
 		$this->url = $this->dqi->getUrl();
 		// Log the request.
-		$this->sql->addRequest( $this->dqi->getBattleNetId(), $this->url );
+		$this->sql->addRequest( $this->dqi->battleNetId(), $this->url );
 		if ( $responseCode === 200 )
 		{
 			$this->json = $responseText;

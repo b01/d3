@@ -380,6 +380,9 @@
 
 	/**
 	 * Output an associative array in sprintf fasion.
+	 *
+	 * @param string $p_format
+	 * @param array $p_array
 	 * @return bool TRUE is yes, false otherwise.
 	 */
 	function output( $p_format, array $p_array )

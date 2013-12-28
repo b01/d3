@@ -62,25 +62,25 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 			"The reference value of array stored is NOT equal to the reference of the array retrieved." );
 	}
 
-	/**
-	 *
-	 */
-	public function test_render()
-	{
-		$app = new Application( $this->supers );
-		$twigLoader = new \Twig_Loader_String();
-		$twig = new \Twig_Environment( $twigLoader );
-		$model = ( object ) [
-			"test" => 123
-		];
-		// Put '{test}' in the buffer.
-		ob_start();
-		echo '{{ test }}';
-		$app->render( $model, $twig );
-		$output = ob_get_contents();
-		// TODO: Retrieve the buffer and asset it equals 123.
-		$this->assertEquals( '123', $output, 'This has not been tested' );
-	}
+//	/**
+//	 *
+//	 */
+//	public function test_render()
+//	{
+//		$app = new Application( $this->supers );
+//		$twigLoader = new \Twig_Loader_String();
+//		$twig = new \Twig_Environment( $twigLoader );
+//		$model = ( object ) [
+//			"test" => 123
+//		];
+//		// Put '{test}' in the buffer.
+//		ob_start();
+//		echo '{{ test }}';
+//		$app->render( $model, $twig );
+//		$output = ob_get_contents();
+//		// TODO: Retrieve the buffer and asset it equals 123.
+//		$this->assertEquals( '123', $output, 'This has not been tested' );
+//	}
 
 	/**
 	 * Verify setting SuperGlobals in application.
@@ -133,7 +133,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 	}
 
 	/**
-	 * @throws \Exception
+	 * @exspectedException \Exception
 	 */
 	public function test_throwing_a_real_notice_error()
 	{

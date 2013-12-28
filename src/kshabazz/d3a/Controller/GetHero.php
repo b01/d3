@@ -17,6 +17,7 @@ class GetHero extends \kshabazz\d3a\Abstracts\Controller
 {
 	protected
 		$battleNetUrlSafeId,
+		$bnr,
 		$id,
 		$fromCache,
 		$items,
@@ -24,6 +25,7 @@ class GetHero extends \kshabazz\d3a\Abstracts\Controller
 		$hero,
 		$heroItems,
 		$model,
+		$sessionCacheInfo,
 		$supers,
 		$view;
 
@@ -63,8 +65,6 @@ class GetHero extends \kshabazz\d3a\Abstracts\Controller
 		{
 			// Check if the cache has expired for the hero JSON.
 			$this->sessionCacheInfo = \kshabazz\d3a\getSessionExpireInfo( 'heroTime', $this->fromCache );
-			// Put the hash back in the BattleNet ID.
-			$battleNetUrlSafeId = \str_replace( '-', '#', $this->battleNetId );
 			// Build the view model.
 			$this->bnr = new \kshabazz\d3a\BattleNet_Requestor( $this->battleNetId );
 			$this->sql = new \kshabazz\d3a\BattleNet_Sql(
@@ -81,9 +81,9 @@ class GetHero extends \kshabazz\d3a\Abstracts\Controller
 			);
 
 			$attributeMap = $this->appProxy( 'loadJsonFile', [\kshabazz\d3a\ATTRIBUTE_MAP_FILE] );
-			$this->model = new \kshabazz\d3a\Model_GetHero( $this->bnrHero, $attributeMap, $this->bnr, $this->sql );
 
 			$this->hero = new \kshabazz\d3a\Hero( $this->bnrHero->json() );
+			$this->model = new \kshabazz\d3a\Model_GetHero( $this->bnrHero, $attributeMap, $this->bnr, $this->sql );
 			$this->model->setHero( $this->hero );
 		}
 	}

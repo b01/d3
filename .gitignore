@@ -13,3 +13,4 @@ vendor
 .idea/
 composer.bat
 private.ini
+private/
