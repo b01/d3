@@ -508,16 +508,19 @@
 	}
 
 	/**
-	* Parse number in string and add HTML tags around it.
-	* @param $pKey CSS class to add to the element.
-	* @return string
-	*/
-	function tidyHtml( $p_html, $config = [] )
+	 * Run PHP tidy on HTML content.
+	 *
+	 * @param string $pHtml clean up.
+	 * @param array $pConfig PHP tidy configuration options.
+	 * @param string $pEncoding for the output.
+	 * @return string
+	 */
+	function tidyHtml( $pHtml, array $pConfig = [], $pEncoding = 'utf8' )
 	{
 		$returnValue = NULL;
 
 		$tidy = new tidy;
-		$tidy->parseString( $p_html, $config, 'utf8' );
+		$tidy->parseString( $pHtml, $pConfig, $pEncoding );
 		$tidy->cleanRepair();
 		$returnValue = $tidy;
 		// Output
@@ -525,26 +528,26 @@
 	}
 
 	/**
-	* Take a date time, and return how much time has elapsed since then.
-	* 	A negative number indicates a time in the future. Rquired your clock to be set.
-	* @param int Time in seconds.
-	* @return int seconds since epoch date.
-	*/
-	function timeElapsed( $p_time )
+	 * Take a date time, and return how much time has elapsed since then.
+	 * 	A negative number indicates a time in the future. Rquired your clock to be set.
+	 * @param int $pTime in seconds.
+	 * @return int seconds since cached date.
+	 */
+	function timeElapsed( $pTime )
 	{
 		$now = time();
-		if ( is_numeric($p_time) )
+		if ( is_numeric($pTime) )
 		{
-			return $now - $p_time;
+			return $now - $pTime;
 		}
 		return FALSE;
 	}
 
 	/**
-	* Get item name, by type id.
-	* @param $p_itemType Item type id
-	* @return string
-	*/
+	 * Get item name, by type id.
+	 * @param $p_itemType Item type id
+	 * @return string
+	 */
 	function translateSlotName( $p_itemType )
 	{
 		$returnValue = '';

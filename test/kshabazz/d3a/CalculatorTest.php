@@ -17,25 +17,29 @@ class CalculatorTest extends \PHPUnit_Framework_TestCase
 	private
 		$attributeMap,
 		$hero,
+		$heroId,
 		$items;
 	/**
 	 * Setup hero, attribute-map, and items models.
 	 *
 	 */
-//	public function setUp()
-//	{
-//		$bnr = new BattleNet_Requestor( 'msuBREAKER#1374' );
-//		$sql = new BattleNet_Sql(
-//			'mysql:host=127.0.0.1;dbname=kshabazz;charset=utf8',
-//			'd3appuser',
-//			'n0tAn3a5yPa55'
-//		);
-//		$this->attributeMap = \kshabazz\d3a\loadAttributeMap( \kshabazz\d3a\ATTRIBUTE_MAP_FILE );
-//		$bnrHero = new BattleNet_Hero( 'id', $bnr, $sql, FALSE );
-//		$controller = new Model_GetHero( $bnrHero, $this->attributeMap, $bnr, $sql );
+	public function setUp()
+	{
+		$this->heroId = '36131726';
+		$bnr = new BattleNet_Requestor( 'msuBREAKER#1374' );
+		$sql = new BattleNet_Sql(
+			'mysql:host=127.0.0.1;dbname=kshabazz;charset=utf8',
+			'd3appuser',
+			'n0tAn3a5yPa55'
+		);
+		$this->attributeMap = \kshabazz\d3a\loadAttributeMap( \kshabazz\d3a\ATTRIBUTE_MAP_FILE );
+		$hero = new BattleNet_Hero( $this->heroId, $bnr, $sql, FALSE );
+		$_SESSION = [];
+		$_SESSION[ 'hero-' . $this->heroId ] = time();
+		$controller = new Model_GetHero( $hero, $this->attributeMap, $bnr, $sql );
 //		$this->items = $controller->getItemModels();
 //		$this->hero = new Hero( $controller->json() );
-//	}
+	}
 
 
 	public function test_attack_speed()

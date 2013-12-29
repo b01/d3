@@ -39,7 +39,7 @@ class BattleNet_Item extends BattleNet_Model
 		$returnValue = NULL;
 		if ( $this->key !== NULL )
 		{
-			$query = sprintf( BattleNet_Sql::SELECT_ITEM, DB_NAME, $this->column );
+			$query = sprintf( BattleNet_Sql::SELECT_ITEM, $this->column );
 			$result = $this->sql->getData( $query, [
 				'selectValue' => [ $this->key, \PDO::PARAM_STR ]
 			]);

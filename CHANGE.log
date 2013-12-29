@@ -1,3 +1,9 @@
+List of changes since 12/29/2013 08:34 AM
+-------------------------------
+ - Removed dabatabase name requirement from SQL queries in \BattleNet\Sql object.
+ - Refactored code in Tool library.
+ - Removed unused code in GetHero class.
+
 List of changes as of 12/28/2013 09:28 AM
 -------------------------------
  - Organized methods in Application class by alphabetical order.

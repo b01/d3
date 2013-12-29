@@ -64,6 +64,7 @@ class GetHero extends \kshabazz\d3a\Abstracts\Controller
 		if ( \kshabazz\d3a\isString($this->battleNetId) && \kshabazz\d3a\isString($this->id) )
 		{
 			// Check if the cache has expired for the hero JSON.
+//			$this->sessionCacheInfo = \kshabazz\d3a\getSessionExpireInfo( 'heroTime', $this->fromCache );
 			$this->sessionCacheInfo = \kshabazz\d3a\getSessionExpireInfo( 'heroTime', $this->fromCache );
 			// Build the view model.
 			$this->bnr = new \kshabazz\d3a\BattleNet_Requestor( $this->battleNetId );
@@ -86,54 +87,6 @@ class GetHero extends \kshabazz\d3a\Abstracts\Controller
 			$this->model = new \kshabazz\d3a\Model_GetHero( $this->bnrHero, $attributeMap, $this->bnr, $this->sql );
 			$this->model->setHero( $this->hero );
 		}
-	}
-
-	/**
-	 * Set BattleNet_Requestor object
-	 */
-	public function setBnr( BattleNet_Requestor $pBnr )
-	{
-		// Set a valid BattleNet_Requestor object or throw an exception.
-		if ( $pBnr instanceof BattleNet_Requestor )
-		{
-			$this->dqi = $pBnr;
-			return $this;
-		}
-
-		throw new Exception( 'Must be a valid BattleNet_Requestor object, no other values are excepted, not even NULL.' );
-	}
-
-	/**
-	 * Set BattleNet_Sql object
-	 */
-	public function setSql( \kshabazz\d3a\BattleNet_Sql $pSql)
-	{
-		// Set a valid BattleNet_Sql object or throw an exception.
-		if ( $pSql instanceof \kshabazz\d3a\BattleNet_Sql )
-		{
-			$this->sql = $pSql;
-			return $this;
-		}
-
-		throw new Exception( 'Must be a valid BattleNet_Sql object, no other values are excepted, not even NULL.' );
-	}
-
-	/**
-	 * Set Hero object
-	 * @param \kshabazz\d3a\Hero $pHero
-	 * @return $this
-	 * @throws Exception
-	 */
-	public function setHero( \kshabazz\d3a\Hero $pHero )
-	{
-		// Set a valid Hero object or throw an exception.
-		if ( $pHero instanceof \kshabazz\d3a\Hero )
-		{
-			$this->hero = $pHero;
-			return $this;
-		}
-
-		throw new Exception( 'Must be a valid Hero object, no other values are excepted, not even NULL.' );
 	}
 }
 // DO NOT WRITE BELOW THIS LINE, NOT EVEN WHITE-SPACE CHARS.

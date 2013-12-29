@@ -158,7 +158,7 @@ class BattleNet_Profile extends BattleNet_Model
 	protected function save()
 	{
 		$utcTime = gmdate( "Y-m-d H:i:s" );
-		$query = sprintf( BattleNet_Sql::INSERT_PROFILE, DB_NAME );
+		$query = BattleNet_Sql::INSERT_PROFILE;
 		return $this->sql->save( $query, [
 			"battleNetId" => [ $this->key, \PDO::PARAM_STR ],
 			"json" => [ $this->json, \PDO::PARAM_STR ],
