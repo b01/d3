@@ -101,30 +101,6 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 		$this->assertEquals( $value, $setting, "Failed to get setting." );
 	}
 
-	public function test_loading_a_json_file()
-	{
-		$filePath = __DIR__ . '/../../mock/data/attribute-map.txt';
-		$app = new Application( $this->supers );
-		$testArray = $app->loadJsonFile( $filePath );
-		$this->assertArrayHasKey( 'test', $testArray, 'Failed to load JSON file.' );
-	}
-
-	public function test_loading_json_data_correclty()
-	{
-		$filePath =  __DIR__ . '/../../mock/data/attribute-map.txt';
-		$app = new Application( $this->supers );
-		$testArray = $app->loadJsonFile( $filePath );
-		$this->assertEquals( 1234,  $testArray['test'], 'Failed to load data correctly from JSON file.' );
-	}
-
-	public function test_loading_an_empty_json_file()
-	{
-		$filePath =  __DIR__ . '/../../mock/data/empty-map.txt';
-		$app = new Application( $this->supers );
-		$testArray = $app->loadJsonFile( $filePath );
-		$this->assertTrue( is_array($testArray), 'Failed to return array.' );
-	}
-
 	public function test_custom_error_handler()
 	{
 		$app = new Application( $this->supers );
@@ -132,13 +108,13 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 		$this->assertTrue( $testError, 'Failed to return array.' );
 	}
 
-	/**
-	 * @exspectedException \Exception
-	 */
-	public function test_throwing_a_real_notice_error()
-	{
-		$app = new Application( $this->supers );
-		$this->markTestIncomplete('Incomplete.');
-	}
+//	/**
+//	 * @exspectedException \Exception
+//	 */
+//	public function test_throwing_a_real_notice_error()
+//	{
+//		$app = new Application( $this->supers );
+//		$this->markTestIncomplete('Incomplete.');
+//	}
 }
 ?>

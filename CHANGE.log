@@ -3,6 +3,10 @@ List of changes since 12/29/2013 08:34 AM
  - Removed dabatabase name requirement from SQL queries in \BattleNet\Sql object.
  - Refactored code in Tool library.
  - Removed unused code in GetHero class.
+ - Refactored loadJsonFile method back to Tool.
+ - Added unit test class for Tool functions.
+ - Added hero JSON fixture for unit testing.
+ - New unit test for Hero class.
 
 List of changes as of 12/28/2013 09:28 AM
 -------------------------------

@@ -30,20 +30,6 @@ class Application
 	}
 
 	/**
-	 * Load the attribute map from file.
-	 *
-	 * @param string $pFile attribute map file contents.
-	 * @throw \Exception
-	 * @return array
-	 */
-	public function loadJsonFile( $pFile )
-	{
-		$contents = \file_get_contents( $pFile );
-		$returnValue = \json_decode( $contents, TRUE ) ?: [];
-		return $returnValue;
-	}
-
-	/**
 	 * Pass all errors through this handler.
 	 *
 	 * @param int $pSeverity

@@ -61,10 +61,11 @@
 	}
 
 	/**
-	* Turn a string into camel-cased word.
-	*
-	* @return string.
-	*/
+	 * Turn a string into camel-cased word.
+	 *
+	 * @param string $pString to convert to a class name.
+	 * @return string.
+	 */
 	function convertToClassName($pString)
 	{
 		// strip off the forward slash and extension.
@@ -349,6 +350,20 @@
 	function loadAttributeMap( $pFile )
 	{
 		return ( file_exists($pFile) ) ? \json_decode( \file_get_contents($pFile), TRUE ) : [];
+	}
+
+	/**
+	 * Load the attribute map from file.
+	 *
+	 * @param string $pFile attribute map file contents.
+	 * @throw \Exception
+	 * @return array
+	 */
+	function loadJsonFile( $pFile )
+	{
+		$contents = \file_get_contents( $pFile );
+		$returnValue = \json_decode( $contents, TRUE ) ?: [];
+		return $returnValue;
 	}
 
 	/**

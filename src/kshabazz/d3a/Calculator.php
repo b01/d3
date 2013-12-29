@@ -512,12 +512,12 @@ class Calculator
 	}
 
 	/**
-	* Dampage Per Second
-	* This calculation is take from:http://eu.battle.net/d3/en/forum/topic/4903361857
-	* 	dual wield dps = 1.15 * (main-hand damage + off-hand damage) /
-	*		( (1 / main-hand attacks per second) + (1 / off-hand attacks per second))
-	* @return
-	*/
+	 * Dampage Per Second
+	 * This calculation is take from:http://eu.battle.net/d3/en/forum/topic/4903361857
+	 * 	dual wield dps = 1.15 * (main-hand damage + off-hand damage) /
+	 *		( (1 / main-hand attacks per second) + (1 / off-hand attacks per second))
+	 * @return
+	 */
 	protected function dpsOld()
 	{
 		// BASE X SPEED x CRIT x SKILL x CARAC = your total dps

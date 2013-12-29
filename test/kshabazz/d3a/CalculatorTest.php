@@ -2,6 +2,7 @@
 use kshabazz\d3a\BattleNet_Hero;
 use kshabazz\d3a\BattleNet_Requestor;
 use kshabazz\d3a\BattleNet_Sql;
+use kshabazz\d3a\Calculator;
 use kshabazz\d3a\Hero;
 use kshabazz\d3a\Model_GetHero;
 
@@ -37,14 +38,16 @@ class CalculatorTest extends \PHPUnit_Framework_TestCase
 		$_SESSION = [];
 		$_SESSION[ 'hero-' . $this->heroId ] = time();
 		$controller = new Model_GetHero( $hero, $this->attributeMap, $bnr, $sql );
-//		$this->items = $controller->getItemModels();
-//		$this->hero = new Hero( $controller->json() );
+		$this->items = $controller->getItemModels();
+		$this->hero = new Hero( $controller->json() );
 	}
 
 
 	public function test_attack_speed()
 	{
-		$this->markTestIncomplete('Incomplete.');
+		$calculator = new Calculator( $this->hero, $this->attributeMap, $this->items );
+		$attackSpped = $calculator->attackSpeed();
+		$this->assertEquals('0.00', $attackSpped, 'Attack speed calculation is wrong.' );
 	}
 }
 ?>

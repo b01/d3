@@ -54,11 +54,9 @@ class BattleNet_Requestor extends HttpRequestor
 	}
 
 	/**
-	 * Example:
-	 * url ::= <host> "/api/d3/data/item/" <item-data>
-	 * GET /api/d3/data/item/COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD
 	 * Note: Leave off the trailing '/' when setting
-	 *	/api/d3/profile/<battleNetIdName>-<battleNetIdNumber>
+	 * ex: http://us.battle.net/api/d3/profile/<battleNetIdName>-<battleNetIdNumber>/hero/<hero-id>
+	 *
 	 * @param $pHeroId
 	 * @return null|string
 	 * @throws \Exception
@@ -115,7 +113,7 @@ class BattleNet_Requestor extends HttpRequestor
 	 * url ::= <host> "/api/d3/profile/" <battletag-name> "-" <battletag-code> "/"
 	 * Note: Add the trailing '/' when setting
 	 *	/api/d3/profile/<battleNetIdName>-<battleNetIdNumber>/
-	 *
+	 *	ex: http://us.battle.net/api/d3/profile/<battleNetIdName>-<battleNetIdNumber>/
 	 * @return null|string
 	 * @throws \Exception
 	 */
