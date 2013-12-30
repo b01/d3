@@ -21,6 +21,9 @@ class BattleNet_RequestorTest extends \PHPUnit_Framework_TestCase
 		$this->heroId = '36131726';
 	}
 
+	/**
+	 * Test initilizing an BattleNet_Requestor object.
+	 */
 	public function test_constructor()
 	{
 		$bnRequest = new \kshabazz\d3a\BattleNet_Requestor();
@@ -65,34 +68,38 @@ class BattleNet_RequestorTest extends \PHPUnit_Framework_TestCase
 		$this->assertEquals( $this->heroId, $hero->id, 'Unable to retrive Hero from Battle.Net' );
 	}
 
-//	/**
-//	 *
-//	 */
-//	public function test_getting_a_valid_item()
-//	{
-//		$bnr = new \kshabazz\d3a\BattleNet_Requestor( $this->battleNetId );
-//		$itemJson = $bnr->getItem( 'item/COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD' );
-//		$item = new \kshabazz\d3a\Item( $itemJson );
-//		$this->assertEquals( $this->itemParam, $item->tooltipParams, 'Invalid item returned.' );
-//	}
+	/**
+	 * Test retrieving a valid item from Battle.Net
+	 */
+	public function test_getting_a_valid_item()
+	{
+		$bnr = new \kshabazz\d3a\BattleNet_Requestor( $this->battleNetId );
+		$itemJson = $bnr->getItem( 'COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD' );
+		$item = new \kshabazz\d3a\Item( $itemJson );
+		$this->assertEquals( 'MightyWeapon1H_202', $item->id, 'Invalid item returned.' );
+	}
 
-//	/**
-//	 *
-//	 */
-//	public function test_getting_a_invalid_item()
-//	{
-//		$bnr = new \kshabazz\d3a\BattleNet_Requestor( $this->battleNetId );
-//		$bnr->getItem( NULL );
-//		$this->markTestIncomplete();
-//	}
+	/**
+	 * Test retrieving an invalid item from Battle.Net
+	 *
+	 * @expectedException \InvalidArgumentException
+	 * @expectedExceptionMessage Expects a valid item id, but item id given was: ''.
+	 */
+	public function test_getting_a_invalid_item()
+	{
+		$bnr = new \kshabazz\d3a\BattleNet_Requestor( $this->battleNetId );
+		$bnr->getItem( NULL );
+	}
 
 	/**
 	 * Test retrieving a profile from Battle.Net
 	 */
 	public function test_getting_a_profile()
 	{
-		$this->markTestIncomplete();
+		$bnr = new \kshabazz\d3a\BattleNet_Requestor( $this->battleNetId );
+		$profileJson = $bnr->getProfile();
+		$profile = new \kshabazz\d3a\Model\Profile( $profileJson );
+		$this->assertEquals( 'msuBREAKER#1374', $profile->battleTag, 'BattleNet_Requestor return an invalid profile.');
 	}
-
 }
 ?>

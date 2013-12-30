@@ -77,12 +77,9 @@ class BattleNet_Requestor extends HttpRequestor
 	}
 
 	/**
-	 * Example:
-	 * url ::= <host> "/api/d3/data/item/" <item-data>
-	 * GET /api/d3/data/item/COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD
-	 * Host: us.battle.net
-	 * Note: Leave off the trailing '/' when setting
-	 *	/api/d3/profile/<battleNetIdName>-<battleNetIdNumber>
+	 * Get item JSON from Battle.Net D3 API.
+	 * ex: http://us.battle.net/api/d3/data/item/COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD
+	 *
 	 * @param $pItemId
 	 * @return null|string
 	 * @throws \InvalidArgumentException
@@ -99,7 +96,7 @@ class BattleNet_Requestor extends HttpRequestor
 		else
 		{
 			throw new \InvalidArgumentException(
-				"Expects an valid item id as a string, item id given was: '{$this->url}'."
+				"Expects a valid item id, but item id given was: '{$pItemId}'."
 			);
 			// throw new \Exception( "No item found at '{$this->url}'." );
 		}
@@ -107,13 +104,8 @@ class BattleNet_Requestor extends HttpRequestor
 	}
 
 	/**
-	 * Example:
-	 * battletag-name ::= <regional battletag allowed characters>
-	 * battletag-code ::= <integer>
-	 * url ::= <host> "/api/d3/profile/" <battletag-name> "-" <battletag-code> "/"
-	 * Note: Add the trailing '/' when setting
-	 *	/api/d3/profile/<battleNetIdName>-<battleNetIdNumber>/
-	 *	ex: http://us.battle.net/api/d3/profile/<battleNetIdName>-<battleNetIdNumber>/
+	 * ex: http://us.battle.net/api/d3/profile/<battleNetIdName>-<battleNetIdNumber>/
+	 *
 	 * @return null|string
 	 * @throws \Exception
 	 */

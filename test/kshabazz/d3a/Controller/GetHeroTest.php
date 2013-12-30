@@ -4,9 +4,15 @@
 */
 class GetHeroTest extends PHPUnit_Framework_TestCase
 {
+
+	public function setUp()
+	{
+		$this->super = new \kshabazz\d3a\SuperGlobals();
+	}
 	public function test_hero()
 	{
-		$this->markTestIncomplete('Incomplete.');
+		$controller = new \kshabazz\d3a\Controller\GetHero( $this->super );
+		$this->assertTrue( $controller instanceof kshabazz\d3a\Controller\GetHero, 'GetHero is NULL.' );
 	}
 }
 ?>

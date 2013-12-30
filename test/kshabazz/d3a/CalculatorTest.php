@@ -16,9 +16,11 @@ use kshabazz\d3a\Model_GetHero;
 class CalculatorTest extends \PHPUnit_Framework_TestCase
 {
 	private
+		$attackSpeed,
 		$attributeMap,
 		$hero,
 		$heroId,
+		$json,
 		$items;
 	/**
 	 * Setup hero, attribute-map, and items models.
@@ -26,7 +28,7 @@ class CalculatorTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function setUp()
 	{
-		$this->heroId = '36131726';
+		$this->heroId = 36131726;
 		$bnr = new BattleNet_Requestor( 'msuBREAKER#1374' );
 		$sql = new BattleNet_Sql(
 			'mysql:host=127.0.0.1;dbname=kshabazz;charset=utf8',
@@ -39,15 +41,17 @@ class CalculatorTest extends \PHPUnit_Framework_TestCase
 		$_SESSION[ 'hero-' . $this->heroId ] = time();
 		$controller = new Model_GetHero( $hero, $this->attributeMap, $bnr, $sql );
 		$this->items = $controller->getItemModels();
-		$this->hero = new Hero( $controller->json() );
+		//
+		$this->json = file_get_contents(__DIR__ . '/../../fixture/data/hero.json');
+		$this->hero = new Hero( $this->json );
 	}
-
 
 	public function test_attack_speed()
 	{
+		$this->attackSpeed = 1.6239999723434446;
 		$calculator = new Calculator( $this->hero, $this->attributeMap, $this->items );
 		$attackSpped = $calculator->attackSpeed();
-		$this->assertEquals('0.00', $attackSpped, 'Attack speed calculation is wrong.' );
+		$this->assertEquals( 1.6239999723434446, $attackSpped, 'Attack speed calculation is wrong.' );
 	}
 }
 ?>

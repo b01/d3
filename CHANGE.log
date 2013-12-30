@@ -1,3 +1,8 @@
+List of changes since 12/30/2013 12:16 AM
+-------------------------------
+ - Added new Profile model class.
+ - Added more unit test.
+
 List of changes since 12/29/2013 08:34 AM
 -------------------------------
  - Removed dabatabase name requirement from SQL queries in \BattleNet\Sql object.
