@@ -1,4 +1,4 @@
-<?php namespace kshabazz\test;
+<?php namespace kshabazz\d3a\test;
 
 /**
  * Diablo 3 Assistant License is under The MIT License (MIT) [OSI Approved License]
@@ -13,29 +13,26 @@
  * Class ToolTest
  * @package kshabazz\test
  */
-class ToolTest
+class ToolTest extends \PHPUnit_Framework_TestCase
 {
 	public function test_loading_a_json_file()
 	{
 		$filePath = __DIR__ . '/../../fixture/data/attribute-map.txt';
-		$app = new Application( $this->supers );
-		$testArray = $app->loadJsonFile( $filePath );
+		$testArray = \kshabazz\d3a\loadJsonFile( $filePath );
 		$this->assertArrayHasKey( 'test', $testArray, 'Failed to load JSON file.' );
 	}
 
 	public function test_loading_json_data_correclty()
 	{
 		$filePath =  __DIR__ . '/../../fixture/data/attribute-map.txt';
-		$app = new Application( $this->supers );
-		$testArray = $app->loadJsonFile( $filePath );
+		$testArray = \kshabazz\d3a\loadJsonFile( $filePath );
 		$this->assertEquals( 1234,  $testArray['test'], 'Failed to load data correctly from JSON file.' );
 	}
 
 	public function test_loading_an_empty_json_file()
 	{
 		$filePath =  __DIR__ . '/../../fixture/data/empty-map.txt';
-		$app = new Application( $this->supers );
-		$testArray = $app->loadJsonFile( $filePath );
+		$testArray = \kshabazz\d3a\loadJsonFile( $filePath );
 		$this->assertTrue( is_array($testArray), 'Failed to return array.' );
 	}
 }

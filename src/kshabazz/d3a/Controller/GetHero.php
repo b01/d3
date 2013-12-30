@@ -31,7 +31,7 @@ class GetHero extends \kshabazz\d3a\Abstracts\Controller
 
 	/**
 	 * Controller actions go here.
-	 * @param d3a\SuperGlobals $pSuper
+	 * @param \kshabazz\d3a\SuperGlobals $pSuper
 	 */
 	public function __construct( d3a\SuperGlobals $pSuper )
 	{
@@ -51,6 +51,8 @@ class GetHero extends \kshabazz\d3a\Abstracts\Controller
 	}
 
 	/**
+	 * BATTLENET_D3_API_PROFILE_URL
+	 *
 	 * @param null $pModel
 	 * @return mixed
 	 */
@@ -65,7 +67,7 @@ class GetHero extends \kshabazz\d3a\Abstracts\Controller
 		{
 			// Check if the cache has expired for the hero JSON.
 //			$this->sessionCacheInfo = \kshabazz\d3a\getSessionExpireInfo( 'heroTime', $this->fromCache );
-			$this->sessionCacheInfo = \kshabazz\d3a\getSessionExpireInfo( 'heroTime', $this->fromCache );
+			$this->sessionCacheInfo = \kshabazz\d3a\getSessionExpireInfo( 'hero-' . $this->id, $this->fromCache );
 			// Build the view model.
 			$this->bnr = new \kshabazz\d3a\BattleNet_Requestor( $this->battleNetId );
 			$this->sql = new \kshabazz\d3a\BattleNet_Sql(
@@ -81,7 +83,7 @@ class GetHero extends \kshabazz\d3a\Abstracts\Controller
 				$this->sessionCacheInfo[ 'loadFromBattleNet' ]
 			);
 
-			$attributeMap = $this->appProxy( 'loadJsonFile', [\kshabazz\d3a\ATTRIBUTE_MAP_FILE] );
+			$attributeMap = \kshabazz\d3a\loadJsonFile( \kshabazz\d3a\ATTRIBUTE_MAP_FILE );
 
 			$this->hero = new \kshabazz\d3a\Hero( $this->bnrHero->json() );
 			$this->model = new \kshabazz\d3a\Model_GetHero( $this->bnrHero, $attributeMap, $this->bnr, $this->sql );
