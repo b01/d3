@@ -16,7 +16,8 @@
 class Profile implements \JsonSerializable
 {
 	protected
-		$heros,
+		$data,
+		$heroes,
 		$json;
 
 	public function __construct( $pJson )
@@ -28,22 +29,29 @@ class Profile implements \JsonSerializable
 	/**
 	 * Get property
 	 */
-	public function __get( $p_name )
+	public function get( $pProperty, $pType = 'string' )
 	{
-		if ( isset($this->$p_name) )
+		if ( isset($this->$pProperty) )
 		{
-			return $this->$p_name;
+			return $this->$pProperty;
+		}
+
+		if ( array_key_exists($pProperty, $this->data) )
+		{
+			$value = $this->data[ $pProperty ];
+			if ( setType($value, $pType) )
+			{
+				return $this->$pProperty = $value;
+			}
 		}
 
 		$trace = debug_backtrace();
 		trigger_error(
-			'Undefined property: ' . $p_name .
+			'Undefined property: ' . $pProperty .
 			' in ' . $trace[0]['file'] .
 			' on line ' . $trace[0]['line'],
 			E_USER_NOTICE
 		);
-
-		return NULL;
 	}
 
 	/**
@@ -80,25 +88,16 @@ class Profile implements \JsonSerializable
 		$jsonArray = json_decode( $this->json, TRUE );
 		if ( \kshabazz\d3a\isArray($jsonArray) )
 		{
-			foreach ( $jsonArray as $name => $value )
-			{
-//				if ( array_key_exists($name, $this->forcePropertyType) )
-//				{
-//					if ( setType($value, $this->forcePropertyType[$name]) )
-//					{
-//						$this->$name = $value;
-//					}
-//				}
-//				else
-//				{
-					$this->$name = $value;
-//				}
-			}
+			$this->data = $jsonArray;
 		}
 		else
 		{
 			$exception = new \Exception( "Tried to initialize ItemModel with invalid JSON." );
-			logError( $exception, "Tried to initialize ItemModel with invalid JSON.", "An application error has occured. Please try again later" );
+			logError(
+				$exception,
+				"Tried to initialize ItemModel with invalid JSON.",
+				"An application error has occured. Please try again later"
+			);
 		}
 
 		return $this;

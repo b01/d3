@@ -99,7 +99,11 @@ class BattleNet_RequestorTest extends \PHPUnit_Framework_TestCase
 		$bnr = new \kshabazz\d3a\BattleNet_Requestor( $this->battleNetId );
 		$profileJson = $bnr->getProfile();
 		$profile = new \kshabazz\d3a\Model\Profile( $profileJson );
-		$this->assertEquals( 'msuBREAKER#1374', $profile->battleTag, 'BattleNet_Requestor return an invalid profile.');
+		$this->assertEquals(
+			'msuBREAKER#1374',
+			$profile->get('battleTag'),
+			'BattleNet_Requestor return an invalid profile.'
+		);
 	}
 }
 ?>
