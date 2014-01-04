@@ -1,7 +1,12 @@
+List of changes since 01/04/2013 08:40 AM
+-------------------------------
+ - Added one point of instantiation for BattleNet_Sql object.
+ - Added unit test for Application::sql().
+
 List of changes since 01/04/2013 05:59 AM
 -------------------------------
-- Added unit test for Model_GetHero class.
-- Fixed incorrect property being returned from Model_GetHero::itemHashes.
+ - Added unit test for Model_GetHero class.
+ - Fixed incorrect property being returned from Model_GetHero::itemHashes.
 
 List of changes since 12/30/2013 12:16 AM
 -------------------------------

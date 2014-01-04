@@ -14,6 +14,7 @@ class Application
 		$data,
 		$models,
 		$settings,
+		$sql,
 		$superGlobals;
 
 	/**
@@ -23,9 +24,10 @@ class Application
 	 */
 	public function __construct( SuperGlobals $pSuper, array $pSettings = [] )
 	{
-		$this->settings = $pSettings;
 		$this->data = [];
 		$this->models = [];
+		$this->settings = $pSettings;
+		$this->sql = NULL;
 		$this->superGlobals = $pSuper;
 	}
 
@@ -43,6 +45,18 @@ class Application
 		$loggableErrorMessage = "\n{$pMessage} {$pFilename} on line {$lineNo}: severity({$pSeverity})";
 		\error_log( $loggableErrorMessage );
 		return TRUE;
+	}
+
+	/**
+	 * Get an SQL connection object.
+	 */
+	public function sql()
+	{
+		if ( !isset($this->sql) )
+		{
+			$this->sql = include __DIR__ . '/private/Sql.php';
+		}
+		return $this->sql;
 	}
 
 	/**
