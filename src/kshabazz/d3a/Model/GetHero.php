@@ -95,7 +95,7 @@ class Model_GetHero
 	 */
 	public function itemHashes()
 	{
-		return $this->items;
+		return $this->itemHashes;
 	}
 
 	/**
