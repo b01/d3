@@ -48,18 +48,6 @@ class Application
 	}
 
 	/**
-	 * Get an SQL connection object.
-	 */
-	public function sql()
-	{
-		if ( !isset($this->sql) )
-		{
-			$this->sql = include __DIR__ . '/private/Sql.php';
-		}
-		return $this->sql;
-	}
-
-	/**
 	 * Grab the buffer and process it through a template engine.
 	 * Note: currently this works with any template engine that has a method "render"
 	 * which can take a string as the first parameter and an object as the second.

@@ -28,7 +28,7 @@
 	if ( isString($battleNetId) && isString($itemUID) )
 	{
 		$battleNetDqi = new BattleNet_Requestor( $battleNetId );
-		$sql = new BattleNet_Sql( DSN, DB_USER, DB_PSWD, USER_IP_ADDRESS );
+		$sql = new BattleNet_Sql( USER_IP_ADDRESS );
 		$itemModel = new BattleNet_Item( $itemUID, $itemIdType, $battleNetDqi, $sql );
 		// Init item as an object.
 		if ( is_object($itemModel) )

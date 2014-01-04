@@ -1,8 +1,8 @@
 <?php namespace kshabazz\d3a;
 /**
-* Generic methods for retrieving data from a database.
-*
-*/
+ * Generic methods for retrieving data from a database.
+ *
+ */
 class Sql
 {
 	protected
@@ -10,38 +10,39 @@ class Sql
 		$ipAddress;
 
 	/**
-	* Constructor
-	*/
-	public function __construct( $p_dsn, $p_dbUser, $p_dbPass, $p_ipAddress = NULL )
+	 * Constructor - Get an SQL connection object.
+	 */
+	public function __construct( $p_ipAddress = NULL, $type = NULL )
 	{
-		$this->getPDO( $p_dsn, $p_dbUser, $p_dbPass );
 		$this->ipAddress = $p_ipAddress;
+		$this->pdoh = include __DIR__ . '/private/Pdo.php';
 	}
 
 	/**
-	* Destructor
-	*/
+	 * Destructor
+	 */
 	public function __destruct()
 	{
+		// close the DB connection.
+		$this->pdoh = null;
 		unset(
-			$this->ipAddress,
-			$this->pdoh
+			$this->ipAddress
 		);
 	}
 
 	/**
-	* Get data from local database.
-	* @param string $p_query SQL statement.
-	* @param array $p_parameters parametrized statement values.
-	* @return array
-	*/
-	public function getData( $p_query, array $p_parameters = NULL )
+	 * Get data from local database.
+	 * @param string $pQuery SQL statement.
+	 * @param array $pParameters parametrized statement values.
+	 * @return array
+	 */
+	public function getData( $pQuery, array $pParameters = NULL )
 	{
 		$returnValue = NULL;
 		try
 		{
-			$stmt = $this->pdoh->prepare( $p_query );
-			foreach ( $p_parameters as $parameter => $data )
+			$stmt = $this->pdoh->prepare( $pQuery );
+			foreach ( $pParameters as $parameter => $data )
 			{
 				$stmt->bindValue( ":{$parameter}", $data[0], $data[1] );
 			}
@@ -55,40 +56,11 @@ class Sql
 		{
 			logError(
 				$p_error,
-				"Bad query {$p_query} : " . print_r($p_parameters, TRUE) . "\n\tin %s on line %s",
+				"Bad query {$pQuery} : " . print_r($pParameters, TRUE) . "\n\tin %s on line %s",
 				"There was a problem with the system, please try again later."
 			);
 		}
 		return $returnValue;
-	}
-
-	/**
-	* PDO Object Factory
-	* @return
-	*/
-	protected function getPDO( $p_dsn, $p_dbUser, $p_dbPass )
-	{
-		if ( !isset($this->pdoh) )
-		{
-			try
-			{
-				$this->pdoh = new \PDO( $p_dsn, $p_dbUser, $p_dbPass );
-				// Show human readable errors from the database server when they occur.
-				$this->pdoh->setAttribute( \PDO::ATTR_ERRMODE, \PDO::ERRMODE_EXCEPTION );
-				$this->pdoh->setAttribute( \PDO::ATTR_EMULATE_PREPARES, FALSE );
-				$this->pdoh->setAttribute( \PDO::ATTR_DEFAULT_FETCH_MODE, \PDO::FETCH_ASSOC );
-			}
-			catch ( \Exception $p_error )
-			{
-				$this->pdoh = NULL;
-				logError(
-					$p_error,
-					"Unable to establish a connection with the database.\n\tin %s on line %s",
-					"There was a problem with the system, please try again later."
-				);
-			}
-		}
-		return $this->pdoh;
 	}
 
 	/**
@@ -101,26 +73,31 @@ class Sql
 	}
 
 	/**
-	*
-	*/
-	public function pdoQuery( $p_stmt, $p_returnResults = TRUE )
+	 * Run a query statement as a prepared PDO statement. Optionally returns the result.
+	 *
+	 * @param string $pStmt PDO statement
+	 * @param bool $pReturnResults TRUE to return the results, or FALSE not to.
+	 * @throws \Exception
+	 * @return mixed
+	 */
+	public function pdoQuery( $pStmt, $pReturnResults = TRUE )
 	{
 		$returnValue = NULL;
 		try
 		{
 			// Call the database routine
-			$returnValue = $p_stmt->execute();
+			$returnValue = $pStmt->execute();
 
-			if ( $returnValue && $p_returnResults )
+			if ( $returnValue && $pReturnResults )
 			{
 				// Fetch all rows into an array.
-				$rows = $p_stmt->fetchAll( \PDO::FETCH_ASSOC );
+				$rows = $pStmt->fetchAll( \PDO::FETCH_ASSOC );
 				if ( isArray($rows) )
 				{
 					$returnValue = $rows;
 				}
 			}
-			$p_stmt->closeCursor();
+			$pStmt->closeCursor();
 		}
 		catch ( \Exception $p_error )
 		{
@@ -134,12 +111,17 @@ class Sql
 	}
 
 	/**
-	* Run an SQL statement with an arbitrary number of values, in a generic way.
-	*	so that any statement can be parametrized in a generic way.
-	* Reason: Simplifies writing function that save data to a DB.
-	* @return bool Indication of success or failure.
-	*/
-	public function save( $pSqlStatement, array $p_values )
+	 * Run an SQL statement with an arbitrary number of values.
+	 *
+	 * This is done in a generic way. so that any statement can
+	 * be parametrized in a generic way. Reason: Simplifies writing
+	 * function that save data to a DB.
+	 *
+	 * @param string $pSqlStatement
+	 * @param array $pValues
+	 * @return bool Indication of success or failure.
+	 */
+	public function save( $pSqlStatement, array $pValues )
 	{
 		$returnValue = FALSE;
 		try
@@ -148,7 +130,7 @@ class Sql
 			{
 				// Bind values to the prepared statement.
 				$stmt = $this->pdoh->prepare( $pSqlStatement );
-				foreach ( $p_values as $parameterName => $data )
+				foreach ( $pValues as $parameterName => $data )
 				{
 					$stmt->bindValue( ':' . $parameterName, $data[0], $data[1] );
 				}
@@ -168,15 +150,18 @@ class Sql
 	}
 
 	/**
-	* Perform a simple SELECT that does NOT have any parameters.
-	*/
-	public function select( $p_selectStament )
+	 * Perform a simple SELECT that does NOT have any parameters.
+	 *
+	 * @param string $pSelectStament
+	 * @return mixed
+	 */
+	public function select( $pSelectStament )
 	{
 		$returnArray = NULL;
 		try
 		{
 			// Set the select.
-			$stmt = $this->pdoh->prepare( $p_selectStament );
+			$stmt = $this->pdoh->prepare( $pSelectStament );
 			// Call the database routine
 			$stmt->execute();
 			// Fetch all rows into an array.
@@ -191,12 +176,11 @@ class Sql
 		{
 			logError(
 				$p_error,
-				"Select statment failed '{$p_selectStament}' on \n\tin %s on line %s",
+				"Select statment failed '{$pSelectStament}' on \n\tin %s on line %s",
 				"Uh-oh, where experiencing some technical difficulties. Please bear with this website, and try again."
 			);
 		}
 		return $returnArray;
 	}
 }
-// DO NOT PUT ANY CHARACTERS OR EVEN WHITE-SPACE after the closing PHP tag, or headers may be sent before intended.
-?>
+// DO NOT PUT ANY CHARACTERS OR EVEN WHITE-SPACE after the closing PHP tag, or headers may be sent before intended. ?>

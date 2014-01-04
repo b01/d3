@@ -108,16 +108,6 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 		$this->assertTrue( $testError, 'Failed to return array.' );
 	}
 
-	public function test_retrieving_an_sql_object()
-	{
-		$app = new Application( $this->supers );
-		$sql = $app->sql();
-		$this->assertTrue(
-			$sql instanceof BattleNet_Sql,
-			'Invalid object return from Application::sql() property.'
-		);
-	}
-
 //	/**
 //	 * @exspectedException \Exception
 //	 */

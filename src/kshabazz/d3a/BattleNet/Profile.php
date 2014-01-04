@@ -120,6 +120,38 @@ class BattleNet_Profile extends BattleNet_Model
 	}
 
 	/**
+	* Get Hero(s) data.
+	*
+	* @param $p_heroByName string Optional name to specify a single hero to return.
+	* @return mixed Heroes(s) data as an array, or null if none.
+	*/
+	public function heroes( $p_heroByName = NULL )
+	{
+		$returnValue = NULL;
+		if ( isArray($this->heroes) )
+		{
+			if ( $p_heroByName !== NULL && array_key_exists($p_heroByName, $this->heroes) )
+			{
+				$returnValue = $this->heroes[ $p_heroByName ];
+			}
+			else
+			{
+				$returnValue = $this->heroes;
+			}
+		}
+
+		return $returnValue;
+	}
+
+	/**
+	* Get raw JSON data returned from Battle.net.
+	*/
+	public function json()
+	{
+		return $this->json;
+	}
+
+	/**
 	* Save the users profile locally to the database.
 	* @return bool
 	*/

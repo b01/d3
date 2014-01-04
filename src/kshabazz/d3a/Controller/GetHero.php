@@ -51,12 +51,11 @@ class GetHero extends \kshabazz\d3a\Abstracts\Controller
 	}
 
 	/**
-	 * BATTLENET_D3_API_PROFILE_URL
 	 *
-	 * @param null $pModel
-	 * @return mixed
+	 *
+	 * @return {BattleNet_Hero|NULL}
 	 */
-	public function getModel( $pModel = NULL )
+	public function getModel()
 	{
 		return $this->model;
 	}
@@ -70,12 +69,7 @@ class GetHero extends \kshabazz\d3a\Abstracts\Controller
 			$this->sessionCacheInfo = \kshabazz\d3a\getSessionExpireInfo( 'hero-' . $this->id, $this->fromCache );
 			// Build the view model.
 			$this->bnr = new \kshabazz\d3a\BattleNet_Requestor( $this->battleNetId );
-			$this->sql = new \kshabazz\d3a\BattleNet_Sql(
-				\kshabazz\d3a\DSN,
-				\kshabazz\d3a\DB_USER,
-				\kshabazz\d3a\DB_PSWD,
-				\kshabazz\d3a\USER_IP_ADDRESS
-			);
+			$this->sql = new \kshabazz\d3a\BattleNet_Sql( \kshabazz\d3a\USER_IP_ADDRESS );
 			$this->bnrHero = new \kshabazz\d3a\BattleNet_Hero(
 				$this->id,
 				$this->bnr,
@@ -91,5 +85,4 @@ class GetHero extends \kshabazz\d3a\Abstracts\Controller
 		}
 	}
 }
-// DO NOT WRITE BELOW THIS LINE, NOT EVEN WHITE-SPACE CHARS.
-?>
+// DO NOT WRITE BELOW THIS LINE, NOT EVEN WHITE-SPACE CHARS. ?>

@@ -1,14 +1,15 @@
 <?php namespace kshabazz\d3a\test\Model;
-use kshabazz\d3a\BattleNet_Hero;
-use kshabazz\d3a\BattleNet_Requestor;
-use kshabazz\d3a\BattleNet_Sql;
-use kshabazz\d3a\Model_GetHero;
 /**
  * Created by PhpStorm.
  * User: Khalifah
  * Date: 1/3/14
  * Time: 7:54 AM
  */
+
+use kshabazz\d3a\BattleNet_Hero;
+use kshabazz\d3a\BattleNet_Requestor;
+use kshabazz\d3a\BattleNet_Sql;
+use kshabazz\d3a\Model_GetHero;
 
 /**
  * Class GetHeroTest
@@ -30,11 +31,7 @@ class GetHeroTest extends \PHPUnit_Framework_TestCase
 	{
 		$this->heroId = 36131726;
 		$this->bnr = new BattleNet_Requestor( 'msuBREAKER#1374' );
-		$this->sql = new BattleNet_Sql(
-			'mysql:host=127.0.0.1;dbname=kshabazz;charset=utf8',
-			'd3appuser',
-			'n0tAn3a5yPa55'
-		);
+		$this->sql = new BattleNet_Sql();
 		$this->attributeMap = \kshabazz\d3a\loadAttributeMap( \kshabazz\d3a\ATTRIBUTE_MAP_FILE );
 		$this->bnrHero = new BattleNet_Hero( $this->heroId, $this->bnr, $this->sql, FALSE );
 		$_SESSION = [];

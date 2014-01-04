@@ -40,12 +40,7 @@ class GetProfile
 	public function setup()
 	{
 		$this->dqi = new BattleNet_Requestor( $this->battleNetId );
-		$this->sql = new BattleNet_Sql(
-			\kshabazz\d3a\DSN,
-			\kshabazz\d3a\DB_USER,
-			\kshabazz\d3a\DB_PSWD,
-			\kshabazz\d3a\USER_IP_ADDRESS
-		);
+		$this->sql = new BattleNet_Sql( \kshabazz\d3a\USER_IP_ADDRESS );
 		$this->model = new Model_GetProfile( $this->supers, $this->dqi, $this->sql );
 	}
 
