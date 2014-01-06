@@ -132,5 +132,4 @@ class Profile implements \JsonSerializable
 		return $returnValue;
 	}
 }
-// Writing below this line can cause headers to be sent before intended
-?>
+// Writing below this line can cause headers to be sent before intended ?>
