@@ -116,7 +116,8 @@ abstract class Model implements \JsonSerializable
 		else
 		{
 			$exception = new \Exception( "Tried to initialize ItemModel with invalid JSON." );
-			logError( $exception, "Tried to initialize ItemModel with invalid JSON.", "An application error has occured. Please try again later" );
+			//logError( $exception, "Tried to initialize ItemModel with invalid JSON.", "An application error has occured. Please try again later" );
+			logError( $exception, "Tried to initialize ItemModel with invalid JSON." );
 		}
 	}
 

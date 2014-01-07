@@ -1,3 +1,7 @@
+List of changes since 01/07/2013 09:14 AM
+-------------------------------
+ - Changed over to Slib tool methods and removed duplicatee from D3A tools.
+
 List of changes since 01/05/2013 11:51 PM
 -------------------------------
  - Change project home URL in composer.json

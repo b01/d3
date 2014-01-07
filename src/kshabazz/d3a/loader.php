@@ -42,7 +42,7 @@ if ( $model !== null )
 	\register_shutdown_function([$d3a, 'render'], $model, $twig );
 
 	$twig->addFunction(new \Twig_SimpleFunction('isArray', function ($pVariable) {
-		return \kshabazz\d3a\isArray( $pVariable );
+		return isArray( $pVariable );
 	}));
 
 	$twig->addFunction(new \Twig_SimpleFunction('sessionTimeLeft', function ($pTime) {

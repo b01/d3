@@ -62,7 +62,7 @@ class GetHero extends \kshabazz\d3a\Abstracts\Controller
 
 	public function setupModel()
 	{
-		if ( \kshabazz\d3a\isString($this->battleNetId) && \kshabazz\d3a\isString($this->id) )
+		if ( isString($this->battleNetId) && isString($this->id) )
 		{
 			// Check if the cache has expired for the hero JSON.
 //			$this->sessionCacheInfo = \kshabazz\d3a\getSessionExpireInfo( 'heroTime', $this->fromCache );
@@ -77,7 +77,7 @@ class GetHero extends \kshabazz\d3a\Abstracts\Controller
 				$this->sessionCacheInfo[ 'loadFromBattleNet' ]
 			);
 
-			$attributeMap = \kshabazz\d3a\loadJsonFile( \kshabazz\d3a\ATTRIBUTE_MAP_FILE );
+			$attributeMap = loadJsonFile( \kshabazz\d3a\ATTRIBUTE_MAP_FILE );
 
 			$this->hero = new \kshabazz\d3a\Hero( $this->bnrHero->json() );
 			$this->model = new \kshabazz\d3a\Model_GetHero( $this->bnrHero, $attributeMap, $this->bnr, $this->sql );

@@ -9,73 +9,7 @@
  * @package kshabazz\d3a\Controller
  * @copyright (c) 2012-2013 Khalifah K. Shabazz
  */
-
-	/**
-	* Capitalize the first letter, and every leter after a dash (-).
-	*/
-	function camelCase($pString)
-	{
-		$filter = function ($p)
-		{
-			return strtoupper($p[0]);
-		};
-		return preg_replace_callback('/(?:^|-)(.?)/', $filter, $pString);
-	}
-
-	/**
-	 * Check the PHP version, and throws an error if it does not meet the minimum version.
-	 *
-	 * @param int $pMajor Required major version.
-	 * @param int $pMinor If set, then the required minor version.
-	 * @param int $pRelease If set, then the required release version.
-	 * @throws Exception
-	 */
-	function checkPhpVersion( $pMajor, $pMinor = NULL, $pRelease = NULL )
-	{
-		$triggerError = FALSE;
-		$versionString = $pMajor;
-		$phpVersion = phpversion();
-		$version = explode( '.', phpversion() );
-		// Check the major version.
-		if ( $version[0] < $pMajor )
-		{
-			$triggerError = TRUE;
-		}
-		// Check the minor version if set.
-		if ( is_int($pMinor) && $version[1] < $pMinor )
-		{
-			$triggerError = TRUE;
-			$versionString .= '.' . $pMinor;
-		}
-		// Check the release version if set.
-		if ( is_int($pRelease) && $version[1] < $pRelease )
-		{
-			$triggerError = TRUE;
-			$versionString .= '.' . $pRelease;
-		}
-		// Throw the error when the required version is not met.
-		if ( $triggerError )
-		{
-			throw new Exception( "Your PHP version is '{$phpVersion}'. The minimum required PHP version is '{$versionString}'. You'll need to upgrade in order to use this application." );
-		}
-	}
-
-	/**
-	 * Turn a string into camel-cased word.
-	 *
-	 * @param string $pString to convert to a class name.
-	 * @return string.
-	 */
-	function convertToClassName($pString)
-	{
-		// strip off the forward slash and extension.
-		$className = basename($pString, '.php');
-		// Camel Case any words left.
-		$className = camelCase($className);
-		// remove any chars unqualified for a class name.
-		$className = str_replace('-', '', $className);
-		return $className;
-	}
+use \Kshabazz\Slib;
 
 	/**
 	* Display a value as a single number or a range if min and max are different.
@@ -120,25 +54,6 @@
 		$returnValue = NULL;
 		$cssClass = empty( $p_class ) ? '' : " class=\"{$p_class}\"";
 		return preg_replace( ['/(\+?\d+\.?\d*%?)/', '/(\(.*\))/'], ["<span{$cssClass}>$1</span>", "<span class=\"d3-color-red\">$1</span>"], $p_attribute );
-	}
-
-	/**
-	 * Get content between <body></body> tags.
-	 *
-	 * @param string $pHtml
-	 * @return array
-	 */
-	function getHtmlInnerBody( $pHtml )
-	{
-		$returnValue = NULL;
-		if ( gettype($pHtml) === "string" )
-		{
-			$start = strpos( $pHtml, "<body" );
-			$start = strpos( $pHtml, '>', $start + 5 ) + 1;
-			$end = strpos( $pHtml, "</body>", $start ) - $start;
-			$returnValue = substr( $pHtml, $start, $end );
-		}
-		return $returnValue;
 	}
 
 	/**
@@ -308,28 +223,6 @@
 	}
 
 	/**
-	 * Check if a variable is an array of length greater than 0.
-	 *
-	 * @param mixed $pVariable to be checked.
-	 * @return bool TRUE is yes, false otherwise.
-	 */
-	function isArray( $pVariable )
-	{
-		return ( is_array($pVariable) && count($pVariable) > 0 );
-	}
-
-	/**
-	 * Check if a variable is a string of length greater than 0.
-	 *
-	 * @param mixed $pVariable to be checked.
-	 * @return bool TRUE is yes, false otherwise.
-	 */
-	function isString( $pVariable )
-	{
-		return ( is_string($pVariable) && strlen($pVariable) > 0 );
-	}
-
-	/**
 	 * Check if an item is a type of weapon.
 	 *
 	 * @param Item $pItem to be checked.
@@ -353,37 +246,6 @@
 	}
 
 	/**
-	 * Load the attribute map from file.
-	 *
-	 * @param string $pFile attribute map file contents.
-	 * @throw \Exception
-	 * @return array
-	 */
-	function loadJsonFile( $pFile )
-	{
-		$contents = \file_get_contents( $pFile );
-		$returnValue = \json_decode( $contents, TRUE ) ?: [];
-		return $returnValue;
-	}
-
-	/**
-	 * Check if a variable is a string of length greater than 0.
-	 *
-	 * @param \Exception $p_error
-	 * @param string $p_devMessage message the developer will see. Usually the error returned from PHP.
-	 * @param string $p_userMessage message the client will see.
-	 * @return bool TRUE is yes, false otherwise.
-	 */
-	function logError( \Exception $p_error, $p_devMessage, $p_userMessage )
-	{
-		$trace = debug_backtrace();
-		$loggableErrorMessage = $p_error->getMessage();
-		$loggableErrorMessage .= "\n". sprintf( $p_devMessage, $trace[0]['file'], $trace[0]['line'] );
-		error_log( $loggableErrorMessage );
-		showUserFriendlyError( $p_userMessage );
-	}
-
-	/**
 	 * Output an associative array in sprintf fasion.
 	 *
 	 * @param string $p_format
@@ -398,20 +260,6 @@
 			$returnValue .= sprintf( $p_format, $key, $value );
 		}
 		return $returnValue;
-	}
-
-	/**
-	 * Random x elements from an array.
-	 */
-	function randomElementsFromArray( $p_arraySource, $p_quantity = 5 )
-	{
-		$returnAry = NULL;
-		if ( self::isArray($p_arraySource) )
-		{
-			shuffle( $p_arraySource );
-			$returnAry = array_slice( $p_arraySource, 0, $p_quantity );
-		}
-		return $returnAry;
 	}
 
 	/**
@@ -449,37 +297,6 @@
 		$attributeMapOutput = json_encode( $p_attributeMap, TRUE );
 		// Save image data to a file.
 		saveFile( "./media/data-files/attribute-map.txt", $attributeMapOutput );
-	}
-
-	/**
-	* Generate an array of random numbers within a specified range.
-	* @credit Taken from a Stack Overflow answeer:
-	* 	http://stackoverflow.com/questions/5612656/generating-unique-random-numbers-within-a-range-php
-	*/
-	function saveFile( $p_fileName, $p_content )
-	{
-		try
-		{
-			$directory = dirname( $p_fileName );
-			if ( !is_dir($directory) )
-			{
-				$madeDir = @mkdir( $directory, 0755, TRUE );
-				if ( $madeDir === FALSE )
-				{
-					throw new ErrorException( "mkdir: Unable make direcotry '{$directory}'." );
-				}
-			}
-			// Save image data to a file.
-			$fileSaved = @file_put_contents( $p_fileName, $p_content, LOCK_EX );
-			if ( $fileSaved === FALSE )
-			{
-				throw new ErrorException( "file_put_contents: Unable to save file '{$p_fileName}'." );
-			}
-		}
-		catch ( \Exception $p_error )
-		{
-			logError( $p_error, "There is a problem in %s on line %s.", "System hiccup, continuing on." );
-		}
 	}
 
 	/**
@@ -581,17 +398,5 @@
 				break;
 		}
 		return $returnValue;
-	}
-
-	/**
-	* Generate an array of random numbers within a specified range.
-	* @credit Taken from a Stack Overflow answeer:
-	* 	http://stackoverflow.com/questions/5612656/generating-unique-random-numbers-within-a-range-php
-	*/
-	function UniqueRandomNumbersWithinRange( $p_min, $p_max, $p_quantity )
-	{
-		$numbersAry = range( $p_min, $p_max );
-		shuffle( $numbersAry );
-		return array_slice( $numbersAry, 0, $p_quantity );
 	}
 ?>

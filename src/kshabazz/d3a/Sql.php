@@ -54,11 +54,12 @@ class Sql
 		}
 		catch ( \Exception $p_error )
 		{
-			logError(
-				$p_error,
-				"Bad query {$pQuery} : " . print_r($pParameters, TRUE) . "\n\tin %s on line %s",
-				"There was a problem with the system, please try again later."
-			);
+//			logError(
+//				$p_error,
+//				"Bad query {$pQuery} : " . print_r($pParameters, TRUE) . "\n\tin %s on line %s",
+//				"There was a problem with the system, please try again later."
+//			);
+			logError( $p_error, "Bad query {$pQuery} : " . print_r($pParameters, TRUE) . "\n\tin %s on line %s" );
 		}
 		return $returnValue;
 	}
@@ -101,11 +102,12 @@ class Sql
 		}
 		catch ( \Exception $p_error )
 		{
-			logError(
-				$p_error,
-				"Unable to run PDO statement on\n\tin %s on line %s",
-				"Uh-oh, where experiencing some technical difficulties. Please \"bear\" with this website, and try again."
-			);
+//			logError(
+//				$p_error,
+//				"Unable to run PDO statement on\n\tin %s on line %s",
+//				"Uh-oh, where experiencing some technical difficulties. Please \"bear\" with this website, and try again."
+//			);
+			logError( $p_error, "Unable to run PDO statement on\n\tin %s on line %s" );
 		}
 		return $returnValue;
 	}
@@ -140,11 +142,12 @@ class Sql
 		}
 		catch ( \Exception $p_error )
 		{
-			logError(
-				$p_error,
-				"Bad query {$pSqlStatement} \n\t\n\tin %s on line %s.",
-				"Failed to save data; Which could mean lots of request to battle.net for the same data. Alerting system admin. You don't need to worry about this though"
-			);
+//			logError(
+//				$p_error,
+//				"Bad query {$pSqlStatement} \n\t\n\tin %s on line %s.",
+//				"Failed to save data; Which could mean lots of request to battle.net for the same data. Alerting system admin. You don't need to worry about this though"
+//			);
+			logError( $p_error, "Bad query {$pSqlStatement} \n\t\n\tin %s on line %s." );
 		}
 		return $returnValue;
 	}
@@ -174,11 +177,12 @@ class Sql
 		}
 		catch ( \Exception $p_error )
 		{
-			logError(
-				$p_error,
-				"Select statment failed '{$pSelectStament}' on \n\tin %s on line %s",
-				"Uh-oh, where experiencing some technical difficulties. Please bear with this website, and try again."
-			);
+//			logError(
+//				$p_error,
+//				"Select statment failed '{$pSelectStament}' on \n\tin %s on line %s",
+//				"Uh-oh, where experiencing some technical difficulties. Please bear with this website, and try again."
+//			);
+			logError( $p_error, "Select statment failed '{$pSelectStament}' on \n\tin %s on line %s" );
 		}
 		return $returnArray;
 	}

@@ -1,8 +1,15 @@
 <?php namespace kshabazz\d3a;
 /**
-* Generic methods for retrieving HTML pages.
-*
-*/
+ * Generic methods for retrieving HTML pages.
+ *
+ */
+
+use \Kshabazz\Slib;
+
+/**
+ * Class HttpRequestor
+ * @package kshabazz\d3a
+ */
 class HttpRequestor
 {
 	protected
@@ -65,9 +72,11 @@ class HttpRequestor
 	}
 
 	/**
-	* Process any headers passed into the request.
-	* @return bool
-	*/
+	 * Process any headers passed into the request.
+	 *
+	 * @parm \curl $pCurl
+	 * @return bool
+	 */
 	protected function processHeaders( $pCurl )
 	{
 		if ( isArray($this->options) && $pCurl !== NULL )

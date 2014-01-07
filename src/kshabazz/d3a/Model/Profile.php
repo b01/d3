@@ -86,7 +86,7 @@ class Profile implements \JsonSerializable
 	protected function init()
 	{
 		$jsonArray = json_decode( $this->json, TRUE );
-		if ( \kshabazz\d3a\isArray($jsonArray) )
+		if ( isArray($jsonArray) )
 		{
 			$this->data = $jsonArray;
 		}

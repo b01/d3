@@ -1,4 +1,8 @@
 <?php namespace kshabazz\d3a;
+/**
+ *
+ */
+use \Kshabazz\Slib;
 
 	$which = ( !isset($which) ) ? getStr( 'which' ) : $which;
 	$class = getStr( 'class' );

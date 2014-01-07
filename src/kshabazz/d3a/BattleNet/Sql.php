@@ -78,11 +78,12 @@ class BattleNet_Sql extends Sql
 		}
 		catch ( \Exception $p_error )
 		{
-			logError(
-				$p_error,
-				$p_error->getMessage(),
-				"Unable to retrieve your profile, please try again later."
-			);
+//			logError(
+//				$p_error,
+//				$p_error->getMessage(),
+//				"Unable to retrieve your profile, please try again later."
+//			);
+			logError( $p_error, $p_error->getMessage() );
 		}
 		return $returnValue;
 	}
