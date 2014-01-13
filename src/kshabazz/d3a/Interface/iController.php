@@ -1,4 +1,4 @@
-<?php namespace kshabaz\d3a\Interface;
+<?php namespace kshabaz\d3a;
 use kshabazz\d3a\SuperGlobals;
 /**
  * Diablo 3 Assistant License is under The MIT License (MIT)

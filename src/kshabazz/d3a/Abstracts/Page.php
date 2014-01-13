@@ -1,4 +1,4 @@
-<?php namespace kshabazz\d3a;
+<?php namespace kshabazz\d3a\Abstracts;
 /**
  * Diablo 3 Assistant License is under The MIT License (MIT)
  * [OSI Approved License]. Please read LICENSE.txt, included with this
@@ -8,11 +8,15 @@
  * @package kshabazz\d3a\Controller
  * @copyright (c) 2012-2013 Khalifah K. Shabazz
  */
-use kshabazz\d3a\Abstracts\Application;
+use kshabazz\d3a\Application;
 
 /**
  * The page is an idea that it contains what it needs to build itself.
- * It is also what connects every thing together.
+ *  - Has access to the system object.
+ *  - Has an object to interact with global array data such as GET/POST/SERVER
+ *  - Initialized specific models required to retrieve its contents to aid with construction of its view.
+ *
+ * It is also what connects every thing (conceptual ideas of MVC) together.
  * Controller - along with the application, helps setup the environment.
  * Model - Used business logic to setup data.
  * View - Take data from the model, and runs it through any logic needed
@@ -33,27 +37,41 @@ use kshabazz\d3a\Abstracts\Application;
  */
 abstract class Page
 {
-    protected
-        $app,
-        $controller,
-        $model,
-        $view;
+	protected
+		$app,
+		$model,
+		$system,
+		$view;
 
-    /**
-     * Constructor
-     */
-	public function __constructor( Application $pApp)
+	/**
+	 * Constructor
+	 */
+	public function __constructor( Application $pSystem )
 	{
-		$this->app = $pApp;
+		$this->system = $pSystem;
 	}
 
-    /**
-     * Get the page controller
-     */
-    public function controller()
-    {
-        return $this->controller;
-    }
+	/**
+	 * Consider this the page load event, where you place code you want to run on page load here.
+	 */
+	public function load()
+	{
+	}
+
+	/**
+	 * Consider this the page un-load event, where you place code you want to run when the client leaves the page.
+	 */
+	public function unLoad()
+	{
+	}
+
+	/**
+	 * This is an event that occurs just after the template engine has processed the template (filled in all
+	 * placeholders and block). Now you can process it further, for example, run it through a "Tidy" object to clean-up
+	 * the HTML output.
+	 */
+	public function preRender( $pVeiw )
+	{
+	}
 }
-// DO NOT WRITE ANYTHING BELOW THIS LINE, NOT EVEN A WHITE SPACE CHARS.
-?>
+// DO NOT WRITE ANYTHING BELOW THIS LINE, NOT EVEN A WHITE SPACE CHARS. ?>

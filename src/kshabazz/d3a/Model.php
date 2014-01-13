@@ -156,4 +156,4 @@ abstract class Model implements \JsonSerializable
 		return $returnValue;
 	}
 }
-?>
+// Writing below this line can cause headers to be sent before intended ?>

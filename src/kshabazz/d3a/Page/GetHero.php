@@ -1,5 +1,4 @@
-<?php namespace kshabazz\d3a\Controller;
-use \kshabazz\d3a;
+<?php namespace kshabazz\d3a\Page;
 /**
  * Diablo 3 Assistant License is under The MIT License (MIT)
  * [OSI Approved License]. Please read LICENSE.txt, included with this
@@ -9,43 +8,50 @@ use \kshabazz\d3a;
  * @package kshabazz\d3a\Controller
  * @copyright (c) 2012-2013 Khalifah K. Shabazz
  */
+use \kshabazz\d3a;
 /**
  * Class GetHero
  * @package kshabazz\d3a\Controller
  */
-class GetHero extends \kshabazz\d3a\Abstracts\Controller
+class GetHero extends d3a\Abstracts\Page
 {
 	protected
+		$attributeMap,
 		$battleNetUrlSafeId,
 		$bnr,
+		$bnrHero,
+		$calculator,
 		$id,
 		$fromCache,
 		$items,
-		$bnrHero,
-		$hero,
 		$heroItems,
-		$model,
+		$hero,
+		$requestTime,
 		$sessionCacheInfo,
+		$sql,
 		$supers,
+		$time,
 		$view;
 
 	/**
 	 * Controller actions go here.
-	 * @param \kshabazz\d3a\SuperGlobals $pSuper
+	 * @param d3a\Application $pSystem
 	 */
-	public function __construct( d3a\SuperGlobals $pSuper )
+	public function __construct( d3a\Application $pSystem )
 	{
-		$this->supers = $pSuper;
+		$this->system = $pSystem;
+		$this->supers = $this->system->superGlobals();
 		$this->battleNetId = $this->supers->getParam( 'battleNetId', NULL, 'string', 'GET' );
 		$this->id = $this->supers->getParam( 'heroId', NULL, 'string', 'GET' );
 		$this->fromCache = $this->supers->getParam( 'cache', NULL, 'bool', 'GET' );
-		$this->items = NULL;
-		$this->bnrHero = NULL;
-		$this->dqi = NULl;
-		$this->sql = NULL;
-		$this->bnrHero = NULL;
-		$this->hero = NULL;
-		$this->heroItems = [];
+		$this->load();
+	}
+
+	/**
+	 * Setup any models needed for the page view.
+	 */
+	public function load()
+	{
 		// call methods
 		$this->setupModel();
 	}
@@ -57,7 +63,7 @@ class GetHero extends \kshabazz\d3a\Abstracts\Controller
 	 */
 	public function getModel()
 	{
-		return $this->model;
+		return $this->hero;
 	}
 
 	public function setupModel()
@@ -65,7 +71,6 @@ class GetHero extends \kshabazz\d3a\Abstracts\Controller
 		if ( isString($this->battleNetId) && isString($this->id) )
 		{
 			// Check if the cache has expired for the hero JSON.
-//			$this->sessionCacheInfo = \kshabazz\d3a\getSessionExpireInfo( 'heroTime', $this->fromCache );
 			$this->sessionCacheInfo = \kshabazz\d3a\getSessionExpireInfo( 'hero-' . $this->id, $this->fromCache );
 			// Build the view model.
 			$this->bnr = new \kshabazz\d3a\BattleNet_Requestor( $this->battleNetId );
@@ -77,12 +82,10 @@ class GetHero extends \kshabazz\d3a\Abstracts\Controller
 				$this->sessionCacheInfo[ 'loadFromBattleNet' ]
 			);
 
-			$attributeMap = loadJsonFile( \kshabazz\d3a\ATTRIBUTE_MAP_FILE );
+			$this->attributeMap = loadJsonFile( \kshabazz\d3a\ATTRIBUTE_MAP_FILE );
 
-			$this->hero = new \kshabazz\d3a\Hero( $this->bnrHero->json() );
-			$this->model = new \kshabazz\d3a\Model_GetHero( $this->bnrHero, $attributeMap, $this->bnr, $this->sql );
-			$this->model->setHero( $this->hero );
+			$this->hero = new \kshabazz\d3a\Model\Hero( $this->bnrHero->json() );
 		}
 	}
 }
-// DO NOT WRITE BELOW THIS LINE, NOT EVEN WHITE-SPACE CHARS. ?>
+// Writing below this line can cause headers to be sent before intended ?>

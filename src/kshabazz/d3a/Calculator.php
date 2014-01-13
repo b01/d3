@@ -41,7 +41,7 @@ class Calculator
 	/**
 	* Constructor
 	*/
-	public function __construct( Hero $pHero, array & $attributeMap, array $pItems )
+	public function __construct( Model\Hero $pHero, array & $attributeMap, array $pItems )
 	{
 		$this->attackSpeedData = [];
 		$this->attributeMap = $attributeMap;

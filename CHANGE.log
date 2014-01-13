@@ -1,12 +1,27 @@
-List of changes since 01/07/2013 09:14 AM
+List of changes since 01/13/2014 08:44 AM
+-------------------------------
+- Restructuring
+  - Added System namespace.
+  - How language files are defined and used.
+  - Continue refactoring Hero model into one class.
+
+List of changes since 01/11/2014 09:14 AM
+-------------------------------
+ - Moved GetHero controller to Page namespace, and change to extend abstract Page instead of Controller
+ - Added event methods to abstract Page class.
+ - Remvoed abstract Controller classes.
+ - Separated out some logic from Model_GetHero into Mode\Hero.
+ - Merged remaining code from Model_GetHero into A Page\Hero.
+
+List of changes since 01/07/2014 09:14 AM
 -------------------------------
  - Changed over to Slib tool methods and removed duplicatee from D3A tools.
 
-List of changes since 01/05/2013 11:51 PM
+List of changes since 01/05/2014 11:51 PM
 -------------------------------
  - Change project home URL in composer.json
 
-List of changes since 01/04/2013 10:10 AM
+List of changes since 01/04/2014 10:10 AM
 -------------------------------
 - Refactored Sql class.
 - Change how Sql objects are initialized, no longer need to pass in credentials.
@@ -15,12 +30,12 @@ List of changes since 01/04/2013 10:10 AM
 - Updated all Sql and BattleNet_Sql instantiations to no longer pass in credentials.
 - Removed use of _Settings.php file to store SQL credentials.
 
-List of changes since 01/04/2013 08:40 AM
+List of changes since 01/04/2014 08:40 AM
 -------------------------------
  - Added one point of instantiation for BattleNet_Sql object.
  - Added unit test for Application::sql().
 
-List of changes since 01/04/2013 05:59 AM
+List of changes since 01/04/2014 05:59 AM
 -------------------------------
  - Added unit test for Model_GetHero class.
  - Fixed incorrect property being returned from Model_GetHero::itemHashes.

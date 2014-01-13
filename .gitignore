@@ -15,3 +15,4 @@ composer.bat
 private.ini
 private/
 composer.phar
+phpinfo.php

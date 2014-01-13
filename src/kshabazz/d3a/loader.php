@@ -25,7 +25,20 @@ if ( class_exists($className) )
 	// Business model
 	$model = $ctrlr->getModel();
 	$model->pageTitle = 'Diablo 3 Assitant';
+} else {
+	// Load the Route page.
+	$className = __NAMESPACE__ . '\\Page\\' . $d3a->retrieve( 'routeName' );
+	$model = null;
+	if ( class_exists($className) )
+	{
+	    // Page controller
+		$ctrlr = new $className( $d3a );
+		// Business model
+		$model = $ctrlr->getModel();
+		$model->pageTitle = 'Diablo 3 Assitant';
+	}
 }
+
 // Processing route view by passing the model to the template engine,
 // which in turn, fill in all holes within the view.
 if ( $model !== null )
