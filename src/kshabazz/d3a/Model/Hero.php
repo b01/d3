@@ -93,12 +93,11 @@ class Hero
 				"muliplier" => 1
 			]
 		];
-		$this->init();
-		$this->levelUpBonuses();
+		$this->init()
+			 ->levelUpBonuses();
 
 		$this->noItemsStats[ $this->primaryAttribute ][ 'muliplier' ] = 3;
 		$this->noItemsStats[ $this->primaryAttribute ][ 'primary' ] = TRUE;
-		unset( $this->json, $this->battleNet );
 	}
 
 	/**
@@ -164,6 +163,8 @@ class Hero
 
 	/**
 	 * Initialize this object.
+	 *
+	 * @return $this
 	 */
 	protected function init()
 	{
@@ -192,6 +193,8 @@ class Hero
 //			$this->dualWield = isWeapon( $this->itemModels['mainHand'] )
 //							&& isWeapon( $this->itemModels['offHand'] );
 //		}
+
+		return $this;
 	}
 
 	/**
