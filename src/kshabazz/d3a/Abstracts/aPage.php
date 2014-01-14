@@ -35,7 +35,7 @@ use kshabazz\d3a\Application;
  * @package kshabazz\d3a\Controller
  * @abstract
  */
-abstract class Page
+abstract class aPage
 {
 	protected
 		$app,
@@ -71,6 +71,10 @@ abstract class Page
 	 * the HTML output.
 	 */
 	public function preRender( $pVeiw )
+	{
+	}
+
+	public function render()
 	{
 	}
 }

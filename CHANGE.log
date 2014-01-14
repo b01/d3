@@ -1,3 +1,8 @@
+List of changes since 01/14/2014 12:07 AM
+-------------------------------
+- Refactored code to help organization.
+- Implemented View\Hero for GetHero page.
+
 List of changes since 01/13/2014 08:44 AM
 -------------------------------
 - Restructuring

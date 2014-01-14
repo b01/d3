@@ -24,18 +24,34 @@ class Hero
 		$armor,
 		$battleNet,
 		$class,
+		$coldResist,
 		$criticalHitChance,
+		$criticalHitDamage,
+		$dexterity,
+		$dodgeChance,
 		$dualWield,
-		$itemHashes,
-		$itemModels,
+		$fireResist,
+		$gender,
+		$id,
+		$intelligence,
+		$items,
 		$json,
-		$name,
+		$level,
+		$lightingResist,
 		$multiplierDex,
 		$multiplierInt,
 		$multiplierStr,
+		$name,
+		$noItemsStats,
+		$paragonLevel,
+		$physicalResist,
+		$poisonResist,
 		$primaryAttribute,
-		$slotStats,
-		$stats;
+		$progress,
+		$skills,
+		$stats,
+		$strength,
+		$vitality;
 
 	/**
 	 * Constructor
@@ -46,9 +62,6 @@ class Hero
 	{
 		$this->dualWield = FALSE;
 		$this->json = $pJson;
-		$this->stats = [];
-		$this->init();
-		$this->determinePrimaryAttribute();
 		// base data every hero starts with.
 		$this->armor = 7;
 		$this->criticalHitChance = 0.05;
@@ -78,9 +91,11 @@ class Hero
 				"muliplier" => 1
 			]
 		];
+		$this->init();
 
 		$this->noItemsStats[ $this->primaryAttribute ][ 'muliplier' ] = 3;
 		$this->noItemsStats[ $this->primaryAttribute ][ 'primary' ] = TRUE;
+		unset( $this->json, $this->battleNet );
 	}
 
 	/**
@@ -97,6 +112,7 @@ class Hero
 			case "demon-hunter":
 				$this->primaryAttribute = "Dexterity_Item";
 				break;
+			case "crusader":
 			case "barbarian":
 				$this->primaryAttribute = "Strength_Item";
 				break;
@@ -142,11 +158,20 @@ class Hero
 	{
 		// decode battle.net data to an array.
 		$this->battleNet = json_decode( $this->json, TRUE );
-		// tally all raw attributes.
-		$this->processRawAttributes();
 		// shortcuts to some data in the Battle.net JSON.
-		$this->class = $this->get( 'class' );
+		$this->class = $this->battleNet[ 'class' ];
+		$this->id = ( int ) $this->battleNet[ 'id' ];
+		$this->gender = ( int ) $this->battleNet[ 'gender' ];
+		$this->items = $this->battleNet[ 'items' ];
+		$this->level = ( int ) $this->battleNet[ 'level' ];
+		$this->name = $this->battleNet[ 'name' ];
+		$this->paragonLevel = ( int ) $this->battleNet[ 'paragonLevel' ];
+		$this->progress = $this->battleNet[ 'progress' ];
+		$this->skills = $this->battleNet[ 'skills' ];
+		$this->stats = $this->battleNet[ 'stats' ];
 
+		$this->determinePrimaryAttribute();
+		$this->levelUpBonuses();
 
 //Should be placed somewhere else.
 //		if ( isset($this->itemModels['mainHand']) )
@@ -155,6 +180,22 @@ class Hero
 //			$this->dualWield = isWeapon( $this->itemModels['mainHand'] )
 //							&& isWeapon( $this->itemModels['offHand'] );
 //		}
+	}
+
+	/**
+	 * @return int
+	 */
+	public function id()
+	{
+		return $this->id;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function items()
+	{
+		return $this->items;
 	}
 
 	/**
@@ -197,34 +238,37 @@ class Hero
 	}
 
 	/**
-	 * Loop through raw attributes for every item.
-	 * @return float
+	 * @return string
 	 */
-	protected function processRawAttributes()
+	public function name()
 	{
-		if ( isArray($this->itemModels) )
-		{
-			foreach ( $this->itemModels as $slot => $item )
-			{
-				// Compute some things.
-				$this->tallyAttributes( $item->attributesRaw, $slot );
-				// Tally gems when the item has them.
-				if ( isArray($item->gems) )
-				{
-					$this->tallyGemAttributes( $item->gems, $slot );
-				}
-			}
-		}
+		return $this->name;
+	}
+
+	/**
+	 * @return array
+	 */
+	public function noItemsStats()
+	{
+		return $this->noItemsStats;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function primaryAttribute()
+	{
+		return $this->primaryAttribute;
 	}
 
 	/**
 	 * Determine the highest level completed.
 	 *
-	 * @param $pProgress object Hero progress
 	 * @return string
 	 */
-	public function progresssion( $pProgress )
+	public function progression()
 	{
+		$pProgress = $this->progress;
 		// Enjoy the flying V!
 		$returnValue = '';
 		foreach ( $pProgress as $level => $progresssion )
@@ -304,14 +348,6 @@ class Hero
 		}
 
 		return $this;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function name()
-	{
-		return $this->name;
 	}
 }
 // Writing below this line can cause headers to be sent before intended ?>

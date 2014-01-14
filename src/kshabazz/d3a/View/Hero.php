@@ -10,6 +10,7 @@
  */
 
 use kshabazz\d3a\Model\Hero as HeroModel;
+use function kshabazz\d3a\getSessionExpireInfo, kshabazz\d3a\displaySessionTimer;
 
 /**
  * Class Hero
@@ -17,48 +18,14 @@ use kshabazz\d3a\Model\Hero as HeroModel;
  */
 class Hero
 {
-	public function __construct( HeroModel $pModel )
-	{
-		$this->hero = $pModel;
-	}
-
 	/**
-	 * Get the items.
-	 *
-	 * @return array
+	 * @param array $pModels
 	 */
-	public function getItemModels()
+	public function __construct( array $pModels )
 	{
-		if ( !isset($this->itemModels) && $this->hero instanceof HeroModel )
-		{
-			$this->itemModels = [];
-			$this->itemHashes = [];
-			$this->items = $this->hero->items();
-			// It is valid that the bnrHero may not have any items equipped.
-			if ( isArray($this->items) )
-			{
-				foreach ( $this->items as $slot => $item )
-				{
-					$hash = str_replace( "item/", '', $item['tooltipParams'] );
-					$bnItem = new BattleNet_Item( $hash, "hash", $this->bnr, $this->sql );
-					$this->itemModels[ $slot ] = new Item( $bnItem->json() );
-					// for output to JavaScript variable.
-					$this->itemHashes[ $slot ] = $hash;
-				}
-			}
-		}
-
-		return $this->itemModels;
-	}
-
-	/**
-	 * Get Hero, used by template engine.
-	 *
-	 * @return array
-	 */
-	public function hero()
-	{
-		return $this->hero;
+		$this->calculator = $pModels[ 'calculator' ];
+		$this->hero = $pModels[ 'hero' ];
+		$this->items = $pModels[ 'items' ];
 	}
 
 	/**
@@ -66,7 +33,7 @@ class Hero
 	 */
 	protected function init()
 	{
-		$this->time = microtime( TRUE ) - $_SERVER[ 'REQUEST_TIME_FLOAT' ];
+		$this->time = \microtime( TRUE ) - $_SERVER[ 'REQUEST_TIME_FLOAT' ];
 		$this->hero = new HeroModel( $this->bnrHero->json() );
 		$this->getItemModels();
 		$this->calculator = new Calculator( $this->hero, $this->attributeMap, $this->hero->itemModels() );
@@ -76,7 +43,7 @@ class Hero
 	 * Render setup
 	 * @return $this
 	 */
-	public function renderSetup()
+	public function render()
 	{
 		$this->name = $this->hero->name();
 		$this->hardcore = ( $this->hero->hardcore ) ? 'Hardcore ' : '';
@@ -86,12 +53,11 @@ class Hero
 			$this->deadText = "This {$this->hardcore}hero fell on " . date( 'm/d/Y', $this->hero->{'last-updated'} ) . ' :(';
 		}
 
-		$this->sessionCacheInfo = getSessionExpireInfo( 'hero-' . $this->hero->id );
+		$this->sessionCacheInfo = getSessionExpireInfo( 'hero-' . $this->hero->id() );
 		$this->sessionTimeLeft = displaySessionTimer( $this->sessionCacheInfo['timeLeft'] );
-		$this->progress = $this->hero->progress();
-		$this->heroItemHashes = json_encode( $this->itemHashes );
-		$this->items = $this->itemModels;
 		$this->heroJson = $this->hero->json();
+		$this->progress = $this->hero->progression();
+		$this->heroItemHashes = \json_encode( $this->itemHashes );
 
 		return $this;
 	}

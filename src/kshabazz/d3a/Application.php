@@ -66,6 +66,16 @@ class Application
 		echo $pParser->render( $template, \get_object_vars($pModel) );
 	}
 
+	public function renderView( $pPageView, $templateEngine )
+	{
+		// grab and remove the content from the current buffer.
+		$template = \ob_get_contents();
+		// clear the current buffer without discarding it.
+		ob_clean();
+		// run all view logic and fill in all place-holders and throw it back into the current buffer.
+		echo $templateEngine->render( $template, \get_object_vars($pPageView->render()) );
+	}
+
 	/**
 	 * Retrieve a variable previously stored in the application.
 	 *

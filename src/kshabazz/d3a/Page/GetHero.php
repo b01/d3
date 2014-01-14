@@ -8,12 +8,17 @@
  * @package kshabazz\d3a\Controller
  * @copyright (c) 2012-2013 Khalifah K. Shabazz
  */
-use \kshabazz\d3a;
+use \kshabazz\d3a\Application;
+use \kshabazz\d3a\Abstracts\aPage;
+use \kshabazz\d3a\BattleNet_Item;
+use \kshabazz\d3a\Calculator;
+use \kshabazz\d3a\Item;
+use \kshabazz\d3a\View\Hero;
 /**
  * Class GetHero
  * @package kshabazz\d3a\Controller
  */
-class GetHero extends d3a\Abstracts\Page
+class GetHero extends aPage
 {
 	protected
 		$attributeMap,
@@ -24,6 +29,8 @@ class GetHero extends d3a\Abstracts\Page
 		$id,
 		$fromCache,
 		$items,
+		$itemHashes,
+		$itemModels,
 		$heroItems,
 		$hero,
 		$requestTime,
@@ -35,9 +42,9 @@ class GetHero extends d3a\Abstracts\Page
 
 	/**
 	 * Controller actions go here.
-	 * @param d3a\Application $pSystem
+	 * @param Application $pSystem
 	 */
-	public function __construct( d3a\Application $pSystem )
+	public function __construct( Application $pSystem )
 	{
 		$this->system = $pSystem;
 		$this->supers = $this->system->superGlobals();
@@ -48,25 +55,44 @@ class GetHero extends d3a\Abstracts\Page
 	}
 
 	/**
+	 * Get the items.
+	 *
+	 * @return array
+	 */
+	protected function getHeroItemModels()
+	{
+		if ( !isset($this->itemModels) && $this->hero !== NULL )
+		{
+			$this->itemModels = [];
+			$this->itemHashes = [];
+			$this->items = $this->hero->items();
+			// It is valid that the bnrHero may not have any items equipped.
+			if ( isArray($this->items) )
+			{
+				foreach ( $this->items as $slot => $item )
+				{
+					$hash = str_replace( "item/", '', $item['tooltipParams'] );
+					$bnItem = new BattleNet_Item( $hash, "hash", $this->bnr, $this->sql );
+					$this->itemModels[ $slot ] = new Item( $bnItem->json() );
+					// for output to JavaScript variable.
+					$this->itemHashes[ $slot ] = $hash;
+				}
+			}
+		}
+
+		return $this->itemModels;
+	}
+
+	/**
 	 * Setup any models needed for the page view.
 	 */
 	public function load()
 	{
 		// call methods
-		$this->setupModel();
+		$this->getHeroModel();
 	}
 
-	/**
-	 *
-	 *
-	 * @return {BattleNet_Hero|NULL}
-	 */
-	public function getModel()
-	{
-		return $this->hero;
-	}
-
-	public function setupModel()
+	public function getHeroModel()
 	{
 		if ( isString($this->battleNetId) && isString($this->id) )
 		{
@@ -85,7 +111,18 @@ class GetHero extends d3a\Abstracts\Page
 			$this->attributeMap = loadJsonFile( \kshabazz\d3a\ATTRIBUTE_MAP_FILE );
 
 			$this->hero = new \kshabazz\d3a\Model\Hero( $this->bnrHero->json() );
+			$this->getHeroItemModels();
+			$this->calculator = new Calculator( $this->hero, $this->attributeMap, $this->itemModels );
 		}
+	}
+
+	public function getView()
+	{
+		return new Hero([
+			'hero' => $this->hero,
+			'items' => $this->itemModels,
+			'calculator' => $this->calculator
+		]);
 	}
 }
 // Writing below this line can cause headers to be sent before intended ?>

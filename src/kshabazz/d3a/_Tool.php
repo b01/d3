@@ -377,13 +377,13 @@ use \Kshabazz\Slib;
 
 	/**
 	 * Get item name, by type id.
-	 * @param $p_itemType Item type id
+	 * @param $pItemType Item type id
 	 * @return string
 	 */
-	function translateSlotName( $p_itemType )
+	function translateSlotName( $pItemType )
 	{
 		$returnValue = '';
-		switch ( strtolower($p_itemType) )
+		switch ( strtolower($pItemType) )
 		{
 			case "leftfinger":
 			case "rightfinger":

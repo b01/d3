@@ -30,8 +30,8 @@
 			<!-- START ITEMS MODULE -->
 			<div class="hero">
 				{% for key, item in items %}
-				<a class="item-slot {{ key }}{{ translateSlotName(key) }}" href="/get-item.php?battleNetId={{ battleNetUrlSafeId }}&itemHash={{ item.hash }}&extra=0&showClose=1" data-slot="{{ key }}">
-					<div class="icon {{ item.displayColor }} inline-block top" data-hash="{{ item.hash }}" data-type="{{ getItemSlot(key) }}">
+				<a class="item-slot {{ key }}{{ func('\\kshabazz\\d3a\\translateSlotName', key) }}" href="/get-item.php?battleNetId={{ battleNetUrlSafeId }}&itemHash={{ item.hash }}&extra=0&showClose=1" data-slot="{{ key }}">
+					<div class="icon {{ item.displayColor }} inline-block top" data-hash="{{ item.hash }}" data-type="{{ func('\\kshabazz\\d3a\\getItemSlot', key) }}">
 						<img class="gradient" src="/media/images/icons/items/large/{{ item.icon }}.png" alt="{{ key }}" />
 						<!-- include 'templates/gems.php' -->
 					</div>
@@ -52,7 +52,7 @@
 				{% endfor %}
 			</div>
 			<!-- END ITEMS MODULE -->
-			{% if isArray(hero.stats) %}
+			{% if func('isArray',hero.stats) %}
 			<ul class="list stats inline-block">
 				{% for key, stat in hero.stats %}
 				<li class="stat"><span class="label">{{ key }}</span>: <span class="nuetral">{{ stat }}</span></li>
@@ -100,7 +100,7 @@
 					<span class="label"><span class="toggle inline-block">-</span> Attack Speed</span>: <span class="nuetral">{{ calculator.attackSpeed() }}</span>
 					<ul class="expandable">
 						{% autoescape false %}
-						{{ output('<li><span class="label">%s</span>: %s%%</li>', calculator.attackSpeedData()) }}
+						{{ func('\\kshabazz\\d3a\\output', '<li><span class="label">%s</span>: %s%%</li>', calculator.attackSpeedData()) }}
 						{% endautoescape %}
 					</ul>
 				</li>
@@ -108,7 +108,7 @@
 					<span class="label"><span class="toggle inline-block">-</span> Base Weapon Damage</span>: <span class="nuetral">{{ calculator.baseWeaponDamage() }}</span>
 					<ul class="expandable">
 						{% autoescape false %}
-						{{ output('<li><span class="label">%s</span>: %s</li>', calculator.baseWeaponDamageData()) }}
+						{{ func('\\kshabazz\\d3a\\output', '<li><span class="label">%s</span>: %s</li>', calculator.baseWeaponDamageData()) }}
 						{% endautoescape %}
 					</ul>
 				</li>
@@ -116,7 +116,7 @@
 					<span class="label"><span class="toggle inline-block">-</span> Critical Hit Chance</span>: <span class="nuetral">{{ calculator.criticalHitChance() }}%</span>
 					<ul class="expandable">
 						{% autoescape false %}
-						{{ output('<li><span class="label">%s</span>: %s</li>', calculator.criticalHitChanceData()) }}
+						{{ func('\\kshabazz\\d3a\\output', '<li><span class="label">%s</span>: %s</li>', calculator.criticalHitChanceData()) }}
 						{% endautoescape %}
 					</ul>
 				</li>
@@ -124,7 +124,7 @@
 					<span class="label"><span class="toggle inline-block">-</span> Critical Hit Damage</span>: <span class="nuetral">{{ calculator.criticalHitDamage() }}%</span>
 					<ul class="expandable">
 						{% autoescape false %}
-						{{ output('<li><span class="label">%s</span>: %s</li>', calculator.criticalHitDamageData()) }}
+						{{ func('\\kshabazz\\d3a\\output', '<li><span class="label">%s</span>: %s</li>', calculator.criticalHitDamageData()) }}
 						{% endautoescape %}
 					</ul>
 				</li>
@@ -132,16 +132,16 @@
 					<span class="label"><span class="toggle inline-block">-</span> Damage Per Second</span>: <span class="nuetral">{{ calculator.damagePerSecond() }}</span>
 					<ul class="expandable">
 						{% autoescape false %}
-						{{ output('<li><span class="label">%s</span>: %s</li>', calculator.damagePerSecondData()) }}
+						{{ func('\\kshabazz\\d3a\\output', '<li><span class="label">%s</span>: %s</li>', calculator.damagePerSecondData()) }}
 						{% endautoescape %}
 					</ul>
 				</li>
 				<li class="stat">
 					<span class="label"><span class="toggle inline-block">-</span> Primary Attribute Damage</span>:
-					<span class="nuetral">{{ calculator.primaryAttributeDamage() }} {{ str_replace("_Item", '', calculator.primaryAttribute()) }}</span>
+					<span class="nuetral">{{ calculator.primaryAttributeDamage() }} {{ func('str_replace', "_Item", '', calculator.primaryAttribute()) }}</span>
 					<ul class="expandable">
 						{% autoescape false %}
-						{{ output('<li><span class="label">%s</span>: %s</li>', calculator.primaryAttributeDamageData()) }}
+						{{ func('\\kshabazz\\d3a\\output', '<li><span class="label">%s</span>: %s</li>', calculator.primaryAttributeDamageData()) }}
 						{% endautoescape %}
 					</ul>
 				</li>
@@ -149,7 +149,7 @@
 					<span class="label"><span class="toggle inline-block">+</span> Battle.Net Calculated Stats</span>:
 					<ul class="expandable">
 						{% autoescape false %}
-						{{ output('<li><span class="label">%s</span>: %s</li>', hero.stats) }}
+						{{ func('\\kshabazz\\d3a\\output', '<li><span class="label">%s</span>: %s</li>', hero.stats) }}
 						{% endautoescape %}
 					</ul>
 				</li>
@@ -159,7 +159,7 @@
 					<span class="label"><span class="toggle inline-block">-</span> Battle.Net Calculated Stats</span>:
 					<ul class="expandable">
 						{% autoescape false %}
-						{{ output('<li><span class="label">%s</span>: %s</li>', hero.stats) }}
+						{{ func('\\kshabazz\\d3a\\output', '<li><span class="label">%s</span>: %s</li>', hero.stats) }}
 						{% endautoescape %}
 					</ul>
 				</li>

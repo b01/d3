@@ -74,6 +74,7 @@ class Calculator
 		$this->debug = '';
 
 		$this->init();
+
 		// Collect unique attributes into the attributes map file.
 		saveAttributeMap( $this->attributeMap );
 	}
@@ -539,6 +540,27 @@ class Calculator
 			* ( 1 + $monster_vulnerability_bonuses );
 		return $this;
 	}
+
+	/**
+	 * Moved from Model\Hero
+	 * @return float
+	 */
+//	protected function processRawAttributes()
+//	{
+//		if ( isArray($this->itemModels) )
+//		{
+//			foreach ( $this->itemModels as $slot => $item )
+//			{
+//				// Compute some things.
+//				$this->tallyAttributes( $item->attributesRaw, $slot );
+//				// Tally gems when the item has them.
+//				if ( isArray($item->gems) )
+//				{
+//					$this->tallyGemAttributes( $item->gems, $slot );
+//				}
+//			}
+//		}
+//	}
 
 	/**
 	* Loop through raw attributes for every item.
