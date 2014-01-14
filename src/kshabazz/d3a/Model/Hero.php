@@ -32,10 +32,12 @@ class Hero
 		$dualWield,
 		$fireResist,
 		$gender,
+		$hardcore,
 		$id,
 		$intelligence,
 		$items,
 		$json,
+		$lastUpdated,
 		$level,
 		$lightingResist,
 		$multiplierDex,
@@ -92,6 +94,7 @@ class Hero
 			]
 		];
 		$this->init();
+		$this->levelUpBonuses();
 
 		$this->noItemsStats[ $this->primaryAttribute ][ 'muliplier' ] = 3;
 		$this->noItemsStats[ $this->primaryAttribute ][ 'primary' ] = TRUE;
@@ -101,7 +104,7 @@ class Hero
 	/**
 	 * Based on the character's class.
 	 *
-	 * @return HeroModel
+	 * @return Hero
 	 */
 	protected function determinePrimaryAttribute()
 	{
@@ -152,6 +155,14 @@ class Hero
 	}
 
 	/**
+	 * @return bool
+	 */
+	public function hardcore()
+	{
+		return $this->hardcore;
+	}
+
+	/**
 	 * Initialize this object.
 	 */
 	protected function init()
@@ -162,7 +173,9 @@ class Hero
 		$this->class = $this->battleNet[ 'class' ];
 		$this->id = ( int ) $this->battleNet[ 'id' ];
 		$this->gender = ( int ) $this->battleNet[ 'gender' ];
+		$this->hardcore = ( bool ) $this->battleNet[ 'hardcore' ];
 		$this->items = $this->battleNet[ 'items' ];
+		$this->lastUpdated = ( int ) $this->battleNet[ 'last-updated' ];
 		$this->level = ( int ) $this->battleNet[ 'level' ];
 		$this->name = $this->battleNet[ 'name' ];
 		$this->paragonLevel = ( int ) $this->battleNet[ 'paragonLevel' ];
@@ -171,7 +184,6 @@ class Hero
 		$this->stats = $this->battleNet[ 'stats' ];
 
 		$this->determinePrimaryAttribute();
-		$this->levelUpBonuses();
 
 //Should be placed somewhere else.
 //		if ( isset($this->itemModels['mainHand']) )
@@ -199,21 +211,19 @@ class Hero
 	}
 
 	/**
-	 * Get item hashes by item slot
-	 *
-	 * @return array
-	 */
-	public function itemHashes()
-	{
-		return $this->itemHashes;
-	}
-
-	/**
 	 * @return string JSON from battle.net
 	 */
 	public function json()
 	{
 		return $this->json;
+	}
+
+	/**
+	 * return string
+	 */
+	public function lastUpdated()
+	{
+		return $this->lastUpdated;
 	}
 
 	/**
@@ -224,10 +234,14 @@ class Hero
 		$this->multiplierDex = ( $this->primaryAttribute === "Dexterity_Item" ) ? 3 : 1;
 		$this->multiplierInt = ( $this->primaryAttribute === "Intelligence_Item" ) ? 3 : 1;
 		$this->multiplierStr = ( $this->primaryAttribute === "Strength_Item" ) ? 3 : 1;
+
+		// Do not remember what this is??? Look like primary attribute bonus based on level.
+		// also looks to be incomplete, does not make much sense. Looks like I was reaching.
 		$this->dexterity += ( $this->level + $this->paragonLevel ) * $this->multiplierDex;
 		$this->intelligence += ( $this->level * $this->multiplierInt );
 		$this->strength += ( $this->level * $this->multiplierStr );
 
+		// Looks like the same as above, in some way.
 		foreach( $this->noItemsStats as $attribute => &$values )
 		{
 			$multiplier = $values[ 'muliplier' ];
@@ -286,6 +300,16 @@ class Hero
 			}
 		}
 		return $returnValue;
+	}
+
+	/**
+	 * Get character skills.
+	 *
+	 * @return array
+	 */
+	public function skills()
+	{
+		return $this->skills;
 	}
 
 	/**

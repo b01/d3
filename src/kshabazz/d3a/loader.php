@@ -47,15 +47,7 @@ if ( class_exists($className) )
 		// We use 'shutdown' because you can even catch most errors and output them how you like.
 		\register_shutdown_function( [$d3a, 'renderView'], $view, $twig );
 
-		$twig->addFunction(new \Twig_SimpleFunction('translateSlotName', function ($slot) {
-			return \kshabazz\d3a\translateSlotName( $slot );
-		}));
-
-		$twig->addFunction(new \Twig_SimpleFunction('getItemSlot', function ($key) {
-			return \kshabazz\d3a\getItemSlot($key);
-		}));
-
-		// Access any function in the PHP global namespace from Twig.
+		// Access any function in the PHP global/namespace from Twig.
 		$twig->addFunction(new \Twig_SimpleFunction('func', function ($function) {
 			$params = \func_get_args();
 			// handle methods of objects and params.

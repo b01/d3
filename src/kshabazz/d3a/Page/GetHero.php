@@ -59,7 +59,7 @@ class GetHero extends aPage
 	 *
 	 * @return array
 	 */
-	protected function getHeroItemModels()
+	protected function processHeroItems()
 	{
 		if ( !isset($this->itemModels) && $this->hero !== NULL )
 		{
@@ -77,6 +77,9 @@ class GetHero extends aPage
 					// for output to JavaScript variable.
 					$this->itemHashes[ $slot ] = $hash;
 				}
+				var_dump($this->items);
+				var_dump($this->itemHashes);
+
 			}
 		}
 
@@ -111,7 +114,7 @@ class GetHero extends aPage
 			$this->attributeMap = loadJsonFile( \kshabazz\d3a\ATTRIBUTE_MAP_FILE );
 
 			$this->hero = new \kshabazz\d3a\Model\Hero( $this->bnrHero->json() );
-			$this->getHeroItemModels();
+			$this->processHeroItems();
 			$this->calculator = new Calculator( $this->hero, $this->attributeMap, $this->itemModels );
 		}
 	}

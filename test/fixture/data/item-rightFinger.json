@@ -1,0 +1,105 @@
+{
+"id" : "Ring_21",
+"name" : "Grievous Meridian",
+"icon" : "ring_21_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/Cm0In6jiiwoSBwgEFTJVXUQd7TrCNh3_ppcRHb0K8EwdZxfBMR0vYyJsHcfS82UiCwgAFar-AQAYHCAeMAk4vwNAAFAQYMMDaiUKDAgAEMm1wo6GgICgKhIVCLCljpgGEgcIBBW2XbZ6MA04AEABGOTU6sUIUAZYAg",
+"requiredLevel" : 60,
+"itemLevel" : 60,
+"bonusAffixes" : 0,
+"bonusAffixesMax" : 0,
+"accountBound" : false,
+"typeName" : "Rare Ring",
+"type" : {
+"twoHanded" : false,
+"id" : "Ring"
+},
+"attributes" : [ "+13 Minimum Damage", "+37 Intelligence", "+68 Vitality", "Each Hit Adds +151 Life", "Critical Hit Chance Increased by 4.0%", "Health Globes and Potions Grant +2648 Life." ],
+"attributesRaw" : {
+"Crit_Percent_Bonus_Capped" : {
+"min" : 0.04,
+"max" : 0.04
+},
+"Sockets" : {
+"min" : 1.0,
+"max" : 1.0
+},
+"Vitality_Item" : {
+"min" : 68.0,
+"max" : 68.0
+},
+"Health_Globe_Bonus_Health" : {
+"min" : 2648.0,
+"max" : 2648.0
+},
+"Durability_Max" : {
+"min" : 451.0,
+"max" : 451.0
+},
+"Hitpoints_On_Hit" : {
+"min" : 151.0,
+"max" : 151.0
+},
+"Damage_Bonus_Min#Physical" : {
+"min" : 13.0,
+"max" : 13.0
+},
+"Durability_Cur" : {
+"min" : 447.0,
+"max" : 447.0
+},
+"Intelligence_Item" : {
+"min" : 37.0,
+"max" : 37.0
+}
+},
+"gems" : [ {
+"item" : {
+"id" : "Topaz_09",
+"name" : "Perfect Square Topaz",
+"icon" : "topaz_09_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/ChUIsKWOmAYSBwgEFbZdtnowDTgAQAEY7Payqw8"
+},
+"attributes" : [ "+38 Intelligence" ],
+"attributesRaw" : {
+"Intelligence_Item" : {
+"min" : 38.0,
+"max" : 38.0
+}
+}
+} ],
+"socketEffects" : [ ],
+"salvage" : [ {
+"item" : {
+"id" : "Crafting_Tier_04B",
+"name" : "Exquisite Essence",
+"icon" : "crafting_tier_04b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/exquisite-essence"
+},
+"chance" : 1.0,
+"quantity" : 1
+}, {
+"item" : {
+"id" : "Crafting_Tier_04C",
+"name" : "Iridescent Tear",
+"icon" : "crafting_tier_04c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/iridescent-tear"
+},
+"chance" : 1.0,
+"quantity" : 1
+}, {
+"item" : {
+"id" : "Crafting_Tier_04D",
+"name" : "Fiery Brimstone",
+"icon" : "crafting_tier_04d_demonhunter_male",
+"displayColor" : "orange",
+"tooltipParams" : "item/fiery-brimstone"
+},
+"chance" : 0.0010,
+"quantity" : 1
+} ],
+"craftedBy" : [ ]
+}

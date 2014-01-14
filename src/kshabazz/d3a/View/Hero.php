@@ -18,6 +18,9 @@ use function kshabazz\d3a\getSessionExpireInfo, kshabazz\d3a\displaySessionTimer
  */
 class Hero
 {
+	private
+		$hardcore;
+
 	/**
 	 * @param array $pModels
 	 */
@@ -29,49 +32,38 @@ class Hero
 	}
 
 	/**
-	 * Initialize this object.
-	 */
-	protected function init()
-	{
-		$this->time = \microtime( TRUE ) - $_SERVER[ 'REQUEST_TIME_FLOAT' ];
-		$this->hero = new HeroModel( $this->bnrHero->json() );
-		$this->getItemModels();
-		$this->calculator = new Calculator( $this->hero, $this->attributeMap, $this->hero->itemModels() );
-	}
-
-	/**
 	 * Render setup
 	 * @return $this
 	 */
 	public function render()
 	{
-		$this->name = $this->hero->name();
-		$this->hardcore = ( $this->hero->hardcore ) ? 'Hardcore ' : '';
-		$this->deadText = '';
-		if ( $this->hero->dead )
-		{
-			$this->deadText = "This {$this->hardcore}hero fell on " . date( 'm/d/Y', $this->hero->{'last-updated'} ) . ' :(';
-		}
+		$this->hardcore = ( $this->hero->hardcore() ) ? 'Hardcore' : '';
+		$data = [
+			'calculator' => $this->calculator,
+			'hero' => $this->hero,
+			'items' => $this->items,
+			'name' => $this->hero->name(),
+			'hardcore' => $this->hardcore,
+			'sessionCacheInfo' => getSessionExpireInfo( 'hero-' . $this->hero->id() ),
+			'sessionTimeLeft' => displaySessionTimer( $this->sessionCacheInfo['timeLeft'] ),
+			'heroJson'=> $this->hero->json(),
+			'progress' => $this->hero->progression(),
+			'heroItemHashes' => \json_encode( $this->itemHashes ),
+			'time' => \microtime( TRUE ) - $_SERVER[ 'REQUEST_TIME_FLOAT' ],
+		];
 
-		$this->sessionCacheInfo = getSessionExpireInfo( 'hero-' . $this->hero->id() );
-		$this->sessionTimeLeft = displaySessionTimer( $this->sessionCacheInfo['timeLeft'] );
-		$this->heroJson = $this->hero->json();
-		$this->progress = $this->hero->progression();
-		$this->heroItemHashes = \json_encode( $this->itemHashes );
-
-		return $this;
+		return $data;
 	}
 
-	/**
-	 * Set Hero
-	 *
-	 * @param Hero $pHero
-	 * @return $this
-	 */
-	public function setHero( Hero $pHero )
+	protected function getDeadText()
 	{
-		$this->hero = $pHero;
-		return $this;
+		$returnValue = '';
+		if ( $this->hero->dead )
+		{
+			$returnValue = "This {$this->hardcore} hero fell on " . date( 'm/d/Y', $this->hero->lastUupdated() ) . ' :(';
+		}
+
+		return $returnValue;
 	}
 }
 // Writing below this line can cause headers to be sent before intended ?>

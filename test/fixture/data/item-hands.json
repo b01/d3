@@ -1,0 +1,106 @@
+{
+"id" : "Gloves_202",
+"name" : "Forge Terminus",
+"icon" : "gloves_202_witchdoctor_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CkgIrYP_xQYSBwgEFcNbkqQd0HHzPB11sezwHQ5rf_0dSJ3LyB0kKgFuHQ5c9PwiCwgBFW9CAwAYJCAKMAk44QRAAEgPUBBg5QQY-ZDttgtQBlgC",
+"requiredLevel" : 60,
+"itemLevel" : 58,
+"bonusAffixes" : 0,
+"bonusAffixesMax" : 0,
+"accountBound" : false,
+"typeName" : "Rare Gloves",
+"type" : {
+"twoHanded" : false,
+"id" : "Gloves"
+},
+"armor" : {
+"min" : 218.0,
+"max" : 218.0
+},
+"attributes" : [ "+158 Dexterity", "+108 Intelligence", "+45 Vitality", "+31 Poison Resistance", "Attack Speed Increased by 9%", "Critical Hit Chance Increased by 9.0%" ],
+"attributesRaw" : {
+"Durability_Cur" : {
+"min" : 609.0,
+"max" : 609.0
+},
+"Resistance#Poison" : {
+"min" : 31.0,
+"max" : 31.0
+},
+"Intelligence_Item" : {
+"min" : 108.0,
+"max" : 108.0
+},
+"Crit_Percent_Bonus_Capped" : {
+"min" : 0.09,
+"max" : 0.09
+},
+"Armor_Item" : {
+"min" : 218.0,
+"max" : 218.0
+},
+"Vitality_Item" : {
+"min" : 45.0,
+"max" : 45.0
+},
+"Dexterity_Item" : {
+"min" : 158.0,
+"max" : 158.0
+},
+"Durability_Max" : {
+"min" : 613.0,
+"max" : 613.0
+},
+"Attacks_Per_Second_Percent" : {
+"min" : 0.09,
+"max" : 0.09
+}
+},
+"gems" : [ ],
+"socketEffects" : [ ],
+"salvage" : [ {
+"item" : {
+"id" : "Crafting_Tier_03B",
+"name" : "Wishful Essence",
+"icon" : "crafting_tier_03b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/wishful-essence"
+},
+"chance" : 1.0,
+"quantity" : 1
+}, {
+"item" : {
+"id" : "Crafting_Tier_03C",
+"name" : "Encrusted Hoof",
+"icon" : "crafting_tier_03c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/encrusted-hoof"
+},
+"chance" : 1.0,
+"quantity" : 1
+} ],
+"craftedBy" : [ {
+"id" : "T08_Armor_Gloves",
+"slug" : "resplendent-manifers",
+"name" : "Resplendent Manifers",
+"cost" : 1705,
+"reagents" : [ {
+"quantity" : 4,
+"item" : {
+"id" : "Crafting_Tier_03B",
+"name" : "Wishful Essence",
+"icon" : "crafting_tier_03b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/wishful-essence"
+}
+} ],
+"itemProduced" : {
+"id" : "Gloves_202",
+"name" : "Resplendent Manifers",
+"icon" : "gloves_202_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/resplendent-manifers"
+}
+} ]
+}

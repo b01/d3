@@ -31,7 +31,7 @@ class ApplicationTest extends \PHPUnit_Framework_TestCase
 		$_SERVER['test'] = 123;
 		$supers = $app->superGlobals();
 		$param = $supers->getParam( 'test', 'failed', 'int', 'SERVER' );
-		$this->assertEquals(123, $param, 'Failed to get parameter from super global _SERVER.' );
+		$this->assertEquals( 123, $param, 'Failed to get parameter from super global _SERVER.' );
 	}
 
 	/**

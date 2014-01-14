@@ -64,8 +64,8 @@ class BattleNet_RequestorTest extends \PHPUnit_Framework_TestCase
 	{
 		$bnr = new \kshabazz\d3a\BattleNet_Requestor( $this->battleNetId );
 		$heroJson = $bnr->getHero( $this->heroId );
-		$hero = new \kshabazz\d3a\Hero( $heroJson );
-		$this->assertEquals( $this->heroId, $hero->id, 'Unable to retrive Hero from Battle.Net' );
+		$hero = new \kshabazz\d3a\Model\Hero( $heroJson );
+		$this->assertEquals( $this->heroId, $hero->id(), 'Unable to retrive Hero from Battle.Net' );
 	}
 
 	/**

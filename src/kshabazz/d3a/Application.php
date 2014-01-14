@@ -73,7 +73,7 @@ class Application
 		// clear the current buffer without discarding it.
 		ob_clean();
 		// run all view logic and fill in all place-holders and throw it back into the current buffer.
-		echo $templateEngine->render( $template, \get_object_vars($pPageView->render()) );
+		echo $templateEngine->render( $template, $pPageView->render() );
 	}
 
 	/**
