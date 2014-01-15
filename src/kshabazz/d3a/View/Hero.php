@@ -9,7 +9,6 @@
  * timestamp: 1/11/14:8:54 AM
  */
 
-use kshabazz\d3a\Model\Hero as HeroModel;
 use function kshabazz\d3a\getSessionExpireInfo, kshabazz\d3a\displaySessionTimer;
 
 /**

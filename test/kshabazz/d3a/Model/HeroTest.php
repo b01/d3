@@ -56,6 +56,28 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 		$this->assertInstanceOf( '\\kshabazz\\d3a\\Model\\Hero', $hero, 'Could not initialize \kshabazz\d3a\Model\Hero object.' );
 	}
 
+	public function test_retreiving_get()
+	{
+		$hero = new Hero( $this->json );
+		$id = $hero->get( 'id', 'int' );
+		$this->assertEquals(
+			$this->heroId,
+			$id,
+			'Invalid hero name returned from kahabazz\\d3a\\Model\\Hero.'
+		);
+	}
+
+	/**
+	 * @expectedException \Exception
+	 * @expectedExceptionMessage Class \Kshabazz\d3a\Model\Hero has no property test
+	 */
+	public function test_retreiving_get_invalid_property()
+	{
+		$hero = new Hero( $this->json );
+		$hero->get( 'test123' );
+		$this->fail( 'No \Exception thrown as expected.' );
+	}
+
 	/**
 	 * Test retrieving the hero property.
 	 */
@@ -110,12 +132,52 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 	public function test_retreiving_lastUpdated()
 	{
 		$hero = new Hero( $this->json );
-		$json = $hero->json();
-		$data = json_decode( $json, TRUE );
 		$this->assertEquals(
 			1387045578,
 			$hero->lastUpdated(),
 			'Invalid hero lastUpdated date returned from kahabazz\\d3a\\Model\\Hero.'
+		);
+	}
+
+	public function test_retreiving_name()
+	{
+		$hero = new Hero( $this->json );
+		$name = $hero->name();
+		$this->assertEquals(
+			'Kashara',
+			$name,
+			'Invalid hero name returned from kahabazz\\d3a\\Model\\Hero.'
+		);
+	}
+
+	public function test_retreiving_progression()
+	{
+		$hero = new Hero( $this->json );
+		$progress = $hero->progression();
+		$this->assertEquals(
+			'Highest completed: inferno act2 BetrayeroftheHoradrim',
+			$progress,
+			'Invalid hero progression returned from kahabazz\\d3a\\Model\\Hero.'
+		);
+	}
+
+	public function test_retreiving_skills()
+	{
+		$hero = new Hero( $this->json );
+		$skills = $hero->skills();
+		$this->assertArrayHasKey('active', $skills,
+			'Invalid hero skills returned from kahabazz\\d3a\\Model\\Hero.'
+		);
+	}
+
+	public function test_retreiving_stats()
+	{
+		$hero = new Hero( $this->json );
+		$stats = $hero->stats();
+		$this->assertEquals(
+			26935.8,
+			$stats['damage'],
+			'Invalid hero stats returned from kahabazz\\d3a\\Model\\Hero.'
 		);
 	}
 

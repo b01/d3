@@ -77,9 +77,6 @@ class GetHero extends aPage
 					// for output to JavaScript variable.
 					$this->itemHashes[ $slot ] = $hash;
 				}
-				var_dump($this->items);
-				var_dump($this->itemHashes);
-
 			}
 		}
 

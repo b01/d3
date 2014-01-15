@@ -139,15 +139,15 @@ class Hero
 	 * Get data from the hero JSON data retrieved from Battle.net API.
 	 *
 	 * @param string $pProperty
-	 * @param string $pTyle
+	 * @param string $pType
 	 * @return mixed
 	 * @throws \Exception
 	 */
-	public function get( $pProperty, $pTyle = 'string' )
+	public function get( $pProperty, $pType = 'string' )
 	{
-		if ( in_array($pProperty, $this->battleNet) )
+		if ( array_key_exists($pProperty, $this->battleNet) )
 		{
-			setType( $this->battleNet[$pProperty], $pTyle );
+			setType( $this->battleNet[$pProperty], $pType );
 			return $this->battleNet[ $pProperty ];
 		}
 		throw new \Exception( 'Class \Kshabazz\d3a\Model\Hero has no property ' . $pProperty );
