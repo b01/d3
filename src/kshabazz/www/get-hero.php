@@ -164,9 +164,15 @@
 					</ul>
 				</li>
 			</ul>
-			{% autoescape false %}
-			{{ calculator.debug }}
-			{% endautoescape %}
+			{% if func('isArray',calculator.debug) %}
+			<div class="calculated list stats inline-block">
+				<div class="debug-info">
+					{% for key, line in calculator.debug %}
+					<div class="debug">{{key}} = {{ line }}</div>
+					{% endfor %}
+				</div>
+			</div>
+			{% endif %}
 		</div>
 		{% autoescape false %}
 		<script type="text/javascript">
