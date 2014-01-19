@@ -6,14 +6,14 @@
  *	on the hero.
  */
 
-use kshabazz\d3a\Shared;
-
 /**
  * Class Calculator
  * @package kshabazz\d3a
  */
 class Calculator
 {
+	use Shared;
+
 	const
 		APS_DUAL_WIELD_BONUS = 0.15,
 		CRITICAL_HIT_CHANCE_BONUS = 0.05,
@@ -22,7 +22,6 @@ class Calculator
 	protected
 		$attackSpeed,
 		$attackSpeedData,
-		$attributeMap,
 		$attributeSlots,
 		$attributeTotals,
 		$averageDamage,
@@ -38,6 +37,7 @@ class Calculator
 		$damagePerSecondData,
 		$dualWield,
 		$gems,
+		$hero,
 		$increasedAttackSpeed,
 		$items,
 		$maxDamage,
@@ -48,12 +48,11 @@ class Calculator
 		$weaponAttacksPerSecond;
 
 	/**
-	* Constructor
-	*/
-	public function __construct( Model\Hero $pHero, array & $attributeMap, array $pItems )
+	 * Constructor
+	 */
+	public function __construct()
 	{
 		$this->attackSpeedData = [];
-		$this->attributeMap = $attributeMap;
 		$this->attributeSlots = [];
 		$this->attributeTotals = [];
 		$this->averageDamage = 0.0;
@@ -65,8 +64,6 @@ class Calculator
 		$this->damagePerSecondData = [];
 		$this->dualWield = FALSE;
 		$this->gems = [];
-		$this->hero = $pHero;
-		$this->items = $pItems;
 		$this->increasedAttackSpeed = 0.0;
 		$this->maxDamage = 0.0;
 		$this->minDamage = 0.0;
@@ -81,13 +78,13 @@ class Calculator
 		$this->increasedAttackSpeed = 0.0;
 		$this->weaponDamage = 0.0;
 		$this->debug = [];
-
-		$this->init();
-
-		// Collect unique attributes into the attributes map file.
-		saveAttributeMap( $this->attributeMap );
 	}
 
+	/**
+	 * Calculate armor.
+	 *
+	 * @return float
+	 */
 	public function armor()
 	{
 		if (!isset($this->armor) )
@@ -103,7 +100,6 @@ class Calculator
 		}
 		return $this->armor;
 	}
-
 
 	/**
 	 * @return array
@@ -136,8 +132,14 @@ class Calculator
 		return $this->attackSpeedData;
 	}
 
-
-
+	/**
+	 * Take the sum of an list of attributes.
+	 *
+	 * @param $pName
+	 * @param array $pAttributes
+	 * @param $pInitValue
+	 * @return $this
+	 */
 	public function attributeComputer( $pName, array $pAttributes, $pInitValue )
 	{
 		if ( isArray($pAttributes) )
@@ -162,6 +164,14 @@ class Calculator
 	}
 
 	/**
+	 * @return array
+	 */
+	public function attributeTotals()
+	{
+		return $this->attributeTotals;
+	}
+
+	/**
 	 * Primary attribute.
 	 * @return float
 	 */
@@ -183,7 +193,7 @@ class Calculator
 	* Attack speed, or Attacks per Second (APS) simply means how often your character can use its skills. Taken from
 	* tool-tip.
 	*
-	* @return Calculator
+	* @return $this
 	*/
 	protected function computeAttacksPerSecond()
 	{
@@ -385,9 +395,6 @@ class Calculator
 	 */
 	protected function computePrimaryAttributeDamage()
 	{
-
-//		var_dump($this->primaryAttribute);
-		var_dump($this->attributeTotals);
 		if ( array_key_exists($this->primaryAttribute, $this->attributeTotals) )
 		{
 			$attributeFound = array_key_exists( $this->primaryAttribute, $this->hero->noItemsStats() );
@@ -612,27 +619,6 @@ class Calculator
 	}
 
 	/**
-	 * Moved from Model\Hero
-	 * @return float
-	 */
-//	protected function processRawAttributes()
-//	{
-//		if ( isArray($this->itemModels) )
-//		{
-//			foreach ( $this->itemModels as $slot => $item )
-//			{
-//				// Compute some things.
-//				$this->tallyAttributes( $item->attributesRaw, $slot );
-//				// Tally gems when the item has them.
-//				if ( isArray($item->gems) )
-//				{
-//					$this->tallyGemAttributes( $item->gems, $slot );
-//				}
-//			}
-//		}
-//	}
-
-	/**
 	* Loop through raw attributes for every item.
 	* @return float
 	*/
@@ -659,6 +645,23 @@ class Calculator
 				}
 			}
 		}
+	}
+
+	/**
+	 *  Set hero whom stats to calculate.
+	 *
+	 * @param Model\Hero $pHero
+	 * @param array $pItems
+	 * @return $this
+	 */
+	public function setHero( Model\Hero $pHero, array $pItems )
+	{
+		$this->__destruct();
+		$this->hero = $pHero;
+		$this->items = $pItems;
+		$this->__construct();
+		$this->init();
+		return $this;
 	}
 
 	/**
@@ -695,12 +698,6 @@ class Calculator
 //				 $this->debug[ $pSlot . $attribute ] = $value;
 //				 $this->debug[ 'totals_' . $attribute ]  = $this->attributeTotals[ $attribute ];
 //			 }
-
-			// Add the attribute to the map collection.
-			if ( !array_key_exists($attribute, $this->attributeMap) )
-			{
-				$this->attributeMap[ $attribute ] = '';
-			}
 		}
 		return $this;
 	}

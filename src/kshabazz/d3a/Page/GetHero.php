@@ -8,12 +8,14 @@
  * @package kshabazz\d3a\Controller
  * @copyright (c) 2012-2013 Khalifah K. Shabazz
  */
+
 use \kshabazz\d3a\Application;
 use \kshabazz\d3a\Abstracts\aPage;
 use \kshabazz\d3a\BattleNet_Item;
 use \kshabazz\d3a\Calculator;
 use \kshabazz\d3a\Item;
 use \kshabazz\d3a\View\Hero;
+
 /**
  * Class GetHero
  * @package kshabazz\d3a\Controller
@@ -112,7 +114,10 @@ class GetHero extends aPage
 
 			$this->hero = new \kshabazz\d3a\Model\Hero( $this->bnrHero->json() );
 			$this->processHeroItems();
-			$this->calculator = new Calculator( $this->hero, $this->attributeMap, $this->itemModels );
+			$this->calculator = new Calculator();
+			$this->calculator->setHero( $this->hero, $this->itemModels );
+			// Collect unique attributes into the attributes map file.
+			\kshabazz\d3a\updateAttributeMap( $this->calculator->attributeTotals(), \kshabazz\d3a\ATTRIBUTE_MAP_FILE );
 		}
 	}
 

@@ -86,7 +86,8 @@ class CalculatorTest extends \PHPUnit_Framework_TestCase
 	public function test_attack_speed()
 	{
 		$this->attackSpeed = 1.6239999723434446;
-		$calculator = new Calculator( $this->hero, $this->attributeMap, $this->itemModels );
+		$calculator = new Calculator();
+		$calculator->setHero( $this->hero, $this->itemModels );
 		$attackSpped = $calculator->attackSpeed();
 		$this->assertEquals( 1.6239999723434446, $attackSpped, 'Attack speed calculation is wrong.' );
 	}

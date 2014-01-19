@@ -347,11 +347,6 @@ class Hero
 			// A break-down of each attribute totals. An item can have multiple types of the same attribute
 			// use a combination of the slot and attribute name to keep them from replacing the previous value.
 			$this->slotStats[ $attribute ][ $pSlot . '_' . $attribute ] = $value;
-			// Add the attribute to the map collection.
-			if ( !array_key_exists($attribute, $this->attributeMap) )
-			{
-				$this->attributeMap[ $attribute ] = '';
-			}
 		}
 		return $this;
 	}

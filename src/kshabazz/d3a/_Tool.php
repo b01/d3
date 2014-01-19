@@ -292,11 +292,11 @@ use \Kshabazz\Slib;
 	* @credit Taken from a Stack Overflow answeer:
 	* 	http://stackoverflow.com/questions/5612656/generating-unique-random-numbers-within-a-range-php
 	*/
-	function saveAttributeMap( $p_attributeMap )
+	function saveAttributeMap( $attributeMap, $pFile )
 	{
-		$attributeMapOutput = json_encode( $p_attributeMap, TRUE );
+		$attributeMapOutput = json_encode( $attributeMap, TRUE );
 		// Save image data to a file.
-		saveFile( "./media/data-files/attribute-map.txt", $attributeMapOutput );
+		saveFile( $pFile, $attributeMapOutput );
 	}
 
 	/**
@@ -398,5 +398,26 @@ use \Kshabazz\Slib;
 				break;
 		}
 		return $returnValue;
+	}
+
+	function updateAttributeMap( array $pAttributes, $pFile )
+	{
+		$currentAttributes = loadJsonFile( $pFile );
+		$updateAttributes = $currentAttributes;
+		foreach ( $pAttributes as $attribute => $values )
+		{
+			// don't overwrite existing mapped values.
+			if ( !array_key_exists($attribute, $currentAttributes) )
+			{
+				echo "added {$attribute}<br />";
+				$updateAttributes[ $attribute ] = '';
+			}
+		}
+		// don't save unless new attributes were added.
+		if (count($updateAttributes) > count($currentAttributes) )
+		{
+			echo "saving";
+			saveAttributeMap( $updateAttributes, $pFile );
+		}
 	}
 ?>

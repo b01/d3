@@ -1,3 +1,8 @@
+List of changes since 01/19/2014 06:08 PM
+-------------------------------
+ - Code refactoring for Hero, GetHero, and Calculator classes.
+ - Added new tool method updateAttributeMap.
+
 List of changes since 01/19/2014 10:41 AM
 -------------------------------
 - Added armor calculation to Calculator.
