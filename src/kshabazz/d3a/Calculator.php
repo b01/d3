@@ -16,8 +16,8 @@ class Calculator
 {
 	const
 		APS_DUAL_WIELD_BONUS = 0.15,
-		CRITICAL_HIT_CHANCE_BONUS = 0.08,
-		CRITICAL_HIT_DAMAGE_BONUS = 0.05;
+		CRITICAL_HIT_CHANCE_BONUS = 0.05,
+		CRITICAL_HIT_DAMAGE_BONUS = 0.5;
 
 	protected
 		$attackSpeed,
@@ -27,6 +27,8 @@ class Calculator
 		$attributeTotals,
 		$averageDamage,
 		$averageDamageData,
+		$armor,
+		$armorData,
 		$criticalHitChance,
 		$criticalHitChanceData,
 		$criticalHitDamage,
@@ -86,6 +88,36 @@ class Calculator
 		saveAttributeMap( $this->attributeMap );
 	}
 
+	public function armor()
+	{
+		if (!isset($this->armor) )
+		{
+			// Add more as they are found.
+			$armorAttributes = [
+				'Armor_Item',
+				'Strength_Item',
+				'Armor_Bonus_Item',
+				'Block_Amount_Item_Min'
+			];
+			$this->attributeComputer( 'armor', $armorAttributes, 0.0 );
+		}
+		return $this->armor;
+	}
+
+
+	/**
+	 * @return array
+	 */
+	public function armorData()
+	{
+		if ( !isset($this->armorData) )
+		{
+			$this->armor();
+		}
+
+		return $this->armorData;
+	}
+
 	/**
 	 * Total attack speed for all items equipped.
 	 * @return float
@@ -102,6 +134,31 @@ class Calculator
 	public function attackSpeedData()
 	{
 		return $this->attackSpeedData;
+	}
+
+
+
+	public function attributeComputer( $pName, array $pAttributes, $pInitValue )
+	{
+		if ( isArray($pAttributes) )
+		{
+			$property = $pInitValue;
+			$data = [];
+
+			foreach ( $pAttributes as $attribute )
+			{
+				if ( array_key_exists($attribute, $this->attributeTotals) )
+				{
+					$property += $this->attributeTotals[ $attribute ];
+//					$data[ $attribute ] = array_merge( $data, $this->attributeSlots[$attribute] );
+					$data = array_merge( $data, $this->attributeSlots[$attribute] );
+				}
+			}
+
+			$this->{ $pName } = $property;
+			$this->{ $pName . 'Data' } = $data;
+		}
+		return $this;
 	}
 
 	/**
@@ -328,6 +385,9 @@ class Calculator
 	 */
 	protected function computePrimaryAttributeDamage()
 	{
+
+//		var_dump($this->primaryAttribute);
+		var_dump($this->attributeTotals);
 		if ( array_key_exists($this->primaryAttribute, $this->attributeTotals) )
 		{
 			$attributeFound = array_key_exists( $this->primaryAttribute, $this->hero->noItemsStats() );

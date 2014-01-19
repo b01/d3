@@ -97,6 +97,14 @@
 			<br />
 			<ul class="calculated list stats inline-block">
 				<li class="stat">
+					<span class="label"><span class="toggle inline-block">-</span> Armor</span>: <span class="nuetral">{{ calculator.armor() }}</span>
+					<ul class="expandable">
+						{% autoescape false %}
+						{{ func('\\kshabazz\\d3a\\output', '<li><span class="label">%s</span>: %s</li>', calculator.armorData()) }}
+						{% endautoescape %}
+					</ul>
+				</li>
+				<li class="stat">
 					<span class="label"><span class="toggle inline-block">-</span> Attack Speed</span>: <span class="nuetral">{{ calculator.attackSpeed() }}</span>
 					<ul class="expandable">
 						{% autoescape false %}
@@ -142,14 +150,6 @@
 					<ul class="expandable">
 						{% autoescape false %}
 						{{ func('\\kshabazz\\d3a\\output', '<li><span class="label">%s</span>: %s</li>', calculator.primaryAttributeDamageData()) }}
-						{% endautoescape %}
-					</ul>
-				</li>
-				<li class="stat">
-					<span class="label"><span class="toggle inline-block">+</span> Battle.Net Calculated Stats</span>:
-					<ul class="expandable">
-						{% autoescape false %}
-						{{ func('\\kshabazz\\d3a\\output', '<li><span class="label">%s</span>: %s</li>', hero.stats) }}
 						{% endautoescape %}
 					</ul>
 				</li>
