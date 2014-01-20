@@ -31,11 +31,24 @@ class Index extends aPage
 	{
 		$this->super = $pApp->superGlobals();
 		$this->battleNetId = $this->super->getParam( 'battleNetId', NULL, 'string', 'POST' );
+
+		$this->load();
 	}
 
-	public function getView()
+
+	/**
+	 * Page load event.
+	 */
+	public function load()
 	{
 		$this->view = new vIndex( $this->battleNetId );
+	}
+
+	/**
+	 * @return vIndex
+	 */
+	public function getView()
+	{
 		return $this->view;
 	}
 }

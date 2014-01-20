@@ -73,7 +73,7 @@ class BattleNet_Item extends BattleNet_Model
 			$this->sql->addRequest( $this->dqi->battleNetId(), $url );
 			if ( $responseCode == 200 )
 			{
-				$this->loadedFromBattleNet = TRUE;
+				$this->requestSuccessful = TRUE;
 				$this->json = $json;
 			}
 		}
@@ -98,7 +98,7 @@ class BattleNet_Item extends BattleNet_Model
 			$this->type = $this->info[ 'type' ];
 			$this->key = substr( $this->info[ 'tooltipParams' ], 5 );
 			$this->id = $this->info[ 'id' ];
-			if ( $this->loadedFromBattleNet )
+			if ( $this->requestSuccessful )
 			{
 				$this->save();
 			}

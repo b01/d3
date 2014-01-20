@@ -142,5 +142,13 @@ class HttpRequestor
 	{
 		$this->url = $p_url;
 	}
+
+	/**
+	 * @return {string|NULL}
+	 */
+	public function url()
+	{
+		return $this->url;
+	}
 }
 ?>

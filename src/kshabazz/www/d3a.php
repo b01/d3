@@ -2,9 +2,11 @@
 /**
  * Diablo 3 Assistant core load script.
  *
- * Requirements
- * PHP 5.6+
- * PHP_INI user.ini
+ * Requirements:
+ *  PHP 5.6+
+ *  Use of .user.ini feature
+ *  Composer
+ *  Write permissions in the media/images directory
  */
 
 // composer auto-loader.

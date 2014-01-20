@@ -38,8 +38,7 @@ use kshabazz\d3a\Application;
 abstract class aPage
 {
 	protected
-		$app,
-		$model,
+		$models,
 		$system,
 		$view;
 
@@ -53,9 +52,12 @@ abstract class aPage
 
 	/**
 	 * Consider this the page load event, where you place code you want to run on page load here.
+	 *
+	 * @return TRUE to proceed, FALSE will log the event failed and cancel call to {$this::render()}.
 	 */
 	public function load()
 	{
+		return TRUE;
 	}
 
 	/**
@@ -63,19 +65,29 @@ abstract class aPage
 	 */
 	public function unLoad()
 	{
+		return TRUE;
 	}
 
 	/**
 	 * This is an event that occurs just after the template engine has processed the template (filled in all
-	 * placeholders and block). Now you can process it further, for example, run it through a "Tidy" object to clean-up
-	 * the HTML output.
+	 * placeholders and blocks) but before the output is sent to the browser.
+	 * Here you can process it further, for example, run it through a "Tidy" object to clean-up the HTML output.
+	 *
+	 * @param string $pViewOutput
+	 * @return string
 	 */
-	public function preRender( $pVeiw )
+	public function preRender( $pViewOutput )
 	{
+		return $pViewOutput;
 	}
 
-	public function render()
+	/**
+	 * View to be rendered
+	 * @return \kshabazz\d3a\View
+	 */
+	public function getView()
 	{
+		return $this->view;
 	}
 }
 // DO NOT WRITE ANYTHING BELOW THIS LINE, NOT EVEN A WHITE SPACE CHARS. ?>

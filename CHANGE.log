@@ -1,3 +1,12 @@
+List of changes since 01/20/2014 08:02 AM
+-------------------------------
+ - Added added some clarity to abstract Page class methods load and preRender.
+ - Renamed View\Index method setup to load.
+ - Refactored GetProfile page and model.
+ - Add method to return the URL in HttpRequestor class.
+ - Made cache logic a bit more understandable.
+ - Added profile.json fixture data.
+
 List of changes since 01/20/2014 07:07 AM
 -------------------------------
  - Refactored all code from loader script back to d3a script.

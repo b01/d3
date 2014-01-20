@@ -13,12 +13,12 @@ class BattleNet_Hero extends BattleNet_Model
 	/**
 	* Constructor
 	*/
-	public function __construct( $pKey, BattleNet_Requestor $pDqi, BattleNet_Sql $pSql, $pForceLoadFromBattleNet )
+	public function __construct( $pKey, BattleNet_Requestor $pDqi, BattleNet_Sql $pSql, $pLoadFromCache )
 	{
 		$this->characterClass = NULL;
 		$this->items = NULL;
 		$this->stats = NULL;
-		parent::__construct( $pKey, $pDqi, $pSql, $pForceLoadFromBattleNet );
+		parent::__construct( $pKey, $pDqi, $pSql, $pLoadFromCache );
 	}
 
 	/**
@@ -34,7 +34,7 @@ class BattleNet_Hero extends BattleNet_Model
 			$this->info,
 			$this->items,
 			$this->json,
-			$this->loadedFromBattleNet,
+			$this->requestSuccessful,
 			$this->sql,
 			$this->stats
 		);
@@ -85,7 +85,7 @@ class BattleNet_Hero extends BattleNet_Model
 	*/
 	protected function pullJson()
 	{
-		if ( !$this->forceLoadFromBattleNet ) // From DB
+		if ( $this->loadFromDb ) // From DB
 		{
 			$this->pullJsonFromDb();
 		}
@@ -112,7 +112,7 @@ class BattleNet_Hero extends BattleNet_Model
 		if ( $responseCode === 200 )
 		{
 			$this->json = $responseText;
-			$this->loadedFromBattleNet = TRUE;
+			$this->requestSuccessful = TRUE;
 		}
 		return $this;
 	}
@@ -144,7 +144,7 @@ class BattleNet_Hero extends BattleNet_Model
 			{
 				$this->items = $hero[ 'items' ];
 				$this->characterClass = $hero[ 'class' ];
-				if ( $this->loadedFromBattleNet )
+				if ( $this->requestSuccessful )
 				{
 					$this->save();
 				}

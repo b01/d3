@@ -7,8 +7,8 @@
 		<link rel="stylesheet" type="text/css" href="/css/profile.css" />
 	</head>
 	<body>
-		<div class="section time-elapsed">{{ sessionTimeLeft(timeLeft) }}</div>
-		{% if isArray(heroes) %}
+		<div class="section time-elapsed">{{ sessionTimeLeft }}</div>
+		{% if func('isArray', heroes) %}
 		<div class="heroes">
 			{% for key, hero in heroes %}
 			<a href="{{ heroUrl }}{{ hero.id }}" class="inline-block profile {{ hero.class }} gender-{{ hero.gender }}">

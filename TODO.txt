@@ -34,3 +34,5 @@
   - otherwise default back to the hight level completed.
 - Item suggestions, determined by probing player characters for the best items, then suggesting those items to other
 	players with similar hero builds (give credit to the hero it was taken from).
+
+- isBattleNetId method on Tool, use regular expression.

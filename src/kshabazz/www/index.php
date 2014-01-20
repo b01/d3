@@ -6,7 +6,7 @@
 		<link rel="stylesheet" type="text/css" href="/css/site.css" />
 	</head>
 	<body>
-		<form id="battlenet-get-profile" action="/get-profile.php" method="post">
+		<form id="battlenet-get-profile" action="/get-profile.php" method="get">
 			<fieldset>
 				<div class="field">
 					<label class="label">Enter your Battle.Net ID</label>

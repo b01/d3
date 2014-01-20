@@ -13,22 +13,22 @@ abstract class BattleNet_Model
 {
 	protected
 		$dqi,
-		$forceLoadFromBattleNet,
 		$json,
 		$key,
-		$loadedFromBattleNet,
+		$loadFromDb,
+		$requestSuccessful,
 		$sql;
 
 	/**
 	* Constructor
 	*/
-	public function __construct( $pKey, BattleNet_Requestor $pDqi, Sql $pSql, $pForceLoadFromBattleNet )
+	public function __construct( $pKey, BattleNet_Requestor $pDqi, Sql $pSql, $pLoadFromCache = TRUE )
 	{
 		$this->dqi = $pDqi;
-		$this->forceLoadFromBattleNet = $pForceLoadFromBattleNet;
 		$this->json = NULL;
 		$this->key = $pKey;
-		$this->loadedFromBattleNet = FALSE;
+		$this->requestSuccessful = FALSE;
+		$this->loadFromDb = $pLoadFromCache;
 		$this->sql = $pSql;
 
 		$this->pullJson()

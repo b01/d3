@@ -15,7 +15,7 @@ class BattleNet_Requestor extends HttpRequestor
 	 */
 	public function __construct( $pBattleNetId = NULL )
 	{
-		parent::__construct( '' );
+		parent::__construct( NULL );
 		$this->battleNetId = $pBattleNetId;
 		$this->battleNetUrlSafeId = str_replace( '#', '-', $this->battleNetId );
 	}
@@ -28,7 +28,6 @@ class BattleNet_Requestor extends HttpRequestor
 		unset(
 			$this->battleNetId,
 			$this->battleNetUrlSafeId,
-			$this->requestInfo,
 			$this->url
 		);
 	}

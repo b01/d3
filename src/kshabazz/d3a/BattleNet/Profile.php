@@ -15,18 +15,20 @@ class BattleNet_Profile extends BattleNet_Model
 	protected
 		$battleNetId,
 		$column,
+		$heroes,
 		$profile,
-		$sql;
+		$sql,
+		$url;
 
 
 	/**
 	* Constructor
 	*/
-	public function __construct( $pBattleNetId, BattleNet_Requestor $pDqi, BattleNet_Sql $pSql, $pForceLoadFromBattleNet )
+	public function __construct( $pBattleNetId, BattleNet_Requestor $pDqi, BattleNet_Sql $pSql, $pLoadFromCache )
 	{
 		$this->column = "battle_net_id";
 		$this->profile = NULL;
-		parent::__construct( $pBattleNetId, $pDqi, $pSql, $pForceLoadFromBattleNet );
+		parent::__construct( $pBattleNetId, $pDqi, $pSql, $pLoadFromCache );
 	}
 
 	/**
@@ -39,9 +41,10 @@ class BattleNet_Profile extends BattleNet_Model
 			$this->column,
 			$this->dqi,
 			$this->json,
-			$this->loadedFromBattleNet,
+			$this->loadFromDb,
 			$this->profile,
-			$this->sql
+			$this->sql,
+			$this->url
 		);
 	}
 
@@ -68,12 +71,12 @@ class BattleNet_Profile extends BattleNet_Model
 	*/
 	protected function pullJson()
 	{
-		if ( !$this->forceLoadFromBattleNet )
+		if ( $this->loadFromDb )
 		{
 			// Attempt to get it from the local DB.
 			$this->pullJsonFromDb();
 		}
-		// If that fails, then try to get it from Battle.net.
+		// If that fails, or not using cache, then try to get it from Battle.net.
 		if ( gettype($this->json) !== "string" )
 		{
 			$this->pullJsonFromBattleNet();
@@ -82,24 +85,20 @@ class BattleNet_Profile extends BattleNet_Model
 	}
 
 	/**
-	* Example:
-	* url ::= <host> "/api/d3/data/item/" <item-data>
-	* GET /api/d3/data/item/COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD
-	* Note: Leave off the trailing '/' when setting
-	*	/api/d3/profile/<battleNetIdName>-<battleNetIdNumber>
-	*/
+	 * 	Request the profile from BattleNet.
+	 *
+	 * @return $this|Hero
+	 */
 	protected function pullJsonFromBattleNet()
 	{
-		// Request the item from BattleNet.
 		$responseText = $this->dqi->getProfile( $this->key );
-		$responseCode = $this->dqi->responseCode();
-		$this->url = $this->dqi->getUrl();
+		$this->requestSuccessful = ( $this->dqi->responseCode() === 200 );
+		$url = $this->dqi->url();
 		// Log the request.
-		$this->sql->addRequest( $this->dqi->battleNetId(), $this->url );
-		if ( $responseCode === 200 )
+		$this->sql->addRequest( $this->dqi->battleNetId(), $url );
+		if ( $this->requestSuccessful )
 		{
 			$this->json = $responseText;
-			$this->loadedFromBattleNet = TRUE;
 			$this->save();
 		}
 		return $this;
