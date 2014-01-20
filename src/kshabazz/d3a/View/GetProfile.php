@@ -4,7 +4,7 @@
  */
 
 use kshabazz\d3a\BattleNet_Profile;
-use function kshabazz\d3a\getSessionExpireInfo, kshabazz\d3a\displaySessionTimer;
+use function kshabazz\d3a\displaySessionTimer, kshabazz\d3a\getSessionExpireInfo, kshabazz\d3a\isBattleNetId;
 
 /**
  * Class vGetProfile
@@ -23,8 +23,7 @@ class GetProfile
 		$heroUrl,
 		$loadFromDb,
 		$profile,
-		$sessionCacheInfo,
-		$superss;
+		$sessionCacheInfo;
 
 	/**
 	 * Constructor
@@ -35,11 +34,9 @@ class GetProfile
 	{
 		$this->dqi = $pModels[ 'dqi' ];
 		$this->sql = $pModels[ 'sql' ];
-		$this->supers = $pModels[ 'supers' ];
 		$this->battleNetId = $pModels[ 'battleNetId' ];
 		$this->heroes = NULL;
 		$this->clearCache = $pModels[ 'clearCache' ];
-		$this->profile = $pModels[ 'profile' ];
 
 		$this->load();
 	}
@@ -54,12 +51,18 @@ class GetProfile
 		$this->battleNetUrlSafeId = \str_replace( '#', '-', $this->battleNetId );
 		$this->heroUrl = sprintf( self::HERO_URL, $this->battleNetUrlSafeId );
 
-		if ( isString($this->battleNetId) )
+		$this->sessionCacheInfo = getSessionExpireInfo(
+			'profile-' . $this->battleNetUrlSafeId,
+			$this->clearCache
+		);
+		$this->profile = new BattleNet_Profile(
+			$this->battleNetId,
+			$this->dqi,
+			$this->sql,
+			$this->sessionCacheInfo[ 'loadFromBattleNet' ]
+		);
+		if ( isBattleNetId($this->battleNetId) )
 		{
-			$this->sessionCacheInfo = getSessionExpireInfo(
-				'profile-' . $this->battleNetUrlSafeId,
-				$this->clearCache
-			);
 			$this->heroes = $this->profile->heroes();
 		}
 		return TRUE;

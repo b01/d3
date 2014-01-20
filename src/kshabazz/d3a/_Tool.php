@@ -222,6 +222,11 @@ use \Kshabazz\Slib;
 		return $returnValue;
 	}
 
+	function isBattleNetId( $pBattleNetId )
+	{
+		return preg_match( '/^[a-zA-Z1-9]+\#[0-9]+$/', $pBattleNetId );
+	}
+
 	/**
 	 * Check if an item is a type of weapon.
 	 *

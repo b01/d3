@@ -1,3 +1,7 @@
+List of changes since 01/20/2014 01:18 AM
+-------------------------------
+ - isBattleNetId method on Tool, use regular expression.
+
 List of changes since 01/20/2014 08:02 AM
 -------------------------------
  - Added added some clarity to abstract Page class methods load and preRender.

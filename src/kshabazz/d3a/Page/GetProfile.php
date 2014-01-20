@@ -11,7 +11,6 @@
 
 use kshabazz\d3a\Abstracts\aPage;
 use \kshabazz\d3a\Application;
-use \kshabazz\d3a\BattleNet_Profile;
 use \kshabazz\d3a\BattleNet_Requestor;
 use \kshabazz\d3a\BattleNet_Sql;
 
@@ -26,7 +25,6 @@ class GetProfile extends aPage
 		$clearCache,
 		$dqi,
 		$loadFromDb,
-		$profile,
 		$sql,
 		$supers,
 		$view;
@@ -42,6 +40,7 @@ class GetProfile extends aPage
 		$this->sql = NULL;
 		$this->battleNetId = $this->supers->getParam( 'battleNetId', NULL, 'string', 'GET' );
 		$this->clearCache = $this->supers->getParam( 'clearCache', FALSE, 'bool', 'GET' );
+
 		$this->load();
 	}
 
@@ -49,17 +48,10 @@ class GetProfile extends aPage
 	{
 		$this->dqi = new BattleNet_Requestor( $this->battleNetId );
 		$this->sql = new BattleNet_Sql( \kshabazz\d3a\USER_IP_ADDRESS );
-		$this->profile = new BattleNet_Profile(
-			$this->battleNetId,
-			$this->dqi,
-			$this->sql,
-			!$this->clearCache
-		);
 		$this->view = new \kshabazz\d3a\View\GetProfile([
 			'battleNetId' => $this->battleNetId,
 			'clearCache' => $this->clearCache,
 			'dqi' => $this->dqi,
-			'profile' => $this->profile,
 			'sql' => $this->sql,
 			'supers' => $this->supers,
 		]);
