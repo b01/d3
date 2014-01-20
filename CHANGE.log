@@ -1,3 +1,9 @@
+List of changes since 01/20/2014 07:07 AM
+-------------------------------
+ - Refactored all code from loader script back to d3a script.
+ - Deleted loader script.
+ - Refactored Index page and model.
+
 List of changes since 01/19/2014 06:08 PM
 -------------------------------
  - Code refactoring for Hero, GetHero, and Calculator classes.
