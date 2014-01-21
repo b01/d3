@@ -9,6 +9,7 @@
  * @package kshabazz\d3a\Controller
  * @copyright (c) 2012-2013 Khalifah K. Shabazz
  */
+
 use \Kshabazz\Slib;
 
 	/**
@@ -230,13 +231,13 @@ use \Kshabazz\Slib;
 	/**
 	 * Check if an item is a type of weapon.
 	 *
-	 * @param Item $pItem to be checked.
+	 * @param \kshabazz\d3a\Model\Item $pItem to be checked.
 	 * @return bool
 	 */
-	function isWeapon( Item $pItem )
+	function isWeapon( \kshabazz\d3a\Model\Item $pItem )
 	{
 		$itemType = strtolower( $pItem->type['id'] );
-		return in_array( $itemType, Item::$oneHandWeaponTypes );
+		return in_array( $itemType, \kshabazz\d3a\Model\Item::$oneHandWeaponTypes );
 	}
 
 	/**

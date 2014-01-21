@@ -1,4 +1,4 @@
-<?php namespace kshabazz\test;
+<?php namespace kshabazz\d3a\test;
 /**
  * Created by PhpStorm.
  * User: Khalifah
@@ -52,7 +52,7 @@ class CalculatorTest extends \PHPUnit_Framework_TestCase
 		];
 		foreach ( $itemJsons as $slot => $itemJson )
 		{
-			$this->itemModels[ $slot ] = new Item( $itemJson );
+			$this->itemModels[ $slot ] = new \kshabazz\d3a\Model\Item( $itemJson );
 		}
 	}
 

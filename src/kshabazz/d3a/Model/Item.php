@@ -1,16 +1,17 @@
-<?php namespace kshabazz\d3a;
+<?php namespace kshabazz\d3a\Model;
 /**
-* Get the users item from Battle.Net and present it to the user; store it locally in a database
-* behind the scenes. The item will only be updated after a few ours of retrieving it.
-*
-*/
+ * Get the users item from Battle.Net and present it to the user; store it locally in a database
+ * behind the scenes. The item will only be updated after a few ours of retrieving it.
+ *
+ */
+
+use kshabazz\d3a\Model;
+use function \kshabazz\d3a\isWeapon;
 
 /**
-* var $p_itemHash string User BattleNet ID.
-* var $pDqi object Data Query Interface.
-* var $pSql object SQL.
-* var $p_userIp string User IP address.
-*/
+ * Class Item
+ * @package kshabazz\d3a\Model
+ */
 class Item extends Model
 {
 	public static $offHandTypes = [

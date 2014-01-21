@@ -19,8 +19,14 @@ class BattleNet_Item extends BattleNet_Model
 		$info;
 
 	/**
-	* Constructor
-	*/
+	 * Constructor
+	 *
+	 * @param string $pHash
+	 * @param string $pColumn
+	 * @param BattleNet_Requestor $pDqi
+	 * @param BattleNet_Sql $pSql
+	 * @param bool $force
+	 */
 	public function __construct( $pHash, $pColumn, BattleNet_Requestor $pDqi, BattleNet_Sql $pSql, $force = FALSE )
 	{
 		$this->column = $pColumn;

@@ -13,7 +13,7 @@ use \kshabazz\d3a\Application;
 use \kshabazz\d3a\Abstracts\aPage;
 use \kshabazz\d3a\BattleNet_Item;
 use \kshabazz\d3a\Calculator;
-use \kshabazz\d3a\Item;
+use \kshabazz\d3a\Model\Item;
 use \kshabazz\d3a\View\Hero;
 
 /**
@@ -124,9 +124,10 @@ class GetHero extends aPage
 	public function getView()
 	{
 		return new Hero([
+			'battleNetUrlSafeId' => $this->bnr->battleNetUrlSafeId(),
+			'calculator' => $this->calculator,
 			'hero' => $this->hero,
-			'items' => $this->itemModels,
-			'calculator' => $this->calculator
+			'items' => $this->itemModels
 		]);
 	}
 }

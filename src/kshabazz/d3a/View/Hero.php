@@ -28,6 +28,7 @@ class Hero
 		$this->calculator = $pModels[ 'calculator' ];
 		$this->hero = $pModels[ 'hero' ];
 		$this->items = $pModels[ 'items' ];
+		$this->battleNetUrlSafeId = $pModels[ 'battleNetUrlSafeId' ];
 	}
 
 	/**
@@ -38,6 +39,7 @@ class Hero
 	{
 		$this->hardcore = ( $this->hero->hardcore() ) ? 'Hardcore' : '';
 		$data = [
+			'battleNetUrlSafeId' => $this->battleNetUrlSafeId,
 			'calculator' => $this->calculator,
 			'hero' => $this->hero,
 			'items' => $this->items,

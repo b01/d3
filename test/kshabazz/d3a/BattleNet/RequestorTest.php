@@ -75,7 +75,7 @@ class BattleNet_RequestorTest extends \PHPUnit_Framework_TestCase
 	{
 		$bnr = new \kshabazz\d3a\BattleNet_Requestor( $this->battleNetId );
 		$itemJson = $bnr->getItem( 'COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD' );
-		$item = new \kshabazz\d3a\Item( $itemJson );
+		$item = new \kshabazz\d3a\Model\Item( $itemJson );
 		$this->assertEquals( 'MightyWeapon1H_202', $item->id, 'Invalid item returned.' );
 	}
 

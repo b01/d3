@@ -30,7 +30,8 @@
 			<!-- START ITEMS MODULE -->
 			<div class="hero">
 				{% for key, item in items %}
-				<a class="item-slot {{ key }}{{ func('\\kshabazz\\d3a\\translateSlotName', key) }}" href="/get-item.php?battleNetId={{ battleNetUrlSafeId }}&itemHash={{ item.hash }}&extra=0&showClose=1" data-slot="{{ key }}">
+				<a class="item-slot {{ key }}{{ func('\\kshabazz\\d3a\\translateSlotName', key) }}" href="/item.php?battleNetId={{ battleNetUrlSafeId }}&hash={{ item.hash }}" data-slot="{{ key }}">
+				{# <a class="item-slot {{ key }}{{ func('\\kshabazz\\d3a\\translateSlotName', key) }}" href="/get-item.php?battleNetId={{ battleNetUrlSafeId }}&itemHash={{ item.hash }}&extra=0&showClose=1" data-slot="{{ key }}"> #}
 					<div class="icon {{ item.displayColor }} inline-block top" data-hash="{{ item.hash }}" data-type="{{ func('\\kshabazz\\d3a\\getItemSlot', key) }}">
 						<img class="gradient" src="/media/images/icons/items/large/{{ item.icon }}.png" alt="{{ key }}" />
 						<!-- include 'templates/gems.php' -->
