@@ -1,4 +1,6 @@
 <?php namespace kshabazz\d3a\test\View;
+use kshabazz\d3a\BattleNet_Requestor;
+use kshabazz\d3a\BattleNet_Sql;
 use kshabazz\d3a\SuperGlobals;
 
 /**
@@ -12,25 +14,26 @@ class GetProfileTest extends \PHPUnit_Framework_TestCase
 {
 	private
 		$battleNetId,
-		$dqi,
-		$sql,
+		$bnr,
+		$bnSql,
 		$supers;
 
 	public function setUp()
 	{
 		$this->battleNetId = 'msuBREAKER#1374';
-		$this->dqi = new BattleNet_Requestor( $this->battleNetId );
-		$this->sql = new BattleNet_Sql( \kshabazz\d3a\USER_IP_ADDRESS );
+		$this->bnr = new BattleNet_Requestor( $this->battleNetId );
+		$this->bnSql = new BattleNet_Sql( \kshabazz\d3a\USER_IP_ADDRESS );
 		$this->supers = new SuperGlobals();
+		$_SESSION = [];
 	}
 
 	public function test_initialization()
 	{
 		$view = new \kshabazz\d3a\View\GetProfile([
 			'battleNetId' => $this->battleNetId,
-			'clearCache' => $this->clearCache,
-			'dqi' => $this->dqi,
-			'sql' => $this->sql,
+			'clearCache' => TRUE,
+			'dqi' => $this->bnr,
+			'sql' => $this->bnSql,
 			'supers' => $this->supers,
 		]);
 

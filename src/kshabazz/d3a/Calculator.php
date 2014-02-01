@@ -39,12 +39,16 @@ class Calculator
 		$gems,
 		$hero,
 		$increasedAttackSpeed,
+		$itemDamage,
+		$itemDamageData,
 		$items,
-		$maxDamage,
-		$minDamage,
-		$primaryAttribute,
+		$totalMaxDamage,
+		$totalMinDamage,
 		$primaryAttributeDamage,
-		$baseWeaponDamage,
+		$primaryAttributeDamageData,
+		$primaryAttributeTotal,
+		$primaryAttributeTotalData,
+		$scramData,
 		$weaponAttacksPerSecond;
 
 	/**
@@ -65,14 +69,16 @@ class Calculator
 		$this->dualWield = FALSE;
 		$this->gems = [];
 		$this->increasedAttackSpeed = 0.0;
-		$this->maxDamage = 0.0;
-		$this->minDamage = 0.0;
-		$this->primaryAttribute = NULL;
-		$this->primaryAttributeDamage = 0.0;
+		$this->itemDamage = 0.0;
+		$this->itemDamageData = [];
+		$this->totalMaxDamage = 0.0;
+		$this->totalMinDamage = 0.0;
+		$this->primaryAttributeTotal = 0.0;
+		$this->primaryAttributeTotalData = [];
+		$this->scramData = [];
 		$this->weaponAttacksPerSecond = 0.0;
 
 		$this->attackSpeed = 0.0;
-		$this->baseWeaponDamage = 0.0;
 		$this->criticalDamage = 0.0;
 		$this->damagePerSecond = 0.0;
 		$this->increasedAttackSpeed = 0.0;
@@ -172,24 +178,6 @@ class Calculator
 	}
 
 	/**
-	 * Primary attribute.
-	 * @return float
-	 */
-	public function baseWeaponDamage()
-	{
-		return $this->baseWeaponDamage;
-	}
-
-	/**
-	 * Primary attribute.
-	 * @return float
-	 */
-	public function baseWeaponDamageData()
-	{
-		return $this->baseWeaponDamageData;
-	}
-
-	/**
 	* Attack speed, or Attacks per Second (APS) simply means how often your character can use its skills. Taken from
 	* tool-tip.
 	*
@@ -197,16 +185,17 @@ class Calculator
 	*/
 	protected function computeAttacksPerSecond()
 	{
+		$attackSpeed = 0.0;
 		// Set some properties for easy access.
 		if ( array_key_exists("Attacks_Per_Second_Item_Percent", $this->attributeTotals) )
 		{
-			$this->attackSpeed = $this->attributeTotals[ 'Attacks_Per_Second_Item_Percent' ];
+			$attackSpeed = $this->attributeTotals[ 'Attacks_Per_Second_Item_Percent' ];
 			$this->attackSpeedData = $this->attributeSlots[ 'Attacks_Per_Second_Item_Percent' ];
 		}
 		// Attack speed continued.
 		if ( array_key_exists("Attacks_Per_Second_Percent", $this->attributeTotals) )
 		{
-			$this->attackSpeed += $this->attributeTotals[ 'Attacks_Per_Second_Percent' ];
+			$attackSpeed += $this->attributeTotals[ 'Attacks_Per_Second_Percent' ];
 			$this->attackSpeedData = array_merge(
 				$this->attackSpeedData,
 				$this->attributeSlots[ 'Attacks_Per_Second_Percent' ]
@@ -215,36 +204,16 @@ class Calculator
 		// Attack speed continued.
 		if ( array_key_exists("Attacks_Per_Second_Item", $this->attributeTotals) )
 		{
-			$this->attackSpeed += $this->attributeTotals[ 'Attacks_Per_Second_Item' ];
+			$attackSpeed += $this->attributeTotals[ 'Attacks_Per_Second_Item' ];
 			$this->attackSpeedData = array_merge(
 				$this->attackSpeedData,
 				$this->attributeSlots[ 'Attacks_Per_Second_Item' ]
 			);
 		}
+
+		$this->attackSpeed = round( $attackSpeed, 2 );
+
 		$this->debug[ 'attack per second' ] = $this->attackSpeed;
-		return $this;
-	}
-
-	/**
-	* Attack speed, or Attacks per Second (APS) simply means how often your character can use its skills. Taken from
-	* tool-tip.
-	*
-	* @return Calculator
-	*/
-	protected function computeAttackSpeed()
-	{
-		$dualWieldBonus = 0.0;
-		$this->mainHandAps = ( float ) $this->items[ 'mainHand' ]->attacksPerSecond[ 'min' ];
-
-		if ( $this->dualWield )
-		{
-			$this->offHandAps = ( float ) $this->items[ 'offHand' ]->attacksPerSecond[ 'min' ];
-			$dualWieldBonus = self::APS_DUAL_WIELD_BONUS;
-		}
-
-		$this->attackSpeed = $this->weaponAttacksPerSecond * ( 1 + $dualWieldBonus + $this->increasedAttackSpeed );
-
-		$this->debug[ 'attack speed ' ] = $this->attackSpeed;
 		return $this;
 	}
 
@@ -259,49 +228,21 @@ class Calculator
 	{
 		foreach ( $this->items as $name => $item )
 		{
-			if ($name === 'rightFinger')
-			{
-			}
 			$this->tallyItemDamage( $name, $item );
 		}
 
+		$this->averageDamage = ( $this->totalMinDamage + $this->totalMaxDamage ) / 2;
+		$this->debug[ 'totalMinDamage' ] = $this->totalMinDamage;
+		$this->debug[ 'totalMaxDamage' ] = $this->totalMaxDamage;
+
 		return $this;
 	}
 
 	/**
-	 * Base Weapon Damage
+	 * Critical Hit Chance
 	 *
-	 * Base weapon damage refers to just the damage on a weapon item's tooltip This calculation is take from:
-	 * http://eu.battle.net/d3/en/forum/topic/4903361857
-	 *
-	 * @return Calculation Chainable.
+	 * @return Calculator
 	 */
-	protected function computeBaseWeaponDamage()
-	{
-		// DPS Value of weapon (as shown on tooltip) / weapon attack spead : this is your BASE weapon damage.
-		if ( is_object($this->items['mainHand']) )
-		{
-			$this->mainHandDps = ( float ) $this->items[ 'mainHand' ]->dps[ 'min' ];
-			$this->baseWeaponDamageData[ 'mainHand' ] = $this->mainHandDps;
-			$this->baseWeaponDamage = $this->mainHandDps;
-		}
-		// Dual Wield.
-		if ( $this->dualWield )
-		{
-			$this->offHandDps = ( float ) $this->items[ 'offHand' ]->dps[ 'min' ];
-			$this->baseWeaponDamageData[ 'mainHand' ] = $this->offHandDps;
-			$this->debug .= "<div>off-hand dps = {$this->offHandDps}</div>";
-		}
-
-		$this->debug[ 'base weapon damage ' ] = $this->baseWeaponDamage;
-		return $this;
-	}
-
-	/**
-	* Critical Hit Chance
-	*
-	* @return Calculator
-	*/
 	protected function computeCriticalHitChance()
 	{
 		if ( array_key_exists("Crit_Percent_Bonus_Capped", $this->attributeTotals) )
@@ -330,29 +271,6 @@ class Calculator
 		}
 
 		$this->debug[ 'critical damage' ] = $this->criticalHitDamage;
-		return $this;
-	}
-
-	/**
-	 * Damage Per Second
-	 *
-	 * Calculation taken from: http://eu.battle.net/d3/en/forum/topic/4903361857
-	 *
-	 * @return Calculator
-	 */
-	protected function computeDamagePerSecond()
-	{
-		// x CRIT x Primary Skill x Primary Stat = your total dps
-		// Weapon Damage X Attac Speed
-		$this->damagePerSecond = $this->weaponDamage * $this->attackSpeed;
-		$this->damagePerSecondData = [
-			'attackSpeed' => $this->attackSpeed,
-			'baseWeaponDamage' => $this->baseWeaponDamage,
-			'primaryAttributeDamage' => $this->primaryAttributeDamage,
-			'weaponDamage' => $this->weaponDamage
-		];
-
-		$this->debug[ 'damage_per_second' ] = $this->damagePerSecond;
 		return $this;
 	}
 
@@ -393,22 +311,27 @@ class Calculator
 	 *
 	 * @return Calculator
 	 */
-	protected function computePrimaryAttributeDamage()
+	protected function computePrimaryAttributeTotal()
 	{
-		if ( array_key_exists($this->primaryAttribute, $this->attributeTotals) )
+		$primaryAttribute = $this->hero->primaryAttribute();
+		if ($primaryAttribute === 'Dexterity_Item' )
 		{
-			$attributeFound = array_key_exists( $this->primaryAttribute, $this->hero->noItemsStats() );
-			if ( $attributeFound )
-			{
-				$attributeValue = $this->hero->noItemsStats()[ $this->primaryAttribute ][ 'value' ];
-				$this->attributeTotals[ $this->primaryAttribute ] += $attributeValue;
-			}
-			$this->primaryAttributeDamage = $this->attributeTotals[ $this->primaryAttribute ];
-			$this->primaryAttributeDamageData = $this->attributeSlots[ $this->primaryAttribute ];
-			$this->primaryAttributeDamageData[ 'levelBonus' ] = $attributeValue;
+			$this->primaryAttributeTotal += $this->hero->dexterity();
+			$this->primaryAttributeTotalData[ 'levelBonus' ] = $this->hero->dexterity();
 		}
+		if ($primaryAttribute === 'Intelligence_Item' )
+		{
+			$this->primaryAttributeTotal += $this->hero->intelligence();
+			$this->primaryAttributeTotalData[ 'levelBonus' ] = $this->hero->intelligence();
+		}
+		if ($primaryAttribute === 'Strength_Item' )
+		{
+			$this->primaryAttributeTotal += $this->hero->strength();
+			$this->primaryAttributeTotalData[ 'levelBonus' ] = $this->hero->strength();
+		}
+		$this->primaryAttributeTotal += $this->attributeTotals[ $primaryAttribute ];
+		$this->primaryAttributeTotalData = $this->attributeSlots[ $primaryAttribute ];
 
-		$this->debug[ 'primary attribute damage ' ] = $this->primaryAttributeDamage;
 		return $this;
 	}
 
@@ -422,51 +345,6 @@ class Calculator
 		$this->skillDamage = 1;
 
 		$this->debug[ 'skill damage ' ] = $this->skillDamage;
-		return $this;
-	}
-
-	/**
-	 * Time Between Attacks
-	 *
-	 * Simply divide the Attack Speed by 1.
-	 *
-	 * @return Calculator
-	 */
-	protected function computeTimeBetweenAttacks()
-	{
-		$this->timeBetweenAttacks = ( $this->attackSpeed > 0.0 ) ? 1 / $this->attackSpeed : 0;
-		return $this;
-	}
-
-	/**
-	 * Weapon Attacks Per Second
-	 *
-	 * ???
-	 *
-	 * @return Calculator
-	 */
-	protected function computeWeaponAttacksPerSecond()
-	{
-		$this->weaponAttacksPerSecond = ( float ) $this->items[ 'mainHand' ]->attacksPerSecond[ 'min' ];
-
-		$this->debug[ 'weapon attacks per second ' ] = $this->weaponAttacksPerSecond;
-		return $this;
-	}
-
-	/*
-	* Weapon Damage
-	*
-	*
-	*
-	* @return Calculator
-	*/
-	protected function computeWeaponDamage()
-	{
-		$this->weaponDamage = $this->baseWeaponDamage
-			* $this->skillDamage
-			* ( 1 + $this->primaryAttributeDamage / 100 );
-
-		$this->debug[ 'weapon damage' ] = $this->weaponDamage;
 		return $this;
 	}
 
@@ -533,43 +411,11 @@ class Calculator
 	}
 
 	/**
-	 * Damage Per Second
-	 * This calculation is take from:http://eu.battle.net/d3/en/forum/topic/4903361857
-	 * 	dual wield dps = 1.15 * (main-hand damage + off-hand damage) /
-	 *		( (1 / main-hand attacks per second) + (1 / off-hand attacks per second))
-	 *
-	 * @return $this
-	 */
-	protected function dpsOld()
-	{
-		// BASE X SPEED x CRIT x SKILL x CARAC = your total dps
-
-		$first_damage_bonus = 0;
-		$second_other_damage_bonus_etc = 0;
-
-		$monster_vulnerability_bonuses = 0;
-
-		$weapon_damage = $base_weapon_damage * $skill_damage
-			* ( 1 + $primary_stat / 100 )
-			* ( 1 + $first_damage_bonus )
-			* ( 1 + $second_other_damage_bonus_etc );
-
-		$total_damage_per_hit = $base_weapon_damage * $skill_damage
-			* ( 1 + $primary_stat / 100 )
-			* ( 1 + $first_damage_bonus )
-			* ( 1 + $second_other_damage_bonus_etc )
-			* ( 1 + $monster_vulnerability_bonuses );
-		return $this;
-	}
-
-	/**
 	 * Initialize this object.
 	 */
 	protected function init()
 	{
 		$this->processRawAttributes();
-
-		$this->primaryAttribute = $this->hero->primaryAttribute();
 
 		if ( isset($this->items['mainHand']) )
 		{
@@ -580,42 +426,44 @@ class Calculator
 			->computeAttacksPerSecond()
 			->computeCriticalHitChance()
 			->computeCriticalDamage()
-			->computePrimaryAttributeDamage()
-			->computeWeaponAttacksPerSecond()
+			->computePrimaryAttributeTotal()
 			->computeIncreasedAttackSpeed()
-			->computeAttackSpeed() // Requires Increased attack speed.
-			->computeTimeBetweenAttacks()
-			->computeBaseWeaponDamage() // Requires attack speed to be computed.
-			->computeSkillDamage()
-			->computeWeaponDamage() // Requires skill damage and primary attribute damage.
-			->computeDamagePerSecond(); // Requires just about everything.
+			->computeSkillDamage();
 	}
 
 	/**
-	 * Get the heroes' primary attribute.
-	 * @return string
+	 * @return int
 	 */
-	public function primaryAttribute()
+	public function itemDamage()
 	{
-		return $this->primaryAttribute;
+		return $this->itemDamage;
 	}
 
 	/**
-	 * Primary attribute damage percent.
+	 * List of items that contribute to damage.
+	 * @return int
+	 */
+	public function itemDamageData()
+	{
+		return $this->itemDamageData;
+	}
+
+	/**
+	 * Primary attribute is the sum of all items, with that attribute, and the level bonus.
 	 * @return float
 	 */
-	public function primaryAttributeDamage()
+	public function primaryAttributeTotal()
 	{
-		return $this->primaryAttributeDamage;
+		return $this->primaryAttributeTotal;
 	}
 
 	/**
-	 * Primary attribute damage data.
-	 * @return float
+	 * List of items that compose the primary attribute total
+	 * @return array
 	 */
-	public function primaryAttributeDamageData()
+	public function primaryAttributeTotalData()
 	{
-		return $this->primaryAttributeDamageData;
+		return $this->primaryAttributeTotalData;
 	}
 
 	/**
@@ -647,6 +495,41 @@ class Calculator
 		}
 	}
 
+
+	/**
+	 * Calculate Damage using SCRAM.
+	 * @return float
+	 */
+	public function scram()
+	{
+		$s = ( $this->primaryAttributeTotal * 0.01 ) + 1;
+		$this->scramData[ 'S = ' . $this->hero->primaryAttribute() ] = $this->primaryAttributeTotal;
+
+		$c = ( $this->criticalHitChance * $this->criticalHitDamage ) + 1;
+		$this->scramData[ 'C = (criticalHitChance * criticalHitDamage) + 1' ] = $c;
+
+		$r = $this->attackSpeed;
+		$this->scramData[ 'R = attackSpeed' ] = $this->attackSpeed;
+
+		$a = ( $this->totalMinDamage + $this->totalMaxDamage ) / 2;
+		$this->scramData[ 'A = (totalMinDamage + totalMaxDamage) / 2' ] = $a;
+
+
+		$m = 1; //$this->skillDamageBonus;
+		$this->scramData[ 'M = skillModifiers' ] = $m;
+
+		return $s * $c * $r * $a * $m;
+	}
+
+	/**
+	 * Parts used to calculate SCRAM.
+	 * @return mixed
+	 */
+	public function scramData()
+	{
+		return $this->scramData;
+	}
+
 	/**
 	 *  Set hero whom stats to calculate.
 	 *
@@ -658,6 +541,7 @@ class Calculator
 	{
 		$this->__destruct();
 		$this->hero = $pHero;
+
 		$this->items = $pItems;
 		$this->__construct();
 		$this->init();
@@ -685,19 +569,9 @@ class Calculator
 			}
 			// Sum it up.
 			$this->attributeTotals[ $attribute ] += $value;
-			// A break-down of an attribute's total. An item can have multiple types of the same attribute
+			// A break-down of an attributes total. An item can have multiple types of the same attribute
 			// use a combination of the slot and attribute name to keep them from replacing the previous value.
 			$this->attributeSlots[ $attribute ][ $pSlot . '_' . $attribute ] = $value;
-
-//			 if ( $pSlot === 'mainHand' || $pSlot === 'rightFinger' )
-//			 {
-//				 $this->debug[ $pSlot . $attribute ] = $value;
-//			 }
-//			 if ( $attribute === 'Attacks_Per_Second_Item' || $attribute === 'Attacks_Per_Second_Item_Percent' )
-//			 {
-//				 $this->debug[ $pSlot . $attribute ] = $value;
-//				 $this->debug[ 'totals_' . $attribute ]  = $this->attributeTotals[ $attribute ];
-//			 }
 		}
 		return $this;
 	}
@@ -716,72 +590,67 @@ class Calculator
 		$maxDamage = 0.0;
 		$keys = '';
 		// Minimum sum
-		if ( isset($item->minDamage) )
+		if ( isset($item->damage) && is_array($item->damage) )
 		{
-			$minDamage += $item->minDamage[ 'min' ];
-		}
-		// Maximum sum
-		if ( isset($item->maxDamage) )
-		{
-			$maxDamage += $item->maxDamage[ 'min' ];
+			$minDamage += $item->damage[ 'min' ];
+			$maxDamage += $item->damage[ 'max' ];
 		}
 
-		if ( isset($item->attributesRaw) )
-		{
-			foreach ( $item->attributesRaw as $key => $value )
-			{
-				if ( strpos($key, "Damage_") > -1 )
-				{
-					$this->debug[ $key ] = $value['min'];
-					if ( strpos($key, "_Reduction") )
-					{
-					}
-					else if ( strpos($key, "_Percent") )
-					{
-						// $minDamage += $value[ 'min' ];
-					}
-					else if ( strpos($key, "_Min#") )
-					{
-						$minDamage += $value[ 'min' ];
-					}
-					else
-					{
-						$maxDamage += $value[ 'min' ];
-					}
-
-					$keys .= $key . ',';
-				}
-			}
-		}
-
-		if ( isset($item->gems) )
-		{
-			foreach ( $item->gems as $key => $gem )
-			{
-				foreach ( $gem['attributesRaw'] as $key => $value )
-				{
-					if ( strpos($key, "Damage_") > -1 )
-					{
-						if ( strpos($key, "_Min#") )
-						{
-							$minDamage += $value[ 'min' ];
-						}
-						else
-						{
-							$maxDamage += $value[ 'min' ];
-						}
-					}
-				}
-			}
-		}
+//		if ( isset($item->attributesRaw) )
+//		{
+//			foreach ( $item->attributesRaw as $key => $value )
+//			{
+//				if ( strpos($key, "Damage_") > -1 )
+//				{
+//					$this->debug[ $key ] = $value['min'];
+//					if ( strpos($key, "_Reduction") )
+//					{
+//					}
+//					else if ( strpos($key, "_Percent") )
+//					{
+//						// $minDamage += $value[ 'min' ];
+//					}
+//					else if ( strpos($key, "_Min#") )
+//					{
+//						$minDamage += $value[ 'min' ];
+//					}
+//					else
+//					{
+//						$maxDamage += $value[ 'min' ];
+//					}
+//
+//					$keys .= $key . ',';
+//				}
+//			}
+//		}
+//
+//		if ( isset($item->gems) )
+//		{
+//			foreach ( $item->gems as $gem )
+//			{
+//				foreach ( $gem['attributesRaw'] as $key => $value )
+//				{
+//					if ( strpos($key, "Damage_") > -1 )
+//					{
+//						if ( strpos($key, "_Min#") )
+//						{
+//							$minDamage += $value[ 'min' ];
+//						}
+//						else
+//						{
+//							$maxDamage += $value[ 'min' ];
+//						}
+//					}
+//				}
+//			}
+//		}
 
 		if ( $minDamage > 0 || $maxDamage > 0 )
 		{
-			$this->averageDamage = ( $minDamage + $maxDamage ) / 2;
-			$this->averageDamageData = [ $pItemName, $minDamage, $maxDamage ];
-			$this->minDamage += $minDamage;
-			$this->maxDamage += $maxDamage;
-			$this->debug[ $pItemName ]= "{$minDamage} - {$maxDamage} - {$keys}";
+			$this->totalMinDamage += $minDamage;
+			$this->totalMaxDamage += $maxDamage;
+			$this->itemDamage = $minDamage + $maxDamage;
+			$this->itemDamageData[ $pItemName ] = "{$minDamage} - {$maxDamage}";
 		}
 		return $this;
 	}

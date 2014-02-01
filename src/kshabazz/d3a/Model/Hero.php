@@ -49,6 +49,7 @@ class Hero
 		$physicalResist,
 		$poisonResist,
 		$primaryAttribute,
+		$primaryAttributeMuliplier,
 		$progress,
 		$skills,
 		$stats,
@@ -79,6 +80,7 @@ class Hero
 		$this->lightingResist = 1;
 		$this->poisonResist = 1;
 		$this->physicalResist = 1;
+		$this->primaryAttributeMuliplier = 3;
 		$this->noItemsStats = [
 			"Dexterity_Item" => [
 				"value" => 7,
@@ -136,6 +138,15 @@ class Hero
 	}
 
 	/**
+	 * Dexterity
+	 * @return int
+	 */
+	public function dexterity()
+	{
+		return $this->dexterity;
+	}
+
+	/**
 	 * Get data from the hero JSON data retrieved from Battle.net API.
 	 *
 	 * @param string $pProperty
@@ -159,6 +170,14 @@ class Hero
 	public function hardcore()
 	{
 		return $this->hardcore;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function id()
+	{
+		return $this->id;
 	}
 
 	/**
@@ -198,11 +217,12 @@ class Hero
 	}
 
 	/**
+	 * Intelligence
 	 * @return int
 	 */
-	public function id()
+	public function intelligence()
 	{
-		return $this->id;
+		return $this->intelligence;
 	}
 
 	/**
@@ -238,14 +258,14 @@ class Hero
 		$this->multiplierInt = ( $this->primaryAttribute === "Intelligence_Item" ) ? 3 : 1;
 		$this->multiplierStr = ( $this->primaryAttribute === "Strength_Item" ) ? 3 : 1;
 
-		// Do not remember what this is??? Look like primary attribute bonus based on level.
-		// also looks to be incomplete, does not make much sense. Looks like I was reaching.
+		// These totals are based on level, all increment by 1 per level, except the primary, which increments by 3.
+		// based on hero class.
 		$this->dexterity += ( $this->level + $this->paragonLevel ) * $this->multiplierDex;
 		$this->intelligence += ( $this->level * $this->multiplierInt );
 		$this->strength += ( $this->level * $this->multiplierStr );
 
 		// Looks like the same as above, in some way.
-		foreach( $this->noItemsStats as $attribute => &$values )
+		foreach( $this->noItemsStats as &$values )
 		{
 			$multiplier = $values[ 'muliplier' ];
 			$values[ 'value' ] += ( $this->level + $this->paragonLevel ) * $multiplier;
@@ -326,6 +346,15 @@ class Hero
 	}
 
 	/**
+	 * Strength
+	 * @return int
+	 */
+	public function strength()
+	{
+		return $this->strength;
+	}
+
+	/**
 	 * Tally raw attributes.
 	 * @param $pRawAttribute
 	 * @param $pSlot
@@ -370,6 +399,15 @@ class Hero
 		}
 
 		return $this;
+	}
+
+	/**
+	 * Vitality
+	 * @return int
+	 */
+	public function vitality()
+	{
+		return $this->vitality;
 	}
 }
 // Writing below this line can cause headers to be sent before intended ?>

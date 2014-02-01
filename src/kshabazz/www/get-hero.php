@@ -114,10 +114,10 @@
 					</ul>
 				</li>
 				<li class="stat">
-					<span class="label"><span class="toggle inline-block">-</span> Base Weapon Damage</span>: <span class="nuetral">{{ calculator.baseWeaponDamage() }}</span>
+					<span class="label"><span class="toggle inline-block">-</span> Item Damage</span>: <span class="nuetral">{{ calculator.itemDamage() }}</span>
 					<ul class="expandable">
 						{% autoescape false %}
-						{{ func('\\kshabazz\\d3a\\output', '<li><span class="label">%s</span>: %s</li>', calculator.baseWeaponDamageData()) }}
+						{{ func('\\kshabazz\\d3a\\output', '<li><span class="label">%s</span>: %s</li>', calculator.itemDamageData()) }}
 						{% endautoescape %}
 					</ul>
 				</li>
@@ -138,19 +138,19 @@
 					</ul>
 				</li>
 				<li class="stat">
-					<span class="label"><span class="toggle inline-block">-</span> Damage Per Second</span>: <span class="nuetral">{{ calculator.damagePerSecond() }}</span>
+					<span class="label"><span class="toggle inline-block">-</span> Primary</span>: <span class="nuetral">{{ calculator.primaryAttributeTotal() }}</span>
 					<ul class="expandable">
 						{% autoescape false %}
-						{{ func('\\kshabazz\\d3a\\output', '<li><span class="label">%s</span>: %s</li>', calculator.damagePerSecondData()) }}
+						{{ func('\\kshabazz\\d3a\\output', '<li><span class="label">%s</span>: %s</li>', calculator.primaryAttributeTotalData()) }}
 						{% endautoescape %}
 					</ul>
 				</li>
 				<li class="stat">
-					<span class="label"><span class="toggle inline-block">-</span> Primary Attribute Damage</span>:
-					<span class="nuetral">{{ calculator.primaryAttributeDamage() }} {{ func('str_replace', "_Item", '', calculator.primaryAttribute()) }}</span>
+					<span class="label"><span class="toggle inline-block">-</span> SCRAM</span>:
+					<span class="nuetral">{{ calculator.primaryAttributeDamage() }} {{ func('str_replace', "_Item", '', calculator.scram()) }}</span>
 					<ul class="expandable">
 						{% autoescape false %}
-						{{ func('\\kshabazz\\d3a\\output', '<li><span class="label">%s</span>: %s</li>', calculator.primaryAttributeDamageData()) }}
+						{{ func('\\kshabazz\\d3a\\output', '<li><span class="label">%s</span>: %s</li>', calculator.scramData()) }}
 						{% endautoescape %}
 					</ul>
 				</li>
