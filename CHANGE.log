@@ -1,6 +1,11 @@
 List of changes since 02/02/2014 08:35 AM
 -------------------------------
  - Added display of levels on hero page.
+ - Removed noItemsStats from hero class.
+ - Fixed primary stat sum and display of level bonus.
+ - Added dual wield method.
+ - Display the primary attributes on the hero page.
+ - Added methods to compute and display primary attributes.
 
 List of changes since 02/02/2014 08:19 AM
 -------------------------------

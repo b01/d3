@@ -33,22 +33,32 @@ class Calculator
 		$criticalHitDamage,
 		$criticalHitDamageData,
 		$debug,
+		$dexterity,
+		$dexterityData,
 		$dps,
 		$damagePerSecondData,
 		$dualWield,
 		$gems,
 		$hero,
 		$increasedAttackSpeed,
+		$intelligence,
+		$intelligenceData,
 		$itemDamage,
 		$itemDamageData,
 		$items,
-		$totalMaxDamage,
-		$totalMinDamage,
 		$primaryAttributeDamage,
 		$primaryAttributeDamageData,
 		$primaryAttributeTotal,
 		$primaryAttributeTotalData,
+		$primaryAttributes,
+		$primaryAttributesData,
 		$scramData,
+		$strength,
+		$strengthData,
+		$totalMaxDamage,
+		$totalMinDamage,
+		$vitality,
+		$vitalityData,
 		$weaponAttacksPerSecond;
 
 	/**
@@ -66,9 +76,13 @@ class Calculator
 		$this->criticalHitDamage = self::CRITICAL_HIT_DAMAGE_BONUS;
 		$this->criticalHitDamageData = [];
 		$this->damagePerSecondData = [];
+		$this->dexterity = 0.0;
+		$this->dexterityData = [];
 		$this->dualWield = FALSE;
 		$this->gems = [];
 		$this->increasedAttackSpeed = 0.0;
+		$this->intelligence = 0.0;
+		$this->intelligenceData = [];
 		$this->itemDamage = 0.0;
 		$this->itemDamageData = [];
 		$this->totalMaxDamage = 0.0;
@@ -76,6 +90,10 @@ class Calculator
 		$this->primaryAttributeTotal = 0.0;
 		$this->primaryAttributeTotalData = [];
 		$this->scramData = [];
+		$this->strength = 0.0;
+		$this->strengthData = [];
+		$this->vitality = 0.0;
+		$this->vitalityData = [];
 		$this->weaponAttacksPerSecond = 0.0;
 
 		$this->attackSpeed = 0.0;
@@ -305,7 +323,6 @@ class Calculator
 		return $this;
 	}
 
-
 	/**
 	 * Primary Attribute Damage
 	 *
@@ -314,25 +331,61 @@ class Calculator
 	protected function computePrimaryAttributeTotal()
 	{
 		$primaryAttribute = $this->hero->primaryAttribute();
+		$this->primaryAttributeTotal += $this->attributeTotals[ $primaryAttribute ];
+		$this->primaryAttributeTotalData = $this->attributeSlots[ $primaryAttribute ];
 		if ($primaryAttribute === 'Dexterity_Item' )
 		{
 			$this->primaryAttributeTotal += $this->hero->dexterity();
-			$this->primaryAttributeTotalData[ 'levelBonus' ] = $this->hero->dexterity();
+			$this->primaryAttributeTotalData[ 'levelBonus_dexterity' ] = $this->hero->dexterity();
 		}
 		if ($primaryAttribute === 'Intelligence_Item' )
 		{
 			$this->primaryAttributeTotal += $this->hero->intelligence();
-			$this->primaryAttributeTotalData[ 'levelBonus' ] = $this->hero->intelligence();
+			$this->primaryAttributeTotalData[ 'levelBonus_intelligence' ] = $this->hero->intelligence();
 		}
 		if ($primaryAttribute === 'Strength_Item' )
 		{
 			$this->primaryAttributeTotal += $this->hero->strength();
-			$this->primaryAttributeTotalData[ 'levelBonus' ] = $this->hero->strength();
+			$this->primaryAttributeTotalData[ 'levelBonus_strength' ] = $this->hero->strength();
 		}
-		$this->primaryAttributeTotal += $this->attributeTotals[ $primaryAttribute ];
-		$this->primaryAttributeTotalData = $this->attributeSlots[ $primaryAttribute ];
 
 		return $this;
+	}
+
+	/**
+	 * Primary Attribute Damage
+	 *
+	 * @return Calculator
+	 */
+	protected function computePrimaryAttributeTotals()
+	{
+		$this->processPrimaryAtribute( 'dexterity' );
+		$this->processPrimaryAtribute( 'intelligence' );
+		$this->processPrimaryAtribute( 'strength' );
+		$this->processPrimaryAtribute( 'vitality' );
+
+		return $this;
+	}
+
+	protected  function processPrimaryAtribute( $pAttribute )
+	{
+		$attribute = ucfirst( $pAttribute );
+		$levelBonus = $this->hero->{ $pAttribute }();
+		// add level bonus with the sum from each item.
+		$this->{ $pAttribute } = $this->attributeTotals[ $attribute . '_Item' ] + $levelBonus;
+		// get all contributing items.
+		$property = $pAttribute . 'Data';
+		$this->{ $property } = $this->attributeSlots[ $attribute . '_Item' ];
+		$this->{ $property }[ 'levelBonus_' . $pAttribute ] = $levelBonus;
+	}
+
+	/**
+	 * List of items that contribute to the  primary attributes totals.
+	 * @return array
+	 */
+	public function primaryAttributesData()
+	{
+		return $this->primaryAttributesData;
 	}
 
 	/**
@@ -411,16 +464,30 @@ class Calculator
 	}
 
 	/**
+	 * Dexterity computed from level and items.
+	 * @return array
+	 */
+	public function dexterity()
+	{
+		return $this->dexterity;
+	}
+
+	/**
+	 * Items that contribute to dexterity.
+	 * @return array
+	 */
+	public function dexterityData()
+	{
+		return $this->dexterityData;
+	}
+
+	/**
 	 * Initialize this object.
 	 */
 	protected function init()
 	{
 		$this->processRawAttributes();
-
-		if ( isset($this->items['mainHand']) )
-		{
-			$this->dualWield = $this->items[ 'mainHand' ]->type[ 'twoHanded' ];
-		}
+		$this->isDualWielding();
 
 		$this->computeAverageDamage()
 			->computeAttacksPerSecond()
@@ -429,6 +496,42 @@ class Calculator
 			->computePrimaryAttributeTotal()
 			->computeIncreasedAttackSpeed()
 			->computeSkillDamage();
+		$this->computePrimaryAttributeTotals();
+	}
+
+	/**
+	 * Intelligence computed from level and items.
+	 * @return float
+	 */
+	public function intelligence()
+	{
+		return $this->intelligence;
+	}
+
+	/**
+	 * Items that contribute to intelligence.
+	 * @return array
+	 */
+	public function intelligenceData()
+	{
+		return $this->intelligenceData;
+	}
+
+	/**
+	 * Determine if a hero is brandishing a weapon in each hand.
+	 */
+	protected function isDualWielding()
+	{
+		// TODO: test!
+		if ( array_key_exists('mainHand', $this->items)
+			 && !$this->items['mainHand']->type['twoHanded']
+			 && array_key_exists('offHand', $this->items) )
+		{
+			$this->dualWield = isWeapon( $this->items['mainHand'] )
+				&& isWeapon( $this->items['offHand'] );
+		}
+
+		return $this->dualWield;
 	}
 
 	/**
@@ -467,16 +570,15 @@ class Calculator
 	}
 
 	/**
-	* Loop through raw attributes for every item.
-	* @return float
-	*/
+	 * Loop through raw attributes for every item.
+	 */
 	protected function processRawAttributes()
 	{
-		// Transfer the items from an array to properties.
 		if ( isArray($this->items) )
 		{
 			foreach ( $this->items as $placement => $item )
 			{
+//				var_dump($item);
 				// Compute some things.
 				$this->tallyAttributes( $item->attributesRaw, $placement );
 				// Tally gems.
@@ -549,6 +651,24 @@ class Calculator
 	}
 
 	/**
+	 * Strength
+	 * @return float
+	 */
+	public function strength()
+	{
+		return $this->strength;
+	}
+
+	/**
+	 * List of items that contribute to strength.
+	 * @return float
+	 */
+	public function strengthData()
+	{
+		return $this->strengthData;
+	}
+
+	/**
 	 * Tally raw attributes.
 	 *
 	 * @param $pRawAttribute
@@ -560,7 +680,6 @@ class Calculator
 		foreach ( $pRawAttribute as $attribute => $values )
 		{
 			$value = ( float ) $values[ 'min' ];
-
 			// Initialize an attribute in the totals array.
 			if ( !array_key_exists($attribute, $this->attributeTotals) )
 			{
@@ -573,6 +692,27 @@ class Calculator
 			// use a combination of the slot and attribute name to keep them from replacing the previous value.
 			$this->attributeSlots[ $attribute ][ $pSlot . '_' . $attribute ] = $value;
 		}
+		return $this;
+	}
+
+	/**
+	 * Tally raw gem attributes.
+	 *
+	 * @param array $pGems
+	 * @param string $pSlot
+	 * @return $this
+	 */
+	protected function tallyGemAttributes( array $pGems, $pSlot )
+	{
+		for ( $i = 0; $i < count($pGems); $i++ )
+		{
+			$gem = $pGems[ $i ];
+			if ( isArray($gem) )
+			{
+				$this->tallyAttributes( $gem['attributesRaw'], "{$pSlot} gem slot {$i}" );
+			}
+		}
+
 		return $this;
 	}
 
@@ -653,6 +793,24 @@ class Calculator
 			$this->itemDamageData[ $pItemName ] = "{$minDamage} - {$maxDamage}";
 		}
 		return $this;
+	}
+
+	/**
+	 * Vitality computed from level and items.
+	 * @return float
+	 */
+	public function vitality()
+	{
+		return $this->vitality;
+	}
+
+	/**
+	 * List of items that contribute to vitality.
+	 * @return array
+	 */
+	public function vitalityData()
+	{
+		return $this->vitalityData;
 	}
 }
 ?>

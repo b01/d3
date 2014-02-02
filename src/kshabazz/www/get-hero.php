@@ -99,6 +99,38 @@
 			<br />
 			<ul class="calculated list stats inline-block">
 				<li class="stat">
+					<span class="label"><span class="toggle inline-block">+</span> Strength</span>: <span class="nuetral">{{ calculator.strength() }}</span>
+					<ul class="expandable">
+						{% autoescape false %}
+						{{ func('\\kshabazz\\d3a\\output', '<li><span class="label">%s</span>: %s</li>', calculator.strengthData()) }}
+						{% endautoescape %}
+					</ul>
+				</li>
+				<li class="stat">
+					<span class="label"><span class="toggle inline-block">+</span> Intelligence</span>: <span class="nuetral">{{ calculator.intelligence() }}</span>
+					<ul class="expandable">
+						{% autoescape false %}
+						{{ func('\\kshabazz\\d3a\\output', '<li><span class="label">%s</span>: %s</li>', calculator.intelligenceData()) }}
+						{% endautoescape %}
+					</ul>
+				</li>
+				<li class="stat">
+					<span class="label"><span class="toggle inline-block">+</span> Dexterity</span>: <span class="nuetral">{{ calculator.dexterity() }}</span>
+					<ul class="expandable">
+						{% autoescape false %}
+						{{ func('\\kshabazz\\d3a\\output', '<li><span class="label">%s</span>: %s</li>', calculator.dexterityData()) }}
+						{% endautoescape %}
+					</ul>
+				</li>
+				<li class="stat">
+					<span class="label"><span class="toggle inline-block">+</span> Vitality</span>: <span class="nuetral">{{ calculator.vitality() }}</span>
+					<ul class="expandable">
+						{% autoescape false %}
+						{{ func('\\kshabazz\\d3a\\output', '<li><span class="label">%s</span>: %s</li>', calculator.vitalityData()) }}
+						{% endautoescape %}
+					</ul>
+				</li>
+				<li class="stat">
 					<span class="label"><span class="toggle inline-block">-</span> Armor</span>: <span class="nuetral">{{ calculator.armor() }}</span>
 					<ul class="expandable">
 						{% autoescape false %}

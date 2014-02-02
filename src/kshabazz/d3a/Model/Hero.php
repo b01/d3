@@ -43,13 +43,13 @@ class Hero
 		$multiplierDex,
 		$multiplierInt,
 		$multiplierStr,
+		$multiplierVit,
 		$name,
-		$noItemsStats,
 		$paragonLevel,
 		$physicalResist,
 		$poisonResist,
 		$primaryAttribute,
-		$primaryAttributeMuliplier,
+		$primeStats,
 		$progress,
 		$skills,
 		$stats,
@@ -80,26 +80,17 @@ class Hero
 		$this->lightingResist = 1;
 		$this->poisonResist = 1;
 		$this->physicalResist = 1;
-		$this->primaryAttributeMuliplier = 3;
-		$this->noItemsStats = [
-			"Dexterity_Item" => [
-				"value" => 7,
-				"muliplier" => 1
-			],
-			"Intelligence_Item" => [
-				"value" => 7,
-				"muliplier" => 1
-			],
-			"Strength_Item" => [
-				"value" => 7,
-				"muliplier" => 1
-			]
-		];
+
 		$this->init()
 			 ->levelUpBonuses();
 
-		$this->noItemsStats[ $this->primaryAttribute ][ 'muliplier' ] = 3;
-		$this->noItemsStats[ $this->primaryAttribute ][ 'primary' ] = TRUE;
+		// grab these after they have been computed.
+		$this->primeStats = [
+			'dexterity' => $this->dexterity,
+			'intelligence' => $this->intelligence,
+			'strength' => $this->strength,
+			'vitality' => $this->vitality
+		];
 	}
 
 	/**
@@ -214,14 +205,6 @@ class Hero
 
 		$this->determinePrimaryAttribute();
 
-//Should be placed somewhere else.
-//		if ( isset($this->itemModels['mainHand']) )
-//		{
-//			// TODO: test!
-//			$this->dualWield = isWeapon( $this->itemModels['mainHand'] )
-//							&& isWeapon( $this->itemModels['offHand'] );
-//		}
-
 		return $this;
 	}
 
@@ -281,22 +264,18 @@ class Hero
 	 */
 	protected function levelUpBonuses()
 	{
-		$this->multiplierDex = ( $this->primaryAttribute === "Dexterity_Item" ) ? 3 : 1;
-		$this->multiplierInt = ( $this->primaryAttribute === "Intelligence_Item" ) ? 3 : 1;
-		$this->multiplierStr = ( $this->primaryAttribute === "Strength_Item" ) ? 3 : 1;
+		$this->multiplierDex = ( $this->primaryAttribute === 'Dexterity_Item' ) ? 3 : 1;
+		$this->multiplierInt = ( $this->primaryAttribute === 'Intelligence_Item' ) ? 3 : 1;
+		$this->multiplierStr = ( $this->primaryAttribute === 'Strength_Item' ) ? 3 : 1;
+		$this->multiplierVit = ( $this->primaryAttribute === 'Vitality_Item' ) ? 3 : 1;
 
 		// These totals are based on level, all increment by 1 per level, except the primary, which increments by 3.
 		// based on hero class.
-		$this->dexterity += ( $this->level + $this->paragonLevel ) * $this->multiplierDex;
-		$this->intelligence += ( $this->level * $this->multiplierInt );
-		$this->strength += ( $this->level * $this->multiplierStr );
-
-		// Looks like the same as above, in some way.
-		foreach( $this->noItemsStats as &$values )
-		{
-			$multiplier = $values[ 'muliplier' ];
-			$values[ 'value' ] += ( $this->level + $this->paragonLevel ) * $multiplier;
-		}
+		$totalLevel = $this->level + $this->paragonLevel;
+		$this->dexterity += ( $totalLevel * $this->multiplierDex );
+		$this->intelligence += ( $totalLevel * $this->multiplierInt );
+		$this->strength += ( $totalLevel * $this->multiplierStr );
+		$this->vitality += ( $totalLevel * $this->multiplierStr );
 
 		return $this;
 	}
@@ -310,19 +289,20 @@ class Hero
 	}
 
 	/**
-	 * @return array
-	 */
-	public function noItemsStats()
-	{
-		return $this->noItemsStats;
-	}
-
-	/**
 	 * @return string
 	 */
 	public function primaryAttribute()
 	{
 		return $this->primaryAttribute;
+	}
+
+	/**
+	 * Prime stats
+	 * @return array
+	 */
+	public function primeStats()
+	{
+		return $this->primeStats;
 	}
 
 	/**
@@ -379,53 +359,6 @@ class Hero
 	public function strength()
 	{
 		return $this->strength;
-	}
-
-	/**
-	 * Tally raw attributes.
-	 * @param $pRawAttribute
-	 * @param $pSlot
-	 * @return $this
-	 */
-	protected function tallyAttributes( $pRawAttribute, $pSlot )
-	{
-		foreach ( $pRawAttribute as $attribute => $values )
-		{
-			$value = ( float )$values[ 'min' ];
-			// Initialize an attribute in the totals array.
-			if ( !array_key_exists($attribute, $this->stats) )
-			{
-				$this->stats[ $attribute ] = 0.0;
-				$this->slotStats[ $attribute ] = [];
-			}
-			// Sum it up.
-			$this->stats[ $attribute ] += $value;
-			// A break-down of each attribute totals. An item can have multiple types of the same attribute
-			// use a combination of the slot and attribute name to keep them from replacing the previous value.
-			$this->slotStats[ $attribute ][ $pSlot . '_' . $attribute ] = $value;
-		}
-		return $this;
-	}
-
-	/**
-	 * Tally raw gem attributes.
-	 *
-	 * @param array $pGems
-	 * @param string $pSlot
-	 * @return $this
-	 */
-	protected function tallyGemAttributes( array $pGems, $pSlot )
-	{
-		for ( $i = 0; $i < count($pGems); $i++ )
-		{
-			$gem = $pGems[ $i ];
-			if ( isArray($gem) )
-			{
-				$this->tallyAttributes( $gem['attributesRaw'], "{$pSlot} gem slot {$i}" );
-			}
-		}
-
-		return $this;
 	}
 
 	/**
