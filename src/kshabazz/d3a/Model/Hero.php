@@ -259,6 +259,24 @@ class Hero
 	}
 
 	/**
+	 * Level
+	 * @return int
+	 */
+	public function level()
+	{
+		return $this->level;
+	}
+
+	/**
+	 * Paragon level
+	 * @return int
+	 */
+	public function paragonLevel()
+	{
+		return $this->paragonLevel;
+	}
+
+	/**
 	 * Add in addition attributes from level bonus.
 	 */
 	protected function levelUpBonuses()

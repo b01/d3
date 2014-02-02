@@ -29,6 +29,14 @@
 		<div class="inline-block section one">
 			<!-- START ITEMS MODULE -->
 			<div class="hero">
+				<div class="levels">
+					<span class="level">
+						<span class="label">Level: </span><span class="number">{{ hero.level() }}</span>
+					</span>
+					<span class="level">
+						<span class="label">Paragon: </span><span class="number">{{ hero.paragonLevel() }}</span>
+					</span>
+				</div>
 				{% for key, item in items %}
 				<a class="item-slot {{ key }}{{ func('\\kshabazz\\d3a\\translateSlotName', key) }}" href="/item.php?battleNetId={{ battleNetUrlSafeId }}&hash={{ item.hash }}" data-slot="{{ key }}">
 				{# <a class="item-slot {{ key }}{{ func('\\kshabazz\\d3a\\translateSlotName', key) }}" href="/get-item.php?battleNetId={{ battleNetUrlSafeId }}&itemHash={{ item.hash }}&extra=0&showClose=1" data-slot="{{ key }}"> #}
