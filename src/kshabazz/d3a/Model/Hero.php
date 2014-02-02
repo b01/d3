@@ -103,6 +103,15 @@ class Hero
 	}
 
 	/**
+	 * Character class
+	 * @return string
+	 */
+	public function characterClass()
+	{
+		return $this->class;
+	}
+
+	/**
 	 * Based on the character's class.
 	 *
 	 * @return Hero

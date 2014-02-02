@@ -53,21 +53,13 @@
 				{% endfor %}
 			</div>
 			<!-- END ITEMS MODULE -->
-			{% if func('isArray',hero.stats) %}
-			<ul class="list stats inline-block">
-				{% for key, stat in hero.stats %}
-				<li class="stat"><span class="label">{{ key }}</span>: <span class="nuetral">{{ stat }}</span></li>
-				{% endfor %}
-			</ul>
-			{% endif %}
-			<!-- END SKILLS MODULE -->
 			<!-- START SKILLS MODULE -->
 			<div class="skills">
 				<div class="active">
 					{% set len = hero.skills['active']|length - 1 %}
 					{% for i in range(0, len) %}
 					{% set skill = hero.skills['active'][i]['skill'] %}
-					<a class="fake-link link skill-{{ i + 1 }}" href="//us.battle.net/d3/en/class/{{ hero.class }}/active/{{ skill['slug'] }}">
+					<a class="fake-link link skill-{{ i + 1 }}" href="//us.battle.net/d3/en/class/{{ hero.characterClass() }}/active/{{ skill['slug'] }}">
 						<span class="slot slot-1"></span>
 						{% if skill['icon']|length > 0 %}
 						<img src="http://media.blizzard.com/d3/icons/skills/42/{{ skill['icon'] }}.png" />
@@ -79,7 +71,7 @@
 					{% set len = hero.skills['passive']|length - 1 %}
 					{% for i in range(0, len) %}
 					{% set skill = hero.skills['passive'][i]['skill'] %}
-					<a class="fake-link link skill-{{ i + 1 }}" href="//us.battle.net/d3/en/class/{{ hero.class }}/passive/{{ skill['slug'] }}">
+					<a class="fake-link link skill-{{ i + 1 }}" href="//us.battle.net/d3/en/class/{{ hero.characterClass() }}/passive/{{ skill['slug'] }}">
 						{% if skill['icon']|length > 0 %}
 						<img class="icon" src="http://media.blizzard.com/d3/icons/skills/42/{{ skill['icon'] }}.png" />
 						{% endif %}
@@ -87,6 +79,7 @@
 					{% endfor %}
 				</div>
 			</div>
+			<!-- END SKILLS MODULE -->
 		</div>
 		{% if calculator %}
 		<div class="inline-block section two">
@@ -159,9 +152,9 @@
 				<li class="stat">
 					<span class="label"><span class="toggle inline-block">-</span> Battle.Net Calculated Stats</span>:
 					<ul class="expandable">
-						{% autoescape false %}
-						{{ func('\\kshabazz\\d3a\\output', '<li><span class="label">%s</span>: %s</li>', hero.stats) }}
-						{% endautoescape %}
+						{% for key, stat in hero.stats %}
+						<li class="stat"><span class="label">{{ key }}</span>: <span class="nuetral">{{ stat }}</span></li>
+						{% endfor %}
 					</ul>
 				</li>
 			</ul>
