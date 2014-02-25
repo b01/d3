@@ -19,11 +19,11 @@
 	},
 	"type": "tool",
 	"keywords": ["diablo 3"],
-	"homepage": "d3.kshabazz.net",
+	"homepage": "http://d3.kshabazz.net",
 	"authors": [
 		{
 			"name": "Khalifah Shabazz",
-			"homepage": "http://d3.kshabazz.net",
+			"homepage": "http://www.kshabazz.net",
 			"role": "Developer"
 		}
 	],

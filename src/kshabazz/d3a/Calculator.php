@@ -203,35 +203,42 @@ class Calculator
 	*/
 	protected function computeAttacksPerSecond()
 	{
-		$attackSpeed = 0.0;
-		// Set some properties for easy access.
+		$weaponAttackSpeed = 0.0;
+		$weaponIncreaseAttackSpeed = 1.0;
+		$armorIncreasedAttackSpeed = 1.0;
+		// Weapon increased attack speed.
 		if ( array_key_exists("Attacks_Per_Second_Item_Percent", $this->attributeTotals) )
 		{
-			$attackSpeed = $this->attributeTotals[ 'Attacks_Per_Second_Item_Percent' ];
+			$weaponIncreaseAttackSpeed += $this->attributeTotals[ 'Attacks_Per_Second_Item_Percent' ];
 			$this->attackSpeedData = $this->attributeSlots[ 'Attacks_Per_Second_Item_Percent' ];
 		}
-		// Attack speed continued.
+		// Increased Attack speed from items.
 		if ( array_key_exists("Attacks_Per_Second_Percent", $this->attributeTotals) )
 		{
-			$attackSpeed += $this->attributeTotals[ 'Attacks_Per_Second_Percent' ];
+			$armorIncreasedAttackSpeed += $this->attributeTotals[ 'Attacks_Per_Second_Percent' ];
 			$this->attackSpeedData = array_merge(
 				$this->attackSpeedData,
 				$this->attributeSlots[ 'Attacks_Per_Second_Percent' ]
 			);
 		}
-		// Attack speed continued.
+		// Base weaspon attack speed.
 		if ( array_key_exists("Attacks_Per_Second_Item", $this->attributeTotals) )
 		{
-			$attackSpeed += $this->attributeTotals[ 'Attacks_Per_Second_Item' ];
+			$weaponAttackSpeed += $this->attributeTotals[ 'Attacks_Per_Second_Item' ];
 			$this->attackSpeedData = array_merge(
 				$this->attackSpeedData,
 				$this->attributeSlots[ 'Attacks_Per_Second_Item' ]
 			);
 		}
 
+		$attackSpeed = $weaponAttackSpeed * $weaponIncreaseAttackSpeed * $armorIncreasedAttackSpeed;
+
 		$this->attackSpeed = round( $attackSpeed, 2 );
 
 		$this->debug[ 'attack per second' ] = $this->attackSpeed;
+		$this->debug[ '$weapon Attack Speed' ] = $weaponAttackSpeed;
+		$this->debug[ 'weapon Increase Attack Speed' ] = $weaponIncreaseAttackSpeed;
+		$this->debug[ '$armor Increased Attack Speed' ] = $armorIncreasedAttackSpeed;
 		return $this;
 	}
 
@@ -372,13 +379,29 @@ class Calculator
 		$attribute = ucfirst( $pAttribute );
 		$levelBonus = $this->hero->{ $pAttribute }();
 		// add level bonus with the sum from each item.
-		$this->{ $pAttribute } = $this->attributeTotals[ $attribute . '_Item' ] + $levelBonus;
+		$attributeKey = $attribute . '_Item';
+		$attributeTotal = $this->getAttributeTotal( $attributeKey );
+		$this->{ $pAttribute } = $attributeTotal + $levelBonus;
 		// get all contributing items.
 		$property = $pAttribute . 'Data';
-		$this->{ $property } = $this->attributeSlots[ $attribute . '_Item' ];
+		$this->{ $property } = (array_key_exists($attributeKey, $this->attributeSlots)) ? $this->attributeSlots[ $attributeKey ] : [];
 		$this->{ $property }[ 'levelBonus_' . $pAttribute ] = $levelBonus;
 	}
 
+	/**
+	 * Safely retrieve a value from the attribute totals array, return 0 if not found.
+	 * @param $pAttribute
+	 * @return int
+	 */
+	protected function getAttributeTotal( $pAttribute )
+	{
+		$attributeTotal = 0;
+		if ( array_key_exists($pAttribute, $this->attributeTotals) )
+		{
+			$attributeTotal = $this->attributeTotals[ $pAttribute ];
+		}
+		return $attributeTotal;
+	}
 	/**
 	 * List of items that contribute to the  primary attributes totals.
 	 * @return array
@@ -578,7 +601,6 @@ class Calculator
 		{
 			foreach ( $this->items as $placement => $item )
 			{
-//				var_dump($item);
 				// Compute some things.
 				$this->tallyAttributes( $item->attributesRaw, $placement );
 				// Tally gems.
@@ -614,7 +636,7 @@ class Calculator
 		$this->scramData[ 'R = attackSpeed' ] = $this->attackSpeed;
 
 		$a = ( $this->totalMinDamage + $this->totalMaxDamage ) / 2;
-		$this->scramData[ 'A = (totalMinDamage + totalMaxDamage) / 2' ] = $a;
+		$this->scramData[ "A = ({$this->totalMinDamage} + {$this->totalMaxDamage}) / 2" ] = $a;
 
 
 		$m = 1; //$this->skillDamageBonus;
@@ -729,40 +751,34 @@ class Calculator
 		$minDamage = 0.0;
 		$maxDamage = 0.0;
 		$keys = '';
-		// Minimum sum
+
+		// Damage sum
 		if ( isset($item->damage) && is_array($item->damage) )
 		{
 			$minDamage += $item->damage[ 'min' ];
 			$maxDamage += $item->damage[ 'max' ];
 		}
+		else if ( isset($item->attributesRaw) )
+		{
+			foreach ( $item->attributesRaw as $key => $value )
+			{
+				if ( strpos($key, "Damage_") < 0 )
+				{
+					continue;
+				}
+				$this->debug[ $key ] = $value['min'];
+				if ( strpos($key, '_Min#') > -1 )
+				{
+					$minDamage += $value[ 'min' ];
+				}
+				else if ( strpos($key, '_Delta#') > -1 )
+				{
+					$maxDamage += $value[ 'min' ];
+				}
 
-//		if ( isset($item->attributesRaw) )
-//		{
-//			foreach ( $item->attributesRaw as $key => $value )
-//			{
-//				if ( strpos($key, "Damage_") > -1 )
-//				{
-//					$this->debug[ $key ] = $value['min'];
-//					if ( strpos($key, "_Reduction") )
-//					{
-//					}
-//					else if ( strpos($key, "_Percent") )
-//					{
-//						// $minDamage += $value[ 'min' ];
-//					}
-//					else if ( strpos($key, "_Min#") )
-//					{
-//						$minDamage += $value[ 'min' ];
-//					}
-//					else
-//					{
-//						$maxDamage += $value[ 'min' ];
-//					}
-//
-//					$keys .= $key . ',';
-//				}
-//			}
-//		}
+				$keys .= $key . ',';
+			}
+		}
 //
 //		if ( isset($item->gems) )
 //		{
