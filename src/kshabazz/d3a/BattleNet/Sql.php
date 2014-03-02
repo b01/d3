@@ -13,11 +13,16 @@ class BattleNet_Sql extends Sql
 		INSERT_HERO = "INSERT INTO `d3_heroes` (`id`, `battle_net_id`, `json`, `ip_address`, `last_updated`, `date_added`) VALUES(:heroId, :battleNetId, :json, :ipAddress, :lastUpdated, :dateAdded) ON DUPLICATE KEY UPDATE `json` = VALUES(json), `ip_address` = VALUES(ip_address), `last_updated` = VALUES(last_updated);";
 
 	/**
-	* Add record of Battle.net Web API request.
 	* @param $p_url string The Battle.net url web API URL requested.
 	* @return bool
 	*/
-	public function addRequest( $p_battleNetId, $p_url )
+    /**
+     * Add record of Battle.net Web API request.
+     * @param $p_battleNetId
+     * @param $p_url
+     * @return bool|mixed
+     */
+    public function addRequest( $p_battleNetId, $p_url )
 	{
 		$returnValue = FALSE;
 		try
@@ -42,24 +47,28 @@ class BattleNet_Sql extends Sql
 		return $returnValue;
 	}
 
-	/**
-	* Get hero data from local database.
-	*/
-	public function getHero( $p_heroId )
+    /**
+     * Get hero data from local database.
+     *
+     * @param $pHeroId
+     * @return array|null
+     */
+    public function getHero( $pHeroId )
 	{
-		if ( $p_heroId !== NULL )
+		if ( $pHeroId !== NULL )
 		{
-			return $this->getData( self::SELECT_HERO, [
-				"id" => [ $p_heroId, \PDO::PARAM_STR ]
-			]);
+			return $this->getData( self::SELECT_HERO, [ "id" => [$pHeroId, \PDO::PARAM_STR] ]);
 		}
 		return NULL;
 	}
 
-	/**
-	* Get battle.net user profile.
-	*/
-	public function getProfile( $p_battleNetId )
+    /**
+     * Get battle.net user profile.
+     *
+     * @param $pBattleNetId
+     * @return null
+     */
+    public function getProfile($pBattleNetId )
 	{
 		$returnValue = NULL;
 		try
@@ -68,7 +77,7 @@ class BattleNet_Sql extends Sql
 			{
 				$query = self::SELECT_PROFILE;
 				$stmt = $this->pdoh->prepare( $query );
-				$stmt->bindValue( ":battleNetId", $p_battleNetId, \PDO::PARAM_STR );
+				$stmt->bindValue( ":battleNetId", $pBattleNetId, \PDO::PARAM_STR );
 				$profileRecord = $this->pdoQuery( $stmt );
 				if ( isArray($profileRecord) )
 				{

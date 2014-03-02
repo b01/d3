@@ -54,29 +54,40 @@ class Profile implements \JsonSerializable
 		);
 	}
 
-	/**
-	 * Get Hero(s) data.
-	 *
-	 * @param $pHeroByName string Optional name to specify a single hero to return.
-	 * @return mixed Heroes(s) data as an array, or null if none.
-	 */
-	public function heroes( $pHeroByName = NULL )
+    /**
+     * @return mixed Heroes(s) data as an array, or null if none.
+     */
+    public function heroes()
 	{
-		$returnValue = NULL;
-		if ( \kshabazz\d3a\isArray($this->heroes) )
-		{
-			if ( $pHeroByName !== NULL && array_key_exists($pHeroByName, $this->heroes) )
-			{
-				$returnValue = $this->heroes[ $pHeroByName ];
-			}
-			else
-			{
-				$returnValue = $this->heroes;
-			}
-		}
-
-		return $returnValue;
+        // set heroes.
+        if ( !isset($this->heroes) && array_key_exists('heroes', $this->data) )
+        {
+            $this->heroes = $this->data[ 'heroes' ];
+        }
+		return $this->heroes;
 	}
+
+    /**
+     * Get Hero data by name
+     * @param mixed $pHeroByName string Optional name to specify a single hero to return.
+     * @return mixed
+     */
+    public function getHero( $pHeroByName = NULL )
+    {
+        $returnValue = NULL;
+        if ( isArray($this->heroes) )
+        {
+            if ( $pHeroByName !== NULL && array_key_exists($pHeroByName, $this->heroes) )
+            {
+                $returnValue = $this->heroes[ $pHeroByName ];
+            }
+            else
+            {
+                $returnValue = $this->heroes;
+            }
+        }
+        return $returnValue;
+    }
 
 	/**
 	 * Initialize all the properties for this object.

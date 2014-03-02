@@ -53,8 +53,9 @@ class BattleNet_Requestor extends HttpRequestor
 	}
 
 	/**
-	 * Note: Leave off the trailing '/' when setting
+     * Request Hero JSON from Battle.Net.
 	 * ex: http://us.battle.net/api/d3/profile/<battleNetIdName>-<battleNetIdNumber>/hero/<hero-id>
+     * Note: Leave off the trailing '/' when setting
 	 *
 	 * @param $pHeroId
 	 * @return null|string

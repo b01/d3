@@ -1,3 +1,12 @@
+List of changes since 3/02/2014 10:54 AM
+-------------------------------
+ - Updated/Cleaned/Fixed various PHPDoc blocks.
+ - Refactored BattleNet\(Hero,Profile,Item) clases for unused code and readability.
+ - Refactored BattleNet_Profile, GetProfile, and Model\Profile code in an effort to improve consistency and readability.
+ - Refactored BattleNet_Hero code in an effort to improve consistency and readability.
+ - Refactored BattleNet_Model code in an effort to improve consistency and readability.
+ - Refactored BattleNet_Item code in an effort to improve consistency and readability.
+
 List of changes since 02/25/2014 09:24 AM
 -------------------------------
  - Fixed bad URL in composer.json

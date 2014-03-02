@@ -14,6 +14,12 @@ use function \kshabazz\d3a\isWeapon;
  */
 class Item extends Model
 {
+    protected
+        $effects,
+        $item,
+        $tooltipParams,
+        $type;
+
 	public static $offHandTypes = [
 			"offhandother",
 			"orb",
@@ -51,10 +57,11 @@ class Item extends Model
 		$damage,
 		$damageAttributes;
 
-	/**
-	* Constructor
-	*/
-	public function __construct( $pJson )
+    /**
+     * Constructor
+     * @param $pJson
+     */
+    public function __construct( $pJson )
 	{
 		parent::__construct( $pJson );
 
@@ -67,9 +74,11 @@ class Item extends Model
 		$this->hash = substr( $this->tooltipParams, 5 );
 	}
 
-	/** BEGIN GETTER/SETTER **/
-
-	public function damage()
+    /**
+     * Damage the item can do, if weapon.
+     * @return int
+     */
+    public function damage()
 	{
 		return $this->damage;
 	}
@@ -83,11 +92,11 @@ class Item extends Model
 		return $this->effects;
 	}
 
-	/**
-	* Get web HASH.
-	* @return {string|null}
-	*/
-	public function hash()
+    /**
+     * Get web HASH.
+     * @return string
+     */
+    public function hash()
 	{
 		return $this->hash;
 	}
@@ -131,12 +140,11 @@ class Item extends Model
 		return $this;
 	}
 
-	/**
-	*  Get name of an items special effects.
-	*
-	* @return ItemModel Chainable
-	*/
-	protected function getEffects()
+    /**
+     *  Get name of an items special effects.
+     * @return $this
+     */
+    protected function getEffects()
 	{
 		$effects = '';
 		if ( array_key_exists("Damage_Weapon_Min#Poison", $this->attributesRaw) )

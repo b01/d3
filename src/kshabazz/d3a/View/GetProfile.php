@@ -2,10 +2,10 @@
 /**
  *
  */
-
 use kshabazz\d3a\BattleNet_Profile;
-use function kshabazz\d3a\displaySessionTimer, kshabazz\d3a\getSessionExpireInfo, kshabazz\d3a\isBattleNetId;
+use kshabazz\d3a\Model\Profile;
 
+use function kshabazz\d3a\displaySessionTimer, kshabazz\d3a\getSessionExpireInfo, kshabazz\d3a\isBattleNetId;
 /**
  * Class vGetProfile
  * @package kshabazz\d3a\View
@@ -49,18 +49,21 @@ class GetProfile
 	public function load()
 	{
 		$this->battleNetUrlSafeId = \str_replace( '#', '-', $this->battleNetId );
+        // used for the vew to link to the hero page.
 		$this->heroUrl = sprintf( self::HERO_URL, $this->battleNetUrlSafeId );
 
 		$this->sessionCacheInfo = getSessionExpireInfo(
 			'profile-' . $this->battleNetUrlSafeId,
 			$this->clearCache
 		);
-		$this->profile = new BattleNet_Profile(
+		$this->bnrProfile = new BattleNet_Profile(
 			$this->battleNetId,
 			$this->dqi,
 			$this->sql,
 			$this->sessionCacheInfo[ 'loadFromBattleNet' ]
 		);
+        $this->profile = new Profile( $this->bnrProfile->json() );
+
 		if ( isBattleNetId($this->battleNetId) )
 		{
 			$this->heroes = $this->profile->heroes();
