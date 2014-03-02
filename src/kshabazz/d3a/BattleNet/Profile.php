@@ -7,7 +7,7 @@
 
 /**
 * var $p_battleNetId string User BattleNet ID.
-* var $pDqi object Data Query Interface.
+* var $pBnr object Data Query Interface.
 * var $pSql object SQL.
 */
 class BattleNet_Profile extends BattleNet_Model
@@ -19,25 +19,26 @@ class BattleNet_Profile extends BattleNet_Model
 		$sql,
 		$url;
 
-    /**
-     * Constructor
-     * @param                     $pBattleNetId
-     * @param BattleNet_Requestor $pDqi
-     * @param BattleNet_Sql       $pSql
-     * @param bool                $pLoadFromCache
-     */
-    public function __construct( $pBattleNetId, BattleNet_Requestor $pDqi, BattleNet_Sql $pSql, $pLoadFromCache )
+	/**
+	 * Constructor
+	 *
+	 * @param string $pBattleNetId
+	 * @param BattleNet_Requestor $pBnr
+	 * @param BattleNet_Sql $pSql
+	 * @param bool $pLoadFromCache
+	 */
+	public function __construct( $pBattleNetId, BattleNet_Requestor $pBnr, BattleNet_Sql $pSql, $pLoadFromCache )
 	{
 		$this->column = "battle_net_id";
 		$this->profile = NULL;
-		parent::__construct( $pBattleNetId, $pDqi, $pSql, $pLoadFromCache );
+		parent::__construct( $pBattleNetId, $pBnr, $pSql, $pLoadFromCache );
 	}
 
-    /**
-     * Get profile JSON from the database.
-     * @return $this
-     */
-    protected function pullJsonFromDb()
+	/**
+	 * Get profile JSON from the database.
+	 * @return $this
+	 */
+	protected function pullJsonFromDb()
 	{
 		// Get the profile from local database.
 		$result = $this->sql->getProfile( $this->key );
@@ -49,18 +50,18 @@ class BattleNet_Profile extends BattleNet_Model
 	}
 
 	/**
-	 * 	Request the profile from BattleNet.
+	 * Request the profile from BattleNet.
 	 *
 	 * @return $this
 	 */
 	protected function requestJsonFromApi()
 	{
-		$responseText = $this->dqi->getProfile( $this->key );
-		$requestSuccessful = ( $this->dqi->responseCode() === 200 );
-        // Used for logging info to the DB.
-        $url = $this->dqi->url();
+		$responseText = $this->bnr->getProfile( $this->key );
+		$requestSuccessful = ( $this->bnr->responseCode() === 200 );
+		// Used for logging info to the DB.
+		$url = $this->bnr->url();
 		// Log the request.
-		$this->sql->addRequest( $this->dqi->battleNetId(), $url );
+		$this->sql->addRequest( $this->bnr->battleNetId(), $url );
 		if ( $requestSuccessful )
 		{
 			$this->json = $responseText;
@@ -68,27 +69,18 @@ class BattleNet_Profile extends BattleNet_Model
 		return $this;
 	}
 
-    /**
-     * Load properties from the JSON into this object.
-     * @return $this
-     */
-    protected function processJson()
+	/**
+	 * Save the users profile locally to the database.
+	 * @return bool
+	 */
+	protected function save()
 	{
-		return $this;
-	}
-
-    /**
-     * Save the users profile locally to the database.
-     * @return bool
-     */
-    protected function save()
-	{
-        // There is no need to save what was loaded from the database.
-        if ( $this->loadFromDb )
-        {
-            return false;
-        }
-        // save it to the database.
+		// There is no need to save what was loaded from the database.
+		if ( $this->loadFromDb )
+		{
+			return false;
+		}
+		// save it to the database.
 		$utcTime = gmdate( 'Y-m-d H:i:s' );
 		$query = BattleNet_Sql::INSERT_PROFILE;
 		return $this->sql->save( $query, [

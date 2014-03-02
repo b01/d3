@@ -1,3 +1,13 @@
+List of changes since 3/02/2014 12:07 PM
+-------------------------------
+ - Move hero info around on hero page.
+ - Refactored dqi to bnr.
+ - Removed getUrl from HttpRequestor.
+ - Removed BattleNet_Dqi class.
+ - Removed Abstracts\Application class.
+ - Removed code which removed item/ from tooltipParam on hero items.
+
+
 List of changes since 3/02/2014 10:54 AM
 -------------------------------
  - Updated/Cleaned/Fixed various PHPDoc blocks.

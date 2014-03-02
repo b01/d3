@@ -20,16 +20,16 @@ class BattleNet_Item extends BattleNet_Model
 	 *
 	 * @param string $pHash
 	 * @param string $pColumn
-	 * @param BattleNet_Requestor $pDqi
+	 * @param BattleNet_Requestor $pBnr
 	 * @param BattleNet_Sql $pSql
-	 * @param bool $force
+	 * @param bool $fromDb
 	 */
-	public function __construct( $pHash, $pColumn, BattleNet_Requestor $pDqi, BattleNet_Sql $pSql, $force = FALSE )
+	public function __construct( $pHash, $pColumn, BattleNet_Requestor $pBnr, BattleNet_Sql $pSql, $fromDb = FALSE )
 	{
 		$this->column = $pColumn;
 		$this->id = NULL;
 		$this->info = NULL;
-		parent::__construct( $pHash, $pDqi, $pSql, $force );
+		parent::__construct( $pHash, $pBnr, $pSql, $fromDb );
 	}
 
 	/**
@@ -52,39 +52,40 @@ class BattleNet_Item extends BattleNet_Model
 		return $this;
 	}
 
-    /**
-     * Get the item JSON from Battle.net.
-     * @return $this|Hero
-     */
-    protected function requestJsonFromApi()
+	/**
+	 * Get the item JSON from Battle.net.
+	 * @return $this
+	 */
+	protected function requestJsonFromApi()
 	{
-        // Request the item from BattleNet.
-        $json = $this->dqi->getItem( $this->key );
-        $requestSuccessful = ( $this->dqi->responseCode() === 200 );
-        // Log the request.
-        $url = $this->dqi->getUrl();
-        $this->sql->addRequest( $this->dqi->battleNetId(), $url );
-        // Set the property.
-        if ( $requestSuccessful )
-        {
-            $this->json = $json;
-        }
-        return $this;
+		// Request the item from BattleNet.
+		$json = $this->bnr->getItem( $this->key );
+		$requestSuccessful = ( $this->bnr->responseCode() === 200 );
+		// Log the request.
+		$url = $this->bnr->url();
+		$this->sql->addRequest( $this->bnr->battleNetId(), $url );
+		// Set the property.
+		if ( $requestSuccessful )
+		{
+			$this->json = $json;
+		}
+		return $this;
 	}
 
-    /**
-     * Save the users item locally, in this case a database.
-     * @return bool
-     */
-    protected function save()
+	/**
+	 * Save the users item locally, in this case a database.
+	 * @return bool
+	 */
+	protected function save()
 	{
-        if ( $this->loadFromDb )
-        {
-            return FALSE;
-        }
-        $itemName = $this->info[ 'name' ];
-        $itemType = $this->info[ 'type' ];
-        $id = $this->info[ 'id' ];
+		// There is no need to save what was loaded from the database.
+		if ( $this->loadFromDb )
+		{
+			return FALSE;
+		}
+		$itemName = $this->info[ 'name' ];
+		$itemType = $this->info[ 'type' ];
+		$id = $this->info[ 'id' ];
 		$utcTime = gmdate( 'Y-m-d H:i:s' );
 		$params = [
 			'hash' => [ $this->key, \PDO::PARAM_STR ],

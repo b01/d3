@@ -81,24 +81,29 @@ class BattleNet_Requestor extends HttpRequestor
 	 * ex: http://us.battle.net/api/d3/data/item/COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD
 	 *
 	 * @param $pItemId
-	 * @return null|string
+	 * @return mixed|null
 	 * @throws \InvalidArgumentException
+	 * @throws \Exception
 	 */
 	public function getItem( $pItemId )
 	{
 		$returnValue = NULL;
-		if ( isString($pItemId) )
+		if ( !isString($pItemId) )
 		{
-			$this->url = sprintf( BATTLENET_D3_API_ITEM_URL, $pItemId );;
+			throw new \InvalidArgumentException(
+				"Expects a valid item id, but was given : '{$pItemId}'."
+			);
+		}
+		try
+		{
+			// retrieve the item JSON from the at the constructed URL
+			$this->url = sprintf( BATTLENET_D3_API_ITEM_URL, $pItemId );
 			// Return the response text.
 			$returnValue = $this->send();
 		}
-		else
+		catch( \Exception $pError )
 		{
-			throw new \InvalidArgumentException(
-				"Expects a valid item id, but item id given was: '{$pItemId}'."
-			);
-			// throw new \Exception( "No item found at '{$this->url}'." );
+			throw new \Exception( "An error occurred trying to retrieve the item at '{$this->url}'." );
 		}
 		return $returnValue;
 	}

@@ -68,14 +68,14 @@ class GetHero extends aPage
 			$this->itemModels = [];
 			$this->itemHashes = [];
 			$this->items = $this->hero->items();
-			// It is valid that the bnrHero may not have any items equipped.
+			// It is valid that the hero may not have any items equipped (new character).
 			if ( isArray($this->items) )
 			{
 				foreach ( $this->items as $slot => $item )
 				{
-					$hash = str_replace( "item/", '', $item['tooltipParams'] );
-					$bnItem = new BattleNet_Item( $hash, "hash", $this->bnr, $this->sql );
-					$this->itemModels[ $slot ] = new Item( $bnItem->json() );
+					$hash = $item[ 'tooltipParams' ];
+					$bnrItem = new BattleNet_Item( $hash, 'hash', $this->bnr, $this->sql );
+					$this->itemModels[ $slot ] = new Item( $bnrItem->json() );
 					// for output to JavaScript variable.
 					$this->itemHashes[ $slot ] = $hash;
 				}

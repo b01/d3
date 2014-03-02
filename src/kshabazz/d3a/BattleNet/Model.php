@@ -12,7 +12,7 @@
 abstract class BattleNet_Model
 {
 	protected
-		$dqi,
+		$bnr,
 		$json,
 		$key,
 		$loadFromDb,
@@ -21,14 +21,15 @@ abstract class BattleNet_Model
 
     /**
      * Constructor
-     * @param                     $pKey
-     * @param BattleNet_Requestor $pDqi
-     * @param Sql                 $pSql
-     * @param bool                $pLoadFromCache
+     *
+     * @param string $pKey
+     * @param BattleNet_Requestor $pBnr
+     * @param Sql $pSql
+     * @param bool $pLoadFromCache
      */
-    public function __construct( $pKey, BattleNet_Requestor $pDqi, Sql $pSql, $pLoadFromCache = TRUE )
+    public function __construct( $pKey, BattleNet_Requestor $pBnr, Sql $pSql, $pLoadFromCache = TRUE )
 	{
-		$this->dqi = $pDqi;
+		$this->bnr = $pBnr;
 		$this->json = NULL;
 		$this->key = $pKey;
         $this->loadFromDb = $pLoadFromCache;

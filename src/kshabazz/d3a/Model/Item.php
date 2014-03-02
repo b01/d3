@@ -57,11 +57,11 @@ class Item extends Model
 		$damage,
 		$damageAttributes;
 
-    /**
-     * Constructor
-     * @param $pJson
-     */
-    public function __construct( $pJson )
+	/**
+	 * Constructor
+	 * @param $pJson
+	 */
+	public function __construct( $pJson )
 	{
 		parent::__construct( $pJson );
 
@@ -70,8 +70,6 @@ class Item extends Model
 			$this->calculateDamage();
 		}
 		$this->getEffects();
-
-		$this->hash = substr( $this->tooltipParams, 5 );
 	}
 
     /**
@@ -96,9 +94,9 @@ class Item extends Model
      * Get web HASH.
      * @return string
      */
-    public function hash()
+    public function tooltipParams()
 	{
-		return $this->hash;
+		return $this->tooltipParams;
 	}
 
 	/**

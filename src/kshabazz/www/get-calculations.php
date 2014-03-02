@@ -12,8 +12,8 @@
 		$heroItems = [];
 		if ( isArray($heroItemHashes) )
 		{
-			$battleNetDqi = new BattleNet_Dqi( $battleNetId );
-			$sql = new Sql( USER_IP_ADDRESS );
+			$battleNetDqi = new BattleNet_Requestor( $battleNetId );
+			$sql = new BattleNet_Sql( USER_IP_ADDRESS );
 			foreach( $heroItemHashes as $slot => $itemHash )
 			{
 				$item = new Item( $itemHash, "hash", $battleNetDqi, $sql );

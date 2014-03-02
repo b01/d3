@@ -51,19 +51,21 @@ abstract class Model implements \JsonSerializable
 		$this->init();
 	}
 
-	/**
-	* Get property
-	*/
-	public function __get( $p_name )
+    /**
+     * Get property
+     * @param $pName
+     * @return mixed
+     */
+    public function __get( $pName )
 	{
-		if ( isset($this->$p_name) )
+		if ( isset($this->$pName) )
 		{
-			return $this->$p_name;
+			return $this->$pName;
 		}
 
 		$trace = debug_backtrace();
 		trigger_error(
-			'Undefined property: ' . $p_name .
+			'Undefined property: ' . $pName .
 			' in ' . $trace[0]['file'] .
 			' on line ' . $trace[0]['line'],
 			E_USER_NOTICE

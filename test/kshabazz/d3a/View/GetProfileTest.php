@@ -32,7 +32,7 @@ class GetProfileTest extends \PHPUnit_Framework_TestCase
 		$view = new \kshabazz\d3a\View\GetProfile([
 			'battleNetId' => $this->battleNetId,
 			'clearCache' => TRUE,
-			'dqi' => $this->bnr,
+			'bnr' => $this->bnr,
 			'sql' => $this->bnSql,
 			'supers' => $this->supers,
 		]);

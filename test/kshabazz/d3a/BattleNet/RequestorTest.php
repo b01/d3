@@ -29,7 +29,7 @@ class BattleNet_RequestorTest extends \PHPUnit_Framework_TestCase
 		$bnRequest = new \kshabazz\d3a\BattleNet_Requestor();
 		$this->assertTrue(
 			$bnRequest instanceof \kshabazz\d3a\BattleNet_Requestor,
-			'Could not initialize an instance of \kshabazz\d3a\BattleNet_Dqi.'
+			'Could not initialize an instance of \kshabazz\d3a\BattleNet_Requestor.'
 		);
 	}
 

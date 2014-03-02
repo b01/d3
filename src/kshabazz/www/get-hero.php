@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<title>{{ pageTitle }} - Hero {{ name }}</title>
+		<title>{{ pageTitle }} - {{ name }}</title>
 		<meta name="charset" content="utf-8" />
 		<meta name="author" content="Khalifah K. Shabazz" />
 		<meta name="description" content="View your hero’s stats, and then try out different items to see if those stats improve or not. Use the item for by pasting the D3 web-hash or ID (of forge generated item), and then drag and drop the item to the appropriate slot, your stats will automatically update. " />
@@ -18,8 +18,6 @@
 	</head>
 	<body class="hero-page">
 		<div class="panel info">
-			<div class="dead-{{dead}}">{{ deadText }}</div>
-			<div class="progress">{{ progress }}</div>
 			<form action="/get-profile.php" method="post">
 				<input class="input" type="hidden" name="battleNetId" value="{{battleNetId}}" />
 				<input type="submit" value="Back to Heroes" />
@@ -27,8 +25,9 @@
 			</form>
 		</div>
 		<div class="inline-block section one">
-			<!-- START ITEMS MODULE -->
 			<div class="hero">
+                <div class="dead-{{dead}}">{{ deadText }}</div>
+                <div class="progress">{{ progress }}</div>
 				<div class="levels">
 					<span class="level">
 						<span class="label">Level: </span><span class="number">{{ hero.level() }}</span>
@@ -37,7 +36,8 @@
 						<span class="label">Paragon: </span><span class="number">{{ hero.paragonLevel() }}</span>
 					</span>
 				</div>
-				{% for key, item in items %}
+                <!-- START ITEMS MODULE -->
+                {% for key, item in items %}
 				<a class="item-slot {{ key }}{{ func('\\kshabazz\\d3a\\translateSlotName', key) }}" href="/item.php?battleNetId={{ battleNetUrlSafeId }}&hash={{ item.hash }}" data-slot="{{ key }}">
 				{# <a class="item-slot {{ key }}{{ func('\\kshabazz\\d3a\\translateSlotName', key) }}" href="/get-item.php?battleNetId={{ battleNetUrlSafeId }}&itemHash={{ item.hash }}&extra=0&showClose=1" data-slot="{{ key }}"> #}
 					<div class="icon {{ item.displayColor }} inline-block top" data-hash="{{ item.hash }}" data-type="{{ func('\\kshabazz\\d3a\\getItemSlot', key) }}">
@@ -59,8 +59,8 @@
 
 				</a>
 				{% endfor %}
-			</div>
-			<!-- END ITEMS MODULE -->
+                <!-- END ITEMS MODULE -->
+            </div>
 			<!-- START SKILLS MODULE -->
 			<div class="skills">
 				<div class="active">

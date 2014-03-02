@@ -51,6 +51,7 @@ class Hero
 			'progress' => $this->hero->progression(),
 			'heroItemHashes' => \json_encode( $this->itemHashes ),
 			'time' => \microtime( TRUE ) - $_SERVER[ 'REQUEST_TIME_FLOAT' ],
+            'pageTitle' => 'Hero'
 		];
 
 		return $data;

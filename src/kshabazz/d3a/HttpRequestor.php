@@ -12,6 +12,8 @@ use \Kshabazz\Slib;
  */
 class HttpRequestor
 {
+	use Shared;
+
 	protected
 		$options,
 		$requestInfo,
@@ -19,63 +21,45 @@ class HttpRequestor
 		$url;
 
 	/**
-	* Constructor
-	*/
+	 * Constructor
+	 * @param string $pUrl
+	 * @param array $pOptions
+	 */
 	public function __construct( $pUrl, array $pOptions = NULL )
 	{
 		$this->requestInfo = NULL;
 		$this->responseText = NULL;
 		$this->url = $pUrl;
-		$this->options = ( $pOptions !== NULL ) ? $pOptions : [ "Content-Type: application/json; charset=utf-8" ];
+		$this->options = ( $pOptions !== NULL ) ? $pOptions : [ 'Content-Type: application/json; charset=utf-8' ];
 	}
 
 	/**
-	* Destructor
-	*/
-	public function __destruct()
-	{
-		unset(
-			$this->options,
-			$this->requestInfo,
-			$this->responseText,
-			$this->url
-		);
-	}
-
-	/**
-	* Shortcut: Set the URL and returns a response.
-	* @param string $p_url
-	* @return string HTTP response.
-	*/
-	public function get( $p_url )
+	 * Shortcut: Set the URL and returns a response.
+	 * @param $pUrl
+	 * @return null|string
+	 * @throws \Exception
+	 */
+	public function get( $pUrl )
 	{
 		$returnValue = NULL;
-		if ( isString($p_url) )
+		if ( isString($pUrl) )
 		{
-			$this->url = $p_url;
+			$this->url = $pUrl;
 			// Return the response text.
 			$returnValue = $this->send();
 		}
 		else
 		{
-			throw new Exception( "There was a problem getting a response from '{$p_url}'" );
+			throw new \Exception( "There was a problem getting a response from '{$pUrl}'" );
 		}
 		return $returnValue;
 	}
 
 	/**
-	* Get the URL of the request.
-	*/
-	public function getUrl()
-	{
-		return $this->url;
-	}
-
-	/**
 	 * Process any headers passed into the request.
 	 *
-	 * @parm \curl $pCurl
-	 * @return bool
+	 * @param resource $pCurl
+	 * @return TRUE
 	 */
 	protected function processHeaders( $pCurl )
 	{
@@ -100,12 +84,12 @@ class HttpRequestor
 	}
 
 	/**
-	* Send an HTTP request
-	* @return string HTTP response.
-	*/
+	 * Send an HTTP request
+	 * @param null $body
+	 * @return mixed|null
+	 */
 	public function send( $body = NULL )
 	{
-		//
 		$returnValue = NULL;
 		if ( !empty($this->url) )
 		{
@@ -136,15 +120,20 @@ class HttpRequestor
 	}
 
 	/**
-	* Set the URL of the request.
-	*/
-	public function setUrl( $p_url )
+	 * Set the URL of the request.
+	 *
+	 * @param string $pUrl
+	 * @return $this
+	 */
+	public function setUrl( $pUrl )
 	{
-		$this->url = $p_url;
+		$this->url = $pUrl;
+		return $this;
 	}
 
 	/**
-	 * @return {string|NULL}
+	 * Current URL set.
+	 * @return null|string
 	 */
 	public function url()
 	{

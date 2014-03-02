@@ -46,12 +46,12 @@ class GetProfile extends aPage
 
 	public function load()
 	{
-		$this->dqi = new BattleNet_Requestor( $this->battleNetId );
+		$this->bnr = new BattleNet_Requestor( $this->battleNetId );
 		$this->sql = new BattleNet_Sql( \kshabazz\d3a\USER_IP_ADDRESS );
 		$this->view = new \kshabazz\d3a\View\GetProfile([
 			'battleNetId' => $this->battleNetId,
 			'clearCache' => $this->clearCache,
-			'dqi' => $this->dqi,
+			'bnr' => $this->bnr,
 			'sql' => $this->sql,
 			'supers' => $this->supers,
 		]);

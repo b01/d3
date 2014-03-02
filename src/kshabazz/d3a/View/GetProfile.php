@@ -32,7 +32,7 @@ class GetProfile
 	 */
 	public function __construct( array $pModels )
 	{
-		$this->dqi = $pModels[ 'dqi' ];
+		$this->dqi = $pModels[ 'bnr' ];
 		$this->sql = $pModels[ 'sql' ];
 		$this->battleNetId = $pModels[ 'battleNetId' ];
 		$this->heroes = NULL;
