@@ -17,7 +17,7 @@
 			<div class="effect-bg {{ item.effects() }}">
 				<div class="icon {{ item.displayColor }} inline-block top"
 				     data-dbid="Place DB Unique ID here for forged items"
-				     data-hash="{{ item.hash() }}"
+				     data-hash="{{ item.tooltipParams() }}"
 				     data-type="{{ func('\\kshabazz\\d3a\\getItemSlot', item.type.id ) }}"
 					>
 					<img class="gradient" src="/media/images/icons/items/large/{{ item.icon }}.png" alt="{{ item.name }}" />
@@ -77,7 +77,7 @@
 			<ul class="list stats">
 				<li class="stat">
 					<span class="label"><span class="toggle inline-block">+</span> Hash</span>
-					<div class="expandable" ><textarea class="copy-box" readonly="readonly">{{ item.hash }}</textarea></div>
+					<div class="expandable" ><textarea class="copy-box" readonly="readonly">{{ item.tooltipParams }}</textarea></div>
 				</li>
 				<li class="stat">
 					<span class="label"><span class="toggle inline-block">+</span> Json</span>

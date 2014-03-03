@@ -26,8 +26,8 @@
 		</div>
 		<div class="inline-block section one">
 			<div class="hero">
-                <div class="dead-{{dead}}">{{ deadText }}</div>
-                <div class="progress">{{ progress }}</div>
+				<div class="dead-{{dead}}">{{ deadText }}</div>
+				<div class="progress">{{ progress }}</div>
 				<div class="levels">
 					<span class="level">
 						<span class="label">Level: </span><span class="number">{{ hero.level() }}</span>
@@ -36,16 +36,15 @@
 						<span class="label">Paragon: </span><span class="number">{{ hero.paragonLevel() }}</span>
 					</span>
 				</div>
-                <!-- START ITEMS MODULE -->
-                {% for key, item in items %}
-				<a class="item-slot {{ key }}{{ func('\\kshabazz\\d3a\\translateSlotName', key) }}" href="/item.php?battleNetId={{ battleNetUrlSafeId }}&hash={{ item.hash }}" data-slot="{{ key }}">
-				{# <a class="item-slot {{ key }}{{ func('\\kshabazz\\d3a\\translateSlotName', key) }}" href="/get-item.php?battleNetId={{ battleNetUrlSafeId }}&itemHash={{ item.hash }}&extra=0&showClose=1" data-slot="{{ key }}"> #}
-					<div class="icon {{ item.displayColor }} inline-block top" data-hash="{{ item.hash }}" data-type="{{ func('\\kshabazz\\d3a\\getItemSlot', key) }}">
+				<!-- START ITEMS MODULE -->
+				{% for key, item in items %}
+				<a class="item-slot {{ key }}{{ func('\\kshabazz\\d3a\\translateSlotName', key) }}" href="/item.php?battleNetId={{ battleNetUrlSafeId }}&hash={{ item.tooltipParams() }}" data-slot="{{ key }}">
+				{# <a class="item-slot {{ key }}{{ func('\\kshabazz\\d3a\\translateSlotName', key) }}" href="/get-item.php?battleNetId={{ battleNetUrlSafeId }}&itemHash={{ item.tooltipParams() }}&extra=0&showClose=1" data-slot="{{ key }}"> #}
+					<div class="icon {{ item.displayColor }} inline-block top" data-hash="{{ item.tooltipParams }}" data-type="{{ func('\\kshabazz\\d3a\\getItemSlot', key) }}">
 						<img class="gradient" src="/media/images/icons/items/large/{{ item.icon }}.png" alt="{{ key }}" />
 						<!-- include 'templates/gems.php' -->
 					</div>
 					<div class="id">{{ item.id }}</div>
-
 				<!-- TODO: figure out how to get item dye number
 					Is it on the Hero, item, or tooltip JSON.
 					<img src="http://media.blizzard.com/d3/icons/items/small/dye_10_demonhunter_male.png" />
@@ -56,11 +55,11 @@
 						<img src="http://media.blizzard.com/d3/icons/items/small/dye_05_demonhunter_male.png" />
 					</a>
 				-->
-
 				</a>
+				<div><a href="http://us.battle.net/api/d3/data/{{ item.tooltipParams() }}" target="_blank">{{ key }}</a></div>
 				{% endfor %}
-                <!-- END ITEMS MODULE -->
-            </div>
+				<!-- END ITEMS MODULE -->
+			</div>
 			<!-- START SKILLS MODULE -->
 			<div class="skills">
 				<div class="active">
@@ -222,7 +221,6 @@
 		{% autoescape false %}
 		<div id="ajaxed-items"></div>
 		<textarea name="hero-json" class="hide">{{ hero.json }}</textarea>
-
 		{% set time = func('microtime', TRUE) - requestTime %}
 		<!-- Page output in {{ time }} seconds -->
 		{% endautoescape %}
