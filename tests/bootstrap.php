@@ -11,9 +11,7 @@
 require_once __DIR__ . '/../vendor/autoload.php';
 // configure PHP-VCR
 $vcrSettings = \VCR\VCR::configure();
-// where to save HTTP request & responses.
-$vcrSettings->setCassettePath('test/fixture');
 // specify which HTTP lib request to intercept.
-$vcrSettings->enableLibraryHooks(array('curl'));
+$vcrSettings->enableLibraryHooks([ 'curl' ]);
 \VCR\VCR::turnOn();
 // Writing below this line can cause headers to be sent before intended ?>
