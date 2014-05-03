@@ -9,6 +9,7 @@
  * @copyright (c) 2012-2013 diablo-3-assistant by Khalifah K. Shabazz
  * timestamp: 12/29/13:11:52 PM
  */
+use function \Kshabazz\Slib\isArray;
 /**
  * Class Profile
  * @package kshabazz\d3a\Model

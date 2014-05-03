@@ -1,5 +1,7 @@
 <?php namespace kshabazz\d3a;
 
+use function \Kshabazz\Slib\logError, \Kshabazz\Slib\isArray;
+
 class BattleNet_Sql extends Sql
 {
 	const

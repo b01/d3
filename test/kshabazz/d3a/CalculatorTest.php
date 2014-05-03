@@ -9,7 +9,7 @@
 use kshabazz\d3a\Calculator;
 use kshabazz\d3a\Item;
 use kshabazz\d3a\Model\Hero;
-
+use function \Kshabazz\Slib\isArray;
 /**
  * Class CalculatorTest
  * @package kshabazz\test

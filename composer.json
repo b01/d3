@@ -4,11 +4,16 @@
 	"require": {
 		"php": ">=5.4.0",
 		"twig/twig": "1.*",
-		"kshabazz/slib": "dev-master"
+		"kshabazz/slib": "dev-master",
+		"pear-pear.php.net/HTML_Template_Sigma": "*"
 	},
 	"require-dev": {
+		"phpunit/phpunit-mock-objects": "2.0.*",
+		"phpunit/php-code-coverage": "2.0.*",
 		"phpunit/phpunit": "3.7.*",
-		"squizlabs/php_codesniffer": "1.*"
+		"squizlabs/php_codesniffer": "1.5.*",
+		"php-vcr/php-vcr": "dev-master",
+		"php-vcr/phpunit-testlistener-vcr": "dev-master"
 	},
 	"autoload": {
 		"psr-0": { "kshabazz\\": "src/" },
@@ -31,6 +36,10 @@
 		{
 			"type": "vcs",
 			"url": "https://github.com/b01/slib.git"
+		},
+		{
+			"type": "pear",
+			"url": "http://pear.php.net"
 		}
 	]
 }

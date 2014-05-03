@@ -15,11 +15,11 @@ require_once __DIR__ . '/../../../vendor/autoload.php';
 // Get the attribute map file.
 $d3a = new Application( new SuperGlobals() );
 
-checkPhpVersion( 5, 6 );
+\Kshabazz\Slib\checkPhpVersion( 5, 6 );
 
 // TODO change convertToClassName to convertRouteToClassName and move to application class.
 $page = basename( $_SERVER['SCRIPT_FILENAME'] );
-$routeName = convertToClassName( $page );
+$routeName = \Kshabazz\Slib\convertToClassName( $page );
 $d3a->store( 'routeName', $routeName );
 $GLOBALS[ 'application' ] = $d3a;
 

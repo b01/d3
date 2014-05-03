@@ -33,11 +33,6 @@ class BattleNet_RequestorTest extends \PHPUnit_Framework_TestCase
 		);
 	}
 
-	/**
-	* Get BattleNet ID
-	*
-	* @return string BattleNet ID
-	*/
 	public function test_gettting_url_safe_battleNet_id()
 	{
 		$bnr = new \kshabazz\d3a\BattleNet_Requestor( $this->battleNetId );
@@ -59,13 +54,14 @@ class BattleNet_RequestorTest extends \PHPUnit_Framework_TestCase
 
 	/**
 	 * Test getting a hero from Battle.Net
+	 * @vcr hero-response.json
 	 */
 	public function test_get_hero()
 	{
 		$bnr = new \kshabazz\d3a\BattleNet_Requestor( $this->battleNetId );
 		$heroJson = $bnr->getHero( $this->heroId );
-		$hero = new \kshabazz\d3a\Model\Hero( $heroJson );
-		$this->assertEquals( $this->heroId, $hero->id(), 'Unable to retrive Hero from Battle.Net' );
+		$hero = json_decode( $heroJson );
+		$this->assertEquals( 'NOTFOUND', $hero->code, 'Unable to retrive Hero from Battle.Net' );
 	}
 
 	/**
@@ -83,7 +79,7 @@ class BattleNet_RequestorTest extends \PHPUnit_Framework_TestCase
 	 * Test retrieving an invalid item from Battle.Net
 	 *
 	 * @expectedException \InvalidArgumentException
-	 * @expectedExceptionMessage Expects a valid item id, but item id given was: ''.
+	 * @expectedExceptionMessage Expects a valid item id, but was given: ''.
 	 */
 	public function test_getting_a_invalid_item()
 	{

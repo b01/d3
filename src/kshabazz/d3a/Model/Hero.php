@@ -182,13 +182,24 @@ class Hero
 
 	/**
 	 * Initialize this object.
-	 *
 	 * @return $this
+	 * @throws \Exception
 	 */
 	protected function init()
 	{
 		// decode battle.net data to an array.
 		$this->battleNet = json_decode( $this->json, TRUE );
+		// verify the JSON is legit.
+		if (array_key_exists('code', $this->battleNet))
+		{
+			if (array_key_exists('reason', $this->battleNet))
+			{
+				$reason = $this->battleNet[ 'reason' ];
+			}
+			$errorMessage = 'There wan an error with the hero JSON.';
+			$errorMessage .= ' ' . $reason;
+			throw new \Exception($errorMessage);
+		}
 		// shortcuts to some data in the Battle.net JSON.
 		$this->class = $this->battleNet[ 'class' ];
 		$this->id = ( int ) $this->battleNet[ 'id' ];

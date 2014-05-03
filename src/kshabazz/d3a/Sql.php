@@ -3,6 +3,12 @@
  * Generic methods for retrieving data from a database.
  *
  */
+use function \Kshabazz\Slib\isArray;
+/**
+ * Class Sql
+ *
+ * @package kshabazz\d3a
+ */
 class Sql
 {
 	protected

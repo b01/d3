@@ -3,9 +3,9 @@
  * Generic methods for retrieving HTML pages.
  *
  */
-
 use \Kshabazz\Slib;
-
+use function \Kshabazz\Slib\isString,
+			 \Kshabazz\Slib\isArray;
 /**
  * Class HttpRequestor
  * @package kshabazz\d3a
@@ -94,19 +94,19 @@ class HttpRequestor
 		if ( !empty($this->url) )
 		{
 			$curl = curl_init( $this->url );
-			\curl_setopt( $curl, \CURLOPT_RETURNTRANSFER, TRUE );
+			curl_setopt( $curl, \CURLOPT_RETURNTRANSFER, TRUE );
 			if ( !empty($body) )
 			{
-				\curl_setopt( $curl, \CURLOPT_HTTPHEADER, ["Content-Type: application/json; charset=utf-8"] );
-				\curl_setopt( $curl, \CURLOPT_POST, TRUE );
-				\curl_setopt( $curl, \CURLOPT_POSTFIELDS, $body );
+				curl_setopt( $curl, \CURLOPT_HTTPHEADER, ["Content-Type: application/json; charset=utf-8"] );
+				curl_setopt( $curl, \CURLOPT_POST, TRUE );
+				curl_setopt( $curl, \CURLOPT_POSTFIELDS, $body );
 			}
 			$this->processHeaders( $curl );
 			// Send the request and get a response.
-			$responseText = \curl_exec( $curl );
+			$responseText = curl_exec( $curl );
 			// get the status of the call
-			$this->requestInfo = \curl_getinfo( $curl );
-			\curl_close( $curl );
+			$this->requestInfo = curl_getinfo( $curl );
+			curl_close( $curl );
 			if ( !empty($responseText) )
 			{
 				$returnValue = $responseText;

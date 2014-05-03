@@ -2,6 +2,13 @@
 /**
 * Perform request to BattleNet
 */
+use function \Kshabazz\Slib\isString,
+			 \Kshabazz\Slib\isArray;
+/**
+ * Class BattleNet_Requestor
+ *
+ * @package kshabazz\d3a
+ */
 class BattleNet_Requestor extends HttpRequestor
 {
 	protected
@@ -59,20 +66,18 @@ class BattleNet_Requestor extends HttpRequestor
 	 *
 	 * @param $pHeroId
 	 * @return null|string
-	 * @throws \Exception
+	 * @throws \InvalidArgumentException
 	 */
 	public function getHero( $pHeroId )
 	{
 		$returnValue = NULL;
-		if ( isString($pHeroId) )
+		// todo: validate with regex.
+		if ( !isString($pHeroId) )
 		{
-			$this->url = sprintf( BATTLENET_D3_API_HERO_URL, $this->battleNetUrlSafeId, $pHeroId );
-			$returnValue = $this->send();
+			throw new \InvalidArgumentException( "Hero '{$pHeroId}' not found." );
 		}
-		else
-		{
-			throw new \Exception( "Hero '{$pHeroId}' not found." );
-		}
+		$this->url = sprintf( BATTLENET_D3_API_HERO_URL, $this->battleNetUrlSafeId, $pHeroId );
+		$returnValue = $this->send();
 		return $returnValue;
 	}
 
@@ -91,7 +96,7 @@ class BattleNet_Requestor extends HttpRequestor
 		if ( !isString($pItemId) )
 		{
 			throw new \InvalidArgumentException(
-				"Expects a valid item id, but was given : '{$pItemId}'."
+				"Expects a valid item id, but was given: '{$pItemId}'."
 			);
 		}
 		try

@@ -4,7 +4,7 @@
 * The profile will only be updated after a few ours of retrieving it.
 *
 */
-
+use function \Kshabazz\Slib\isArray;
 /**
 * var $p_battleNetId string User BattleNet ID.
 * var $pBnr object Data Query Interface.

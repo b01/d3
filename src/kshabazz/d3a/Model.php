@@ -4,7 +4,8 @@
 * behind the scenes. The item will only be updated after a few ours of retrieving it.
 *
 */
-
+use function \Kshabazz\Slib\isArray,
+			 \Kshabazz\Slib\logError;
 /**
 * var $p_itemHash string User BattleNet ID.
 * var $pDqi object Data Query Interface.
