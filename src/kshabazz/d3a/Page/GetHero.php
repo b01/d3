@@ -15,6 +15,7 @@ use \kshabazz\d3a\BattleNet_Item;
 use \kshabazz\d3a\Calculator;
 use \kshabazz\d3a\Model\Item;
 use \kshabazz\d3a\View\Hero;
+use function \Kshabazz\Slib\isString, \Kshabazz\Slib\isArray, \Kshabazz\Slib\loadJsonFile;
 
 /**
  * Class GetHero

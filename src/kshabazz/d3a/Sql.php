@@ -3,7 +3,7 @@
  * Generic methods for retrieving data from a database.
  *
  */
-use function \Kshabazz\Slib\isArray;
+use function \Kshabazz\Slib\isArray, \Kshabazz\Slib\logError;
 /**
  * Class Sql
  *

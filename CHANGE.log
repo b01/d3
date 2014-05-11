@@ -1,3 +1,7 @@
+List of changes since 05/11/2014 11:09 AM
+-------------------------------
+- Finish Slib update by updating all Slib function calls.
+
 List of changes since 05/03/2014 01:52 PM
 -------------------------------
 - Renamed test to tests; and fixture to fixutes.

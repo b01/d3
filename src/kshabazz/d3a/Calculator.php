@@ -5,7 +5,7 @@
  * @var array $p_items A hash array of items, by which the keys indicate where the items are placed
  *	on the hero.
  */
-
+use function \Kshabazz\Slib\isArray;
 /**
  * Class Calculator
  * @package kshabazz\d3a

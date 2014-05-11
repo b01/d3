@@ -17,27 +17,6 @@ use function kshabazz\d3a\isBattleNetId;
  */
 class ToolTest extends \PHPUnit_Framework_TestCase
 {
-	public function test_loading_a_json_file()
-	{
-		$filePath = __DIR__ . '/../../fixture/data/attribute-map.txt';
-		$testArray = loadJsonFile( $filePath );
-		$this->assertArrayHasKey( 'test', $testArray, 'Failed to load JSON file.' );
-	}
-
-	public function test_loading_json_data_correclty()
-	{
-		$filePath =  __DIR__ . '/../../fixture/data/attribute-map.txt';
-		$testArray = loadJsonFile( $filePath );
-		$this->assertEquals( 1234,  $testArray['test'], 'Failed to load data correctly from JSON file.' );
-	}
-
-	public function test_loading_an_empty_json_file()
-	{
-		$filePath =  __DIR__ . '/../../fixture/data/empty-map.txt';
-		$testArray = loadJsonFile( $filePath );
-		$this->assertTrue( is_array($testArray), 'Failed to return array.' );
-	}
-
 	public function test_valid_id_with_isBattleNetId()
 	{
 		$test = isBattleNetId( 'msuBREAKER#1374' );

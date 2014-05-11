@@ -8,7 +8,7 @@
 	</head>
 	<body>
 		<div class="section time-elapsed">{{ sessionTimeLeft }}</div>
-		{% if func('isArray', heroes) %}
+		{% if func('\Kshabazz\\Slib\\isArray', heroes) %}
 		<div class="heroes">
 			{% for key, hero in heroes %}
 			<a href="{{ heroUrl }}{{ hero.id }}" class="inline-block profile {{ hero.class }} gender-{{ hero.gender }}">

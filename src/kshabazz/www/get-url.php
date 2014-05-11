@@ -2,7 +2,6 @@
 /**
  *
  */
-use \Kshabazz\Slib;
 
 	$which = ( !isset($which) ) ? getStr( 'which' ) : $which;
 	$class = getStr( 'class' );
@@ -35,7 +34,7 @@ use \Kshabazz\Slib;
 				break;
 		}
 
-		if ( !isString($url) )
+		if ( !\Kshabazz\Slib\isString($url) )
 		{
 			return null;
 		}
@@ -59,7 +58,7 @@ use \Kshabazz\Slib;
 
 		if ( $body !== NULL )
 		{
-			echo getHtmlInnerBody( $body );
+			echo \Kshabazz\Slib\getHtmlInnerBody( $body );
 		}
 	}
 ?>

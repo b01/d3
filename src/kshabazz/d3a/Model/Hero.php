@@ -1,5 +1,4 @@
 <?php namespace kshabazz\d3a\Model;
-
 /**
  * Diablo 3 Assistant License is under The MIT License (MIT) [OSI Approved License]
  * Please read LICENSE.txt, included with this software for the full licensing information.
@@ -9,6 +8,7 @@
  * @copyright (c) 2012-2013 diablo-3-assistant by Khalifah K. Shabazz
  * timestamp: 11/23/13:8:21 AM
  */
+use function \Kshabazz\Slib\isArray;
  /**
  * Class Hero
  * @package kshabazz\d3a\Model

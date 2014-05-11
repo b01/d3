@@ -40,7 +40,7 @@ class BattleNet_Hero extends BattleNet_Model
 	protected function pullJsonFromDb()
 	{
 		$result = $this->sql->getHero( $this->key );
-		if ( isArray($result) )
+		if ( \Kshabazz\Slib\isArray($result) )
 		{
 			$this->json = $result[ 0 ][ 'json' ];
 		}

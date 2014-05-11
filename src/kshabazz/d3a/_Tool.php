@@ -10,8 +10,6 @@
  * @copyright (c) 2012-2013 Khalifah K. Shabazz
  */
 
-use \Kshabazz\Slib;
-
 	/**
 	* Display a value as a single number or a range if min and max are different.
 	* @param array Containing the min and max values of a property.
@@ -302,7 +300,7 @@ use \Kshabazz\Slib;
 	{
 		$attributeMapOutput = json_encode( $attributeMap, TRUE );
 		// Save image data to a file.
-		saveFile( $pFile, $attributeMapOutput );
+		\Kshabazz\Slib\saveFile( $pFile, $attributeMapOutput );
 	}
 
 	/**
@@ -408,7 +406,7 @@ use \Kshabazz\Slib;
 
 	function updateAttributeMap( array $pAttributes, $pFile )
 	{
-		$currentAttributes = loadJsonFile( $pFile );
+		$currentAttributes = \Kshabazz\Slib\loadJsonFile( $pFile );
 		$updateAttributes = $currentAttributes;
 		foreach ( $pAttributes as $attribute => $values )
 		{

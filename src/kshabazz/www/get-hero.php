@@ -197,7 +197,7 @@
 					</ul>
 				</li>
 			</ul>
-			{% if func('isArray',calculator.debug) %}
+			{% if func('\Kshabazz\\Slib\\isArray',calculator.debug) %}
 			<div class="calculated list stats inline-block">
 				<div class="debug-info">
 					{% for key, line in calculator.debug %}
