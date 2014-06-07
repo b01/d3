@@ -3,8 +3,8 @@
 _Settings.php
 settings.php
 IIRF.ini
-logs*
-media*
+logs/*
+media/*
 aspnet_client
 tidy.config
 favicon*
@@ -16,3 +16,4 @@ private.ini
 private/
 composer.phar
 phpinfo.php
+config/*
