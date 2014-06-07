@@ -3,9 +3,10 @@
 	"description": "A tool to help play improve your game-play.",
 	"require": {
 		"php": ">=5.4.0",
-		"twig/twig": "1.*",
 		"kshabazz/slib": "dev-master",
-		"pear-pear.php.net/HTML_Template_Sigma": "*"
+		"twig/twig": "1.*",
+		"pear-pear.php.net/HTML_Template_Sigma": "*",
+		"guzzlehttp/guzzle": "~4.0"
 	},
 	"require-dev": {
 		"phpunit/phpunit-mock-objects": "2.0.*",
