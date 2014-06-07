@@ -10,7 +10,7 @@
  */
 
 // composer auto-loader.
-require_once __DIR__ . '/../../../vendor/autoload.php';
+require_once __DIR__ . '/php/vendor/autoload.php';
 
 // Get the attribute map file.
 $d3a = new Application( new SuperGlobals() );
