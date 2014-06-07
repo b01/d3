@@ -6,7 +6,8 @@
 		"kshabazz/slib": "dev-master",
 		"twig/twig": "1.*",
 		"pear-pear.php.net/HTML_Template_Sigma": "*",
-		"guzzlehttp/guzzle": "~4.0"
+		"guzzlehttp/guzzle": "~4.0",
+		"orno/config": "dev-master"
 	},
 	"require-dev": {
 		"phpunit/phpunit-mock-objects": "2.0.*",
