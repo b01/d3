@@ -76,7 +76,7 @@ class BattleNet_Requestor extends HttpRequestor
 		{
 			throw new \InvalidArgumentException( "Hero '{$pHeroId}' not found." );
 		}
-		$this->url = sprintf( BATTLENET_D3_API_HERO_URL, $this->battleNetUrlSafeId, $pHeroId );
+		$this->url = sprintf( D3_API_HERO_URL, $this->battleNetUrlSafeId, $pHeroId );
 		$returnValue = $this->send();
 		return $returnValue;
 	}
@@ -102,7 +102,7 @@ class BattleNet_Requestor extends HttpRequestor
 		try
 		{
 			// retrieve the item JSON from the at the constructed URL
-			$this->url = sprintf( BATTLENET_D3_API_ITEM_URL, $pItemId );
+			$this->url = sprintf( D3_API_ITEM_URL, $pItemId );
 			// Return the response text.
 			$returnValue = $this->send();
 		}
@@ -124,7 +124,7 @@ class BattleNet_Requestor extends HttpRequestor
 		$returnValue = NULL;
 		try
 		{
-			$this->url = BATTLENET_D3_API_PROFILE_URL . '/' . $this->battleNetUrlSafeId . '/';
+			$this->url = D3_API_PROFILE_URL . '/' . $this->battleNetUrlSafeId . '/';
 			// Return the response text.
 			$returnValue = $this->send();
 		}

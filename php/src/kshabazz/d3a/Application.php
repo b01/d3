@@ -48,6 +48,34 @@ class Application
 	}
 
 	/**
+	 * Get the full pathname to the attribute map file.
+	 *
+	 * @return string
+	 * @throws \Exception
+	 */
+	public function getAttributeFile()
+	{
+		$attributeMapFile = realpath( $this->settings['Web']['ATTRIBUTE_MAP_FILE'] );
+		if ( !file_exists($attributeMapFile) )
+		{
+			throw new \Exception( 'Could not find attribute map file.' );
+		}
+		return $attributeMapFile;
+	}
+
+	/**
+	 * Get a variable from the GET super global.
+	 * @param $key
+	 * @param $default
+	 * @param $type
+	 * @return mixed
+	 */
+	public function getQueryParam( $key, $default, $type = 'string' )
+	{
+		return $this->superGlobals->getParam( $key, $default, $type, 'GET' );
+	}
+
+	/**
 	 * Grab the buffer and process it through a template engine.
 	 * Note: currently this works with any template engine that has a method "render"
 	 * which can take a string as the first parameter and an object as the second.

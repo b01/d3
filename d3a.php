@@ -6,14 +6,17 @@
  *  PHP 5.6+
  *  Use of .user.ini feature
  *  Composer
- *  Write permissions in the media/images directory
+ *  Write permissions in the media/images & media/data-files directories
  */
 
 // composer auto-loader.
 require_once __DIR__ . '/php/vendor/autoload.php';
 
-// Get the attribute map file.
-$d3a = new Application( new SuperGlobals() );
+// Load configuration values.
+$config = new \Orno\Config\File\IniFileLoader( __DIR__ . '/config/app.ini' );
+
+// D3 Assistant integration with configuration values.
+$d3a = new Application( new SuperGlobals(), $config->parse() );
 
 \Kshabazz\Slib\checkPhpVersion( 5, 6 );
 

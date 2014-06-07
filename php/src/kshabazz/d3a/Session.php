@@ -35,7 +35,7 @@ class Session
 	 * @param int $pDuration Amount of time to before cache times out.
 	 * @return bool
 	 */
-	public function getSessionExpireInfo( $pSessionVarName, $pClear = FALSE, $pDuration = CACHE_LIMIT)
+	public function getSessionExpireInfo( $pSessionVarName, $pClear = FALSE, $pDuration = 0 )
 	{
 		$timeElapsed = 0;
 		$loadFromBattleNet = $this->sessionTimeExpired( $pSessionVarName, $pDuration, $pClear, $timeElapsed );

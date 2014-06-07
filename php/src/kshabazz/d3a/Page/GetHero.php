@@ -51,9 +51,9 @@ class GetHero extends aPage
 	{
 		$this->system = $pSystem;
 		$this->supers = $this->system->superGlobals();
-		$this->battleNetId = $this->supers->getParam( 'battleNetId', NULL, 'string', 'GET' );
-		$this->id = $this->supers->getParam( 'heroId', NULL, 'string', 'GET' );
-		$this->fromCache = $this->supers->getParam( 'cache', NULL, 'bool', 'GET' );
+		$this->battleNetId = $this->system->getQueryParam( 'battleNetId', NULL, 'string' );
+		$this->id = $this->system->getQueryParam( 'heroId', NULL, 'string' );
+		$this->fromCache = $this->system->getQueryParam( 'cache', NULL, 'bool' );
 		$this->load();
 	}
 
@@ -100,7 +100,11 @@ class GetHero extends aPage
 		if ( isString($this->battleNetId) && isString($this->id) )
 		{
 			// Check if the cache has expired for the hero JSON.
-			$this->sessionCacheInfo = \kshabazz\d3a\getSessionExpireInfo( 'hero-' . $this->id, $this->fromCache );
+			$this->sessionCacheInfo = \kshabazz\d3a\getSessionExpireInfo(
+				'hero-' . $this->id,
+				$this->fromCache,
+				$this->system->setting('Web')['CACHE_LIMIT']
+			);
 			// Build the view model.
 			$this->bnr = new \kshabazz\d3a\BattleNet_Requestor( $this->battleNetId );
 			$this->sql = new \kshabazz\d3a\BattleNet_Sql( \kshabazz\d3a\USER_IP_ADDRESS );
@@ -111,14 +115,12 @@ class GetHero extends aPage
 				$this->sessionCacheInfo[ 'loadFromBattleNet' ]
 			);
 
-			$this->attributeMap = loadJsonFile( \kshabazz\d3a\ATTRIBUTE_MAP_FILE );
-
 			$this->hero = new \kshabazz\d3a\Model\Hero( $this->bnrHero->json() );
 			$this->processHeroItems();
 			$this->calculator = new Calculator();
 			$this->calculator->setHero( $this->hero, $this->itemModels );
 			// Collect unique attributes into the attributes map file.
-			\kshabazz\d3a\updateAttributeMap( $this->calculator->attributeTotals(), \kshabazz\d3a\ATTRIBUTE_MAP_FILE );
+			\kshabazz\d3a\updateAttributeMap( $this->calculator->attributeTotals(), $this->system );
 		}
 	}
 

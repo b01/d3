@@ -190,10 +190,10 @@
 	 *
 	 * @param string $pSessionVarName string Session time variable.
 	 * @param bool $pClear overwrite the cache starting now.
-	 * @param int $pDuration Amount of time to before cache times out.
+	 * @param int $pDuration Amount of time to before cache times out, default is 0 for no caching.
 	 * @return bool
 	 */
-	function getSessionExpireInfo( $pSessionVarName, $pClear = FALSE, $pDuration = CACHE_LIMIT)
+	function getSessionExpireInfo( $pSessionVarName, $pClear = FALSE, $pDuration = 0 )
 	{
 		$timeElapsed = 0;
 		$loadFromBattleNet = sessionTimeExpired( $pSessionVarName, $pDuration, $pClear, $timeElapsed );
@@ -404,8 +404,9 @@
 		return $returnValue;
 	}
 
-	function updateAttributeMap( array $pAttributes, $pFile )
+	function updateAttributeMap( array $pAttributes, \kshabazz\d3a\Application $pSystem )
 	{
+		$pFile = $pSystem->getAttributeFile();
 		$currentAttributes = \Kshabazz\Slib\loadJsonFile( $pFile );
 		$updateAttributes = $currentAttributes;
 		foreach ( $pAttributes as $attribute => $values )
