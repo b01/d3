@@ -21,7 +21,20 @@ class Sql
 	public function __construct( $p_ipAddress = NULL, $type = NULL )
 	{
 		$this->ipAddress = $p_ipAddress;
-		$this->pdoh = include __DIR__ . '/private/Pdo.php';
+		try
+		{
+			$this->pdoh = include __DIR__ . '/private/Pdo.php';
+		}
+		catch ( \Exception $pError )
+		{
+			$this->pdoh = null;
+			//	logError(
+			//		$p_error,
+			//		"Unable to establish a connection with the database.\n\tin %s on line %s",
+			//		"There was a problem with the system, please try again later."
+			//	);
+			logError( $pError, "Unable to establish a connection with the database.\n\tin %s on line %s" );
+		}
 	}
 
 	/**
