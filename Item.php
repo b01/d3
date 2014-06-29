@@ -41,9 +41,10 @@ class BattleNet_Item extends BattleNet_Model
 		$returnValue = NULL;
 		if ( $this->key !== NULL )
 		{
+			$hashValue = str_replace('item/', '', $this->key);
 			$query = sprintf( BattleNet_Sql::SELECT_ITEM, $this->column );
-			$result = $this->sql->getData( $query, ['selectValue' => [$this->key, \PDO::PARAM_STR]] );
-			if ( isArray($result) )
+			$result = $this->sql->getData( $query, ['selectValue' => [$hashValue, \PDO::PARAM_STR]] );
+			if ( \Kshabazz\Slib\isArray($result) )
 			{
 				$this->info = $result[ 0 ];
 				$this->json = $this->info[ 'json' ];

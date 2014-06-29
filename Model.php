@@ -50,7 +50,7 @@ abstract class BattleNet_Model
 	}
 
     /**
-     * Get the JSON from the DB if $loadFromDb is true, or pull from Battle.net.
+     * Get fresh JSON data from Battle.net after {@see CACHE_LIMIT}, otherwise pull from the DB.
      * @return $this
      */
     protected function pullJson()
