@@ -9,23 +9,23 @@ use function \Kshabazz\Slib\isString,
  *
  * @package kshabazz\d3a
  */
-class Http extends \kshabazz\d3a\HttpRequestor
+class Http extends \kshabazz\d3a\HttpRequestor implements Requestor
 {
 	const
 		D3_API_PROFILE_URL = 'http://us.battle.net/api/d3/profile',
 		D3_API_HERO_URL = 'http://us.battle.net/api/d3/profile/%s/hero/%d',
 		D3_API_ITEM_URL = 'http://us.battle.net/api/d3/data/%s';
 
-	protected
+	private
 		$battleNetId,
 		$battleNetUrlSafeId;
 
 	/**
 	 * Constructor
 	 *
-	 * @param null $pBattleNetId
+	 * @param string $pBattleNetId
 	 */
-	public function __construct( $pBattleNetId = NULL )
+	public function __construct( $pBattleNetId )
 	{
 		parent::__construct( NULL );
 		$this->battleNetId = $pBattleNetId;
