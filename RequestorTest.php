@@ -21,18 +21,6 @@ class BattleNet_RequestorTest extends \PHPUnit_Framework_TestCase
 		$this->heroId = '36131726';
 	}
 
-	/**
-	 * Test initilizing an BattleNet_Requestor object.
-	 */
-	public function test_constructor()
-	{
-		$bnRequest = new \kshabazz\d3a\BattleNet\Requestors\Http();
-		$this->assertTrue(
-			$bnRequest instanceof \kshabazz\d3a\BattleNet\Requestors\Http,
-			'Could not initialize an instance of \kshabazz\d3a\BattleNet\Requestors\Http.'
-		);
-	}
-
 	public function test_gettting_url_safe_battleNet_id()
 	{
 		$bnr = new \kshabazz\d3a\BattleNet\Requestors\Http( $this->battleNetId );
