@@ -23,11 +23,11 @@ abstract class BattleNet_Model
      * Constructor
      *
      * @param string $pKey
-     * @param BattleNet_Requestor $pBnr
-     * @param Sql $pSql
+     * @param BattleNet\Requestors\Http $pBnr
+     * @param BattleNet\Requestors\Sql $pSql
      * @param bool $pLoadFromCache
      */
-    public function __construct( $pKey, BattleNet_Requestor $pBnr, Sql $pSql, $pLoadFromCache = TRUE )
+    public function __construct( $pKey, BattleNet\Requestors\Http $pBnr, BattleNet\Requestors\Sql $pSql, $pLoadFromCache = TRUE )
 	{
 		$this->bnr = $pBnr;
 		$this->json = NULL;

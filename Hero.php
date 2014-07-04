@@ -67,7 +67,7 @@ class BattleNet_Hero extends BattleNet_Model
 			return FALSE;
 		}
 		$utcTime = gmdate( 'Y-m-d H:i:s' );
-		return $this->sql->save( BattleNet_Sql::INSERT_HERO, [
+		return $this->sql->save( BattleNet\Requestors\Sql::INSERT_HERO, [
 			'heroId' => [ $this->key, \PDO::PARAM_STR ],
 			'battleNetId' => [ $this->bnr->battleNetId(), \PDO::PARAM_STR ],
 			'json' => [ $this->json, \PDO::PARAM_STR ],

@@ -1,8 +1,8 @@
-<?php namespace kshabazz\d3a;
+<?php namespace kshabazz\d3a\BattleNet\Requestors;
 
 use function \Kshabazz\Slib\logError, \Kshabazz\Slib\isArray;
 
-class BattleNet_Sql extends Sql
+class Sql extends \kshabazz\d3a\Sql
 {
 	const
 		SELECT_PROFILE = "SELECT `battle_net_id`, `json`, `ip_address`, `last_updated`, `date_added` FROM `d3_profiles` WHERE `battle_net_id` = :battleNetId;",

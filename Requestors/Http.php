@@ -1,16 +1,21 @@
-<?php namespace kshabazz\d3a;
+<?php namespace kshabazz\d3a\BattleNet\Requestors;
 /**
 * Perform request to BattleNet
 */
 use function \Kshabazz\Slib\isString,
 			 \Kshabazz\Slib\isArray;
 /**
- * Class BattleNet_Requestor
+ * Class Http
  *
  * @package kshabazz\d3a
  */
-class BattleNet_Requestor extends HttpRequestor
+class Http extends \kshabazz\d3a\HttpRequestor
 {
+	const
+		D3_API_PROFILE_URL = 'http://us.battle.net/api/d3/profile',
+		D3_API_HERO_URL = 'http://us.battle.net/api/d3/profile/%s/hero/%d',
+		D3_API_ITEM_URL = 'http://us.battle.net/api/d3/data/%s';
+
 	protected
 		$battleNetId,
 		$battleNetUrlSafeId;
@@ -76,7 +81,7 @@ class BattleNet_Requestor extends HttpRequestor
 		{
 			throw new \InvalidArgumentException( "Hero '{$pHeroId}' not found." );
 		}
-		$this->url = sprintf( D3_API_HERO_URL, $this->battleNetUrlSafeId, $pHeroId );
+		$this->url = sprintf( self::D3_API_HERO_URL, $this->battleNetUrlSafeId, $pHeroId );
 		$returnValue = $this->send();
 		return $returnValue;
 	}
@@ -102,7 +107,7 @@ class BattleNet_Requestor extends HttpRequestor
 		try
 		{
 			// retrieve the item JSON from the at the constructed URL
-			$this->url = sprintf( D3_API_ITEM_URL, $pItemId );
+			$this->url = sprintf( self::D3_API_ITEM_URL, $pItemId );
 			// Return the response text.
 			$returnValue = $this->send();
 		}
@@ -124,7 +129,7 @@ class BattleNet_Requestor extends HttpRequestor
 		$returnValue = NULL;
 		try
 		{
-			$this->url = D3_API_PROFILE_URL . '/' . $this->battleNetUrlSafeId . '/';
+			$this->url = self::D3_API_PROFILE_URL . '/' . $this->battleNetUrlSafeId . '/';
 			// Return the response text.
 			$returnValue = $this->send();
 		}

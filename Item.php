@@ -20,11 +20,11 @@ class BattleNet_Item extends BattleNet_Model
 	 *
 	 * @param string $pHash
 	 * @param string $pColumn
-	 * @param BattleNet_Requestor $pBnr
-	 * @param BattleNet_Sql $pSql
+	 * @param BattleNet\Requestors\Http $pBnr
+	 * @param BattleNet\Requestors\Sql $pSql
 	 * @param bool $fromDb
 	 */
-	public function __construct( $pHash, $pColumn, BattleNet_Requestor $pBnr, BattleNet_Sql $pSql, $fromDb = FALSE )
+	public function __construct( $pHash, $pColumn, BattleNet\Requestors\Http $pBnr, BattleNet\Requestors\Sql $pSql, $fromDb = FALSE )
 	{
 		$this->column = $pColumn;
 		$this->id = NULL;
@@ -42,7 +42,7 @@ class BattleNet_Item extends BattleNet_Model
 		if ( $this->key !== NULL )
 		{
 			$hashValue = str_replace('item/', '', $this->key);
-			$query = sprintf( BattleNet_Sql::SELECT_ITEM, $this->column );
+			$query = sprintf( BattleNet\Requestors\Sql::SELECT_ITEM, $this->column );
 			$result = $this->sql->getData( $query, ['selectValue' => [$hashValue, \PDO::PARAM_STR]] );
 			if ( \Kshabazz\Slib\isArray($result) )
 			{
@@ -98,7 +98,7 @@ class BattleNet_Item extends BattleNet_Model
 			'lastUpdate' => [ $utcTime, \PDO::PARAM_STR ],
 			'dateAdded' => [ $utcTime, \PDO::PARAM_STR ]
 		];
-		return $this->sql->save( BattleNet_Sql::INSERT_ITEM, $params );
+		return $this->sql->save( BattleNet\Requestors\Sql::INSERT_ITEM, $params );
 	}
 
 	/**

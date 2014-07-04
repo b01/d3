@@ -23,11 +23,11 @@ class BattleNet_Profile extends BattleNet_Model
 	 * Constructor
 	 *
 	 * @param string $pBattleNetId
-	 * @param BattleNet_Requestor $pBnr
-	 * @param BattleNet_Sql $pSql
+	 * @param BattleNet\Requestors\Http $pBnr
+	 * @param BattleNet\Requestors\Sql $pSql
 	 * @param bool $pLoadFromCache
 	 */
-	public function __construct( $pBattleNetId, BattleNet_Requestor $pBnr, BattleNet_Sql $pSql, $pLoadFromCache )
+	public function __construct( $pBattleNetId, BattleNet\Requestors\Http $pBnr, BattleNet\Requestors\Sql $pSql, $pLoadFromCache )
 	{
 		$this->column = "battle_net_id";
 		$this->profile = NULL;
@@ -82,7 +82,7 @@ class BattleNet_Profile extends BattleNet_Model
 		}
 		// save it to the database.
 		$utcTime = gmdate( 'Y-m-d H:i:s' );
-		$query = BattleNet_Sql::INSERT_PROFILE;
+		$query = BattleNet\Requestors\Sql::INSERT_PROFILE;
 		return $this->sql->save( $query, [
 			'battleNetId' => [ $this->key, \PDO::PARAM_STR ],
 			'json' => [ $this->json, \PDO::PARAM_STR ],
