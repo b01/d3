@@ -1,13 +1,13 @@
-<?php
+<?php namespace Kshabazz\Tests\BattleNet\D3;
 /**
- * BattleNet_Requestor test.
- * @package \kshabazz\d3a\test
+ * HttpTest test.
  */
+
 /**
- *
- * @TODO Rename to BattleNet_Request once done with the initial unit test
+ * @class HttpTest
+ * @package \Kshabazz\Tests\BattleNet\D3
  */
-class BattleNet_RequestorTest extends \PHPUnit_Framework_TestCase
+class HttpTest extends \PHPUnit_Framework_TestCase
 {
 	private
 		$battleNetId,
