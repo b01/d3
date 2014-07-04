@@ -71,7 +71,7 @@ class BattleNet_RequestorTest extends \PHPUnit_Framework_TestCase
 	{
 		$bnr = new \kshabazz\d3a\BattleNet_Requestor( $this->battleNetId );
 		$itemJson = $bnr->getItem( 'item/COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD' );
-		$item = new \kshabazz\d3a\Model\Item( $itemJson );
+		$item = new \kshabazz\d3a\BattleNet\Models\Item( $itemJson );
 		$this->assertEquals( 'MightyWeapon1H_202', $item->id, 'Invalid item returned.' );
 	}
 
@@ -94,7 +94,7 @@ class BattleNet_RequestorTest extends \PHPUnit_Framework_TestCase
 	{
 		$bnr = new \kshabazz\d3a\BattleNet_Requestor( $this->battleNetId );
 		$profileJson = $bnr->getProfile();
-		$profile = new \kshabazz\d3a\Model\Profile( $profileJson );
+		$profile = new \kshabazz\d3a\BattleNet\Models\Profile( $profileJson );
 		$this->assertEquals(
 			'msuBREAKER#1374',
 			$profile->get('battleTag'),
