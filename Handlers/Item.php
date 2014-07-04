@@ -1,14 +1,15 @@
-<?php namespace kshabazz\d3a;
+<?php namespace kshabazz\d3a\BattleNet\Handlers;
 /**
  * Get the users item from Battle.Net and present it to the user; store it locally in a database behind the scenes.
  * The item will only be updated after a few ours of retrieving it.
  */
+
 /**
  * Class BattleNet_Item
  *
  * @package kshabazz\d3a
  */
-class BattleNet_Item extends BattleNet_Model
+class Item extends \kshabazz\d3a\BattleNet_Model
 {
 	protected
 		$column,
@@ -20,11 +21,16 @@ class BattleNet_Item extends BattleNet_Model
 	 *
 	 * @param string $pHash
 	 * @param string $pColumn
-	 * @param BattleNet\Requestors\Http $pBnr
-	 * @param BattleNet\Requestors\Sql $pSql
+	 * @param \kshabazz\d3a\BattleNet\Requestors\Http $pBnr
+	 * @param \kshabazz\d3a\BattleNet\Requestors\Sql $pSql
 	 * @param bool $fromDb
 	 */
-	public function __construct( $pHash, $pColumn, BattleNet\Requestors\Http $pBnr, BattleNet\Requestors\Sql $pSql, $fromDb = FALSE )
+	public function __construct(
+		$pHash,
+		$pColumn,
+		\kshabazz\d3a\BattleNet\Requestors\Http $pBnr,
+		\kshabazz\d3a\BattleNet\Requestors\Sql $pSql,
+		$fromDb = FALSE )
 	{
 		$this->column = $pColumn;
 		$this->id = NULL;
@@ -42,7 +48,7 @@ class BattleNet_Item extends BattleNet_Model
 		if ( $this->key !== NULL )
 		{
 			$hashValue = str_replace('item/', '', $this->key);
-			$query = sprintf( BattleNet\Requestors\Sql::SELECT_ITEM, $this->column );
+			$query = sprintf( \kshabazz\d3a\BattleNet\Requestors\Sql::SELECT_ITEM, $this->column );
 			$result = $this->sql->getData( $query, ['selectValue' => [$hashValue, \PDO::PARAM_STR]] );
 			if ( \Kshabazz\Slib\isArray($result) )
 			{
@@ -98,7 +104,7 @@ class BattleNet_Item extends BattleNet_Model
 			'lastUpdate' => [ $utcTime, \PDO::PARAM_STR ],
 			'dateAdded' => [ $utcTime, \PDO::PARAM_STR ]
 		];
-		return $this->sql->save( BattleNet\Requestors\Sql::INSERT_ITEM, $params );
+		return $this->sql->save( \kshabazz\d3a\BattleNet\Requestors\Sql::INSERT_ITEM, $params );
 	}
 
 	/**

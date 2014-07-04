@@ -1,16 +1,15 @@
-<?php namespace kshabazz\d3a;
+<?php namespace kshabazz\d3a\BattleNet\Handlers;
 /**
-* Get the users profile from Battle.Net and present it to the user; store it locally in a database behind the scenes.
-* The profile will only be updated after a few ours of retrieving it.
-*
-*/
+ * Get the users profile from Battle.Net and present it to the user; store it locally in a database behind the scenes.
+ * The profile will only be updated after a few ours of retrieving it.
+ */
 use function \Kshabazz\Slib\isArray;
 /**
-* var $p_battleNetId string User BattleNet ID.
-* var $pBnr object Data Query Interface.
-* var $pSql object SQL.
-*/
-class BattleNet_Profile extends BattleNet_Model
+ * var $p_battleNetId string User BattleNet ID.
+ * var $pBnr object Data Query Interface.
+ * var $pSql object SQL.
+ */
+class Profile extends \kshabazz\d3a\BattleNet_Model
 {
 	protected
 		$column,
@@ -23,11 +22,15 @@ class BattleNet_Profile extends BattleNet_Model
 	 * Constructor
 	 *
 	 * @param string $pBattleNetId
-	 * @param BattleNet\Requestors\Http $pBnr
-	 * @param BattleNet\Requestors\Sql $pSql
+	 * @param \kshabazz\d3a\BattleNet\Requestors\Http $pBnr
+	 * @param \kshabazz\d3a\BattleNet\Requestors\Sql $pSql
 	 * @param bool $pLoadFromCache
 	 */
-	public function __construct( $pBattleNetId, BattleNet\Requestors\Http $pBnr, BattleNet\Requestors\Sql $pSql, $pLoadFromCache )
+	public function __construct(
+		$pBattleNetId,
+		\kshabazz\d3a\BattleNet\Requestors\Http $pBnr,
+		\kshabazz\d3a\BattleNet\Requestors\Sql $pSql,
+		$pLoadFromCache )
 	{
 		$this->column = "battle_net_id";
 		$this->profile = NULL;
@@ -82,7 +85,7 @@ class BattleNet_Profile extends BattleNet_Model
 		}
 		// save it to the database.
 		$utcTime = gmdate( 'Y-m-d H:i:s' );
-		$query = BattleNet\Requestors\Sql::INSERT_PROFILE;
+		$query = \kshabazz\d3a\BattleNet\Requestors\Sql::INSERT_PROFILE;
 		return $this->sql->save( $query, [
 			'battleNetId' => [ $this->key, \PDO::PARAM_STR ],
 			'json' => [ $this->json, \PDO::PARAM_STR ],
