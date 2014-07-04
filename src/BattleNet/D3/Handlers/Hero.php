@@ -1,13 +1,13 @@
-<?php namespace kshabazz\d3a\BattleNet\Handlers;
+<?php namespace Kshabazz\BattleNet\D3\Handlers;
 /**
  * Request a hero from BattleNet.
  */
 /**
  * Class Hero
  *
- * @package kshabazz\d3a\BattleNet
+ * @package Kshabazz\BattleNet\D3
  */
-class Hero extends \kshabazz\d3a\BattleNet_Model
+class Hero extends \Kshabazz\BattleNet\D3\BattleNet_Model
 {
 	protected
 		$key,
@@ -67,7 +67,7 @@ class Hero extends \kshabazz\d3a\BattleNet_Model
 			return FALSE;
 		}
 		$utcTime = gmdate( 'Y-m-d H:i:s' );
-		return $this->sql->save( \kshabazz\d3a\BattleNet\Requestors\Sql::INSERT_HERO, [
+		return $this->sql->save( \Kshabazz\BattleNet\D3\Requestors\Sql::INSERT_HERO, [
 			'heroId' => [ $this->key, \PDO::PARAM_STR ],
 			'battleNetId' => [ $this->bnr->battleNetId(), \PDO::PARAM_STR ],
 			'json' => [ $this->json, \PDO::PARAM_STR ],

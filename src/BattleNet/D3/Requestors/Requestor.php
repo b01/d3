@@ -6,12 +6,12 @@
  * Time: 8:14 AM
  */
 
-namespace kshabazz\d3a\BattleNet\Requestors;
+namespace Kshabazz\BattleNet\D3\Requestors;
 
 /**
  * Interface Resource
  *
- * @package kshabazz\d3a\BattleNet\Resources
+ * @package Kshabazz\BattleNet\D3\Resources
  */
 interface Requestor
 {

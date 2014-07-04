@@ -1,18 +1,15 @@
-<?php namespace kshabazz\d3a\BattleNet\Models;
+<?php namespace Kshabazz\BattleNet\D3\Models;
 /**
  * Get the users item from Battle.Net and present it to the user; store it locally in a database
  * behind the scenes. The item will only be updated after a few ours of retrieving it.
- *
  */
-
-use kshabazz\d3a\BattleNet\Models;
-use function \kshabazz\d3a\isWeapon;
-
+use Kshabazz\BattleNet\D3\Models;
+use function \Kshabazz\BattleNet\isWeapon;
 /**
  * Class Item
- * @package kshabazz\d3a\BattleNet\Models
+ * @package Kshabazz\BattleNet\D3\Models
  */
-class Item extends \kshabazz\d3a\Model
+class Item extends Model
 {
     protected
         $effects,

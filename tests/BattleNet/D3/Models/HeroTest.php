@@ -2,10 +2,10 @@
 /**
  *
  */
-use kshabazz\d3a\BattleNet\Models\Hero;
+use Kshabazz\BattleNet\D3\Models\Hero;
 /**
  * @class HeroTest
- * @package kshabazz\d3a\test\Model
+ * @package Kshabazz\BattleNet\test\Model
  */
 class HeroTest extends \PHPUnit_Framework_TestCase
 {
@@ -44,7 +44,7 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 	public function test_initializing_a_get_hero_object()
 	{
 		$hero = new Hero( $this->json );
-		$this->assertInstanceOf( '\\kshabazz\\d3a\\BattleNet\Models\\Hero', $hero, 'Could not initialize \kshabazz\d3a\BattleNet\Models\Hero object.' );
+		$this->assertInstanceOf( '\\kshabazz\\d3a\\BattleNet\Models\\Hero', $hero, 'Could not initialize \Kshabazz\BattleNet\D3\Models\Hero object.' );
 	}
 
 	public function test_retreiving_get()

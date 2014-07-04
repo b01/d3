@@ -1,4 +1,4 @@
-<?php namespace kshabazz\d3a\BattleNet\Handlers;
+<?php namespace Kshabazz\BattleNet\D3\Handlers;
 /**
  * Get the users item from Battle.Net and present it to the user; store it locally in a database behind the scenes.
  * The item will only be updated after a few ours of retrieving it.
@@ -7,9 +7,9 @@
 /**
  * Class BattleNet_Item
  *
- * @package kshabazz\d3a
+ * @package Kshabazz\BattleNet
  */
-class Item extends \kshabazz\d3a\BattleNet_Model
+class Item extends \Kshabazz\BattleNet\D3\BattleNet_Model
 {
 	protected
 		$column,
@@ -21,15 +21,15 @@ class Item extends \kshabazz\d3a\BattleNet_Model
 	 *
 	 * @param string $pHash
 	 * @param string $pColumn
-	 * @param \kshabazz\d3a\BattleNet\Requestors\Http $pBnr
-	 * @param \kshabazz\d3a\BattleNet\Requestors\Sql $pSql
+	 * @param \Kshabazz\BattleNet\D3\Requestors\Http $pBnr
+	 * @param \Kshabazz\BattleNet\D3\Requestors\Sql $pSql
 	 * @param bool $fromDb
 	 */
 	public function __construct(
 		$pHash,
 		$pColumn,
-		\kshabazz\d3a\BattleNet\Requestors\Http $pBnr,
-		\kshabazz\d3a\BattleNet\Requestors\Sql $pSql,
+		\Kshabazz\BattleNet\D3\Requestors\Http $pBnr,
+		\Kshabazz\BattleNet\D3\Requestors\Sql $pSql,
 		$fromDb = FALSE )
 	{
 		$this->column = $pColumn;
@@ -48,7 +48,7 @@ class Item extends \kshabazz\d3a\BattleNet_Model
 		if ( $this->key !== NULL )
 		{
 			$hashValue = str_replace('item/', '', $this->key);
-			$query = sprintf( \kshabazz\d3a\BattleNet\Requestors\Sql::SELECT_ITEM, $this->column );
+			$query = sprintf( \Kshabazz\BattleNet\D3\Requestors\Sql::SELECT_ITEM, $this->column );
 			$result = $this->sql->getData( $query, ['selectValue' => [$hashValue, \PDO::PARAM_STR]] );
 			if ( \Kshabazz\Slib\isArray($result) )
 			{
@@ -104,7 +104,7 @@ class Item extends \kshabazz\d3a\BattleNet_Model
 			'lastUpdate' => [ $utcTime, \PDO::PARAM_STR ],
 			'dateAdded' => [ $utcTime, \PDO::PARAM_STR ]
 		];
-		return $this->sql->save( \kshabazz\d3a\BattleNet\Requestors\Sql::INSERT_ITEM, $params );
+		return $this->sql->save( \Kshabazz\BattleNet\D3\Requestors\Sql::INSERT_ITEM, $params );
 	}
 
 	/**

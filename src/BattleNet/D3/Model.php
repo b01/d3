@@ -1,4 +1,4 @@
-<?php namespace kshabazz\d3a;
+<?php namespace Kshabazz\BattleNet\D3;
 /**
  * Get the users item from Battle.Net and present it to the user; store it locally in a database behind the scenes.
  * The item will only be updated after a few ours of retrieving it.
@@ -7,7 +7,7 @@
 /**
  * Class BattleNet_Model
  *
- * @package kshabazz\d3a
+ * @package Kshabazz\BattleNet
  */
 abstract class BattleNet_Model
 {
