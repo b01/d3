@@ -1,0 +1,94 @@
+{
+"id" : "Mojo_204",
+"name" : "Voodoo Deed",
+"icon" : "mojo_204_witchdoctor_female",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CkYImaWDjwQSBwgEFSph2PcdnmyzFB3jb1GTHX3gy3YduPHsGh26MEgIHRFc9PwiCwgBFXJCAwAYGiAKMAk44QJAAFAQYOUCGKv7vIIBUAZYAg",
+"requiredLevel" : 57,
+"itemLevel" : 62,
+"bonusAffixes" : 0,
+"bonusAffixesMax" : 0,
+"accountBound" : false,
+"typeName" : "Rare Mojo",
+"type" : {
+"twoHanded" : false,
+"id" : "Mojo"
+},
+"attributes" : [ "+38–295 Damage", "+149 Strength", "+167 Intelligence", "+142 Vitality", "Regenerates 66 Life per Second", "Critical Hit Chance Increased by 5.5%", "Level Requirement Reduced by 3" ],
+"attributesRaw" : {
+"Crit_Percent_Bonus_Capped" : {
+"min" : 0.055,
+"max" : 0.055
+},
+"Durability_Max" : {
+"min" : 357.0,
+"max" : 357.0
+},
+"Vitality_Item" : {
+"min" : 142.0,
+"max" : 142.0
+},
+"Damage_Min#Physical" : {
+"min" : 38.0,
+"max" : 38.0
+},
+"Intelligence_Item" : {
+"min" : 167.0,
+"max" : 167.0
+},
+"Item_Level_Requirement_Reduction" : {
+"min" : 3.0,
+"max" : 3.0
+},
+"Strength_Item" : {
+"min" : 149.0,
+"max" : 149.0
+},
+"Damage_Delta#Physical" : {
+"min" : 257.0,
+"max" : 257.0
+},
+"Hitpoints_Regen_Per_Second" : {
+"min" : 66.0,
+"max" : 66.0
+},
+"Durability_Cur" : {
+"min" : 353.0,
+"max" : 353.0
+}
+},
+"gems" : [ ],
+"socketEffects" : [ ],
+"salvage" : [ {
+"item" : {
+"id" : "Crafting_Tier_04B",
+"name" : "Exquisite Essence",
+"icon" : "crafting_tier_04b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/exquisite-essence"
+},
+"chance" : 1.0,
+"quantity" : 1
+}, {
+"item" : {
+"id" : "Crafting_Tier_04C",
+"name" : "Iridescent Tear",
+"icon" : "crafting_tier_04c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/iridescent-tear"
+},
+"chance" : 0.14984228,
+"quantity" : 1
+}, {
+"item" : {
+"id" : "Crafting_Tier_04D",
+"name" : "Fiery Brimstone",
+"icon" : "crafting_tier_04d_demonhunter_male",
+"displayColor" : "orange",
+"tooltipParams" : "item/fiery-brimstone"
+},
+"chance" : 1.577287E-4,
+"quantity" : 1
+} ],
+"craftedBy" : [ ]
+}

@@ -1,0 +1,100 @@
+{
+"id" : "Unique_VoodooMask_008_104",
+"name" : "Visage of Giyua",
+"icon" : "unique_voodoomask_008_104_witchdoctor_female",
+"displayColor" : "orange",
+"tooltipParams" : "item/CmAI76DVrAQSBwgEFSMZlIsdlD3juR1bToDJHc9FH8sdo9Ya6B0SXPT8HYYCY-owCTjTAkAAUBJg1wJqJQoMCAAQ9fHWhoSAgKADEhUIxKuTpwgSBwgEFfee2KswDTgAQAEYuZvfxg5QBlgC",
+"requiredLevel" : 60,
+"itemLevel" : 63,
+"bonusAffixes" : 0,
+"bonusAffixesMax" : 0,
+"accountBound" : false,
+"flavorText" : "It is said that when a spirit passes from this life, it is greeted by the eternal Giyua, the guardian of the Unformed Land.",
+"typeName" : "Legendary Voodoo Mask",
+"type" : {
+"twoHanded" : false,
+"id" : "VoodooMask"
+},
+"armor" : {
+"min" : 369.0,
+"max" : 369.0
+},
+"attributes" : [ "+171 Intelligence", "+80 Resistance to All Elements", "Increases Mana Regeneration by 12 per Second (Witch Doctor Only)", "Critical Hit Chance Increased by 3.5%", "Increases Locust Swarm Damage by 7% (Witch Doctor Only)" ],
+"attributesRaw" : {
+"Intelligence_Item" : {
+"min" : 171.0,
+"max" : 171.0
+},
+"Crit_Percent_Bonus_Capped" : {
+"min" : 0.035,
+"max" : 0.035
+},
+"Durability_Max" : {
+"min" : 343.0,
+"max" : 343.0
+},
+"Resistance_All" : {
+"min" : 80.0,
+"max" : 80.0
+},
+"Power_Damage_Percent_Bonus#Witchdoctor_Locust_Swarm" : {
+"min" : 0.07,
+"max" : 0.07
+},
+"Resource_Regen_Per_Second#Mana" : {
+"min" : 12.0,
+"max" : 12.0
+},
+"Armor_Item" : {
+"min" : 369.0,
+"max" : 369.0
+},
+"Durability_Cur" : {
+"min" : 339.0,
+"max" : 339.0
+},
+"Sockets" : {
+"min" : 1.0,
+"max" : 1.0
+}
+},
+"gems" : [ {
+"item" : {
+"id" : "Amethyst_09",
+"name" : "Perfect Square Amethyst",
+"icon" : "amethyst_09_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/ChUIxKuTpwgSBwgEFfee2KswDTgAQAEYkYS7wgo"
+},
+"attributes" : [ "+13% Life" ],
+"attributesRaw" : {
+"Hitpoints_Max_Percent_Bonus_Item" : {
+"min" : 0.13,
+"max" : 0.13
+}
+}
+} ],
+"socketEffects" : [ ],
+"salvage" : [ {
+"item" : {
+"id" : "Crafting_Tier_04C",
+"name" : "Iridescent Tear",
+"icon" : "crafting_tier_04c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/iridescent-tear"
+},
+"chance" : 1.0,
+"quantity" : 2
+}, {
+"item" : {
+"id" : "Crafting_Tier_04D",
+"name" : "Fiery Brimstone",
+"icon" : "crafting_tier_04d_demonhunter_male",
+"displayColor" : "orange",
+"tooltipParams" : "item/fiery-brimstone"
+},
+"chance" : 1.0,
+"quantity" : 1
+} ],
+"craftedBy" : [ ]
+}

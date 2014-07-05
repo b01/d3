@@ -1,0 +1,111 @@
+{
+"id" : "Shoulders_202",
+"name" : "Resilient Blazon",
+"icon" : "shoulders_202_witchdoctor_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/Cj4IiLvghAgSBwgEFcz4yBUdY-q9Cx03dgOEHQ4XgMkdx9LzZSILCAAVrUQDABgEIBQwCTjgBEAASA5QDGDkBBiY48fcAlAGWAI",
+"requiredLevel" : 57,
+"itemLevel" : 58,
+"bonusAffixes" : 0,
+"bonusAffixesMax" : 0,
+"accountBound" : false,
+"typeName" : "Rare Shoulders",
+"type" : {
+"twoHanded" : false,
+"id" : "Shoulders"
+},
+"armor" : {
+"min" : 249.0,
+"max" : 249.0
+},
+"attributes" : [ "+65 Intelligence", "+48 Vitality", "+26 Arcane Resistance", "+36 Resistance to All Elements", "Health Globes and Potions Grant +2926 Life." ],
+"attributesRaw" : {
+"Intelligence_Item" : {
+"min" : 65.0,
+"max" : 65.0
+},
+"Durability_Max" : {
+"min" : 612.0,
+"max" : 612.0
+},
+"Durability_Cur" : {
+"min" : 608.0,
+"max" : 608.0
+},
+"Vitality_Item" : {
+"min" : 48.0,
+"max" : 48.0
+},
+"Health_Globe_Bonus_Health" : {
+"min" : 2926.0,
+"max" : 2926.0
+},
+"Resistance_All" : {
+"min" : 36.0,
+"max" : 36.0
+},
+"Resistance#Arcane" : {
+"min" : 26.0,
+"max" : 26.0
+},
+"Armor_Item" : {
+"min" : 249.0,
+"max" : 249.0
+}
+},
+"gems" : [ ],
+"socketEffects" : [ ],
+"salvage" : [ {
+"item" : {
+"id" : "Crafting_Tier_03B",
+"name" : "Wishful Essence",
+"icon" : "crafting_tier_03b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/wishful-essence"
+},
+"chance" : 1.0,
+"quantity" : 1
+}, {
+"item" : {
+"id" : "Crafting_Tier_03C",
+"name" : "Encrusted Hoof",
+"icon" : "crafting_tier_03c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/encrusted-hoof"
+},
+"chance" : 1.0,
+"quantity" : 1
+} ],
+"craftedBy" : [ {
+"id" : "T08_Armor_Shoulders",
+"slug" : "resplendent-espaliers",
+"name" : "Resplendent Espaliers",
+"cost" : 2046,
+"reagents" : [ {
+"quantity" : 7,
+"item" : {
+"id" : "Crafting_Tier_03B",
+"name" : "Wishful Essence",
+"icon" : "crafting_tier_03b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/wishful-essence"
+}
+}, {
+"quantity" : 2,
+"item" : {
+"id" : "Crafting_Tier_03C",
+"name" : "Encrusted Hoof",
+"icon" : "crafting_tier_03c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/encrusted-hoof"
+}
+} ],
+"itemProduced" : {
+"id" : "Shoulders_202",
+"name" : "Resplendent Espaliers",
+"icon" : "shoulders_202_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/resplendent-espaliers"
+}
+} ]
+}

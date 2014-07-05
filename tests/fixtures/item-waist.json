@@ -1,0 +1,90 @@
+{
+"id" : "Belt_206",
+"name" : "Sheath Dispute",
+"icon" : "belt_206_witchdoctor_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CkEI_OqP_gkSBwgEFb6nQtQdoIETrh1j6r0LHTwrb_EdBVbV7h3QNNiIIgsIARW1RAMAGBQgJjAJOKADQABQDmCkAxiD4eq7BVAGWAI",
+"requiredLevel" : 60,
+"itemLevel" : 63,
+"bonusAffixes" : 0,
+"bonusAffixesMax" : 0,
+"accountBound" : false,
+"typeName" : "Rare Belt",
+"type" : {
+"twoHanded" : false,
+"id" : "GenericBelt"
+},
+"armor" : {
+"min" : 293.0,
+"max" : 293.0
+},
+"attributes" : [ "+47 Intelligence", "+170 Vitality", "+28 Arcane Resistance", "+29 Resistance to All Elements", "Regenerates 62 Life per Second" ],
+"attributesRaw" : {
+"Hitpoints_Regen_Per_Second" : {
+"min" : 62.0,
+"max" : 62.0
+},
+"Durability_Cur" : {
+"min" : 416.0,
+"max" : 416.0
+},
+"Vitality_Item" : {
+"min" : 170.0,
+"max" : 170.0
+},
+"Resistance_All" : {
+"min" : 29.0,
+"max" : 29.0
+},
+"Armor_Item" : {
+"min" : 293.0,
+"max" : 293.0
+},
+"Intelligence_Item" : {
+"min" : 47.0,
+"max" : 47.0
+},
+"Durability_Max" : {
+"min" : 420.0,
+"max" : 420.0
+},
+"Resistance#Arcane" : {
+"min" : 28.0,
+"max" : 28.0
+}
+},
+"gems" : [ ],
+"socketEffects" : [ ],
+"salvage" : [ {
+"item" : {
+"id" : "Crafting_Tier_04B",
+"name" : "Exquisite Essence",
+"icon" : "crafting_tier_04b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/exquisite-essence"
+},
+"chance" : 1.0,
+"quantity" : 1
+}, {
+"item" : {
+"id" : "Crafting_Tier_04C",
+"name" : "Iridescent Tear",
+"icon" : "crafting_tier_04c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/iridescent-tear"
+},
+"chance" : 1.0,
+"quantity" : 1
+}, {
+"item" : {
+"id" : "Crafting_Tier_04D",
+"name" : "Fiery Brimstone",
+"icon" : "crafting_tier_04d_demonhunter_male",
+"displayColor" : "orange",
+"tooltipParams" : "item/fiery-brimstone"
+},
+"chance" : 0.0010,
+"quantity" : 1
+} ],
+"craftedBy" : [ ]
+}

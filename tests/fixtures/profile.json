@@ -1,0 +1,4086 @@
+{
+"heroes" : [ {
+"name" : "Kashara",
+"id" : 36131726,
+"level" : 60,
+"hardcore" : true,
+"paragonLevel" : 2,
+"gender" : 1,
+"dead" : false,
+"class" : "witch-doctor",
+"last-updated" : 1387045578
+}, {
+"name" : "Kara",
+"id" : 38464947,
+"level" : 60,
+"hardcore" : true,
+"paragonLevel" : 1,
+"gender" : 1,
+"dead" : false,
+"class" : "demon-hunter",
+"last-updated" : 1387046129
+}, {
+"name" : "Karsta",
+"id" : 35662076,
+"level" : 60,
+"hardcore" : true,
+"paragonLevel" : 0,
+"gender" : 1,
+"dead" : false,
+"class" : "wizard",
+"last-updated" : 1387017250
+}, {
+"name" : "Kahara",
+"id" : 36263463,
+"level" : 60,
+"hardcore" : true,
+"paragonLevel" : 0,
+"gender" : 1,
+"dead" : false,
+"class" : "monk",
+"last-updated" : 1387046031
+}, {
+"name" : "Katharta",
+"id" : 36641782,
+"level" : 60,
+"hardcore" : true,
+"paragonLevel" : 0,
+"gender" : 1,
+"dead" : false,
+"class" : "barbarian",
+"last-updated" : 1387017861
+}, {
+"name" : "Khalil",
+"id" : 3955832,
+"level" : 60,
+"hardcore" : false,
+"paragonLevel" : 15,
+"gender" : 0,
+"dead" : false,
+"class" : "monk",
+"last-updated" : 1389927318
+}, {
+"name" : "Khalif",
+"id" : 25879670,
+"level" : 60,
+"hardcore" : false,
+"paragonLevel" : 1,
+"gender" : 0,
+"dead" : false,
+"class" : "wizard",
+"last-updated" : 1368577680
+}, {
+"name" : "Khal",
+"id" : 25879566,
+"level" : 60,
+"hardcore" : false,
+"paragonLevel" : 0,
+"gender" : 0,
+"dead" : false,
+"class" : "witch-doctor",
+"last-updated" : 1359224934
+}, {
+"name" : "Khal",
+"id" : 25879532,
+"level" : 60,
+"hardcore" : false,
+"paragonLevel" : 0,
+"gender" : 0,
+"dead" : false,
+"class" : "demon-hunter",
+"last-updated" : 1353865149
+}, {
+"name" : "Shaba",
+"id" : 39682027,
+"level" : 14,
+"hardcore" : false,
+"paragonLevel" : 0,
+"gender" : 0,
+"dead" : false,
+"class" : "witch-doctor",
+"last-updated" : 1389935800
+} ],
+"lastHeroPlayed" : 39682027,
+"lastUpdated" : 1389935800,
+"artisans" : [ {
+"slug" : "blacksmith",
+"level" : 10,
+"stepCurrent" : 0,
+"stepMax" : 5
+}, {
+"slug" : "jeweler",
+"level" : 10,
+"stepCurrent" : 0,
+"stepMax" : 1
+} ],
+"hardcoreArtisans" : [ {
+"slug" : "blacksmith",
+"level" : 10,
+"stepCurrent" : 0,
+"stepMax" : 5
+}, {
+"slug" : "jeweler",
+"level" : 10,
+"stepCurrent" : 0,
+"stepMax" : 1
+} ],
+"kills" : {
+"monsters" : 445085,
+"elites" : 26368,
+"hardcoreMonsters" : 279142
+},
+"timePlayed" : {
+"barbarian" : 0.286,
+"demon-hunter" : 0.511,
+"monk" : 1.0,
+"witch-doctor" : 0.348,
+"wizard" : 0.2
+},
+"fallenHeroes" : [ {
+"name" : "Kashara",
+"level" : 60,
+"stats" : {
+"life" : 28444,
+"damage" : 40894.5,
+"armor" : 4634,
+"strength" : 399,
+"dexterity" : 632,
+"vitality" : 705,
+"intelligence" : 1617,
+"physicalResist" : 0,
+"fireResist" : 345,
+"coldResist" : 387,
+"lightningResist" : 385,
+"poisonResist" : 440,
+"arcaneResist" : 414,
+"damageIncrease" : 16.170000076293945,
+"critChance" : 0.4699999988079071,
+"damageReduction" : 0.6070209741592407
+},
+"items" : {
+"head" : {
+"id" : "Unique_Helm_003_104",
+"name" : "Andariel's Visage",
+"icon" : "unique_helm_003_104_demonhunter_male",
+"displayColor" : "orange",
+"tooltipParams" : "item/CjkImYLEqgESBwgEFQLZapEdQKRQBx2BtT6MHXWx7PAd48Qrbx2DDibvHQZ9lkEwCTjaAkAAUBJggQMY-5up6Q1QBlgC",
+"craftedBy" : [ ]
+},
+"torso" : {
+"id" : "ChestArmor_206",
+"name" : "Titan's Glamour",
+"icon" : "chestarmor_206_witchdoctor_female",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CkMIxMCVogMSBwgEFS8iGWAdWKiuix0-pFAHHbwwSAgdbNBu8h1YaVBfIgsIARW1RAMAGAggBjAJOPkDQABIDlAOYLIEGN6IyYEMUAZYAg",
+"craftedBy" : [ {
+"id" : "T11_Armor_Chest_Dex",
+"slug" : "archon-armor-of-dexterity",
+"name" : "Archon Armor of Dexterity",
+"cost" : 150000,
+"reagents" : [ {
+"quantity" : 2,
+"item" : {
+"id" : "Crafting_Training_Tome_Inferno",
+"name" : "Tome of Secrets",
+"icon" : "crafting_training_tome_inferno_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/tome-of-secrets"
+}
+}, {
+"quantity" : 1,
+"item" : {
+"id" : "Crafting_Demonic_Reagent",
+"name" : "Demonic Essence",
+"icon" : "crafting_demonic_reagent_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/demonic-essence"
+}
+} ],
+"itemProduced" : {
+"id" : "ChestArmor_206",
+"name" : "Archon Armor of Dexterity",
+"icon" : "chestarmor_206_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/archon-armor-of-dexterity"
+}
+}, {
+"id" : "T11_Armor_Chest_Int",
+"slug" : "archon-armor-of-intelligence",
+"name" : "Archon Armor of Intelligence",
+"cost" : 150000,
+"reagents" : [ {
+"quantity" : 2,
+"item" : {
+"id" : "Crafting_Training_Tome_Inferno",
+"name" : "Tome of Secrets",
+"icon" : "crafting_training_tome_inferno_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/tome-of-secrets"
+}
+}, {
+"quantity" : 1,
+"item" : {
+"id" : "Crafting_Demonic_Reagent",
+"name" : "Demonic Essence",
+"icon" : "crafting_demonic_reagent_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/demonic-essence"
+}
+} ],
+"itemProduced" : {
+"id" : "ChestArmor_206",
+"name" : "Archon Armor of Intelligence",
+"icon" : "chestarmor_206_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/archon-armor-of-intelligence"
+}
+}, {
+"id" : "T11_Armor_Chest_Str",
+"slug" : "archon-armor-of-strength",
+"name" : "Archon Armor of Strength",
+"cost" : 150000,
+"reagents" : [ {
+"quantity" : 2,
+"item" : {
+"id" : "Crafting_Training_Tome_Inferno",
+"name" : "Tome of Secrets",
+"icon" : "crafting_training_tome_inferno_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/tome-of-secrets"
+}
+}, {
+"quantity" : 1,
+"item" : {
+"id" : "Crafting_Demonic_Reagent",
+"name" : "Demonic Essence",
+"icon" : "crafting_demonic_reagent_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/demonic-essence"
+}
+} ],
+"itemProduced" : {
+"id" : "ChestArmor_206",
+"name" : "Archon Armor of Strength",
+"icon" : "chestarmor_206_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/archon-armor-of-strength"
+}
+}, {
+"id" : "T11_Armor_Chest_Vit",
+"slug" : "archon-armor-of-vitality",
+"name" : "Archon Armor of Vitality",
+"cost" : 150000,
+"reagents" : [ {
+"quantity" : 2,
+"item" : {
+"id" : "Crafting_Training_Tome_Inferno",
+"name" : "Tome of Secrets",
+"icon" : "crafting_training_tome_inferno_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/tome-of-secrets"
+}
+}, {
+"quantity" : 1,
+"item" : {
+"id" : "Crafting_Demonic_Reagent",
+"name" : "Demonic Essence",
+"icon" : "crafting_demonic_reagent_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/demonic-essence"
+}
+} ],
+"itemProduced" : {
+"id" : "ChestArmor_206",
+"name" : "Archon Armor of Vitality",
+"icon" : "chestarmor_206_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/archon-armor-of-vitality"
+}
+} ]
+},
+"feet" : {
+"id" : "Boots_206",
+"name" : "Wicked Stand",
+"icon" : "boots_206_witchdoctor_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CkgIou6OygwSBwgEFZ5Fm38dwmqbER3FnqiRHWPqvQsdCupQCB0OF4DJHdBx8zwiCwgAFcz-AQAYBCAIMAk4mANAAEgJUBBgxgMYvJba-Q9QBlgC",
+"craftedBy" : [ ]
+},
+"hands" : {
+"id" : "Gloves_206",
+"name" : "Discordant Stranglers",
+"icon" : "gloves_206_witchdoctor_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CkgI_dGysQkSBwgEFcdbkqQdEVz0_B0Oa3_9HXWx7PAdQ34UGx0D7L0LHdBx8zwiCwgAFbj-AQAYDCAAMAk4ngNAAEgHUBBgzQMY8ZDttgtQBlgC",
+"craftedBy" : [ {
+"id" : "T11_Armor_Gloves_Dex",
+"slug" : "archon-gauntlets-of-dexterity",
+"name" : "Archon Gauntlets of Dexterity",
+"cost" : 50000,
+"reagents" : [ {
+"quantity" : 20,
+"item" : {
+"id" : "Crafting_Tier_04C",
+"name" : "Iridescent Tear",
+"icon" : "crafting_tier_04c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/iridescent-tear"
+}
+}, {
+"quantity" : 5,
+"item" : {
+"id" : "Crafting_Training_Tome_Inferno",
+"name" : "Tome of Secrets",
+"icon" : "crafting_training_tome_inferno_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/tome-of-secrets"
+}
+}, {
+"quantity" : 1,
+"item" : {
+"id" : "Crafting_Demonic_Reagent",
+"name" : "Demonic Essence",
+"icon" : "crafting_demonic_reagent_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/demonic-essence"
+}
+} ],
+"itemProduced" : {
+"id" : "Gloves_206",
+"name" : "Archon Gauntlets of Dexterity",
+"icon" : "gloves_206_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/archon-gauntlets-of-dexterity"
+}
+}, {
+"id" : "T11_Armor_Gloves_Int",
+"slug" : "archon-gauntlets-of-intelligence",
+"name" : "Archon Gauntlets of Intelligence",
+"cost" : 50000,
+"reagents" : [ {
+"quantity" : 20,
+"item" : {
+"id" : "Crafting_Tier_04C",
+"name" : "Iridescent Tear",
+"icon" : "crafting_tier_04c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/iridescent-tear"
+}
+}, {
+"quantity" : 5,
+"item" : {
+"id" : "Crafting_Training_Tome_Inferno",
+"name" : "Tome of Secrets",
+"icon" : "crafting_training_tome_inferno_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/tome-of-secrets"
+}
+}, {
+"quantity" : 1,
+"item" : {
+"id" : "Crafting_Demonic_Reagent",
+"name" : "Demonic Essence",
+"icon" : "crafting_demonic_reagent_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/demonic-essence"
+}
+} ],
+"itemProduced" : {
+"id" : "Gloves_206",
+"name" : "Archon Gauntlets of Intelligence",
+"icon" : "gloves_206_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/archon-gauntlets-of-intelligence"
+}
+}, {
+"id" : "T11_Armor_Gloves_Str",
+"slug" : "archon-gauntlets-of-strength",
+"name" : "Archon Gauntlets of Strength",
+"cost" : 50000,
+"reagents" : [ {
+"quantity" : 20,
+"item" : {
+"id" : "Crafting_Tier_04C",
+"name" : "Iridescent Tear",
+"icon" : "crafting_tier_04c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/iridescent-tear"
+}
+}, {
+"quantity" : 5,
+"item" : {
+"id" : "Crafting_Training_Tome_Inferno",
+"name" : "Tome of Secrets",
+"icon" : "crafting_training_tome_inferno_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/tome-of-secrets"
+}
+}, {
+"quantity" : 1,
+"item" : {
+"id" : "Crafting_Demonic_Reagent",
+"name" : "Demonic Essence",
+"icon" : "crafting_demonic_reagent_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/demonic-essence"
+}
+} ],
+"itemProduced" : {
+"id" : "Gloves_206",
+"name" : "Archon Gauntlets of Strength",
+"icon" : "gloves_206_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/archon-gauntlets-of-strength"
+}
+}, {
+"id" : "T11_Armor_Gloves_Vit",
+"slug" : "archon-gauntlets-of-vitality",
+"name" : "Archon Gauntlets of Vitality",
+"cost" : 50000,
+"reagents" : [ {
+"quantity" : 20,
+"item" : {
+"id" : "Crafting_Tier_04C",
+"name" : "Iridescent Tear",
+"icon" : "crafting_tier_04c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/iridescent-tear"
+}
+}, {
+"quantity" : 5,
+"item" : {
+"id" : "Crafting_Training_Tome_Inferno",
+"name" : "Tome of Secrets",
+"icon" : "crafting_training_tome_inferno_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/tome-of-secrets"
+}
+}, {
+"quantity" : 1,
+"item" : {
+"id" : "Crafting_Demonic_Reagent",
+"name" : "Demonic Essence",
+"icon" : "crafting_demonic_reagent_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/demonic-essence"
+}
+} ],
+"itemProduced" : {
+"id" : "Gloves_206",
+"name" : "Archon Gauntlets of Vitality",
+"icon" : "gloves_206_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/archon-gauntlets-of-vitality"
+}
+} ]
+},
+"shoulders" : {
+"id" : "Shoulders_205",
+"name" : "The Prism",
+"icon" : "shoulders_205_witchdoctor_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CkgIrKfl1gsSBwgEFc_4yBUdeiR_Sh0o_n0BHcJqmxEdBlQFFx1bToDJHZX47ZYiCwgBFbVEAwAYBiAkMAk4qgRAAEgJUBBg6AQYnuPH3AJQBlgC",
+"craftedBy" : [ {
+"id" : "T10_Armor_Shoulders_05",
+"slug" : "exalted-fine-pallium",
+"name" : "Exalted Fine Pallium",
+"cost" : 42416,
+"reagents" : [ {
+"quantity" : 20,
+"item" : {
+"id" : "Crafting_Tier_04B",
+"name" : "Exquisite Essence",
+"icon" : "crafting_tier_04b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/exquisite-essence"
+}
+}, {
+"quantity" : 4,
+"item" : {
+"id" : "Crafting_Tier_04C",
+"name" : "Iridescent Tear",
+"icon" : "crafting_tier_04c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/iridescent-tear"
+}
+}, {
+"quantity" : 6,
+"item" : {
+"id" : "Crafting_Training_Tome_Inferno",
+"name" : "Tome of Secrets",
+"icon" : "crafting_training_tome_inferno_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/tome-of-secrets"
+}
+} ],
+"itemProduced" : {
+"id" : "Shoulders_205",
+"name" : "Exalted Fine Pallium",
+"icon" : "shoulders_205_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/exalted-fine-pallium"
+}
+}, {
+"id" : "T10_Armor_Shoulders_06",
+"slug" : "exalted-grand-pallium",
+"name" : "Exalted Grand Pallium",
+"cost" : 87516,
+"reagents" : [ {
+"quantity" : 28,
+"item" : {
+"id" : "Crafting_Tier_04B",
+"name" : "Exquisite Essence",
+"icon" : "crafting_tier_04b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/exquisite-essence"
+}
+}, {
+"quantity" : 5,
+"item" : {
+"id" : "Crafting_Tier_04C",
+"name" : "Iridescent Tear",
+"icon" : "crafting_tier_04c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/iridescent-tear"
+}
+}, {
+"quantity" : 8,
+"item" : {
+"id" : "Crafting_Training_Tome_Inferno",
+"name" : "Tome of Secrets",
+"icon" : "crafting_training_tome_inferno_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/tome-of-secrets"
+}
+} ],
+"itemProduced" : {
+"id" : "Shoulders_205",
+"name" : "Exalted Grand Pallium",
+"icon" : "shoulders_205_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/exalted-grand-pallium"
+}
+}, {
+"id" : "T10_Armor_Shoulders_04",
+"slug" : "exalted-pallium",
+"name" : "Exalted Pallium",
+"cost" : 29832,
+"reagents" : [ {
+"quantity" : 14,
+"item" : {
+"id" : "Crafting_Tier_04B",
+"name" : "Exquisite Essence",
+"icon" : "crafting_tier_04b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/exquisite-essence"
+}
+}, {
+"quantity" : 3,
+"item" : {
+"id" : "Crafting_Tier_04C",
+"name" : "Iridescent Tear",
+"icon" : "crafting_tier_04c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/iridescent-tear"
+}
+}, {
+"quantity" : 4,
+"item" : {
+"id" : "Crafting_Training_Tome_Inferno",
+"name" : "Tome of Secrets",
+"icon" : "crafting_training_tome_inferno_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/tome-of-secrets"
+}
+} ],
+"itemProduced" : {
+"id" : "Shoulders_205",
+"name" : "Exalted Pallium",
+"icon" : "shoulders_205_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/exalted-pallium"
+}
+} ]
+},
+"legs" : {
+"id" : "Pants_204",
+"name" : "Strider's Rebel",
+"icon" : "pants_204_witchdoctor_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CpUBCPmnmpYEEgcIBBWbktWlHV_Mtigd-LnFPx2mk8T2HT0rDogdNmlLkx2vU8M2IgsIARVvQgMAGBQgEjAJOOUDQABIC1AMYJsEaiQKDAgAEN2Elr6GgICAGhIUCMGbtUcSBwgEFbVdtnowCTgAQAFqJQoMCAAQhISWvoaAgIAaEhUI4IXy6QwSBwgEFbVdtnowCTgAQAEYybXTogtQBlgC",
+"craftedBy" : [ ]
+},
+"bracers" : {
+"id" : "Bracers_204",
+"name" : "Denial Glamour",
+"icon" : "bracers_204_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CkEIp-mfvA4SBwgEFdcsyssdaA4XdR12HvYNHbJX1e4dKP59AR2_MEgIIgsIARW1RAMAGAggBDAJON0DQABQDmCTBBjRzK7DBlAGWAI",
+"craftedBy" : [ ]
+},
+"mainHand" : {
+"id" : "Axe_1H_205",
+"name" : "Lich's Render",
+"icon" : "axe_1h_205_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/Cm0I8rTG_AsSBwgEFawsB2MddOHtfx02zDs6HWdZF7Ud7TrCNh3Pw0esHRBc9PwiCwgAFbT-AQAYCiAOMAk41wNAAFAQYIwEaiUKDAgAEMfbscGEgICACRIVCOP2pMoNEgcIBBUalq6YMA04AEABGNiyubAMUAZYAg",
+"craftedBy" : [ ]
+},
+"offHand" : {
+"id" : "Mojo_203",
+"name" : "The Toy",
+"icon" : "mojo_203_witchdoctor_female",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CkYI8uDllA0SBwgEFSlh2PcdPCtv8R3I0vNlHceNbR0dlQJtrR0SXPT8HSR8BsgiCwgAFbn-AQAYACAKMAk4lANAAFAQYMIDGK37vIIBUAZYAg",
+"craftedBy" : [ {
+"id" : "T10_Weapon_Mojo_05",
+"slug" : "exalted-fine-unspeakable-thing",
+"name" : "Exalted Fine Unspeakable Thing",
+"cost" : 57840,
+"reagents" : [ {
+"quantity" : 29,
+"item" : {
+"id" : "Crafting_Tier_04B",
+"name" : "Exquisite Essence",
+"icon" : "crafting_tier_04b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/exquisite-essence"
+}
+}, {
+"quantity" : 4,
+"item" : {
+"id" : "Crafting_Tier_04C",
+"name" : "Iridescent Tear",
+"icon" : "crafting_tier_04c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/iridescent-tear"
+}
+}, {
+"quantity" : 8,
+"item" : {
+"id" : "Crafting_Training_Tome_Inferno",
+"name" : "Tome of Secrets",
+"icon" : "crafting_training_tome_inferno_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/tome-of-secrets"
+}
+} ],
+"itemProduced" : {
+"id" : "Mojo_203",
+"name" : "Exalted Fine Unspeakable Thing",
+"icon" : "mojo_203_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/exalted-fine-unspeakable-thing"
+}
+}, {
+"id" : "T10_Weapon_Mojo_06",
+"slug" : "exalted-grand-unspeakable-thing",
+"name" : "Exalted Grand Unspeakable Thing",
+"cost" : 119340,
+"reagents" : [ {
+"quantity" : 40,
+"item" : {
+"id" : "Crafting_Tier_04B",
+"name" : "Exquisite Essence",
+"icon" : "crafting_tier_04b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/exquisite-essence"
+}
+}, {
+"quantity" : 5,
+"item" : {
+"id" : "Crafting_Tier_04C",
+"name" : "Iridescent Tear",
+"icon" : "crafting_tier_04c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/iridescent-tear"
+}
+}, {
+"quantity" : 12,
+"item" : {
+"id" : "Crafting_Training_Tome_Inferno",
+"name" : "Tome of Secrets",
+"icon" : "crafting_training_tome_inferno_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/tome-of-secrets"
+}
+} ],
+"itemProduced" : {
+"id" : "Mojo_203",
+"name" : "Exalted Grand Unspeakable Thing",
+"icon" : "mojo_203_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/exalted-grand-unspeakable-thing"
+}
+}, {
+"id" : "T10_Weapon_Mojo_04",
+"slug" : "exalted-unspeakable-thing",
+"name" : "Exalted Unspeakable Thing",
+"cost" : 40680,
+"reagents" : [ {
+"quantity" : 20,
+"item" : {
+"id" : "Crafting_Tier_04B",
+"name" : "Exquisite Essence",
+"icon" : "crafting_tier_04b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/exquisite-essence"
+}
+}, {
+"quantity" : 3,
+"item" : {
+"id" : "Crafting_Tier_04C",
+"name" : "Iridescent Tear",
+"icon" : "crafting_tier_04c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/iridescent-tear"
+}
+}, {
+"quantity" : 6,
+"item" : {
+"id" : "Crafting_Training_Tome_Inferno",
+"name" : "Tome of Secrets",
+"icon" : "crafting_training_tome_inferno_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/tome-of-secrets"
+}
+} ],
+"itemProduced" : {
+"id" : "Mojo_203",
+"name" : "Exalted Unspeakable Thing",
+"icon" : "mojo_203_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/exalted-unspeakable-thing"
+}
+} ]
+},
+"waist" : {
+"id" : "Belt_206",
+"name" : "Courier's Barb",
+"icon" : "belt_206_witchdoctor_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CkUIqYSEBxIHCAQVvqdC1B3kRJQ1HePEK28d-LnFPx0o_n0BHR4XWqMd0DTYiCILCAEViUIDABgUIBQwCTjuA0AAUBBgpQQYg-HquwVQBlgC",
+"craftedBy" : [ ]
+},
+"rightFinger" : {
+"id" : "Ring_21",
+"name" : "Dismal Link",
+"icon" : "ring_21_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CjwI2ezggQkSBwgEFTJVXUQdpEd4nR0GfZZBHV_MtigdP0ceDCILCAAVqv4BABg0IA4wCTjIAkAAUAxg7QIY5NTqxQhQBlgC",
+"craftedBy" : [ ]
+},
+"leftFinger" : {
+"id" : "Ring_22",
+"name" : "The Call",
+"icon" : "ring_22_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CkYIoIGJ8QsSBwgEFTNVXUQdoIETrh23BGm6HddM5K4dfeDLdh20dZ2tHR_KXUkiCwgBFcZEAwAYDiAoMAk4wwJAAFAMYOgCGObU6sUIUAZYAg",
+"craftedBy" : [ ]
+},
+"neck" : {
+"id" : "Amulet13",
+"name" : "Dread Burden",
+"icon" : "amulet13_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CkEI8O7XygsSBwgEFazFRGQdDmt__R220ZIDHf-mlxEd5OWp8B0kfAbIIgsIABWr_gEAGAggGjAJONICQABQDmD4AhjYlqbEDFAGWAI",
+"craftedBy" : [ ]
+}
+},
+"kills" : {
+"elites" : 1952
+},
+"hardcore" : true,
+"death" : {
+"killer" : 4100,
+"location" : 81019,
+"time" : 1377958600
+},
+"heroId" : 35154600,
+"gender" : 1,
+"class" : "witch-doctor"
+}, {
+"name" : "Katara",
+"level" : 53,
+"stats" : {
+"life" : 18364,
+"damage" : 7022.1,
+"armor" : 3111,
+"strength" : 922,
+"dexterity" : 731,
+"vitality" : 647,
+"intelligence" : 692,
+"physicalResist" : 0,
+"fireResist" : 105,
+"coldResist" : 124,
+"lightningResist" : 105,
+"poisonResist" : 121,
+"arcaneResist" : 105,
+"damageIncrease" : 9.220000267028809,
+"critChance" : 0.10499999672174454,
+"damageReduction" : 0.5400099754333496
+},
+"items" : {
+"head" : {
+"id" : "Helm_103",
+"name" : "Cat's Dome",
+"icon" : "helm_103_barbarian_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CmoIwLyZ6wUSBwgEFTn1Tl0dusC15h1DNO-GHUoyxxwdhgJj6h1pXHD9IgsIABWu_gEAGB4gADAJOL0DQABIDFAOYJ4EaiUKDAgAEJHHsoeBgICAHxIVCJfG5LoHEgcIBBVJ9YtfMAk4AEABGPLU99QLUAJYAg",
+"craftedBy" : [ ]
+},
+"torso" : {
+"id" : "ChestArmor_103",
+"name" : "Barren Relic",
+"icon" : "chestarmor_103_barbarian_female",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CowBCIuv5PwEEgcIBBXrHRlgHegriTodQaZG4h0E-mLqHS7KnmkiCwgAFcv-AQAYDiAAMAk4mANAAEgBUAxg9QNqJQoMCAAQzfPnkoOAgIALEhUIvuP4iQsSBwgEFUn1i18wCTgAQAFqJQoMCAAQmIKWvoaAgIAaEhUIjIGgygESBwgEFQ-f2KswDTgAQAEY1vfIgQxQAlgC",
+"craftedBy" : [ ]
+},
+"feet" : {
+"id" : "Boots_205",
+"name" : "Bullseye Kicks",
+"icon" : "boots_205_barbarian_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CkMIsraz0AQSBwgEFZ1Fm38dCupQCB2-MEgIHcjmumodTgc6Mh1HCWKcIgsIABWu_gEAGBogAjAJOIQDQABIAVAOYN4DGLqW2vkPUAJYAg",
+"craftedBy" : [ {
+"id" : "T10_Armor_Boots_05",
+"slug" : "exalted-fine-sovereign-greaves",
+"name" : "Exalted Fine Sovereign Greaves",
+"cost" : 42416,
+"reagents" : [ {
+"quantity" : 20,
+"item" : {
+"id" : "Crafting_Tier_04B",
+"name" : "Exquisite Essence",
+"icon" : "crafting_tier_04b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/exquisite-essence"
+}
+}, {
+"quantity" : 4,
+"item" : {
+"id" : "Crafting_Tier_04C",
+"name" : "Iridescent Tear",
+"icon" : "crafting_tier_04c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/iridescent-tear"
+}
+}, {
+"quantity" : 6,
+"item" : {
+"id" : "Crafting_Training_Tome_Inferno",
+"name" : "Tome of Secrets",
+"icon" : "crafting_training_tome_inferno_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/tome-of-secrets"
+}
+} ],
+"itemProduced" : {
+"id" : "Boots_205",
+"name" : "Exalted Fine Sovereign Greaves",
+"icon" : "boots_205_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/exalted-fine-sovereign-greaves"
+}
+}, {
+"id" : "T10_Armor_Boots_06",
+"slug" : "exalted-grand-sovereign-greaves",
+"name" : "Exalted Grand Sovereign Greaves",
+"cost" : 87516,
+"reagents" : [ {
+"quantity" : 28,
+"item" : {
+"id" : "Crafting_Tier_04B",
+"name" : "Exquisite Essence",
+"icon" : "crafting_tier_04b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/exquisite-essence"
+}
+}, {
+"quantity" : 5,
+"item" : {
+"id" : "Crafting_Tier_04C",
+"name" : "Iridescent Tear",
+"icon" : "crafting_tier_04c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/iridescent-tear"
+}
+}, {
+"quantity" : 8,
+"item" : {
+"id" : "Crafting_Training_Tome_Inferno",
+"name" : "Tome of Secrets",
+"icon" : "crafting_training_tome_inferno_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/tome-of-secrets"
+}
+} ],
+"itemProduced" : {
+"id" : "Boots_205",
+"name" : "Exalted Grand Sovereign Greaves",
+"icon" : "boots_205_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/exalted-grand-sovereign-greaves"
+}
+}, {
+"id" : "T10_Armor_Boots_04",
+"slug" : "exalted-sovereign-greaves",
+"name" : "Exalted Sovereign Greaves",
+"cost" : 29832,
+"reagents" : [ {
+"quantity" : 14,
+"item" : {
+"id" : "Crafting_Tier_04B",
+"name" : "Exquisite Essence",
+"icon" : "crafting_tier_04b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/exquisite-essence"
+}
+}, {
+"quantity" : 3,
+"item" : {
+"id" : "Crafting_Tier_04C",
+"name" : "Iridescent Tear",
+"icon" : "crafting_tier_04c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/iridescent-tear"
+}
+}, {
+"quantity" : 4,
+"item" : {
+"id" : "Crafting_Training_Tome_Inferno",
+"name" : "Tome of Secrets",
+"icon" : "crafting_training_tome_inferno_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/tome-of-secrets"
+}
+} ],
+"itemProduced" : {
+"id" : "Boots_205",
+"name" : "Exalted Sovereign Greaves",
+"icon" : "boots_205_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/exalted-sovereign-greaves"
+}
+} ]
+},
+"hands" : {
+"id" : "Gloves_102",
+"name" : "Fatal Wraps",
+"icon" : "gloves_102_barbarian_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/Cj4I86GT1AwSBwgEFYJXkqQdoWxggh1Pl8AkHUjLbK0dZFCqByILCAAVqv4BABgyIBYwCTjmA0AASAxQDGDLBBj7oe22C1ACWAI",
+"craftedBy" : [ {
+"id" : "T05_Armor_Gloves",
+"slug" : "grand-master-etched-gloves",
+"name" : "Grand Master Etched Gloves",
+"cost" : 1045,
+"reagents" : [ {
+"quantity" : 4,
+"item" : {
+"id" : "Crafting_Tier_02B",
+"name" : "Shimmering Essence",
+"icon" : "crafting_tier_02b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/shimmering-essence"
+}
+} ],
+"itemProduced" : {
+"id" : "Gloves_102",
+"name" : "Grand Master Etched Gloves",
+"icon" : "gloves_102_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/grand-master-etched-gloves"
+}
+} ]
+},
+"shoulders" : {
+"id" : "Shoulders_101",
+"name" : "Officer's Ichor",
+"icon" : "shoulders_101_barbarian_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/Cj4I2_COzAcSBwgEFYr0yBUds-TqrB0YTbwqHU-XwCQdC3KLiiILCAEVwkQDABgGIBgwCTjQA0AASAxQDGCzBBiU0sfcAlACWAI",
+"craftedBy" : [ ]
+},
+"legs" : {
+"id" : "Pants_206",
+"name" : "Attack Pursuit",
+"icon" : "pants_206_barbarian_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/Cj4IzpKxtwYSBwgEFZ2S1aUdwTBICB248ewaHdBx8zwdTGFJ1CILCAEVu0QDABgCIAAwCTjEBEAASAxQDGC0BRjFtdOiC1ACWAI",
+"craftedBy" : [ ]
+},
+"bracers" : {
+"id" : "Bracers_105",
+"name" : "Baleful Chokes",
+"icon" : "bracers_105_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CkEI2cbm2w0SBwgEFZcoyssdj4LFfR1MJ-gPHb1b6Egdp9q57B1DNO-GIgsIABXM_gEAGAogCjAJOIMDQABQDmDdAxjR3a7DBlACWAI",
+"craftedBy" : [ ]
+},
+"mainHand" : {
+"id" : "Sword_1H_206",
+"name" : "Battle Maelstrom",
+"icon" : "sword_1h_206_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CkEIlvz07gsSBwgEFV7V2e8dwTBICB1OY08wHX1tWVYdZVkXtR3zyNt_IgsIARV3QgMAGAogLDAJOJsEQABQDmCGBRjDqrGCAlACWAI",
+"craftedBy" : [ ]
+},
+"offHand" : {
+"id" : "Shield_104",
+"name" : "Vain Rampart",
+"icon" : "shield_104_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/Cm0IoLn70AYSBwgEFc0HO2wdK__VyB0M0ZIIHQCYOVYd-W12Mx3tOsI2HZpssxQiCwgAFcv-AQAYBiAkMAk4uARAAFAQYKYFaiUKDAgAEMfhx_2FgIDAKRIVCNjftZAHEgcIBBX2ntirMAk4AEABGJqf2MMNUAJYAg",
+"craftedBy" : [ {
+"id" : "T06_Armor_Shield",
+"slug" : "illustrious-ironwood-shield",
+"name" : "Illustrious Ironwood Shield",
+"cost" : 1890,
+"reagents" : [ {
+"quantity" : 11,
+"item" : {
+"id" : "Crafting_Tier_02B",
+"name" : "Shimmering Essence",
+"icon" : "crafting_tier_02b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/shimmering-essence"
+}
+}, {
+"quantity" : 2,
+"item" : {
+"id" : "Crafting_Tier_02C",
+"name" : "Lizard Eye",
+"icon" : "crafting_tier_02c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/lizard-eye"
+}
+}, {
+"quantity" : 1,
+"item" : {
+"id" : "Crafting_Training_Page_Blacksmith",
+"name" : "Page of Blacksmithing",
+"icon" : "crafting_training_page_blacksmith_demonhunter_male",
+"displayColor" : "white",
+"tooltipParams" : "item/page-of-blacksmithing"
+}
+} ],
+"itemProduced" : {
+"id" : "Shield_104",
+"name" : "Illustrious Ironwood Shield",
+"icon" : "shield_104_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/illustrious-ironwood-shield"
+}
+} ]
+},
+"waist" : {
+"id" : "Belt_206",
+"name" : "Courier's Impunity",
+"icon" : "belt_206_barbarian_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CjwIyPW0yAESBwgEFb6nQtQd5ESUNR02aUuTHQ4XgMkdwTBICCILCAEVtUQDABgQIBQwCTiSAkAAUAxg4AIYg-HquwVQAlgC",
+"craftedBy" : [ ]
+},
+"rightFinger" : {
+"id" : "Ring_12",
+"name" : "Glory Deed",
+"icon" : "ring_12_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/Cm0ImJSApgUSBwgEFRJVXUQd7TrCNh0ERT_iHQedGHUdKZZAYB0Y0ywQHS7OrtkiCwgBFW9CAwAYFiAiMAk48AJAAFAQYMgDaiUKDAgAEJqvhfiFgIDAIhIVCPD0-qUKEgcIBBX2ntirMAk4AEABGKTU6sUIUAJYAg",
+"craftedBy" : [ ]
+},
+"leftFinger" : {
+"id" : "Ring_15",
+"name" : "Union Depths",
+"icon" : "ring_15_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CmIIhJv7GRIHCAQVFVVdRB0Cf5IBHfW-oP8dTCfoDx2GAmPqIgsIARWIQgMAGBYgEjAJOPsCQABQDGDUA2olCgwIABD4jaqQgoCA4C8SFQi4pMLaBBIHCAQV9p7YqzAJOABAARiq1OrFCFACWAI",
+"craftedBy" : [ ]
+},
+"neck" : {
+"id" : "Amulet08",
+"name" : "Insolent Star",
+"icon" : "amulet08_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CkYIttrx8QISBwgEFZDFRGQdvVvoSB3_an_9HXn3SgcdSWlQXx1jUKoHHbk01JkiCwgAFa3-AQAYDiAQMAk4qANAAFAQYIYEGKCWpsQMUAJYAg",
+"craftedBy" : [ ]
+}
+},
+"kills" : {
+"elites" : 917
+},
+"hardcore" : true,
+"death" : {
+"killer" : 4290,
+"location" : 71150,
+"time" : 1379125540
+},
+"heroId" : 35154573,
+"gender" : 1,
+"class" : "barbarian"
+}, {
+"name" : "Kara",
+"level" : 53,
+"stats" : {
+"life" : 18700,
+"damage" : 7944.1,
+"armor" : 1909,
+"strength" : 124,
+"dexterity" : 1147,
+"vitality" : 659,
+"intelligence" : 530,
+"physicalResist" : 0,
+"fireResist" : 136,
+"coldResist" : 125,
+"lightningResist" : 109,
+"poisonResist" : 87,
+"arcaneResist" : 86,
+"damageIncrease" : 11.470000267028809,
+"critChance" : 0.1550000011920929,
+"damageReduction" : 0.4187319874763489
+},
+"items" : {
+"head" : {
+"id" : "Helm_103",
+"name" : "Distant Aspect",
+"icon" : "helm_103_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CmUI9Zy6igUSBwgEFTn1Tl0d5dYu3R0ERT_iHfTkUiodhgJj6iILCAAVxUQDABgYIB4wCTiNBEAASBFQDGDXBGolCgwIABD4jIvphYCA4BESFQje2uPZBxIHCAQVYvWLXzANOABAARjy1PfUC1AAWAI",
+"craftedBy" : [ ]
+},
+"torso" : {
+"id" : "Cloak_204",
+"name" : "Lurker Defiance",
+"icon" : "cloak_204_demonhunter_female",
+"displayColor" : "yellow",
+"tooltipParams" : "item/Cj4I0IW4lwoSBwgEFf9vbwIdvzBICB3by55pHVmorosd3UbxtyILCAEVhUIDABgAIAwwCTjvAkAASAtQDGCoAxj-v_smUABYAg",
+"craftedBy" : [ ]
+},
+"feet" : {
+"id" : "Boots_105",
+"name" : "Journeyman Savvy",
+"icon" : "boots_105_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CkgI0Yj52QgSBwgEFVxBm38d4-Wp8B2PgsV9HYqYhIAdVuq9Cx0cEnPgHQrqUAgiCwgBFXFCAwAYGiAYMAk4uANAAEgDUBBg-QMYuIXa-Q9QAFgC",
+"craftedBy" : [ {
+"id" : "T07_Armor_Boots",
+"slug" : "magnificent-battle-greaves",
+"name" : "Magnificent Battle Greaves",
+"cost" : 1320,
+"reagents" : [ {
+"quantity" : 4,
+"item" : {
+"id" : "Crafting_Tier_03B",
+"name" : "Wishful Essence",
+"icon" : "crafting_tier_03b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/wishful-essence"
+}
+} ],
+"itemProduced" : {
+"id" : "Boots_105",
+"name" : "Magnificent Battle Greaves",
+"icon" : "boots_105_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/magnificent-battle-greaves"
+}
+} ]
+},
+"hands" : {
+"id" : "Gloves_102",
+"name" : "Brutal Gauntlets",
+"icon" : "gloves_102_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CkgInIP37AYSBwgEFYJXkqQdQPGbKx1KMsccHaAjvEgdLsqeaR17AmSfHWRQqgciCwgAFar-AQAYNiAUMAk4-ANAAEgTUAxgwAQY-6HttgtQAFgC",
+"craftedBy" : [ {
+"id" : "T05_Armor_Gloves",
+"slug" : "grand-master-etched-gloves",
+"name" : "Grand Master Etched Gloves",
+"cost" : 1045,
+"reagents" : [ {
+"quantity" : 4,
+"item" : {
+"id" : "Crafting_Tier_02B",
+"name" : "Shimmering Essence",
+"icon" : "crafting_tier_02b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/shimmering-essence"
+}
+} ],
+"itemProduced" : {
+"id" : "Gloves_102",
+"name" : "Grand Master Etched Gloves",
+"icon" : "gloves_102_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/grand-master-etched-gloves"
+}
+} ]
+},
+"shoulders" : {
+"id" : "Shoulders_205",
+"name" : "Reckless Denial",
+"icon" : "shoulders_205_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/Cj4In5GvrAkSBwgEFc_4yBUdor5R4R3QNNiIHT0rDogdwDBICCILCAAVrUQDABgKIAQwCTihA0AASAlQDGDfAxie48fcAlAAWAI",
+"craftedBy" : [ {
+"id" : "T10_Armor_Shoulders_05",
+"slug" : "exalted-fine-pallium",
+"name" : "Exalted Fine Pallium",
+"cost" : 42416,
+"reagents" : [ {
+"quantity" : 20,
+"item" : {
+"id" : "Crafting_Tier_04B",
+"name" : "Exquisite Essence",
+"icon" : "crafting_tier_04b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/exquisite-essence"
+}
+}, {
+"quantity" : 4,
+"item" : {
+"id" : "Crafting_Tier_04C",
+"name" : "Iridescent Tear",
+"icon" : "crafting_tier_04c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/iridescent-tear"
+}
+}, {
+"quantity" : 6,
+"item" : {
+"id" : "Crafting_Training_Tome_Inferno",
+"name" : "Tome of Secrets",
+"icon" : "crafting_training_tome_inferno_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/tome-of-secrets"
+}
+} ],
+"itemProduced" : {
+"id" : "Shoulders_205",
+"name" : "Exalted Fine Pallium",
+"icon" : "shoulders_205_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/exalted-fine-pallium"
+}
+}, {
+"id" : "T10_Armor_Shoulders_06",
+"slug" : "exalted-grand-pallium",
+"name" : "Exalted Grand Pallium",
+"cost" : 87516,
+"reagents" : [ {
+"quantity" : 28,
+"item" : {
+"id" : "Crafting_Tier_04B",
+"name" : "Exquisite Essence",
+"icon" : "crafting_tier_04b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/exquisite-essence"
+}
+}, {
+"quantity" : 5,
+"item" : {
+"id" : "Crafting_Tier_04C",
+"name" : "Iridescent Tear",
+"icon" : "crafting_tier_04c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/iridescent-tear"
+}
+}, {
+"quantity" : 8,
+"item" : {
+"id" : "Crafting_Training_Tome_Inferno",
+"name" : "Tome of Secrets",
+"icon" : "crafting_training_tome_inferno_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/tome-of-secrets"
+}
+} ],
+"itemProduced" : {
+"id" : "Shoulders_205",
+"name" : "Exalted Grand Pallium",
+"icon" : "shoulders_205_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/exalted-grand-pallium"
+}
+}, {
+"id" : "T10_Armor_Shoulders_04",
+"slug" : "exalted-pallium",
+"name" : "Exalted Pallium",
+"cost" : 29832,
+"reagents" : [ {
+"quantity" : 14,
+"item" : {
+"id" : "Crafting_Tier_04B",
+"name" : "Exquisite Essence",
+"icon" : "crafting_tier_04b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/exquisite-essence"
+}
+}, {
+"quantity" : 3,
+"item" : {
+"id" : "Crafting_Tier_04C",
+"name" : "Iridescent Tear",
+"icon" : "crafting_tier_04c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/iridescent-tear"
+}
+}, {
+"quantity" : 4,
+"item" : {
+"id" : "Crafting_Training_Tome_Inferno",
+"name" : "Tome of Secrets",
+"icon" : "crafting_training_tome_inferno_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/tome-of-secrets"
+}
+} ],
+"itemProduced" : {
+"id" : "Shoulders_205",
+"name" : "Exalted Pallium",
+"icon" : "shoulders_205_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/exalted-pallium"
+}
+} ]
+},
+"legs" : {
+"id" : "Pants_102",
+"name" : "Coursing Cover",
+"icon" : "pants_102_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CpYBCMac1MEFEgcIBBVYjtWlHbtb6Egdx5dAYB3iIb0HHbTx7Bodt8Ji6h3QNyIDIgsIABXI_gEAGBQgDjAJOJEEQABIE1AQYNwEaiUKDAgAEICKlbaCgIDALxIVCIvuxN8IEgcIBBUBlq6YMAk4AEABaiUKDAgAEKvK1-aDgICAARIVCOfsuqoJEgcIBBUBlq6YMAk4AEABGM_G06ILUABYAg",
+"craftedBy" : [ ]
+},
+"bracers" : {
+"id" : "Bracers_205",
+"name" : "Protection Pride",
+"icon" : "bracers_205_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CkEI0Pis1wgSBwgEFdgsyssdvzBICB23BGm6HZAm_qsdBn2WQR1xwgPgIgsIARV2QgMAGBAgADAJOJMDQABQDmDQAxjPzK7DBlAAWAI",
+"craftedBy" : [ {
+"id" : "T10_Armor_Bracers_04",
+"slug" : "exalted-armplates",
+"name" : "Exalted Armplates",
+"cost" : 29832,
+"reagents" : [ {
+"quantity" : 14,
+"item" : {
+"id" : "Crafting_Tier_04B",
+"name" : "Exquisite Essence",
+"icon" : "crafting_tier_04b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/exquisite-essence"
+}
+}, {
+"quantity" : 3,
+"item" : {
+"id" : "Crafting_Tier_04C",
+"name" : "Iridescent Tear",
+"icon" : "crafting_tier_04c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/iridescent-tear"
+}
+}, {
+"quantity" : 4,
+"item" : {
+"id" : "Crafting_Training_Tome_Inferno",
+"name" : "Tome of Secrets",
+"icon" : "crafting_training_tome_inferno_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/tome-of-secrets"
+}
+} ],
+"itemProduced" : {
+"id" : "Bracers_205",
+"name" : "Exalted Armplates",
+"icon" : "bracers_205_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/exalted-armplates"
+}
+}, {
+"id" : "T10_Armor_Bracers_05",
+"slug" : "exalted-fine-armplates",
+"name" : "Exalted Fine Armplates",
+"cost" : 42416,
+"reagents" : [ {
+"quantity" : 20,
+"item" : {
+"id" : "Crafting_Tier_04B",
+"name" : "Exquisite Essence",
+"icon" : "crafting_tier_04b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/exquisite-essence"
+}
+}, {
+"quantity" : 4,
+"item" : {
+"id" : "Crafting_Tier_04C",
+"name" : "Iridescent Tear",
+"icon" : "crafting_tier_04c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/iridescent-tear"
+}
+}, {
+"quantity" : 6,
+"item" : {
+"id" : "Crafting_Training_Tome_Inferno",
+"name" : "Tome of Secrets",
+"icon" : "crafting_training_tome_inferno_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/tome-of-secrets"
+}
+} ],
+"itemProduced" : {
+"id" : "Bracers_205",
+"name" : "Exalted Fine Armplates",
+"icon" : "bracers_205_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/exalted-fine-armplates"
+}
+}, {
+"id" : "T10_Armor_Bracers_06",
+"slug" : "exalted-grand-armplates",
+"name" : "Exalted Grand Armplates",
+"cost" : 87516,
+"reagents" : [ {
+"quantity" : 28,
+"item" : {
+"id" : "Crafting_Tier_04B",
+"name" : "Exquisite Essence",
+"icon" : "crafting_tier_04b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/exquisite-essence"
+}
+}, {
+"quantity" : 5,
+"item" : {
+"id" : "Crafting_Tier_04C",
+"name" : "Iridescent Tear",
+"icon" : "crafting_tier_04c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/iridescent-tear"
+}
+}, {
+"quantity" : 8,
+"item" : {
+"id" : "Crafting_Training_Tome_Inferno",
+"name" : "Tome of Secrets",
+"icon" : "crafting_training_tome_inferno_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/tome-of-secrets"
+}
+} ],
+"itemProduced" : {
+"id" : "Bracers_205",
+"name" : "Exalted Grand Armplates",
+"icon" : "bracers_205_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/exalted-grand-armplates"
+}
+} ]
+},
+"mainHand" : {
+"id" : "HandXbow_204",
+"name" : "Hunting Talon",
+"icon" : "handxbow_204_demonhunter_female",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CjwIsvSDtwUSBwgEFdAdV-odwTBICB3o5anwHQq_GXodJQ3O1CILCAAVxUQDABgcIAIwCTjFA0AAUAxgiAQY34jH2gJQAFgC",
+"craftedBy" : [ {
+"id" : "T08_Weapon_HandCrossbow",
+"slug" : "resplendent-blade-spitter",
+"name" : "Resplendent Blade Spitter",
+"cost" : 2325,
+"reagents" : [ {
+"quantity" : 6,
+"item" : {
+"id" : "Crafting_Tier_03B",
+"name" : "Wishful Essence",
+"icon" : "crafting_tier_03b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/wishful-essence"
+}
+} ],
+"itemProduced" : {
+"id" : "HandXbow_204",
+"name" : "Resplendent Blade Spitter",
+"icon" : "handxbow_204_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/resplendent-blade-spitter"
+}
+} ]
+},
+"offHand" : {
+"id" : "Quiver_103",
+"name" : "Shrike Scare",
+"icon" : "quiver_103_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CkEIto_a5A0SBwgEFQ_mvlsdzGKv7R1dHvhaHQxrf_0d4-Wp8B3TlM7mIgsIARXDZQMAGBQgFDAJOLUDQABQDmD2AxiemPe7C1AAWAI",
+"craftedBy" : [ ]
+},
+"waist" : {
+"id" : "Belt_104",
+"name" : "Dread Voyage",
+"icon" : "belt_104_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CkEI85-c3A8SBwgEFXujQtQdNZqvrx0QkVNoHbxb6EgdvI2Mwx2L5yOiIgsIARVyQgMAGAQgJDANOJkDQABQDmDXAxiJ8uq7BVAAWAI",
+"recipe" : {
+"id" : "T06_Armor_Belt",
+"slug" : "illustrious-cupola",
+"name" : "Illustrious Cupola",
+"cost" : 1386,
+"reagents" : [ {
+"quantity" : 7,
+"item" : {
+"id" : "Crafting_Tier_02B",
+"name" : "Shimmering Essence",
+"icon" : "crafting_tier_02b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/shimmering-essence"
+}
+}, {
+"quantity" : 2,
+"item" : {
+"id" : "Crafting_Tier_02C",
+"name" : "Lizard Eye",
+"icon" : "crafting_tier_02c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/lizard-eye"
+}
+} ],
+"itemProduced" : {
+"id" : "Belt_104",
+"name" : "Illustrious Cupola",
+"icon" : "belt_104_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/illustrious-cupola"
+}
+},
+"craftedBy" : [ {
+"id" : "T06_Armor_Belt",
+"slug" : "illustrious-cupola",
+"name" : "Illustrious Cupola",
+"cost" : 1386,
+"reagents" : [ {
+"quantity" : 7,
+"item" : {
+"id" : "Crafting_Tier_02B",
+"name" : "Shimmering Essence",
+"icon" : "crafting_tier_02b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/shimmering-essence"
+}
+}, {
+"quantity" : 2,
+"item" : {
+"id" : "Crafting_Tier_02C",
+"name" : "Lizard Eye",
+"icon" : "crafting_tier_02c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/lizard-eye"
+}
+} ],
+"itemProduced" : {
+"id" : "Belt_104",
+"name" : "Illustrious Cupola",
+"icon" : "belt_104_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/illustrious-cupola"
+}
+} ]
+},
+"rightFinger" : {
+"id" : "Ring_12",
+"name" : "Last Link",
+"icon" : "ring_12_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CmgIrb-T7AQSBwgEFRJVXUQdlAXSPB2nf4c9HUhSdfodlL80ih2ykdZgIgsIABWt_gEAGAggDjAJONwDQABQDmChBGolCgwIABC4moX4hYCAwCISFQi46LmlDBIHCAQV9p7YqzAJOABAARik1OrFCFAAWAI",
+"craftedBy" : [ ]
+},
+"leftFinger" : {
+"id" : "Ring_16",
+"name" : "Officer Desire",
+"icon" : "ring_16_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/Cm0IuOmeigESBwgEFRZVXUQd7TrCNh3mf6u4HbtpDx4dsstKBB1l3ArxHdvyQqAiCwgBFYZCAwAYCCAOMAk4rgJAAFAMYOACaiUKDAgAEN6j1tCEgIDAMBIVCJyyvJ4BEgcIBBX2ntirMAk4AEABGKzU6sUIUABYAg",
+"craftedBy" : [ ]
+},
+"neck" : {
+"id" : "Amulet05",
+"name" : "Renown Root",
+"icon" : "amulet05_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CkYIk6yC3QgSBwgEFY3FRGQdCNGSCB1fUKoHHeQriTodcdx52x1590oHHc2QjBQiCwgBFYpCAwAYECAcMAk4tgNAAFAMYPcDGJqWpsQMUABYAg",
+"craftedBy" : [ ]
+}
+},
+"kills" : {
+"elites" : 845
+},
+"hardcore" : true,
+"death" : {
+"killer" : 219702,
+"location" : 2826,
+"time" : 1381591014
+},
+"heroId" : 35154567,
+"gender" : 1,
+"class" : "demon-hunter"
+}, {
+"name" : "Kara",
+"level" : 53,
+"stats" : {
+"life" : 19372,
+"damage" : 6145.38,
+"armor" : 1751,
+"strength" : 353,
+"dexterity" : 1030,
+"vitality" : 683,
+"intelligence" : 514,
+"physicalResist" : 0,
+"fireResist" : 125,
+"coldResist" : 94,
+"lightningResist" : 51,
+"poisonResist" : 51,
+"arcaneResist" : 51,
+"damageIncrease" : 10.300000190734863,
+"critChance" : 0.1899999976158142,
+"damageReduction" : 0.3978640139102936
+},
+"items" : {
+"head" : {
+"id" : "Helm_103",
+"name" : "Shadow Skull",
+"icon" : "helm_103_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CmoI15f1_g4SBwgEFTn1Tl0d9JlHMh2bsMzQHeDMdlAd4iG9Bx29W-hIIgsIABWu_gEAGA4gDDAJOKAEQABIDFAOYOEEaiUKDAgAEJ_DpbaGgIDAGRIVCIT4sPwKEgcIBBVJ9YtfMAk4AEABGPLU99QLUABYAg",
+"craftedBy" : [ ]
+},
+"torso" : {
+"id" : "ChestArmor_104",
+"name" : "Dueling Vestments",
+"icon" : "chestarmor_104_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CrIBCMipy5QOEgcIBBXsHRlgHd1h_R0dusC15h3Y7Sq9HZMCY-oiCwgAFbpEAwAYACAmMAk48gNAAEgMUAxgrgRqJQoMCAAQiMDbnIiAgKAxEhUI4f360wcSBwgEFfee2KswDTgAQAFqJQoMCAAQoK3AvoaAgKAaEhUI-Yz-wQkSBwgEFbVdtnowCTgAQAFqJAoMCAAQua3AvoaAgKAaEhQIsfL_IhIHCAQVtV22ejAJOABAARjY98iBDFAAWAI",
+"craftedBy" : [ ]
+},
+"feet" : {
+"id" : "Boots_102",
+"name" : "Road Defiance",
+"icon" : "boots_102_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CkMIkrKTkQISBwgEFVlBm38d4uWp8B2NJv6rHQnqUAgdzGKv7R1Pl8AkIgsIARWFQgMAGAAgHjAJOLEDQABIC1AOYOYDGLKF2vkPUABYAg",
+"craftedBy" : [ {
+"id" : "T05_Armor_Boots",
+"slug" : "grand-master-brogans",
+"name" : "Grand Master Brogans",
+"cost" : 1254,
+"reagents" : [ {
+"quantity" : 7,
+"item" : {
+"id" : "Crafting_Tier_02B",
+"name" : "Shimmering Essence",
+"icon" : "crafting_tier_02b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/shimmering-essence"
+}
+}, {
+"quantity" : 2,
+"item" : {
+"id" : "Crafting_Tier_02C",
+"name" : "Lizard Eye",
+"icon" : "crafting_tier_02c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/lizard-eye"
+}
+} ],
+"itemProduced" : {
+"id" : "Boots_102",
+"name" : "Grand Master Brogans",
+"icon" : "boots_102_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/grand-master-brogans"
+}
+} ]
+},
+"hands" : {
+"id" : "Gloves_204",
+"name" : "Gruesome Fists",
+"icon" : "gloves_204_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CkgIiKrjyAQSBwgEFcVbkqQdjyb-qx21HhqJHRBc9PwdvzBICB0Oa3_9HaRHeJ0iCwgAFar-AQAYKCAOMAk44QNAAEgSUBBgnAQY9ZDttgtQAFgC",
+"craftedBy" : [ ]
+},
+"shoulders" : {
+"id" : "Shoulders_103",
+"name" : "Wild Pauldrons of Cruelty",
+"icon" : "shoulders_103_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/CiUI2-DOmwISBwgEFYz0yBUdSjLHHB0bjApWMAk4mQNAAFAIYMsDGJjSx9wCUABYAg",
+"craftedBy" : [ {
+"id" : "T06_Armor_Shoulders",
+"slug" : "illustrious-pauldrons",
+"name" : "Illustrious Pauldrons",
+"cost" : 1155,
+"reagents" : [ {
+"quantity" : 4,
+"item" : {
+"id" : "Crafting_Tier_02B",
+"name" : "Shimmering Essence",
+"icon" : "crafting_tier_02b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/shimmering-essence"
+}
+} ],
+"itemProduced" : {
+"id" : "Shoulders_103",
+"name" : "Illustrious Pauldrons",
+"icon" : "shoulders_103_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/illustrious-pauldrons"
+}
+} ]
+},
+"legs" : {
+"id" : "Pants_105",
+"name" : "Hollow Boon",
+"icon" : "pants_105_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CogBCOyF4pELEgcIBBVbjtWlHUoyxxwdG4wKVh0fhz5WHa9TwzYiCwgAFcv-AQAYACAKMAk45wNAAEgLUAxgogRqJQoMCAAQ2Iu5v4aAgKAaEhUIgpaZ2QUSBwgEFQGWrpgwCTgAQAFqIQoMCAAQw6OO6YaAgMABEhEIABIHCAQVAZaumDAJOABAARjJxtOiC1AAWAI",
+"craftedBy" : [ ]
+},
+"bracers" : {
+"id" : "Bracers_105",
+"name" : "Apostle's Brawlers",
+"icon" : "bracers_105_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CkYIlpKb3wkSBwgEFZcoyssdH4c-Vh25MEgIHTCPHEUdc8S85x2L5yOiHTwrb_EiCwgAFbH-AQAYECAkMAk4xQJAAFAQYO4CGNHdrsMGUABYAg",
+"craftedBy" : [ ]
+},
+"mainHand" : {
+"id" : "HandXbow_207",
+"name" : "Shrewd Shrike",
+"icon" : "handxbow_207_demonhunter_female",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CjwI_NrQggMSBwgEFdMdV-odLf_VyB2V_LP5HcAwSAgdvubdtSILCAAVw0QDABgWIAgwCTjYA0AAUAxgkgQY2YjH2gJQAFgC",
+"craftedBy" : [ {
+"id" : "T10_Weapon_HandCrossbow_05",
+"slug" : "exalted-fine-impellor",
+"name" : "Exalted Fine Impellor",
+"cost" : 57840,
+"reagents" : [ {
+"quantity" : 29,
+"item" : {
+"id" : "Crafting_Tier_04B",
+"name" : "Exquisite Essence",
+"icon" : "crafting_tier_04b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/exquisite-essence"
+}
+}, {
+"quantity" : 4,
+"item" : {
+"id" : "Crafting_Tier_04C",
+"name" : "Iridescent Tear",
+"icon" : "crafting_tier_04c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/iridescent-tear"
+}
+}, {
+"quantity" : 8,
+"item" : {
+"id" : "Crafting_Training_Tome_Inferno",
+"name" : "Tome of Secrets",
+"icon" : "crafting_training_tome_inferno_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/tome-of-secrets"
+}
+} ],
+"itemProduced" : {
+"id" : "HandXbow_207",
+"name" : "Exalted Fine Impellor",
+"icon" : "handxbow_207_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/exalted-fine-impellor"
+}
+}, {
+"id" : "T10_Weapon_HandCrossbow_06",
+"slug" : "exalted-grand-impellor",
+"name" : "Exalted Grand Impellor",
+"cost" : 119340,
+"reagents" : [ {
+"quantity" : 40,
+"item" : {
+"id" : "Crafting_Tier_04B",
+"name" : "Exquisite Essence",
+"icon" : "crafting_tier_04b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/exquisite-essence"
+}
+}, {
+"quantity" : 5,
+"item" : {
+"id" : "Crafting_Tier_04C",
+"name" : "Iridescent Tear",
+"icon" : "crafting_tier_04c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/iridescent-tear"
+}
+}, {
+"quantity" : 12,
+"item" : {
+"id" : "Crafting_Training_Tome_Inferno",
+"name" : "Tome of Secrets",
+"icon" : "crafting_training_tome_inferno_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/tome-of-secrets"
+}
+} ],
+"itemProduced" : {
+"id" : "HandXbow_207",
+"name" : "Exalted Grand Impellor",
+"icon" : "handxbow_207_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/exalted-grand-impellor"
+}
+}, {
+"id" : "T10_Weapon_HandCrossbow_04",
+"slug" : "exalted-impellor",
+"name" : "Exalted Impellor",
+"cost" : 40680,
+"reagents" : [ {
+"quantity" : 20,
+"item" : {
+"id" : "Crafting_Tier_04B",
+"name" : "Exquisite Essence",
+"icon" : "crafting_tier_04b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/exquisite-essence"
+}
+}, {
+"quantity" : 3,
+"item" : {
+"id" : "Crafting_Tier_04C",
+"name" : "Iridescent Tear",
+"icon" : "crafting_tier_04c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/iridescent-tear"
+}
+}, {
+"quantity" : 6,
+"item" : {
+"id" : "Crafting_Training_Tome_Inferno",
+"name" : "Tome of Secrets",
+"icon" : "crafting_training_tome_inferno_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/tome-of-secrets"
+}
+} ],
+"itemProduced" : {
+"id" : "HandXbow_207",
+"name" : "Exalted Impellor",
+"icon" : "handxbow_207_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/exalted-impellor"
+}
+} ]
+},
+"offHand" : {
+"id" : "Quiver_103",
+"name" : "Cruel Hallowed Quiver of Valor",
+"icon" : "quiver_103_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/CiUI-se2jA8SBwgEFQ_mvlsduTTUmR218ewaMAk4wwNAAFAIYPoDGJ6Y97sLUABYAg",
+"craftedBy" : [ ]
+},
+"waist" : {
+"id" : "Belt_103",
+"name" : "Devil's Buckle",
+"icon" : "belt_103_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CkYI8c6dzA4SBwgEFXqjQtQd4iG9Bx26W-hIHbrAteYdXBAnQh27aQ8eHf1C6UgiCwgAFbP-AQAYDCAgMAk4qQNAAFAQYN0DGIvy6rsFUABYAg",
+"craftedBy" : [ ]
+},
+"rightFinger" : {
+"id" : "Ring_15",
+"name" : "Killing Wheel",
+"icon" : "ring_15_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CmMIh9X88QQSBwgEFRVVXUQdO7LM0B0Y0ywQHYutUmgd80Yz5iILCAAVq_4BABgUICAwCTiZA0AAUAxgywNqJQoMCAAQgPXryIKAgOAjEhUIgurekQcSBwgEFQGWrpgwCTgAQAEYqtTqxQhQAFgC",
+"craftedBy" : [ ]
+},
+"leftFinger" : {
+"id" : "Ring_11",
+"name" : "Sly Loop",
+"icon" : "ring_11_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CmII7vf6ZRIHCAQVEVVdRB07sszQHeIhvQcdlAXSPB1quOBoIgsIABWu_gEAGAAgCDAJOL4CQABQDGDmAmolCgwIABCbkPjsg4CAwBMSFQjg4JzWCBIHCAQVtV22ejAJOABAARii1OrFCFAAWAI",
+"craftedBy" : [ ]
+},
+"neck" : {
+"id" : "Amulet04",
+"name" : "Renown Fang",
+"icon" : "amulet04_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/Cm0Iy7_n0w8SBwgEFYzFRGQdzZCMFB2ZkYQeHf9qf_0dMIdiCB1YWRe1HY6wzNAiCwgBFXlCAwAYACAcMAk42wJAAFAQYIcDaiUKDAgAEK_6i-6DgIDgEhIVCJ-zrZkDEgcIBBX2ntirMAk4AEABGJiWpsQMUABYAg",
+"craftedBy" : [ ]
+}
+},
+"kills" : {
+"elites" : 778
+},
+"hardcore" : true,
+"death" : {
+"killer" : 3526,
+"location" : 78839,
+"time" : 1384742769
+},
+"heroId" : 37537143,
+"gender" : 1,
+"class" : "demon-hunter"
+}, {
+"name" : "Kara",
+"level" : 52,
+"stats" : {
+"life" : 22546,
+"damage" : 7413.55,
+"armor" : 2029,
+"strength" : 453,
+"dexterity" : 845,
+"vitality" : 826,
+"intelligence" : 329,
+"physicalResist" : 0,
+"fireResist" : 48,
+"coldResist" : 53,
+"lightningResist" : 32,
+"poisonResist" : 32,
+"arcaneResist" : 93,
+"damageIncrease" : 8.449999809265137,
+"critChance" : 0.09000000357627869,
+"damageReduction" : 0.4383240044116974
+},
+"items" : {
+"head" : {
+"id" : "Helm_102",
+"name" : "Null Veil",
+"icon" : "helm_102_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CmQIz5uLtQISBwgEFTj1Tl0d9JlHMh3iIb0HHe06wjYdmrd1NSILCAAVy_4BABgCIBgwCTjTBEAASAdQDGChBWokCgwIABDttqLdhICAwDASFAjAl4hWEgcIBBVK9YtfMAk4AEABGPDU99QLUABYAg",
+"craftedBy" : [ ]
+},
+"torso" : {
+"id" : "Cloak_103",
+"name" : "The Essence",
+"icon" : "cloak_103_demonhunter_female",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CrgBCLyn3QoSBwgEFb1rbwIdTeCBmx1KMsccHfSZRzIdf-nhfh2FNq7dHZMCY-oiCwgBFYpCAwAYCCAqMAk42wNAAEgDUBBgnARqJQoMCAAQ8I2V7IeAgMAxEhUIzqOruAUSBwgEFQGWrpgwCTgAQAFqJQoMCAAQhY6V7IeAgMAxEhUIi9r95AgSBwgEFQGWrpgwCTgAQAFqIQoMCAAQ9r3knoWAgKABEhEIABIHCAQVAZaumDAJOABAARj6rvsmUABYAg",
+"craftedBy" : [ ]
+},
+"feet" : {
+"id" : "Boots_105",
+"name" : "Sly Runners",
+"icon" : "boots_105_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CkgIyLmqug0SBwgEFVxBm38dM7Rgfh3k5anwHQjqUAgdHhdaox0R7X6IHQmYQGAiCwgAFa7-AQAYACASMAk44wNAAEgTUAxgpAQYuIXa-Q9QAFgC",
+"craftedBy" : [ {
+"id" : "T07_Armor_Boots",
+"slug" : "magnificent-battle-greaves",
+"name" : "Magnificent Battle Greaves",
+"cost" : 1320,
+"reagents" : [ {
+"quantity" : 4,
+"item" : {
+"id" : "Crafting_Tier_03B",
+"name" : "Wishful Essence",
+"icon" : "crafting_tier_03b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/wishful-essence"
+}
+} ],
+"itemProduced" : {
+"id" : "Boots_105",
+"name" : "Magnificent Battle Greaves",
+"icon" : "boots_105_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/magnificent-battle-greaves"
+}
+} ]
+},
+"hands" : {
+"id" : "Gloves_104",
+"name" : "Rugged Traps",
+"icon" : "gloves_104_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CkgIr6q_ig0SBwgEFYRXkqQdY-q9Cx0bjApWHZysoJgdzJyAJx1MJ-gPHb5b6EgiCwgAFc7-AQAYGiAQMAk4nwRAAEgCUBBg5wQY96HttgtQAFgC",
+"craftedBy" : [ ]
+},
+"shoulders" : {
+"id" : "Shoulders_102",
+"name" : "Cruel Ailettes of Fortitude",
+"icon" : "shoulders_102_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/CiUIvOG3qwUSBwgEFYv0yBUdvdK3LR30mUcyMAk4uwNAAFAIYPgDGJbSx9wCUABYAg",
+"craftedBy" : [ ]
+},
+"legs" : {
+"id" : "Pants_104",
+"name" : "Barren Greaves",
+"icon" : "pants_104_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CowBCPrD0sIPEgcIBBVajtWlHX81e4Mdr1PDNh3hOYcCHaAjvEgiCwgAFcv-AQAYDiACMAk49QNAAEgPUAxguARqJQoMCAAQgZ-V7IeAgMAxEhUIrpLMqwESBwgEFfae2KswCTgAQAFqJQoMCAAQg43Jk4aAgIA5EhUI26WB4QkSBwgEFQGWrpgwCTgAQAEYy8bTogtQAFgC",
+"craftedBy" : [ ]
+},
+"bracers" : {
+"id" : "Bracers_203",
+"name" : "Guardian Shelter",
+"icon" : "bracers_203_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CjwIwe-hpwwSBwgEFdYsyssdppPE9h29CvBMHfGUQEwdvjBICCILCAEVtUQDABgKIBAwCTjbAkAAUAxgjQMY08yuwwZQAFgC",
+"craftedBy" : [ ]
+},
+"mainHand" : {
+"id" : "HandXbow_207",
+"name" : "Predator's Quest",
+"icon" : "handxbow_207_demonhunter_female",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CjwI--Ojlw8SBwgEFdMdV-oda5dsHR3FrB6mHVNEp10dwDBICCILCAEVckIDABggIBowCTjZA0AAUAxgmQQY2YjH2gJQAFgC",
+"craftedBy" : [ {
+"id" : "T10_Weapon_HandCrossbow_05",
+"slug" : "exalted-fine-impellor",
+"name" : "Exalted Fine Impellor",
+"cost" : 57840,
+"reagents" : [ {
+"quantity" : 29,
+"item" : {
+"id" : "Crafting_Tier_04B",
+"name" : "Exquisite Essence",
+"icon" : "crafting_tier_04b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/exquisite-essence"
+}
+}, {
+"quantity" : 4,
+"item" : {
+"id" : "Crafting_Tier_04C",
+"name" : "Iridescent Tear",
+"icon" : "crafting_tier_04c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/iridescent-tear"
+}
+}, {
+"quantity" : 8,
+"item" : {
+"id" : "Crafting_Training_Tome_Inferno",
+"name" : "Tome of Secrets",
+"icon" : "crafting_training_tome_inferno_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/tome-of-secrets"
+}
+} ],
+"itemProduced" : {
+"id" : "HandXbow_207",
+"name" : "Exalted Fine Impellor",
+"icon" : "handxbow_207_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/exalted-fine-impellor"
+}
+}, {
+"id" : "T10_Weapon_HandCrossbow_06",
+"slug" : "exalted-grand-impellor",
+"name" : "Exalted Grand Impellor",
+"cost" : 119340,
+"reagents" : [ {
+"quantity" : 40,
+"item" : {
+"id" : "Crafting_Tier_04B",
+"name" : "Exquisite Essence",
+"icon" : "crafting_tier_04b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/exquisite-essence"
+}
+}, {
+"quantity" : 5,
+"item" : {
+"id" : "Crafting_Tier_04C",
+"name" : "Iridescent Tear",
+"icon" : "crafting_tier_04c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/iridescent-tear"
+}
+}, {
+"quantity" : 12,
+"item" : {
+"id" : "Crafting_Training_Tome_Inferno",
+"name" : "Tome of Secrets",
+"icon" : "crafting_training_tome_inferno_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/tome-of-secrets"
+}
+} ],
+"itemProduced" : {
+"id" : "HandXbow_207",
+"name" : "Exalted Grand Impellor",
+"icon" : "handxbow_207_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/exalted-grand-impellor"
+}
+}, {
+"id" : "T10_Weapon_HandCrossbow_04",
+"slug" : "exalted-impellor",
+"name" : "Exalted Impellor",
+"cost" : 40680,
+"reagents" : [ {
+"quantity" : 20,
+"item" : {
+"id" : "Crafting_Tier_04B",
+"name" : "Exquisite Essence",
+"icon" : "crafting_tier_04b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/exquisite-essence"
+}
+}, {
+"quantity" : 3,
+"item" : {
+"id" : "Crafting_Tier_04C",
+"name" : "Iridescent Tear",
+"icon" : "crafting_tier_04c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/iridescent-tear"
+}
+}, {
+"quantity" : 6,
+"item" : {
+"id" : "Crafting_Training_Tome_Inferno",
+"name" : "Tome of Secrets",
+"icon" : "crafting_training_tome_inferno_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/tome-of-secrets"
+}
+} ],
+"itemProduced" : {
+"id" : "HandXbow_207",
+"name" : "Exalted Impellor",
+"icon" : "handxbow_207_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/exalted-impellor"
+}
+} ]
+},
+"offHand" : {
+"id" : "Quiver_102",
+"name" : "Hunt Prize",
+"icon" : "quiver_102_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CmgI7KC3mgsSBwgEFQ7mvlsdzGKv7R3jqh6mHRak09gdm7DM0B0M0ZIIIgsIARV2QgMAGCQgGjAJOMYDQABQDmCEBGolCgwIABDzwMaThoCAgDkSFQiOh57bDxIHCAQVAZaumDAJOABAARicmPe7C1AAWAI",
+"craftedBy" : [ ]
+},
+"waist" : {
+"id" : "Belt_104",
+"name" : "Nomadic Cupola of Cruelty",
+"icon" : "belt_104_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/CiUI7dLNzgkSBwgEFXujQtQdVxB4nR1KMsccMAk4mANAAFAIYNEDGIny6rsFUABYAg",
+"craftedBy" : [ {
+"id" : "T06_Armor_Belt",
+"slug" : "illustrious-cupola",
+"name" : "Illustrious Cupola",
+"cost" : 1386,
+"reagents" : [ {
+"quantity" : 7,
+"item" : {
+"id" : "Crafting_Tier_02B",
+"name" : "Shimmering Essence",
+"icon" : "crafting_tier_02b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/shimmering-essence"
+}
+}, {
+"quantity" : 2,
+"item" : {
+"id" : "Crafting_Tier_02C",
+"name" : "Lizard Eye",
+"icon" : "crafting_tier_02c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/lizard-eye"
+}
+} ],
+"itemProduced" : {
+"id" : "Belt_104",
+"name" : "Illustrious Cupola",
+"icon" : "belt_104_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/illustrious-cupola"
+}
+} ]
+},
+"rightFinger" : {
+"id" : "Ring_16",
+"name" : "Strong Band",
+"icon" : "ring_16_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/Cm0Ioden1wUSBwgEFRZVXUQdvVvoSB1Pl8AkHZo95hodmrd1NR2bsMzQHewimnMiCwgAFcz-AQAYDiAGMAk41AJAAFAQYIUDaiUKDAgAEICPjKKCgIDgIxIVCLuy7PoJEgcIBBX2ntirMAk4AEABGKzU6sUIUABYAg",
+"craftedBy" : [ ]
+},
+"leftFinger" : {
+"id" : "Ring_09",
+"name" : "Rapid Signet",
+"icon" : "ring_09_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CmMI85PFhAMSBwgEFfhUXUQdO7LM0B3eTEryHehNJ14dcdx52yILCAAVuP4BABgIIAIwCTjyAkAAUAxgpwNqJQoMCAAQqIWd6oeAgKAxEhUIjOqmqwUSBwgEFfae2KswCTgAQAEY8NPqxQhQAFgC",
+"craftedBy" : [ ]
+},
+"neck" : {
+"id" : "Amulet07",
+"name" : "Victory Tongue",
+"icon" : "amulet07_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CmwIyN-7LxIHCAQVj8VEZB29UqRHHQrRkggdEoc-Vh07sszQHVmIiZUd5yuJOiILCAEVdUIDABgGIBAwCTjRA0AAUAxgkARqJQoMCAAQnvCk3YSAgMAwEhUIp5TO9AESBwgEFfae2KswCTgAQAEYnpamxAxQAFgC",
+"craftedBy" : [ ]
+}
+},
+"kills" : {
+"elites" : 783
+},
+"hardcore" : true,
+"death" : {
+"killer" : 6024,
+"location" : 71150,
+"time" : 1382276106
+},
+"heroId" : 37440807,
+"gender" : 1,
+"class" : "demon-hunter"
+}, {
+"name" : "Kara",
+"level" : 51,
+"stats" : {
+"life" : 16984,
+"damage" : 9414.8,
+"armor" : 1728,
+"strength" : 416,
+"dexterity" : 888,
+"vitality" : 644,
+"intelligence" : 651,
+"physicalResist" : 0,
+"fireResist" : 97,
+"coldResist" : 97,
+"lightningResist" : 125,
+"poisonResist" : 97,
+"arcaneResist" : 97,
+"damageIncrease" : 8.880000114440918,
+"critChance" : 0.12999999523162842,
+"damageReduction" : 0.4039269983768463
+},
+"items" : {
+"head" : {
+"id" : "Helm_103",
+"name" : "The Peak",
+"icon" : "helm_103_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CmQI5uXtdBIHCAQVOfVOXR0plkBgHTWar68dlL80ih0ztGB-IgsIABWx_gEAGB4gHDAJOLEEQABIB1AMYPQEaiUKDAgAENC1gNKFgIDgOBIVCPKh7LEPEgcIBBVi9YtfMA04AEABGPLU99QLUABYAg",
+"craftedBy" : [ ]
+},
+"torso" : {
+"id" : "Cloak_202",
+"name" : "Stalker Salvation",
+"icon" : "cloak_202_demonhunter_female",
+"displayColor" : "yellow",
+"tooltipParams" : "item/Cj4I8Kb33AUSBwgEFf1vbwIdDheAyR3AMEgIHUcJYpwd_WwdqiILCAEVxkQDABgIIBQwCTiHA0AASANQDGC4Axj6v_smUABYAg",
+"craftedBy" : [ ]
+},
+"feet" : {
+"id" : "Boots_102",
+"name" : "Distance Knack",
+"icon" : "boots_102_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CkMI2aGE9woSBwgEFVlBm38dC3KLih0J6lAIHY0m_qsdevdKBx2n2rnsIgsIARVxQgMAGBQgBjAJOKAEQABID1AOYOEEGLKF2vkPUABYAg",
+"craftedBy" : [ {
+"id" : "T05_Armor_Boots",
+"slug" : "grand-master-brogans",
+"name" : "Grand Master Brogans",
+"cost" : 1254,
+"reagents" : [ {
+"quantity" : 7,
+"item" : {
+"id" : "Crafting_Tier_02B",
+"name" : "Shimmering Essence",
+"icon" : "crafting_tier_02b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/shimmering-essence"
+}
+}, {
+"quantity" : 2,
+"item" : {
+"id" : "Crafting_Tier_02C",
+"name" : "Lizard Eye",
+"icon" : "crafting_tier_02c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/lizard-eye"
+}
+} ],
+"itemProduced" : {
+"id" : "Boots_102",
+"name" : "Grand Master Brogans",
+"icon" : "boots_102_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/grand-master-brogans"
+}
+} ]
+},
+"hands" : {
+"id" : "Gloves_102",
+"name" : "Grip Gift",
+"icon" : "gloves_102_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/Cj4IvsnMog0SBwgEFYJXkqQdspHWYB1VLaaaHTIL5KIdZFCqByILCAEVxkQDABgMIAAwCTiQA0AASAhQDGDCAxj7oe22C1AAWAI",
+"craftedBy" : [ {
+"id" : "T05_Armor_Gloves",
+"slug" : "grand-master-etched-gloves",
+"name" : "Grand Master Etched Gloves",
+"cost" : 1045,
+"reagents" : [ {
+"quantity" : 4,
+"item" : {
+"id" : "Crafting_Tier_02B",
+"name" : "Shimmering Essence",
+"icon" : "crafting_tier_02b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/shimmering-essence"
+}
+} ],
+"itemProduced" : {
+"id" : "Gloves_102",
+"name" : "Grand Master Etched Gloves",
+"icon" : "gloves_102_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/grand-master-etched-gloves"
+}
+} ]
+},
+"shoulders" : {
+"id" : "Unique_Shoulder_001_104",
+"name" : "Barter Town Pads",
+"icon" : "unique_shoulder_001_104_demonhunter_male",
+"displayColor" : "orange",
+"tooltipParams" : "item/CjkIz6KB6wUSBwgEFaA_MPEd4iG9Bx2QKQ6IHeE5hwIdaVxw_R1hCfVbHRrEUXQwCTjvAUAAUBJgjwIYv4H-7AFQAFgC",
+"craftedBy" : [ ]
+},
+"legs" : {
+"id" : "Pants_103",
+"name" : "Mutiny Abjuration",
+"icon" : "pants_103_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CpYBCLjClf4CEgcIBBVZjtWlHUoyxxwd4Mx2UB0xejGiHT1kz7odvVvoSB2vU8M2IgsIARW1RAMAGA4gFDAJOKQEQABIDFAQYOYEaiUKDAgAEK2B-byGgIDgCRIVCPaPiowFEgcIBBX3ntirMAk4AEABaiUKDAgAEPn8-LyGgIDgCRIVCK3imckPEgcIBBX3ntirMA04AEABGM3G06ILUABYAg",
+"craftedBy" : [ {
+"id" : "T06_Armor_Pants",
+"slug" : "illustrious-chausses",
+"name" : "Illustrious Chausses",
+"cost" : 1449,
+"reagents" : [ {
+"quantity" : 9,
+"item" : {
+"id" : "Crafting_Tier_02B",
+"name" : "Shimmering Essence",
+"icon" : "crafting_tier_02b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/shimmering-essence"
+}
+}, {
+"quantity" : 2,
+"item" : {
+"id" : "Crafting_Tier_02C",
+"name" : "Lizard Eye",
+"icon" : "crafting_tier_02c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/lizard-eye"
+}
+} ],
+"itemProduced" : {
+"id" : "Pants_103",
+"name" : "Illustrious Chausses",
+"icon" : "pants_103_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/illustrious-chausses"
+}
+} ]
+},
+"bracers" : {
+"id" : "Bracers_006",
+"name" : "The Shackles",
+"icon" : "bracers_006_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CkEIv-HTgw0SBwgEFVckyssdmrd1NR1MJ-gPHTCPHEUdebPFch2YeFJhIgsIABWx_gEAGB4gBjAJOPwCQABQDmCrAxjR7q7DBlAAWAI",
+"craftedBy" : [ {
+"id" : "T04_Armor_Bracers",
+"slug" : "master-mail-bands",
+"name" : "Master Mail Bands",
+"cost" : 825,
+"reagents" : [ {
+"quantity" : 5,
+"item" : {
+"id" : "Crafting_Tier_01B",
+"name" : "Subtle Essence",
+"icon" : "crafting_tier_01b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/subtle-essence"
+}
+} ],
+"itemProduced" : {
+"id" : "Bracers_006",
+"name" : "Master Mail Bands",
+"icon" : "bracers_006_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/master-mail-bands"
+}
+} ]
+},
+"mainHand" : {
+"id" : "HandXbow_207",
+"name" : "Vindicator's Lock",
+"icon" : "handxbow_207_demonhunter_female",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CmMI6YmQ6wUSBwgEFdMdV-odZuAuPB2GAmPqHTKznFkdwDBICCILCAEViEIDABgSIB4wCTjvA0AAUAxgqwRqJQoMCAAQq4ThsoaAgOABEhUIoZ7M4wsSBwgEFQKWrpgwDTgAQAEY2YjH2gJQAFgC",
+"craftedBy" : [ {
+"id" : "T10_Weapon_HandCrossbow_05",
+"slug" : "exalted-fine-impellor",
+"name" : "Exalted Fine Impellor",
+"cost" : 57840,
+"reagents" : [ {
+"quantity" : 29,
+"item" : {
+"id" : "Crafting_Tier_04B",
+"name" : "Exquisite Essence",
+"icon" : "crafting_tier_04b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/exquisite-essence"
+}
+}, {
+"quantity" : 4,
+"item" : {
+"id" : "Crafting_Tier_04C",
+"name" : "Iridescent Tear",
+"icon" : "crafting_tier_04c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/iridescent-tear"
+}
+}, {
+"quantity" : 8,
+"item" : {
+"id" : "Crafting_Training_Tome_Inferno",
+"name" : "Tome of Secrets",
+"icon" : "crafting_training_tome_inferno_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/tome-of-secrets"
+}
+} ],
+"itemProduced" : {
+"id" : "HandXbow_207",
+"name" : "Exalted Fine Impellor",
+"icon" : "handxbow_207_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/exalted-fine-impellor"
+}
+}, {
+"id" : "T10_Weapon_HandCrossbow_06",
+"slug" : "exalted-grand-impellor",
+"name" : "Exalted Grand Impellor",
+"cost" : 119340,
+"reagents" : [ {
+"quantity" : 40,
+"item" : {
+"id" : "Crafting_Tier_04B",
+"name" : "Exquisite Essence",
+"icon" : "crafting_tier_04b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/exquisite-essence"
+}
+}, {
+"quantity" : 5,
+"item" : {
+"id" : "Crafting_Tier_04C",
+"name" : "Iridescent Tear",
+"icon" : "crafting_tier_04c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/iridescent-tear"
+}
+}, {
+"quantity" : 12,
+"item" : {
+"id" : "Crafting_Training_Tome_Inferno",
+"name" : "Tome of Secrets",
+"icon" : "crafting_training_tome_inferno_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/tome-of-secrets"
+}
+} ],
+"itemProduced" : {
+"id" : "HandXbow_207",
+"name" : "Exalted Grand Impellor",
+"icon" : "handxbow_207_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/exalted-grand-impellor"
+}
+}, {
+"id" : "T10_Weapon_HandCrossbow_04",
+"slug" : "exalted-impellor",
+"name" : "Exalted Impellor",
+"cost" : 40680,
+"reagents" : [ {
+"quantity" : 20,
+"item" : {
+"id" : "Crafting_Tier_04B",
+"name" : "Exquisite Essence",
+"icon" : "crafting_tier_04b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/exquisite-essence"
+}
+}, {
+"quantity" : 3,
+"item" : {
+"id" : "Crafting_Tier_04C",
+"name" : "Iridescent Tear",
+"icon" : "crafting_tier_04c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/iridescent-tear"
+}
+}, {
+"quantity" : 6,
+"item" : {
+"id" : "Crafting_Training_Tome_Inferno",
+"name" : "Tome of Secrets",
+"icon" : "crafting_training_tome_inferno_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/tome-of-secrets"
+}
+} ],
+"itemProduced" : {
+"id" : "HandXbow_207",
+"name" : "Exalted Impellor",
+"icon" : "handxbow_207_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/exalted-impellor"
+}
+} ]
+},
+"offHand" : {
+"id" : "Quiver_104",
+"name" : "The Reaper",
+"icon" : "quiver_104_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CmgIrPSBpgkSBwgEFRDmvlsdDGt__R2-W-hIHbXx7Bod2pCMFB2GAmPqIgsIABW5_gEAGAAgEDAJOMoCQABQDmD0AmolCgwIABCG_fm8hoCA4AkSFQjwy4rlDRIHCAQVApaumDANOABAARigmPe7C1AAWAI",
+"craftedBy" : [ ]
+},
+"waist" : {
+"id" : "Belt_103",
+"name" : "Truth Nexus",
+"icon" : "belt_103_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CkYIsqvUwAISBwgEFXqjQtQdEe1-iB3TOhYxHUlpUF8dSjLHHB0plkBgHfTkUioiCwgAFbH-AQAYFCAkMAk44ANAAFAQYJoEGIvy6rsFUABYAg",
+"craftedBy" : [ ]
+},
+"rightFinger" : {
+"id" : "Ring_10",
+"name" : "Banished Seal",
+"icon" : "ring_10_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/Cm0Ig4rj3g0SBwgEFRBVXUQdJ5ZAYB0fAqd3Ha68Y0sdD9xxfB2W4gIgHTuyzNAiCwgAFcv-AQAYGCAAMAk4zwNAAFAMYIcEaiUKDAgAENi8gNKFgIDgOBIVCN2s9u4EEgcIBBX2ntirMAk4AEABGKDU6sUIUABYAg",
+"craftedBy" : [ ]
+},
+"leftFinger" : {
+"id" : "Ring_15",
+"name" : "Precious Feast",
+"icon" : "ring_15_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/Cm0IuNmM-gsSBwgEFRVVXUQd4iG9Bx3TOhYxHfNGM-YdlL80ih0GuUjAHTCPHEUiCwgBFXlCAwAYBiAGMAk4ugNAAFAQYPADaiUKDAgAEPGNiK6FgIDgIhIVCOq3x-ACEgcIBBX2ntirMAk4AEABGKrU6sUIUABYAg",
+"craftedBy" : [ ]
+},
+"neck" : {
+"id" : "Amulet07",
+"name" : "Royalty Implement",
+"icon" : "amulet07_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/Cm0IxpCJlgcSBwgEFY_FRGQdmZGEHh2aPeYaHdOUzuYdRyDKrh3nK4k6He06wjYiCwgBFcZEAwAYJiAUMAk4uANAAFAMYO4DaiUKDAgAEJCB-ryGgIDgCRIVCLOg8ZMNEgcIBBUClq6YMAk4AEABGJ6WpsQMUABYAg",
+"craftedBy" : [ ]
+}
+},
+"kills" : {
+"elites" : 750
+},
+"hardcore" : true,
+"death" : {
+"killer" : 5395,
+"location" : 60394,
+"time" : 1381963229
+},
+"heroId" : 37347551,
+"gender" : 1,
+"class" : "demon-hunter"
+}, {
+"name" : "Kara",
+"level" : 43,
+"stats" : {
+"life" : 8884,
+"damage" : 2683.31,
+"armor" : 1757,
+"strength" : 357,
+"dexterity" : 754,
+"vitality" : 482,
+"intelligence" : 362,
+"physicalResist" : 0,
+"fireResist" : 36,
+"coldResist" : 36,
+"lightningResist" : 36,
+"poisonResist" : 84,
+"arcaneResist" : 55,
+"damageIncrease" : 7.539999961853027,
+"critChance" : 0.11999999731779099,
+"damageReduction" : 0.44970598816871643
+},
+"items" : {
+"head" : {
+"id" : "Helm_103",
+"name" : "Cruel Helm",
+"icon" : "helm_103_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CmEI0IPr9QESBwgEFTn1Tl0dlAXSPB1W6r0LHTCPHEUdhgJj6iILCAAVukQDABgaIAowCTivBEAASAtQDGD2BGohCgwIABC_ysr0hoCAwAESEQgAEgcIBBVJ9YtfMAk4AEABGPLU99QLUABYAg",
+"craftedBy" : [ ]
+},
+"torso" : {
+"id" : "Cloak_103",
+"name" : "Hunter's Poise",
+"icon" : "cloak_103_demonhunter_female",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CrQBCIX_3ooKEgcIBBW9a28CHRHtfogdO53LyB2dl-1sHbkwSAgdkwJj6iILCAEVcUIDABgYIBIwCTjaAkAASAVQDmCJA2olCgwIABDKx6aehICAwAoSFQjx95qWBRIHCAQV9p7YqzAJOABAAWohCgwIABCcoL_KhICAoBESEQgAEgcIBBX2ntirMAk4AEABaiUKDAgAEODHpp6EgIDAChIVCPfaru4OEgcIBBW1XbZ6MAk4AEABGPqu-yZQAFgC",
+"craftedBy" : [ ]
+},
+"feet" : {
+"id" : "Boots_102",
+"name" : "Clever Runners",
+"icon" : "boots_102_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/Cj4Ik7f8nggSBwgEFVlBm38devdKBx0I6lAIHbpb6EgdluICICILCAAVrv4BABgMIBIwDTi0BEAASBFQDGD7BBiyhdr5D1AAWAI",
+"recipe" : {
+"id" : "T05_Armor_Boots",
+"slug" : "grand-master-brogans",
+"name" : "Grand Master Brogans",
+"cost" : 1254,
+"reagents" : [ {
+"quantity" : 7,
+"item" : {
+"id" : "Crafting_Tier_02B",
+"name" : "Shimmering Essence",
+"icon" : "crafting_tier_02b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/shimmering-essence"
+}
+}, {
+"quantity" : 2,
+"item" : {
+"id" : "Crafting_Tier_02C",
+"name" : "Lizard Eye",
+"icon" : "crafting_tier_02c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/lizard-eye"
+}
+} ],
+"itemProduced" : {
+"id" : "Boots_102",
+"name" : "Grand Master Brogans",
+"icon" : "boots_102_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/grand-master-brogans"
+}
+},
+"craftedBy" : [ {
+"id" : "T05_Armor_Boots",
+"slug" : "grand-master-brogans",
+"name" : "Grand Master Brogans",
+"cost" : 1254,
+"reagents" : [ {
+"quantity" : 7,
+"item" : {
+"id" : "Crafting_Tier_02B",
+"name" : "Shimmering Essence",
+"icon" : "crafting_tier_02b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/shimmering-essence"
+}
+}, {
+"quantity" : 2,
+"item" : {
+"id" : "Crafting_Tier_02C",
+"name" : "Lizard Eye",
+"icon" : "crafting_tier_02c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/lizard-eye"
+}
+} ],
+"itemProduced" : {
+"id" : "Boots_102",
+"name" : "Grand Master Brogans",
+"icon" : "boots_102_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/grand-master-brogans"
+}
+} ]
+},
+"hands" : {
+"id" : "Gloves_006",
+"name" : "Worthy Hold",
+"icon" : "gloves_006_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CkgIkLSsqwoSBwgEFUVTkqQdTs1o-B1ZAhmwHRCRU2gdB50YdR3_an_9HaFsYIIiCwgAFa3-AQAYACAeMAk4ngNAAEgPUBBg1AMY9bLttgtQAFgC",
+"craftedBy" : [ ]
+},
+"shoulders" : {
+"id" : "Shoulders_101",
+"name" : "Thief's Guard",
+"icon" : "shoulders_101_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/Cj0Ip862LBIHCAQVivTIFR2UBdI8Hd5MSvIdzGKv7R07ncvIIgsIABWu_gEAGAQgADAJOKADQABICFAMYNcDGJTSx9wCUABYAg",
+"craftedBy" : [ ]
+},
+"legs" : {
+"id" : "Pants_103",
+"name" : "Vain Runners",
+"icon" : "pants_103_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CowBCJaFtrgOEgcIBBVZjtWlHRHtfogdBPpi6h0Cf5IBHR8Cp3ciCwgAFcv-AQAYBiAEMA04igRAAEgKUAxgzARqJQoMCAAQt4Oj8oSAgMASEhUI2Yza2QoSBwgEFfae2KswCTgAQAFqJQoMCAAQxNSdq4GAgOADEhUItIeTpgkSBwgEFbVdtnowCTgAQAEYzcbTogtQAFgC",
+"recipe" : {
+"id" : "T06_Armor_Pants",
+"slug" : "illustrious-chausses",
+"name" : "Illustrious Chausses",
+"cost" : 1449,
+"reagents" : [ {
+"quantity" : 9,
+"item" : {
+"id" : "Crafting_Tier_02B",
+"name" : "Shimmering Essence",
+"icon" : "crafting_tier_02b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/shimmering-essence"
+}
+}, {
+"quantity" : 2,
+"item" : {
+"id" : "Crafting_Tier_02C",
+"name" : "Lizard Eye",
+"icon" : "crafting_tier_02c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/lizard-eye"
+}
+} ],
+"itemProduced" : {
+"id" : "Pants_103",
+"name" : "Illustrious Chausses",
+"icon" : "pants_103_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/illustrious-chausses"
+}
+},
+"craftedBy" : [ {
+"id" : "T06_Armor_Pants",
+"slug" : "illustrious-chausses",
+"name" : "Illustrious Chausses",
+"cost" : 1449,
+"reagents" : [ {
+"quantity" : 9,
+"item" : {
+"id" : "Crafting_Tier_02B",
+"name" : "Shimmering Essence",
+"icon" : "crafting_tier_02b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/shimmering-essence"
+}
+}, {
+"quantity" : 2,
+"item" : {
+"id" : "Crafting_Tier_02C",
+"name" : "Lizard Eye",
+"icon" : "crafting_tier_02c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/lizard-eye"
+}
+} ],
+"itemProduced" : {
+"id" : "Pants_103",
+"name" : "Illustrious Chausses",
+"icon" : "pants_103_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/illustrious-chausses"
+}
+} ]
+},
+"bracers" : {
+"id" : "Bracers_102",
+"name" : "True Wristbands of Cruelty",
+"icon" : "bracers_102_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/CiUIpqjTpggSBwgEFZQoyssd7_EmLh3iIb0HMAk4yQJAAFAIYPYCGNfdrsMGUABYAg",
+"craftedBy" : [ ]
+},
+"mainHand" : {
+"id" : "HandXbow_208",
+"name" : "Forester's Bough",
+"icon" : "handxbow_208_demonhunter_female",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CjwIv5-29AwSBwgEFdQdV-od6hgfWx0lDc7UHRzK3EQdwTBICCILCAAVxUQDABgAICAwCTj8A0AAUAxgvQQY14jH2gJQAFgC",
+"craftedBy" : [ ]
+},
+"offHand" : {
+"id" : "Shield_102",
+"name" : "Phalanx Ruse",
+"icon" : "shield_102_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/Cl8IisGoygMSBwgEFcsHO2wdjtfMcR1Iy2ytHYW_NIodGakuPCILCAEVyEQDABgMIBwwCTiqBEAAUAxg8ARqIQoMCAAQvsrK9IaAgMABEhEIABIHCAQV9p7YqzAJOABAARiWn9jDDVAAWAI",
+"craftedBy" : [ ]
+},
+"waist" : {
+"id" : "Belt_102",
+"name" : "Flesh Brace",
+"icon" : "belt_102_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CkYIt9vTxQ0SBwgEFXmjQtQdL4diCB3Hl0BgHY-CxX0dFqTT2B2GBmFrHeIhvQciCwgAFcj-AQAYGiAmMAk44wJAAFAQYJMDGI3y6rsFUABYAg",
+"craftedBy" : [ ]
+},
+"rightFinger" : {
+"id" : "Ring_12",
+"name" : "Banished Star",
+"icon" : "ring_12_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CmQI783nuQUSBwgEFRJVXUQd3kxK8h0ERT_iHY6wzNAdTCfoDx1DmTIwIgsIABXL_gEAGBggBDAJOLgCQABQDmDjAmohCgwIABDn6L7KhICAoBESEQgAEgcIBBX2ntirMAk4AEABGKTU6sUIUABYAg",
+"craftedBy" : [ ]
+},
+"leftFinger" : {
+"id" : "Ring_09",
+"name" : "Antique Blur",
+"icon" : "ring_09_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CmMIzbzkgQESBwgEFfhUXUQd5dYu3R1x3HnbHZuwzNAdDRgMcyILCAEVd0IDABgSIBAwCTipA0AAUAxg4QNqJQoMCAAQ14Dwt4OAgOA3EhUI85bcugsSBwgEFfae2KswCTgAQAEY8NPqxQhQAFgC",
+"craftedBy" : [ ]
+},
+"neck" : {
+"id" : "Amulet08",
+"name" : "Hateful Flash",
+"icon" : "amulet08_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CjwIx6WT1AkSBwgEFZDFRGQdWFkXtR3i5anwHQNEX6Ad46oepiILCAAVqv4BABgCIBQwCTjBA0AAUAxg-wMYoJamxAxQAFgC",
+"craftedBy" : [ ]
+}
+},
+"kills" : {
+"elites" : 511
+},
+"hardcore" : true,
+"death" : {
+"killer" : 170781,
+"location" : 75434,
+"time" : 1385690630
+},
+"heroId" : 38187786,
+"gender" : 1,
+"class" : "demon-hunter"
+}, {
+"name" : "Kahara",
+"level" : 31,
+"stats" : {
+"life" : 1885,
+"damage" : 394.262,
+"armor" : 868,
+"strength" : 225,
+"dexterity" : 335,
+"vitality" : 167,
+"intelligence" : 143,
+"physicalResist" : 0,
+"fireResist" : 27,
+"coldResist" : 14,
+"lightningResist" : 14,
+"poisonResist" : 14,
+"arcaneResist" : 14,
+"damageIncrease" : 3.3499999046325684,
+"critChance" : 0.06499999761581421,
+"damageReduction" : 0.35897400975227356
+},
+"items" : {
+"head" : {
+"id" : "Unique_Helm_002_104",
+"name" : "Leoric's Crown",
+"icon" : "unique_helm_002_104_demonhunter_male",
+"displayColor" : "orange",
+"tooltipParams" : "item/CjkI5r6x8QwSBwgEFYHAWJEdt1voSB2NJv6rHZ4jvEgdEze5kx2WGv-iHad_hz0wCTiDAkAAUBJgqgIY_f256g1QCFgC",
+"craftedBy" : [ ]
+},
+"torso" : {
+"id" : "ChestArmor_005",
+"name" : "Wrathful Barrier",
+"icon" : "chestarmor_005_monk_female",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CmQItI2S7wYSBwgEFawZGWAdluICIB2bsMzQHeMriTodjSb-qyILCAAVzP4BABgAIAIwCTi4BEAASBNQDGCCBWokCgwIABCJicP2g4CAgAMSFAiWu4F4EgcIBBX2ntirMAk4AEABGNjmyIEMUAhYAg",
+"craftedBy" : [ {
+"id" : "T03_Armor_Chest",
+"slug" : "adept-splint-cuirass",
+"name" : "Adept Splint Cuirass",
+"cost" : 448,
+"reagents" : [ {
+"quantity" : 5,
+"item" : {
+"id" : "Crafting_Tier_01B",
+"name" : "Subtle Essence",
+"icon" : "crafting_tier_01b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/subtle-essence"
+}
+} ],
+"itemProduced" : {
+"id" : "ChestArmor_005",
+"name" : "Adept Splint Cuirass",
+"icon" : "chestarmor_005_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/adept-splint-cuirass"
+}
+} ]
+},
+"feet" : {
+"id" : "Boots_006",
+"name" : "Apprentice Talons",
+"icon" : "boots_006_monk_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CkgIiumP5AgSBwgEFRw9m38dlAXSPB26W-hIHRstNGIdB-pQCB15s8VyHU7NaPgiCwgAFbH-AQAYBiAGMAk4wQNAAEgSUBBg_gMYuPTZ-Q9QCFgC",
+"craftedBy" : [ {
+"id" : "T04_Armor_Boots",
+"slug" : "master-greaves",
+"name" : "Master Greaves",
+"cost" : 495,
+"reagents" : [ {
+"quantity" : 4,
+"item" : {
+"id" : "Crafting_Tier_01B",
+"name" : "Subtle Essence",
+"icon" : "crafting_tier_01b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/subtle-essence"
+}
+} ],
+"itemProduced" : {
+"id" : "Boots_006",
+"name" : "Master Greaves",
+"icon" : "boots_006_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/master-greaves"
+}
+} ]
+},
+"hands" : {
+"id" : "Gloves_005",
+"name" : "Reckless Traps",
+"icon" : "gloves_005_monk_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/Cj4I0-nEnQESBwgEFURTkqQdcdx52x3DWVNoHUDxmysdjSb-qyILCAAVuP4BABgYIBAwCTj4A0AASARQDGC7BBj3su22C1AIWAI",
+"craftedBy" : [ {
+"id" : "T03_Armor_Gloves",
+"slug" : "adept-gauntlets",
+"name" : "Adept Gauntlets",
+"cost" : 715,
+"reagents" : [ {
+"quantity" : 5,
+"item" : {
+"id" : "Crafting_Tier_01B",
+"name" : "Subtle Essence",
+"icon" : "crafting_tier_01b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/subtle-essence"
+}
+} ],
+"itemProduced" : {
+"id" : "Gloves_005",
+"name" : "Adept Gauntlets",
+"icon" : "gloves_005_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/adept-gauntlets"
+}
+} ]
+},
+"shoulders" : {
+"id" : "Shoulders_006",
+"name" : "Enduring Blazon",
+"icon" : "shoulders_006_monk_female",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CkII4OXJCRIHCAQVTvDIFR3KvC4FHRhNvCodwAmK9R27W-hIHYnVw50iCwgAFa3-AQAYICAUMAk4zgNAAEgHUA5gjAQYnMHH3AJQCFgC",
+"craftedBy" : [ {
+"id" : "T04_Armor_Shoulders",
+"slug" : "master-shoulder-plates",
+"name" : "Master Shoulder Plates",
+"cost" : 990,
+"reagents" : [ {
+"quantity" : 8,
+"item" : {
+"id" : "Crafting_Tier_01B",
+"name" : "Subtle Essence",
+"icon" : "crafting_tier_01b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/subtle-essence"
+}
+}, {
+"quantity" : 2,
+"item" : {
+"id" : "Crafting_Tier_01C",
+"name" : "Fallen Tooth",
+"icon" : "crafting_tier_01c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/fallen-tooth"
+}
+} ],
+"itemProduced" : {
+"id" : "Shoulders_006",
+"name" : "Master Shoulder Plates",
+"icon" : "shoulders_006_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/master-shoulder-plates"
+}
+} ]
+},
+"legs" : {
+"id" : "Pants_006",
+"name" : "Squire's Boon",
+"icon" : "pants_006_monk_female",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CpYBCJa21fQNEgcIBBUbitWlHbpb6EgdniO8SB09ZM-6HcAJivUdjSb-qx2SvzSKIgsIABWx_gEAGA4gCjAJOPIDQABIBVAQYLQEaiUKDAgAEL3j3ueCgICAOxIVCMz6pp4EEgcIBBW1XbZ6MAk4AEABaiUKDAgAEN_--vWDgIDAEhIVCPePjewPEgcIBBUBlq6YMAk4AEABGMnX06ILUAhYAg",
+"craftedBy" : [ {
+"id" : "T03_Armor_Pants",
+"slug" : "adept-plate-leggings",
+"name" : "Adept Plate Leggings",
+"cost" : 897,
+"reagents" : [ {
+"quantity" : 11,
+"item" : {
+"id" : "Crafting_Tier_01B",
+"name" : "Subtle Essence",
+"icon" : "crafting_tier_01b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/subtle-essence"
+}
+}, {
+"quantity" : 2,
+"item" : {
+"id" : "Crafting_Tier_01C",
+"name" : "Fallen Tooth",
+"icon" : "crafting_tier_01c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/fallen-tooth"
+}
+} ],
+"itemProduced" : {
+"id" : "Pants_006",
+"name" : "Adept Plate Leggings",
+"icon" : "pants_006_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/adept-plate-leggings"
+}
+} ]
+},
+"bracers" : {
+"id" : "Bracers_005",
+"name" : "Denial Arts",
+"icon" : "bracers_005_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CkAImq7cUhIHCAQVViTKyx3Xl1-lHR8Cp3cduFvoSB2MJv6rHQ0YDHMiCwgBFXFCAwAYBiAEMAk4wwJAAFAOYPICGNPursMGUAhYAg",
+"craftedBy" : [ ]
+},
+"mainHand" : {
+"id" : "Sword_1H_007",
+"name" : "Foe Strike",
+"icon" : "sword_1h_007_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CmMI7LH3zAMSBwgEFd3M2e8d_0NfoB2FvzSKHV30yGodSWNPMCILCAEVf0IDABgQICIwCTjsA0AAUAxgpARqJQoMCAAQmN2T5IWAgIACEhUI5KnI-QYSBwgEFUn1i18wCTgAQAEYxcyxggJQCFgC",
+"craftedBy" : [ ]
+},
+"offHand" : {
+"id" : "FistWeapon_1H_004",
+"name" : "The Razor",
+"icon" : "fistweapon_1h_004_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CmMIyJCOigUSBwgEFSsYtUkdM6p7UB1KY08wHY6wzNAdABNNoSILCAAVuP4BABgQIBgwCTiGA0AAUAxgvANqJQoMCAAQ2t74moOAgMAKEhUIr5bA7gISBwgEFUn1i18wCTgAQAEY1uComwlQCFgC",
+"craftedBy" : [ {
+"id" : "T03_Weapon_Fist",
+"slug" : "adept-shuko",
+"name" : "Adept Shuko",
+"cost" : 585,
+"reagents" : [ {
+"quantity" : 6,
+"item" : {
+"id" : "Crafting_Tier_01B",
+"name" : "Subtle Essence",
+"icon" : "crafting_tier_01b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/subtle-essence"
+}
+} ],
+"itemProduced" : {
+"id" : "FistWeapon_1H_004",
+"name" : "Adept Shuko",
+"icon" : "fistweapon_1h_004_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "recipe/adept-shuko"
+}
+} ]
+},
+"waist" : {
+"id" : "Belt_006",
+"name" : "Unearthed Buckle",
+"icon" : "belt_006_monk_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CjwIqfKj7wcSBwgEFTyfQtQdYLcD_R1yL44nHYwm_qsdL4diCCILCAAVtv4BABgoICAwDTiAA0AAUAxgtQMYh4PruwVQCFgC",
+"recipe" : {
+"id" : "T03_Armor_Belt",
+"slug" : "adept-chain-belt",
+"name" : "Adept Chain Belt",
+"cost" : 858,
+"reagents" : [ {
+"quantity" : 8,
+"item" : {
+"id" : "Crafting_Tier_01B",
+"name" : "Subtle Essence",
+"icon" : "crafting_tier_01b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/subtle-essence"
+}
+}, {
+"quantity" : 2,
+"item" : {
+"id" : "Crafting_Tier_01C",
+"name" : "Fallen Tooth",
+"icon" : "crafting_tier_01c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/fallen-tooth"
+}
+} ],
+"itemProduced" : {
+"id" : "Belt_006",
+"name" : "Adept Chain Belt",
+"icon" : "belt_006_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/adept-chain-belt"
+}
+},
+"craftedBy" : [ {
+"id" : "T03_Armor_Belt",
+"slug" : "adept-chain-belt",
+"name" : "Adept Chain Belt",
+"cost" : 858,
+"reagents" : [ {
+"quantity" : 8,
+"item" : {
+"id" : "Crafting_Tier_01B",
+"name" : "Subtle Essence",
+"icon" : "crafting_tier_01b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/subtle-essence"
+}
+}, {
+"quantity" : 2,
+"item" : {
+"id" : "Crafting_Tier_01C",
+"name" : "Fallen Tooth",
+"icon" : "crafting_tier_01c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/fallen-tooth"
+}
+} ],
+"itemProduced" : {
+"id" : "Belt_006",
+"name" : "Adept Chain Belt",
+"icon" : "belt_006_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "recipe/adept-chain-belt"
+}
+} ]
+},
+"rightFinger" : {
+"id" : "Ring_04",
+"name" : "Keen Ring",
+"icon" : "ring_04_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/CiAItYistQMSBwgEFfNUXUQd73HA0DAJOPwCQABQBmCxAxjm0-rFCFAIWAI",
+"craftedBy" : [ ]
+},
+"leftFinger" : {
+"id" : "Ring_08",
+"name" : "Raiding Ring of the Leech",
+"icon" : "ring_08_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/CiUInMr1qA8SBwgEFfdUXUQdwS55JR1x3HnbMAk4zAJAAFAIYPwCGO7T6sUIUAhYAg",
+"craftedBy" : [ ]
+},
+"neck" : {
+"id" : "Amulet03",
+"name" : "Outcast Medallion",
+"icon" : "amulet03_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/Cm0I__XYkQESBwgEFYvFRGQdB9GSCB1190oHHQBEX6AdVbMWgB2FvzSKHdDqtl4iCwgAFcv-AQAYFiAmMAk4vQJAAFAQYOsCaiUKDAgAEP6Tw_aDgICAAxIVCL77s7kBEgcIBBUBlq6YMAk4AEABGJaWpsQMUAhYAg",
+"craftedBy" : [ ]
+}
+},
+"kills" : {
+"elites" : 338
+},
+"hardcore" : true,
+"death" : {
+"killer" : 6633,
+"location" : 71150,
+"time" : 1377354061
+},
+"heroId" : 35154606,
+"gender" : 1,
+"class" : "monk"
+} ],
+"battleTag" : "msuBREAKER#1374",
+"progression" : {
+"normal" : {
+"act1" : {
+"completed" : true,
+"completedQuests" : [ {
+"slug" : "the-fallen-star",
+"name" : "The Fallen Star"
+}, {
+"slug" : "the-legacy-of-cain",
+"name" : "The Legacy of Cain"
+}, {
+"slug" : "a-shattered-crown",
+"name" : "A Shattered Crown"
+}, {
+"slug" : "reign-of-the-black-king",
+"name" : "Reign of the Black King"
+}, {
+"slug" : "sword-of-the-stranger",
+"name" : "Sword of the Stranger"
+}, {
+"slug" : "the-broken-blade",
+"name" : "The Broken Blade"
+}, {
+"slug" : "the-doom-in-wortham",
+"name" : "The Doom in Wortham"
+}, {
+"slug" : "trailing-the-coven",
+"name" : "Trailing the Coven"
+}, {
+"slug" : "the-imprisoned-angel",
+"name" : "The Imprisoned Angel"
+}, {
+"slug" : "return-to-new-tristram",
+"name" : "Return to New Tristram"
+} ]
+},
+"act2" : {
+"completed" : true,
+"completedQuests" : [ {
+"slug" : "shadows-in-the-desert",
+"name" : "Shadows in the Desert"
+}, {
+"slug" : "the-road-to-alcarnus",
+"name" : "The Road to Alcarnus"
+}, {
+"slug" : "city-of-blood",
+"name" : "City of Blood"
+}, {
+"slug" : "a-royal-audience",
+"name" : "A Royal Audience"
+}, {
+"slug" : "unexpected-allies",
+"name" : "Unexpected Allies"
+}, {
+"slug" : "betrayer-of-the-horadrim",
+"name" : "Betrayer of the Horadrim"
+}, {
+"slug" : "blood-and-sand",
+"name" : "Blood and Sand"
+}, {
+"slug" : "the-black-soulstone",
+"name" : "The Black Soulstone"
+}, {
+"slug" : "the-scouring-of-caldeum",
+"name" : "The Scouring of Caldeum"
+}, {
+"slug" : "lord-of-lies",
+"name" : "Lord of Lies"
+} ]
+},
+"act3" : {
+"completed" : true,
+"completedQuests" : [ {
+"slug" : "the-siege-of-bastions-keep",
+"name" : "The Siege of Bastion's Keep"
+}, {
+"slug" : "turning-the-tide",
+"name" : "Turning the Tide"
+}, {
+"slug" : "the-breached-keep",
+"name" : "The Breached Keep"
+}, {
+"slug" : "tremors-in-the-stone",
+"name" : "Tremors in the Stone"
+}, {
+"slug" : "machines-of-war",
+"name" : "Machines of War"
+}, {
+"slug" : "siegebreaker",
+"name" : "Siegebreaker"
+}, {
+"slug" : "heart-of-sin",
+"name" : "Heart of Sin"
+} ]
+},
+"act4" : {
+"completed" : true,
+"completedQuests" : [ {
+"slug" : "fall-of-the-high-heavens",
+"name" : "Fall of the High Heavens"
+}, {
+"slug" : "the-light-of-hope",
+"name" : "The Light of Hope"
+}, {
+"slug" : "beneath-the-spire",
+"name" : "Beneath the Spire"
+}, {
+"slug" : "prime-evil",
+"name" : "Prime Evil"
+} ]
+}
+},
+"nightmare" : {
+"act1" : {
+"completed" : true,
+"completedQuests" : [ {
+"slug" : "the-fallen-star",
+"name" : "The Fallen Star"
+}, {
+"slug" : "the-legacy-of-cain",
+"name" : "The Legacy of Cain"
+}, {
+"slug" : "a-shattered-crown",
+"name" : "A Shattered Crown"
+}, {
+"slug" : "reign-of-the-black-king",
+"name" : "Reign of the Black King"
+}, {
+"slug" : "sword-of-the-stranger",
+"name" : "Sword of the Stranger"
+}, {
+"slug" : "the-broken-blade",
+"name" : "The Broken Blade"
+}, {
+"slug" : "the-doom-in-wortham",
+"name" : "The Doom in Wortham"
+}, {
+"slug" : "trailing-the-coven",
+"name" : "Trailing the Coven"
+}, {
+"slug" : "the-imprisoned-angel",
+"name" : "The Imprisoned Angel"
+}, {
+"slug" : "return-to-new-tristram",
+"name" : "Return to New Tristram"
+} ]
+},
+"act2" : {
+"completed" : true,
+"completedQuests" : [ {
+"slug" : "shadows-in-the-desert",
+"name" : "Shadows in the Desert"
+}, {
+"slug" : "the-road-to-alcarnus",
+"name" : "The Road to Alcarnus"
+}, {
+"slug" : "city-of-blood",
+"name" : "City of Blood"
+}, {
+"slug" : "a-royal-audience",
+"name" : "A Royal Audience"
+}, {
+"slug" : "unexpected-allies",
+"name" : "Unexpected Allies"
+}, {
+"slug" : "betrayer-of-the-horadrim",
+"name" : "Betrayer of the Horadrim"
+}, {
+"slug" : "blood-and-sand",
+"name" : "Blood and Sand"
+}, {
+"slug" : "the-black-soulstone",
+"name" : "The Black Soulstone"
+}, {
+"slug" : "the-scouring-of-caldeum",
+"name" : "The Scouring of Caldeum"
+}, {
+"slug" : "lord-of-lies",
+"name" : "Lord of Lies"
+} ]
+},
+"act3" : {
+"completed" : true,
+"completedQuests" : [ {
+"slug" : "the-siege-of-bastions-keep",
+"name" : "The Siege of Bastion's Keep"
+}, {
+"slug" : "turning-the-tide",
+"name" : "Turning the Tide"
+}, {
+"slug" : "the-breached-keep",
+"name" : "The Breached Keep"
+}, {
+"slug" : "tremors-in-the-stone",
+"name" : "Tremors in the Stone"
+}, {
+"slug" : "machines-of-war",
+"name" : "Machines of War"
+}, {
+"slug" : "siegebreaker",
+"name" : "Siegebreaker"
+}, {
+"slug" : "heart-of-sin",
+"name" : "Heart of Sin"
+} ]
+},
+"act4" : {
+"completed" : true,
+"completedQuests" : [ {
+"slug" : "fall-of-the-high-heavens",
+"name" : "Fall of the High Heavens"
+}, {
+"slug" : "the-light-of-hope",
+"name" : "The Light of Hope"
+}, {
+"slug" : "beneath-the-spire",
+"name" : "Beneath the Spire"
+}, {
+"slug" : "prime-evil",
+"name" : "Prime Evil"
+} ]
+}
+},
+"hell" : {
+"act1" : {
+"completed" : true,
+"completedQuests" : [ {
+"slug" : "the-fallen-star",
+"name" : "The Fallen Star"
+}, {
+"slug" : "the-legacy-of-cain",
+"name" : "The Legacy of Cain"
+}, {
+"slug" : "a-shattered-crown",
+"name" : "A Shattered Crown"
+}, {
+"slug" : "reign-of-the-black-king",
+"name" : "Reign of the Black King"
+}, {
+"slug" : "sword-of-the-stranger",
+"name" : "Sword of the Stranger"
+}, {
+"slug" : "the-broken-blade",
+"name" : "The Broken Blade"
+}, {
+"slug" : "the-doom-in-wortham",
+"name" : "The Doom in Wortham"
+}, {
+"slug" : "trailing-the-coven",
+"name" : "Trailing the Coven"
+}, {
+"slug" : "the-imprisoned-angel",
+"name" : "The Imprisoned Angel"
+}, {
+"slug" : "return-to-new-tristram",
+"name" : "Return to New Tristram"
+} ]
+},
+"act2" : {
+"completed" : true,
+"completedQuests" : [ {
+"slug" : "shadows-in-the-desert",
+"name" : "Shadows in the Desert"
+}, {
+"slug" : "the-road-to-alcarnus",
+"name" : "The Road to Alcarnus"
+}, {
+"slug" : "city-of-blood",
+"name" : "City of Blood"
+}, {
+"slug" : "a-royal-audience",
+"name" : "A Royal Audience"
+}, {
+"slug" : "unexpected-allies",
+"name" : "Unexpected Allies"
+}, {
+"slug" : "betrayer-of-the-horadrim",
+"name" : "Betrayer of the Horadrim"
+}, {
+"slug" : "blood-and-sand",
+"name" : "Blood and Sand"
+}, {
+"slug" : "the-black-soulstone",
+"name" : "The Black Soulstone"
+}, {
+"slug" : "the-scouring-of-caldeum",
+"name" : "The Scouring of Caldeum"
+}, {
+"slug" : "lord-of-lies",
+"name" : "Lord of Lies"
+} ]
+},
+"act3" : {
+"completed" : true,
+"completedQuests" : [ {
+"slug" : "the-siege-of-bastions-keep",
+"name" : "The Siege of Bastion's Keep"
+}, {
+"slug" : "turning-the-tide",
+"name" : "Turning the Tide"
+}, {
+"slug" : "the-breached-keep",
+"name" : "The Breached Keep"
+}, {
+"slug" : "tremors-in-the-stone",
+"name" : "Tremors in the Stone"
+}, {
+"slug" : "machines-of-war",
+"name" : "Machines of War"
+}, {
+"slug" : "siegebreaker",
+"name" : "Siegebreaker"
+}, {
+"slug" : "heart-of-sin",
+"name" : "Heart of Sin"
+} ]
+},
+"act4" : {
+"completed" : true,
+"completedQuests" : [ {
+"slug" : "fall-of-the-high-heavens",
+"name" : "Fall of the High Heavens"
+}, {
+"slug" : "the-light-of-hope",
+"name" : "The Light of Hope"
+}, {
+"slug" : "beneath-the-spire",
+"name" : "Beneath the Spire"
+}, {
+"slug" : "prime-evil",
+"name" : "Prime Evil"
+} ]
+}
+},
+"inferno" : {
+"act1" : {
+"completed" : true,
+"completedQuests" : [ {
+"slug" : "the-fallen-star",
+"name" : "The Fallen Star"
+}, {
+"slug" : "the-legacy-of-cain",
+"name" : "The Legacy of Cain"
+}, {
+"slug" : "a-shattered-crown",
+"name" : "A Shattered Crown"
+}, {
+"slug" : "reign-of-the-black-king",
+"name" : "Reign of the Black King"
+}, {
+"slug" : "sword-of-the-stranger",
+"name" : "Sword of the Stranger"
+}, {
+"slug" : "the-broken-blade",
+"name" : "The Broken Blade"
+}, {
+"slug" : "the-doom-in-wortham",
+"name" : "The Doom in Wortham"
+}, {
+"slug" : "trailing-the-coven",
+"name" : "Trailing the Coven"
+}, {
+"slug" : "the-imprisoned-angel",
+"name" : "The Imprisoned Angel"
+}, {
+"slug" : "return-to-new-tristram",
+"name" : "Return to New Tristram"
+} ]
+},
+"act2" : {
+"completed" : true,
+"completedQuests" : [ {
+"slug" : "shadows-in-the-desert",
+"name" : "Shadows in the Desert"
+}, {
+"slug" : "the-road-to-alcarnus",
+"name" : "The Road to Alcarnus"
+}, {
+"slug" : "city-of-blood",
+"name" : "City of Blood"
+}, {
+"slug" : "a-royal-audience",
+"name" : "A Royal Audience"
+}, {
+"slug" : "unexpected-allies",
+"name" : "Unexpected Allies"
+}, {
+"slug" : "betrayer-of-the-horadrim",
+"name" : "Betrayer of the Horadrim"
+}, {
+"slug" : "blood-and-sand",
+"name" : "Blood and Sand"
+}, {
+"slug" : "the-black-soulstone",
+"name" : "The Black Soulstone"
+}, {
+"slug" : "the-scouring-of-caldeum",
+"name" : "The Scouring of Caldeum"
+}, {
+"slug" : "lord-of-lies",
+"name" : "Lord of Lies"
+} ]
+},
+"act3" : {
+"completed" : true,
+"completedQuests" : [ {
+"slug" : "the-siege-of-bastions-keep",
+"name" : "The Siege of Bastion's Keep"
+}, {
+"slug" : "turning-the-tide",
+"name" : "Turning the Tide"
+}, {
+"slug" : "the-breached-keep",
+"name" : "The Breached Keep"
+}, {
+"slug" : "tremors-in-the-stone",
+"name" : "Tremors in the Stone"
+}, {
+"slug" : "machines-of-war",
+"name" : "Machines of War"
+}, {
+"slug" : "siegebreaker",
+"name" : "Siegebreaker"
+}, {
+"slug" : "heart-of-sin",
+"name" : "Heart of Sin"
+} ]
+},
+"act4" : {
+"completed" : true,
+"completedQuests" : [ {
+"slug" : "fall-of-the-high-heavens",
+"name" : "Fall of the High Heavens"
+}, {
+"slug" : "the-light-of-hope",
+"name" : "The Light of Hope"
+}, {
+"slug" : "beneath-the-spire",
+"name" : "Beneath the Spire"
+}, {
+"slug" : "prime-evil",
+"name" : "Prime Evil"
+} ]
+}
+}
+},
+"hardcoreProgression" : {
+"normal" : {
+"act1" : {
+"completed" : true,
+"completedQuests" : [ {
+"slug" : "the-fallen-star",
+"name" : "The Fallen Star"
+}, {
+"slug" : "the-legacy-of-cain",
+"name" : "The Legacy of Cain"
+}, {
+"slug" : "a-shattered-crown",
+"name" : "A Shattered Crown"
+}, {
+"slug" : "reign-of-the-black-king",
+"name" : "Reign of the Black King"
+}, {
+"slug" : "sword-of-the-stranger",
+"name" : "Sword of the Stranger"
+}, {
+"slug" : "the-broken-blade",
+"name" : "The Broken Blade"
+}, {
+"slug" : "the-doom-in-wortham",
+"name" : "The Doom in Wortham"
+}, {
+"slug" : "trailing-the-coven",
+"name" : "Trailing the Coven"
+}, {
+"slug" : "the-imprisoned-angel",
+"name" : "The Imprisoned Angel"
+}, {
+"slug" : "return-to-new-tristram",
+"name" : "Return to New Tristram"
+} ]
+},
+"act2" : {
+"completed" : true,
+"completedQuests" : [ {
+"slug" : "shadows-in-the-desert",
+"name" : "Shadows in the Desert"
+}, {
+"slug" : "the-road-to-alcarnus",
+"name" : "The Road to Alcarnus"
+}, {
+"slug" : "city-of-blood",
+"name" : "City of Blood"
+}, {
+"slug" : "a-royal-audience",
+"name" : "A Royal Audience"
+}, {
+"slug" : "unexpected-allies",
+"name" : "Unexpected Allies"
+}, {
+"slug" : "betrayer-of-the-horadrim",
+"name" : "Betrayer of the Horadrim"
+}, {
+"slug" : "blood-and-sand",
+"name" : "Blood and Sand"
+}, {
+"slug" : "the-black-soulstone",
+"name" : "The Black Soulstone"
+}, {
+"slug" : "the-scouring-of-caldeum",
+"name" : "The Scouring of Caldeum"
+}, {
+"slug" : "lord-of-lies",
+"name" : "Lord of Lies"
+} ]
+},
+"act3" : {
+"completed" : true,
+"completedQuests" : [ {
+"slug" : "the-siege-of-bastions-keep",
+"name" : "The Siege of Bastion's Keep"
+}, {
+"slug" : "turning-the-tide",
+"name" : "Turning the Tide"
+}, {
+"slug" : "the-breached-keep",
+"name" : "The Breached Keep"
+}, {
+"slug" : "tremors-in-the-stone",
+"name" : "Tremors in the Stone"
+}, {
+"slug" : "machines-of-war",
+"name" : "Machines of War"
+}, {
+"slug" : "siegebreaker",
+"name" : "Siegebreaker"
+}, {
+"slug" : "heart-of-sin",
+"name" : "Heart of Sin"
+} ]
+},
+"act4" : {
+"completed" : true,
+"completedQuests" : [ {
+"slug" : "fall-of-the-high-heavens",
+"name" : "Fall of the High Heavens"
+}, {
+"slug" : "the-light-of-hope",
+"name" : "The Light of Hope"
+}, {
+"slug" : "beneath-the-spire",
+"name" : "Beneath the Spire"
+}, {
+"slug" : "prime-evil",
+"name" : "Prime Evil"
+} ]
+}
+},
+"nightmare" : {
+"act1" : {
+"completed" : true,
+"completedQuests" : [ {
+"slug" : "the-fallen-star",
+"name" : "The Fallen Star"
+}, {
+"slug" : "the-legacy-of-cain",
+"name" : "The Legacy of Cain"
+}, {
+"slug" : "a-shattered-crown",
+"name" : "A Shattered Crown"
+}, {
+"slug" : "reign-of-the-black-king",
+"name" : "Reign of the Black King"
+}, {
+"slug" : "sword-of-the-stranger",
+"name" : "Sword of the Stranger"
+}, {
+"slug" : "the-broken-blade",
+"name" : "The Broken Blade"
+}, {
+"slug" : "the-doom-in-wortham",
+"name" : "The Doom in Wortham"
+}, {
+"slug" : "trailing-the-coven",
+"name" : "Trailing the Coven"
+}, {
+"slug" : "the-imprisoned-angel",
+"name" : "The Imprisoned Angel"
+}, {
+"slug" : "return-to-new-tristram",
+"name" : "Return to New Tristram"
+} ]
+},
+"act2" : {
+"completed" : true,
+"completedQuests" : [ {
+"slug" : "shadows-in-the-desert",
+"name" : "Shadows in the Desert"
+}, {
+"slug" : "the-road-to-alcarnus",
+"name" : "The Road to Alcarnus"
+}, {
+"slug" : "city-of-blood",
+"name" : "City of Blood"
+}, {
+"slug" : "a-royal-audience",
+"name" : "A Royal Audience"
+}, {
+"slug" : "unexpected-allies",
+"name" : "Unexpected Allies"
+}, {
+"slug" : "betrayer-of-the-horadrim",
+"name" : "Betrayer of the Horadrim"
+}, {
+"slug" : "blood-and-sand",
+"name" : "Blood and Sand"
+}, {
+"slug" : "the-black-soulstone",
+"name" : "The Black Soulstone"
+}, {
+"slug" : "the-scouring-of-caldeum",
+"name" : "The Scouring of Caldeum"
+}, {
+"slug" : "lord-of-lies",
+"name" : "Lord of Lies"
+} ]
+},
+"act3" : {
+"completed" : true,
+"completedQuests" : [ {
+"slug" : "the-siege-of-bastions-keep",
+"name" : "The Siege of Bastion's Keep"
+}, {
+"slug" : "turning-the-tide",
+"name" : "Turning the Tide"
+}, {
+"slug" : "the-breached-keep",
+"name" : "The Breached Keep"
+}, {
+"slug" : "tremors-in-the-stone",
+"name" : "Tremors in the Stone"
+}, {
+"slug" : "machines-of-war",
+"name" : "Machines of War"
+}, {
+"slug" : "siegebreaker",
+"name" : "Siegebreaker"
+}, {
+"slug" : "heart-of-sin",
+"name" : "Heart of Sin"
+} ]
+},
+"act4" : {
+"completed" : true,
+"completedQuests" : [ {
+"slug" : "fall-of-the-high-heavens",
+"name" : "Fall of the High Heavens"
+}, {
+"slug" : "the-light-of-hope",
+"name" : "The Light of Hope"
+}, {
+"slug" : "beneath-the-spire",
+"name" : "Beneath the Spire"
+}, {
+"slug" : "prime-evil",
+"name" : "Prime Evil"
+} ]
+}
+},
+"hell" : {
+"act1" : {
+"completed" : true,
+"completedQuests" : [ {
+"slug" : "the-fallen-star",
+"name" : "The Fallen Star"
+}, {
+"slug" : "the-legacy-of-cain",
+"name" : "The Legacy of Cain"
+}, {
+"slug" : "a-shattered-crown",
+"name" : "A Shattered Crown"
+}, {
+"slug" : "reign-of-the-black-king",
+"name" : "Reign of the Black King"
+}, {
+"slug" : "sword-of-the-stranger",
+"name" : "Sword of the Stranger"
+}, {
+"slug" : "the-broken-blade",
+"name" : "The Broken Blade"
+}, {
+"slug" : "the-doom-in-wortham",
+"name" : "The Doom in Wortham"
+}, {
+"slug" : "trailing-the-coven",
+"name" : "Trailing the Coven"
+}, {
+"slug" : "the-imprisoned-angel",
+"name" : "The Imprisoned Angel"
+}, {
+"slug" : "return-to-new-tristram",
+"name" : "Return to New Tristram"
+} ]
+},
+"act2" : {
+"completed" : true,
+"completedQuests" : [ {
+"slug" : "shadows-in-the-desert",
+"name" : "Shadows in the Desert"
+}, {
+"slug" : "the-road-to-alcarnus",
+"name" : "The Road to Alcarnus"
+}, {
+"slug" : "city-of-blood",
+"name" : "City of Blood"
+}, {
+"slug" : "a-royal-audience",
+"name" : "A Royal Audience"
+}, {
+"slug" : "unexpected-allies",
+"name" : "Unexpected Allies"
+}, {
+"slug" : "betrayer-of-the-horadrim",
+"name" : "Betrayer of the Horadrim"
+}, {
+"slug" : "blood-and-sand",
+"name" : "Blood and Sand"
+}, {
+"slug" : "the-black-soulstone",
+"name" : "The Black Soulstone"
+}, {
+"slug" : "the-scouring-of-caldeum",
+"name" : "The Scouring of Caldeum"
+}, {
+"slug" : "lord-of-lies",
+"name" : "Lord of Lies"
+} ]
+},
+"act3" : {
+"completed" : true,
+"completedQuests" : [ {
+"slug" : "the-siege-of-bastions-keep",
+"name" : "The Siege of Bastion's Keep"
+}, {
+"slug" : "turning-the-tide",
+"name" : "Turning the Tide"
+}, {
+"slug" : "the-breached-keep",
+"name" : "The Breached Keep"
+}, {
+"slug" : "tremors-in-the-stone",
+"name" : "Tremors in the Stone"
+}, {
+"slug" : "machines-of-war",
+"name" : "Machines of War"
+}, {
+"slug" : "siegebreaker",
+"name" : "Siegebreaker"
+}, {
+"slug" : "heart-of-sin",
+"name" : "Heart of Sin"
+} ]
+},
+"act4" : {
+"completed" : true,
+"completedQuests" : [ {
+"slug" : "fall-of-the-high-heavens",
+"name" : "Fall of the High Heavens"
+}, {
+"slug" : "the-light-of-hope",
+"name" : "The Light of Hope"
+}, {
+"slug" : "beneath-the-spire",
+"name" : "Beneath the Spire"
+}, {
+"slug" : "prime-evil",
+"name" : "Prime Evil"
+} ]
+}
+},
+"inferno" : {
+"act1" : {
+"completed" : true,
+"completedQuests" : [ {
+"slug" : "the-fallen-star",
+"name" : "The Fallen Star"
+}, {
+"slug" : "the-legacy-of-cain",
+"name" : "The Legacy of Cain"
+}, {
+"slug" : "a-shattered-crown",
+"name" : "A Shattered Crown"
+}, {
+"slug" : "reign-of-the-black-king",
+"name" : "Reign of the Black King"
+}, {
+"slug" : "sword-of-the-stranger",
+"name" : "Sword of the Stranger"
+}, {
+"slug" : "the-broken-blade",
+"name" : "The Broken Blade"
+}, {
+"slug" : "the-doom-in-wortham",
+"name" : "The Doom in Wortham"
+}, {
+"slug" : "trailing-the-coven",
+"name" : "Trailing the Coven"
+}, {
+"slug" : "the-imprisoned-angel",
+"name" : "The Imprisoned Angel"
+}, {
+"slug" : "return-to-new-tristram",
+"name" : "Return to New Tristram"
+} ]
+},
+"act2" : {
+"completed" : false,
+"completedQuests" : [ {
+"slug" : "shadows-in-the-desert",
+"name" : "Shadows in the Desert"
+}, {
+"slug" : "the-road-to-alcarnus",
+"name" : "The Road to Alcarnus"
+}, {
+"slug" : "city-of-blood",
+"name" : "City of Blood"
+}, {
+"slug" : "a-royal-audience",
+"name" : "A Royal Audience"
+}, {
+"slug" : "unexpected-allies",
+"name" : "Unexpected Allies"
+}, {
+"slug" : "betrayer-of-the-horadrim",
+"name" : "Betrayer of the Horadrim"
+} ]
+},
+"act3" : {
+"completed" : false,
+"completedQuests" : [ ]
+},
+"act4" : {
+"completed" : false,
+"completedQuests" : [ ]
+}
+}
+}
+}

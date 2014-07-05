@@ -1,0 +1,97 @@
+{
+"id" : "Ring_22",
+"name" : "Brutal Blaze",
+"icon" : "ring_22_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/CmgIxdPigAsSBwgEFTNVXUQdtwRpuh0GfZZBHe06wjYdzGx7gx00_I9rIgsIABWq_gEAGDYgEDAJOOUCQABQDGDpAmolCgwIABCxtcKOhoCAoCoSFQjz7cvDDBIHCAQVtl22ejANOABAARjm1OrFCFAGWAI",
+"requiredLevel" : 60,
+"itemLevel" : 61,
+"bonusAffixes" : 0,
+"bonusAffixesMax" : 0,
+"accountBound" : false,
+"typeName" : "Rare Ring",
+"type" : {
+"twoHanded" : false,
+"id" : "Ring"
+},
+"attributes" : [ "+77 Intelligence", "+44 Arcane Resistance", "Attack Speed Increased by 7%", "Critical Hit Chance Increased by 4.5%" ],
+"attributesRaw" : {
+"Durability_Max" : {
+"min" : 361.0,
+"max" : 361.0
+},
+"Resistance#Arcane" : {
+"min" : 44.0,
+"max" : 44.0
+},
+"Sockets" : {
+"min" : 1.0,
+"max" : 1.0
+},
+"Intelligence_Item" : {
+"min" : 77.0,
+"max" : 77.0
+},
+"Attacks_Per_Second_Percent" : {
+"min" : 0.07,
+"max" : 0.07
+},
+"Crit_Percent_Bonus_Capped" : {
+"min" : 0.045,
+"max" : 0.045
+},
+"Durability_Cur" : {
+"min" : 357.0,
+"max" : 357.0
+}
+},
+"gems" : [ {
+"item" : {
+"id" : "Topaz_09",
+"name" : "Perfect Square Topaz",
+"icon" : "topaz_09_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/ChUI8-3LwwwSBwgEFbZdtnowDTgAQAEY7Payqw8"
+},
+"attributes" : [ "+38 Intelligence" ],
+"attributesRaw" : {
+"Intelligence_Item" : {
+"min" : 38.0,
+"max" : 38.0
+}
+}
+} ],
+"socketEffects" : [ ],
+"salvage" : [ {
+"item" : {
+"id" : "Crafting_Tier_04B",
+"name" : "Exquisite Essence",
+"icon" : "crafting_tier_04b_demonhunter_male",
+"displayColor" : "blue",
+"tooltipParams" : "item/exquisite-essence"
+},
+"chance" : 1.0,
+"quantity" : 1
+}, {
+"item" : {
+"id" : "Crafting_Tier_04C",
+"name" : "Iridescent Tear",
+"icon" : "crafting_tier_04c_demonhunter_male",
+"displayColor" : "yellow",
+"tooltipParams" : "item/iridescent-tear"
+},
+"chance" : 1.0,
+"quantity" : 1
+}, {
+"item" : {
+"id" : "Crafting_Tier_04D",
+"name" : "Fiery Brimstone",
+"icon" : "crafting_tier_04d_demonhunter_male",
+"displayColor" : "orange",
+"tooltipParams" : "item/fiery-brimstone"
+},
+"chance" : 0.0010,
+"quantity" : 1
+} ],
+"craftedBy" : [ ]
+}

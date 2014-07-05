@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="utf-8" ?>
+<phpunit bootstrap="bootstrap.php">
+    <listeners>
+        <listener class="PHPUnit_Util_Log_VCR" file="vendor/php-vcr/phpunit-testlistener-vcr/PHPUnit/Util/Log/VCR.php" />
+    </listeners>
+	<testsuites>
+		<testsuite name="All">
+			<directory>./</directory>
+		</testsuite>
+	</testsuites>
+</phpunit>
