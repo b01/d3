@@ -9,7 +9,7 @@ use function \Kshabazz\Slib\isString,
  *
  * @package Kshabazz\BattleNet
  */
-class Http extends \Kshabazz\BattleNet\HttpRequestor implements Requestor
+class Http extends \Kshabazz\Slib\HttpRequester implements Requestor
 {
 	const
 		D3_API_PROFILE_URL = 'http://us.battle.net/api/d3/profile',

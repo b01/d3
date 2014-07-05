@@ -44,7 +44,7 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 	public function test_initializing_a_get_hero_object()
 	{
 		$hero = new Hero( $this->json );
-		$this->assertInstanceOf( '\\kshabazz\\d3a\\BattleNet\Models\\Hero', $hero, 'Could not initialize \Kshabazz\BattleNet\D3\Models\Hero object.' );
+		$this->assertInstanceOf( '\\Kshabazz\\BattleNet\\D3\\Models\\Hero', $hero, 'Could not initialize \Kshabazz\BattleNet\D3\Models\Hero object.' );
 	}
 
 	public function test_retreiving_get()

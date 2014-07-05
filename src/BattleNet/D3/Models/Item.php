@@ -4,7 +4,6 @@
  * behind the scenes. The item will only be updated after a few ours of retrieving it.
  */
 use Kshabazz\BattleNet\D3\Models;
-use function \Kshabazz\BattleNet\isWeapon;
 /**
  * Class Item
  * @package Kshabazz\BattleNet\D3\Models
@@ -61,7 +60,7 @@ class Item extends Model
 	public function __construct( $pJson )
 	{
 		parent::__construct( $pJson );
-		if ( isWeapon($this->type) )
+		if ( $this->isWeapon($this->type) )
 		{
 			$this->calculateDamage();
 		}
@@ -84,6 +83,18 @@ class Item extends Model
 	public function effects()
 	{
 		return $this->effects;
+	}
+
+	/**
+	 * Check if an items type is a weapon.
+	 *
+	 * @param array $pItemType
+	 * @return bool
+	 */
+	function isWeapon( array $pItemType )
+	{
+		$itemType = strtolower( $pItemType['id'] );
+		return in_array( $itemType, self::$oneHandWeaponTypes );
 	}
 
     /**
