@@ -1,0 +1,37 @@
+{
+	"authors": [
+		{
+			"name": "Khalifah Shabazz",
+			"homepage": "http://www.kshabazz.net",
+			"role": "Developer"
+		}
+	],
+	"autoload": {
+		"psr-4": {
+			"Kshabazz\\": "src/",
+			"Kshabazz\\Tests\\": "test/"
+		}
+	},
+	"description": "A PHP library for accessing Battle.net D3 API.",
+	"keywords": ["diablo 3"],
+	"name": "kshabazz/d3",
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "https://github.com/b01/slib"
+		}
+	],
+	"require": {
+		"php": ">=5.5.10",
+		"kshabazz/slib": "dev-master"
+	},
+	"require-dev": {
+		"phpunit/phpunit-mock-objects": "2.0.*",
+		"phpunit/php-code-coverage": "2.0.*",
+		"phpunit/phpunit": "3.7.*",
+		"squizlabs/php_codesniffer": "1.5.*",
+		"php-vcr/php-vcr": "dev-master",
+		"php-vcr/phpunit-testlistener-vcr": "dev-master"
+	},
+	"type": "library"
+}
