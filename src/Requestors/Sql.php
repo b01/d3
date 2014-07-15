@@ -22,12 +22,12 @@ class Sql extends \Kshabazz\Slib\Sql implements Requestor
 	 * Constructor
 	 *
 	 * @param string $pBattleNetId
-	 * @param null $pIpAddress
-	 * @param null $pType
+	 * @param \PDO $pPdo
+	 * @param string $pIpAddress
 	 */
-	public function __construct( $pBattleNetId, $pIpAddress = NULL, $pType = NULL )
+	public function __construct( $pBattleNetId, \PDO $pPdo, $pIpAddress = NULL )
 	{
-		parent::__construct( $pIpAddress, $pType );
+		parent::__construct( $pPdo, $pIpAddress );
 		$this->battleNetId = $pBattleNetId;
 		$this->battleNetUrlSafeId = str_replace( '#', '-', $this->battleNetId );
 	}
@@ -113,11 +113,6 @@ class Sql extends \Kshabazz\Slib\Sql implements Requestor
 		catch ( \Exception $p_error )
 		{
 			// TODO: Map ERROR_NOTICE_1 to message "Unable to retrieve your profile from cache."
-//			logError(
-//				$p_error,
-//				$p_error->getMessage(),
-//				""
-//			);
 			logError( $p_error, $p_error->getMessage() );
 		}
 		return $returnValue;

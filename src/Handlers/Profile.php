@@ -40,8 +40,6 @@ class Profile implements Handler
 	public function getJson( \Kshabazz\BattleNet\D3\Requestors\Http $pBnr )
 	{
 		$responseText = $pBnr->getProfile();
-		// Log the request.
-//		$pSql->addRequest( $pBnr->battleNetId(), $pBnr->url() );
 		// Verify that the request was successful.
 		$requestSuccessful = ( $pBnr->responseCode() === 200 );
 		// Return the response.

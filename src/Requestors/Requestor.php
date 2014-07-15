@@ -16,13 +16,6 @@ namespace Kshabazz\BattleNet\D3\Requestors;
 interface Requestor
 {
 	/**
-	 * Constructor
-	 *
-	 * @param $pBattleNetId
-	 */
-	public function __construct( $pBattleNetId );
-
-	/**
 	 * Request Hero JSON from Battle.Net.
 	 * ex: http://us.battle.net/api/d3/profile/<battleNetIdName>-<battleNetIdNumber>/hero/<hero-id>
 	 * Note: Leave off the trailing '/' when setting
