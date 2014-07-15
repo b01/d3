@@ -1,4 +1,4 @@
-<?php namespace Kshabazz\BattleNet\D3\Handlers;// TODO: move to 'namespace Kshabazz\BattleNet\D3';
+<?php namespace Kshabazz\BattleNet\D3\Handlers;
 /**
  * Get the users item from Battle.Net and present it to the user; store it locally in a database behind the scenes.
  * The item will only be updated after a few ours of retrieving it.
@@ -12,33 +12,19 @@
 interface Handler
 {
 	/**
-	 * Constructor
+	 * Get a fresh copy of the JSON from the {@link \Kshabazz\BattleNet\D3\Requestors\Requestor}
 	 *
-	 * @param string $pKey
-	 * @param Handler $pHandler
+	 * @param \Kshabazz\BattleNet\D3\Requestors\Http $pResource
+	 * @return {string|NULL}
 	 */
-	public function __construct( $pKey, Handler $pHandler );
-
-	/**
-	 * Get the JSON data from somewhere like Battle.net or a DB.
-	 *
-	 * @return string
-	 */
-	public function json();
-
-	/**
-	 * Get a fresh copy of the JSON from the {@link Handler}
-	 *
-	 * @return $this
-	 */
-	public function pullJson();
+	public function getJson( \Kshabazz\BattleNet\D3\Requestors\Http $pResource  );
 
 	/**
 	 * Save data (usually JSON pulled from the API) to a local cache.
 	 *
-	 * @param \Kshabazz\BattleNet\D3\Requestors\Requestor $pResource
+	 * @param \Kshabazz\BattleNet\D3\Requestors\Sql $pResource
 	 * @return bool Indicates TRUE on success or FALSE when skipped or a failure occurs.
 	 */
-	public function save( \Kshabazz\BattleNet\D3\Requestors\Requestor $pResource );
+	public function save( \Kshabazz\BattleNet\D3\Requestors\Sql $pResource );
 }
 ?>

@@ -7,7 +7,7 @@
  *
  * @package Kshabazz\BattleNet\D3
  */
-class Hero extends \Kshabazz\BattleNet\D3\BattleNet_Model
+class Hero extends Model
 {
 	protected
 		$key,

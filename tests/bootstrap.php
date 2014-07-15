@@ -12,6 +12,7 @@ require_once __DIR__ . '/../vendor/autoload.php';
 // configure PHP-VCR
 // specify which HTTP lib request to intercept.
 $vcrSettings = \VCR\VCR::configure()->enableLibraryHooks([ 'stream_wrapper' ]);
-define('FIXTURES_PATH', __DIR__ . DIRECTORY_SEPARATOR . 'fixtures' . DIRECTORY_SEPARATOR);
-\VCR\VCR::turnOn();
+$fixturesPath = realpath( __DIR__ . DIRECTORY_SEPARATOR . 'fixtures' );
+define( 'FIXTURES_PATH', $fixturesPath . DIRECTORY_SEPARATOR );
+\VCR\VCR::configure()->setCassettePath($fixturesPath);
 ?>

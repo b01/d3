@@ -3,86 +3,63 @@
  * Get the users profile from Battle.Net and present it to the user; store it locally in a database behind the scenes.
  * The profile will only be updated after a few ours of retrieving it.
  */
+use \Kshabazz\BattleNet\D3\Requestors\Http,
+	\Kshabazz\BattleNet\D3\Requestors\Sql;
 use function \Kshabazz\Slib\isArray;
 /**
  * var $p_battleNetId string User BattleNet ID.
  * var $pBnr object Data Query Interface.
  * var $pSql object SQL.
  */
-class Profile extends \Kshabazz\BattleNet\D3\BattleNet_Model
+class Profile implements Handler
 {
-	protected
-		$column,
-		$heroes,
-		$profile,
-		$sql,
-		$url;
-
-	/**
-	 * Constructor
-	 *
-	 * @param string $pBattleNetId
-	 * @param \Kshabazz\BattleNet\D3\Requestors\Http $pBnr
-	 * @param \Kshabazz\BattleNet\D3\Requestors\Sql $pSql
-	 * @param bool $pLoadFromCache
-	 */
-	public function __construct(
-		$pBattleNetId,
-		\Kshabazz\BattleNet\D3\Requestors\Http $pBnr,
-		\Kshabazz\BattleNet\D3\Requestors\Sql $pSql,
-		$pLoadFromCache )
-	{
-		$this->column = "battle_net_id";
-		$this->profile = NULL;
-		parent::__construct( $pBattleNetId, $pBnr, $pSql, $pLoadFromCache );
-	}
-
 	/**
 	 * Get profile JSON from the database.
-	 * @return $this
+	 *
+	 * @param Sql $pSql
+	 * @param $pKey
+	 * @return null
 	 */
-	protected function pullJsonFromDb()
+	public function pullJson( Sql $pSql, $pKey )
 	{
 		// Get the profile from local database.
-		$result = $this->sql->getProfile( $this->key );
+		$result = $pSql->getProfile( $pKey );
 		if ( isArray($result) )
 		{
-			$this->json = $result[ 'json' ];
+			return $result[ 'json' ];
 		}
-		return $this;
+		return NULL;
 	}
 
 	/**
 	 * Request the profile from BattleNet.
 	 *
-	 * @return $this
+	 * @param Http $pBnr
+	 * @return null|string
 	 */
-	protected function requestJsonFromApi()
+	public function getJson( \Kshabazz\BattleNet\D3\Requestors\Http $pBnr )
 	{
-		$responseText = $this->bnr->getProfile( $this->key );
-		$requestSuccessful = ( $this->bnr->responseCode() === 200 );
-		// Used for logging info to the DB.
-		$url = $this->bnr->url();
+		$responseText = $pBnr->getProfile();
 		// Log the request.
-		$this->sql->addRequest( $this->bnr->battleNetId(), $url );
+//		$pSql->addRequest( $pBnr->battleNetId(), $pBnr->url() );
+		// Verify that the request was successful.
+		$requestSuccessful = ( $pBnr->responseCode() === 200 );
+		// Return the response.
 		if ( $requestSuccessful )
 		{
-			$this->json = $responseText;
+			return $responseText;
 		}
-		return $this;
+		return NULL;
 	}
 
 	/**
 	 * Save the users profile locally to the database.
+	 *
+	 * @param Sql $pResource
 	 * @return bool
 	 */
-	protected function save()
+	public function save( Sql $pResource )
 	{
-		// There is no need to save what was loaded from the database.
-		if ( $this->loadFromDb )
-		{
-			return false;
-		}
 		// save it to the database.
 		$utcTime = gmdate( 'Y-m-d H:i:s' );
 		$query = \Kshabazz\BattleNet\D3\Requestors\Sql::INSERT_PROFILE;

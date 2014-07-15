@@ -1,15 +1,17 @@
-<?php namespace Kshabazz\BattleNet\D3;
+<?php namespace Kshabazz\BattleNet\D3\Handlers;
 /**
  * Get the users item from Battle.Net and present it to the user; store it locally in a database behind the scenes.
  * The item will only be updated after a few ours of retrieving it.
  */
-
+use \Kshabazz\BattleNet\D3\Requestors\Http,
+	\Kshabazz\BattleNet\D3\Requestors\Sql;
 /**
+ * @deprecated {@see Handler}
  * Class BattleNet_Model
  *
  * @package Kshabazz\BattleNet
  */
-abstract class BattleNet_Model
+abstract class Model
 {
 	protected
 		$bnr,
@@ -23,11 +25,11 @@ abstract class BattleNet_Model
      * Constructor
      *
      * @param string $pKey
-     * @param BattleNet\Requestors\Http $pBnr
-     * @param BattleNet\Requestors\Sql $pSql
+     * @param Http $pBnr
+     * @param Sql $pSql
      * @param bool $pLoadFromCache
      */
-    public function __construct( $pKey, BattleNet\Requestors\Http $pBnr, BattleNet\Requestors\Sql $pSql, $pLoadFromCache = TRUE )
+    public function __construct( $pKey, Http $pBnr, Sql $pSql, $pLoadFromCache = TRUE )
 	{
 		$this->bnr = $pBnr;
 		$this->json = NULL;

@@ -9,7 +9,7 @@
  *
  * @package Kshabazz\BattleNet
  */
-class Item extends \Kshabazz\BattleNet\D3\BattleNet_Model
+class Item extends Model
 {
 	protected
 		$column,
