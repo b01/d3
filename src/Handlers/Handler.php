@@ -12,28 +12,34 @@
 interface Handler
 {
 	/**
+	 * Constructor
+	 *
+	 * @param string $pKey Unique ID for API and also the Primary key value for the DB.
+	 */
+	public function __constructor( $pKey );
+
+	/**
 	 * Get a fresh copy of the JSON from the {@link \Kshabazz\BattleNet\D3\Requestors\Requestor}
 	 *
-	 * @param \Kshabazz\BattleNet\D3\Requestors\Http $pResource
+	 * @param \Kshabazz\BattleNet\D3\Requestors\Http $pHttp
 	 * @return {string|NULL}
 	 */
-	public function getJson( \Kshabazz\BattleNet\D3\Requestors\Http $pResource  );
+	public function getJson( \Kshabazz\BattleNet\D3\Requestors\Http $pHttp  );
 
 	/**
 	 * Get profile JSON from the database.
 	 *
 	 * @param \Kshabazz\BattleNet\D3\Requestors\Sql $pSql
-	 * @param string $pKey Primary key value.
 	 * @return null
 	 */
-	public function getJsonFromDb( \Kshabazz\BattleNet\D3\Requestors\Sql $pSql, $pKey );
+	public function getJsonFromDb( \Kshabazz\BattleNet\D3\Requestors\Sql $pSql );
 
 	/**
 	 * Save data (usually JSON pulled from the API) to a local cache.
 	 *
-	 * @param \Kshabazz\BattleNet\D3\Requestors\Sql $pResource
+	 * @param \Kshabazz\BattleNet\D3\Requestors\Sql $pSql
 	 * @return bool Indicates TRUE on success or FALSE when skipped or a failure occurs.
 	 */
-	public function save( \Kshabazz\BattleNet\D3\Requestors\Sql $pResource );
+	public function save( \Kshabazz\BattleNet\D3\Requestors\Sql $pSql );
 }
 ?>
