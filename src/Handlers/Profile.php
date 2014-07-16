@@ -3,9 +3,11 @@
  * Get the users profile from Battle.Net and present it to the user; store it locally in a database behind the scenes.
  * The profile will only be updated after a few ours of retrieving it.
  */
+
 use \Kshabazz\BattleNet\D3\Requestors\Http,
 	\Kshabazz\BattleNet\D3\Requestors\Sql;
 use function \Kshabazz\Slib\isArray;
+
 /**
  * var $p_battleNetId string User BattleNet ID.
  * var $pBnr object Data Query Interface.
@@ -13,17 +15,28 @@ use function \Kshabazz\Slib\isArray;
  */
 class Profile implements Handler
 {
+	private $urlSafeBattleNetId;
+
+	/**
+	 * Constructor
+	 *
+	 * @param string $pUrlSafeBattleNetId
+	 */
+	public function __constructor( $pUrlSafeBattleNetId )
+	{
+		$this->urlSafeBattleNetId = $pUrlSafeBattleNetId;
+	}
+
 	/**
 	 * Get profile JSON from the database.
 	 *
 	 * @param Sql $pSql
-	 * @param $pKey
 	 * @return null
 	 */
-	public function pullJson( Sql $pSql, $pKey )
+	public function getJsonFromDb( Sql $pSql )
 	{
 		// Get the profile from local database.
-		$result = $pSql->getProfile( $pKey );
+		$result = $pSql->getProfile( $this->urlSafeBattleNetId );
 		if ( isArray($result) )
 		{
 			return $result[ 'json' ];
