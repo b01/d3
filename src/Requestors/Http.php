@@ -77,7 +77,7 @@ class Http extends \Kshabazz\Slib\HttpRequester implements Requestor
 	{
 		$returnValue = NULL;
 		// todo: validate with regex.
-		if ( !isString($pHeroId) )
+		if ( !is_int($pHeroId) )
 		{
 			throw new \InvalidArgumentException( "Hero '{$pHeroId}' not found." );
 		}
