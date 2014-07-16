@@ -61,7 +61,7 @@ class Profile implements Handler
 		// save it to the database.
 		$utcTime = gmdate( 'Y-m-d H:i:s' );
 		$query = \Kshabazz\BattleNet\D3\Requestors\Sql::INSERT_PROFILE;
-		return $this->sql->save( $query, [
+		return $this->sql->pdoQueryBind( $query, [
 			'battleNetId' => [ $this->key, \PDO::PARAM_STR ],
 			'json' => [ $this->json, \PDO::PARAM_STR ],
 			'ipAddress' => [ $this->sql->ipAddress(), \PDO::PARAM_STR ],

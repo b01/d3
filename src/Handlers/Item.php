@@ -104,7 +104,7 @@ class Item extends Model
 			'lastUpdate' => [ $utcTime, \PDO::PARAM_STR ],
 			'dateAdded' => [ $utcTime, \PDO::PARAM_STR ]
 		];
-		return $this->sql->save( \Kshabazz\BattleNet\D3\Requestors\Sql::INSERT_ITEM, $params );
+		return $this->sql->pdoQueryBind( \Kshabazz\BattleNet\D3\Requestors\Sql::INSERT_ITEM, $params );
 	}
 
 	/**
