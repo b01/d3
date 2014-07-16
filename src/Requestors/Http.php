@@ -79,7 +79,7 @@ class Http extends \Kshabazz\Slib\HttpRequester implements Requestor
 		// todo: validate with regex.
 		if ( !is_int($pHeroId) )
 		{
-			throw new \InvalidArgumentException( "Hero '{$pHeroId}' not found." );
+			throw new \InvalidArgumentException( 'Expected an integer, got a '. gettype($pHeroId) );
 		}
 		$this->url = sprintf( self::D3_API_HERO_URL, $this->battleNetUrlSafeId, $pHeroId );
 		$returnValue = $this->send();
