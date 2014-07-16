@@ -20,6 +20,15 @@ interface Handler
 	public function getJson( \Kshabazz\BattleNet\D3\Requestors\Http $pResource  );
 
 	/**
+	 * Get profile JSON from the database.
+	 *
+	 * @param \Kshabazz\BattleNet\D3\Requestors\Sql $pSql
+	 * @param string $pKey Primary key value.
+	 * @return null
+	 */
+	public function getJsonFromDb( \Kshabazz\BattleNet\D3\Requestors\Sql $pSql, $pKey );
+
+	/**
 	 * Save data (usually JSON pulled from the API) to a local cache.
 	 *
 	 * @param \Kshabazz\BattleNet\D3\Requestors\Sql $pResource
