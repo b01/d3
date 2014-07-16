@@ -220,6 +220,23 @@ class Hero
 	}
 
 	/**
+	 * Determine if a hero is brandishing a weapon in each hand.
+	 */
+	public function isDualWielding()
+	{
+		// TODO: test!
+		if ( array_key_exists('mainHand', $this->items)
+			&& !$this->items['mainHand']->type['twoHanded']
+			&& array_key_exists('offHand', $this->items) )
+		{
+			$this->dualWield = isWeapon( $this->items['mainHand']->type )
+				&& isWeapon( $this->items['offHand']->type );
+		}
+
+		return $this->dualWield;
+	}
+
+	/**
 	 * Intelligence
 	 * @return int
 	 */
