@@ -7,14 +7,24 @@
  */
 class ProfileTest extends \PHPUnit_Framework_TestCase
 {
+	private
+		$http,
+		$urlSafeBattleNetId;
+
+	public function setUp()
+	{
+		$this->urlSafeBattleNetId = 'msuBREAKER-1374';
+		$this->http = new \Kshabazz\BattleNet\D3\Requestors\Http( 'msuBREAKER#1374' );
+
+	}
+
 	/**
 	 * @vcr profile.yml
 	 */
 	public function test_retrieving_profile_json()
 	{
-		$profileHandler = new \Kshabazz\BattleNet\D3\Handlers\Profile();
-		$bnr = new \Kshabazz\BattleNet\D3\Requestors\Http( 'msuBREAKER#1374' );
-		$profileJson = $profileHandler->getJson( $bnr );
+		$profileHandler = new \Kshabazz\BattleNet\D3\Handlers\Profile( $this->urlSafeBattleNetId );
+		$profileJson = $profileHandler->getJson( $this->http );
 		$profile = json_decode( $profileJson );
 		$this->assertEquals( 38464947, $profile->heroes[0]->id, 'Unexpected profile ID.' );
 	}

@@ -18,7 +18,7 @@ class HttpTest extends \PHPUnit_Framework_TestCase
 	{
 		$this->battleNetId = 'msuBREAKER#1374';
 		$this->battleNetUrlSafeId = 'msuBREAKER-1374';
-		$this->heroId = '36131726';
+		$this->heroId = 46026639;
 	}
 
 	public function test_gettting_url_safe_battleNet_id()
@@ -42,14 +42,14 @@ class HttpTest extends \PHPUnit_Framework_TestCase
 
 	/**
 	 * Test getting a hero from Battle.Net
-	 * @vcr hero-response.json
+	 * @vcr hero.yml
 	 */
 	public function test_get_hero()
 	{
 		$bnr = new \Kshabazz\BattleNet\D3\Requestors\Http( $this->battleNetId );
 		$heroJson = $bnr->getHero( $this->heroId );
 		$hero = json_decode( $heroJson );
-		$this->assertEquals( 'NOTFOUND', $hero->code, 'Unable to retrive Hero from Battle.Net' );
+		$this->assertEquals( $this->heroId, $hero->id, 'Unable to retrieve Hero from Battle.Net' );
 	}
 
 	/**
