@@ -210,7 +210,10 @@ class Hero
 		$this->level = ( int ) $this->battleNet[ 'level' ];
 		$this->name = $this->battleNet[ 'name' ];
 		$this->paragonLevel = ( int ) $this->battleNet[ 'paragonLevel' ];
-		$this->progress = $this->battleNet[ 'progress' ];
+		if ( array_key_exists('progress', $this->battleNet))
+		{
+			$this->progress = $this->battleNet[ 'progress' ];
+		}
 		$this->skills = $this->battleNet[ 'skills' ];
 		$this->stats = $this->battleNet[ 'stats' ];
 
@@ -340,10 +343,13 @@ class Hero
 	 */
 	public function progression()
 	{
-		$pProgress = $this->progress;
+		if ( $this->progress === NULL )
+		{
+			return '';
+		}
 		// Enjoy the flying V!
 		$returnValue = '';
-		foreach ( $pProgress as $level => $progresssion )
+		foreach ( $this->progress as $level => $progresssion )
 		{
 			if ( isArray($progresssion) )
 			{

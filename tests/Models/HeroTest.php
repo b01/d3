@@ -232,5 +232,19 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 			'Invalid neck item returned from Model_GetHero::itemHashes property.'
 		);
 	}
+
+	/**
+	 * @vcr hero.yml
+	 */
+	public function test_progression()
+	{
+		$hero = new Hero( $this->json );
+		$progression = $hero->progression();
+		$this->assertEquals(
+			'Highest completed: inferno act2 BetrayeroftheHoradrim',
+			$progression,
+			'Invaslid progreesion produced.'
+		);
+	}
 }
 ?>
