@@ -6,13 +6,12 @@
  * @package ${NAMESPACE}
  *
  * @copyright (c) 2012-2013 diablo-3-assistant by Khalifah K. Shabazz
- * Timespamp: 11/7/13:8:07 AM
  */
 require_once __DIR__ . '/../vendor/autoload.php';
-// configure PHP-VCR
-// specify which HTTP lib request to intercept.
-$vcrSettings = \VCR\VCR::configure()->enableLibraryHooks([ 'stream_wrapper' ]);
 $fixturesPath = realpath( __DIR__ . DIRECTORY_SEPARATOR . 'fixtures' );
 define( 'FIXTURES_PATH', $fixturesPath . DIRECTORY_SEPARATOR );
+// Set which HTTP lib request to intercept.
+\VCR\VCR::configure()->enableLibraryHooks([ 'stream_wrapper' ]);
+// Tell PHP-VCR where to store request.
 \VCR\VCR::configure()->setCassettePath($fixturesPath);
 ?>
