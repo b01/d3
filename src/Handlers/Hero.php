@@ -7,65 +7,57 @@
  *
  * @package Kshabazz\BattleNet\D3
  */
-class Hero extends Model
+class Hero implements Handler
 {
-	protected
-		$key,
-		$url;
+	private $heroId;
+
+	public function __constructor( $pHeroId )
+	{
+		$this->heroId = $pHeroId;
+	}
 
 	/**
 	 * Get the JSON from Battle.Net.
-	 * @return $this
+	 *
+	 * @param \Kshabazz\BattleNet\D3\Requestors\Http $pHttp
+	 * @return string|null
 	 */
-	protected function requestJsonFromApi()
+	public function getJson( \Kshabazz\BattleNet\D3\Requestors\Http $pHttp )
 	{
 		// Request the hero from BattleNet.
-		$responseText = $this->bnr->getHero( $this->key );
-		$requestSuccessful = ( $this->bnr->responseCode() === 200 );
-		// Used for logging info to the DB.
-		$url = $this->bnr->url();
-		// Log the request.
-		$this->sql->addRequest( $this->bnr->battleNetId(), $url );
+		$responseText = $pHttp->getHero( $this->heroId );
+		$requestSuccessful = ( $pHttp->responseCode() === 200 );
 		if ( $requestSuccessful )
 		{
-			$this->json = $responseText;
+			return $responseText;
 		}
-		return $this;
+		return NULL;
 	}
 
 	/**
 	 * Get hero data from local database.
-	 * @return $this
+	 *
+	 * @param \Kshabazz\BattleNet\D3\Requestors\Sql $pSql
+	 * @return string|null
 	 */
-	protected function pullJsonFromDb()
+	public function getJsonFromDb( \Kshabazz\BattleNet\D3\Requestors\Sql $pSql )
 	{
-		$result = $this->sql->getHero( $this->key );
+		$result = $pSql->getHero( $this->heroId );
 		if ( \Kshabazz\Slib\isArray($result) )
 		{
-			$this->json = $result[ 0 ][ 'json' ];
+			return $result[ 0 ][ 'json' ];
 		}
-		return $this;
-	}
-
-	/**
-	 * @return $this
-	 */
-	protected function processJson()
-	{
-		return $this;
+		return NULL;
 	}
 
 	/**
 	 * Save the hero in a local database.
+	 *
+	 * @param \Kshabazz\BattleNet\D3\Requestors\Sql $pSql
 	 * @return bool Indicates success (TRUE) or failure (FALSE).
 	 */
-	protected function save()
+	public function save( \Kshabazz\BattleNet\D3\Requestors\Sql $pSql )
 	{
-		// There is no need to save what was loaded from the database.
-		if ( $this->loadFromDb )
-		{
-			return FALSE;
-		}
 		$utcTime = gmdate( 'Y-m-d H:i:s' );
 		return $this->sql->pdoQueryBind( \Kshabazz\BattleNet\D3\Requestors\Sql::INSERT_HERO, [
 			'heroId' => [ $this->key, \PDO::PARAM_STR ],
