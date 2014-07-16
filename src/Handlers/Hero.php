@@ -11,7 +11,12 @@ class Hero implements Handler
 {
 	private $heroId;
 
-	public function __constructor( $pHeroId )
+	/**
+	 * Constructor
+	 *
+	 * @param $pHeroId
+	 */
+	public function __construct( $pHeroId )
 	{
 		$this->heroId = $pHeroId;
 	}

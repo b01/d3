@@ -16,7 +16,7 @@ interface Handler
 	 *
 	 * @param string $pKey Unique ID for API and also the Primary key value for the DB.
 	 */
-	public function __constructor( $pKey );
+	public function __construct( $pKey );
 
 	/**
 	 * Get a fresh copy of the JSON from the {@link \Kshabazz\BattleNet\D3\Requestors\Requestor}

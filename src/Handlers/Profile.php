@@ -22,7 +22,7 @@ class Profile implements Handler
 	 *
 	 * @param string $pUrlSafeBattleNetId
 	 */
-	public function __constructor( $pUrlSafeBattleNetId )
+	public function __construct( $pUrlSafeBattleNetId )
 	{
 		$this->urlSafeBattleNetId = $pUrlSafeBattleNetId;
 	}
