@@ -9,87 +9,73 @@
  *
  * @package Kshabazz\BattleNet
  */
-class Item extends Model
+class Item implements Handler
 {
 	protected
 		$column,
-		$hash,
-		$id;
+		$itemHash,
+		$info;
 
 	/**
 	 * Constructor
 	 *
-	 * @param string $pHash
-	 * @param string $pColumn
-	 * @param \Kshabazz\BattleNet\D3\Requestors\Http $pBnr
-	 * @param \Kshabazz\BattleNet\D3\Requestors\Sql $pSql
-	 * @param bool $fromDb
+	 * @param string $pItemHash
 	 */
-	public function __construct(
-		$pHash,
-		$pColumn,
-		\Kshabazz\BattleNet\D3\Requestors\Http $pBnr,
-		\Kshabazz\BattleNet\D3\Requestors\Sql $pSql,
-		$fromDb = FALSE )
+	public function __construct( $pItemHash )
 	{
-		$this->column = $pColumn;
-		$this->id = NULL;
 		$this->info = NULL;
-		parent::__construct( $pHash, $pBnr, $pSql, $fromDb );
+		$this->itemHash = $pItemHash;
 	}
 
 	/**
 	 * Get item data from local database.
-	 * @return $this
+	 *
+	 * @param \Kshabazz\BattleNet\D3\Requestors\Sql $pSql
+	 * @return null
 	 */
-	protected function pullJsonFromDb()
+	public function getJsonFromDb( \Kshabazz\BattleNet\D3\Requestors\Sql $pSql )
 	{
-		$returnValue = NULL;
-		if ( $this->key !== NULL )
+		$this->column = 'hash';
+		$hashValue = str_replace( 'item/', '', $this->itemHash );
+		$query = sprintf( \Kshabazz\BattleNet\D3\Requestors\Sql::SELECT_ITEM, $this->column );
+		$result = $pSql->pdoQueryBind( $query, ['selectValue' => [$hashValue, \PDO::PARAM_STR]] );
+		if ( \Kshabazz\Slib\isArray($result) )
 		{
-			$hashValue = str_replace('item/', '', $this->key);
-			$query = sprintf( \Kshabazz\BattleNet\D3\Requestors\Sql::SELECT_ITEM, $this->column );
-			$result = $this->sql->getData( $query, ['selectValue' => [$hashValue, \PDO::PARAM_STR]] );
-			if ( \Kshabazz\Slib\isArray($result) )
-			{
-				$this->info = $result[ 0 ];
-				$this->json = $this->info[ 'json' ];
-			}
+			$this->info = $result[ 0 ];
+			return $this->info[ 'json' ];
 		}
-		return $this;
+		return NULL;
 	}
 
 	/**
 	 * Get the item JSON from Battle.net.
-	 * @return $this
+	 *
+	 * @param \Kshabazz\BattleNet\D3\Requestors\Http $pHttp
+	 * @return string|null
 	 */
-	protected function requestJsonFromApi()
+	public function getJson( \Kshabazz\BattleNet\D3\Requestors\Http $pHttp )
 	{
 		// Request the item from BattleNet.
-		$json = $this->bnr->getItem( $this->key );
-		$requestSuccessful = ( $this->bnr->responseCode() === 200 );
+		$json = $pHttp->getItem( $this->itemHash );
+		$requestSuccessful = ( $pHttp->responseCode() === 200 );
 		// Log the request.
-		$url = $this->bnr->url();
-		$this->sql->addRequest( $this->bnr->battleNetId(), $url );
+//		$this->sql->addRequest( $this->bnr->battleNetId(), $pHttp->url() );
 		// Set the property.
 		if ( $requestSuccessful )
 		{
-			$this->json = $json;
+			return $json;
 		}
-		return $this;
+		return NULL;
 	}
 
 	/**
 	 * Save the users item locally, in this case a database.
+	 *
+	 * @param \Kshabazz\BattleNet\D3\Requestors\Sql $pSql
 	 * @return bool
 	 */
-	protected function save()
+	public function save( \Kshabazz\BattleNet\D3\Requestors\Sql $pSql )
 	{
-		// There is no need to save what was loaded from the database.
-		if ( $this->loadFromDb )
-		{
-			return FALSE;
-		}
 		$itemName = $this->info[ 'name' ];
 		$itemType = $this->info[ 'type' ];
 		$id = $this->info[ 'id' ];
