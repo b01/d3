@@ -18,7 +18,7 @@
 	},
 	"description": "A PHP library for accessing Battle.net D3 API.",
 	"keywords": ["diablo 3"],
-	"name": "kshabazz/d3",
+	"name": "kshabazz/battlenet-d3",
 	"repositories": [
 		{
 			"type": "vcs",
