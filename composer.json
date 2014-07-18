@@ -8,7 +8,11 @@
 	],
 	"autoload": {
 		"psr-4": {
-			"Kshabazz\\BattleNet\\D3\\": "src/",
+			"Kshabazz\\BattleNet\\D3\\": "src/"
+		}
+	},
+	"autoload-dev": {
+		"psr-4": {
 			"Kshabazz\\Tests\\": "test/"
 		}
 	},
