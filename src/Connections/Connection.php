@@ -1,4 +1,4 @@
-<?php
+<?php namespace Kshabazz\BattleNet\D3\Connections;
 /**
  * Created by PhpStorm.
  * User: Khalifah
@@ -6,14 +6,14 @@
  * Time: 8:14 AM
  */
 
-namespace Kshabazz\BattleNet\D3\Requestors;
+
 
 /**
  * Interface Resource
  *
  * @package Kshabazz\BattleNet\D3\Resources
  */
-interface Requestor
+interface Connection
 {
 	/**
 	 * Request Hero JSON from Battle.Net.

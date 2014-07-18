@@ -20,7 +20,7 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 	public function setUp()
 	{
 		$this->heroId = 46026639;
-		$this->http = new \Kshabazz\BattleNet\D3\Requestors\Http( 'msuBREAKER#1374' );
+		$this->http = new \Kshabazz\BattleNet\D3\Connections\Http( 'msuBREAKER#1374' );
 	}
 
 	/**

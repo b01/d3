@@ -24,10 +24,10 @@ class Hero implements Handler
 	/**
 	 * Get the JSON from Battle.Net.
 	 *
-	 * @param \Kshabazz\BattleNet\D3\Requestors\Http $pHttp
+	 * @param \Kshabazz\BattleNet\D3\Connections\Http $pHttp
 	 * @return string|null
 	 */
-	public function getJson( \Kshabazz\BattleNet\D3\Requestors\Http $pHttp )
+	public function getJson( \Kshabazz\BattleNet\D3\Connections\Http $pHttp )
 	{
 		// Request the hero from BattleNet.
 		$responseText = $pHttp->getHero( $this->heroId );
@@ -42,10 +42,10 @@ class Hero implements Handler
 	/**
 	 * Get hero data from local database.
 	 *
-	 * @param \Kshabazz\BattleNet\D3\Requestors\Sql $pSql
+	 * @param \Kshabazz\BattleNet\D3\Connections\Sql $pSql
 	 * @return string|null
 	 */
-	public function getJsonFromDb( \Kshabazz\BattleNet\D3\Requestors\Sql $pSql )
+	public function getJsonFromDb( \Kshabazz\BattleNet\D3\Connections\Sql $pSql )
 	{
 		$result = $pSql->getHero( $this->heroId );
 		if ( \Kshabazz\Slib\isArray($result) )
@@ -58,13 +58,13 @@ class Hero implements Handler
 	/**
 	 * Save the hero in a local database.
 	 *
-	 * @param \Kshabazz\BattleNet\D3\Requestors\Sql $pSql
+	 * @param \Kshabazz\BattleNet\D3\Connections\Sql $pSql
 	 * @return bool Indicates success (TRUE) or failure (FALSE).
 	 */
-	public function save( \Kshabazz\BattleNet\D3\Requestors\Sql $pSql )
+	public function save( \Kshabazz\BattleNet\D3\Connections\Sql $pSql )
 	{
 		$utcTime = gmdate( 'Y-m-d H:i:s' );
-		return $this->sql->pdoQueryBind( \Kshabazz\BattleNet\D3\Requestors\Sql::INSERT_HERO, [
+		return $this->sql->pdoQueryBind( \Kshabazz\BattleNet\D3\Connections\Sql::INSERT_HERO, [
 			'heroId' => [ $this->key, \PDO::PARAM_STR ],
 			'battleNetId' => [ $this->bnr->battleNetId(), \PDO::PARAM_STR ],
 			'json' => [ $this->json, \PDO::PARAM_STR ],

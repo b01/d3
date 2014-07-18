@@ -21,25 +21,25 @@ interface Handler
 	/**
 	 * Get a fresh copy of the JSON from the {@link \Kshabazz\BattleNet\D3\Requestors\Requestor}
 	 *
-	 * @param \Kshabazz\BattleNet\D3\Requestors\Http $pHttp
+	 * @param \Kshabazz\BattleNet\D3\Connections\Http $pHttp
 	 * @return {string|NULL}
 	 */
-	public function getJson( \Kshabazz\BattleNet\D3\Requestors\Http $pHttp  );
+	public function getJson( \Kshabazz\BattleNet\D3\Connections\Http $pHttp  );
 
 	/**
 	 * Get profile JSON from the database.
 	 *
-	 * @param \Kshabazz\BattleNet\D3\Requestors\Sql $pSql
+	 * @param \Kshabazz\BattleNet\D3\Connections\Sql $pSql
 	 * @return null
 	 */
-	public function getJsonFromDb( \Kshabazz\BattleNet\D3\Requestors\Sql $pSql );
+	public function getJsonFromDb( \Kshabazz\BattleNet\D3\Connections\Sql $pSql );
 
 	/**
 	 * Save data (usually JSON pulled from the API) to a local cache.
 	 *
-	 * @param \Kshabazz\BattleNet\D3\Requestors\Sql $pSql
+	 * @param \Kshabazz\BattleNet\D3\Connections\Sql $pSql
 	 * @return bool Indicates TRUE on success or FALSE when skipped or a failure occurs.
 	 */
-	public function save( \Kshabazz\BattleNet\D3\Requestors\Sql $pSql );
+	public function save( \Kshabazz\BattleNet\D3\Connections\Sql $pSql );
 }
 ?>

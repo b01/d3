@@ -16,7 +16,7 @@ class ItemTest extends \PHPUnit_Framework_TestCase
 	{
 		//http://us.battle.net/api/d3/data/item/COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD
 		$this->itemHash = 'item/COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD';
-		$this->http = new \Kshabazz\BattleNet\D3\Requestors\Http( 'msuBREAKER#1374' );
+		$this->http = new \Kshabazz\BattleNet\D3\Connections\Http( 'msuBREAKER#1374' );
 	}
 
 	/**

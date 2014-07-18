@@ -30,14 +30,14 @@ class Item implements Handler
 	/**
 	 * Get item data from local database.
 	 *
-	 * @param \Kshabazz\BattleNet\D3\Requestors\Sql $pSql
+	 * @param \Kshabazz\BattleNet\D3\Connections\Sql $pSql
 	 * @return null
 	 */
-	public function getJsonFromDb( \Kshabazz\BattleNet\D3\Requestors\Sql $pSql )
+	public function getJsonFromDb( \Kshabazz\BattleNet\D3\Connections\Sql $pSql )
 	{
 		$this->column = 'hash';
 		$hashValue = str_replace( 'item/', '', $this->itemHash );
-		$query = sprintf( \Kshabazz\BattleNet\D3\Requestors\Sql::SELECT_ITEM, $this->column );
+		$query = sprintf( \Kshabazz\BattleNet\D3\Connections\Sql::SELECT_ITEM, $this->column );
 		$result = $pSql->pdoQueryBind( $query, ['selectValue' => [$hashValue, \PDO::PARAM_STR]] );
 		if ( \Kshabazz\Slib\isArray($result) )
 		{
@@ -50,10 +50,10 @@ class Item implements Handler
 	/**
 	 * Get the item JSON from Battle.net.
 	 *
-	 * @param \Kshabazz\BattleNet\D3\Requestors\Http $pHttp
+	 * @param \Kshabazz\BattleNet\D3\Connections\Http $pHttp
 	 * @return string|null
 	 */
-	public function getJson( \Kshabazz\BattleNet\D3\Requestors\Http $pHttp )
+	public function getJson( \Kshabazz\BattleNet\D3\Connections\Http $pHttp )
 	{
 		// Request the item from BattleNet.
 		$json = $pHttp->getItem( $this->itemHash );
@@ -71,10 +71,10 @@ class Item implements Handler
 	/**
 	 * Save the users item locally, in this case a database.
 	 *
-	 * @param \Kshabazz\BattleNet\D3\Requestors\Sql $pSql
+	 * @param \Kshabazz\BattleNet\D3\Connections\Sql $pSql
 	 * @return bool
 	 */
-	public function save( \Kshabazz\BattleNet\D3\Requestors\Sql $pSql )
+	public function save( \Kshabazz\BattleNet\D3\Connections\Sql $pSql )
 	{
 		$itemName = $this->info[ 'name' ];
 		$itemType = $this->info[ 'type' ];
@@ -90,7 +90,7 @@ class Item implements Handler
 			'lastUpdate' => [ $utcTime, \PDO::PARAM_STR ],
 			'dateAdded' => [ $utcTime, \PDO::PARAM_STR ]
 		];
-		return $this->sql->pdoQueryBind( \Kshabazz\BattleNet\D3\Requestors\Sql::INSERT_ITEM, $params );
+		return $this->sql->pdoQueryBind( \Kshabazz\BattleNet\D3\Connections\Sql::INSERT_ITEM, $params );
 	}
 
 	/**

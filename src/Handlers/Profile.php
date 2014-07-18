@@ -4,8 +4,8 @@
  * The profile will only be updated after a few ours of retrieving it.
  */
 
-use \Kshabazz\BattleNet\D3\Requestors\Http,
-	\Kshabazz\BattleNet\D3\Requestors\Sql;
+use \Kshabazz\BattleNet\D3\Connections\Http,
+	\Kshabazz\BattleNet\D3\Connections\Sql;
 use function \Kshabazz\Slib\isArray;
 
 /**
@@ -50,7 +50,7 @@ class Profile implements Handler
 	 * @param Http $pBnr
 	 * @return null|string
 	 */
-	public function getJson( \Kshabazz\BattleNet\D3\Requestors\Http $pBnr )
+	public function getJson( \Kshabazz\BattleNet\D3\Connections\Http $pBnr )
 	{
 		$responseText = $pBnr->getProfile();
 		// Verify that the request was successful.
@@ -73,7 +73,7 @@ class Profile implements Handler
 	{
 		// save it to the database.
 		$utcTime = gmdate( 'Y-m-d H:i:s' );
-		$query = \Kshabazz\BattleNet\D3\Requestors\Sql::INSERT_PROFILE;
+		$query = \Kshabazz\BattleNet\D3\Connections\Sql::INSERT_PROFILE;
 		return $this->sql->pdoQueryBind( $query, [
 			'battleNetId' => [ $this->key, \PDO::PARAM_STR ],
 			'json' => [ $this->json, \PDO::PARAM_STR ],

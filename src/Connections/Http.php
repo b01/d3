@@ -1,4 +1,4 @@
-<?php namespace Kshabazz\BattleNet\D3\Requestors;
+<?php namespace Kshabazz\BattleNet\D3\Connections;
 /**
 * Perform request to BattleNet
 */
@@ -9,7 +9,7 @@ use function \Kshabazz\Slib\isString,
  *
  * @package Kshabazz\BattleNet
  */
-class Http extends \Kshabazz\Slib\HttpRequester implements Requestor
+class Http extends \Kshabazz\Slib\HttpRequester implements Connection
 {
 	const
 		D3_API_PROFILE_URL = 'http://us.battle.net/api/d3/profile',

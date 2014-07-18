@@ -14,7 +14,7 @@ class ProfileTest extends \PHPUnit_Framework_TestCase
 	public function setUp()
 	{
 		$this->urlSafeBattleNetId = 'msuBREAKER-1374';
-		$this->http = new \Kshabazz\BattleNet\D3\Requestors\Http( 'msuBREAKER#1374' );
+		$this->http = new \Kshabazz\BattleNet\D3\Connections\Http( 'msuBREAKER#1374' );
 
 	}
 
