@@ -38,35 +38,22 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 		];
 	}
 
-	/**
-	 * Simple test to construct the object.
-	 */
-	public function test_initializing_a_get_hero_object()
+	public function test_getting_the_hero_id()
 	{
 		$hero = new Hero( $this->json );
-		$this->assertInstanceOf( '\\Kshabazz\\BattleNet\\D3\\Models\\Hero', $hero, 'Could not initialize \Kshabazz\BattleNet\D3\Models\Hero object.' );
-	}
-
-	public function test_retreiving_get()
-	{
-		$hero = new Hero( $this->json );
-		$id = $hero->get( 'id', 'int' );
-		$this->assertEquals(
-			$this->heroId,
-			$id,
-			'Invalid hero name returned from kahabazz\\d3a\\Model\\Hero.'
-		);
+		$id = $hero->id();
+		$this->assertEquals( $this->heroId, $id, 'Invalid hero id returned.' );
 	}
 
 	/**
+	 * Should throw an error when a property is not found.
 	 * @expectedException \Exception
-	 * @expectedExceptionMessage Class \Kshabazz\d3a\BattleNet\Models\Hero has no property test
+	 * @expectedExceptionMessage Hero has no property test123
 	 */
-	public function test_retreiving_get_invalid_property()
+	public function test_throwing_an_error_on_an_undefined_property()
 	{
 		$hero = new Hero( $this->json );
 		$hero->get( 'test123' );
-		$this->fail( 'No \Exception thrown as expected.' );
 	}
 
 	/**
@@ -75,19 +62,7 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 	public function test_retrieving_hero_hardcore()
 	{
 		$hero = new Hero( $this->json );
-		$this->assertTrue(
-			$hero->hardcore(),
-			'Invalid hero hardcore boolean returned from kahabazz\\d3a\\Model\\Hero.'
-		);
-	}
-
-	/**
-	 * Test retrieving the hero property.
-	 */
-	public function test_retrieving_hero_id()
-	{
-		$hero = new Hero( $this->json );
-		$this->assertEquals( $this->heroId, $hero->id(), 'Invalid hero id returned from kahabazz\\d3a\\Model\\Hero.' );
+		$this->assertInternalType( 'bool', $hero->hardcore(), 'Hardcore is not a boolean as expected.' );
 	}
 
 	/**
@@ -103,7 +78,7 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 			$this->assertEquals(
 				$this->itemParams[ $slot ],
 				$item['tooltipParams'],
-				'Invalid hero items returned from kahabazz\\d3a\\Model\\Hero.'
+				'Invalid hero items returned.'
 			);
 		}
 	}
@@ -112,64 +87,46 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 	{
 		$hero = new Hero( $this->json );
 		$json = $hero->json();
-		$data = json_decode( $json, TRUE );
-		$this->assertEquals(
-			$this->heroId,
-			$data['id'],
-			'Invalid hero JSON returned from kahabazz\\d3a\\Model\\Hero.'
-		);
+		$data = \json_decode( $json, TRUE );
+		$this->assertEquals( $this->heroId, $data['id'], 'Invalid hero JSON returned.' );
 	}
 
-	public function test_retreiving_lastUpdated()
+	public function test_retrieving_lastUpdated()
 	{
 		$hero = new Hero( $this->json );
-		$this->assertEquals(
-			1387045578,
-			$hero->lastUpdated(),
-			'Invalid hero lastUpdated date returned from kahabazz\\d3a\\Model\\Hero.'
-		);
+		$this->assertEquals( 1387045578, $hero->lastUpdated(), 'Invalid hero lastUpdated date returned.' );
 	}
 
-	public function test_retreiving_name()
+	public function test_retrieving_name()
 	{
 		$hero = new Hero( $this->json );
 		$name = $hero->name();
-		$this->assertEquals(
-			'Kashara',
-			$name,
-			'Invalid hero name returned from kahabazz\\d3a\\Model\\Hero.'
-		);
+		$this->assertEquals( 'Kashara', $name, 'Invalid hero name returned.' );
 	}
 
-	public function test_retreiving_progression()
+	public function test_retrieving_progression()
 	{
 		$hero = new Hero( $this->json );
-		$progress = $hero->progression();
+		$progress = $hero->highestProgression();
 		$this->assertEquals(
 			'Highest completed: inferno act2 BetrayeroftheHoradrim',
 			$progress,
-			'Invalid hero progression returned from kahabazz\\d3a\\Model\\Hero.'
+			'Invalid hero progression returned.'
 		);
 	}
 
-	public function test_retreiving_skills()
+	public function test_retrieving_skills()
 	{
 		$hero = new Hero( $this->json );
 		$skills = $hero->skills();
-		$this->assertArrayHasKey('active', $skills,
-			'Invalid hero skills returned from kahabazz\\d3a\\Model\\Hero.'
-		);
+		$this->assertArrayHasKey( 'active', $skills, 'Invalid hero skills returned.' );
 	}
 
 	public function test_retreiving_stats()
 	{
 		$hero = new Hero( $this->json );
 		$stats = $hero->stats();
-		$this->assertEquals(
-			26935.8,
-			$stats['damage'],
-			'Invalid hero stats returned from kahabazz\\d3a\\Model\\Hero.'
-		);
+		$this->assertEquals( 26935.8, $stats['damage'], 'Invalid hero stats returned.' );
 	}
 
 	/**
@@ -239,7 +196,7 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 	public function test_progression()
 	{
 		$hero = new Hero( $this->json );
-		$progression = $hero->progression();
+		$progression = $hero->highestProgression();
 		$this->assertEquals(
 			'Highest completed: inferno act2 BetrayeroftheHoradrim',
 			$progression,

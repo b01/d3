@@ -15,46 +15,118 @@ use function \Kshabazz\Slib\isArray;
  */
 class Hero
 {
-	const
-		APS_DUAL_WIELD_BONUS = 0.15,
-		CRITICAL_HIT_CHANCE_BONUS = 0.08,
-		CRITICAL_HIT_DAMAGE_BONUS = 0.05;
+	/**
+	 * @var int
+	 */
+	private $id;
 
-	protected
-		$armor,
-		$battleNet,
-		$class,
-		$coldResist,
-		$criticalHitChance,
-		$criticalHitDamage,
-		$dexterity,
-		$dodgeChance,
-		$dualWield,
-		$fireResist,
-		$gender,
-		$hardcore,
-		$id,
-		$intelligence,
-		$items,
-		$json,
-		$lastUpdated,
-		$level,
-		$lightingResist,
-		$multiplierDex,
-		$multiplierInt,
-		$multiplierStr,
-		$multiplierVit,
-		$name,
-		$paragonLevel,
-		$physicalResist,
-		$poisonResist,
-		$primaryAttribute,
-		$primeStats,
-		$progress,
-		$skills,
-		$stats,
-		$strength,
-		$vitality;
+	/**
+	 * @var string
+	 */
+	private $name;
+
+	/**
+	 * @var string {barbarian|crusader|demon-hunter|monk|witch-doctor|wizard}
+	 */
+	private $class;
+
+	/**
+	 * @var int
+	 */
+	private $gender;
+
+	/**
+	 * @var int
+	 */
+	private $level;
+
+	/**
+	 * @var int
+	 */
+	private $paragonLevel;
+
+	/**
+	 * @var bool
+	 */
+	private $hardcore;
+
+	/**
+	 * @var array {active|passive}
+	 * example:
+	 * "skills": {
+			"active": [
+				{
+					"skill" : {
+					"slug" : "fists-of-thunder",
+					"name" : "Fists of Thunder",
+					"icon" : "monk_fistsofthunder",
+					"level" : [''];
+					"categorySlug" : "primary",
+					"tooltipUrl" : "skill/monk/fists-of-thunder",
+					"description" : "Generate: 14 Spirit per attack\r\n\r\nTeleport to your target and unleash a series of extremely fast punches that deal 122% weapon damage as Lightning.\r\n\r\nEvery third hit deals 183% weapon damage as Lightning split between all enemies in front of you.",
+					"simpleDescription" : "Generate: 14 Spirit per attack\r\n\r\nTeleport to your target and attack it with a series of rapid punches.",
+					"skillCalcId" : "a"
+				}
+			],
+			"passive": [
+				...
+			]
+		};
+	 */
+	private $skills;
+
+	/**
+	 * @var array
+	 * example:
+	 * "items" : {
+	 *      "mainHand" : {
+	 *      "id" : "FistWeapon_1H_000",
+	 *      "name" : "Worn Knuckles",
+	 *      "icon" : "fistweapon_1h_000_demonhunter_male",
+	 *      "displayColor" : "white",
+	 *      "tooltipParams" : "item/ChoIqvDNpwMSBwgEFScYtUkwiQI4kANAAGCQAxjO4KibCVAIWAI",
+	 *      "randomAffixes" : [ ],
+	 *      "craftedBy" : [ ]
+	 *  }
+	 * }
+	 */
+	private $items;
+
+	/**
+	 * @var array
+	 */
+	private $followers;
+
+
+	/**
+	 * @var object
+	 */
+	private $stats;
+
+	/**
+	 * @var array
+	 */
+	private $kills;
+
+	/**
+	 * @var array
+	 * "progression" : {
+	 *  "act1" : {
+	 *      "completed" : false,
+	 *      "completedQuests" : [ ]
+	 * }, ...
+	 */
+	private $progression;
+
+	/**
+	 * @var bool
+	 */
+	private $dead;
+
+	/**
+	 * @var int
+	 */
+	private $lastUpdated;
 
 	/**
 	 * Constructor
@@ -63,34 +135,91 @@ class Hero
 	 */
 	public function __construct( $pJson )
 	{
-		$this->dualWield = FALSE;
 		$this->json = $pJson;
-		// base data every hero starts with.
-		$this->armor = 7;
-		$this->criticalHitChance = 0.05;
-		$this->criticalHitDamage = 0.50;
-		$this->dexterity = 7;
-		$this->dodgeChance = 0.01;
-		$this->dualWield = FALSE;
-		$this->intelligence = 7;
-		$this->strength = 7;
-		$this->vitality = 7;
-		$this->coldResist = 1;
-		$this->fireResist = 1;
-		$this->lightingResist = 1;
-		$this->poisonResist = 1;
-		$this->physicalResist = 1;
+		$this->init();
+		$this->data = \json_decode( $pJson, TRUE );
+		$this->stats = $this->data['stats'];
+		$this->kills = $this->data['kills'];
+		$this->dead = $this->data['dead'];
+		$this->name = $this->data['name'];
+		$this->gender = (int) $this->data['gender'];
+		$this->level = (int) $this->data['level'];
+		$this->followers = $this->data['followers'];
+		$this->hardcore = $this->data['hardcore'];
+		$this->class = $this->data['class'];
+		$this->items = $this->data['items'];
+		$this->lastUpdated = (int) $this->data['last-updated'];
+		$this->id = (int) $this->data['id'];
+		$this->skills = $this->data['skills'];
+		// Properties that may be empty, if a new character.
+		if ( array_key_exists('progress', $this->data))
+		{
+			$this->progress = $this->data[ 'progress' ];
+		}
+		else
+		{
+			$this->progression = $this->data['progression'];
+		}
+	}
 
-		$this->init()
-			 ->levelUpBonuses();
+	/**
+	 * Use the hero's class to determine the primary attribute.
+	 *
+	 * @return string
+	 */
+	private function determinePrimaryAttribute()
+	{
+		$primaryAttribute = NULL;
+		switch( $this->class )
+		{
+			case "monk":
+			case "demon hunter":
+			case "demon-hunter":
+				$primaryAttribute = "Dexterity_Item";
+				break;
+			case "crusader":
+			case "barbarian":
+				$primaryAttribute = "Strength_Item";
+				break;
+			case "wizard":
+			case "witch-doctor":
+			case "witch doctor":
+			case "shaman":
+				$primaryAttribute = "Intelligence_Item";
+				break;
+			default:
+				$trace = debug_backtrace();
+				trigger_error(
+					'There is no hero class ' . $this->class .
+					'. Error occurred in ' . $trace[ 0 ][ 'file' ] . ' on line ' . $trace[ 0 ][ 'line' ],
+					E_USER_NOTICE
+				);
+		}
+		return $primaryAttribute;
+	}
 
-		// grab these after they have been computed.
-		$this->primeStats = [
-			'dexterity' => $this->dexterity,
-			'intelligence' => $this->intelligence,
-			'strength' => $this->strength,
-			'vitality' => $this->vitality
-		];
+	/**
+	 * @return $this
+	 * @throws \Exception
+	 */
+	private function init()
+	{
+		// decode battle.net data to an array.
+		$this->data = \json_decode( $this->json, TRUE );
+		// verify the JSON is legit.
+		if ( \array_key_exists('code', $this->data))
+		{
+			$reason = '';
+			if ( \array_key_exists('reason', $this->data))
+			{
+				$reason = $this->data[ 'reason' ];
+			}
+			$errorMessage = 'There wan an error with the hero JSON.';
+			$errorMessage .= ' ' . $reason;
+			throw new \Exception($errorMessage);
+		}
+
+		return $this;
 	}
 
 	/**
@@ -103,50 +232,6 @@ class Hero
 	}
 
 	/**
-	 * Based on the character's class.
-	 *
-	 * @return Hero
-	 */
-	protected function determinePrimaryAttribute()
-	{
-		switch( $this->class )
-		{
-			case "monk":
-			case "demon hunter":
-			case "demon-hunter":
-				$this->primaryAttribute = "Dexterity_Item";
-				break;
-			case "crusader":
-			case "barbarian":
-				$this->primaryAttribute = "Strength_Item";
-				break;
-			case "wizard":
-			case "witch-doctor":
-			case "witch doctor":
-			case "shaman":
-				$this->primaryAttribute = "Intelligence_Item";
-				break;
-			default:
-				$trace = debug_backtrace();
-				trigger_error(
-					'There is no hero class ' . $this->class .
-					'. Error occurred in ' . $trace[ 0 ][ 'file' ] . ' on line ' . $trace[ 0 ][ 'line' ],
-					E_USER_NOTICE
-				);
-		}
-		return $this;
-	}
-
-	/**
-	 * Dexterity
-	 * @return int
-	 */
-	public function dexterity()
-	{
-		return $this->dexterity;
-	}
-
-	/**
 	 * Get data from the hero JSON data retrieved from Battle.net API.
 	 *
 	 * @param string $pProperty
@@ -156,12 +241,12 @@ class Hero
 	 */
 	public function get( $pProperty, $pType = 'string' )
 	{
-		if ( array_key_exists($pProperty, $this->battleNet) )
+		if ( array_key_exists($pProperty, $this->data) )
 		{
-			setType( $this->battleNet[$pProperty], $pType );
-			return $this->battleNet[ $pProperty ];
+			setType( $this->data[$pProperty], $pType );
+			return $this->data[ $pProperty ];
 		}
-		throw new \Exception( 'Class \Kshabazz\d3a\BattleNet\Models\Hero has no property ' . $pProperty );
+		throw new \Exception( 'Hero has no property ' . $pProperty );
 	}
 
 	/**
@@ -173,188 +258,26 @@ class Hero
 	}
 
 	/**
-	 * @return int
-	 */
-	public function id()
-	{
-		return $this->id;
-	}
-
-	/**
-	 * Initialize this object.
-	 * @return $this
-	 * @throws \Exception
-	 */
-	protected function init()
-	{
-		// decode battle.net data to an array.
-		$this->battleNet = json_decode( $this->json, TRUE );
-		// verify the JSON is legit.
-		if (array_key_exists('code', $this->battleNet))
-		{
-			if (array_key_exists('reason', $this->battleNet))
-			{
-				$reason = $this->battleNet[ 'reason' ];
-			}
-			$errorMessage = 'There wan an error with the hero JSON.';
-			$errorMessage .= ' ' . $reason;
-			throw new \Exception($errorMessage);
-		}
-		// shortcuts to some data in the Battle.net JSON.
-		$this->class = $this->battleNet[ 'class' ];
-		$this->id = ( int ) $this->battleNet[ 'id' ];
-		$this->gender = ( int ) $this->battleNet[ 'gender' ];
-		$this->hardcore = ( bool ) $this->battleNet[ 'hardcore' ];
-		$this->items = $this->battleNet[ 'items' ];
-		$this->lastUpdated = ( int ) $this->battleNet[ 'last-updated' ];
-		$this->level = ( int ) $this->battleNet[ 'level' ];
-		$this->name = $this->battleNet[ 'name' ];
-		$this->paragonLevel = ( int ) $this->battleNet[ 'paragonLevel' ];
-		if ( array_key_exists('progress', $this->battleNet))
-		{
-			$this->progress = $this->battleNet[ 'progress' ];
-		}
-		$this->skills = $this->battleNet[ 'skills' ];
-		$this->stats = $this->battleNet[ 'stats' ];
-
-		$this->determinePrimaryAttribute();
-
-		return $this;
-	}
-
-	/**
-	 * Determine if a hero is brandishing a weapon in each hand.
-	 */
-	public function isDualWielding()
-	{
-		// TODO: test!
-		if ( array_key_exists('mainHand', $this->items)
-			&& !$this->items['mainHand']->type['twoHanded']
-			&& array_key_exists('offHand', $this->items) )
-		{
-			$this->dualWield = isWeapon( $this->items['mainHand']->type )
-				&& isWeapon( $this->items['offHand']->type );
-		}
-
-		return $this->dualWield;
-	}
-
-	/**
-	 * Intelligence
-	 * @return int
-	 */
-	public function intelligence()
-	{
-		return $this->intelligence;
-	}
-
-	/**
-	 * @return int
-	 */
-	public function items()
-	{
-		return $this->items;
-	}
-
-	/**
-	 * @return string JSON from battle.net
-	 */
-	public function json()
-	{
-		return $this->json;
-	}
-
-	/**
-	 * return string
-	 */
-	public function lastUpdated()
-	{
-		return $this->lastUpdated;
-	}
-
-	/**
-	 * Level
-	 * @return int
-	 */
-	public function level()
-	{
-		return $this->level;
-	}
-
-	/**
-	 * Paragon level
-	 * @return int
-	 */
-	public function paragonLevel()
-	{
-		return $this->paragonLevel;
-	}
-
-	/**
-	 * Add in addition attributes from level bonus.
-	 */
-	protected function levelUpBonuses()
-	{
-		$this->multiplierDex = ( $this->primaryAttribute === 'Dexterity_Item' ) ? 3 : 1;
-		$this->multiplierInt = ( $this->primaryAttribute === 'Intelligence_Item' ) ? 3 : 1;
-		$this->multiplierStr = ( $this->primaryAttribute === 'Strength_Item' ) ? 3 : 1;
-		$this->multiplierVit = ( $this->primaryAttribute === 'Vitality_Item' ) ? 3 : 1;
-
-		// These totals are based on level, all increment by 1 per level, except the primary, which increments by 3.
-		// based on hero class.
-		$totalLevel = $this->level + $this->paragonLevel;
-		$this->dexterity += ( $totalLevel * $this->multiplierDex );
-		$this->intelligence += ( $totalLevel * $this->multiplierInt );
-		$this->strength += ( $totalLevel * $this->multiplierStr );
-		$this->vitality += ( $totalLevel * $this->multiplierStr );
-
-		return $this;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function name()
-	{
-		return $this->name;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function primaryAttribute()
-	{
-		return $this->primaryAttribute;
-	}
-
-	/**
-	 * Prime stats
-	 * @return array
-	 */
-	public function primeStats()
-	{
-		return $this->primeStats;
-	}
-
-	/**
-	 * Determine the highest level completed.
+	 * Get the highest level completed.
 	 *
 	 * @return string
 	 */
-	public function progression()
+	public function highestProgression()
 	{
-		if ( $this->progress === NULL )
+		if ( !\is_array($this->progress) )
 		{
 			return '';
 		}
 		// Enjoy the flying V!
 		$returnValue = '';
-		foreach ( $this->progress as $level => $progresssion )
+		foreach ( $this->progress as $level => $progression )
 		{
-			if ( isArray($progresssion) )
+			// When the level was not skipped.
+			if ( isArray($progression) )
 			{
-				foreach ( $progresssion as $act => $progress )
+				foreach ( $progression as $act => $progress )
 				{
+					// When the quest is completed.
 					if ( isArray($progress['completedQuests']) )
 					{
 						$length = count( $progress['completedQuests'] ) - 1;
@@ -364,6 +287,101 @@ class Hero
 			}
 		}
 		return $returnValue;
+	}
+
+	/**
+	 * @return int
+	 */
+	public function id()
+	{
+		return $this->id;
+	}
+
+	/**
+	 * Determine if a hero is brandishing a weapon in each hand.
+	 */
+	public function isDualWielding()
+	{
+//		// TODO: test!
+//		if ( array_key_exists('mainHand', $this->items)
+//			&& !$this->items['mainHand']->type['twoHanded']
+//			&& array_key_exists('offHand', $this->items) )
+//
+		return $this->mainHand()->isWeapon() && $this->offHand()->isWeapon();
+	}
+
+	/**
+	 * Get items.
+	 *
+	 * @return array
+	 */
+	public function items()
+	{
+		return $this->items;
+	}
+
+	/**
+	 * Get JSON.
+	 *
+	 * @return string JSON passed into constructor.
+	 */
+	public function json()
+	{
+		return $this->json;
+	}
+
+	/**
+	 * Get when last updated.
+	 *
+	 * @return string
+	 */
+	public function lastUpdated()
+	{
+		return $this->lastUpdated;
+	}
+
+	/**
+	 * Get level.
+	 *
+	 * @return int
+	 */
+	public function level()
+	{
+		return $this->level;
+	}
+
+	/**
+	 * Get name.
+	 *
+	 * @return string
+	 */
+	public function name()
+	{
+		return $this->name;
+	}
+
+	/**
+	 * Get paragon level.
+	 *
+	 * @return int
+	 */
+	public function paragonLevel()
+	{
+		return $this->paragonLevel;
+	}
+
+	/**
+	 * Get primary attribute.
+	 *
+	 * @return string
+	 */
+	public function primaryAttribute()
+	{
+		if (!isset($this->primaryAttribute) )
+		{
+			$this->primaryAttribute = $this->determinePrimaryAttribute();
+		}
+		return $this->primaryAttribute;
 	}
 
 	/**
@@ -384,24 +402,6 @@ class Hero
 	public function stats()
 	{
 		return $this->stats;
-	}
-
-	/**
-	 * Strength
-	 * @return int
-	 */
-	public function strength()
-	{
-		return $this->strength;
-	}
-
-	/**
-	 * Vitality
-	 * @return int
-	 */
-	public function vitality()
-	{
-		return $this->vitality;
 	}
 }
 // Writing below this line can cause headers to be sent before intended ?>
