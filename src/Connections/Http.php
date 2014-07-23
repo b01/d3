@@ -108,8 +108,13 @@ class Http extends \Kshabazz\Slib\HttpRequester implements Connection
 		{
 			// retrieve the item JSON from the at the constructed URL
 			$this->url = sprintf( self::D3_API_ITEM_URL, $pItemId );
-			// Return the response text.
-			$returnValue = $this->send();
+			// Request the item.
+			$response = $this->send();
+			// When the response is good, return the response text.
+			if ( $this->responseCode() === 200 )
+			{
+				$returnValue = $response;
+			}
 		}
 		catch( \Exception $pError )
 		{

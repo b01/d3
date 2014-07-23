@@ -8,6 +8,8 @@
  * @copyright (c) 2012-2013 diablo-3-assistant by Khalifah K. Shabazz
  * timestamp: 11/23/13:8:21 AM
  */
+use \Kshabazz\BattleNet\D3\Models\Item,
+	\Kshabazz\BattleNet\D3\Connections\Http;
 use function \Kshabazz\Slib\isArray;
  /**
  * Class Hero
@@ -16,19 +18,19 @@ use function \Kshabazz\Slib\isArray;
 class Hero
 {
 	/**
-	 * @var int
-	 */
-	private $id;
-
-	/**
-	 * @var string
-	 */
-	private $name;
-
-	/**
 	 * @var string {barbarian|crusader|demon-hunter|monk|witch-doctor|wizard}
 	 */
 	private $class;
+
+	/**
+	 * @var bool
+	 */
+	private $dead;
+
+	/**
+	 * @var array
+	 */
+	private $followers;
 
 	/**
 	 * @var int
@@ -36,9 +38,51 @@ class Hero
 	private $gender;
 
 	/**
+	 * @var bool
+	 */
+	private $hardcore;
+
+	/**
+	 * @var int
+	 */
+	private $id;
+
+	/**
+	 * @var array
+	 * example:
+	 * "items" : {
+	 *      "mainHand" : {
+	 *      "id" : "FistWeapon_1H_000",
+	 *      "name" : "Worn Knuckles",
+	 *      "icon" : "fistweapon_1h_000_demonhunter_male",
+	 *      "displayColor" : "white",
+	 *      "tooltipParams" : "item/ChoIqvDNpwMSBwgEFScYtUkwiQI4kANAAGCQAxjO4KibCVAIWAI",
+	 *      "randomAffixes" : [ ],
+	 *      "craftedBy" : [ ]
+	 *  }
+	 * }
+	 */
+	private $items;
+
+	/**
+	 * @var array
+	 */
+	private $kills;
+
+	/**
+	 * @var int
+	 */
+	private $lastUpdated;
+
+	/**
 	 * @var int
 	 */
 	private $level;
+
+	/**
+	 * @var string
+	 */
+	private $name;
 
 	/**
 	 * @var int
@@ -46,9 +90,14 @@ class Hero
 	private $paragonLevel;
 
 	/**
-	 * @var bool
+	 * @var array
+	 * "progression" : {
+	 *  "act1" : {
+	 *      "completed" : false,
+	 *      "completedQuests" : [ ]
+	 * }, ...
 	 */
-	private $hardcore;
+	private $progression;
 
 	/**
 	 * @var array {active|passive}
@@ -75,58 +124,11 @@ class Hero
 	 */
 	private $skills;
 
-	/**
-	 * @var array
-	 * example:
-	 * "items" : {
-	 *      "mainHand" : {
-	 *      "id" : "FistWeapon_1H_000",
-	 *      "name" : "Worn Knuckles",
-	 *      "icon" : "fistweapon_1h_000_demonhunter_male",
-	 *      "displayColor" : "white",
-	 *      "tooltipParams" : "item/ChoIqvDNpwMSBwgEFScYtUkwiQI4kANAAGCQAxjO4KibCVAIWAI",
-	 *      "randomAffixes" : [ ],
-	 *      "craftedBy" : [ ]
-	 *  }
-	 * }
-	 */
-	private $items;
-
-	/**
-	 * @var array
-	 */
-	private $followers;
-
 
 	/**
 	 * @var object
 	 */
 	private $stats;
-
-	/**
-	 * @var array
-	 */
-	private $kills;
-
-	/**
-	 * @var array
-	 * "progression" : {
-	 *  "act1" : {
-	 *      "completed" : false,
-	 *      "completedQuests" : [ ]
-	 * }, ...
-	 */
-	private $progression;
-
-	/**
-	 * @var bool
-	 */
-	private $dead;
-
-	/**
-	 * @var int
-	 */
-	private $lastUpdated;
 
 	/**
 	 * Constructor
@@ -196,6 +198,27 @@ class Hero
 				);
 		}
 		return $primaryAttribute;
+	}
+
+	/**
+	 * Item in the main hand.
+	 *
+	 * @param Http $pHttp
+	 * @param string $pKey
+	 * @return \Kshabazz\BattleNet\D3\Models\Item|null
+	 */
+	private function getItem( Http $pHttp, $pKey )
+	{
+		if ( array_key_exists($pKey, $this->items) )
+		{
+			$itemHash = $this->items[ $pKey ][ 'tooltipParams' ];
+			if ( !empty($itemHash) )
+			{
+				$itemJson = $pHttp->getItem( $itemHash );
+				return new Item( $itemJson );
+			}
+		}
+		return NULL;
 	}
 
 	/**
@@ -298,7 +321,19 @@ class Hero
 	}
 
 	/**
+	 * Indicates whether the Hero has fallen.
+	 *
+	 * @return bool
+	 */
+	public function isDead()
+	{
+		return (bool) $this->dead;
+	}
+
+	/**
 	 * Determine if a hero is brandishing a weapon in each hand.
+	 *
+	 * @return bool
 	 */
 	public function isDualWielding()
 	{
@@ -351,6 +386,17 @@ class Hero
 	}
 
 	/**
+	 * Item in the main hand.
+	 *
+	 * @param Http $pHttp
+	 * @return Item|null
+	 */
+	public function mainHand( Http $pHttp )
+	{
+		return $this->getItem( $pHttp, 'mainHand' );
+	}
+
+	/**
 	 * Get name.
 	 *
 	 * @return string
@@ -358,6 +404,17 @@ class Hero
 	public function name()
 	{
 		return $this->name;
+	}
+
+	/**
+	 * Get off-hand item.
+	 *
+	 * @param Http $pHttp
+	 * @return Item|null
+	 */
+	public function offHand( Http $pHttp )
+	{
+		return $this->getItem( $pHttp, 'offHand' );
 	}
 
 	/**
@@ -382,6 +439,15 @@ class Hero
 			$this->primaryAttribute = $this->determinePrimaryAttribute();
 		}
 		return $this->primaryAttribute;
+	}
+
+	/**
+	 * Get hero act progress.
+	 * @return array
+	 */
+	public function progression()
+	{
+		return $this->progression;
 	}
 
 	/**

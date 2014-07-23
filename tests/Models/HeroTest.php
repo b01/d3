@@ -126,7 +126,35 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 	{
 		$hero = new Hero( $this->json );
 		$stats = $hero->stats();
-		$this->assertEquals( 26935.8, $stats['damage'], 'Invalid hero stats returned.' );
+		$this->assertArrayHasKey( 'arcaneResist', $stats, 'arcaneResist key not found in hero stats.' );
+		$this->assertArrayHasKey( 'armor', $stats, 'armor key not found in hero stats.' );
+		$this->assertArrayHasKey( 'attackSpeed', $stats, 'attackSpeed key not found in hero stats.' );
+		$this->assertArrayHasKey( 'blockAmountMax', $stats, 'blockAmountMax key not found in hero stats.' );
+		$this->assertArrayHasKey( 'blockAmountMin', $stats, 'blockAmountMin key not found in hero stats.' );
+		$this->assertArrayHasKey( 'blockChance', $stats, 'blockChance key not found in hero stats.' );
+		$this->assertArrayHasKey( 'coldResist', $stats, 'coldResist key not found in hero stats.' );
+		$this->assertArrayHasKey( 'critChance', $stats, 'critChance key not found in hero stats.' );
+		$this->assertArrayHasKey( 'critDamage', $stats, 'critDamage key not found in hero stats.' );
+		$this->assertArrayHasKey( 'damage', $stats, 'damage key not found in hero stats.' );
+		$this->assertArrayHasKey( 'damageIncrease', $stats, 'damageIncrease key not found in hero stats.' );
+		$this->assertArrayHasKey( 'damageReduction', $stats, 'damageReduction key not found in hero stats.' );
+		$this->assertArrayHasKey( 'dexterity', $stats, 'dexterity key not found in hero stats.' );
+		$this->assertArrayHasKey( 'fireResist', $stats, 'fireResist key not found in hero stats.' );
+		$this->assertArrayHasKey( 'goldFind', $stats, 'goldFind key not found in hero stats.' );
+		$this->assertArrayHasKey( 'intelligence', $stats, 'intelligence key not found in hero stats.' );
+		$this->assertArrayHasKey( 'life', $stats, 'life key not found in hero stats.' );
+		$this->assertArrayHasKey( 'lifeOnHit', $stats, 'lifeOnHit key not found in hero stats.' );
+		$this->assertArrayHasKey( 'lifePerKill', $stats, 'lifePerKill key not found in hero stats.' );
+		$this->assertArrayHasKey( 'lifeSteal', $stats, 'lifeSteal key not found in hero stats.' );
+		$this->assertArrayHasKey( 'lightningResist', $stats, 'lightningResist key not found in hero stats.' );
+		$this->assertArrayHasKey( 'magicFind', $stats, 'magicFind key not found in hero stats.' );
+		$this->assertArrayHasKey( 'physicalResist', $stats, 'physicalResist key not found in hero stats.' );
+		$this->assertArrayHasKey( 'poisonResist', $stats, 'poisonResist key not found in hero stats.' );
+		$this->assertArrayHasKey( 'primaryResource', $stats, 'primaryResource key not found in hero stats.' );
+		$this->assertArrayHasKey( 'secondaryResource', $stats, 'secondaryResource key not found in hero stats.' );
+		$this->assertArrayHasKey( 'strength', $stats, 'strength key not found in hero stats.' );
+		$this->assertArrayHasKey( 'thorns', $stats, 'thorns key not found in hero stats.' );
+		$this->assertArrayHasKey( 'vitality', $stats, 'vitality key not found in hero stats.' );
 	}
 
 	/**
@@ -193,15 +221,33 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 	/**
 	 * @vcr hero.yml
 	 */
-	public function test_progression()
+	public function test_highest_progression()
 	{
 		$hero = new Hero( $this->json );
 		$progression = $hero->highestProgression();
 		$this->assertEquals(
 			'Highest completed: inferno act2 BetrayeroftheHoradrim',
 			$progression,
-			'Invaslid progreesion produced.'
+			'Invalid progression value.'
 		);
+	}
+
+	public function test_primary_attribute()
+	{
+		$hero = new Hero( $this->json );
+		$primaryAttribute = $hero->primaryAttribute();
+		$this->assertEquals(
+			'Intelligence_Item',
+			$primaryAttribute,
+			'Incorrect primary attribute returned.'
+		);
+	}
+
+	public function test_is_dead()
+	{
+		$hero = new Hero( $this->json );
+		$isDead = $hero->isDead();
+		$this->assertFalse( $isDead, 'isDead returned unexpected value.' );
 	}
 }
 ?>
