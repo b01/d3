@@ -3,18 +3,169 @@
  * Get the users item from Battle.Net and present it to the user; store it locally in a database
  * behind the scenes. The item will only be updated after a few ours of retrieving it.
  */
-use Kshabazz\BattleNet\D3\Models;
+
 /**
  * Class Item
+ * http://us.battle.net/api/d3/data/item/Cj0I-bvTgAsSBwgEFdosyssdb2mxyh10HmzAHfKS3AgdcIt38CILCAEVbEIDABgWICAwiQI4_AJAAFAMYJUDGMvMrsMGUABYAg&extra=0&showClose=1
  * @package Kshabazz\BattleNet\D3\Models
  */
-class Item extends Model
+class Item implements \JsonSerializable
 {
-    protected
-        $effects,
-        $item,
-        $tooltipParams,
-        $type;
+	/**
+	 * @var bool
+	 */
+	private $accountBound;
+
+	/**
+	 * @var array
+	 * example: "attacksPerSecond" : {
+	 *  "min" : 1.2999999523162842,
+	 *  "max" : 1.2999999523162842
+	 * }
+	 */
+	private $attacksPerSecond;
+
+	/**
+	 * @var object
+	 * example: "attributes" : {
+		"primary" : [ {
+		"text" : "+211 Strength",
+		"affixType" : "default",
+		"color" : "blue"
+		}, {
+		"text" : "+112 Vitality",
+		"affixType" : "default",
+		"color" : "blue"
+		}, {
+		"text" : "2.80% of Damage Dealt Is Converted to Life",
+		"affixType" : "default",
+		"color" : "blue"
+		} ],
+		"secondary" : [ ],
+		"passive" : [ ]
+		}
+	 */
+	private $attributes;
+
+	/**
+	 * @var array
+	 * example: "attributesRaw" : {
+	 *  "Durability_Max_Before_Reforge" : { "min" : 403.0, "max" : 403.0 },
+	 *  ...
+	 * }
+	 */
+	private $attributesRaw;
+
+	/**
+	 * @var int
+	 */
+	private $bonusAffixes;
+
+	/**
+	 * @var int
+	 */
+	private $bonusAffixesMax;
+
+	/**
+	 * @var object
+	 */
+	private $craftedBy;
+
+	/**
+	 * @var string
+	 */
+	private $displayColor;
+
+	/**
+	 * @var array
+	 * "dps" : {
+			"min" : 206.69999241828918,
+			"max" : 206.69999241828918
+	 *  }
+	 */
+	private $dps;
+
+	/**
+	 * @var array
+	 */
+	private $gems;
+
+	/**
+	 * @var string
+	 */
+	private $icon;
+
+	/**
+	 * @var string
+	 */
+	private $id;
+
+	/**
+	 * @var int
+	 */
+	private $itemLevel;
+
+	/**
+	 * @var array
+	 * example: "maxDamage" : {
+	 *  "min" : 206.0,
+	 *  "max" : 206.0
+	 * }
+	 */
+	private $maxDamage;
+
+	/**
+	 * @var array
+	 * example: "minDamage" : {
+	 *  "min" : 112.0,
+	 *  "max" : 112.0
+	 * }
+	 */
+	private $minDamage;
+
+	/**
+	 * @var string
+	 */
+	private $name;
+
+	/**
+	 * @var array
+	 */
+	private $socketEffects;
+
+	/**
+	 * @var array
+	 */
+	private $randomAffixes;
+
+	/**
+	 * @var object
+	 */
+	private $recipe;
+
+	/**
+	 * @var int
+	 */
+	private $requiredLevel;
+
+	/**
+	 * @var string ex: item/CioI4YeygAgSBwgEFcgYShEdhBF1FR2dbLMUHape7nUwDTiTA0AAUApgkwMYkOPQlAI
+	 */
+	private $tooltipParams;
+
+	/**
+	 * @var string
+	 */
+	private $typeName;
+
+	/**
+	 * @var array
+	 *  "type" : {
+	 *      "twoHanded" : false,
+	 *      "id" : "MightyWeapon1H"
+	 * }
+	 */
+	private $type;
 
 	public static $offHandTypes = [
 			"offhandother",
@@ -49,40 +200,111 @@ class Item extends Model
 			"bow"
 		];
 
-	protected
-		$damage,
-		$damageAttributes;
-
 	/**
 	 * Constructor
 	 * @param $pJson
 	 */
 	public function __construct( $pJson )
 	{
-		parent::__construct( $pJson );
-		if ( $this->isWeapon($this->type) )
-		{
-			$this->calculateDamage();
-		}
-		$this->getEffects();
-	}
-
-    /**
-     * Damage the item can do, if weapon.
-     * @return int
-     */
-    public function damage()
-	{
-		return $this->damage;
+		$this->json = $pJson;
+		$this->data = \json_decode( $this->json );
+		$this->init();
 	}
 
 	/**
-	* Get list string of item effect.
-	* @return string
-	*/
+	 * Get any property that isset.
+	 * 
+	 * @param $pName
+	 * @return mixed
+	 * @thows \Exception
+	 */
+	public function __get( $pName )
+	{
+		return $this->{$pName};
+	}
+
+	/**
+	 * Compute [min, max] damage for the tool-tip.
+	 *
+	 * Damage the item can do, if weapon.
+	 * @return mixed
+	 */
+	public function damage()
+	{
+		$returnValue = [ 'min' => 0.0, 'max' => 0.0 ];
+		foreach ( $this->attributesRaw as $attribute => $value )
+		{
+			if ( strpos($attribute, "Damage_Weapon_Min") !== FALSE )
+			{
+				$returnValue[ 'min' ] += ( float ) $value[ 'min' ];
+				$returnValue[ 'max' ] += ( float ) $value[ 'min' ];
+			}
+			if ( strpos($attribute, "Damage_Weapon_Delta") !== FALSE )
+			{
+				$returnValue[ 'max' ] += ( float ) $value[ 'min' ];
+			}
+		}
+		return $returnValue;
+	}
+
+	/**
+	 *  Get name of an items special effects.
+	 * Get list string of item effect.
+	 * @return string
+	 */
 	public function effects()
 	{
-		return $this->effects;
+		$returnValue = '';
+		if ( array_key_exists("Damage_Weapon_Min#Poison", $this->attributesRaw) )
+		{
+			$returnValue .= " poison";
+		}
+		if ( array_key_exists("Armor_Item", $this->attributesRaw) )
+		{
+			$returnValue .= " armor";
+		}
+		return $returnValue;
+	}
+
+	/**
+	 * Get item ID.
+	 *
+	 * @return mixed
+	 */
+	public function id()
+	{
+		return $this->id;
+	}
+
+
+	/**
+	 * Initialize all the properties for this object.
+	 */
+	private function init()
+	{
+		$this->accountBound = $this->data->accountBound;
+		$this->attacksPerSecond = $this->data->attacksPerSecond;
+		$this->attributes = $this->data->attributes;
+		$this->attributesRaw = $this->data->attributesRaw;
+		$this->bonusAffixes = $this->data->bonusAffixes;
+		$this->bonusAffixesMax = $this->data->bonusAffixesMax;
+		$this->craftedBy = $this->data->craftedBy;
+		$this->displayColor = $this->data->displayColor;
+		$this->dps = $this->data->dps;
+		$this->gems = $this->data->gems;
+		$this->icon = $this->data->icon;
+		$this->id = $this->data->id;
+		$this->itemLevel = $this->data->itemLevel;
+		$this->maxDamage = $this->data->maxDamage;
+		$this->minDamage = $this->data->minDamage;
+		$this->name = $this->data->name;
+		$this->socketEffects = $this->data->socketEffects;
+		$this->randomAffixes = $this->data->randomAffixes;
+		$this->recipe = $this->data->recipe;
+		$this->requiredLevel = ( int ) $this->data->requiredLevel;
+		$this->tooltipParams = $this->data->tooltipParams;
+		$this->typeName = $this->data->typeName;
+		$this->type = $this->data->type;
 	}
 
 	/**
@@ -95,6 +317,16 @@ class Item extends Model
 	{
 		$itemType = strtolower( $pItemType['id'] );
 		return in_array( $itemType, self::$oneHandWeaponTypes );
+	}
+
+	public function __toString()
+	{
+		return json_encode( $this, JSON_PRETTY_PRINT );
+	}
+
+	public function jsonSerialize()
+	{
+		return json_encode( $this->json );
 	}
 
     /**
@@ -113,55 +345,6 @@ class Item extends Model
 	public function type()
 	{
 		return $this->type;
-	}
-
-	/** END	GETTER/SETTER **/
-
-	/**
-	* Compute min - max damage range for the tool-tip.
-	* @return ItemModel
-	*/
-	protected function calculateDamage()
-	{
-		$this->damage = [
-			"min" => 0.0,
-			"max" => 0.0
-		];
-		$this->damageAttributes = [];
-		foreach ( $this->attributesRaw as $attribute => $value )
-		{
-			if ( strpos($attribute, "Damage_Weapon_Min") !== FALSE )
-			{
-				$this->damage[ 'min' ] += ( float ) $value[ 'min' ];
-				$this->damage[ 'max' ] += ( float ) $value[ 'min' ];
-				$this->damageAttributes[ $attribute ] = $value;
-			}
-			if ( strpos($attribute, "Damage_Weapon_Delta") !== FALSE )
-			{
-				$this->damage[ 'max' ] += ( float ) $value[ 'min' ];
-				$this->damageAttributes[ $attribute ] = $value;
-			}
-		}
-		return $this;
-	}
-
-    /**
-     *  Get name of an items special effects.
-     * @return $this
-     */
-    protected function getEffects()
-	{
-		$effects = '';
-		if ( array_key_exists("Damage_Weapon_Min#Poison", $this->attributesRaw) )
-		{
-			$effects .= " poison";
-		}
-		if ( array_key_exists("Armor_Item", $this->attributesRaw) )
-		{
-			$effects .= " armor";
-		}
-		$this->effects = $effects;
-		return $this;
 	}
 }
 ?>

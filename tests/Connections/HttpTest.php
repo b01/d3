@@ -60,7 +60,7 @@ class HttpTest extends \PHPUnit_Framework_TestCase
 		$bnr = new \Kshabazz\BattleNet\D3\Connections\Http( $this->battleNetId );
 		$itemJson = $bnr->getItem( 'item/COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD' );
 		$item = new \Kshabazz\BattleNet\D3\Models\Item( $itemJson );
-		$this->assertEquals( 'MightyWeapon1H_202', $item->id, 'Invalid item returned.' );
+		$this->assertEquals( 'MightyWeapon1H_202', $item->id(), 'Invalid item returned.' );
 	}
 
 	/**
