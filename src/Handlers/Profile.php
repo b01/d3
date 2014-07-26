@@ -50,7 +50,7 @@ class Profile implements Handler
 	 * @param Http $pBnr
 	 * @return null|string
 	 */
-	public function getJson( \Kshabazz\BattleNet\D3\Connections\Http $pBnr )
+	public function getJson( Http $pBnr )
 	{
 		$responseText = $pBnr->getProfile();
 		// Verify that the request was successful.
@@ -73,7 +73,7 @@ class Profile implements Handler
 	{
 		// save it to the database.
 		$utcTime = gmdate( 'Y-m-d H:i:s' );
-		$query = \Kshabazz\BattleNet\D3\Connections\Sql::INSERT_PROFILE;
+		$query = Sql::INSERT_PROFILE;
 		return $this->sql->pdoQueryBind( $query, [
 			'battleNetId' => [ $this->key, \PDO::PARAM_STR ],
 			'json' => [ $this->json, \PDO::PARAM_STR ],

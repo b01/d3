@@ -213,7 +213,7 @@ class Item implements \JsonSerializable
 
 	/**
 	 * Get any property that isset.
-	 * 
+	 *
 	 * @param $pName
 	 * @return mixed
 	 * @thows \Exception
@@ -326,7 +326,7 @@ class Item implements \JsonSerializable
 
 	public function jsonSerialize()
 	{
-		return json_encode( $this->json );
+		return $this->json;
 	}
 
     /**
@@ -339,9 +339,9 @@ class Item implements \JsonSerializable
 	}
 
 	/**
-	* Get the item type.
-	* @return string
-	*/
+	 * Get the item type.
+	 * @return string
+	 */
 	public function type()
 	{
 		return $this->type;
