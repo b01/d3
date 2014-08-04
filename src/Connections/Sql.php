@@ -72,7 +72,7 @@ class Sql extends \Kshabazz\Slib\Sql implements Connection
 	{
 		if ( $pHeroId !== NULL )
 		{
-			return $this->getData( self::SELECT_HERO, [ "id" => [$pHeroId, \PDO::PARAM_STR] ]);
+			return $this->pdoQueryBind( self::SELECT_HERO, [ "id" => [$pHeroId, \PDO::PARAM_STR] ]);
 		}
 		return NULL;
 	}
