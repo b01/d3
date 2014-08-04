@@ -283,28 +283,29 @@ class Item implements \JsonSerializable
 	private function init()
 	{
 		$this->accountBound = $this->data->accountBound;
-		$this->attacksPerSecond = $this->data->attacksPerSecond;
 		$this->attributes = $this->data->attributes;
 		$this->attributesRaw = $this->data->attributesRaw;
 		$this->bonusAffixes = $this->data->bonusAffixes;
 		$this->bonusAffixesMax = $this->data->bonusAffixesMax;
 		$this->craftedBy = $this->data->craftedBy;
 		$this->displayColor = $this->data->displayColor;
-		$this->dps = $this->data->dps;
 		$this->gems = $this->data->gems;
 		$this->icon = $this->data->icon;
 		$this->id = $this->data->id;
 		$this->itemLevel = $this->data->itemLevel;
-		$this->maxDamage = $this->data->maxDamage;
-		$this->minDamage = $this->data->minDamage;
 		$this->name = $this->data->name;
 		$this->socketEffects = $this->data->socketEffects;
 		$this->randomAffixes = $this->data->randomAffixes;
-		$this->recipe = $this->data->recipe;
 		$this->requiredLevel = ( int ) $this->data->requiredLevel;
 		$this->tooltipParams = $this->data->tooltipParams;
 		$this->typeName = $this->data->typeName;
 		$this->type = $this->data->type;
+		// Fields that may NOT be on every item.
+		$this->attacksPerSecond = isset( $this->data->attacksPerSecond ) ? $this->data->attacksPerSecond : NULL;
+		$this->dps = isset( $this->data->dps ) ? $this->data->dps : NULL;
+		$this->maxDamage = isset( $this->data->maxDamage ) ? $this->data->maxDamage : NULL;
+		$this->minDamage = isset( $this->data->minDamage ) ? $this->data->minDamage : NULL;
+		$this->recipe = isset( $this->data->recipe ) ? $this->data->recipe : NULL;
 	}
 
 	/**
@@ -327,6 +328,16 @@ class Item implements \JsonSerializable
 	public function jsonSerialize()
 	{
 		return $this->json;
+	}
+
+	/**
+	 * Get recipe for constructing the item at the forge.
+	 *
+	 * @return object
+	 */
+	public function recipe()
+	{
+		return $this->recipe;
 	}
 
     /**
