@@ -30,6 +30,7 @@ class Item implements Handler
 	/**
 	 * Get item data from local database.
 	 *
+	 * @deprecated {@see \Kshabazz\BattleNet\D3\Connections\Sql::getItem}
 	 * @param \Kshabazz\BattleNet\D3\Connections\Sql $pSql
 	 * @return null
 	 */
@@ -72,6 +73,7 @@ class Item implements Handler
 	/**
 	 * Save the users item locally, in this case a database.
 	 *
+	 * @deprecated {@see \Kshabazz\BattleNet\D3\Connections\Sql::saveItem}
 	 * @param \Kshabazz\BattleNet\D3\Connections\Sql $pSql
 	 * @return bool
 	 */

@@ -43,6 +43,7 @@ class Hero implements Handler
 	/**
 	 * Get hero data from local database.
 	 *
+	 * @deprecated {@see Kshabazz\BattleNet\D3\Connections\Sql::getHero()}
 	 * @param \Kshabazz\BattleNet\D3\Connections\Sql $pSql
 	 * @return string|null
 	 */
@@ -59,6 +60,7 @@ class Hero implements Handler
 	/**
 	 * Save the hero in a local database.
 	 *
+	 * @deprecated {@see Kshabazz\BattleNet\D3\Connections\Sql::saveHero()}
 	 * @param \Kshabazz\BattleNet\D3\Connections\Sql $pSql
 	 * @return bool Indicates success (TRUE) or failure (FALSE).
 	 */

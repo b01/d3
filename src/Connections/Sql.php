@@ -45,13 +45,13 @@ class Sql extends \Kshabazz\Slib\Sql implements Connection
 		{
 			if ( $this->pdoh !== NULL )
 			{
-				$today = date( "Y-m-d" );
+				$today = date( 'Y-m-d' );
 				$stmt = $this->pdoh->prepare( self::INSERT_REQUEST );
-				$stmt->bindValue( ":battleNetId", $this->battleNetId, \PDO::PARAM_STR );
-				$stmt->bindValue( ":ipAddress", $this->ipAddress, \PDO::PARAM_STR );
-				$stmt->bindValue( ":url", $pUrl, \PDO::PARAM_STR );
-				$stmt->bindValue( ":dateNumber", strtotime($today), \PDO::PARAM_STR );
-				$stmt->bindValue( ":dateAdded", date("Y-m-d H:i:s"), \PDO::PARAM_STR );
+				$stmt->bindValue( ':battleNetId', $this->battleNetId, \PDO::PARAM_STR );
+				$stmt->bindValue( ':ipAddress', $this->ipAddress, \PDO::PARAM_STR );
+				$stmt->bindValue( ':url', $pUrl, \PDO::PARAM_STR );
+				$stmt->bindValue( ':dateNumber', strtotime($today), \PDO::PARAM_STR );
+				$stmt->bindValue( ':dateAdded', date('Y-m-d H:i:s'), \PDO::PARAM_STR );
 				$returnValue = $this->pdoQuery( $stmt, FALSE );
 			}
 		}
@@ -70,26 +70,38 @@ class Sql extends \Kshabazz\Slib\Sql implements Connection
      */
     public function getHero( $pHeroId )
 	{
-		if ( $pHeroId !== NULL )
+		if ( $pHeroId === NULL )
 		{
-			return $this->pdoQueryBind( self::SELECT_HERO, [ "id" => [$pHeroId, \PDO::PARAM_STR] ]);
+			throw new \InvalidArgumentException( 'Hero ID should be an integer.' );
+		}
+		$result = $this->pdoQueryBind( self::SELECT_HERO, [ 'id' => [$pHeroId, \PDO::PARAM_STR] ]);
+		if ( isArray($result) )
+		{
+			return $result[ 0 ][ 'json' ];
 		}
 		return NULL;
 	}
 
 	/**
-	 * Get item data from local database.
+	 * Get item JSON data from local database.
 	 *
-	 * @param string $pItemId
+	 * @param string $pItemHash
 	 * @return string|null
 	 */
-	public function getItem( $pItemId )
+	public function getItem( $pItemHash )
 	{
-		$returnValue = NULL;
+		$hashValue = str_replace( 'item/', '', $pItemHash );
+		$query = sprintf( self::SELECT_ITEM, 'hash' );
+		$result = $this->pdoQueryBind( $query, ['selectValue' => [$hashValue, \PDO::PARAM_STR]] );
+		if ( isArray($result) )
+		{
+			return $result[ 0 ][ 'json' ];
+		}
+		return NULL;
 	}
 
     /**
-     * Get battle.net user profile.
+     * Get the profile from local database.
      *
      * @return string|null
      */
@@ -98,16 +110,13 @@ class Sql extends \Kshabazz\Slib\Sql implements Connection
 		$returnValue = NULL;
 		try
 		{
-			if ($this->pdoh !== NULL)
+			$result = $this->pdoQueryBind(
+				self::SELECT_PROFILE,
+				[ ':battleNetId' => [$this->battleNetId, \PDO::PARAM_STR] ]
+			);
+			if ( isArray($result) )
 			{
-				$query = self::SELECT_PROFILE;
-				$stmt = $this->pdoh->prepare( $query );
-				$stmt->bindValue( ":battleNetId", $this->battleNetId, \PDO::PARAM_STR );
-				$profileRecord = $this->pdoQuery( $stmt );
-				if ( isArray($profileRecord) )
-				{
-					$returnValue = $profileRecord[0];
-				}
+				$returnValue = $result[ 0 ][ 'json' ];
 			}
 		}
 		catch ( \Exception $p_error )
@@ -115,7 +124,53 @@ class Sql extends \Kshabazz\Slib\Sql implements Connection
 			// TODO: Map ERROR_NOTICE_1 to message "Unable to retrieve your profile from cache."
 			logError( $p_error, $p_error->getMessage() );
 		}
+
 		return $returnValue;
+	}
+
+	/**
+	 * Save the hero in a local database.
+	 *
+	 * @return bool Indicates success (TRUE) or failure (FALSE).
+	 */
+	public function saveHero( $pHeroId, $pJson )
+	{
+		$utcTime = gmdate( 'Y-m-d H:i:s' );
+		return $this->sql->pdoQueryBind( self::INSERT_HERO, [
+				'battleNetId' => [ $this->battleNetId, \PDO::PARAM_STR ],
+				'dateAdded' => [ $utcTime, \PDO::PARAM_STR ],
+				'heroId' => [ $pHeroId, \PDO::PARAM_STR ],
+				'ipAddress' => [ $this->ipAddress, \PDO::PARAM_STR ],
+				'json' => [ $pJson, \PDO::PARAM_STR ],
+				'lastUpdated' => [ $utcTime, \PDO::PARAM_STR ]
+			]);
+	}
+
+	/**
+	 * Save the item locally in a database.
+	 *
+	 * @param \Kshabazz\BattleNet\D3\Models\Item $pItem
+	 * @return bool
+	 */
+	public function saveItem( \Kshabazz\BattleNet\D3\Models\Item $pItem )
+	{
+		$itemName = $pItem->name();
+		$itemType = $pItem->type();
+		$id = $pItem->id();
+		$tooltipParams = $pItem->tooltipParams();
+		$json = $pItem->json();
+		$utcTime = gmdate( 'Y-m-d H:i:s' );
+		$params = [
+			'hash' => [ $tooltipParams, \PDO::PARAM_STR ],
+			'id' => [ $id, \PDO::PARAM_STR ],
+			'name' => [ $itemName, \PDO::PARAM_STR ],
+			'itemType' => [ $itemType['id'], \PDO::PARAM_STR ],
+			'json' => [ $json, \PDO::PARAM_STR ],
+			'ipAddress' => [ $this->ipAddress, \PDO::PARAM_STR ],
+			'lastUpdate' => [ $utcTime, \PDO::PARAM_STR ],
+			'dateAdded' => [ $utcTime, \PDO::PARAM_STR ]
+		];
+		return $this->pdoQueryBind( \Kshabazz\BattleNet\D3\Connections\Sql::INSERT_ITEM, $params );
 	}
 }
 // DO NOT PUT ANY CHARACTERS OR EVEN WHITE-SPACE after the closing php tag, or headers may be sent before intended. ?>
