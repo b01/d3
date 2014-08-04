@@ -24,6 +24,7 @@ class Hero implements Handler
 	/**
 	 * Get the JSON from Battle.Net.
 	 *
+	 * @deprecated {@see \Kshabazz\BattleNet\D3\Connections\Http::getHero}
 	 * @param \Kshabazz\BattleNet\D3\Connections\Http $pHttp
 	 * @return string|null
 	 */

@@ -50,6 +50,7 @@ class Item implements Handler
 	/**
 	 * Get the item JSON from Battle.net.
 	 *
+	 * @deprecated {@see \Kshabazz\BattleNet\D3\Connections\Http::getItem}
 	 * @param \Kshabazz\BattleNet\D3\Connections\Http $pHttp
 	 * @return string|null
 	 */
@@ -91,15 +92,6 @@ class Item implements Handler
 			'dateAdded' => [ $utcTime, \PDO::PARAM_STR ]
 		];
 		return $this->sql->pdoQueryBind( \Kshabazz\BattleNet\D3\Connections\Sql::INSERT_ITEM, $params );
-	}
-
-	/**
-	 * Convert this object to a string.
-	 * @return string
-	 */
-	public function __toString()
-	{
-		return json_encode( $this, JSON_PRETTY_PRINT );
 	}
 }
 ?>

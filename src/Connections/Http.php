@@ -75,15 +75,14 @@ class Http extends \Kshabazz\Slib\HttpRequester implements Connection
 	 */
 	public function getHero( $pHeroId )
 	{
-		$returnValue = NULL;
-		// todo: validate with regex.
 		if ( !is_int($pHeroId) )
 		{
 			throw new \InvalidArgumentException( 'Expected an integer, got a '. gettype($pHeroId) );
 		}
+		// Construct the Battle.net URL.
 		$this->url = sprintf( self::D3_API_HERO_URL, $this->battleNetUrlSafeId, $pHeroId );
-		$returnValue = $this->send();
-		return $returnValue;
+		// Request the hero JSON from BattleNet.
+		return $this->makeRequest();
 	}
 
 	/**
@@ -97,30 +96,15 @@ class Http extends \Kshabazz\Slib\HttpRequester implements Connection
 	 */
 	public function getItem( $pItemId )
 	{
-		$returnValue = NULL;
 		if ( !isString($pItemId) )
 		{
 			throw new \InvalidArgumentException(
 				"Expects a valid item id, but was given: '{$pItemId}'."
 			);
 		}
-		try
-		{
-			// retrieve the item JSON from the at the constructed URL
-			$this->url = sprintf( self::D3_API_ITEM_URL, $pItemId );
-			// Request the item.
-			$response = $this->send();
-			// When the response is good, return the response text.
-			if ( $this->responseCode() === 200 )
-			{
-				$returnValue = $response;
-			}
-		}
-		catch( \Exception $pError )
-		{
-			throw new \Exception( "An error occurred trying to retrieve the item at '{$this->url}'." );
-		}
-		return $returnValue;
+		// Construct the Battle.net URL.
+		$this->url = sprintf( self::D3_API_ITEM_URL, $pItemId );
+		return $this->makeRequest();
 	}
 
 	/**
@@ -131,18 +115,28 @@ class Http extends \Kshabazz\Slib\HttpRequester implements Connection
 	 */
 	public function getProfile()
 	{
-		$returnValue = NULL;
-		try
+		// Construct the Battle.net URL.
+		$this->url = self::D3_API_PROFILE_URL . '/' . $this->battleNetUrlSafeId . '/';
+		// Return the response text.
+		return $this->makeRequest();
+	}
+
+	/**
+	 * Make a request to the currently set {@see $this->url}.
+	 * @return string|null
+	 * @throws \Exception
+	 */
+	private function makeRequest()
+	{
+		// Request the item from BattleNet.
+		$responseText = $this->send();
+		// When the response is good, return the response text.
+		$requestSuccessful = ($this->responseCode() === 200);
+		if ($requestSuccessful)
 		{
-			$this->url = self::D3_API_PROFILE_URL . '/' . $this->battleNetUrlSafeId . '/';
-			// Return the response text.
-			$returnValue = $this->send();
+			return $responseText;
 		}
-		catch ( \Exception $p_error )
-		{
-			throw new \Exception( "No profile found at '{$this->url}'." );
-		}
-		return $returnValue;
+		return NULL;
 	}
 }
 ?>

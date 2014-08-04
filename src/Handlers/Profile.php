@@ -47,6 +47,7 @@ class Profile implements Handler
 	/**
 	 * Request the profile from BattleNet.
 	 *
+	 * @deprecated {@see \Kshabazz\BattleNet\D3\Connections\Http::getProfile}
 	 * @param Http $pBnr
 	 * @return null|string
 	 */
