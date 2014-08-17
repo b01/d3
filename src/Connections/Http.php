@@ -9,7 +9,7 @@ use function \Kshabazz\Slib\isString,
  *
  * @package Kshabazz\BattleNet
  */
-class Http extends \Kshabazz\Slib\HttpRequester implements Connection
+class Http extends \Kshabazz\Slib\Request implements Connection
 {
 	const
 		D3_API_PROFILE_URL = 'http://us.battle.net/api/d3/profile',
@@ -39,8 +39,7 @@ class Http extends \Kshabazz\Slib\HttpRequester implements Connection
 	{
 		unset(
 			$this->battleNetId,
-			$this->battleNetUrlSafeId,
-			$this->url
+			$this->battleNetUrlSafeId
 		);
 	}
 
@@ -80,9 +79,9 @@ class Http extends \Kshabazz\Slib\HttpRequester implements Connection
 			throw new \InvalidArgumentException( 'Expected an integer, got a '. gettype($pHeroId) );
 		}
 		// Construct the Battle.net URL.
-		$this->url = sprintf( self::D3_API_HERO_URL, $this->battleNetUrlSafeId, $pHeroId );
+		$url = sprintf( self::D3_API_HERO_URL, $this->battleNetUrlSafeId, $pHeroId );
 		// Request the hero JSON from BattleNet.
-		return $this->makeRequest();
+		return $this->makeRequest( $url );
 	}
 
 	/**
@@ -103,8 +102,8 @@ class Http extends \Kshabazz\Slib\HttpRequester implements Connection
 			);
 		}
 		// Construct the Battle.net URL.
-		$this->url = sprintf( self::D3_API_ITEM_URL, $pItemId );
-		return $this->makeRequest();
+		$url = sprintf( self::D3_API_ITEM_URL, $pItemId );
+		return $this->makeRequest( $url );
 	}
 
 	/**
@@ -116,20 +115,22 @@ class Http extends \Kshabazz\Slib\HttpRequester implements Connection
 	public function getProfile()
 	{
 		// Construct the Battle.net URL.
-		$this->url = self::D3_API_PROFILE_URL . '/' . $this->battleNetUrlSafeId . '/';
+		$url = self::D3_API_PROFILE_URL . '/' . $this->battleNetUrlSafeId . '/';
 		// Return the response text.
-		return $this->makeRequest();
+		return $this->makeRequest( $url );
 	}
 
 	/**
 	 * Make a request to the currently set {@see $this->url}.
+	 *
+	 * @param string $pUrl
 	 * @return string|null
 	 * @throws \Exception
 	 */
-	private function makeRequest()
+	private function makeRequest( $pUrl )
 	{
 		// Request the item from BattleNet.
-		$responseText = $this->send();
+		$responseText = $this->send( $pUrl );
 		// When the response is good, return the response text.
 		$requestSuccessful = ($this->responseCode() === 200);
 		if ($requestSuccessful)
