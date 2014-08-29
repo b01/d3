@@ -13,7 +13,7 @@
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"Kshabazz\\Tests\\": "tests/"
+			"Kshabazz\\Tests\\BattleNet\\": "tests/"
 		}
 	},
 	"description": "A PHP library for accessing Battle.net D3 API.",
@@ -30,12 +30,10 @@
 		"kshabazz/slib": "dev-master"
 	},
 	"require-dev": {
-		"phpunit/phpunit-mock-objects": "2.1.*",
-		"phpunit/php-code-coverage": "2.0.*",
-		"phpunit/phpunit": "4.1.*",
-		"squizlabs/php_codesniffer": "1.5.*",
-		"php-vcr/php-vcr": "dev-master",
-		"php-vcr/phpunit-testlistener-vcr": "dev-master"
+		"phpunit/phpunit-mock-objects": ">=2.1",
+		"phpunit/php-code-coverage": ">=2.0",
+		"phpunit/phpunit": ">=4.1",
+		"squizlabs/php_codesniffer": ">=1.5"
 	},
 	"type": "library"
 }

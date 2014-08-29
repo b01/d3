@@ -26,7 +26,7 @@ class ProfileTest extends \PHPUnit_Framework_TestCase
 		$profileHandler = new \Kshabazz\BattleNet\D3\Handlers\Profile( $this->urlSafeBattleNetId );
 		$profileJson = $profileHandler->getJson( $this->http );
 		$profile = json_decode( $profileJson );
-		$this->assertEquals( 38464947, $profile->heroes[0]->id, 'Unexpected profile ID.' );
+		$this->assertEquals( 3955832, $profile->heroes[0]->id, 'Unexpected profile ID.' );
 	}
 }
 ?>

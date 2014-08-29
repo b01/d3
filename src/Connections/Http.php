@@ -6,18 +6,23 @@ use function \Kshabazz\Slib\isString,
 			 \Kshabazz\Slib\isArray;
 /**
  * Class Http
- *
+ * TODO: Rename to Request.
  * @package Kshabazz\BattleNet
  */
 class Http extends \Kshabazz\Slib\Request implements Connection
 {
 	const
+		/** @const string */
 		D3_API_PROFILE_URL = 'http://us.battle.net/api/d3/profile',
+		/** @const string */
 		D3_API_HERO_URL = 'http://us.battle.net/api/d3/profile/%s/hero/%d',
+		/** @const string */
 		D3_API_ITEM_URL = 'http://us.battle.net/api/d3/data/%s';
 
 	private
+		/** @var string */
 		$battleNetId,
+		/** @var string */
 		$battleNetUrlSafeId;
 
 	/**
@@ -132,8 +137,8 @@ class Http extends \Kshabazz\Slib\Request implements Connection
 		// Request the item from BattleNet.
 		$responseText = $this->send( $pUrl );
 		// When the response is good, return the response text.
-		$requestSuccessful = ($this->responseCode() === 200);
-		if ($requestSuccessful)
+		$requestSuccessful = $this->responseCode() === 200;
+		if ( $requestSuccessful )
 		{
 			return $responseText;
 		}

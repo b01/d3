@@ -3,6 +3,10 @@
  * HttpTest test.
  */
 
+use \Kshabazz\BattleNet\D3\Connections\Http,
+	\Kshabazz\BattleNet\D3\Models\Item,
+	\Kshabazz\BattleNet\D3\Models\Profile;
+
 /**
  * @class HttpTest
  * @package \Kshabazz\Tests\BattleNet\D3
@@ -12,6 +16,7 @@ class HttpTest extends \PHPUnit_Framework_TestCase
 	private
 		$battleNetId,
 		$battleNetUrlSafeId,
+		$fixturesDir,
 		$heroId;
 
 	public function setup()
@@ -19,13 +24,14 @@ class HttpTest extends \PHPUnit_Framework_TestCase
 		$this->battleNetId = 'msuBREAKER#1374';
 		$this->battleNetUrlSafeId = 'msuBREAKER-1374';
 		$this->heroId = 46026639;
+		$this->fixturesDir = \FIXTURES_PATH . DIRECTORY_SEPARATOR;
 	}
 
-	public function test_gettting_url_safe_battleNet_id()
+	public function test_getting_a_url_safe_battleNet_id()
 	{
-		$bnr = new \Kshabazz\BattleNet\D3\Connections\Http( $this->battleNetId );
+		$bnr = new Http( $this->battleNetId );
 		$bnIdUrlSafe = $bnr->battleNetUrlSafeId();
-		$this->assertEquals( $this->battleNetUrlSafeId, $bnIdUrlSafe, 'Invalid URL-safe BattelNet ID returned.' );
+		$this->assertEquals( $this->battleNetUrlSafeId, $bnIdUrlSafe );
 	}
 
 	/**
@@ -35,20 +41,16 @@ class HttpTest extends \PHPUnit_Framework_TestCase
 	*/
 	public function test_gettting_battleNet_id()
 	{
-		$bnr = new \Kshabazz\BattleNet\D3\Connections\Http( $this->battleNetId );
+		$bnr = new Http( $this->battleNetId );
 		$bnIdUrlSafe = $bnr->battleNetId();
 		$this->assertEquals( $this->battleNetId, $bnIdUrlSafe, 'Invalid BattelNet ID returned.' );
 	}
 
-	/**
-	 * Test getting a hero from Battle.Net
-	 * @vcr hero.yml
-	 */
-	public function test_get_hero()
+	public function test_getting_a_hero_from_battle_net()
 	{
-		$bnr = new \Kshabazz\BattleNet\D3\Connections\Http( $this->battleNetId );
+		$bnr = new Http( $this->battleNetId );
 		$heroJson = $bnr->getHero( $this->heroId );
-		$hero = json_decode( $heroJson );
+		$hero = \json_decode( $heroJson );
 		$this->assertEquals( $this->heroId, $hero->id, 'Unable to retrieve Hero from Battle.Net' );
 	}
 
@@ -57,7 +59,7 @@ class HttpTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function test_getting_a_valid_item()
 	{
-		$bnr = new \Kshabazz\BattleNet\D3\Connections\Http( $this->battleNetId );
+		$bnr = new Http( $this->battleNetId );
 		$itemJson = $bnr->getItem( 'item/COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD' );
 		$item = new \Kshabazz\BattleNet\D3\Models\Item( $itemJson );
 		$this->assertEquals( 'MightyWeapon1H_202', $item->id(), 'Invalid item returned.' );
@@ -71,7 +73,7 @@ class HttpTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function test_getting_a_invalid_item()
 	{
-		$bnr = new \Kshabazz\BattleNet\D3\Connections\Http( $this->battleNetId );
+		$bnr = new Http( $this->battleNetId );
 		$bnr->getItem( NULL );
 	}
 
@@ -80,14 +82,23 @@ class HttpTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function test_getting_a_profile()
 	{
-		$bnr = new \Kshabazz\BattleNet\D3\Connections\Http( $this->battleNetId );
+		$bnr = new Http( $this->battleNetId );
 		$profileJson = $bnr->getProfile();
-		$profile = new \Kshabazz\BattleNet\D3\Models\Profile( $profileJson );
+		$profile = new Profile( $profileJson );
 		$this->assertEquals(
 			'msuBREAKER#1374',
-			$profile->get('battleTag'),
+			$profile->get( 'battleTag' ),
 			'BattleNet_Requestor return an invalid profile.'
 		);
+	}
+
+	/**
+	 * @expectedException \InvalidArgumentException
+	 */
+	public function test_invalid_argument_with_getHero()
+	{
+		$bnr = new Http( $this->battleNetId );
+		$bnr->getHero( 'test' );
 	}
 }
 ?>
