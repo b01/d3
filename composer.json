@@ -18,6 +18,7 @@
 	},
 	"description": "A PHP library for accessing Battle.net D3 API.",
 	"keywords": ["diablo 3"],
+	"license": "MIT",
 	"name": "kshabazz/battlenet-d3",
 	"repositories": [
 		{
