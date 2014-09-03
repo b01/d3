@@ -276,7 +276,6 @@ class Item implements \JsonSerializable
 		return $this->id;
 	}
 
-
 	/**
 	 * Initialize all the properties for this object.
 	 */
@@ -295,7 +294,6 @@ class Item implements \JsonSerializable
 		$this->itemLevel = $this->data->itemLevel;
 		$this->name = $this->data->name;
 		$this->socketEffects = $this->data->socketEffects;
-		$this->randomAffixes = $this->data->randomAffixes;
 		$this->requiredLevel = ( int ) $this->data->requiredLevel;
 		$this->tooltipParams = $this->data->tooltipParams;
 		$this->typeName = $this->data->typeName;
@@ -306,6 +304,7 @@ class Item implements \JsonSerializable
 		$this->maxDamage = isset( $this->data->maxDamage ) ? $this->data->maxDamage : NULL;
 		$this->minDamage = isset( $this->data->minDamage ) ? $this->data->minDamage : NULL;
 		$this->recipe = isset( $this->data->recipe ) ? $this->data->recipe : NULL;
+		$this->randomAffixes = isset($this->data->randomAffixes) ? $this->data->randomAffixes : NULL;
 	}
 
 	/**
