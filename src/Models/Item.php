@@ -202,12 +202,18 @@ class Item implements \JsonSerializable
 
 	/**
 	 * Constructor
-	 * @param $pJson
+	 *
+	 * @param string $pJson
+	 * @throws \InvalidArgumentException
 	 */
 	public function __construct( $pJson )
 	{
 		$this->json = $pJson;
 		$this->data = \json_decode( $this->json );
+		if ($this->data === NULL )
+		{
+			throw new \InvalidArgumentException( 'Invalid item JSON received.' );
+		}
 		$this->init();
 	}
 
@@ -339,11 +345,11 @@ class Item implements \JsonSerializable
 		return $this->recipe;
 	}
 
-    /**
-     * Get web HASH.
-     * @return string
-     */
-    public function tooltipParams()
+	/**
+	 * Get web HASH.
+	 * @return string
+	 */
+	public function tooltipParams()
 	{
 		return $this->tooltipParams;
 	}

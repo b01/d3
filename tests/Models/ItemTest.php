@@ -24,12 +24,10 @@ class ItemTest extends \PHPUnit_Framework_TestCase
 		$this->itemHash3 = 'item/CioI4YeygAgSBwgEFcgYShEdhBF1FR2dbLMUHape7nUwDTiTA0AAUApgkwMYkOPQlAI';
 	}
 
-	/**
-	 * @vcr item-hash-3.yml
-	 */
 	public function test_item_has_recipe()
 	{
-		$itemJson = $this->bnrHttp->getItem( $this->itemHash3 );
+		$fixtureFile = FIXTURES_PATH . 'item-hash-3.json';
+		$itemJson = \file_get_contents( $fixtureFile );
 		$item = new Item( $itemJson );
 		$actualRecipe = $item->recipe();
 		$this->assertEquals( 'T09_Weapon_MightyWeapon_1H', $actualRecipe->id, 'Recipe not found!' );
@@ -40,9 +38,19 @@ class ItemTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function test_item_has_no_recipe()
 	{
-		$itemJson = $this->bnrHttp->getItem( $this->itemHash1 );
+		$fixtureFile = FIXTURES_PATH . 'item-hash-1.json';
+		$itemJson = \file_get_contents( $fixtureFile );
 		$item = new Item( $itemJson );
 		$actualRecipe = $item->recipe();
 		$this->assertEquals( NULL, $actualRecipe, 'Recipe found!' );
 	}
+
+	/**
+	 * @expectedException \InvalidArgumentException
+	 */
+	public function test_invalid_json()
+	{
+		$item = new Item( NULL );
+	}
 }
+?>

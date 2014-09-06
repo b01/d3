@@ -1,0 +1,96 @@
+{
+	"id" : 46026639,
+	"name" : "Kahara",
+	"class" : "monk",
+	"gender" : 1,
+	"level" : 1,
+	"paragonLevel" : 50,
+	"hardcore" : true,
+	"seasonal" : false,
+	"seasonCreated" : 0,
+	"skills" : {
+		"active" : [ {
+			"skill" : {
+				"slug" : "fists-of-thunder",
+				"name" : "Fists of Thunder",
+				"icon" : "monk_fistsofthunder",
+				"level" : 1,
+				"categorySlug" : "primary",
+				"tooltipUrl" : "skill/monk/fists-of-thunder",
+				"description" : "Generate: 14 Spirit per attack\r\n\r\nTeleport to your target and unleash a series of extremely fast punches that deal 200% weapon damage as Lightning.\r\n\r\nEvery third hit deals 400% weapon damage as Lightning split between all enemies in front of you.",
+				"simpleDescription" : "Generate: 14 Spirit per attack\r\n\r\nTeleport to your target and attack it with a series of rapid punches.",
+				"skillCalcId" : "a"
+			}
+		}, { }, { }, { }, { }, { } ],
+		"passive" : [ { }, { }, { }, { } ]
+	},
+	"items" : {
+		"mainHand" : {
+			"id" : "FistWeapon_1H_000",
+			"name" : "Worn Knuckles",
+			"icon" : "fistweapon_1h_000_demonhunter_male",
+			"displayColor" : "white",
+			"tooltipParams" : "item/ChoIqvDNpwMSBwgEFScYtUkwiQI4kANAAGCQAxjO4KibCVAIWAI",
+			"craftedBy" : [ ]
+		}
+	},
+	"followers" : { },
+	"stats" : {
+		"life" : 130,
+		"damage" : 3.3825002,
+		"attackSpeed" : 1.2000000476837158,
+		"armor" : 18,
+		"strength" : 8,
+		"dexterity" : 10,
+		"vitality" : 9,
+		"intelligence" : 8,
+		"physicalResist" : 1,
+		"fireResist" : 1,
+		"coldResist" : 1,
+		"lightningResist" : 1,
+		"poisonResist" : 1,
+		"arcaneResist" : 1,
+		"critDamage" : 1.5,
+		"blockChance" : 0.0,
+		"blockAmountMin" : 0,
+		"blockAmountMax" : 0,
+		"damageIncrease" : 0.0,
+		"critChance" : 0.05000000075,
+		"damageReduction" : 0.0,
+		"thorns" : 0.0,
+		"lifeSteal" : 0.0,
+		"lifePerKill" : 0.0,
+		"goldFind" : 0.0,
+		"magicFind" : 0.0,
+		"lifeOnHit" : 0.0,
+		"primaryResource" : 250,
+		"secondaryResource" : 0
+	},
+	"kills" : {
+		"elites" : 0
+	},
+	"progression" : {
+		"act1" : {
+			"completed" : false,
+			"completedQuests" : [ ]
+		},
+		"act2" : {
+			"completed" : false,
+			"completedQuests" : [ ]
+		},
+		"act3" : {
+			"completed" : false,
+			"completedQuests" : [ ]
+		},
+		"act4" : {
+			"completed" : false,
+			"completedQuests" : [ ]
+		},
+		"act5" : {
+			"completed" : false,
+			"completedQuests" : [ ]
+		}
+	},
+	"dead" : false,
+	"last-updated" : 1396998946
+}
