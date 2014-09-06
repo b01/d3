@@ -316,12 +316,11 @@ class Item implements \JsonSerializable
 	/**
 	 * Check if an items type is a weapon.
 	 *
-	 * @param array $pItemType
 	 * @return bool
 	 */
-	function isWeapon( array $pItemType )
+	function isWeapon()
 	{
-		$itemType = strtolower( $pItemType['id'] );
+		$itemType = strtolower( $this->type->id );
 		return in_array( $itemType, self::$oneHandWeaponTypes );
 	}
 

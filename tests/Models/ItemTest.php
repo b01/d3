@@ -52,5 +52,21 @@ class ItemTest extends \PHPUnit_Framework_TestCase
 	{
 		$item = new Item( NULL );
 	}
+
+	public function test_is_weapon()
+	{
+		$fixtureFile = FIXTURES_PATH . 'item-hash-3.json';
+		$itemJson = \file_get_contents( $fixtureFile );
+		$item = new Item( $itemJson );
+		$this->assertTrue( $item->isWeapon() );
+	}
+
+	public function test_is_not_a_weapon()
+	{
+		$fixtureFile = FIXTURES_PATH . 'item-hash-1.json';
+		$itemJson = \file_get_contents( $fixtureFile );
+		$item = new Item( $itemJson );
+		$this->assertFalse( $item->isWeapon() );
+	}
 }
 ?>
