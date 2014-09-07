@@ -9,7 +9,7 @@
  * http://us.battle.net/api/d3/data/item/Cj0I-bvTgAsSBwgEFdosyssdb2mxyh10HmzAHfKS3AgdcIt38CILCAEVbEIDABgWICAwiQI4_AJAAFAMYJUDGMvMrsMGUABYAg&extra=0&showClose=1
  * @package Kshabazz\BattleNet\D3\Models
  */
-class Item implements \JsonSerializable
+class Item
 {
 	/**
 	 * @var bool
@@ -325,11 +325,6 @@ class Item implements \JsonSerializable
 	}
 
 	public function __toString()
-	{
-		return json_encode( $this, JSON_PRETTY_PRINT );
-	}
-
-	public function jsonSerialize()
 	{
 		return $this->json;
 	}
