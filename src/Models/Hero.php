@@ -64,6 +64,9 @@ class Hero
 	 */
 	private $items;
 
+	/** @var array */
+	private $itemModels;
+
 	/**
 	 * @var array
 	 */
@@ -219,6 +222,30 @@ class Hero
 			}
 		}
 		return NULL;
+	}
+
+	/**
+	 * Get the data for each item the hero has equipped.
+	 * This is costly, it make a HTTP request for each item on the hero.
+	 *
+	 * @return array
+	 * @throws \InvalidArgumentException
+	 */
+	private function getItemsAsModels( Http $bnr )
+	{
+		$this->itemModels = [];
+		// It is valid that the hero may not have any items equipped (new character).
+		if ( isArray($this->items) )
+		{
+			foreach ( $this->items as $slot => $item )
+			{
+				$hash = $item[ 'tooltipParams' ];
+				$itemJson = $bnr->getItem( $hash );
+				$this->itemModels[ $slot ] = new Item( $itemJson );
+			}
+		}
+
+		return $this->itemModels;
 	}
 
 	/**
