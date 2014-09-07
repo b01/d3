@@ -249,5 +249,23 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 		$isDead = $hero->isDead();
 		$this->assertFalse( $isDead, 'isDead returned unexpected value.' );
 	}
+
+	public function test_getItemsAsModels_does_not_do_more_http_request_than_expected()
+	{
+		$hero = new Hero( $this->json );
+		$itemJson = file_get_contents( FIXTURES_PATH . 'item-hash-1.json' );
+		$mockHttp = $this->getMock(
+			'\\Kshabazz\\BattleNet\\D3\\Connections\\Http',
+			[ 'getItem' ],
+			[ 'msuBREAKER#1374' ]
+		);
+		$mockHttp->expects( $this->exactly(13) )
+			->method( 'getItem' )
+			->willReturn( $itemJson );
+
+		$hero->getItemsAsModels( $mockHttp );
+		// Call it again to make sure it does not make more getItem request.
+		$hero->getItemsAsModels( $mockHttp );
+	}
 }
 ?>

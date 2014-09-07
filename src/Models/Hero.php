@@ -165,6 +165,7 @@ class Hero
 		{
 			$this->progression = $this->data['progression'];
 		}
+		$this->itemModels = NULL;
 	}
 
 	/**
@@ -225,23 +226,27 @@ class Hero
 	}
 
 	/**
-	 * Get the data for each item the hero has equipped.
+	 * For each item the hero has equipped construct an Model\Item and return them as an array.
 	 * This is costly, it make a HTTP request for each item on the hero.
 	 *
-	 * @return array
+	 * @param Http $pBnr
+	 * @param bool $pForceRefresh
+	 * @return array|null
 	 * @throws \InvalidArgumentException
 	 */
-	public function getItemsAsModels( Http $bnr )
+	public function getItemsAsModels( Http $pBnr, $pForceRefresh = FALSE )
 	{
-		$this->itemModels = [];
-		// It is valid that the hero may not have any items equipped (new character).
-		if ( isArray($this->items) )
+		if ( $this->itemModels === NULL || $pForceRefresh )
 		{
-			foreach ( $this->items as $slot => $item )
+			// It is valid that the hero may not have any items equipped (new character).
+			if ( isArray($this->items) )
 			{
-				$hash = $item[ 'tooltipParams' ];
-				$itemJson = $bnr->getItem( $hash );
-				$this->itemModels[ $slot ] = new Item( $itemJson );
+				foreach ( $this->items as $slot => $item )
+				{
+					$hash = $item[ 'tooltipParams' ];
+					$itemJson = $pBnr->getItem( $hash );
+					$this->itemModels[ $slot ] = new Item( $itemJson );
+				}
 			}
 		}
 
