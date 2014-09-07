@@ -1,5 +1,4 @@
 <?php namespace Kshabazz\BattleNet\D3\Models;
-
 /**
  * Diablo 3 Assistant License is under The MIT License (MIT) [OSI Approved License]
  * Please read LICENSE.txt, included with this software for the full licensing information.
@@ -39,7 +38,7 @@ class Profile implements \JsonSerializable
 			return $this->$pProperty;
 		}
 
-		if ( array_key_exists($pProperty, $this->data) )
+		if ( \array_key_exists($pProperty, $this->data) )
 		{
 			$value = $this->data[ $pProperty ];
 			if ( setType($value, $pType) )
@@ -48,7 +47,7 @@ class Profile implements \JsonSerializable
 			}
 		}
 
-		$trace = debug_backtrace();
+		$trace = \debug_backtrace();
 		trigger_error(
 			'Undefined property: ' . $pProperty .
 			' in ' . $trace[0]['file'] .
@@ -63,7 +62,7 @@ class Profile implements \JsonSerializable
     public function heroes()
 	{
         // set heroes.
-        if ( !isset($this->heroes) && array_key_exists('heroes', $this->data) )
+        if ( !isset($this->heroes) && \array_key_exists('heroes', $this->data) )
         {
             $this->heroes = $this->data[ 'heroes' ];
         }
@@ -72,6 +71,7 @@ class Profile implements \JsonSerializable
 
     /**
      * Get Hero data by name
+     *
      * @param mixed $pHeroByName string Optional name to specify a single hero to return.
      * @return mixed
      */
@@ -80,7 +80,7 @@ class Profile implements \JsonSerializable
         $returnValue = NULL;
         if ( isArray($this->heroes) )
         {
-            if ( $pHeroByName !== NULL && array_key_exists($pHeroByName, $this->heroes) )
+            if ( $pHeroByName !== NULL && \array_key_exists($pHeroByName, $this->heroes) )
             {
                 $returnValue = $this->heroes[ $pHeroByName ];
             }
@@ -96,6 +96,7 @@ class Profile implements \JsonSerializable
 	 * Initialize all the properties for this object.
 	 *
 	 * @return $this
+	 * @throws \Exception
 	 */
 	protected function init()
 	{
@@ -106,12 +107,7 @@ class Profile implements \JsonSerializable
 		}
 		else
 		{
-			$exception = new \Exception( "Tried to initialize ItemModel with invalid JSON." );
-//			logError(
-//				$exception,
-//				"Tried to initialize ItemModel with invalid JSON.",
-//				"An application error has occured. Please try again later"
-//			);
+			throw new \Exception( 'Tried to initialize ItemModel with invalid JSON.' );
 		}
 
 		return $this;
@@ -134,16 +130,16 @@ class Profile implements \JsonSerializable
 		$returnValue = [];
 		foreach ( $this as $property => $value )
 		{
-			if ( array_key_exists($property, $this->forcePropertyType) )
+			if ( \array_key_exists($property, $this->forcePropertyType) )
 			{
-				$returnValue[ $property ] = [ gettype($value), $value ];
+				$returnValue[ $property ] = [ \gettype($value), $value ];
 			}
 			else
 			{
-				$returnValue[ $property ] = [ gettype($value), $value ];
+				$returnValue[ $property ] = [ \gettype($value), $value ];
 			}
 		}
 		return $returnValue;
 	}
 }
-// Writing below this line can cause headers to be sent before intended ?>
+?>
