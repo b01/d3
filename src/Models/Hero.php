@@ -231,7 +231,7 @@ class Hero
 	 * @return array
 	 * @throws \InvalidArgumentException
 	 */
-	private function getItemsAsModels( Http $bnr )
+	public function getItemsAsModels( Http $bnr )
 	{
 		$this->itemModels = [];
 		// It is valid that the hero may not have any items equipped (new character).
