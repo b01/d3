@@ -5,11 +5,13 @@
 
 use \Kshabazz\BattleNet\D3\Connections\Http,
 	\Kshabazz\BattleNet\D3\Models\Item,
-	\Kshabazz\BattleNet\D3\Models\Profile;
+	\Kshabazz\BattleNet\D3\Models\Profile,
+	\Kshabazz\BattleNet\D3\Models\Hero;
 
 /**
- * @class HttpTest
- * @package \Kshabazz\Tests\BattleNet\D3
+ * Class HttpTest
+ *
+ * @package Kshabazz\Tests\BattleNet\D3
  */
 class HttpTest extends \PHPUnit_Framework_TestCase
 {
@@ -61,7 +63,7 @@ class HttpTest extends \PHPUnit_Framework_TestCase
 	{
 		$bnr = new Http( $this->battleNetId );
 		$itemJson = $bnr->getItem( 'item/COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD' );
-		$item = new \Kshabazz\BattleNet\D3\Models\Item( $itemJson );
+		$item = new Item( $itemJson );
 		$this->assertEquals( 'MightyWeapon1H_202', $item->id(), 'Invalid item returned.' );
 	}
 
@@ -99,6 +101,27 @@ class HttpTest extends \PHPUnit_Framework_TestCase
 	{
 		$bnr = new Http( $this->battleNetId );
 		$bnr->getHero( 'test' );
+	}
+
+	public function test_getItemsAsModels()
+	{
+		$itemHashes = [
+			'head' => [
+				'id' => 'Unique_Helm_006_x1',
+				'tooltipParams' => 'item/CnIInND3jAQSBwgEFVml7RMdS7X5Sx0_8gnYHTsnbyQdZiMGUB1-dlWhHcn6vKAwiwI4qwFAAFASWARggAJqKwoMCAAQuemrwYCAgKA-EhsIt-yauQYSBwgEFdVdtnowjwI4AEABWASQAQCAAUa1AX_5Tl0YspXtvgJQCFgA'
+		    ]
+		];
+		$itemJson = \file_get_contents( FIXTURES_PATH . 'item-hash-1.json' );
+		$mockHttp = $this->getMock(
+			'\\Kshabazz\\BattleNet\\D3\\Connections\\Http',
+			[ 'getItem' ],
+			[ 'msuBREAKER#1374' ]
+		);
+		$mockHttp->expects( $this->exactly(1) )
+			->method( 'getItem' )
+			->willReturn( $itemJson );
+
+		$mockHttp->getItemsAsModels( $itemHashes );
 	}
 }
 ?>

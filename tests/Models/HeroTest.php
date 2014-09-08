@@ -1,8 +1,7 @@
 <?php namespace Kshabazz\Tests\BattleNet\D3\Models;
-/**
- *
- */
+
 use Kshabazz\BattleNet\D3\Models\Hero;
+
 /**
  * @class HeroTest
  * @package Kshabazz\BattleNet\test\Model
@@ -20,7 +19,7 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 	public function setUp()
 	{
 		$this->heroId = 36131726;
-		$this->json = file_get_contents( FIXTURES_PATH . 'hero.json' );
+		$this->json = \file_get_contents( FIXTURES_PATH . 'hero.json' );
 		$this->itemParams = [
 			'head' => 'item/CmAI76DVrAQSBwgEFSMZlIsdlD3juR1bToDJHc9FH8sdo9Ya6B0SXPT8HYYCY-owCTjTAkAAUBJg1wJqJQoMCAAQ9fHWhoSAgKADEhUIxKuTpwgSBwgEFfee2KswDTgAQAEYuZvfxg5QBlgC',
 			'torso' => 'item/CjkIxYL_7AISBwgEFRaF-hsdtwRpuh2V-O2WHTIlWp4dElbV7h1X8eDWHYNFzIwwCTixAkAAUBJgtQIYrJTUvwNQBlgC',
@@ -125,7 +124,7 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 	public function test_retreiving_stats()
 	{
 		$hero = new Hero( $this->json );
-		$stats = $hero->stats();
+		$stats = $hero->preCalculatedStats();
 		$this->assertArrayHasKey( 'arcaneResist', $stats, 'arcaneResist key not found in hero stats.' );
 		$this->assertArrayHasKey( 'armor', $stats, 'armor key not found in hero stats.' );
 		$this->assertArrayHasKey( 'attackSpeed', $stats, 'attackSpeed key not found in hero stats.' );
@@ -248,24 +247,6 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 		$hero = new Hero( $this->json );
 		$isDead = $hero->isDead();
 		$this->assertFalse( $isDead, 'isDead returned unexpected value.' );
-	}
-
-	public function test_getItemsAsModels_does_not_do_more_http_request_than_expected()
-	{
-		$hero = new Hero( $this->json );
-		$itemJson = file_get_contents( FIXTURES_PATH . 'item-hash-1.json' );
-		$mockHttp = $this->getMock(
-			'\\Kshabazz\\BattleNet\\D3\\Connections\\Http',
-			[ 'getItem' ],
-			[ 'msuBREAKER#1374' ]
-		);
-		$mockHttp->expects( $this->exactly(13) )
-			->method( 'getItem' )
-			->willReturn( $itemJson );
-
-		$hero->getItemsAsModels( $mockHttp );
-		// Call it again to make sure it does not make more getItem request.
-		$hero->getItemsAsModels( $mockHttp );
 	}
 }
 ?>

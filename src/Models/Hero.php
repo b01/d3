@@ -226,34 +226,6 @@ class Hero
 	}
 
 	/**
-	 * For each item the hero has equipped construct an Model\Item and return them as an array.
-	 * This is costly, it make a HTTP request for each item on the hero.
-	 *
-	 * @param Http $pBnr
-	 * @param bool $pForceRefresh
-	 * @return array|null
-	 * @throws \InvalidArgumentException
-	 */
-	public function getItemsAsModels( Http $pBnr, $pForceRefresh = FALSE )
-	{
-		if ( $this->itemModels === NULL || $pForceRefresh )
-		{
-			// It is valid that the hero may not have any items equipped (new character).
-			if ( isArray($this->items) )
-			{
-				foreach ( $this->items as $slot => $item )
-				{
-					$hash = $item[ 'tooltipParams' ];
-					$itemJson = $pBnr->getItem( $hash );
-					$this->itemModels[ $slot ] = new Item( $itemJson );
-				}
-			}
-		}
-
-		return $this->itemModels;
-	}
-
-	/**
 	 * @return $this
 	 * @throws \Exception
 	 */
@@ -460,6 +432,16 @@ class Hero
 	}
 
 	/**
+	 * Get character stats calculated by Battle.Net.
+	 *
+	 * @return array
+	 */
+	public function preCalculatedStats()
+	{
+		return $this->stats;
+	}
+
+	/**
 	 * Get primary attribute.
 	 *
 	 * @return string
@@ -491,15 +473,5 @@ class Hero
 	{
 		return $this->skills;
 	}
-
-	/**
-	 * Get character stats.
-	 *
-	 * @return array
-	 */
-	public function stats()
-	{
-		return $this->stats;
-	}
 }
-// Writing below this line can cause headers to be sent before intended ?>
+?>

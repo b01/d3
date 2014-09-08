@@ -1,7 +1,10 @@
 <?php namespace Kshabazz\BattleNet\D3\Connections;
 /**
-* Perform request to BattleNet
-*/
+ * Perform request to BattleNet
+ */
+
+use Kshabazz\BattleNet\D3\Handlers\Item;
+
 use function \Kshabazz\Slib\isString,
 			 \Kshabazz\Slib\isArray;
 /**
@@ -109,6 +112,33 @@ class Http extends \Kshabazz\Slib\Request implements Connection
 		// Construct the Battle.net URL.
 		$url = sprintf( self::D3_API_ITEM_URL, $pItemId );
 		return $this->makeRequest( $url );
+	}
+
+	/**
+	 * For each item the hero has equipped construct an Model\Item and return them as an array.
+	 * This is costly, it make a HTTP request for each item on the hero.
+	 *
+	 * @param array $pItems List of item hashes.
+	 * @return array|null
+	 * @throws \InvalidArgumentException
+	 */
+	public function getItemsAsModels( array $pItems )
+	{
+		$itemModels = NULL;
+
+		// It is valid that the hero may not have any items equipped (new character).
+		if ( isArray($pItems) )
+		{
+			$itemModels = [];
+			foreach ( $pItems as $slot => $item )
+			{
+				$hash = $item[ 'tooltipParams' ];
+				$itemJson = $this->getItem( $hash );
+				$itemModels[ $slot ] = new Item( $itemJson );
+			}
+		}
+
+		return $itemModels;
 	}
 
 	/**
