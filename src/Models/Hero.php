@@ -172,66 +172,6 @@ class Hero
 	}
 
 	/**
-	 * Use the hero's class to determine the primary attribute.
-	 *
-	 * @return string
-	 */
-	private function determinePrimaryAttribute()
-	{
-		$primaryAttribute = NULL;
-		switch( $this->class )
-		{
-			case "monk":
-			case "demon hunter":
-			case "demon-hunter":
-				$primaryAttribute = "Dexterity_Item";
-				break;
-			case "crusader":
-			case "barbarian":
-				$primaryAttribute = "Strength_Item";
-				break;
-			case "wizard":
-			case "witch-doctor":
-			case "witch doctor":
-			case "shaman":
-				$primaryAttribute = "Intelligence_Item";
-				break;
-			default:
-				$trace = debug_backtrace();
-				trigger_error(
-					'There is no hero class ' . $this->class .
-					'. Error occurred in ' . $trace[ 0 ][ 'file' ] . ' on line ' . $trace[ 0 ][ 'line' ],
-					E_USER_NOTICE
-				);
-		}
-		return $primaryAttribute;
-	}
-
-	/**
-	 * @return $this
-	 * @throws \Exception
-	 */
-	private function init()
-	{
-		// decode battle.net data to an array.
-		$this->data = \json_decode( $this->json, TRUE );
-		// verify the JSON is legit.
-		if ( \array_key_exists('code', $this->data))
-		{
-			$reason = '';
-			if ( \array_key_exists('reason', $this->data))
-			{
-				$reason = $this->data[ 'reason' ];
-			}
-			$errorMessage = 'There wan an error with the hero JSON.';
-			$errorMessage .= ' ' . $reason;
-			throw new \Exception($errorMessage);
-		}
-
-		return $this;
-	}
-
-	/**
 	 * Character class
 	 * @return string
 	 */
@@ -319,17 +259,23 @@ class Hero
 	/**
 	 * Determine if a hero is brandishing a weapon in each hand.
 	 *
+	 * @param Http $pHttp
 	 * @return bool
 	 */
 	public function isDualWielding( Http $pHttp )
 	{
-//		// TODO: test!
-//		if ( array_key_exists('mainHand', $this->items)
-//			&& !$this->items['mainHand']->type['twoHanded']
-//			&& array_key_exists('offHand', $this->items) )
-		$mainHand = $this->mainHand( $pHttp );
-		$offHand = $this->offHand( $pHttp );
-		return ( $mainHand!== NULL && $mainHand->isWeapon() )
+		// We can have a weapon in each hand if one of them has nothing.
+		if ( !\array_key_exists('mainHand', $this->items) || !\array_key_exists('$offHand', $this->items) )
+		{
+			return FALSE;
+		}
+		$this->itemsHashesBySlot();
+		$itemHashes[ 'mainHand' ] = $this->itemsHashes[ 'mainHand' ];
+		$itemHashes[ 'offHand' ] = $this->itemsHashes[ 'offHand' ];
+		$itemModels = $pHttp->getItemsAsModels( $itemHashes );
+		$mainHand = $itemModels[ 'mainHand' ];
+		$offHand = $itemModels[ 'offHand' ];
+		return ( $mainHand!== NULL && $mainHand->isWeapon() && !(bool)$mainHand->type['twoHanded'])
 			 && ( $offHand!== NULL && $offHand->isWeapon() );
 	}
 
@@ -394,17 +340,6 @@ class Hero
 	}
 
 	/**
-	 * Item in the main hand.
-	 *
-	 * @param Http $pHttp
-	 * @return Item|null
-	 */
-	public function mainHand( Http $pHttp )
-	{
-		return $this->getItem( $pHttp, 'mainHand' );
-	}
-
-	/**
 	 * Get name.
 	 *
 	 * @return string
@@ -412,17 +347,6 @@ class Hero
 	public function name()
 	{
 		return $this->name;
-	}
-
-	/**
-	 * Get off-hand item.
-	 *
-	 * @param Http $pHttp
-	 * @return Item|null
-	 */
-	public function offHand( Http $pHttp )
-	{
-		return $this->getItem( $pHttp, 'offHand' );
 	}
 
 	/**
@@ -476,6 +400,66 @@ class Hero
 	public function skills()
 	{
 		return $this->skills;
+	}
+
+	/**
+	 * Use the hero's class to determine the primary attribute.
+	 *
+	 * @return string
+	 */
+	private function determinePrimaryAttribute()
+	{
+		$primaryAttribute = NULL;
+		switch( $this->class )
+		{
+			case "monk":
+			case "demon hunter":
+			case "demon-hunter":
+				$primaryAttribute = "Dexterity_Item";
+				break;
+			case "crusader":
+			case "barbarian":
+				$primaryAttribute = "Strength_Item";
+				break;
+			case "wizard":
+			case "witch-doctor":
+			case "witch doctor":
+			case "shaman":
+				$primaryAttribute = "Intelligence_Item";
+				break;
+			default:
+				$trace = debug_backtrace();
+				trigger_error(
+					'There is no hero class ' . $this->class .
+					'. Error occurred in ' . $trace[ 0 ][ 'file' ] . ' on line ' . $trace[ 0 ][ 'line' ],
+					E_USER_NOTICE
+				);
+		}
+		return $primaryAttribute;
+	}
+
+	/**
+	 * @return $this
+	 * @throws \Exception
+	 */
+	private function init()
+	{
+		// decode battle.net data to an array.
+		$this->data = \json_decode( $this->json, TRUE );
+		// verify the JSON is legit.
+		if ( \array_key_exists('code', $this->data))
+		{
+			$reason = '';
+			if ( \array_key_exists('reason', $this->data))
+			{
+				$reason = $this->data[ 'reason' ];
+			}
+			$errorMessage = 'There wan an error with the hero JSON.';
+			$errorMessage .= ' ' . $reason;
+			throw new \Exception($errorMessage);
+		}
+
+		return $this;
 	}
 }
 ?>

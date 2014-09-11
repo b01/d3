@@ -1,6 +1,6 @@
 <?php namespace Kshabazz\Tests\BattleNet\D3\Models;
 
-use Kshabazz\BattleNet\D3\Models\Hero;
+use \Kshabazz\BattleNet\D3\Models\Hero;
 
 /**
  * @class HeroTest
@@ -265,5 +265,17 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 	{
 		$this->markTestIncomplete( 'Need a hero.json with no items equipped.' );
 	}
+
+	public function test_when_hero_is_duel_wielding()
+	{
+		$hero = new Hero( $this->json );
+		$httpMock = $this->getMock( 'Kshabazz\\BattleNet\\D3\\Connections\\Http', ['getItemsAsModels'], [], '', FALSE );
+		$httpMock->method( 'getItemsAsModels' )
+			->willReturn(NULL);
+
+		$actual = $hero->isDualWielding( $httpMock );
+		$this->assertFalse($actual);
+	}
+
 }
 ?>
