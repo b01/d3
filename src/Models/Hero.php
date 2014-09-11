@@ -8,9 +8,12 @@
  * @copyright (c) 2012-2013 diablo-3-assistant by Khalifah K. Shabazz
  * timestamp: 11/23/13:8:21 AM
  */
+
 use \Kshabazz\BattleNet\D3\Models\Item,
 	\Kshabazz\BattleNet\D3\Connections\Http;
+
 use function \Kshabazz\Slib\isArray;
+
  /**
  * Class Hero
  * @package Kshabazz\BattleNet\D3\Models
@@ -62,10 +65,10 @@ class Hero
 	 *  }
 	 * }
 	 */
-	private $items;
-
-	/** @var array */
-	private $itemModels;
+	private
+		$items,
+		/** @var array */
+		$itemModels;
 
 	/**
 	 * @var array
@@ -208,14 +211,14 @@ class Hero
 	 * Item in the main hand.
 	 *
 	 * @param Http $pHttp
-	 * @param string $pKey
+	 * @param string $pSlot
 	 * @return \Kshabazz\BattleNet\D3\Models\Item|null
 	 */
-	private function getItem( Http $pHttp, $pKey )
+	public function getItem( Http $pHttp, $pSlot )
 	{
-		if ( array_key_exists($pKey, $this->items) )
+		if ( \array_key_exists($pSlot, $this->items) )
 		{
-			$itemHash = $this->items[ $pKey ][ 'tooltipParams' ];
+			$itemHash = $this->items[ $pSlot ][ 'tooltipParams' ];
 			if ( !empty($itemHash) )
 			{
 				$itemJson = $pHttp->getItem( $itemHash );
@@ -339,14 +342,16 @@ class Hero
 	 *
 	 * @return bool
 	 */
-	public function isDualWielding()
+	public function isDualWielding( Http $pHttp )
 	{
 //		// TODO: test!
 //		if ( array_key_exists('mainHand', $this->items)
 //			&& !$this->items['mainHand']->type['twoHanded']
 //			&& array_key_exists('offHand', $this->items) )
-//
-		return $this->mainHand()->isWeapon() && $this->offHand()->isWeapon();
+		$mainHand = $this->mainHand( $pHttp );
+		$offHand = $this->offHand( $pHttp );
+		return ( $mainHand!== NULL && $mainHand->isWeapon() )
+			 && ( $offHand!== NULL && $offHand->isWeapon() );
 	}
 
 	/**
@@ -357,6 +362,30 @@ class Hero
 	public function items()
 	{
 		return $this->items;
+	}
+
+	/**
+	 * For each item the hero has equipped construct an Model\Item and return them as an array.
+	 * This is costly, it make a HTTP request for each item on the hero.
+	 *
+	 * @param Http $pHttp
+	 * @return array|null
+	 * @throws \InvalidArgumentException
+	 */
+	public function itemsAsModels( Http $pHttp )
+	{
+		// It is valid that the hero may not have any items equipped (new character).
+		if ( !isset($this->itemModels) && isArray($this->items) )
+		{
+			$this->itemModels = [];
+			foreach ( $this->items as $slot => $item )
+			{
+				$itemJson = $this->getItem( $pHttp, $slot );
+				$itemModels[ $slot ] = new Item( $itemJson );
+			}
+		}
+
+		return $this->itemModels;
 	}
 
 	/**

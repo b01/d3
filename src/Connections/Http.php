@@ -115,6 +115,8 @@ class Http extends \Kshabazz\Slib\Request implements Connection
 	}
 
 	/**
+	 * @deprecated {@see Kshabazz\BattleNet\D3\Models\Hero::itemsAsModels()}
+	 * 
 	 * For each item the hero has equipped construct an Model\Item and return them as an array.
 	 * This is costly, it make a HTTP request for each item on the hero.
 	 *
