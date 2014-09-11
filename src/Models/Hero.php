@@ -347,10 +347,14 @@ class Hero
 	 * Get a list of hashes for each item the hero has equipped.
 	 *
 	 * @return array|null Null when the hero has no items equipped.
-	 * @throws \InvalidArgumentException
 	 */
 	public function itemsHashesBySlot()
 	{
+		if ( !isArray($this->items) )
+		{
+			return NULL;
+		}
+
 		foreach ( $this->items as $slot => $item )
 		{
 			$this->itemsHashes[ $slot ] = $item[ 'tooltipParams' ];
