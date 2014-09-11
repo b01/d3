@@ -67,8 +67,8 @@ class Hero
 	 */
 	private
 		$items,
-		/** @var array */
-		$itemModels;
+		/** @var array List of hash for the items the hero has equipped. */
+		$itemsHashes;
 
 	/**
 	 * @var array
@@ -208,27 +208,6 @@ class Hero
 	}
 
 	/**
-	 * Item in the main hand.
-	 *
-	 * @param Http $pHttp
-	 * @param string $pSlot
-	 * @return \Kshabazz\BattleNet\D3\Models\Item|null
-	 */
-	public function getItem( Http $pHttp, $pSlot )
-	{
-		if ( \array_key_exists($pSlot, $this->items) )
-		{
-			$itemHash = $this->items[ $pSlot ][ 'tooltipParams' ];
-			if ( !empty($itemHash) )
-			{
-				$itemJson = $pHttp->getItem( $itemHash );
-				return new Item( $itemJson );
-			}
-		}
-		return NULL;
-	}
-
-	/**
 	 * @return $this
 	 * @throws \Exception
 	 */
@@ -365,27 +344,19 @@ class Hero
 	}
 
 	/**
-	 * For each item the hero has equipped construct an Model\Item and return them as an array.
-	 * This is costly, it make a HTTP request for each item on the hero.
+	 * Get a list of hashes for each item the hero has equipped.
 	 *
-	 * @param Http $pHttp
-	 * @return array|null
+	 * @return array|null Null when the hero has no items equipped.
 	 * @throws \InvalidArgumentException
 	 */
-	public function itemsAsModels( Http $pHttp )
+	public function itemsHashesBySlot()
 	{
-		// It is valid that the hero may not have any items equipped (new character).
-		if ( !isset($this->itemModels) && isArray($this->items) )
+		foreach ( $this->items as $slot => $item )
 		{
-			$this->itemModels = [];
-			foreach ( $this->items as $slot => $item )
-			{
-				$itemJson = $this->getItem( $pHttp, $slot );
-				$itemModels[ $slot ] = new Item( $itemJson );
-			}
+			$this->itemsHashes[ $slot ] = $item[ 'tooltipParams' ];
 		}
 
-		return $this->itemModels;
+		return $this->itemsHashes;
 	}
 
 	/**

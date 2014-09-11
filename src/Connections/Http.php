@@ -115,29 +115,22 @@ class Http extends \Kshabazz\Slib\Request implements Connection
 	}
 
 	/**
-	 * @deprecated {@see Kshabazz\BattleNet\D3\Models\Hero::itemsAsModels()}
-	 * 
 	 * For each item the hero has equipped construct an Model\Item and return them as an array.
 	 * This is costly, it make a HTTP request for each item on the hero.
 	 *
-	 * @param array $pItems List of item hashes.
+	 * @param array $pItemHashes List of item hashes.
 	 * @return array|null
 	 * @throws \InvalidArgumentException
 	 */
-	public function getItemsAsModels( array $pItems )
+	public function getItemsAsModels( array $pItemHashes )
 	{
 		$itemModels = NULL;
 
 		// It is valid that the hero may not have any items equipped (new character).
-		if ( isArray($pItems) )
+		foreach ( $pItemHashes as $slot => $hash )
 		{
-			$itemModels = [];
-			foreach ( $pItems as $slot => $item )
-			{
-				$hash = $item[ 'tooltipParams' ];
-				$itemJson = $this->getItem( $hash );
-				$itemModels[ $slot ] = new Item( $itemJson );
-			}
+			$itemJson = $this->getItem( $hash );
+			$itemModels[ $slot ] = new Item( $itemJson );
 		}
 
 		return $itemModels;

@@ -248,5 +248,22 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 		$isDead = $hero->isDead();
 		$this->assertFalse( $isDead, 'isDead returned unexpected value.' );
 	}
+
+	public function test_itemsHashesBySlot_when_items_equipped()
+	{
+		$hero = new Hero( $this->json );
+		$itemHashes = $hero->itemsHashesBySlot();
+		// verify at least one key has an exact value.
+		$this->assertArrayHasKey( 'torso', $itemHashes );
+		$this->assertEquals(
+			'item/CjkIxYL_7AISBwgEFRaF-hsdtwRpuh2V-O2WHTIlWp4dElbV7h1X8eDWHYNFzIwwCTixAkAAUBJgtQIYrJTUvwNQBlgC',
+			$itemHashes['torso']
+		);
+	}
+
+	public function test_itemsHashesBySlot_when_no_items_equipped()
+	{
+		$this->markTestIncomplete( 'Need a hero.json with no items equipped.' );
+	}
 }
 ?>
