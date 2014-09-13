@@ -446,6 +446,11 @@ class Hero
 	{
 		// decode battle.net data to an array.
 		$this->data = \json_decode( $this->json, TRUE );
+
+		if ( !isArray($this->data) ) {
+			throw new \InvalidArgumentException( 'Invalid JSON. Please verify the string is valid JSON.' );
+		}
+
 		// verify the JSON is legit.
 		if ( \array_key_exists('code', $this->data))
 		{

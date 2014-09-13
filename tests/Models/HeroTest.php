@@ -1,6 +1,7 @@
 <?php namespace Kshabazz\Tests\BattleNet\D3\Models;
 
 use \Kshabazz\BattleNet\D3\Models\Hero;
+use Kshabazz\BattleNet\D3\Models\Item;
 
 /**
  * @class HeroTest
@@ -82,7 +83,7 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 		}
 	}
 
-	public function test_retreiving_json()
+	public function test_retrieving_json()
 	{
 		$hero = new Hero( $this->json );
 		$json = $hero->json();
@@ -263,19 +264,42 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 
 	public function test_itemsHashesBySlot_when_no_items_equipped()
 	{
-		$this->markTestIncomplete( 'Need a hero.json with no items equipped.' );
+		$heroFixture = FIXTURES_PATH . DIRECTORY_SEPARATOR . 'hero-3955832-no-items.json';
+		$heroJson = \file_get_contents( $heroFixture );
+		$hero = new Hero( $heroJson );
+		$httpMock = $this->getMock( 'Kshabazz\\BattleNet\\D3\\Connections\\Http', ['getItemsAsModels'], [], '', FALSE );
+		$httpMock->method( 'getItemsAsModels' )
+			->willReturn(NULL);
+		$actual = $hero->isDualWielding( $httpMock );
+		$this->assertFalse($actual);
+//		$this->markTestIncomplete( 'Need a hero.json with no items equipped.' );
 	}
 
 	public function test_when_hero_is_duel_wielding()
 	{
 		$hero = new Hero( $this->json );
+		$itemFixture = FIXTURES_PATH . DIRECTORY_SEPARATOR . 'item-mainHand.json';
+		$itemJson = \file_get_contents( $itemFixture );
 		$httpMock = $this->getMock( 'Kshabazz\\BattleNet\\D3\\Connections\\Http', ['getItemsAsModels'], [], '', FALSE );
-		$httpMock->method( 'getItemsAsModels' )
-			->willReturn(NULL);
+		$weaponItem = new Item( $itemJson );
 
+		$this->markTestIncomplete('Needs work!');
+		$httpMock->method( 'getItemsAsModels' )
+			->willReturn([
+				'mainHand' => $weaponItem,
+				'offHand' => $weaponItem
+			]);
 		$actual = $hero->isDualWielding( $httpMock );
-		$this->assertFalse($actual);
+		$this->assertTrue($actual);
 	}
 
+	/**
+	 * @expectedException InvalidArgumentException
+	 * @expectedExceptionMessage Invalid JSON. Please verify the string is valid JSON.
+	 */
+	public function test_constructing_with_invalid_json()
+	{
+		$hero = new Hero( '1234' );
+	}
 }
 ?>
