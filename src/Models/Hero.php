@@ -9,8 +9,7 @@
  * timestamp: 11/23/13:8:21 AM
  */
 
-use \Kshabazz\BattleNet\D3\Models\Item,
-	\Kshabazz\BattleNet\D3\Connections\Http;
+use \Kshabazz\BattleNet\D3\Connections\Http;
 
 use function \Kshabazz\Slib\isArray;
 

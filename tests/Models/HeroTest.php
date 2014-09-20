@@ -272,7 +272,6 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 			->willReturn(NULL);
 		$actual = $hero->isDualWielding( $httpMock );
 		$this->assertFalse($actual);
-//		$this->markTestIncomplete( 'Need a hero.json with no items equipped.' );
 	}
 
 	public function test_when_hero_is_duel_wielding()
