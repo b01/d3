@@ -16,36 +16,31 @@ interface Skill
 	/**
 	 * @return string
 	 */
-	public function getDescription();
+	public function description();
 
 	/**
 	 * @return string
 	 */
-	public function getName();
+	public function name();
 
 	/**
 	 * @return int
 	 */
-	public function getRequiredLevel();
+	public function requiredLevel();
 
 	/**
 	 * @return string
 	 */
-	public function getSimpleDescription();
+	public function simpleDescription();
 
 	/**
 	 * @return string
 	 */
-	public function getSlug();
+	public function slug();
 
 	/**
 	 * @return string
 	 */
-	public function getTooltipParams();
-
-	/**
-	 * @return string
-	 */
-	public function getType();
+	public function tooltipParams();
 }
 ?>

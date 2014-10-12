@@ -13,6 +13,8 @@ class Passive implements Skill
 	private
 		/** @var string A long description of the skill benefits. */
 		$description,
+		/** @var string Flavor text. */
+		$flavor,
 		/** @var string A cool name. */
 		$name,
 		/** @var int Order in which the skill should be sorted. */
@@ -21,6 +23,8 @@ class Passive implements Skill
 		$requiredLevel,
 		/** @var string Shortened version of the description. */
 		$simpleDescription,
+		/** @var string */
+		$skillCalcId,
 		/** @var string Name of the skill that is useful when coding. */
 		$slug,
 		/** @var string Battle.Net URI for the skill. */
@@ -43,7 +47,7 @@ class Passive implements Skill
 	/**
 	 * @return string
 	 */
-	public function getDescription()
+	public function description()
 	{
 		return $this->description;
 	}
@@ -51,7 +55,15 @@ class Passive implements Skill
 	/**
 	 * @return string
 	 */
-	public function getName()
+	public function flavor()
+	{
+		return $this->flavor;
+	}
+
+	/**
+	 * @return string
+	 */
+	public function name()
 	{
 		return $this->name;
 	}
@@ -59,7 +71,7 @@ class Passive implements Skill
 	/**
 	 * @return int
 	 */
-	public function getOrderIndex()
+	public function orderIndex()
 	{
 		return $this->orderIndex;
 	}
@@ -67,7 +79,7 @@ class Passive implements Skill
 	/**
 	 * @return int
 	 */
-	public function getRequiredLevel()
+	public function requiredLevel()
 	{
 		return $this->requiredLevel;
 	}
@@ -75,7 +87,7 @@ class Passive implements Skill
 	/**
 	 * @return string
 	 */
-	public function getSimpleDescription()
+	public function simpleDescription()
 	{
 		return $this->simpleDescription;
 	}
@@ -83,7 +95,7 @@ class Passive implements Skill
 	/**
 	 * @return string
 	 */
-	public function getSlug()
+	public function slug()
 	{
 		return $this->slug;
 	}
@@ -91,7 +103,7 @@ class Passive implements Skill
 	/**
 	 * @return string
 	 */
-	public function getTooltipParams()
+	public function tooltipParams()
 	{
 		return $this->tooltipParams;
 	}

@@ -24,9 +24,7 @@ class Active implements Skill
 		/** @var string Name of the skill that is useful when coding. */
 		$slug,
 		/** @var string Battle.Net URI for the skill. */
-		$tooltipParams,
-		/** @var string active/passive. */
-		$type;
+		$tooltipParams;
 
 	/**
 	 * @inheritdoc
@@ -40,13 +38,12 @@ class Active implements Skill
 		$this->simpleDescription = $pSkill[ 'simpleDescription' ];
 		$this->slug = $pSkill[ 'slug' ];
 		$this->tooltipParams = $pSkill[ 'tooltipParams' ];
-		$this->type = $pType;
 	}
 
 	/**
 	 * @inheritdoc
 	 */
-	public function getDescription()
+	public function description()
 	{
 		return $this->description;
 	}
@@ -54,7 +51,7 @@ class Active implements Skill
 	/**
 	 * @inheritdoc
 	 */
-	public function getName()
+	public function name()
 	{
 		return $this->name;
 	}
@@ -62,7 +59,7 @@ class Active implements Skill
 	/**
 	 * @inheritdoc
 	 */
-	public function getRequiredLevel()
+	public function requiredLevel()
 	{
 		return $this->requiredLevel;
 	}
@@ -70,7 +67,7 @@ class Active implements Skill
 	/**
 	 * @inheritdoc
 	 */
-	public function getSimpleDescription()
+	public function simpleDescription()
 	{
 		return $this->simpleDescription;
 	}
@@ -78,7 +75,7 @@ class Active implements Skill
 	/**
 	 * @inheritdoc
 	 */
-	public function getSlug()
+	public function slug()
 	{
 		return $this->slug;
 	}
@@ -86,7 +83,7 @@ class Active implements Skill
 	/**
 	 * @inheritdoc
 	 */
-	public function getTooltipParams()
+	public function tooltipParams()
 	{
 		return $this->tooltipParams;
 	}
