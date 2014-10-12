@@ -31,7 +31,7 @@ class Active implements Skill
 	/**
 	 * @inheritdoc
 	 */
-	public function __construct( $pType, array $pSkill )
+	public function __construct( array $pSkill )
 	{
 		$this->description = $pSkill[ 'description' ];
 		$this->name = $pSkill[ 'name' ];
@@ -89,14 +89,6 @@ class Active implements Skill
 	public function getTooltipParams()
 	{
 		return $this->tooltipParams;
-	}
-
-	/**
-	 * @inheritdoc
-	 */
-	public function getType()
-	{
-		return $this->type;
 	}
 }
 ?>

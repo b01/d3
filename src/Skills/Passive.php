@@ -24,14 +24,12 @@ class Passive implements Skill
 		/** @var string Name of the skill that is useful when coding. */
 		$slug,
 		/** @var string Battle.Net URI for the skill. */
-		$tooltipParams,
-		/** @var string active/passive. */
-		$type;
+		$tooltipParams;
 
 	/**
 	 * @inheritdoc
 	 */
-	public function __construct( $pType, array $pSkill )
+	public function __construct( array $pSkill )
 	{
 		$this->description = $pSkill[ 'description' ];
 		$this->name = $pSkill[ 'name' ];
@@ -40,7 +38,6 @@ class Passive implements Skill
 		$this->simpleDescription = $pSkill[ 'simpleDescription' ];
 		$this->slug = $pSkill[ 'slug' ];
 		$this->tooltipParams = $pSkill[ 'tooltipParams' ];
-		$this->type = $pType;
 	}
 
 	/**
@@ -97,14 +94,6 @@ class Passive implements Skill
 	public function getTooltipParams()
 	{
 		return $this->tooltipParams;
-	}
-
-	/**
-	 * @return string
-	 */
-	public function getType()
-	{
-		return $this->type;
 	}
 }
 ?>

@@ -282,7 +282,7 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 		$httpMock = $this->getMock( 'Kshabazz\\BattleNet\\D3\\Connections\\Http', ['getItemsAsModels'], [], '', FALSE );
 		$weaponItem = new Item( $itemJson );
 
-		$this->markTestIncomplete('Needs work!');
+		$this->markTestIncomplete( 'Broken, needs work!' );
 		$httpMock->method( 'getItemsAsModels' )
 			->willReturn([
 				'mainHand' => $weaponItem,

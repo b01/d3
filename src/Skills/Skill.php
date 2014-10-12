@@ -9,10 +9,9 @@ interface Skill
 	/**
 	 * Constructor
 	 *
-	 * @param string $pType
 	 * @param array $pSkill
 	 */
-	public function __construct( $pType, array $pSkill );
+	public function __construct( array $pSkill );
 
 	/**
 	 * @return string
