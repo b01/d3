@@ -170,7 +170,26 @@ class Sql extends \Kshabazz\Slib\Sql implements Connection
 			'lastUpdate' => [ $utcTime, \PDO::PARAM_STR ],
 			'dateAdded' => [ $utcTime, \PDO::PARAM_STR ]
 		];
-		return $this->pdoQueryBind( \Kshabazz\BattleNet\D3\Connections\Sql::INSERT_ITEM, $params );
+		return $this->pdoQueryBind( self::INSERT_ITEM, $params );
+	}
+
+	/**
+	 * Save the users profile locally to the database.
+	 *
+	 * @return bool
+	 */
+	public function saveProfile()
+	{
+		// save it to the database.
+		$utcTime = \gmdate( 'Y-m-d H:i:s' );
+		$query = self::INSERT_PROFILE;
+		return $this->sql->pdoQueryBind( $query, [
+			'battleNetId' => [ $this->key, \PDO::PARAM_STR ],
+			'json' => [ $this->json, \PDO::PARAM_STR ],
+			'ipAddress' => [ $this->sql->ipAddress(), \PDO::PARAM_STR ],
+			'lastUpdated' => [ $utcTime, \PDO::PARAM_STR ],
+			'dateAdded' => [ $utcTime, \PDO::PARAM_STR ]
+		]);
 	}
 }
-// DO NOT PUT ANY CHARACTERS OR EVEN WHITE-SPACE after the closing php tag, or headers may be sent before intended. ?>
+?>
