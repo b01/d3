@@ -1,12 +1,8 @@
-<?php namespace Kshabazz\BattleNet\D3\Models;
+<?php namespace Kshabazz\BattleNet\D3\Skills;
 /**
+ * Interface Skill
  *
- */
-
-/**
- * Class Skill
- *
- * @package Kshabazz\BattleNet\D3\Models
+ * @package Kshabazz\BattleNet\D3\Skills
  */
 interface Skill
 {
