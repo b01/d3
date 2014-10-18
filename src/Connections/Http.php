@@ -3,14 +3,15 @@
  * Perform request to BattleNet
  */
 
-use Kshabazz\BattleNet\D3\Handlers\Item;
+use \Kshabazz\BattleNet\D3\Handlers\Item;
 
 use function \Kshabazz\Slib\isString,
 			 \Kshabazz\Slib\isArray;
+
 /**
  * Class Http
- * TODO: Rename to Request.
- * @package Kshabazz\BattleNet
+ *
+ * @package \Kshabazz\BattleNet
  */
 class Http extends \Kshabazz\Slib\Request implements Connection
 {
@@ -37,7 +38,7 @@ class Http extends \Kshabazz\Slib\Request implements Connection
 	{
 		parent::__construct( NULL );
 		$this->battleNetId = $pBattleNetId;
-		$this->battleNetUrlSafeId = str_replace( '#', '-', $this->battleNetId );
+		$this->battleNetUrlSafeId = \str_replace( '#', '-', $this->battleNetId );
 	}
 
 	/**
@@ -82,12 +83,12 @@ class Http extends \Kshabazz\Slib\Request implements Connection
 	 */
 	public function getHero( $pHeroId )
 	{
-		if ( !is_int($pHeroId) )
+		if ( !\is_int($pHeroId) )
 		{
-			throw new \InvalidArgumentException( 'Expected an integer, got a '. gettype($pHeroId) );
+			throw new \InvalidArgumentException( 'Expected an integer, got a '. \gettype($pHeroId) );
 		}
 		// Construct the Battle.net URL.
-		$url = sprintf( self::D3_API_HERO_URL, $this->battleNetUrlSafeId, $pHeroId );
+		$url = \sprintf( self::D3_API_HERO_URL, $this->battleNetUrlSafeId, $pHeroId );
 		// Request the hero JSON from BattleNet.
 		return $this->makeRequest( $url );
 	}
@@ -110,7 +111,7 @@ class Http extends \Kshabazz\Slib\Request implements Connection
 			);
 		}
 		// Construct the Battle.net URL.
-		$url = sprintf( self::D3_API_ITEM_URL, $pItemId );
+		$url = \sprintf( self::D3_API_ITEM_URL, $pItemId );
 		return $this->makeRequest( $url );
 	}
 

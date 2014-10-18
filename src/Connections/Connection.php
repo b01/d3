@@ -1,12 +1,7 @@
 <?php namespace Kshabazz\BattleNet\D3\Connections;
 /**
- * Created by PhpStorm.
- * User: Khalifah
- * Date: 7/4/14
- * Time: 8:14 AM
+ * Connections for retrieving things such as JSON for hero profiles.
  */
-
-
 
 /**
  * Interface Resource
@@ -45,3 +40,4 @@ interface Connection
 	 */
 	public function getProfile();
 }
+?>
