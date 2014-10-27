@@ -3,7 +3,7 @@
  * Perform request to BattleNet
  */
 
-use \Kshabazz\BattleNet\D3\Handlers\Item;
+use Kshabazz\BattleNet\D3\Models\Item;
 
 use function \Kshabazz\Slib\isString,
 			 \Kshabazz\Slib\isArray;
