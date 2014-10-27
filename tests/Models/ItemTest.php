@@ -18,7 +18,8 @@ class ItemTest extends \PHPUnit_Framework_TestCase
 
 	public function setUp()
 	{
-		$this->bnrHttp = new BnrHttp( 'msuBREAKER#1374' );
+		$client = new \Kshabazz\Slib\Http();
+		$this->bnrHttp = new BnrHttp( 'msuBREAKER#1374', $client );
 		$this->itemHash1 = 'item/Cj0I-bvTgAsSBwgEFdosyssdb2mxyh10HmzAHfKS3AgdcIt38CILCAEVbEIDABgWICAwiQI4_AJAAFAMYJUDGMvMrsMGUABYAg';
 		$this->itemHash2 = 'item/ChoIqvDNpwMSBwgEFScYtUkwiQI4kANAAGCQAxjO4KibCVAIWAI';
 		$this->itemHash3 = 'item/CioI4YeygAgSBwgEFcgYShEdhBF1FR2dbLMUHape7nUwDTiTA0AAUApgkwMYkOPQlAI';

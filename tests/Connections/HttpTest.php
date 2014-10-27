@@ -16,6 +16,7 @@ use \Kshabazz\BattleNet\D3\Connections\Http,
 class HttpTest extends \PHPUnit_Framework_TestCase
 {
 	private
+		$client,
 		$battleNetId,
 		$battleNetUrlSafeId,
 		$fixturesDir,
@@ -25,57 +26,48 @@ class HttpTest extends \PHPUnit_Framework_TestCase
 	{
 		$this->battleNetId = 'msuBREAKER#1374';
 		$this->battleNetUrlSafeId = 'msuBREAKER-1374';
-		$this->heroId = 46026639;
+		$this->client = new \Kshabazz\Slib\Http();
+		$this->heroId = 3955832;
 		$this->fixturesDir = \FIXTURES_PATH . DIRECTORY_SEPARATOR;
 	}
 
 	public function test_getting_a_url_safe_battleNet_id()
 	{
-		$bnr = new Http( $this->battleNetId );
+		$bnr = new Http( $this->battleNetId, $this->client );
 		$bnIdUrlSafe = $bnr->battleNetUrlSafeId();
 		$this->assertEquals( $this->battleNetUrlSafeId, $bnIdUrlSafe );
 	}
 
-	/**
-	* Get BattleNet ID
-	*
-	* @return string BattleNet ID
-	*/
 	public function test_gettting_battleNet_id()
 	{
-		$bnr = new Http( $this->battleNetId );
+		$bnr = new Http( $this->battleNetId, $this->client );
 		$bnIdUrlSafe = $bnr->battleNetId();
 		$this->assertEquals( $this->battleNetId, $bnIdUrlSafe, 'Invalid BattelNet ID returned.' );
 	}
 
 	public function test_getting_a_hero_from_battle_net()
 	{
-		$bnr = new Http( $this->battleNetId );
+		$bnr = new Http( $this->battleNetId, $this->client );
 		$heroJson = $bnr->getHero( $this->heroId );
 		$hero = \json_decode( $heroJson );
 		$this->assertEquals( $this->heroId, $hero->id, 'Unable to retrieve Hero from Battle.Net' );
 	}
 
-	/**
-	 * Test retrieving a valid item from Battle.Net
-	 */
 	public function test_getting_a_valid_item()
 	{
-		$bnr = new Http( $this->battleNetId );
+		$bnr = new Http( $this->battleNetId, $this->client );
 		$itemJson = $bnr->getItem( 'item/COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD' );
 		$item = new Item( $itemJson );
 		$this->assertEquals( 'MightyWeapon1H_202', $item->id(), 'Invalid item returned.' );
 	}
 
 	/**
-	 * Test retrieving an invalid item from Battle.Net
-	 *
 	 * @expectedException \InvalidArgumentException
 	 * @expectedExceptionMessage Expects a valid item id, but was given: ''.
 	 */
 	public function test_getting_a_invalid_item()
 	{
-		$bnr = new Http( $this->battleNetId );
+		$bnr = new Http( $this->battleNetId, $this->client );
 		$bnr->getItem( NULL );
 	}
 
@@ -84,7 +76,7 @@ class HttpTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function test_getting_a_profile()
 	{
-		$bnr = new Http( $this->battleNetId );
+		$bnr = new Http( $this->battleNetId, $this->client );
 		$profileJson = $bnr->getProfile();
 		$profile = new Profile( $profileJson );
 		$this->assertEquals(
@@ -99,7 +91,7 @@ class HttpTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function test_invalid_argument_with_getHero()
 	{
-		$bnr = new Http( $this->battleNetId );
+		$bnr = new Http( $this->battleNetId, $this->client );
 		$bnr->getHero( 'test' );
 	}
 
@@ -115,7 +107,9 @@ class HttpTest extends \PHPUnit_Framework_TestCase
 		$mockHttp = $this->getMock(
 			'\\Kshabazz\\BattleNet\\D3\\Connections\\Http',
 			[ 'getItem' ],
-			[ 'msuBREAKER#1374' ]
+			[ 'msuBREAKER#1374' ],
+			'',
+			FALSE
 		);
 		$mockHttp->expects( $this->exactly(1) )
 			->method( 'getItem' )

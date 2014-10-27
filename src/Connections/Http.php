@@ -13,7 +13,7 @@ use function \Kshabazz\Slib\isString,
  *
  * @package \Kshabazz\BattleNet
  */
-class Http extends \Kshabazz\Slib\Request implements Connection
+class Http implements Connection
 {
 	const
 		/** @const string */
@@ -24,6 +24,8 @@ class Http extends \Kshabazz\Slib\Request implements Connection
 		D3_API_ITEM_URL = 'http://us.battle.net/api/d3/data/%s';
 
 	private
+		/** @var object */
+		$client,
 		/** @var string */
 		$battleNetId,
 		/** @var string */
@@ -34,9 +36,9 @@ class Http extends \Kshabazz\Slib\Request implements Connection
 	 *
 	 * @param string $pBattleNetId
 	 */
-	public function __construct( $pBattleNetId )
+	public function __construct( $pBattleNetId, $pClient )
 	{
-		parent::__construct( NULL );
+		$this->client = $pClient;
 		$this->battleNetId = $pBattleNetId;
 		$this->battleNetUrlSafeId = \str_replace( '#', '-', $this->battleNetId );
 	}
@@ -47,6 +49,7 @@ class Http extends \Kshabazz\Slib\Request implements Connection
 	public function __destruct()
 	{
 		unset(
+			$this->client,
 			$this->battleNetId,
 			$this->battleNetUrlSafeId
 		);
@@ -161,12 +164,12 @@ class Http extends \Kshabazz\Slib\Request implements Connection
 	private function makeRequest( $pUrl )
 	{
 		// Request the item from BattleNet.
-		$responseText = $this->send( $pUrl );
+		$this->client->send( $pUrl );
 		// When the response is good, return the response text.
-		$requestSuccessful = $this->responseCode() === 200;
+		$requestSuccessful = $this->client->responseCode() === 200;
 		if ( $requestSuccessful )
 		{
-			return $responseText;
+			return $this->client->responseBody();
 		}
 		return NULL;
 	}
