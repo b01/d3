@@ -264,13 +264,13 @@ class Hero
 	public function isDualWielding( Http $pHttp )
 	{
 		// We can have a weapon in each hand if one of them has nothing.
-		if ( !\array_key_exists('mainHand', $this->items) || !\array_key_exists('$offHand', $this->items) )
+		if ( !\array_key_exists('mainHand', $this->items) || !\array_key_exists('offHand', $this->items) )
 		{
 			return FALSE;
 		}
 		$this->itemsHashesBySlot();
-		$itemHashes[ 'mainHand' ] = $this->itemsHashes[ 'mainHand' ];
-		$itemHashes[ 'offHand' ] = $this->itemsHashes[ 'offHand' ];
+		$itemHashes[ 'mainHand' ] = [ 'tooltipParams' => $this->itemsHashes[ 'mainHand' ] ];
+		$itemHashes[ 'offHand' ] = [ 'tooltipParams' => $this->itemsHashes[ 'offHand' ] ];
 		$itemModels = $pHttp->getItemsAsModels( $itemHashes );
 		$mainHand = $itemModels[ 'mainHand' ];
 		$offHand = $itemModels[ 'offHand' ];

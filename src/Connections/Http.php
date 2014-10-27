@@ -131,8 +131,9 @@ class Http implements Connection
 		$itemModels = NULL;
 
 		// It is valid that the hero may not have any items equipped (new character).
-		foreach ( $pItemHashes as $slot => $hash )
+		foreach ( $pItemHashes as $slot => $item )
 		{
+			$hash = $item[ 'tooltipParams' ];
 			$itemJson = $this->getItem( $hash );
 			$itemModels[ $slot ] = new Item( $itemJson );
 		}

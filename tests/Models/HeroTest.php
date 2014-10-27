@@ -1,7 +1,10 @@
 <?php namespace Kshabazz\Tests\BattleNet\D3\Models;
 
-use \Kshabazz\BattleNet\D3\Models\Hero;
-use Kshabazz\BattleNet\D3\Models\Item;
+use Kshabazz\BattleNet\D3\Connections\Http;
+use \Kshabazz\BattleNet\D3\Models\Hero,
+	\Kshabazz\BattleNet\D3\Models\Item,
+	\Kshabazz\Interception\StreamWrappers\Http as HttpWrapper,
+	\Kshabazz\Slib\Http as Client;
 
 /**
  * @class HeroTest
@@ -13,6 +16,23 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 		$heroId,
 		$itemParams,
 		$json;
+
+	static public function setUpBeforeClass()
+	{
+		\stream_wrapper_unregister( 'http' );
+		HttpWrapper::setSaveDir( FIXTURES_PATH );
+
+		\stream_register_wrapper(
+			'http',
+			'\\Kshabazz\\Interception\\StreamWrappers\\Http',
+			\STREAM_IS_URL
+		);
+	}
+
+	static public function tearDownAfterClass()
+	{
+		stream_wrapper_restore( 'http' );
+	}
 
 	/**
 	 * Setup
@@ -47,6 +67,7 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 
 	/**
 	 * Should throw an error when a property is not found.
+	 *
 	 * @expectedException \Exception
 	 * @expectedExceptionMessage Hero has no property test123
 	 */
@@ -266,34 +287,25 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 	{
 		$heroFixture = FIXTURES_PATH . DIRECTORY_SEPARATOR . 'hero-3955832-no-items.json';
 		$heroJson = \file_get_contents( $heroFixture );
+		HttpWrapper::setSaveFilename( 'hero-3955832-no-items.rsd' );
 		$hero = new Hero( $heroJson );
-		$httpMock = $this->getMock( 'Kshabazz\\BattleNet\\D3\\Connections\\Http', ['getItemsAsModels'], [], '', FALSE );
-		$httpMock->method( 'getItemsAsModels' )
-			->willReturn(NULL);
-		$actual = $hero->isDualWielding( $httpMock );
-		$this->assertFalse($actual);
+		$items = $hero->items();
+		$this->assertEquals( 0, \count($items) );
 	}
 
 	public function test_when_hero_is_duel_wielding()
 	{
-		$hero = new Hero( $this->json );
-		$itemFixture = FIXTURES_PATH . DIRECTORY_SEPARATOR . 'item-mainHand.json';
-		$itemJson = \file_get_contents( $itemFixture );
-		$httpMock = $this->getMock( 'Kshabazz\\BattleNet\\D3\\Connections\\Http', ['getItemsAsModels'], [], '', FALSE );
-		$weaponItem = new Item( $itemJson );
-
-		$this->markTestIncomplete( 'Broken, needs work!' );
-		$httpMock->method( 'getItemsAsModels' )
-			->willReturn([
-				'mainHand' => $weaponItem,
-				'offHand' => $weaponItem
-			]);
-		$actual = $hero->isDualWielding( $httpMock );
+		$json = \file_get_contents( FIXTURES_PATH . 'hero-46026639-dual-wield.json' );
+		$client = new Client();
+		$http = new Http( 'msuBREAKER', $client );
+		$hero = new Hero( $json );
+		$this->markTestIncomplete( 'Item properties not found.' );
+		$actual = $hero->isDualWielding( $http );
 		$this->assertTrue($actual);
 	}
 
 	/**
-	 * @expectedException InvalidArgumentException
+	 * @expectedException \InvalidArgumentException
 	 * @expectedExceptionMessage Invalid JSON. Please verify the string is valid JSON.
 	 */
 	public function test_constructing_with_invalid_json()

@@ -6,7 +6,8 @@
 use \Kshabazz\BattleNet\D3\Connections\Http,
 	\Kshabazz\BattleNet\D3\Models\Item,
 	\Kshabazz\BattleNet\D3\Models\Profile,
-	\Kshabazz\BattleNet\D3\Models\Hero;
+	\Kshabazz\BattleNet\D3\Models\Hero,
+	\Kshabazz\Interception\StreamWrappers\Http as HttpWrapper;
 
 /**
  * Class HttpTest
@@ -21,6 +22,23 @@ class HttpTest extends \PHPUnit_Framework_TestCase
 		$battleNetUrlSafeId,
 		$fixturesDir,
 		$heroId;
+
+	static public function setUpBeforeClass()
+	{
+		\stream_wrapper_unregister( 'http' );
+		HttpWrapper::setSaveDir( FIXTURES_PATH );
+
+		\stream_register_wrapper(
+			'http',
+			'\\Kshabazz\\Interception\\StreamWrappers\\Http',
+			\STREAM_IS_URL
+		);
+	}
+
+	static public function tearDownAfterClass()
+	{
+		stream_wrapper_restore( 'http' );
+	}
 
 	public function setup()
 	{
@@ -47,6 +65,7 @@ class HttpTest extends \PHPUnit_Framework_TestCase
 
 	public function test_getting_a_hero_from_battle_net()
 	{
+		HttpWrapper::setSaveFilename( 'hero-' . $this->heroId . '.json' );
 		$bnr = new Http( $this->battleNetId, $this->client );
 		$heroJson = $bnr->getHero( $this->heroId );
 		$hero = \json_decode( $heroJson );
@@ -55,6 +74,7 @@ class HttpTest extends \PHPUnit_Framework_TestCase
 
 	public function test_getting_a_valid_item()
 	{
+		HttpWrapper::setSaveFilename( 'item-MightyWeapon1H_202.json' );
 		$bnr = new Http( $this->battleNetId, $this->client );
 		$itemJson = $bnr->getItem( 'item/COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD' );
 		$item = new Item( $itemJson );
@@ -76,6 +96,7 @@ class HttpTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function test_getting_a_profile()
 	{
+		HttpWrapper::setSaveFilename( 'profile-msuBREAKER#-1374-10-26-2014-23-20.json' );
 		$bnr = new Http( $this->battleNetId, $this->client );
 		$profileJson = $bnr->getProfile();
 		$profile = new Profile( $profileJson );
@@ -103,19 +124,10 @@ class HttpTest extends \PHPUnit_Framework_TestCase
 				'tooltipParams' => 'item/CnIInND3jAQSBwgEFVml7RMdS7X5Sx0_8gnYHTsnbyQdZiMGUB1-dlWhHcn6vKAwiwI4qwFAAFASWARggAJqKwoMCAAQuemrwYCAgKA-EhsIt-yauQYSBwgEFdVdtnowjwI4AEABWASQAQCAAUa1AX_5Tl0YspXtvgJQCFgA'
 		    ]
 		];
-		$itemJson = \file_get_contents( FIXTURES_PATH . 'item-hash-1.json' );
-		$mockHttp = $this->getMock(
-			'\\Kshabazz\\BattleNet\\D3\\Connections\\Http',
-			[ 'getItem' ],
-			[ 'msuBREAKER#1374' ],
-			'',
-			FALSE
-		);
-		$mockHttp->expects( $this->exactly(1) )
-			->method( 'getItem' )
-			->willReturn( $itemJson );
-
-		$mockHttp->getItemsAsModels( $itemHashes );
+		HttpWrapper::setSaveFilename( 'item-Unique_Helm_006_x1.json' );
+		$http = new Http( $this->battleNetId, $this->client );
+		$items = $http->getItemsAsModels( $itemHashes );
+		$this->assertEquals( 'Unique_Helm_006_x1', $items['head']->id() );
 	}
 }
 ?>
