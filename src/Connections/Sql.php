@@ -18,9 +18,7 @@ class Sql extends \Kshabazz\Slib\Sql implements Connection
 		/** @var string */
 		$battleNetId,
 		/** @var string */
-		$battleNetUrlSafeId,
-		/** @var \PDO */
-		$pdo;
+		$battleNetUrlSafeId;
 
 	/**
 	 * Constructor
@@ -39,30 +37,20 @@ class Sql extends \Kshabazz\Slib\Sql implements Connection
 	/**
      * Add a record of the Battle.net Web API request.
      *
-	 * @param $pUrl string The Battle.net url web API URL requested.
+	 * @param string $pUrl The Battle.net url web API URL requested.
      * @return bool|mixed
      */
-    public function addRequest($pUrl )
+    public function addRequest( $pUrl )
 	{
-		$returnValue = FALSE;
-		try
-		{
-			if ( $this->pdoh !== NULL )
-			{
-				$today = date( 'Y-m-d' );
-				$stmt = $this->pdoh->prepare( self::INSERT_REQUEST );
-				$stmt->bindValue( ':battleNetId', $this->battleNetId, \PDO::PARAM_STR );
-				$stmt->bindValue( ':ipAddress', $this->ipAddress, \PDO::PARAM_STR );
-				$stmt->bindValue( ':url', $pUrl, \PDO::PARAM_STR );
-				$stmt->bindValue( ':dateNumber', strtotime($today), \PDO::PARAM_STR );
-				$stmt->bindValue( ':dateAdded', date('Y-m-d H:i:s'), \PDO::PARAM_STR );
-				$returnValue = $this->pdoQuery( $stmt, FALSE );
-			}
-		}
-		catch ( \Exception $p_error )
-		{
-			// TODO: Throw an error;
-		}
+		$pdo = $this->pdo();
+		$today = date( 'Y-m-d' );
+		$stmt = $pdo->prepare( self::INSERT_REQUEST );
+		$stmt->bindValue( ':battleNetId', $this->battleNetId, \PDO::PARAM_STR );
+		$stmt->bindValue( ':ipAddress', $this->ipAddress(), \PDO::PARAM_STR );
+		$stmt->bindValue( ':url', $pUrl, \PDO::PARAM_STR );
+		$stmt->bindValue( ':dateNumber', strtotime($today), \PDO::PARAM_STR );
+		$stmt->bindValue( ':dateAdded', date('Y-m-d H:i:s'), \PDO::PARAM_STR );
+		$returnValue = $this->pdoQuery( $stmt, FALSE );
 		return $returnValue;
 	}
 
@@ -74,7 +62,7 @@ class Sql extends \Kshabazz\Slib\Sql implements Connection
      */
     public function getHero( $pHeroId )
 	{
-		if ( $pHeroId === NULL )
+		if ( !\is_int($pHeroId) )
 		{
 			throw new \InvalidArgumentException( 'Hero ID should be an integer.' );
 		}
@@ -108,6 +96,7 @@ class Sql extends \Kshabazz\Slib\Sql implements Connection
      * Get the profile from local database.
      *
      * @return string|null
+     * @throws \Exception
      */
     public function getProfile()
 	{
@@ -123,10 +112,9 @@ class Sql extends \Kshabazz\Slib\Sql implements Connection
 				$returnValue = $result[ 0 ][ 'json' ];
 			}
 		}
-		catch ( \Exception $p_error )
+		catch ( \Exception $pError )
 		{
-			// TODO: Map ERROR_NOTICE_1 to message "Unable to retrieve your profile from cache."
-			logError( $p_error, $p_error->getMessage() );
+			throw new \Exception( 'Unable to retrieve your profile from cache.' );
 		}
 
 		return $returnValue;
