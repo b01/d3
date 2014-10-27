@@ -33,15 +33,23 @@ class Passive implements Skill
 	/**
 	 * @inheritdoc
 	 */
-	public function __construct( array $pSkill )
+	public function __construct( array $pProperies )
 	{
-		$this->description = $pSkill[ 'description' ];
-		$this->name = $pSkill[ 'name' ];
-		$this->orderIndex = $pSkill[ 'orderIndex' ];
-		$this->requiredLevel = $pSkill[ 'requiredLevel' ];
-		$this->simpleDescription = $pSkill[ 'simpleDescription' ];
-		$this->slug = $pSkill[ 'slug' ];
-		$this->tooltipParams = $pSkill[ 'tooltipParams' ];
+		$this->description = $pProperies[ 'description' ];
+		$this->name = $pProperies[ 'name' ];
+		$this->slug = $pProperies[ 'slug' ];
+
+		// Only available when you use the skills from the Hero JSON.
+		$this->flavor = $this->getProperty( 'flavor', $pProperies );
+		$this->level = $this->getProperty( 'level', $pProperies );
+		$this->skillCalcId = $this->getProperty( 'skillCalcId', $pProperies );
+		$this->tooltipUrl = $this->getProperty( 'tooltipUrl', $pProperies );
+
+		// Only available when you call a skill from the tool-tip param.
+		$this->orderIndex = $this->getProperty( 'orderIndex', $pProperies );
+		$this->requiredLevel = $this->getProperty( 'requiredLevel', $pProperies );
+		$this->simpleDescription = $this->getProperty( 'simpleDescription', $pProperies );
+		$this->tooltipParams = $this->getProperty( 'tooltipParams', $pProperies );
 	}
 
 	/**
@@ -106,6 +114,23 @@ class Passive implements Skill
 	public function tooltipParams()
 	{
 		return $this->tooltipParams;
+	}
+
+	/**
+	 * Get the property or return null.
+	 *
+	 * @param $property
+	 * @param $pProperties
+	 * @return null
+	 */
+	private function getProperty( $property, $pProperties )
+	{
+		if ( \array_key_exists($property, $pProperties) )
+		{
+			return $pProperties[ $property ];
+		}
+
+		return NULL;
 	}
 }
 ?>
