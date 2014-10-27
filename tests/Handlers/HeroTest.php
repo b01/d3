@@ -30,7 +30,7 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 	{
 		$heroHanlder = new \Kshabazz\BattleNet\D3\Handlers\Hero( $this->heroId );
 		$heroJson = $heroHanlder->getJson( $this->http );
-		$hero = json_decode( $heroJson, TRUE );
+		$hero = \json_decode( $heroJson, TRUE );
 		$this->assertEquals( $this->heroId, $hero['id'], 'Coulld not retrive HERO.' );
 	}
 }
