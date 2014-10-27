@@ -1,6 +1,6 @@
 <?php namespace Kshabazz\BattleNet\D3\Connections;
 
-use function \Kshabazz\Slib\logError, \Kshabazz\Slib\isArray;
+use function \Kshabazz\Slib\isArray;
 
 class Sql extends \Kshabazz\Slib\Sql implements Connection
 {
@@ -15,8 +15,12 @@ class Sql extends \Kshabazz\Slib\Sql implements Connection
 		INSERT_HERO = 'INSERT INTO `d3_heroes` (`id`, `battle_net_id`, `json`, `ip_address`, `last_updated`, `date_added`) VALUES(:heroId, :battleNetId, :json, :ipAddress, :lastUpdated, :dateAdded) ON DUPLICATE KEY UPDATE `json` = VALUES(json), `ip_address` = VALUES(ip_address), `last_updated` = VALUES(last_updated);';
 
 	private
+		/** @var string */
 		$battleNetId,
-		$battleNetUrlSafeId;
+		/** @var string */
+		$battleNetUrlSafeId,
+		/** @var \PDO */
+		$pdo;
 
 	/**
 	 * Constructor
