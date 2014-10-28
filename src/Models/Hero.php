@@ -268,13 +268,12 @@ class Hero
 		{
 			return FALSE;
 		}
-		$this->itemsHashesBySlot();
-		$itemHashes[ 'mainHand' ] = [ 'tooltipParams' => $this->itemsHashes[ 'mainHand' ] ];
-		$itemHashes[ 'offHand' ] = [ 'tooltipParams' => $this->itemsHashes[ 'offHand' ] ];
+		$itemHashes[ 'mainHand' ] = $this->items[ 'mainHand' ];
+		$itemHashes[ 'offHand' ] = $this->items[ 'offHand' ];
 		$itemModels = $pHttp->getItemsAsModels( $itemHashes );
 		$mainHand = $itemModels[ 'mainHand' ];
 		$offHand = $itemModels[ 'offHand' ];
-		return ( $mainHand!== NULL && $mainHand->isWeapon() && !(bool)$mainHand->type['twoHanded'])
+		return ( $mainHand!== NULL && $mainHand->isWeapon() && !(bool)$mainHand->type->twoHanded )
 			 && ( $offHand!== NULL && $offHand->isWeapon() );
 	}
 
