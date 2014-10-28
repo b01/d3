@@ -24,12 +24,14 @@ class Http implements Connection
 		D3_API_ITEM_URL = 'http://us.battle.net/api/d3/data/%s';
 
 	private
-		/** @var object */
-		$client,
 		/** @var string */
 		$battleNetId,
 		/** @var string */
-		$battleNetUrlSafeId;
+		$battleNetUrlSafeId,
+		/** @var object */
+		$client,
+		/** @var string */
+		$url;
 
 	/**
 	 * Constructor
@@ -41,6 +43,7 @@ class Http implements Connection
 		$this->client = $pClient;
 		$this->battleNetId = $pBattleNetId;
 		$this->battleNetUrlSafeId = \str_replace( '#', '-', $this->battleNetId );
+		$this->url = NULL;
 	}
 
 	/**
@@ -51,7 +54,8 @@ class Http implements Connection
 		unset(
 			$this->client,
 			$this->battleNetId,
-			$this->battleNetUrlSafeId
+			$this->battleNetUrlSafeId,
+			$this->url
 		);
 	}
 
@@ -156,6 +160,14 @@ class Http implements Connection
 	}
 
 	/**
+	 * @return string
+	 */
+	public function url()
+	{
+		return $this->url;
+	}
+
+	/**
 	 * Make a request to the currently set {@see $this->url}.
 	 *
 	 * @param string $pUrl
@@ -164,8 +176,9 @@ class Http implements Connection
 	 */
 	private function makeRequest( $pUrl )
 	{
+		$this->url = $pUrl;
 		// Request the item from BattleNet.
-		$this->client->send( $pUrl );
+		$this->client->send( $this->url );
 		// When the response is good, return the response text.
 		$requestSuccessful = $this->client->responseCode() === 200;
 		if ( $requestSuccessful )

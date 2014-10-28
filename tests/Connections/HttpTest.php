@@ -124,10 +124,19 @@ class HttpTest extends \PHPUnit_Framework_TestCase
 				'tooltipParams' => 'item/CnIInND3jAQSBwgEFVml7RMdS7X5Sx0_8gnYHTsnbyQdZiMGUB1-dlWhHcn6vKAwiwI4qwFAAFASWARggAJqKwoMCAAQuemrwYCAgKA-EhsIt-yauQYSBwgEFdVdtnowjwI4AEABWASQAQCAAUa1AX_5Tl0YspXtvgJQCFgA'
 		    ]
 		];
-		HttpWrapper::setSaveFilename( 'item-Unique_Helm_006_x1.json' );
+		HttpWrapper::setSaveFilename( 'item-Unique_Helm_006_x1' );
 		$http = new Http( $this->battleNetId, $this->client );
 		$items = $http->getItemsAsModels( $itemHashes );
 		$this->assertEquals( 'Unique_Helm_006_x1', $items['head']->id() );
+	}
+
+	public function test_url()
+	{
+		$hash = 'item/CnIInND3jAQSBwgEFVml7RMdS7X5Sx0_8gnYHTsnbyQdZiMGUB1-dlWhHcn6vKAwiwI4qwFAAFASWARggAJqKwoMCAAQuemrwYCAgKA-EhsIt-yauQYSBwgEFdVdtnowjwI4AEABWASQAQCAAUa1AX_5Tl0YspXtvgJQCFgA';
+		HttpWrapper::setSaveFilename( 'item-Unique_Helm_006_x1' );
+		$http = new Http( $this->battleNetId, $this->client );
+		$http->getItem( $hash );
+		$this->assertContains( $hash, $http->url() );
 	}
 }
 ?>
