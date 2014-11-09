@@ -230,6 +230,16 @@ class Item
 	}
 
 	/**
+	 * What to do when this object is converting to a string.
+	 *
+	 * @return string
+	 */
+	public function __toString()
+	{
+		return $this->json;
+	}
+
+	/**
 	 * Compute [min, max] damage for the tool-tip.
 	 *
 	 * Damage the item can do, if weapon.
@@ -324,9 +334,24 @@ class Item
 		return in_array( $itemType, self::$oneHandWeaponTypes );
 	}
 
-	public function __toString()
+	/**
+	 * Get JSON use to initialize this object.
+	 *
+	 * @return string
+	 */
+	public function json()
 	{
 		return $this->json;
+	}
+
+	/**
+	 * Get name.
+	 *
+	 * @return string
+	 */
+	public function name()
+	{
+		return $this->name;
 	}
 
 	/**

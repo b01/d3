@@ -1,5 +1,7 @@
 <?php namespace Kshabazz\BattleNet\D3\Connections;
 
+use \Kshabazz\BattleNet\D3\Models\Item;
+
 use function \Kshabazz\Slib\isArray;
 
 class Sql extends \Kshabazz\Slib\Sql implements Connection
@@ -123,12 +125,14 @@ class Sql extends \Kshabazz\Slib\Sql implements Connection
 	/**
 	 * Save the hero in a local database.
 	 *
+	 * @param $pHeroId
+	 * @param $pJson
 	 * @return bool Indicates success (TRUE) or failure (FALSE).
 	 */
 	public function saveHero( $pHeroId, $pJson )
 	{
 		$utcTime = gmdate( 'Y-m-d H:i:s' );
-		return $this->sql->pdoQueryBind( self::INSERT_HERO, [
+		return $this->pdoQueryBind( self::INSERT_HERO, [
 				'battleNetId' => [ $this->battleNetId, \PDO::PARAM_STR ],
 				'dateAdded' => [ $utcTime, \PDO::PARAM_STR ],
 				'heroId' => [ $pHeroId, \PDO::PARAM_STR ],
@@ -144,7 +148,7 @@ class Sql extends \Kshabazz\Slib\Sql implements Connection
 	 * @param \Kshabazz\BattleNet\D3\Models\Item $pItem
 	 * @return bool
 	 */
-	public function saveItem( \Kshabazz\BattleNet\D3\Models\Item $pItem )
+	public function saveItem( Item $pItem )
 	{
 		$itemName = $pItem->name();
 		$itemType = $pItem->type();
@@ -168,6 +172,7 @@ class Sql extends \Kshabazz\Slib\Sql implements Connection
 	/**
 	 * Save the users profile locally to the database.
 	 *
+	 * @param string $pJson
 	 * @return bool
 	 */
 	public function saveProfile( $pJson )
