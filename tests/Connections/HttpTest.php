@@ -1,4 +1,4 @@
-<?php namespace Kshabazz\BattleNet\D3\Tests;
+<?php namespace Kshabazz\Tests\BattleNet\D3\Connections;
 /**
  * HttpTest test.
  */
