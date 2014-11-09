@@ -17,15 +17,31 @@ use function \Kshabazz\Slib\isArray;
  */
 class Profile implements \JsonSerializable
 {
-	protected
+	private
+		/** @var string */
+		$battleTag,
+		/** @var array */
 		$data,
+		/** @var array */
 		$heroes,
+		/** @var string */
 		$json;
 
 	public function __construct( $pJson )
 	{
 		$this->json = $pJson;
 		$this->init();
+		$this->battleTag = $this->data[ 'battleTag' ];
+	}
+
+	/**
+	 * Get battle net tag.
+	 *
+	 * @return string
+	 */
+	public function battleTag()
+	{
+		return $this->battleTag;
 	}
 
 	/**

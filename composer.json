@@ -39,7 +39,7 @@
 		"phpunit/php-code-coverage": ">=2.0",
 		"phpunit/phpunit": ">=4.1",
 		"squizlabs/php_codesniffer": ">=1.5",
-		"kshabazz/interception": ">=0.0"
+		"kshabazz/interception": "dev-master"
 	},
 	"type": "library"
 }

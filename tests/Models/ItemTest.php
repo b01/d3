@@ -1,7 +1,8 @@
 <?php namespace Kshabazz\Tests\BattleNet\D3\Models;
 
 use \Kshabazz\BattleNet\D3\Models\Item,
-	\Kshabazz\BattleNet\D3\Connections\Http as BnrHttp;
+	\Kshabazz\BattleNet\D3\Connections\Http,
+	\Kshabazz\Slib\HttpClient;
 
 /**
  * Class ItemTest
@@ -11,23 +12,34 @@ use \Kshabazz\BattleNet\D3\Models\Item,
 class ItemTest extends \PHPUnit_Framework_TestCase
 {
 	private
+		$apiKey,
 		$bnrHttp,
+		$fixturesDir,
 		$itemHash1,
 		$itemHash2,
 		$itemHash3;
 
 	public function setUp()
 	{
-		$client = new \Kshabazz\Slib\Http();
-		$this->bnrHttp = new BnrHttp( 'msuBREAKER#1374', $client );
+		// Load setting from config.
+		$configJson = \file_get_contents(
+			TESTS_ROOT
+			. DIRECTORY_SEPARATOR . 'config'
+			. DIRECTORY_SEPARATOR . 'unit-test.json'
+		);
+		$config = \json_decode( $configJson );
+		$this->apiKey = $config->apiKey;
+		$client = new HttpClient();
+		$this->bnrHttp = new Http( $this->apiKey, 'msuBREAKER#1374', $client );
 		$this->itemHash1 = 'item/Cj0I-bvTgAsSBwgEFdosyssdb2mxyh10HmzAHfKS3AgdcIt38CILCAEVbEIDABgWICAwiQI4_AJAAFAMYJUDGMvMrsMGUABYAg';
 		$this->itemHash2 = 'item/ChoIqvDNpwMSBwgEFScYtUkwiQI4kANAAGCQAxjO4KibCVAIWAI';
 		$this->itemHash3 = 'item/CioI4YeygAgSBwgEFcgYShEdhBF1FR2dbLMUHape7nUwDTiTA0AAUApgkwMYkOPQlAI';
+		$this->fixturesDir = FIXTURES_PATH . DIRECTORY_SEPARATOR;
 	}
 
 	public function test_item_has_recipe()
 	{
-		$fixtureFile = FIXTURES_PATH . 'item-hash-3.json';
+		$fixtureFile = $this->fixturesDir . 'item-hash-3.json';
 		$itemJson = \file_get_contents( $fixtureFile );
 		$item = new Item( $itemJson );
 		$actualRecipe = $item->recipe();
@@ -39,7 +51,7 @@ class ItemTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function test_item_has_no_recipe()
 	{
-		$fixtureFile = FIXTURES_PATH . 'item-hash-1.json';
+		$fixtureFile = $this->fixturesDir . 'item-hash-1.json';
 		$itemJson = \file_get_contents( $fixtureFile );
 		$item = new Item( $itemJson );
 		$actualRecipe = $item->recipe();
@@ -56,7 +68,7 @@ class ItemTest extends \PHPUnit_Framework_TestCase
 
 	public function test_is_weapon()
 	{
-		$fixtureFile = FIXTURES_PATH . 'item-hash-3.json';
+		$fixtureFile = $this->fixturesDir . 'item-hash-3.json';
 		$itemJson = \file_get_contents( $fixtureFile );
 		$item = new Item( $itemJson );
 		$this->assertTrue( $item->isWeapon() );
@@ -64,7 +76,7 @@ class ItemTest extends \PHPUnit_Framework_TestCase
 
 	public function test_is_not_a_weapon()
 	{
-		$fixtureFile = FIXTURES_PATH . 'item-hash-1.json';
+		$fixtureFile = $this->fixturesDir . 'item-hash-1.json';
 		$itemJson = \file_get_contents( $fixtureFile );
 		$item = new Item( $itemJson );
 		$this->assertFalse( $item->isWeapon() );

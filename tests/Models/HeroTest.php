@@ -1,10 +1,7 @@
 <?php namespace Kshabazz\Tests\BattleNet\D3\Models;
 
-use Kshabazz\BattleNet\D3\Connections\Http;
 use \Kshabazz\BattleNet\D3\Models\Hero,
-	\Kshabazz\BattleNet\D3\Models\Item,
-	\Kshabazz\Interception\StreamWrappers\Http as HttpWrapper,
-	\Kshabazz\Slib\Http as Client;
+	\Kshabazz\Interception\StreamWrappers\Http as HttpWrapper;
 
 /**
  * @class HeroTest
@@ -13,34 +10,19 @@ use \Kshabazz\BattleNet\D3\Models\Hero,
 class HeroTest extends \PHPUnit_Framework_TestCase
 {
 	private
+		$fixturesDir,
 		$heroId,
 		$itemParams,
 		$json;
-
-	static public function setUpBeforeClass()
-	{
-		\stream_wrapper_unregister( 'http' );
-		HttpWrapper::setSaveDir( FIXTURES_PATH );
-
-		\stream_register_wrapper(
-			'http',
-			'\\Kshabazz\\Interception\\StreamWrappers\\Http',
-			\STREAM_IS_URL
-		);
-	}
-
-	static public function tearDownAfterClass()
-	{
-		stream_wrapper_restore( 'http' );
-	}
 
 	/**
 	 * Setup
 	 */
 	public function setUp()
 	{
+		$this->fixturesDir = FIXTURES_PATH . DIRECTORY_SEPARATOR;
 		$this->heroId = 36131726;
-		$this->json = \file_get_contents( FIXTURES_PATH . 'hero.json' );
+		$this->json = \file_get_contents( $this->fixturesDir . 'hero.json' );
 		$this->itemParams = [
 			'head' => 'item/CmAI76DVrAQSBwgEFSMZlIsdlD3juR1bToDJHc9FH8sdo9Ya6B0SXPT8HYYCY-owCTjTAkAAUBJg1wJqJQoMCAAQ9fHWhoSAgKADEhUIxKuTpwgSBwgEFfee2KswDTgAQAEYuZvfxg5QBlgC',
 			'torso' => 'item/CjkIxYL_7AISBwgEFRaF-hsdtwRpuh2V-O2WHTIlWp4dElbV7h1X8eDWHYNFzIwwCTixAkAAUBJgtQIYrJTUvwNQBlgC',
@@ -257,7 +239,7 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 
 	public function test_itemsHashesBySlot_when_no_items_equipped()
 	{
-		$heroFixture = FIXTURES_PATH . DIRECTORY_SEPARATOR . 'hero-3955832-no-items.json';
+		$heroFixture = $this->fixturesDir . 'hero-3955832-no-items.json';
 		$heroJson = \file_get_contents( $heroFixture );
 		HttpWrapper::setSaveFilename( 'hero-3955832-no-items.rsd' );
 		$hero = new Hero( $heroJson );
@@ -267,8 +249,8 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 
 	public function test_when_hero_is_duel_wielding()
 	{
-		$json = \file_get_contents( FIXTURES_PATH . 'hero-46026639-dual-wield.json' );
-		$itemJson = \file_get_contents( FIXTURES_PATH . 'item-FistWeapon_1H_000.json' );
+		$json = \file_get_contents( $this->fixturesDir . 'hero-46026639-dual-wield.json' );
+		$itemJson = \file_get_contents( $this->fixturesDir . 'item-FistWeapon_1H_000.json' );
 		$httpMock = $this->getMock(
 			'\\Kshabazz\\BattleNet\\D3\\Connections\\Http',
 			['getItem'],

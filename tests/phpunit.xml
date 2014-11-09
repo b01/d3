@@ -13,4 +13,12 @@
 			<directory>../src</directory>
 		</whitelist>
 	</filter>
+	<listeners>
+		<listener class="\Kshabazz\Interception\InterceptionListener">
+			<arguments>
+				<string>Http</string>
+				<string>./fixtures</string>
+			</arguments>
+		</listener>
+	</listeners>
 </phpunit>

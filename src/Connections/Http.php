@@ -3,7 +3,7 @@
  * Perform request to BattleNet
  */
 
-use Kshabazz\BattleNet\D3\Models\Item;
+use \Kshabazz\BattleNet\D3\Models\Item;
 
 use function \Kshabazz\Slib\isString,
 			 \Kshabazz\Slib\isArray;
@@ -17,32 +17,48 @@ class Http implements Connection
 {
 	const
 		/** @const string */
-		D3_API_PROFILE_URL = 'http://us.battle.net/api/d3/profile',
+		API_PROFILE_URL = 'https://%s.api.battle.net/d3/profile/%s/?locale=%s&apikey=%s',
 		/** @const string */
-		D3_API_HERO_URL = 'http://us.battle.net/api/d3/profile/%s/hero/%d',
+		API_HERO_URL = 'https://%s.api.battle.net/d3/profile/%s/hero/%d?locale=%s&apikey=%s',
 		/** @const string */
-		D3_API_ITEM_URL = 'http://us.battle.net/api/d3/data/%s';
+		API_ITEM_URL = 'https://%s.api.battle.net/d3/data/%s?locale=%s&apikey=%s',
+		/** @const string */
+		AUTHORIZE_URI = 'https://%s.battle.net/oauth/authorize',
+		/** @const string */
+		TOKEN_URI = 'https://%s.battle.net/oauth/token';
 
 	private
+		/** @var string */
+		$apiKey,
 		/** @var string */
 		$battleNetId,
 		/** @var string */
 		$battleNetUrlSafeId,
-		/** @var object */
+		/** @var \Kshabazz\Slib\HttpClient */
 		$client,
+		/** @var string */
+		$locale,
+		/** @var string */
+		$region,
 		/** @var string */
 		$url;
 
 	/**
 	 * Constructor
 	 *
+	 * @param string $pApiKey
 	 * @param string $pBattleNetId
+	 * @param \Kshabazz\Slib\HttpClient $pClient
+	 * @param string $pLocale
 	 */
-	public function __construct( $pBattleNetId, $pClient )
+	public function __construct( $pApiKey , $pBattleNetId, $pClient, $pLocale = 'en_US' )
 	{
+		$this->apiKey = $pApiKey;
 		$this->client = $pClient;
 		$this->battleNetId = $pBattleNetId;
 		$this->battleNetUrlSafeId = \str_replace( '#', '-', $this->battleNetId );
+		$this->locale = $pLocale;
+		$this->region = 'us';
 		$this->url = NULL;
 	}
 
@@ -81,7 +97,7 @@ class Http implements Connection
 
 	/**
      * Request Hero JSON from Battle.Net.
-	 * ex: http://us.battle.net/api/d3/profile/<battleNetIdName>-<battleNetIdNumber>/hero/<hero-id>
+	 * ex: https://us.api.battle.net/d3/profile/<battleNetIdName>-<battleNetIdNumber>/hero/<hero-id>?locale=<string>&apikey=<>
      * Note: Leave off the trailing '/' when setting
 	 *
 	 * @param $pHeroId
@@ -95,14 +111,21 @@ class Http implements Connection
 			throw new \InvalidArgumentException( 'Expected an integer, got a '. \gettype($pHeroId) );
 		}
 		// Construct the Battle.net URL.
-		$url = \sprintf( self::D3_API_HERO_URL, $this->battleNetUrlSafeId, $pHeroId );
+		$url = \sprintf(
+			self::API_HERO_URL,
+			$this->region,
+			$this->battleNetUrlSafeId,
+			$pHeroId,
+			$this->locale,
+			$this->apiKey
+		);
 		// Request the hero JSON from BattleNet.
 		return $this->makeRequest( $url );
 	}
 
 	/**
 	 * Get item JSON from Battle.Net D3 API.
-	 * ex: http://us.battle.net/api/d3/data/item/COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD
+	 * ex: https://us.battle.net/api/d3/data/item/COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD
 	 *
 	 * @param $pItemId
 	 * @return mixed|null
@@ -118,7 +141,13 @@ class Http implements Connection
 			);
 		}
 		// Construct the Battle.net URL.
-		$url = \sprintf( self::D3_API_ITEM_URL, $pItemId );
+		$url = \sprintf(
+			self::API_ITEM_URL,
+			$this->region,
+			$pItemId,
+			$this->locale,
+			$this->apiKey
+		);
 		return $this->makeRequest( $url );
 	}
 
@@ -146,7 +175,7 @@ class Http implements Connection
 	}
 
 	/**
-	 * ex: http://us.battle.net/api/d3/profile/<battleNetIdName>-<battleNetIdNumber>/
+	 * ex: https://us.api.battle.net/d3/profile/<battleNetIdName>-<battleNetIdNumber>/
 	 *
 	 * @return null|string
 	 * @throws \Exception
@@ -154,9 +183,27 @@ class Http implements Connection
 	public function getProfile()
 	{
 		// Construct the Battle.net URL.
-		$url = self::D3_API_PROFILE_URL . '/' . $this->battleNetUrlSafeId . '/';
+		$url = sprintf(
+			self::API_PROFILE_URL,
+			$this->region,
+			$this->battleNetUrlSafeId,
+			$this->locale,
+			$this->apiKey
+		);
 		// Return the response text.
 		return $this->makeRequest( $url );
+	}
+
+	/**
+	 * Set the region.
+	 *
+	 * @param $pRegion
+	 * @return string
+	 */
+	public function setRegion( $pRegion )
+	{
+		$this->region = $pRegion;
+		return $this->region;
 	}
 
 	/**
