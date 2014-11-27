@@ -20,6 +20,14 @@
 			<arguments>
 				<string>Http</string>
 				<string>FIXTURES_PATH</string>
+				<array>
+					<element>
+						<string>http</string>
+					</element>
+					<element>
+						<string>https</string>
+					</element>
+				</array>
 			</arguments>
 		</listener>
 	</listeners>
