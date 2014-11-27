@@ -6,7 +6,6 @@
 use \Kshabazz\BattleNet\D3\Connections\Http,
 	\Kshabazz\BattleNet\D3\Models\Item,
 	\Kshabazz\BattleNet\D3\Models\Profile,
-	\Kshabazz\BattleNet\D3\Models\Hero,
 	\Kshabazz\Slib\HttpClient;
 
 /**
@@ -135,6 +134,17 @@ class HttpTest extends \PHPUnit_Framework_TestCase
 		$http = new Http( $this->apiKey, $this->battleNetId, $this->client );
 		$http->getItem( $hash );
 		$this->assertContains( $hash, $http->url() );
+		echo \file_get_contents($http->url());
+	}
+
+	/**
+	 * @interception profile-not-found
+	 */
+	public function test_response()
+	{
+		$http = new Http( $this->apiKey, 'badBnetId', $this->client );
+		$actual = $http->getProfile();
+		$this->assertNull( $actual );
 	}
 }
 ?>
