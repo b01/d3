@@ -1,23 +1,23 @@
 <?xml version="1.0" encoding="utf-8" ?>
-<phpunit bootstrap="bootstrap.php">
+<phpunit bootstrap="tests/bootstrap.php">
 	<testsuites>
 		<testsuite name="All">
-			<directory>.</directory>
+			<directory>./tests</directory>
 		</testsuite>
 	</testsuites>
 	<filter>
 		<blacklist>
-			<directory>..</directory>
+			<directory>.</directory>
 		</blacklist>
 		<whitelist>
-			<directory>../src</directory>
+			<directory>./src</directory>
 		</whitelist>
 	</filter>
 	<listeners>
 		<listener class="\Kshabazz\Interception\InterceptionListener">
 			<arguments>
 				<string>Http</string>
-				<string>./fixtures</string>
+				<string>FIXTURES_PATH</string>
 			</arguments>
 		</listener>
 	</listeners>
