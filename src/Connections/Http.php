@@ -67,12 +67,10 @@ class Http implements Connection
 	 */
 	public function __destruct()
 	{
-		unset(
-			$this->client,
-			$this->battleNetId,
-			$this->battleNetUrlSafeId,
-			$this->url
-		);
+		unset( $this->client );
+		unset( $this->battleNetId );
+		unset( $this->battleNetUrlSafeId );
+		unset( $this->url );
 	}
 
 	/**
