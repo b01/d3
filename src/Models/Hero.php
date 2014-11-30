@@ -159,9 +159,10 @@ class Hero
 		$this->id = (int) $this->data['id'];
 		$this->skills = $this->data['skills'];
 		// Properties that may be empty, if a new character.
+		// This value changed in RoS.
 		if ( array_key_exists('progress', $this->data))
 		{
-			$this->progress = $this->data[ 'progress' ];
+			$this->progression = $this->data[ 'progress' ];
 		}
 		else
 		{
@@ -212,13 +213,13 @@ class Hero
 	 */
 	public function highestProgression()
 	{
-		if ( !\is_array($this->progress) )
+		if ( empty($this->progression) )
 		{
 			return '';
 		}
 		// Enjoy the flying V!
 		$returnValue = '';
-		foreach ( $this->progress as $level => $progression )
+		foreach ( $this->progression as $level => $progression )
 		{
 			// When the level was not skipped.
 			if ( isArray($progression) )
@@ -228,7 +229,7 @@ class Hero
 					// When the quest is completed.
 					if ( isArray($progress['completedQuests']) )
 					{
-						$length = count( $progress['completedQuests'] ) - 1;
+						$length = \count( $progress['completedQuests'] ) - 1;
 						$returnValue = "Highest completed: {$level} {$act} {$progress['completedQuests'][ $length ]['name']}";
 					}
 				}
@@ -354,7 +355,7 @@ class Hero
 	 */
 	public function paragonLevel()
 	{
-		return $this->paragonLevel;
+		return $this->data[ 'paragonLevel' ];
 	}
 
 	/**
@@ -455,10 +456,9 @@ class Hero
 			$reason = '';
 			if ( \array_key_exists('reason', $this->data))
 			{
-				$reason = $this->data[ 'reason' ];
+				$reason = ' Reason: ' . $this->data[ 'reason' ];
 			}
-			$errorMessage = 'There wan an error with the hero JSON.';
-			$errorMessage .= ' ' . $reason;
+			$errorMessage = 'There wan an error with the hero JSON.' . $reason;
 			throw new \Exception($errorMessage);
 		}
 

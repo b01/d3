@@ -1,7 +1,9 @@
 <?php namespace Kshabazz\Tests\BattleNet\D3\Models;
 
+use Kshabazz\BattleNet\D3\Connections\Http;
 use \Kshabazz\BattleNet\D3\Models\Hero,
 	\Kshabazz\Interception\StreamWrappers\Http as HttpWrapper;
+use Kshabazz\Slib\HttpClient;
 
 /**
  * @class HeroTest
@@ -21,7 +23,7 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 	{
 		$this->fixturesDir = FIXTURES_PATH . DIRECTORY_SEPARATOR;
 		$this->heroId = 36131726;
-		$this->json = \file_get_contents( $this->fixturesDir . 'hero.json' );
+		$this->json = \file_get_contents( $this->fixturesDir . 'hero-36131726.json' );
 
 	}
 
@@ -162,7 +164,6 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 	{
 		$heroFixture = $this->fixturesDir . 'hero-3955832-no-items.json';
 		$heroJson = \file_get_contents( $heroFixture );
-		HttpWrapper::setSaveFilename( 'hero-3955832-no-items.rsd' );
 		$hero = new Hero( $heroJson );
 		$items = $hero->items();
 		$this->assertEquals( 0, \count($items) );
@@ -196,6 +197,78 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 	public function test_constructing_with_invalid_json()
 	{
 		$hero = new Hero( '1234' );
+	}
+
+	public function test_hero_characterClass()
+	{
+		$hero = new Hero( $this->json );
+		$actual = $hero->characterClass();
+		$this->assertEquals( 'witch-doctor', $actual );
+	}
+
+	public function test_itemsHashesBySlot_return_null()
+	{
+		$heroFixture = $this->fixturesDir . 'hero-3955832-no-items.json';
+		$heroJson = \file_get_contents( $heroFixture );
+		$hero = new Hero( $heroJson );
+		$this->assertNull( $hero->itemsHashesBySlot() );
+	}
+
+	public function test_hero_level()
+	{
+		$hero = new Hero( $this->json );
+		$actual = $hero->level();
+		$this->assertEquals( 60, $actual );
+	}
+
+	public function test_hero_paragonLevel()
+	{
+		$hero = new Hero( $this->json );
+		$actual = $hero->paragonLevel();
+		$this->assertEquals( 2, $actual );
+	}
+
+	public function test_hero_progression()
+	{
+		$hero = new Hero( $this->json );
+		$actual = $hero->progression();
+		$this->assertArrayHasKey( 'normal' , $actual );
+	}
+
+	public function test_hero_get()
+	{
+		$hero = new Hero( $this->json );
+		$actual = $hero->get( 'id' );
+		$this->assertEquals( '36131726' , $actual );
+	}
+
+	public function test_dual_wielding()
+	{
+		// Load setting from config.
+		$configJson = \file_get_contents(
+			TESTS_ROOT
+			. DIRECTORY_SEPARATOR . 'config'
+			. DIRECTORY_SEPARATOR . 'unit-test.json'
+		);
+		$config = \json_decode( $configJson );
+		$apiKey = $config->apiKey;
+		$httpClient = new HttpClient();
+		$httpClient = new Http($apiKey, 'msuBREAKER#1374', $httpClient);
+		$heroFixture = $this->fixturesDir . 'hero-3955832-no-items.json';
+		$heroJson = \file_get_contents( $heroFixture );
+		$hero = new Hero( $heroJson );
+		$actual = $hero->isDualWielding( $httpClient );
+		$this->assertFalse( $actual );
+	}
+
+	/**
+	 * @expectedException \Exception
+	 * @expectedExceptionMessage Just testing
+	 */
+	public function test_hero_code_error()
+	{
+		$hero = new Hero( '{"code":"test", "reason": "Just testing."}' );
+		$this->assertEquals( '36131726' , $actual );
 	}
 }
 ?>

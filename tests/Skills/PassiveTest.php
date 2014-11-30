@@ -11,7 +11,7 @@ class PassiveTest extends \PHPUnit_Framework_TestCase
 
 	public function setUp()
 	{
-		$json = \file_get_contents( FIXTURES_PATH . DIRECTORY_SEPARATOR . 'hero.json' );
+		$json = \file_get_contents( FIXTURES_PATH . DIRECTORY_SEPARATOR . 'hero-36131726.json' );
 		$hero = new Hero( $json );
 		$this->skills = $hero->skills()[ 'passive' ];
 	}
