@@ -10,7 +10,6 @@
  */
 
 use function \Kshabazz\Slib\isArray;
-use SebastianBergmann\Exporter\Exception;
 
 /**
  * Class Profile
@@ -21,7 +20,7 @@ class Profile implements \JsonSerializable
 	private
 		/** @var string */
 		$battleTag,
-		/** @var array */
+		/** @var \stdClass */
 		$data,
 		/** @var array */
 		$heroes,
@@ -32,12 +31,17 @@ class Profile implements \JsonSerializable
 	{
 		$this->json = $pJson;
 		$this->init();
-		$code = $this->data[ 'code' ];
-		if ( $code === 'NOTFOUND' )
+		if ( isset($this->data->code) )
 		{
-			throw new Exception( 'Profile not found.' );
+			if ( $this->data->code === 'NOTFOUND' )
+			{
+				throw new \Exception( 'Profile not found.' );
+			}
+			else
+			{
+				throw new \Exception( $this->data->reason );
+			}
 		}
-		$this->battleTag = $this->data[ 'battleTag' ];
 	}
 
 	/**
@@ -47,30 +51,27 @@ class Profile implements \JsonSerializable
 	 */
 	public function battleTag()
 	{
-		return $this->battleTag;
+		return $this->data->battleTag;
 	}
 
 	/**
 	 * Get property
 	 */
-	public function get( $pProperty, $pType = 'string' )
+	public function get( $pProperty )
 	{
-		if ( isset($this->$pProperty) )
+		if ( isset($this->{$pProperty}) )
 		{
-			return $this->$pProperty;
+			return $this->{ $pProperty };
 		}
 
-		if ( \array_key_exists($pProperty, $this->data) )
+		if ( isset($this->data->{$pProperty}) )
 		{
-			$value = $this->data[ $pProperty ];
-			if ( setType($value, $pType) )
-			{
-				return $this->$pProperty = $value;
-			}
+			$value = $this->data->{ $pProperty };
+			return $this->{ $pProperty } = $value;
 		}
 
 		$trace = \debug_backtrace();
-		trigger_error(
+		throw new \Exception(
 			'Undefined property: ' . $pProperty .
 			' in ' . $trace[0]['file'] .
 			' on line ' . $trace[0]['line'],
@@ -78,41 +79,36 @@ class Profile implements \JsonSerializable
 		);
 	}
 
-    /**
-     * @return mixed Heroes(s) data as an array, or null if none.
-     */
-    public function heroes()
+	/**
+	 * @return mixed Heroes(s) data as an array, or null if none.
+	 */
+	public function heroes()
 	{
-        // set heroes.
-        if ( !isset($this->heroes) && \array_key_exists('heroes', $this->data) )
-        {
-            $this->heroes = $this->data[ 'heroes' ];
-        }
-		return $this->heroes;
+		return $this->data->heroes;
 	}
 
-    /**
-     * Get Hero data by name
-     *
-     * @param mixed $pHeroByName string Optional name to specify a single hero to return.
-     * @return mixed
-     */
-    public function getHero( $pHeroByName = NULL )
-    {
-        $returnValue = NULL;
-        if ( isArray($this->heroes) )
-        {
-            if ( $pHeroByName !== NULL && \array_key_exists($pHeroByName, $this->heroes) )
-            {
-                $returnValue = $this->heroes[ $pHeroByName ];
-            }
-            else
-            {
-                $returnValue = $this->heroes;
-            }
-        }
-        return $returnValue;
-    }
+	/**
+	 * Get hero by name
+	 *
+	 * @param mixed $pHeroByName string Optional name to specify a single hero to return.
+	 * @return array|null
+	 */
+	public function getHero( $pHeroByName )
+	{
+		$returnValue = NULL;
+		if ( isArray($this->data->heroes) )
+		{
+			foreach ( $this->data->heroes as $hero )
+			{
+				if ( strcmp($pHeroByName, $hero->name) === 0 )
+				{
+					$returnValue = $hero;
+					break;
+				}
+			}
+		}
+	    return $returnValue;
+	}
 
 	/**
 	 * Initialize all the properties for this object.
@@ -122,10 +118,10 @@ class Profile implements \JsonSerializable
 	 */
 	protected function init()
 	{
-		$jsonArray = json_decode( $this->json, TRUE );
-		if ( isArray($jsonArray) )
+		$profile = \json_decode( $this->json );
+		if ( $profile !== NULL )
 		{
-			$this->data = $jsonArray;
+			$this->data = $profile;
 		}
 		else
 		{
@@ -145,23 +141,12 @@ class Profile implements \JsonSerializable
 
 	/**
 	 * Specify how this object is to be used with json_encode.
-	 * @return array
+	 *
+	 * @return \stdClass
 	 */
 	public function jsonSerialize()
 	{
-		$returnValue = [];
-		foreach ( $this as $property => $value )
-		{
-			if ( \array_key_exists($property, $this->forcePropertyType) )
-			{
-				$returnValue[ $property ] = [ \gettype($value), $value ];
-			}
-			else
-			{
-				$returnValue[ $property ] = [ \gettype($value), $value ];
-			}
-		}
-		return $returnValue;
+		return $this->data;
 	}
 }
 ?>
