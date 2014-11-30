@@ -13,7 +13,7 @@
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"Kshabazz\\Tests\\BattleNet\\": "tests/"
+			"Kshabazz\\Tests\\BattleNet\\D3\\": "tests/D3/"
 		}
 	},
 	"description": "A PHP library for accessing Battle.net D3 API.",
