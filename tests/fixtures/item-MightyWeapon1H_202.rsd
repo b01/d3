@@ -1,0 +1,194 @@
+HTTP/1.1 200 OK
+Content-Language: en-US
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 27 Nov 2014 20:56:54 GMT
+Last-Modified: Fri, 12 Sep 2014 01:16:02 GMT
+Server: Apache
+Vary: Accept-Encoding
+X-Frame-Options: SAMEORIGIN
+X-Mashery-Responder: prod-j-worker-us-east-1d-54.mashery.com
+Connection: Close
+
+{
+  "id" : "MightyWeapon1H_202",
+  "name" : "Exsanguinating Chopsword of Assault",
+  "icon" : "mightyweapon1h_202_demonhunter_male",
+  "displayColor" : "blue",
+  "tooltipParams" : "item/CioI4YeygAgSBwgEFcgYShEdhBF1FR2dbLMUHape7nUwDTiTA0AAUApgkwMYkOPQlAI",
+  "requiredLevel" : 60,
+  "itemLevel" : 61,
+  "bonusAffixes" : 0,
+  "bonusAffixesMax" : 0,
+  "accountBound" : false,
+  "typeName" : "Magic Mighty Weapon",
+  "type" : {
+    "twoHanded" : false,
+    "id" : "MightyWeapon1H"
+  },
+  "dps" : {
+    "min" : 206.69999241828918,
+    "max" : 206.69999241828918
+  },
+  "attacksPerSecond" : {
+    "min" : 1.2999999523162842,
+    "max" : 1.2999999523162842
+  },
+  "minDamage" : {
+    "min" : 112.0,
+    "max" : 112.0
+  },
+  "maxDamage" : {
+    "min" : 206.0,
+    "max" : 206.0
+  },
+  "attributes" : {
+    "primary" : [ {
+      "text" : "+211 Strength",
+      "color" : "blue",
+      "affixType" : "default"
+    }, {
+      "text" : "+112 Vitality",
+      "color" : "blue",
+      "affixType" : "default"
+    }, {
+      "text" : "2.80% of Damage Dealt Is Converted to Life",
+      "color" : "blue",
+      "affixType" : "default"
+    } ],
+    "secondary" : [ ],
+    "passive" : [ ]
+  },
+  "attributesRaw" : {
+    "Attacks_Per_Second_Item" : {
+      "min" : 1.2999999523162842,
+      "max" : 1.2999999523162842
+    },
+    "IsCrafted" : {
+      "min" : 1.0,
+      "max" : 1.0
+    },
+    "Durability_Max" : {
+      "min" : 403.0,
+      "max" : 403.0
+    },
+    "Damage_Weapon_Min#Physical" : {
+      "min" : 112.0,
+      "max" : 112.0
+    },
+    "Durability_Max_Before_Reforge" : {
+      "min" : 403.0,
+      "max" : 403.0
+    },
+    "Strength_Item" : {
+      "min" : 211.0,
+      "max" : 211.0
+    },
+    "Season" : {
+      "min" : 0.0,
+      "max" : 0.0
+    },
+    "Vitality_Item" : {
+      "min" : 112.0,
+      "max" : 112.0
+    },
+    "Steal_Health_Percent" : {
+      "min" : 0.028,
+      "max" : 0.028
+    },
+    "Damage_Weapon_Delta#Physical" : {
+      "min" : 94.0,
+      "max" : 94.0
+    },
+    "Durability_Cur" : {
+      "min" : 403.0,
+      "max" : 403.0
+    }
+  },
+  "randomAffixes" : [ ],
+  "gems" : [ ],
+  "socketEffects" : [ ],
+  "recipe" : {
+    "id" : "T09_Weapon_MightyWeapon_1H",
+    "slug" : "glorious-chopsword",
+    "name" : "Glorious Chopsword",
+    "cost" : 4500,
+    "reagents" : [ {
+      "quantity" : 8,
+      "item" : {
+        "id" : "Crafting_Tier_04A",
+        "name" : "Common Debris",
+        "icon" : "crafting_tier_04a_demonhunter_male",
+        "displayColor" : "white",
+        "tooltipParams" : "item/common-debris"
+      }
+    }, {
+      "quantity" : 8,
+      "item" : {
+        "id" : "Crafting_Tier_04B",
+        "name" : "Exquisite Essence",
+        "icon" : "crafting_tier_04b_demonhunter_male",
+        "displayColor" : "blue",
+        "tooltipParams" : "item/exquisite-essence"
+      }
+    }, {
+      "quantity" : 3,
+      "item" : {
+        "id" : "Crafting_Tier_04C",
+        "name" : "Iridescent Tear",
+        "icon" : "crafting_tier_04c_demonhunter_male",
+        "displayColor" : "yellow",
+        "tooltipParams" : "item/iridescent-tear"
+      }
+    } ],
+    "itemProduced" : {
+      "id" : "MightyWeapon1H_202",
+      "name" : "Glorious Chopsword",
+      "icon" : "mightyweapon1h_202_demonhunter_male",
+      "displayColor" : "yellow",
+      "tooltipParams" : "recipe/glorious-chopsword"
+    }
+  },
+  "craftedBy" : [ {
+    "id" : "T09_Weapon_MightyWeapon_1H",
+    "slug" : "glorious-chopsword",
+    "name" : "Glorious Chopsword",
+    "cost" : 4500,
+    "reagents" : [ {
+      "quantity" : 8,
+      "item" : {
+        "id" : "Crafting_Tier_04A",
+        "name" : "Common Debris",
+        "icon" : "crafting_tier_04a_demonhunter_male",
+        "displayColor" : "white",
+        "tooltipParams" : "item/common-debris"
+      }
+    }, {
+      "quantity" : 8,
+      "item" : {
+        "id" : "Crafting_Tier_04B",
+        "name" : "Exquisite Essence",
+        "icon" : "crafting_tier_04b_demonhunter_male",
+        "displayColor" : "blue",
+        "tooltipParams" : "item/exquisite-essence"
+      }
+    }, {
+      "quantity" : 3,
+      "item" : {
+        "id" : "Crafting_Tier_04C",
+        "name" : "Iridescent Tear",
+        "icon" : "crafting_tier_04c_demonhunter_male",
+        "displayColor" : "yellow",
+        "tooltipParams" : "item/iridescent-tear"
+      }
+    } ],
+    "itemProduced" : {
+      "id" : "MightyWeapon1H_202",
+      "name" : "Glorious Chopsword",
+      "icon" : "mightyweapon1h_202_demonhunter_male",
+      "displayColor" : "yellow",
+      "tooltipParams" : "recipe/glorious-chopsword"
+    }
+  } ],
+  "seasonRequiredToDrop" : -1,
+  "isSeasonRequiredToDrop" : false
+}

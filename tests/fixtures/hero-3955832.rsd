@@ -1,0 +1,1293 @@
+HTTP/1.1 200 OK
+Content-Language: en-US
+Content-Type: application/json;charset=UTF-8
+Date: Thu, 27 Nov 2014 20:56:54 GMT
+Server: Apache
+Vary: Accept-Encoding
+X-Frame-Options: SAMEORIGIN
+X-Mashery-Responder: prod-j-worker-us-east-1d-66.mashery.com
+Connection: Close
+
+{
+  "id" : 3955832,
+  "name" : "Khalil",
+  "class" : "monk",
+  "gender" : 0,
+  "level" : 70,
+  "paragonLevel" : 194,
+  "hardcore" : false,
+  "seasonal" : false,
+  "seasonCreated" : 0,
+  "skills" : {
+    "active" : [ {
+      "skill" : {
+        "slug" : "fists-of-thunder",
+        "name" : "Fists of Thunder",
+        "icon" : "monk_fistsofthunder",
+        "level" : 1,
+        "categorySlug" : "primary",
+        "tooltipUrl" : "skill/monk/fists-of-thunder",
+        "description" : "Generate: 14 Spirit per attack\r\n\r\nTeleport to your target and unleash a series of extremely fast punches that deal 200% weapon damage as Lightning.\r\n\r\nEvery third hit deals 400% weapon damage as Lightning split between all enemies in front of you.",
+        "simpleDescription" : "Generate: 14 Spirit per attack\r\n\r\nTeleport to your target and attack it with a series of rapid punches.",
+        "skillCalcId" : "a"
+      },
+      "rune" : {
+        "slug" : "fists-of-thunder-a",
+        "type" : "a",
+        "name" : "Thunderclap",
+        "level" : 6,
+        "description" : "Release an electric shockwave with every punch that hits all enemies within 6 yards of your primary enemy for 120% weapon damage as Lightning and causes knockback with every third hit.",
+        "simpleDescription" : "Release an electric shockwave with every punch and cause knockback every third hit.",
+        "tooltipParams" : "rune/fists-of-thunder/a",
+        "skillCalcId" : "a",
+        "order" : 0
+      }
+    }, {
+      "skill" : {
+        "slug" : "mantra-of-conviction",
+        "name" : "Mantra of Conviction",
+        "icon" : "x1_monk_mantraofconviction_v2",
+        "level" : 30,
+        "categorySlug" : "mantras",
+        "tooltipUrl" : "skill/monk/mantra-of-conviction",
+        "description" : "Cost: 50 Spirit\r\n\r\nActive: Damage bonus is increased to 20% for 3 seconds.\r\n\r\nPassive: Enemies within 30 yards of you take 10% increased damage.\r\n\r\nOnly one Mantra may be active at a time.",
+        "simpleDescription" : "Cost: 50 Spirit\r\n\r\nActive: Damage bonus is increased for a short duration.\r\n\r\nPassive: Nearby enemies take increased damage.\r\n\r\nOnly one Mantra may be active at a time.",
+        "skillCalcId" : "k"
+      },
+      "rune" : {
+        "slug" : "mantra-of-conviction-b",
+        "type" : "b",
+        "name" : "Submission",
+        "level" : 60,
+        "description" : "Passive: Enemies affected by Mantra of Conviction take 38% weapon damage per second as Holy.",
+        "simpleDescription" : "Passive: Enemies affected by Mantra of Conviction take Holy damage over time.",
+        "tooltipParams" : "rune/mantra-of-conviction/b",
+        "skillCalcId" : "c",
+        "order" : 4
+      }
+    }, {
+      "skill" : {
+        "slug" : "dashing-strike",
+        "name" : "Dashing Strike",
+        "icon" : "x1_monk_dashingstrike",
+        "level" : 9,
+        "categorySlug" : "techniques",
+        "tooltipUrl" : "skill/monk/dashing-strike",
+        "description" : "Cost: 1 Charge\r\n\r\nQuickly dash up to 50 yards, striking enemies along the way for 370% weapon damage as Physical.\r\n\r\nYou gain a charge every 8 seconds and can have up to 2 charges stored at a time.",
+        "simpleDescription" : "Cost: 1 Charge\r\n\r\nQuickly dash and strike enemies.\r\n\r\nYou gain a charge every 8 seconds and can have up to 2 charges stored at a time.",
+        "skillCalcId" : "d"
+      },
+      "rune" : {
+        "slug" : "dashing-strike-a",
+        "type" : "a",
+        "name" : "Barrage",
+        "level" : 49,
+        "description" : "The last enemy you dash through is obliterated with a barrage of strikes, taking an additional 975% weapon damage as Physical over 2 seconds.",
+        "simpleDescription" : "The last enemy you dash through is obliterated with a barrage of strikes.",
+        "tooltipParams" : "rune/dashing-strike/a",
+        "skillCalcId" : "c",
+        "order" : 4
+      }
+    }, {
+      "skill" : {
+        "slug" : "sweeping-wind",
+        "name" : "Sweeping Wind",
+        "icon" : "monk_sweepingwind",
+        "level" : 21,
+        "categorySlug" : "techniques",
+        "tooltipUrl" : "skill/monk/sweeping-wind",
+        "description" : "Cost: 75 Spirit\r\n\r\nSurround yourself in a vortex that continuously deals 105% weapon damage to all enemies within 10 yards. The vortex lasts 6 seconds and is refreshed each time you strike an enemy with a melee attack. Landing a Critical Hit has a chance to increase the vortex effect up to 3 stacks for a total of 315% weapon damage.",
+        "simpleDescription" : "Cost: 75 Spirit\r\n\r\nSurround yourself in a vortex for 6 seconds that damages nearby enemies. Critical Hits intensify the vortex.",
+        "skillCalcId" : "S"
+      },
+      "rune" : {
+        "slug" : "sweeping-wind-a",
+        "type" : "a",
+        "name" : "Blade Storm",
+        "level" : 33,
+        "description" : "Intensify the vortex, increasing the damage per stack to 145% weapon damage. This increases the damage with 3 stacks to 435% weapon damage.",
+        "simpleDescription" : "Increase the damage of Sweeping Wind.",
+        "tooltipParams" : "rune/sweeping-wind/a",
+        "skillCalcId" : "Z",
+        "order" : 1
+      }
+    }, {
+      "skill" : {
+        "slug" : "sevensided-strike",
+        "name" : "Seven-Sided Strike",
+        "icon" : "monk_sevensidedstrike",
+        "level" : 17,
+        "categorySlug" : "focus",
+        "tooltipUrl" : "skill/monk/sevensided-strike",
+        "description" : "Cost: 50 Spirit\r\nCooldown: 30 seconds\r\n\r\nDash rapidly between nearby enemies, dealing 5677% weapon damage over 7 strikes.",
+        "simpleDescription" : "Cost: 50 Spirit\r\nCooldown: 30 seconds\r\n\r\nMove with blinding speed and strike nearby enemies while being immune to attacks yourself.",
+        "skillCalcId" : "T"
+      },
+      "rune" : {
+        "slug" : "sevensided-strike-a",
+        "type" : "a",
+        "name" : "Sudden Assault",
+        "level" : 23,
+        "description" : "Teleport to the enemy and increase damage dealt to 8285% weapon damage as Lightning over 7 strikes.",
+        "simpleDescription" : "Teleport to the enemy and increase the damage per strike.\r\n\r\nSeven-Sided Strike's damage turns into Lightning.",
+        "tooltipParams" : "rune/sevensided-strike/a",
+        "skillCalcId" : "a",
+        "order" : 0
+      }
+    }, {
+      "skill" : {
+        "slug" : "mystic-ally",
+        "name" : "Mystic Ally",
+        "icon" : "x1_monk_mystically_v2",
+        "level" : 22,
+        "categorySlug" : "focus",
+        "tooltipUrl" : "skill/monk/mystic-ally",
+        "description" : "Cooldown: 30 seconds\r\n\r\nActive: Your mystic ally has its damage increased by 50% for 10 seconds.\r\n\r\nPassive: A mystic ally fights by your side. The ally deals 130% of your weapon damage as Physical per swing. When the ally dies, it is reborn after 5 seconds.",
+        "simpleDescription" : "Cooldown: 30 seconds\r\n\r\nActive: Your mystic ally has its damage increased for a short duration.\r\n\r\nPassive: A mystic ally fights by your side.",
+        "skillCalcId" : "j"
+      },
+      "rune" : {
+        "slug" : "mystic-ally-a",
+        "type" : "a",
+        "name" : "Fire Ally",
+        "level" : 31,
+        "description" : "Active: Your mystic ally splits into 10 allies that explode for 290% weapon damage as Fire.\r\n\r\nPassive: A mystic ally fights by your side that increases your damage by 10%.",
+        "simpleDescription" : "Active: Your mystic ally splits into multiple allies that explode.\r\n\r\nPassive: A mystic ally fights by your side that increases your damage.",
+        "tooltipParams" : "rune/mystic-ally/a",
+        "skillCalcId" : "Z",
+        "order" : 1
+      }
+    } ],
+    "passive" : [ {
+      "skill" : {
+        "slug" : "chant-of-resonance",
+        "name" : "Chant of Resonance",
+        "icon" : "monk_passive_chantofresonance",
+        "level" : 20,
+        "tooltipUrl" : "skill/monk/chant-of-resonance",
+        "description" : "The Spirit costs of Mantra activation effects are reduced by 50% and you gain 4 Spirit every second when you have a Mantra learned.",
+        "flavor" : "The world continues on the noble path, each of us carrying another, all connected, ever onward.",
+        "skillCalcId" : "c"
+      }
+    }, {
+      "skill" : {
+        "slug" : "transcendence",
+        "name" : "Transcendence",
+        "icon" : "monk_passive_transcendence",
+        "level" : 16,
+        "tooltipUrl" : "skill/monk/transcendence",
+        "description" : "Every point of Spirit spent heals you for 429 Life.\r\n\r\nHeal amount is increased by 0.4% of your Health Globe Healing Bonus.",
+        "flavor" : "A life unlived is no different from death.",
+        "skillCalcId" : "Y"
+      }
+    }, {
+      "skill" : {
+        "slug" : "combination-strike",
+        "name" : "Combination Strike",
+        "icon" : "monk_passive_combinationstrike",
+        "level" : 50,
+        "tooltipUrl" : "skill/monk/combination-strike",
+        "description" : "Each different Spirit Generator you use increases your damage by 10% for 3 seconds.",
+        "flavor" : "Master Wughan was not merely the first to perfect the six techniques. His true accomplishment was in weaving them into a style all his own.",
+        "skillCalcId" : "T"
+      }
+    }, {
+      "skill" : {
+        "slug" : "exalted-soul",
+        "name" : "Exalted Soul",
+        "icon" : "monk_passive_exaltedsoul",
+        "level" : 13,
+        "tooltipUrl" : "skill/monk/exalted-soul",
+        "description" : "Increase maximum Spirit by 50 and increase Spirit Regeneration by 4 per second.\r\n\r\nSpirit fuels your defensive and offensive abilities.",
+        "flavor" : "\"Endeavor to be one with the hidden truth and you will soar beyond the sky.\" —Waykeeper Tzo Krin",
+        "skillCalcId" : "b"
+      }
+    } ]
+  },
+  "items" : {
+    "head" : {
+      "id" : "Unique_Helm_006_x1",
+      "name" : "Mempo of Twilight",
+      "icon" : "unique_helm_006_x1_demonhunter_male",
+      "displayColor" : "orange",
+      "tooltipParams" : "item/CnAInND3jAQSBwgEFVml7RMdS7X5Sx0_8gnYHTsnbyQdZiMGUB1-dlWhHcn6vKAwiwI4gAJAAFASWARggAJqKQoMCAAQ5dTgjoGAgIA9EhkI2-PY5AUSBwgEFYQnlLEwjwI4AEABkAEAgAFGtQF_-U5dGLKV7b4CUAhYAA",
+      "craftedBy" : [ ]
+    },
+    "torso" : {
+      "id" : "ChestArmor_208",
+      "name" : "Driven Guise",
+      "icon" : "chestarmor_208_monk_male",
+      "displayColor" : "yellow",
+      "tooltipParams" : "item/CugBCLHwqJ4GEgcIBBUxIhlgHXMjBlAd_qPyjx2wHg5QHQ4c5LsdSA-9SB1wi3fwIgsIABXB_gEAGBIgDjCLAjizBUAASBJQEFgEYLMFaisKDAgAEI3X4I6BgICAPRIbCJSX75sJEgcIBBUilq6YMI8COABAAVgEkAEAaisKDAgAEK3X4I6BgICAPRIbCOqmqqoKEgcIBBUhlq6YMIsCOABAAVgEkAEAaisKDAgAEIafvOaEgICgCxIbCM2L0YQFEgcIBBUhlq6YMI8COABAAVgEkAEApQH-o_KPrQECmefLuAG8up6KB8ABBBjiiMmBDFAIWAA",
+      "craftedBy" : [ {
+        "id" : "T12_Armor_Chest",
+        "slug" : "sovereign-ascended-armor",
+        "name" : "Sovereign Ascended Armor",
+        "cost" : 108000,
+        "reagents" : [ {
+          "quantity" : 8,
+          "item" : {
+            "id" : "Crafting_AssortedParts_01",
+            "name" : "Reusable Parts",
+            "icon" : "crafting_assortedparts_01_demonhunter_male",
+            "displayColor" : "white",
+            "tooltipParams" : "item/reusable-parts"
+          }
+        }, {
+          "quantity" : 6,
+          "item" : {
+            "id" : "Crafting_Magic_01",
+            "name" : "Arcane Dust",
+            "icon" : "crafting_magic_01_demonhunter_male",
+            "displayColor" : "blue",
+            "tooltipParams" : "item/arcane-dust"
+          }
+        }, {
+          "quantity" : 3,
+          "item" : {
+            "id" : "Crafting_Rare_01",
+            "name" : "Veiled Crystal",
+            "icon" : "crafting_rare_01_demonhunter_male",
+            "displayColor" : "yellow",
+            "tooltipParams" : "item/veiled-crystal"
+          }
+        } ],
+        "itemProduced" : {
+          "id" : "ChestArmor_208",
+          "name" : "Sovereign Ascended Armor",
+          "icon" : "chestarmor_208_demonhunter_male",
+          "displayColor" : "yellow",
+          "tooltipParams" : "recipe/sovereign-ascended-armor"
+        }
+      } ]
+    },
+    "feet" : {
+      "id" : "Unique_Boots_005_x1",
+      "name" : "Board Walkers",
+      "icon" : "unique_boots_005_x1_demonhunter_male",
+      "displayColor" : "orange",
+      "tooltipParams" : "item/CjwIq7DyyAoSBwgEFTnMpXMd6-LkBR3x02rVHUNORFEdn9xd-R1_jofMHazTmTkwjwI40wJAAFASWARg0wIY8rCuug5QCFgA",
+      "recipe" : {
+        "id" : "T12_Legendary_Unique_Boots_005_x1",
+        "slug" : "board-walkers",
+        "name" : "Board Walkers",
+        "cost" : 32400,
+        "reagents" : [ {
+          "quantity" : 25,
+          "item" : {
+            "id" : "Crafting_AssortedParts_01",
+            "name" : "Reusable Parts",
+            "icon" : "crafting_assortedparts_01_demonhunter_male",
+            "displayColor" : "white",
+            "tooltipParams" : "item/reusable-parts"
+          }
+        }, {
+          "quantity" : 12,
+          "item" : {
+            "id" : "Crafting_Magic_01",
+            "name" : "Arcane Dust",
+            "icon" : "crafting_magic_01_demonhunter_male",
+            "displayColor" : "blue",
+            "tooltipParams" : "item/arcane-dust"
+          }
+        }, {
+          "quantity" : 45,
+          "item" : {
+            "id" : "Crafting_Rare_01",
+            "name" : "Veiled Crystal",
+            "icon" : "crafting_rare_01_demonhunter_male",
+            "displayColor" : "yellow",
+            "tooltipParams" : "item/veiled-crystal"
+          }
+        }, {
+          "quantity" : 2,
+          "item" : {
+            "id" : "Crafting_Legendary_01",
+            "name" : "Forgotten Soul",
+            "icon" : "crafting_legendary_01_demonhunter_male",
+            "displayColor" : "orange",
+            "tooltipParams" : "item/forgotten-soul"
+          }
+        } ],
+        "itemProduced" : {
+          "id" : "Unique_Boots_005_x1",
+          "name" : "Board Walkers",
+          "icon" : "unique_boots_005_x1_demonhunter_male",
+          "displayColor" : "orange",
+          "tooltipParams" : "recipe/board-walkers"
+        }
+      },
+      "craftedBy" : [ {
+        "id" : "T12_Legendary_Unique_Boots_005_x1",
+        "slug" : "board-walkers",
+        "name" : "Board Walkers",
+        "cost" : 32400,
+        "reagents" : [ {
+          "quantity" : 25,
+          "item" : {
+            "id" : "Crafting_AssortedParts_01",
+            "name" : "Reusable Parts",
+            "icon" : "crafting_assortedparts_01_demonhunter_male",
+            "displayColor" : "white",
+            "tooltipParams" : "item/reusable-parts"
+          }
+        }, {
+          "quantity" : 12,
+          "item" : {
+            "id" : "Crafting_Magic_01",
+            "name" : "Arcane Dust",
+            "icon" : "crafting_magic_01_demonhunter_male",
+            "displayColor" : "blue",
+            "tooltipParams" : "item/arcane-dust"
+          }
+        }, {
+          "quantity" : 45,
+          "item" : {
+            "id" : "Crafting_Rare_01",
+            "name" : "Veiled Crystal",
+            "icon" : "crafting_rare_01_demonhunter_male",
+            "displayColor" : "yellow",
+            "tooltipParams" : "item/veiled-crystal"
+          }
+        }, {
+          "quantity" : 2,
+          "item" : {
+            "id" : "Crafting_Legendary_01",
+            "name" : "Forgotten Soul",
+            "icon" : "crafting_legendary_01_demonhunter_male",
+            "displayColor" : "orange",
+            "tooltipParams" : "item/forgotten-soul"
+          }
+        } ],
+        "itemProduced" : {
+          "id" : "Unique_Boots_005_x1",
+          "name" : "Board Walkers",
+          "icon" : "unique_boots_005_x1_demonhunter_male",
+          "displayColor" : "orange",
+          "tooltipParams" : "recipe/board-walkers"
+        }
+      } ]
+    },
+    "hands" : {
+      "id" : "Gloves_208",
+      "name" : "Crush Insult",
+      "icon" : "gloves_208_monk_male",
+      "displayColor" : "yellow",
+      "tooltipParams" : "item/CmEInYLCwQISBwgEFclbkqQdyPq8oB2R6kG_HZavuewddWfm8R1RUwyyHelwL7siCwgBFWxCAwAYBCAGMIsCOOUDQABIA1AQWARg5QOlAZHqQb-tAajWdfy4AYqavp0KwAEGGO2Q7bYLUAhYAA",
+      "craftedBy" : [ {
+        "id" : "T12_Armor_Gloves",
+        "slug" : "sovereign-ascended-gloves",
+        "name" : "Sovereign Ascended Gloves",
+        "cost" : 18360,
+        "reagents" : [ {
+          "quantity" : 8,
+          "item" : {
+            "id" : "Crafting_AssortedParts_01",
+            "name" : "Reusable Parts",
+            "icon" : "crafting_assortedparts_01_demonhunter_male",
+            "displayColor" : "white",
+            "tooltipParams" : "item/reusable-parts"
+          }
+        }, {
+          "quantity" : 5,
+          "item" : {
+            "id" : "Crafting_Magic_01",
+            "name" : "Arcane Dust",
+            "icon" : "crafting_magic_01_demonhunter_male",
+            "displayColor" : "blue",
+            "tooltipParams" : "item/arcane-dust"
+          }
+        }, {
+          "quantity" : 45,
+          "item" : {
+            "id" : "Crafting_Rare_01",
+            "name" : "Veiled Crystal",
+            "icon" : "crafting_rare_01_demonhunter_male",
+            "displayColor" : "yellow",
+            "tooltipParams" : "item/veiled-crystal"
+          }
+        } ],
+        "itemProduced" : {
+          "id" : "Gloves_208",
+          "name" : "Sovereign Ascended Gloves",
+          "icon" : "gloves_208_demonhunter_male",
+          "displayColor" : "yellow",
+          "tooltipParams" : "recipe/sovereign-ascended-gloves"
+        }
+      } ]
+    },
+    "shoulders" : {
+      "id" : "Unique_Shoulder_002_x1",
+      "name" : "Death Watch Mantle",
+      "icon" : "unique_shoulder_002_x1_demonhunter_male",
+      "displayColor" : "orange",
+      "tooltipParams" : "item/CkAIwdOJzwoSBwgEFXWXMIsdcYt38B10RaeJHaLPFFYdQ05EUR3x02rVMIsCOJEDQABQElgEYJEDgAFGtQHS-MgVGJWi-8wOUAhYAA",
+      "craftedBy" : [ ]
+    },
+    "legs" : {
+      "id" : "Pants_208",
+      "name" : "Battle Measure",
+      "icon" : "pants_208_monk_male",
+      "displayColor" : "yellow",
+      "tooltipParams" : "item/CrsBCPnstcgLEgcIBBWfktWlHbAeDlAdj5DKUB05yXSwHSCd5AQdbc2JHh1rB3fOIgsIARVdRAMAGBQgGDCLAjjTBEAASANQEFgEYNMEaisKDAgAEKTU4I6BgICAPRIbCKKp660EEgcIBBUilq6YMIsCOABAAVgEkAEAaisKDAgAELvT4I6BgICAPRIbCMCj9f8KEgcIBBUilq6YMI8COABAAVgEkAEApQE5yXSwrQECmefLuAGm6tfCBcABARjBtdOiC1AIWAA",
+      "craftedBy" : [ {
+        "id" : "T12_Armor_Pants",
+        "slug" : "sovereign-ascended-faulds",
+        "name" : "Sovereign Ascended Faulds",
+        "cost" : 18360,
+        "reagents" : [ {
+          "quantity" : 8,
+          "item" : {
+            "id" : "Crafting_AssortedParts_01",
+            "name" : "Reusable Parts",
+            "icon" : "crafting_assortedparts_01_demonhunter_male",
+            "displayColor" : "white",
+            "tooltipParams" : "item/reusable-parts"
+          }
+        }, {
+          "quantity" : 36,
+          "item" : {
+            "id" : "Crafting_Magic_01",
+            "name" : "Arcane Dust",
+            "icon" : "crafting_magic_01_demonhunter_male",
+            "displayColor" : "blue",
+            "tooltipParams" : "item/arcane-dust"
+          }
+        }, {
+          "quantity" : 3,
+          "item" : {
+            "id" : "Crafting_Rare_01",
+            "name" : "Veiled Crystal",
+            "icon" : "crafting_rare_01_demonhunter_male",
+            "displayColor" : "yellow",
+            "tooltipParams" : "item/veiled-crystal"
+          }
+        } ],
+        "itemProduced" : {
+          "id" : "Pants_208",
+          "name" : "Sovereign Ascended Faulds",
+          "icon" : "pants_208_demonhunter_male",
+          "displayColor" : "yellow",
+          "tooltipParams" : "recipe/sovereign-ascended-faulds"
+        }
+      } ]
+    },
+    "bracers" : {
+      "id" : "Unique_Bracer_107_x1",
+      "name" : "Custerian Wristguards",
+      "icon" : "unique_bracer_107_x1_demonhunter_male",
+      "displayColor" : "orange",
+      "tooltipParams" : "item/CkAIy7Lz5gISBwgEFcQCXjkdQ05EUR3c174EHfHTatUd5hXbDR0_8gnYMIsCOOMCQABQElgEYOMCgAFGtQHbLMrLGIiL8JUHUAhYAA",
+      "craftedBy" : [ ]
+    },
+    "mainHand" : {
+      "id" : "Unique_Sword_1H_103_x1",
+      "name" : "Gift of Silaria",
+      "icon" : "unique_sword_1h_103_x1_demonhunter_male",
+      "displayColor" : "orange",
+      "tooltipParams" : "item/CogBCMaw7d0GEgcIBBUY0HtQHTD77J8dFplnOx2MHL6WHevi5AUdyfq8oB2PWNYeMIsCOLoCQABQElgEYLoCaisKDAgAEOzG3rSBgICgNxIbCMeMte8JEgcIBBUjlq6YMI8COABAAVgEkAEAgAFGpQGMHL6WrQFmIwZQtQGb2dnvuAHDsemNDMABARiwwN6HClAIWAA",
+      "craftedBy" : [ ]
+    },
+    "offHand" : {
+      "id" : "Shield_209",
+      "name" : "Thorned Palisade",
+      "icon" : "shield_209_demonhunter_male",
+      "displayColor" : "yellow",
+      "tooltipParams" : "item/Cl8I0pef3gISBwgEFRMMO2wddWfm8R3-o_KPHZoGAMsdIJ3kBB1rB3fOHW3NiR4iCwgAFc3-AQAYGiAiMIsCOLgEQABQEFgEYLgEpQEgneQErQHI-ryguAG5mfGGDcABAximsNjDDVAIWAA",
+      "craftedBy" : [ {
+        "id" : "T12_Armor_Shield",
+        "slug" : "sovereign-ascended-shield",
+        "name" : "Sovereign Ascended Shield",
+        "cost" : 32400,
+        "reagents" : [ {
+          "quantity" : 12,
+          "item" : {
+            "id" : "Crafting_AssortedParts_01",
+            "name" : "Reusable Parts",
+            "icon" : "crafting_assortedparts_01_demonhunter_male",
+            "displayColor" : "white",
+            "tooltipParams" : "item/reusable-parts"
+          }
+        }, {
+          "quantity" : 19,
+          "item" : {
+            "id" : "Crafting_Magic_01",
+            "name" : "Arcane Dust",
+            "icon" : "crafting_magic_01_demonhunter_male",
+            "displayColor" : "blue",
+            "tooltipParams" : "item/arcane-dust"
+          }
+        }, {
+          "quantity" : 15,
+          "item" : {
+            "id" : "Crafting_Rare_01",
+            "name" : "Veiled Crystal",
+            "icon" : "crafting_rare_01_demonhunter_male",
+            "displayColor" : "yellow",
+            "tooltipParams" : "item/veiled-crystal"
+          }
+        } ],
+        "itemProduced" : {
+          "id" : "Shield_209",
+          "name" : "Sovereign Ascended Shield",
+          "icon" : "shield_209_demonhunter_male",
+          "displayColor" : "yellow",
+          "tooltipParams" : "recipe/sovereign-ascended-shield"
+        }
+      } ]
+    },
+    "waist" : {
+      "id" : "Unique_Belt_009_x1",
+      "name" : "The Witching Hour",
+      "icon" : "unique_belt_009_x1_demonhunter_male",
+      "displayColor" : "orange",
+      "tooltipParams" : "item/CkUIuLDc6A4SBwgEFR3dj2kdP_IJ2B0do43EHbqqrrUd8dNq1R1-dlWhHZinjsAwiwI49AJAAFASWARg9AKAAUa1AcCnQtQYuvT-mA1QCFgA",
+      "craftedBy" : [ ]
+    },
+    "rightFinger" : {
+      "id" : "Unique_Ring_020_x1",
+      "name" : "Bul-Kathos's Wedding Band",
+      "icon" : "unique_ring_020_x1_demonhunter_male",
+      "displayColor" : "orange",
+      "tooltipParams" : "item/ClYI2qDNiQ0SBwgEFd_JRbkdHaONxB2L8XpCHRAvyiodmKeOwB3x02rVMIsCOJYDQABQElgEYJYDgAFGpQEQL8oqrQHmFdsNtQE2VV1EuAH17PmvCcABAhjB2NHrCFAIWAA",
+      "craftedBy" : [ ]
+    },
+    "leftFinger" : {
+      "id" : "Unique_Ring_003_x1",
+      "name" : "Krede's Flame",
+      "icon" : "unique_ring_003_x1_demonhunter_male",
+      "displayColor" : "orange",
+      "tooltipParams" : "item/CkAIq8uY8gMSBwgEFQA-I7kdf46HzB2Yp47AHUNORFEdfnZVoR3x02rVMIsCOPsBQABQElgEYPsBgAFGtQE2VV1EGP-H5u0IUAhYAA",
+      "craftedBy" : [ ]
+    },
+    "neck" : {
+      "id" : "Amulet17",
+      "name" : "Baron Thirst",
+      "icon" : "amulet17_demonhunter_male",
+      "displayColor" : "yellow",
+      "tooltipParams" : "item/CpEBCKz8oZUEEgcIBBWwxURkHXcHxPQdyPq8oB11Z-bxHZavuewdSA-9SB2r05k5IgsIARV4QgMAGCQgBjCLAji8A0AAUBBYBGC8A2owCgwIABDH9cyfgYCA4D0SIAipgM-jCRIHCAQVbBejwTCLAjgAQABQElgEkAEA2AEIpQF3B8T0rQFmIwZQuAGhzYX1CcABARjglqbEDFAIWAA",
+      "craftedBy" : [ {
+        "id" : "T12_Jeweler_Amulet",
+        "slug" : "sovereign-amulet",
+        "name" : "Sovereign Amulet",
+        "cost" : 10000,
+        "reagents" : [ {
+          "quantity" : 1,
+          "item" : {
+            "id" : "Ruby_15",
+            "name" : "Marquise Ruby",
+            "icon" : "ruby_15_demonhunter_male",
+            "displayColor" : "blue",
+            "tooltipParams" : "recipe/marquise-ruby"
+          }
+        }, {
+          "quantity" : 1,
+          "item" : {
+            "id" : "Emerald_15",
+            "name" : "Marquise Emerald",
+            "icon" : "emerald_15_demonhunter_male",
+            "displayColor" : "blue",
+            "tooltipParams" : "recipe/marquise-emerald"
+          }
+        }, {
+          "quantity" : 1,
+          "item" : {
+            "id" : "Amethyst_15",
+            "name" : "Marquise Amethyst",
+            "icon" : "amethyst_15_demonhunter_male",
+            "displayColor" : "blue",
+            "tooltipParams" : "recipe/marquise-amethyst"
+          }
+        }, {
+          "quantity" : 1,
+          "item" : {
+            "id" : "Topaz_15",
+            "name" : "Marquise Topaz",
+            "icon" : "topaz_15_demonhunter_male",
+            "displayColor" : "blue",
+            "tooltipParams" : "recipe/marquise-topaz"
+          }
+        } ],
+        "itemProduced" : {
+          "id" : "Amulet17",
+          "name" : "Sovereign Amulet",
+          "icon" : "amulet17_demonhunter_male",
+          "displayColor" : "yellow",
+          "tooltipParams" : "recipe/sovereign-amulet"
+        }
+      } ]
+    }
+  },
+  "followers" : {
+    "templar" : {
+      "slug" : "templar",
+      "level" : 70,
+      "items" : {
+        "special" : {
+          "id" : "Templar_Special_204",
+          "name" : "Kinship Anarchy",
+          "icon" : "templar_special_204_demonhunter_male",
+          "displayColor" : "yellow",
+          "tooltipParams" : "item/CjcIpPirARIHCAQV6gtjRB0fyl1JHY1AF8Qd5eWp8B0PXPT8IgsIARVvQgMAGBggHDAJOABAAFAMGNSvmMYI",
+          "craftedBy" : [ {
+            "id" : "T09_Armor_TemplarSpecial",
+            "slug" : "glorious-grail",
+            "name" : "Glorious Grail",
+            "cost" : 3300,
+            "reagents" : [ {
+              "quantity" : 5,
+              "item" : {
+                "id" : "Crafting_Tier_04A",
+                "name" : "Common Debris",
+                "icon" : "crafting_tier_04a_demonhunter_male",
+                "displayColor" : "white",
+                "tooltipParams" : "item/common-debris"
+              }
+            }, {
+              "quantity" : 5,
+              "item" : {
+                "id" : "Crafting_Tier_04B",
+                "name" : "Exquisite Essence",
+                "icon" : "crafting_tier_04b_demonhunter_male",
+                "displayColor" : "blue",
+                "tooltipParams" : "item/exquisite-essence"
+              }
+            }, {
+              "quantity" : 3,
+              "item" : {
+                "id" : "Crafting_Tier_04C",
+                "name" : "Iridescent Tear",
+                "icon" : "crafting_tier_04c_demonhunter_male",
+                "displayColor" : "yellow",
+                "tooltipParams" : "item/iridescent-tear"
+              }
+            } ],
+            "itemProduced" : {
+              "id" : "Templar_Special_204",
+              "name" : "Glorious Grail",
+              "icon" : "templar_special_204_demonhunter_male",
+              "displayColor" : "yellow",
+              "tooltipParams" : "recipe/glorious-grail"
+            }
+          } ]
+        },
+        "mainHand" : {
+          "id" : "Unique_Spear_003_x1",
+          "name" : "Empyrean Messenger",
+          "icon" : "unique_spear_003_x1_demonhunter_male",
+          "displayColor" : "orange",
+          "tooltipParams" : "item/CkUIhs75xAYSBwgEFeu4Qn8dseTqER2eT4PcHdDuaDEdeE9Akx3J-rygHWe9HGEwiwI4ggJAAFASWARgggKAAUa1Ac8j9vkY1uOV9A8",
+          "craftedBy" : [ ]
+        },
+        "offHand" : {
+          "id" : "Shield_207_104",
+          "name" : "Harbor Rack",
+          "icon" : "shield_207_104_demonhunter_male",
+          "displayColor" : "yellow",
+          "tooltipParams" : "item/CjwIi9qZiAQSBwgEFWWbSewdnGyzFB2yV9XuHcWsHqYdX_FjBCILCAEVwEQDABggIAIwCTjFBEAAUAxgxQQYtZKzuwI",
+          "craftedBy" : [ ]
+        },
+        "rightFinger" : {
+          "id" : "Ring_20",
+          "name" : "Adroit Ring",
+          "icon" : "ring_20_demonhunter_male",
+          "displayColor" : "yellow",
+          "tooltipParams" : "item/CkEI6-zd5wsSBwgEFTFVXUQd4iG9Bx1zxLznHbrAteYdfzV7gx00_I9rIgsIABXDRAMAGAQgHDAJOLICQABQDGCHAxji1OrFCA",
+          "craftedBy" : [ ]
+        },
+        "leftFinger" : {
+          "id" : "Ring_22",
+          "name" : "Radiance Ward",
+          "icon" : "ring_22_demonhunter_male",
+          "displayColor" : "yellow",
+          "tooltipParams" : "item/CjwIrcDsxwQSBwgEFTNVXUQdN3YDhB240U3FHQFqaV0dzGx7gyILCAEVZkIDABgMIBQwCTiRBEAAUAxgkQQY5tTqxQg",
+          "craftedBy" : [ ]
+        },
+        "neck" : {
+          "id" : "Amulet13",
+          "name" : "Eminence Clash",
+          "icon" : "amulet13_demonhunter_male",
+          "displayColor" : "yellow",
+          "tooltipParams" : "item/Cj0I38OagQoSBwgEFazFRGQdfoHGxB1GZ6unHXYSy7cdCW8vuyILCAEVbUIDABgmIBowiQI4mwNAAFAMYJsDGNiWpsQM",
+          "craftedBy" : [ ]
+        }
+      },
+      "stats" : {
+        "goldFind" : 4,
+        "magicFind" : 0,
+        "experienceBonus" : 13
+      },
+      "skills" : [ {
+        "skill" : {
+          "slug" : "heal",
+          "name" : "Heal",
+          "icon" : "templar_heal_110",
+          "level" : 5,
+          "tooltipUrl" : "skill/templar/heal",
+          "description" : "Cooldown: 30 seconds\r\n\r\nHeals you and the Templar for 193112 Life.",
+          "simpleDescription" : "Cooldown: 30 seconds\r\n\r\nHeals you and the Templar.",
+          "skillCalcId" : "a"
+        }
+      }, {
+        "skill" : {
+          "slug" : "intimidate",
+          "name" : "Intimidate",
+          "icon" : "templar_intimidate",
+          "level" : 10,
+          "tooltipUrl" : "skill/templar/intimidate",
+          "description" : "Enemies that hit or are hit by the Templar are slowed by 80% for 3 seconds.",
+          "simpleDescription" : "Enemies that hit or are hit by the Templar are slowed.",
+          "skillCalcId" : "Y"
+        }
+      }, {
+        "skill" : {
+          "slug" : "onslaught",
+          "name" : "Onslaught",
+          "icon" : "templar_onslaught",
+          "level" : 15,
+          "tooltipUrl" : "skill/templar/onslaught",
+          "description" : "Cooldown: 10 seconds\r\n\r\nDelivers a massive blow to an enemy for 800% weapon damage.",
+          "simpleDescription" : "Cooldown: 10 seconds\r\n\r\nDelivers a massive blow to an enemy.",
+          "skillCalcId" : "X"
+        }
+      }, {
+        "skill" : {
+          "slug" : "inspire",
+          "name" : "Inspire",
+          "icon" : "templar_inspire",
+          "level" : 20,
+          "tooltipUrl" : "skill/templar/inspire",
+          "description" : "Increases your resource generation.\r\n\r\nMana: 7 per second.\r\nHatred: 1 per second.\r\nWrath: 1.1 per second.\r\nArcane Power: 1.4 per second.\r\nFury: 10% generated.\r\nSpirit: 10% generated.",
+          "simpleDescription" : "Increases your resource generation.",
+          "skillCalcId" : "d"
+        }
+      } ]
+    },
+    "scoundrel" : {
+      "slug" : "scoundrel",
+      "level" : 70,
+      "items" : {
+        "special" : {
+          "id" : "Scoundrel_Special_205",
+          "name" : "Virile Treasure",
+          "icon" : "scoundrel_special_205_demonhunter_male",
+          "displayColor" : "yellow",
+          "tooltipParams" : "item/Cj4Ij-7LzwwSBwgEFaUBTPIddy1Csx2ZBgDLHQkzFkYdr-TqER2AYMNiIgsIABXO_gEAGB4gCjCJAjgAQABQDhi1-Z_bAQ",
+          "craftedBy" : [ {
+            "id" : "T11_Armor_ScoundrelSpecial",
+            "slug" : "exquisite-scoundrel-token",
+            "name" : "Exquisite Scoundrel Token",
+            "cost" : 19800,
+            "reagents" : [ {
+              "quantity" : 5,
+              "item" : {
+                "id" : "Crafting_AssortedParts_01",
+                "name" : "Reusable Parts",
+                "icon" : "crafting_assortedparts_01_demonhunter_male",
+                "displayColor" : "white",
+                "tooltipParams" : "item/reusable-parts"
+              }
+            }, {
+              "quantity" : 8,
+              "item" : {
+                "id" : "Crafting_Magic_01",
+                "name" : "Arcane Dust",
+                "icon" : "crafting_magic_01_demonhunter_male",
+                "displayColor" : "blue",
+                "tooltipParams" : "item/arcane-dust"
+              }
+            }, {
+              "quantity" : 10,
+              "item" : {
+                "id" : "Crafting_Rare_01",
+                "name" : "Veiled Crystal",
+                "icon" : "crafting_rare_01_demonhunter_male",
+                "displayColor" : "yellow",
+                "tooltipParams" : "item/veiled-crystal"
+              }
+            } ],
+            "itemProduced" : {
+              "id" : "Scoundrel_Special_205",
+              "name" : "Exquisite Scoundrel Token",
+              "icon" : "scoundrel_special_205_demonhunter_male",
+              "displayColor" : "yellow",
+              "tooltipParams" : "recipe/exquisite-scoundrel-token"
+            }
+          } ]
+        },
+        "mainHand" : {
+          "id" : "Bow_302",
+          "name" : "Holy Eagle",
+          "icon" : "bow_302_demonhunter_male",
+          "displayColor" : "yellow",
+          "tooltipParams" : "item/CkII_I30kwsSBwgEFfw6VoMdyPq8oB1mvRxhHc_uaDEdmgYAyx2w5OoRIgsIABW6_gEAGAYgFDCJAjjQA0AAUA5g0AMYh5TOyg8",
+          "craftedBy" : [ {
+            "id" : "T12_Weapon_Bow",
+            "slug" : "sovereign-doubleshot",
+            "name" : "Sovereign Doubleshot",
+            "cost" : 33480,
+            "reagents" : [ {
+              "quantity" : 13,
+              "item" : {
+                "id" : "Crafting_AssortedParts_01",
+                "name" : "Reusable Parts",
+                "icon" : "crafting_assortedparts_01_demonhunter_male",
+                "displayColor" : "white",
+                "tooltipParams" : "item/reusable-parts"
+              }
+            }, {
+              "quantity" : 21,
+              "item" : {
+                "id" : "Crafting_Magic_01",
+                "name" : "Arcane Dust",
+                "icon" : "crafting_magic_01_demonhunter_male",
+                "displayColor" : "blue",
+                "tooltipParams" : "item/arcane-dust"
+              }
+            }, {
+              "quantity" : 15,
+              "item" : {
+                "id" : "Crafting_Rare_01",
+                "name" : "Veiled Crystal",
+                "icon" : "crafting_rare_01_demonhunter_male",
+                "displayColor" : "yellow",
+                "tooltipParams" : "item/veiled-crystal"
+              }
+            } ],
+            "itemProduced" : {
+              "id" : "Bow_302",
+              "name" : "Sovereign Doubleshot",
+              "icon" : "bow_302_demonhunter_male",
+              "displayColor" : "yellow",
+              "tooltipParams" : "recipe/sovereign-doubleshot"
+            }
+          } ]
+        },
+        "rightFinger" : {
+          "id" : "Ring_24",
+          "name" : "Doom Wound",
+          "icon" : "ring_24_demonhunter_male",
+          "displayColor" : "yellow",
+          "tooltipParams" : "item/Cj0I962Ttg4SBwgEFTVVXUQddB5swB0ZHD3YHVfVGpUdgGDDYiILCAEVbEIDABgWIBowiQI4gwNAAFAMYIMDGOrU6sUI",
+          "craftedBy" : [ ]
+        },
+        "leftFinger" : {
+          "id" : "Ring_24",
+          "name" : "Damnation Eater",
+          "icon" : "ring_24_demonhunter_male",
+          "displayColor" : "yellow",
+          "tooltipParams" : "item/CkIIkbP1kgcSBwgEFTVVXUQdweOKRh3H2SlOHcjRZLIdHZCHzB1X1RqVIgsIARV5QgMAGAogIDCJAjilBEAAUA5gpQQY6tTqxQg",
+          "craftedBy" : [ ]
+        },
+        "neck" : {
+          "id" : "Amulet09",
+          "name" : "Royalty Abjuration",
+          "icon" : "amulet09_demonhunter_male",
+          "displayColor" : "yellow",
+          "tooltipParams" : "item/CmcI88j5YxIHCAQVkcVEZB2uaIsFHZo95hodsFKkRx3gzHZQHXmzxXIdhgJj6iILCAEVtUQDABgOIBQwCTiXBEAAUBBglwRqIAoHCAAQnpmvaBIVCNm5vaYJEgcIBBW1XbZ6MAk4AEABGKKWpsQM",
+          "craftedBy" : [ ]
+        }
+      },
+      "stats" : {
+        "goldFind" : 0,
+        "magicFind" : 3,
+        "experienceBonus" : 40
+      },
+      "skills" : [ {
+        "skill" : {
+          "slug" : "crippling-shot",
+          "name" : "Crippling Shot",
+          "icon" : "scoundrel_cripplingshot",
+          "level" : 5,
+          "tooltipUrl" : "skill/scoundrel/crippling-shot",
+          "description" : "Cooldown: 4 seconds\r\n\r\nRanged attack that deals 140% weapon damage and slows enemies hit by 80% for 4 seconds.",
+          "simpleDescription" : "Cooldown: 4 seconds\r\n\r\nRanged attack that slows enemies.",
+          "skillCalcId" : "a"
+        }
+      }, {
+        "skill" : {
+          "slug" : "dirty-fighting",
+          "name" : "Dirty Fighting",
+          "icon" : "scoundrel_dirtyfighting",
+          "level" : 10,
+          "tooltipUrl" : "skill/scoundrel/dirty-fighting",
+          "description" : "Cooldown: 6 seconds\r\n\r\nBlinds nearby enemies in front of the Scoundrel for 2 seconds.",
+          "simpleDescription" : "Cooldown: 6 seconds\r\n\r\nBlinds nearby enemies in front of the Scoundrel.",
+          "skillCalcId" : "b"
+        }
+      }, {
+        "skill" : {
+          "slug" : "powered-shot",
+          "name" : "Powered Shot",
+          "icon" : "scoundrel_powershot",
+          "level" : 15,
+          "tooltipUrl" : "skill/scoundrel/powered-shot",
+          "description" : "Cooldown: 8 seconds\r\n\r\nRanged attack that explodes on impact, dealing 310% weapon damage as Arcane to enemies within 10 yards and has a 100% chance to Stun enemies for 2 seconds.",
+          "simpleDescription" : "Cooldown: 8 seconds\r\n\r\nDeals damage in an area that has a chance to Stun enemies.",
+          "skillCalcId" : "c"
+        }
+      }, {
+        "skill" : {
+          "slug" : "anatomy",
+          "name" : "Anatomy",
+          "icon" : "scoundrel_anatomy",
+          "level" : 20,
+          "tooltipUrl" : "skill/scoundrel/anatomy",
+          "description" : "Increases Critical Hit Chance by 1.8% for you and the Scoundrel.",
+          "simpleDescription" : "Increases Critical Hit Chance for you and the Scoundrel.",
+          "skillCalcId" : "W"
+        }
+      } ]
+    },
+    "enchantress" : {
+      "slug" : "enchantress",
+      "level" : 70,
+      "items" : {
+        "special" : {
+          "id" : "Enchantress_Special_205",
+          "name" : "Squire's Gore",
+          "icon" : "enchantress_special_205_demonhunter_male",
+          "displayColor" : "yellow",
+          "tooltipParams" : "item/Cj4IheGy3A8SBwgEFTSjYi0d8XAHrR3yktwIHZkGAMsdgGDDYh2v5OoRIgsIARV5QgMAGBogFjCJAjgAQABQDhjojJXWBQ",
+          "craftedBy" : [ {
+            "id" : "T11_Armor_EnchantressSpecial",
+            "slug" : "exquisite-enchantress-focus",
+            "name" : "Exquisite Enchantress Focus",
+            "cost" : 19800,
+            "reagents" : [ {
+              "quantity" : 5,
+              "item" : {
+                "id" : "Crafting_AssortedParts_01",
+                "name" : "Reusable Parts",
+                "icon" : "crafting_assortedparts_01_demonhunter_male",
+                "displayColor" : "white",
+                "tooltipParams" : "item/reusable-parts"
+              }
+            }, {
+              "quantity" : 8,
+              "item" : {
+                "id" : "Crafting_Magic_01",
+                "name" : "Arcane Dust",
+                "icon" : "crafting_magic_01_demonhunter_male",
+                "displayColor" : "blue",
+                "tooltipParams" : "item/arcane-dust"
+              }
+            }, {
+              "quantity" : 10,
+              "item" : {
+                "id" : "Crafting_Rare_01",
+                "name" : "Veiled Crystal",
+                "icon" : "crafting_rare_01_demonhunter_male",
+                "displayColor" : "yellow",
+                "tooltipParams" : "item/veiled-crystal"
+              }
+            } ],
+            "itemProduced" : {
+              "id" : "Enchantress_Special_205",
+              "name" : "Exquisite Enchantress Focus",
+              "icon" : "enchantress_special_205_demonhunter_male",
+              "displayColor" : "yellow",
+              "tooltipParams" : "recipe/exquisite-enchantress-focus"
+            }
+          } ]
+        },
+        "mainHand" : {
+          "id" : "Staff_301",
+          "name" : "Prodigy Terror",
+          "icon" : "staff_301_demonhunter_male",
+          "displayColor" : "yellow",
+          "tooltipParams" : "item/CkII-fTThAQSBwgEFWcp5YEdq4QtYB0tFMXiHRwZD0EdxNUVeR3JZof-IgsIARXDZQMAGBIgFjCJAjiFBUAAUA5ghQUYsdrW4Q8",
+          "craftedBy" : [ {
+            "id" : "T11_Weapon_Staff",
+            "slug" : "exquisite-caduceus-staff",
+            "name" : "Exquisite Caduceus Staff",
+            "cost" : 27900,
+            "reagents" : [ {
+              "quantity" : 9,
+              "item" : {
+                "id" : "Crafting_AssortedParts_01",
+                "name" : "Reusable Parts",
+                "icon" : "crafting_assortedparts_01_demonhunter_male",
+                "displayColor" : "white",
+                "tooltipParams" : "item/reusable-parts"
+              }
+            }, {
+              "quantity" : 14,
+              "item" : {
+                "id" : "Crafting_Magic_01",
+                "name" : "Arcane Dust",
+                "icon" : "crafting_magic_01_demonhunter_male",
+                "displayColor" : "blue",
+                "tooltipParams" : "item/arcane-dust"
+              }
+            }, {
+              "quantity" : 10,
+              "item" : {
+                "id" : "Crafting_Rare_01",
+                "name" : "Veiled Crystal",
+                "icon" : "crafting_rare_01_demonhunter_male",
+                "displayColor" : "yellow",
+                "tooltipParams" : "item/veiled-crystal"
+              }
+            } ],
+            "itemProduced" : {
+              "id" : "Staff_301",
+              "name" : "Exquisite Caduceus Staff",
+              "icon" : "staff_301_demonhunter_male",
+              "displayColor" : "yellow",
+              "tooltipParams" : "recipe/exquisite-caduceus-staff"
+            }
+          } ]
+        },
+        "rightFinger" : {
+          "id" : "Ring_17",
+          "name" : "Invigorating Ring",
+          "icon" : "ring_17_demonhunter_male",
+          "displayColor" : "blue",
+          "tooltipParams" : "item/CiAI547F4w8SBwgEFRdVXUQdvFvoSDAJOPsDQABQBmD7Axiu1OrFCA",
+          "craftedBy" : [ ]
+        },
+        "leftFinger" : {
+          "id" : "Ring_11",
+          "name" : "Invigorating Ring of the Hawk",
+          "icon" : "ring_11_demonhunter_male",
+          "displayColor" : "blue",
+          "tooltipParams" : "item/CiUIlYrK7QYSBwgEFRFVXUQdu1voSB3eTEryMAk4gQRAAFAIYIEEGKLU6sUI",
+          "craftedBy" : [ ]
+        },
+        "neck" : {
+          "id" : "Amulet13",
+          "name" : "Skulking Star",
+          "icon" : "amulet13_demonhunter_male",
+          "displayColor" : "yellow",
+          "tooltipParams" : "item/CkYIt8rEjgUSBwgEFazFRGQdnlUNWx37sfU-HeTlqfAd8jctFB0cEnPgHRBc9PwiCwgAFbpEAwAYCCAQMAk4kwNAAFAMYJMDGNiWpsQM",
+          "craftedBy" : [ ]
+        }
+      },
+      "stats" : {
+        "goldFind" : 0,
+        "magicFind" : 0,
+        "experienceBonus" : 19
+      },
+      "skills" : [ {
+        "skill" : {
+          "slug" : "forceful-push",
+          "name" : "Forceful Push",
+          "icon" : "enchantress_forcefulpush",
+          "level" : 15,
+          "tooltipUrl" : "skill/enchantress/forceful-push",
+          "description" : "Cooldown: 5 seconds\r\n\r\nSummon an Arcane explosion 8 yards around an enemy, dealing 410% weapon damage as Arcane and knocking back all monsters caught within it.",
+          "simpleDescription" : "Cooldown: 5 seconds\r\n\r\nCreates an explosion that deals massive damage and knocks back enemies.",
+          "skillCalcId" : "Z"
+        }
+      }, {
+        "skill" : {
+          "slug" : "powered-armor",
+          "name" : "Powered Armor",
+          "icon" : "enchantress_poweredarmor",
+          "level" : 20,
+          "tooltipUrl" : "skill/enchantress/powered-armor",
+          "description" : "Buffs you and the Enchantress, increasing Armor by 3% and slowing melee attackers by 60% for 1 seconds.",
+          "simpleDescription" : "Increases Armor and slows melee attackers for you and the Enchantress.",
+          "skillCalcId" : "Y"
+        }
+      }, {
+        "skill" : {
+          "slug" : "disorient",
+          "name" : "Disorient",
+          "icon" : "enchantress_disorient",
+          "level" : 25,
+          "tooltipUrl" : "skill/enchantress/disorient",
+          "description" : "Cooldown: 6 seconds\r\n\r\nCast a flash of light in an area, causing enemies to be disoriented for 2 seconds. ",
+          "simpleDescription" : "Cooldown: 6 seconds\r\n\r\nDisorients enemies for a short time.",
+          "skillCalcId" : "c"
+        }
+      }, {
+        "skill" : {
+          "slug" : "mass-control",
+          "name" : "Mass Control",
+          "icon" : "enchantress_masscharm",
+          "level" : 30,
+          "tooltipUrl" : "skill/enchantress/mass-control",
+          "description" : "Cooldown: 18 seconds\r\n\r\nLob a bulb of magical energy that hexes enemies in an area into chickens for 5 seconds.",
+          "simpleDescription" : "Cooldown: 18 seconds\r\n\r\nHexes a nearby group of enemies.",
+          "skillCalcId" : "W"
+        }
+      } ]
+    }
+  },
+  "stats" : {
+    "life" : 293124,
+    "damage" : 672878.0,
+    "toughness" : 2931450.0,
+    "healing" : 13908.7,
+    "attackSpeed" : 1.4699999749660493,
+    "armor" : 13185,
+    "strength" : 77,
+    "dexterity" : 7811,
+    "vitality" : 3327,
+    "intelligence" : 77,
+    "physicalResist" : 364,
+    "fireResist" : 235,
+    "coldResist" : 661,
+    "lightningResist" : 407,
+    "poisonResist" : 101,
+    "arcaneResist" : 101,
+    "critDamage" : 4.35,
+    "blockChance" : 0.16,
+    "blockAmountMin" : 15870,
+    "blockAmountMax" : 23805,
+    "damageIncrease" : 0.0,
+    "critChance" : 0.44500000075,
+    "damageReduction" : 0.0,
+    "thorns" : 3570.0,
+    "lifeSteal" : 0.0,
+    "lifePerKill" : 0.0,
+    "goldFind" : 1.0299999999999998,
+    "magicFind" : 0.0,
+    "lifeOnHit" : 0.0,
+    "primaryResource" : 350,
+    "secondaryResource" : 0
+  },
+  "kills" : {
+    "elites" : 5813
+  },
+  "progression" : {
+    "act1" : {
+      "completed" : true,
+      "completedQuests" : [ {
+        "slug" : "the-fallen-star",
+        "name" : "The Fallen Star"
+      }, {
+        "slug" : "the-legacy-of-cain",
+        "name" : "The Legacy of Cain"
+      }, {
+        "slug" : "a-shattered-crown",
+        "name" : "A Shattered Crown"
+      }, {
+        "slug" : "reign-of-the-black-king",
+        "name" : "Reign of the Black King"
+      }, {
+        "slug" : "sword-of-the-stranger",
+        "name" : "Sword of the Stranger"
+      }, {
+        "slug" : "the-broken-blade",
+        "name" : "The Broken Blade"
+      }, {
+        "slug" : "the-doom-in-wortham",
+        "name" : "The Doom in Wortham"
+      }, {
+        "slug" : "trailing-the-coven",
+        "name" : "Trailing the Coven"
+      }, {
+        "slug" : "the-imprisoned-angel",
+        "name" : "The Imprisoned Angel"
+      }, {
+        "slug" : "return-to-new-tristram",
+        "name" : "Return to New Tristram"
+      } ]
+    },
+    "act2" : {
+      "completed" : true,
+      "completedQuests" : [ {
+        "slug" : "shadows-in-the-desert",
+        "name" : "Shadows in the Desert"
+      }, {
+        "slug" : "the-road-to-alcarnus",
+        "name" : "The Road to Alcarnus"
+      }, {
+        "slug" : "city-of-blood",
+        "name" : "City of Blood"
+      }, {
+        "slug" : "a-royal-audience",
+        "name" : "A Royal Audience"
+      }, {
+        "slug" : "unexpected-allies",
+        "name" : "Unexpected Allies"
+      }, {
+        "slug" : "betrayer-of-the-horadrim",
+        "name" : "Betrayer of the Horadrim"
+      }, {
+        "slug" : "blood-and-sand",
+        "name" : "Blood and Sand"
+      }, {
+        "slug" : "the-black-soulstone",
+        "name" : "The Black Soulstone"
+      }, {
+        "slug" : "the-scouring-of-caldeum",
+        "name" : "The Scouring of Caldeum"
+      }, {
+        "slug" : "lord-of-lies",
+        "name" : "Lord of Lies"
+      } ]
+    },
+    "act3" : {
+      "completed" : true,
+      "completedQuests" : [ {
+        "slug" : "the-siege-of-bastions-keep",
+        "name" : "The Siege of Bastion's Keep"
+      }, {
+        "slug" : "turning-the-tide",
+        "name" : "Turning the Tide"
+      }, {
+        "slug" : "the-breached-keep",
+        "name" : "The Breached Keep"
+      }, {
+        "slug" : "tremors-in-the-stone",
+        "name" : "Tremors in the Stone"
+      }, {
+        "slug" : "machines-of-war",
+        "name" : "Machines of War"
+      }, {
+        "slug" : "siegebreaker",
+        "name" : "Siegebreaker"
+      }, {
+        "slug" : "heart-of-sin",
+        "name" : "Heart of Sin"
+      } ]
+    },
+    "act4" : {
+      "completed" : true,
+      "completedQuests" : [ {
+        "slug" : "fall-of-the-high-heavens",
+        "name" : "Fall of the High Heavens"
+      }, {
+        "slug" : "the-light-of-hope",
+        "name" : "The Light of Hope"
+      }, {
+        "slug" : "beneath-the-spire",
+        "name" : "Beneath the Spire"
+      }, {
+        "slug" : "prime-evil",
+        "name" : "Prime Evil"
+      } ]
+    },
+    "act5" : {
+      "completed" : true,
+      "completedQuests" : [ {
+        "slug" : "the-fall-of-westmarch",
+        "name" : "The Fall of Westmarch"
+      }, {
+        "slug" : "souls-of-the-dead",
+        "name" : "Souls of the Dead"
+      }, {
+        "slug" : "the-witch",
+        "name" : "The Witch"
+      }, {
+        "slug" : "the-pandemonium-gate",
+        "name" : "The Pandemonium Gate"
+      }, {
+        "slug" : "the-battlefields-of-eternity",
+        "name" : "The Battlefields of Eternity"
+      }, {
+        "slug" : "breaching-the-fortress",
+        "name" : "Breaching the Fortress"
+      }, {
+        "slug" : "angel-of-death",
+        "name" : "Angel of Death"
+      } ]
+    }
+  },
+  "dead" : false,
+  "last-updated" : 1416082795
+}

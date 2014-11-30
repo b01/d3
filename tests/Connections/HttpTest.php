@@ -4,21 +4,18 @@
  */
 
 use \Kshabazz\BattleNet\D3\Connections\Http,
-	\Kshabazz\BattleNet\D3\Models\Item,
-	\Kshabazz\BattleNet\D3\Models\Profile,
 	\Kshabazz\Slib\HttpClient;
 
 /**
  * Class HttpTest
  *
- * @package Kshabazz\Tests\BattleNet\D3
+ * @package \Kshabazz\Tests\BattleNet\D3
+ * @coversDefaultClass \Kshabazz\BattleNet\D3\Connections\Http
  */
 class HttpTest extends \PHPUnit_Framework_TestCase
 {
 	private
 		$apiKey,
-		$bnrClient,
-		$client,
 		$battleNetId,
 		$battleNetUrlSafeId,
 		$fixturesDir,
@@ -28,7 +25,6 @@ class HttpTest extends \PHPUnit_Framework_TestCase
 	{
 		$this->battleNetId = 'msuBREAKER#1374';
 		$this->battleNetUrlSafeId = 'msuBREAKER-1374';
-		$this->client = new HttpClient();
 		$this->heroId = 3955832;
 		$this->fixturesDir = \FIXTURES_PATH . DIRECTORY_SEPARATOR;
 		// Load setting from config.
@@ -39,28 +35,31 @@ class HttpTest extends \PHPUnit_Framework_TestCase
 		);
 		$config = \json_decode( $configJson );
 		$this->apiKey = $config->apiKey;
-		$this->bnrClient = new Http( $this->apiKey, $this->battleNetId, $this->client );
 	}
 
 	public function test_getting_a_url_safe_battleNet_id()
 	{
-		$bnIdUrlSafe = $this->bnrClient->battleNetUrlSafeId();
+		$httpClient = new HttpClient();
+		$bnrClient = new Http( $this->apiKey, $this->battleNetId, $httpClient );
+		$bnIdUrlSafe = $bnrClient->battleNetUrlSafeId();
 		$this->assertEquals( $this->battleNetUrlSafeId, $bnIdUrlSafe );
 	}
 
 	public function test_gettting_battleNet_id()
 	{
-		$bnr = new Http( $this->apiKey, $this->battleNetId, $this->client );
+		$httpClient = new HttpClient();
+		$bnr = new Http( $this->apiKey, $this->battleNetId, $httpClient );
 		$bnIdUrlSafe = $bnr->battleNetId();
 		$this->assertEquals( $this->battleNetId, $bnIdUrlSafe, 'Invalid BattelNet ID returned.' );
 	}
 
 	/**
-	 * @interception 'hero-3955832'
+	 * @interception hero-3955832
 	 */
 	public function test_getting_a_hero_from_battle_net()
 	{
-		$bnr = new Http( $this->apiKey, $this->battleNetId, $this->client );
+		$httpClient = new HttpClient();
+		$bnr = new Http( $this->apiKey, $this->battleNetId, $httpClient );
 		$heroJson = $bnr->getHero( $this->heroId );
 		$hero = \json_decode( $heroJson );
 		$this->assertEquals( $this->heroId, $hero->id, 'Unable to retrieve Hero from Battle.Net' );
@@ -71,10 +70,11 @@ class HttpTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function test_getting_a_valid_item()
 	{
-		$bnr = new Http( $this->apiKey, $this->battleNetId, $this->client );
+		$httpClient = new HttpClient();
+		$bnr = new Http( $this->apiKey, $this->battleNetId, $httpClient );
 		$itemJson = $bnr->getItem( 'item/COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD' );
-		$item = new Item( $itemJson );
-		$this->assertEquals( 'MightyWeapon1H_202', $item->id(), 'Invalid item returned.' );
+		$item =\json_decode( $itemJson );
+		$this->assertEquals( 'MightyWeapon1H_202', $item->id, 'Invalid item returned.' );
 	}
 
 	/**
@@ -83,21 +83,21 @@ class HttpTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function test_getting_a_invalid_item()
 	{
-		$bnr = new Http( $this->apiKey, $this->battleNetId, $this->client );
+		$httpClient = new HttpClient();
+		$bnr = new Http( $this->apiKey, $this->battleNetId, $httpClient );
 		$bnr->getItem( NULL );
 	}
 
 	/**
-	 * Test retrieving a profile from Battle.Net
-	 *
 	 * @interception profile-msuBREAKER-1374
 	 */
 	public function test_getting_a_profile()
 	{
-		$bnr = new Http( $this->apiKey, $this->battleNetId, $this->client );
+		$httpClient = new HttpClient();
+		$bnr = new Http( $this->apiKey, $this->battleNetId, $httpClient );
 		$profileJson = $bnr->getProfile();
-		$profile = new Profile( $profileJson );
-		$this->assertEquals( 'msuBREAKER#1374', $profile->battleTag() );
+		$profile = \json_decode( $profileJson );
+		$this->assertEquals( 'msuBREAKER#1374', $profile->battleTag );
 	}
 
 	/**
@@ -105,7 +105,8 @@ class HttpTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function test_invalid_argument_with_getHero()
 	{
-		$bnr = new Http( $this->apiKey, $this->battleNetId, $this->client );
+		$httpClient = new HttpClient();
+		$bnr = new Http( $this->apiKey, $this->battleNetId, $httpClient );
 		$bnr->getHero( 'test' );
 	}
 
@@ -120,30 +121,43 @@ class HttpTest extends \PHPUnit_Framework_TestCase
 				'tooltipParams' => 'item/CnIInND3jAQSBwgEFVml7RMdS7X5Sx0_8gnYHTsnbyQdZiMGUB1-dlWhHcn6vKAwiwI4qwFAAFASWARggAJqKwoMCAAQuemrwYCAgKA-EhsIt-yauQYSBwgEFdVdtnowjwI4AEABWASQAQCAAUa1AX_5Tl0YspXtvgJQCFgA'
 			]
 		];
-		$http = new Http( $this->apiKey, $this->battleNetId, $this->client );
+		$httpClient = new HttpClient();
+		$http = new Http( $this->apiKey, $this->battleNetId, $httpClient );
 		$items = $http->getItemsAsModels( $itemHashes );
 		$this->assertEquals( 'Unique_Helm_006_x1', $items['head']->id() );
 	}
 
 	/**
-	 * @interception item-Unique_Helm_006_x1
+	 * @interception profile-msuBREAKER-1374
 	 */
 	public function test_url()
 	{
-		$hash = 'item/CnIInND3jAQSBwgEFVml7RMdS7X5Sx0_8gnYHTsnbyQdZiMGUB1-dlWhHcn6vKAwiwI4qwFAAFASWARggAJqKwoMCAAQuemrwYCAgKA-EhsIt-yauQYSBwgEFdVdtnowjwI4AEABWASQAQCAAUa1AX_5Tl0YspXtvgJQCFgA';
-		$http = new Http( $this->apiKey, $this->battleNetId, $this->client );
-		$http->getItem( $hash );
-		$this->assertContains( $hash, $http->url() );
-		echo \file_get_contents($http->url());
+		$httpClient = new HttpClient();
+		$bnrClient = new Http( $this->apiKey, $this->battleNetId, $httpClient );
+		$bnrClient->getProfile();
+		$this->assertContains( $this->battleNetUrlSafeId, $bnrClient->url() );
 	}
 
 	/**
-	 * @interception profile-not-found
+	 * @interception profile-msuBREAKER-1374
 	 */
-	public function test_response()
+	public function test_setting_the_region()
 	{
-		$http = new Http( $this->apiKey, 'badBnetId', $this->client );
-		$actual = $http->getProfile();
+		$httpClient = new HttpClient();
+		$bnrClient = new Http( $this->apiKey, $this->battleNetId, $httpClient );
+		$bnrClient->setRegion( 'uk' );
+		$bnrClient->getProfile();
+		$this->assertContains( 'uk', $bnrClient->url() );
+	}
+
+	/**
+	 * @interception response-404
+	 */
+	public function test_http_status_code_not_200()
+	{
+		$httpClient = new HttpClient();
+		$bnrClient = new Http( $this->apiKey, $this->battleNetId, $httpClient );
+		$actual = $bnrClient->getItem( '4321' );
 		$this->assertNull( $actual );
 	}
 }
