@@ -10,6 +10,7 @@
  */
 
 use function \Kshabazz\Slib\isArray;
+use SebastianBergmann\Exporter\Exception;
 
 /**
  * Class Profile
@@ -31,6 +32,11 @@ class Profile implements \JsonSerializable
 	{
 		$this->json = $pJson;
 		$this->init();
+		$code = $this->data[ 'code' ];
+		if ( $code === 'NOTFOUND' )
+		{
+			throw new Exception( 'Profile not found.' );
+		}
 		$this->battleTag = $this->data[ 'battleTag' ];
 	}
 
