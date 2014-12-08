@@ -19,121 +19,138 @@ use function \Kshabazz\Slib\isArray;
  */
 class Hero
 {
-	/**
-	 * @var string {barbarian|crusader|demon-hunter|monk|witch-doctor|wizard}
-	 */
-	private $class;
+	const
+		BASE_DUAL_WIELD_IAS_BONUS = 0.15,
+		BASE_CRITICAL_HIT_CHANCE_BONUS = 0.05,
+		BASE_CRITICAL_HIT_DAMAGE_BONUS = 0.5;
 
-	/**
-	 * @var bool
-	 */
-	private $dead;
-
-	/**
-	 * @var array
-	 */
-	private $followers;
-
-	/**
-	 * @var int
-	 */
-	private $gender;
-
-	/**
-	 * @var bool
-	 */
-	private $hardcore;
-
-	/**
-	 * @var int
-	 */
-	private $id;
-
-	/**
-	 * @var array
-	 * example:
-	 * "items" : {
-	 *      "mainHand" : {
-	 *      "id" : "FistWeapon_1H_000",
-	 *      "name" : "Worn Knuckles",
-	 *      "icon" : "fistweapon_1h_000_demonhunter_male",
-	 *      "displayColor" : "white",
-	 *      "tooltipParams" : "item/ChoIqvDNpwMSBwgEFScYtUkwiQI4kANAAGCQAxjO4KibCVAIWAI",
-	 *      "randomAffixes" : [ ],
-	 *      "craftedBy" : [ ]
-	 *  }
-	 * }
-	 */
 	private
+		/** @var string {barbarian|crusader|demon-hunter|monk|witch-doctor|wizard} */
+		$class,
+		/** @var bool */
+		$dead,
+		/** @var array */
+		$followers,
+		/** @var int */
+		$gender,
+		/** @var bool */
+		$hardcore,
+		/** @var int */
+		$id,
+		/**
+		 * @var array
+		 * example:
+		 * "items" : {
+		 *      "mainHand" : {
+		 *      "id" : "FistWeapon_1H_000",
+		 *      "name" : "Worn Knuckles",
+		 *      "icon" : "fistweapon_1h_000_demonhunter_male",
+		 *      "displayColor" : "white",
+		 *      "tooltipParams" : "item/ChoIqvDNpwMSBwgEFScYtUkwiQI4kANAAGCQAxjO4KibCVAIWAI",
+		 *      "randomAffixes" : [ ],
+		 *      "craftedBy" : [ ]
+		 *  }
+		 * }
+		 */
 		$items,
 		/** @var array List of hash for the items the hero has equipped. */
-		$itemsHashes;
-
-	/**
-	 * @var array
-	 */
-	private $kills;
-
-	/**
-	 * @var int
-	 */
-	private $lastUpdated;
-
-	/**
-	 * @var int
-	 */
-	private $level;
-
-	/**
-	 * @var string
-	 */
-	private $name;
-
-	/**
-	 * @var int
-	 */
-	private $paragonLevel;
-
-	/**
-	 * @var array
-	 * "progression" : {
-	 *  "act1" : {
-	 *      "completed" : false,
-	 *      "completedQuests" : [ ]
-	 * }, ...
-	 */
-	private $progression;
-
-	/**
-	 * @var array {active|passive}
-	 * example:
-	 * "skills": {
-			"active": [
-				{
-					"skill" : {
-					"slug" : "fists-of-thunder",
-					"name" : "Fists of Thunder",
-					"icon" : "monk_fistsofthunder",
-					"level" : [''];
-					"categorySlug" : "primary",
-					"tooltipUrl" : "skill/monk/fists-of-thunder",
-					"description" : "Generate: 14 Spirit per attack\r\n\r\nTeleport to your target and unleash a series of extremely fast punches that deal 122% weapon damage as Lightning.\r\n\r\nEvery third hit deals 183% weapon damage as Lightning split between all enemies in front of you.",
-					"simpleDescription" : "Generate: 14 Spirit per attack\r\n\r\nTeleport to your target and attack it with a series of rapid punches.",
-					"skillCalcId" : "a"
-				}
-			],
-			"passive": [
-				...
-			]
-		};
-	 */
-	private $skills;
-
-
-	/**
-	 * @var object
-	 */
-	private $stats;
+		$itemsHashes,
+		/** @var array */
+		$kills,
+		/** @var int */
+		 $lastUpdated,
+		/** @var int */
+		$level,
+		/** @var string */
+		$name,
+		/** @var int */
+		$paragonLevel,
+		/**
+		 * @var array
+		 * "progression" : {
+		 *  "act1" : {
+		 *      "completed" : false,
+		 *      "completedQuests" : [ ]
+		 * }, ...
+		 */
+		$progression,
+		/**
+		 * @var array {active|passive}
+		 * example:
+		 * "skills": {
+				"active": [
+					{
+						"skill" : {
+						"slug" : "fists-of-thunder",
+						"name" : "Fists of Thunder",
+						"icon" : "monk_fistsofthunder",
+						"level" : [''];
+						"categorySlug" : "primary",
+						"tooltipUrl" : "skill/monk/fists-of-thunder",
+						"description" : "Generate: 14 Spirit per attack\r\n\r\nTeleport to your target and unleash a series of extremely fast punches that deal 122% weapon damage as Lightning.\r\n\r\nEvery third hit deals 183% weapon damage as Lightning split between all enemies in front of you.",
+						"simpleDescription" : "Generate: 14 Spirit per attack\r\n\r\nTeleport to your target and attack it with a series of rapid punches.",
+						"skillCalcId" : "a"
+					}
+				],
+				"passive": [
+					...
+				]
+			};
+		 */
+		$skills,
+		/** @var object */
+		$stats,
+		/** @var int */
+		$arcaneResist,
+		/** @var int */
+		$armor,
+		/** @var float Base attack speed. */
+		$attackSpeed,
+		$blockAmountMin,
+		$blockAmountMax,
+		/** @var float */
+		$blockChance,
+		/** @var int */
+		$coldResist,
+		/** @var float */
+		$critChance,
+		/** @var float */
+		$critDamage,
+		$damageIncrease,
+		$damageReduction,
+		/** @var int */
+		$dexterity,
+		/** @var int */
+		$fireResist,
+		/** @var float */
+		$goldFind,
+		/** @var Hero */
+		$hero,
+		/** @var int */
+		$intelligence,
+		/** @var int */
+		$life,
+		$lifeOnHit,
+		$lifePerKill,
+		$lifeSteal,
+		/** @var int */
+		$lightningResist,
+		$magicFind,
+		$primaryResource,
+		/** @var int */
+		$physicalResist,
+		/** @var int */
+		$poisonResist,
+		/** @var float A punch can do about 1 - 4 damage, that's an average of 2.5. */
+		$punchDamage,
+		$secondaryResource,
+		/** @var int Base of core stats. */
+		$statBase,
+		/** @var int */
+		$strength,
+		/** @var int */
+		$vitality,
+		$thorns;
 
 	/**
 	 * Constructor
@@ -169,10 +186,41 @@ class Hero
 			$this->progression = $this->data['progression'];
 		}
 		$this->itemModels = NULL;
+
+		// Stats
+		$this->arcaneResist = 0;
+		$this->armor = 0;
+		$this->attackSpeed = 1.00;
+		$this->blockAmountMin = 0.0;
+		$this->blockAmountMax = 0;
+		$this->blockChance = 0.0;
+		$this->coldResist = 0;
+		$this->critChance = 0.05;
+		$this->critDamage = 0.5;
+		$this->damageIncrease = 0.0;
+		$this->damageReduction = 0.0;
+		$this->fireResist = 0;
+		$this->goldFind = 0.0;
+		$this->intelligence = 0;
+		$this->life = 0;
+		$this->lifeOnHit = 0.0;
+		$this->lifePerKill = 0.0;
+		$this->lifeSteal = 0.0;
+		$this->lightningResist = 0;
+		$this->magicFind = 0.0;
+		$this->physicalResist = 0;
+		$this->poisonResist = 0;
+		$this->primaryResource = 0;
+		$this->punchDamage = 2.5;
+		$this->secondaryResource = 0;
+		$this->statBase = 7;
+		$this->strength = 0;
+		$this->thorns = 0.0;
 	}
 
 	/**
 	 * Character class
+	 *
 	 * @return string
 	 */
 	public function characterClass()
@@ -375,7 +423,7 @@ class Hero
 	 */
 	public function primaryAttribute()
 	{
-		if (!isset($this->primaryAttribute) )
+		if ( !isset($this->primaryAttribute) )
 		{
 			$this->primaryAttribute = $this->determinePrimaryAttribute();
 		}
@@ -400,6 +448,133 @@ class Hero
 	{
 		return $this->skills;
 	}
+
+	// BEGIN stats methods
+	/**
+	 * Get armor stat.
+	 *
+	 * @return int
+	 */
+	public function armor()
+	{
+		$levelBonus = $this->level() * 3;
+		$this->armor = $this->statBase + $levelBonus + $this->strength();
+		return $this->armor;
+	}
+
+	/**
+	 * Get attack speed.
+	 *
+	 * @return float
+	 */
+	public function attackSpeed()
+	{
+		return $this->attackSpeed;
+	}
+
+	/**
+	 * @return float
+	 */
+	public function criticalHitChance()
+	{
+		return $this->critChance;
+	}
+
+	/**
+	 * @return float
+	 */
+	public function criticalHitDamage()
+	{
+		return $this->critDamage;
+	}
+
+	/**
+	 * Get damage you can do with a single punch.
+	 *
+	 * @return float
+	 */
+	public function punchDamage()
+	{
+		return $this->punchDamage;
+	}
+
+	/**
+	 * Get dexterity.
+	 *
+	 * @return int
+	 */
+	public function dexterity()
+	{
+		$primaryResource = $this->primaryAttribute();
+		$multiplier = ( $primaryResource === 'Dexterity_Item' ) ? 3 : 1;
+		$this->baseAttributeLevelBonus( 'dexterity', $multiplier );
+		return $this->dexterity;
+	}
+
+	/**
+	 * Get intelligence.
+	 *
+	 * @return int
+	 */
+	public function intelligence()
+	{
+		$primaryResource = $this->primaryAttribute();
+		$multiplier = ( $primaryResource === 'Intelligence_Item' ) ? 3 : 1;
+		$this->baseAttributeLevelBonus( 'intelligence', $multiplier );
+		return $this->intelligence;
+	}
+
+	/**
+	 * Get primary stat bonus (bonuses from items not included).
+	 *
+	 * @return int
+	 */
+	public function primaryAttributeBonus()
+	{
+		$primaryResource = \str_replace( '_Item', '', $this->primaryAttribute() );
+		$primaryResource = \strtolower( $primaryResource );
+		$primaryResourceBonus = 1 + $this->{$primaryResource}() / 100;
+		return $primaryResourceBonus;
+	}
+
+	/**
+	 * Get strength.
+	 *
+	 * @return int
+	 */
+	public function strength()
+	{
+		$primaryResource = $this->primaryAttribute();
+		$multiplier = ( $primaryResource === 'Strength_Item' ) ? 3 : 1;
+		$this->baseAttributeLevelBonus( 'strength', $multiplier );
+		return $this->strength;
+	}
+
+	/**
+	 * Get vitality.
+	 *
+	 * @return int
+	 */
+	public function vitality()
+	{
+		$this->baseAttributeLevelBonus( 'vitality', 2 );
+		return $this->vitality;
+	}
+
+	/**
+	 * Black box for computing the total for dexterity/intelligence/strength/vitality.
+	 *
+	 * @param string $pProperty
+	 * @param int $pMultiplier
+	 */
+	private function baseAttributeLevelBonus( $pProperty, $pMultiplier )
+	{
+		$this->{$pProperty} = 7;
+		$totalLevels = $this->level();
+		// Compute total based on hero level.
+		$this->{$pProperty} += ( $totalLevels * $pMultiplier );
+	}
+	// END stats methods
 
 	/**
 	 * Use the hero's class to determine the primary attribute.
