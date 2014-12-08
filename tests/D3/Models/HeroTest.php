@@ -1,9 +1,10 @@
 <?php namespace Kshabazz\Tests\BattleNet\D3\Models;
 
-use Kshabazz\BattleNet\D3\Connections\Http;
-use \Kshabazz\BattleNet\D3\Models\Hero,
-	\Kshabazz\Interception\StreamWrappers\Http as HttpWrapper;
-use Kshabazz\Slib\HttpClient;
+use
+	\Kshabazz\BattleNet\D3\Connections\Http,
+	\Kshabazz\BattleNet\D3\Models\Hero,
+	\Kshabazz\Interception\StreamWrappers\Http as HttpWrapper,
+	\Kshabazz\Slib\HttpClient;
 
 /**
  * @class HeroTest
@@ -12,8 +13,13 @@ use Kshabazz\Slib\HttpClient;
 class HeroTest extends \PHPUnit_Framework_TestCase
 {
 	private
+		/** @var string Directory where fixtures live. */
 		$fixturesDir,
+		/** @var int */
 		$heroId,
+		/** @var \Kshabazz\BattleNet\D3\Models\Hero */
+		$heroNoItems,
+		/** @var string. */
 		$json;
 
 	/**
@@ -24,6 +30,10 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 		$this->fixturesDir = FIXTURES_PATH . DIRECTORY_SEPARATOR;
 		$this->heroId = 36131726;
 		$this->json = \file_get_contents( $this->fixturesDir . 'hero-36131726.json' );
+
+		$heroFixture = $this->fixturesDir . 'hero-3955832-no-items.json';
+		$noItemsJson = \file_get_contents( $heroFixture );
+		$this->heroNoItems = new Hero( $noItemsJson );
 
 	}
 
@@ -267,8 +277,37 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function test_hero_code_error()
 	{
-		$hero = new Hero( '{"code":"test", "reason": "Just testing."}' );
-		$this->assertEquals( '36131726' , $actual );
+		( new Hero( '{"code":"test", "reason": "Just testing."}' ) );
+	}
+
+	public function test_dexterity()
+	{
+		$actual = $this->heroNoItems->dexterity();
+		$this->assertEquals( 217, $actual );
+	}
+
+	public function test_intelligence()
+	{
+		$actual = $this->heroNoItems->intelligence();
+		$this->assertEquals( 77, $actual );
+	}
+
+	public function test_strength()
+	{
+		$actual = $this->heroNoItems->strength();
+		$this->assertEquals( 77, $actual );
+	}
+
+	public function test_vitality()
+	{
+		$actual = $this->heroNoItems->vitality();
+		$this->assertEquals( 147, $actual );
+	}
+
+	public function test_primary_resource_bonus()
+	{
+		$actual = $this->heroNoItems->primaryAttributeBonus();
+		$this->assertEquals( 3.17, $actual );
 	}
 }
 ?>
