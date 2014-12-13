@@ -33,6 +33,15 @@ interface Connection
 	public function getItem( $pItemId );
 
 	/**
+	 * For each item the hero in the array construct an Model\Item and return them as an array.
+	 *
+	 * @param array $pItemHashes List of item hashes.
+	 * @return array|null
+	 * @throws \InvalidArgumentException
+	 */
+	public function getItemsAsModels( array $pItemHashes );
+
+	/**
 	 * ex: http://us.battle.net/api/d3/profile/<battleNetIdName>-<battleNetIdNumber>/
 	 *
 	 * @return string|null

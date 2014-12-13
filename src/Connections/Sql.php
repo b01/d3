@@ -94,6 +94,24 @@ class Sql extends \Kshabazz\Slib\Sql implements Connection
 		return NULL;
 	}
 
+	/**
+	 * @inherit
+	 */
+	public function getItemsAsModels( array $pItemHashes )
+	{
+		$itemModels = NULL;
+
+		// It is valid that the hero may not have any items equipped (new character).
+		foreach ( $pItemHashes as $slot => $item )
+		{
+			$hash = $item[ 'tooltipParams' ];
+			$itemJson = $this->getItem( $hash );
+			$itemModels[ $slot ] = new Item( $itemJson );
+		}
+
+		return $itemModels;
+	}
+
     /**
      * Get the profile from local database.
      *
