@@ -297,12 +297,12 @@ class Item
 	 */
 	private function init()
 	{
-		$this->accountBound = $this->data->accountBound;
+		$this->accountBound = isset( $this->data->accountBound ) ? $this->data->accountBound : NULL;
 		$this->attributes = $this->data->attributes;
 		$this->attributesRaw = $this->data->attributesRaw;
 		$this->bonusAffixes = $this->data->bonusAffixes;
 		$this->bonusAffixesMax = $this->data->bonusAffixesMax;
-		$this->craftedBy = $this->data->craftedBy;
+		$this->craftedBy = isset( $this->data->craftedBy ) ? $this->data->craftedBy : NULL;
 		$this->displayColor = $this->data->displayColor;
 		$this->gems = $this->data->gems;
 		$this->icon = $this->data->icon;
