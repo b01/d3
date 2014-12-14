@@ -171,6 +171,7 @@ class Sql extends SqlClient implements Connection
 	public function saveItem( Item $pItem )
 	{
 		$itemName = $pItem->name();
+		/** @var \stdClass $itemType */
 		$itemType = $pItem->type();
 		$id = $pItem->id();
 		$tooltipParams = $pItem->tooltipParams();
@@ -180,7 +181,7 @@ class Sql extends SqlClient implements Connection
 			'hash' => [ $tooltipParams, \PDO::PARAM_STR ],
 			'id' => [ $id, \PDO::PARAM_STR ],
 			'name' => [ $itemName, \PDO::PARAM_STR ],
-			'itemType' => [ $itemType['id'], \PDO::PARAM_STR ],
+			'itemType' => [ $itemType->id, \PDO::PARAM_STR ],
 			'json' => [ $json, \PDO::PARAM_STR ],
 			'ipAddress' => [ $this->ipAddress, \PDO::PARAM_STR ],
 			'lastUpdate' => [ $utcTime, \PDO::PARAM_STR ],
