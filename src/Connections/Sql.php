@@ -1,10 +1,12 @@
 <?php namespace Kshabazz\BattleNet\D3\Connections;
 
-use \Kshabazz\BattleNet\D3\Models\Item;
+use
+	\Kshabazz\BattleNet\D3\Models\Item,
+	\Kshabazz\Slib\SqlClient;
+use
+	function \Kshabazz\Slib\isArray;
 
-use function \Kshabazz\Slib\isArray;
-
-class Sql extends \Kshabazz\Slib\Sql implements Connection
+class Sql extends SqlClient implements Connection
 {
 	const
 		SELECT_PROFILE = 'SELECT `battle_net_id`, `json`, `ip_address`, `last_updated`, `date_added` FROM `d3_profiles` WHERE `battle_net_id` = :battleNetId;',
