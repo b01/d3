@@ -35,7 +35,7 @@ class Sql extends SqlClient implements Connection
 	{
 		parent::__construct( $pPdo, $pIpAddress );
 		$this->battleNetId = $pBattleNetId;
-		$this->battleNetUrlSafeId = str_replace( '#', '-', $this->battleNetId );
+		$this->battleNetUrlSafeId = \str_replace( '#', '-', $this->battleNetId );
 	}
 
 	/**
@@ -47,13 +47,13 @@ class Sql extends SqlClient implements Connection
     public function addRequest( $pUrl )
 	{
 		$pdo = $this->pdo();
-		$today = date( 'Y-m-d' );
+		$today = \date( 'Y-m-d' );
 		$stmt = $pdo->prepare( self::INSERT_REQUEST );
 		$stmt->bindValue( ':battleNetId', $this->battleNetId, \PDO::PARAM_STR );
 		$stmt->bindValue( ':ipAddress', $this->ipAddress(), \PDO::PARAM_STR );
 		$stmt->bindValue( ':url', $pUrl, \PDO::PARAM_STR );
-		$stmt->bindValue( ':dateNumber', strtotime($today), \PDO::PARAM_STR );
-		$stmt->bindValue( ':dateAdded', date('Y-m-d H:i:s'), \PDO::PARAM_STR );
+		$stmt->bindValue( ':dateNumber', \strtotime($today), \PDO::PARAM_STR );
+		$stmt->bindValue( ':dateAdded', \date('Y-m-d H:i:s'), \PDO::PARAM_STR );
 		$returnValue = $this->pdoQuery( $stmt, FALSE );
 		return $returnValue;
 	}
@@ -86,9 +86,8 @@ class Sql extends SqlClient implements Connection
 	 */
 	public function getItem( $pItemHash )
 	{
-		$hashValue = str_replace( 'item/', '', $pItemHash );
-		$query = sprintf( self::SELECT_ITEM, 'hash' );
-		$result = $this->pdoQueryBind( $query, ['selectValue' => [$hashValue, \PDO::PARAM_STR]] );
+		$query = \sprintf( self::SELECT_ITEM, 'hash' );
+		$result = $this->pdoQueryBind( $query, ['selectValue' => [$pItemHash, \PDO::PARAM_STR]] );
 		if ( isArray($result) )
 		{
 			return $result[ 0 ][ 'json' ];
@@ -151,7 +150,7 @@ class Sql extends SqlClient implements Connection
 	 */
 	public function saveHero( $pHeroId, $pJson )
 	{
-		$utcTime = gmdate( 'Y-m-d H:i:s' );
+		$utcTime = \gmdate( 'Y-m-d H:i:s' );
 		return $this->pdoQueryBind( self::INSERT_HERO, [
 				'battleNetId' => [ $this->battleNetId, \PDO::PARAM_STR ],
 				'dateAdded' => [ $utcTime, \PDO::PARAM_STR ],
@@ -176,10 +175,11 @@ class Sql extends SqlClient implements Connection
 		$id = $pItem->id();
 		$tooltipParams = $pItem->tooltipParams();
 		$json = $pItem->json();
-		$utcTime = gmdate( 'Y-m-d H:i:s' );
+		$utcTime = \gmdate( 'Y-m-d H:i:s' );
 		$params = [
 			'hash' => [ $tooltipParams, \PDO::PARAM_STR ],
 			'id' => [ $id, \PDO::PARAM_STR ],
+			'uid' => [ \sha1($tooltipParams), \PDO::PARAM_STR ],
 			'name' => [ $itemName, \PDO::PARAM_STR ],
 			'itemType' => [ $itemType->id, \PDO::PARAM_STR ],
 			'json' => [ $json, \PDO::PARAM_STR ],
