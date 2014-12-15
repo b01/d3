@@ -1,12 +1,13 @@
 <?php namespace Kshabazz\Tests\BattleNet\D3\Models;
 
-use Kshabazz\BattleNet\D3\Models\Profile;
+use
+	\Kshabazz\BattleNet\D3\Models\Profile;
 
 /**
  * Class ProfileTest
  *
  * @package Kshabazz\Tests\BattleNet\D3\Models
- * @coversDefualtClass Kshabazz\BattleNet\D3\Models\Profile
+ * @coversDefaultClass Kshabazz\BattleNet\D3\Models\Profile
  */
 class ProfileTest extends \PHPUnit_Framework_TestCase
 {

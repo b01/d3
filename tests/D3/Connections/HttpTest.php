@@ -42,6 +42,7 @@ class HttpTest extends \PHPUnit_Framework_TestCase
 		$httpClient = new HttpClient();
 		$bnrClient = new Http( $this->apiKey, $this->battleNetId, $httpClient );
 		$bnIdUrlSafe = $bnrClient->battleNetUrlSafeId();
+
 		$this->assertEquals( $this->battleNetUrlSafeId, $bnIdUrlSafe );
 	}
 
