@@ -2,6 +2,35 @@
 
 An API for accessing the Diablo 3 REST service.
 
+## Requirements
+
+* PHP 5.6
+
+NOTE: I've only tested on 5.6, it may work on 5.4-5. You can try to install
+through composer with the **--ignore-platform-regs** flag.
+
+## Installation
+
+Add to your composer.json
+
+```json
+	"repositories": [
+		{
+			"type": "vcs",
+			"url": "https://github.com/b01/slib"
+		},
+		{
+			"type": "vcs",
+			"url": "https://github.com/b01/d3"
+		}
+	],
+	"require": {
+		"kshabazz/slib": "~1.1",
+		"kshabazz/battlenet-d3": "dev-master"
+	},
+```
+
+
 ## Examples
 
 ### Pull a profile from Diablo 3 (Battle.net)
