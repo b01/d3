@@ -14,20 +14,20 @@ through composer with the **--ignore-platform-regs** flag.
 Add to your composer.json
 
 ```json
-	"repositories": [
-		{
-			"type": "vcs",
-			"url": "https://github.com/b01/slib"
-		},
-		{
-			"type": "vcs",
-			"url": "https://github.com/b01/d3"
-		}
-	],
-	"require": {
-		"kshabazz/slib": "~1.1",
-		"kshabazz/battlenet-d3": "dev-master"
-	},
+"repositories": [
+    {
+        "type": "vcs",
+        "url": "https://github.com/b01/slib"
+    },
+    {
+        "type": "vcs",
+        "url": "https://github.com/b01/d3"
+    }
+],
+"require": {
+    "kshabazz/slib": "~1.1",
+    "kshabazz/battlenet-d3": "dev-master"
+}
 ```
 
 
