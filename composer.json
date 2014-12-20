@@ -36,7 +36,8 @@
 	},
 	"require-dev": {
 		"phpunit/phpunit": "~4.1",
-		"kshabazz/interception": "dev-master"
+		"kshabazz/interception": "dev-master",
+		"sphpdox/sphpdox": "dev-master"
 	},
 	"type": "library"
 }
