@@ -1,6 +1,5 @@
 ## Description
-
-An API for accessing the Diablo 3 REST service.
+A PHP library for accessing Battle.net Diablo 3 REST service.
 
 ## Requirements
 
