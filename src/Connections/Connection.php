@@ -6,7 +6,7 @@
 /**
  * Interface Resource
  *
- * @package Kshabazz\BattleNet\D3\Resources
+ * @package \Kshabazz\BattleNet\D3\Resources
  */
 interface Connection
 {

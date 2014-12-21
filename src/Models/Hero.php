@@ -9,13 +9,12 @@
  * timestamp: 11/23/13:8:21 AM
  */
 
-use \Kshabazz\BattleNet\D3\Connections\Http;
-
-use function \Kshabazz\Slib\isArray;
+use
+	\Kshabazz\BattleNet\D3\Connections\Http;
 
  /**
  * Class Hero
- * @package Kshabazz\BattleNet\D3\Models
+ * @package \Kshabazz\BattleNet\D3\Models
  */
 class Hero
 {
@@ -270,12 +269,13 @@ class Hero
 		foreach ( $this->progression as $level => $progression )
 		{
 			// When the level was not skipped.
-			if ( isArray($progression) )
+			if ( \is_array($progression) && \count($progression) > 0 )
 			{
 				foreach ( $progression as $act => $progress )
 				{
 					// When the quest is completed.
-					if ( isArray($progress['completedQuests']) )
+					$completedQuests = $progress['completedQuests'];
+					if ( \is_array($completedQuests) && \count($completedQuests) > 0 )
 					{
 						$length = \count( $progress['completedQuests'] ) - 1;
 						$returnValue = "Highest completed: {$level} {$act} {$progress['completedQuests'][ $length ]['name']}";
@@ -343,7 +343,7 @@ class Hero
 	 */
 	public function itemsHashesBySlot()
 	{
-		if ( !isArray($this->items) )
+		if ( !\is_array($this->items) || \count($this->items) < 1 )
 		{
 			return NULL;
 		}
@@ -621,15 +621,15 @@ class Hero
 		// decode battle.net data to an array.
 		$this->data = \json_decode( $this->json, TRUE );
 
-		if ( !isArray($this->data) ) {
+		if ( !\is_array($this->data) || \count($this->data) < 1 ) {
 			throw new \InvalidArgumentException( 'Invalid JSON. Please verify the string is valid JSON.' );
 		}
 
 		// verify the JSON is legit.
-		if ( \array_key_exists('code', $this->data))
+		if ( \array_key_exists('code', $this->data) )
 		{
 			$reason = '';
-			if ( \array_key_exists('reason', $this->data))
+			if ( \array_key_exists('reason', $this->data) )
 			{
 				$reason = ' Reason: ' . $this->data[ 'reason' ];
 			}

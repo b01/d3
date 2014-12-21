@@ -3,10 +3,8 @@
  * Perform request to BattleNet
  */
 
-use \Kshabazz\BattleNet\D3\Models\Item;
-
-use function \Kshabazz\Slib\isString,
-			 \Kshabazz\Slib\isArray;
+use
+	\Kshabazz\BattleNet\D3\Models\Item;
 
 /**
  * Class Http
@@ -132,7 +130,7 @@ class Http implements Connection
 	 */
 	public function getItem( $pItemId )
 	{
-		if ( !isString($pItemId) )
+		if ( !\is_string($pItemId) || \strlen($pItemId) < 1 )
 		{
 			throw new \InvalidArgumentException(
 				"Expects a valid item id, but was given: '{$pItemId}'."

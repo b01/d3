@@ -3,9 +3,12 @@
 use
 	\Kshabazz\BattleNet\D3\Models\Item,
 	\Kshabazz\Slib\SqlClient;
-use
-	function \Kshabazz\Slib\isArray;
 
+/**
+ * Class Sql
+ *
+ * @package \Kshabazz\BattleNet\D3\Connections
+ */
 class Sql extends SqlClient implements Connection
 {
 	const
@@ -71,7 +74,7 @@ class Sql extends SqlClient implements Connection
 			throw new \InvalidArgumentException( 'Hero ID should be an integer.' );
 		}
 		$result = $this->pdoQueryBind( self::SELECT_HERO, [ 'id' => [$pHeroId, \PDO::PARAM_STR] ]);
-		if ( isArray($result) )
+		if ( \is_array($result) && \count($result) > 0 )
 		{
 			return $result[ 0 ][ 'json' ];
 		}
