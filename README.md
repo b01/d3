@@ -3,10 +3,10 @@ A PHP library for accessing Battle.net Diablo 3 REST service.
 
 ## Requirements
 
-* PHP 5.6
+* PHP 5.4
 
-NOTE: I've only tested on 5.6, it may work on 5.4-5. You can try to install
-through composer with the **--ignore-platform-regs** flag.
+NOTE: I've removed some thing that required PHP 5.6, so it should work on
+      5.4, or 5.5. Unless I missed something.
 
 ## Installation
 
