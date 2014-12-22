@@ -2,7 +2,7 @@
 	"authors": [
 		{
 			"name": "Khalifah Shabazz",
-			"homepage": "http://www.kshabazz.net",
+			"homepage": "http://www.kshabazz.net/",
 			"role": "Developer"
 		}
 	],
@@ -38,6 +38,11 @@
 		"phpunit/phpunit": "~4.1",
 		"kshabazz/interception": "dev-master",
 		"sphpdox/sphpdox": "dev-master"
+	},
+	"support": {
+		"issues": "https://github.com/b01/d3/issues",
+		"source": "https://github.com/b01/d3",
+		"wiki": "http://d3.readthedocs.org/en/latest/"
 	},
 	"type": "library"
 }
