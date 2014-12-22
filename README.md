@@ -13,22 +13,10 @@ NOTE: I've removed some thing that required PHP 5.6, so it should work on
 Add to your composer.json
 
 ```json
-"repositories": [
-    {
-        "type": "vcs",
-        "url": "https://github.com/b01/slib"
-    },
-    {
-        "type": "vcs",
-        "url": "https://github.com/b01/d3"
-    }
-],
 "require": {
-    "kshabazz/slib": "~1.1",
-    "kshabazz/battlenet-d3": "dev-master"
+    "kshabazz/battlenet-d3": "0.1.0"
 }
 ```
-
 
 ## Examples
 
