@@ -91,7 +91,7 @@ class Sql extends SqlClient implements Connection
 	{
 		$query = \sprintf( self::SELECT_ITEM, 'hash' );
 		$result = $this->pdoQueryBind( $query, ['selectValue' => [$pItemHash, \PDO::PARAM_STR]] );
-		if ( isArray($result) )
+		if ( \is_array($result) && \count($result) > 0 )
 		{
 			return $result[ 0 ][ 'json' ];
 		}
@@ -131,7 +131,7 @@ class Sql extends SqlClient implements Connection
 				self::SELECT_PROFILE,
 				[ ':battleNetId' => [$this->battleNetId, \PDO::PARAM_STR] ]
 			);
-			if ( isArray($result) )
+			if ( \is_array($result) && \count($result) > 0 )
 			{
 				$returnValue = $result[ 0 ][ 'json' ];
 			}
