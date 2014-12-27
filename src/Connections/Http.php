@@ -14,7 +14,7 @@ use
 class Http implements Connection
 {
 	const
-		/** @const string */
+		/** @const string URL for obtaining a profile from Battle.net */
 		API_PROFILE_URL = 'https://%s.api.battle.net/d3/profile/%s/?locale=%s&apikey=%s',
 		/** @const string */
 		API_HERO_URL = 'https://%s.api.battle.net/d3/profile/%s/hero/%d?locale=%s&apikey=%s',
@@ -26,27 +26,27 @@ class Http implements Connection
 		TOKEN_URI = 'https://%s.battle.net/oauth/token';
 
 	private
-		/** @var string */
+		/** @var string Key obtained for use with Diablo 3 REST service. */
 		$apiKey,
-		/** @var string */
+		/** @var string A BattleNet ID.*/
 		$battleNetId,
-		/** @var string */
+		/** @var string BattleNet ID with pound replace with dash. */
 		$battleNetUrlSafeId,
-		/** @var \Kshabazz\Slib\HttpClient */
+		/** @var \Kshabazz\Slib\HttpClient Client for making HTTP request. */
 		$client,
-		/** @var string */
+		/** @var string Language locale. */
 		$locale,
-		/** @var string */
+		/** @var string World region. */
 		$region,
-		/** @var string */
+		/** @var string Last URL request. */
 		$url;
 
 	/**
 	 * Constructor
 	 *
-	 * @param string $pApiKey
-	 * @param string $pBattleNetId
-	 * @param \Kshabazz\Slib\HttpClient $pClient
+	 * @param string $pApiKey Key obtained for use with Diablo 3 REST service.
+	 * @param string $pBattleNetId BattleNet ID.
+	 * @param \Kshabazz\Slib\HttpClient $pClient Client for making HTTP request.
 	 * @param string $pLocale
 	 */
 	public function __construct( $pApiKey , $pBattleNetId, $pClient, $pLocale = 'en_US' )
@@ -72,7 +72,7 @@ class Http implements Connection
 	}
 
 	/**
-	 * Get BattleNet ID
+	 * Get BattleNet ID with the pound symbol replaced with a dash.
 	 *
 	 * @return string BattleNet ID
 	 */
@@ -93,10 +93,16 @@ class Http implements Connection
 
 	/**
      * Request Hero JSON from Battle.Net.
-	 * ex: https://us.api.battle.net/d3/profile/<battleNetIdName>-<battleNetIdNumber>/hero/<hero-id>?locale=<string>&apikey=<>
-     * Note: Leave off the trailing '/' when setting
 	 *
-	 * @param $pHeroId
+	 * <code>
+	 * <?php
+	 * // Make a request to:
+	 * // https://us.api.battle.net/d3/profile/<battleNetIdName>-<battleNetIdNumber>/hero/<hero-id>?locale=<string>&apikey=<>
+     * // Note: Leave off the trailing '/' when setting
+	 * ?>
+	 * </code>
+	 *
+	 * @param int $pHeroId Hero ID.
 	 * @return null|string
 	 * @throws \InvalidArgumentException
 	 */
@@ -120,13 +126,16 @@ class Http implements Connection
 	}
 
 	/**
-	 * Get item JSON from Battle.Net D3 API.
-	 * ex: https://us.battle.net/api/d3/data/item/COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD
+	 * Make a request to the API to get an item (JSON).
 	 *
-	 * @param $pItemId
-	 * @return mixed|null
+	 * <code>
+	 * // Make a request to:
+	 * // https://us.battle.net/api/d3/data/item/COGHsoAIEgcIBBXIGEoRHYQRdRUdnWyzFB2qXu51MA04kwNAAFAKYJMD
+	 * </code>
+	 *
+	 * @param string $pItemId Can be obtained from items a hero has equipped.
+	 * @return string|null API JSON data.
 	 * @throws \InvalidArgumentException
-	 * @throws \Exception
 	 */
 	public function getItem( $pItemId )
 	{
@@ -149,11 +158,10 @@ class Http implements Connection
 
 	/**
 	 * For each item the hero has equipped construct an Model\Item and return them as an array.
-	 * This is costly, it make a HTTP request for each item on the hero.
+	 * This is costly, it makes an HTTP request for each item in the list.
 	 *
-	 * @param array $pItemHashes List of item hashes.
-	 * @return array|null
-	 * @throws \InvalidArgumentException
+	 * @param array $pItemHashes List of item hash IDs.
+	 * @return array|null Item models
 	 */
 	public function getItemsAsModels( array $pItemHashes )
 	{
@@ -171,7 +179,11 @@ class Http implements Connection
 	}
 
 	/**
-	 * ex: https://us.api.battle.net/d3/profile/<battleNetIdName>-<battleNetIdNumber>/
+	 * Get a profile from Battle.net.
+	 * <code>
+	 * // Makes a request to: https://us.api.battle.net/d3/profile/<battleNetIdName>-<battleNetIdNumber>/
+	 *
+	 * </code>
 	 *
 	 * @return null|string
 	 * @throws \Exception
