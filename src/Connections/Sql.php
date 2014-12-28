@@ -1,7 +1,7 @@
 <?php namespace Kshabazz\BattleNet\D3\Connections;
 
 use
-	\Kshabazz\BattleNet\D3\Models\Item,
+	\Kshabazz\BattleNet\D3\Item,
 	\Kshabazz\Slib\SqlClient;
 
 /**
@@ -167,7 +167,7 @@ class Sql extends SqlClient implements Connection
 	/**
 	 * Save the item locally in a database.
 	 *
-	 * @param \Kshabazz\BattleNet\D3\Models\Item $pItem
+	 * @param \Kshabazz\BattleNet\D3\Item $pItem
 	 * @param string $shaString A unique string to use as a SHA seed for the item SHA value in the database.
 	 * @return bool
 	 */

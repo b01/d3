@@ -6,7 +6,7 @@
 /**
  * Class Skill
  *
- * @package Kshabazz\BattleNet\D3\Models
+ * @package Kshabazz\BattleNet\D3
  */
 class Passive implements Skill
 {
