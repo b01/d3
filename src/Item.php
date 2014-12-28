@@ -280,13 +280,21 @@ class Item
 	public function effects()
 	{
 		$returnValue = '';
-		if ( array_key_exists("Damage_Weapon_Min#Poison", $this->attributesRaw) )
+		if ( array_key_exists('Damage_Weapon_Min#Poison', $this->attributesRaw) )
 		{
-			$returnValue .= " poison";
+			$returnValue .= ' poison';
 		}
-		if ( array_key_exists("Armor_Item", $this->attributesRaw) )
+		if ( array_key_exists('Armor_Item', $this->attributesRaw) )
 		{
-			$returnValue .= " armor";
+			$returnValue .= ' armor';
+		}
+		if ( array_key_exists('Damage_Weapon_Min#Lightning', $this->attributesRaw) )
+		{
+			$returnValue .= ' lightening';
+		}
+		if ( array_key_exists('Damage_Weapon_Min#Arcane', $this->attributesRaw) )
+		{
+			$returnValue .= ' arcane';
 		}
 		return $returnValue;
 	}
