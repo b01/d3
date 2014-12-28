@@ -1,6 +1,6 @@
 <?php namespace Kshabazz\Tests\BattleNet\D3\Skills;
 
-use \Kshabazz\BattleNet\D3\Models\Hero,
+use \Kshabazz\BattleNet\D3\Hero,
 	\Kshabazz\BattleNet\D3\Skills\Passive;
 
 class PassiveTest extends \PHPUnit_Framework_TestCase

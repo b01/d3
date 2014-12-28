@@ -1,13 +1,13 @@
-<?php namespace Kshabazz\Tests\BattleNet\D3\Models;
+<?php namespace Kshabazz\Tests\BattleNet\D3;
 
-use \Kshabazz\BattleNet\D3\Models\Item,
+use \Kshabazz\BattleNet\D3\Item,
 	\Kshabazz\BattleNet\D3\Connections\Http,
 	\Kshabazz\Slib\HttpClient;
 
 /**
  * Class ItemTest
  *
- * @package Kshabazz\Tests\BattleNet\D3\Models
+ * @package Kshabazz\Tests\BattleNet\D3
  */
 class ItemTest extends \PHPUnit_Framework_TestCase
 {

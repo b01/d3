@@ -1,20 +1,19 @@
-<?php namespace Kshabazz\BattleNet\D3\Models;
+<?php namespace Kshabazz\BattleNet\D3;
 /**
  * Diablo 3 Assistant License is under The MIT License (MIT) [OSI Approved License]
  * Please read LICENSE.txt, included with this software for the full licensing information.
  * If no LICENSE.txt accompanied this software, then no license is granted.
- * @package Kshabazz\BattleNet\D3\Models
  *
- * @copyright (c) 2012-2013 diablo-3-assistant by Khalifah K. Shabazz
- * timestamp: 11/23/13:8:21 AM
+ * @copyright (c) 2012-2013 Khalifah K. Shabazz
  */
 
 use
 	\Kshabazz\BattleNet\D3\Connections\Http;
 
- /**
+/**
  * Class Hero
- * @package \Kshabazz\BattleNet\D3\Models
+ *
+ * @package Kshabazz\BattleNet\D3
  */
 class Hero
 {

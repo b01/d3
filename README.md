@@ -28,7 +28,7 @@ Add to your composer.json
 use
 	\Kshabazz\Slib\HttpClient,
 	\Kshabazz\BattleNet\D3\Connections\Http as D3_Http,
-	\Kshabazz\BattleNet\D3\Models\Profile as D3_Profile;
+	\Kshabazz\BattleNet\D3\Profile as D3_Profile;
 
 // DO NOT FORGET TO SET THIS!!!
 $apiKey = 'apiKeyFromMashery';
@@ -59,7 +59,7 @@ var_dump( $profile->heroes() );
 use
 	\Kshabazz\Slib\HttpClient,
 	\Kshabazz\BattleNet\D3\Connections\Http as D3_Http,
-	\Kshabazz\BattleNet\D3\Models\Hero as D3_Hero;
+	\Kshabazz\BattleNet\D3\Hero as D3_Hero;
 
 // DO NOT FORGET TO SET THIS!!!
 $apiKey = 'apiKeyFromMashery';
@@ -91,8 +91,8 @@ echo $hero->name();
 use
 	\Kshabazz\Slib\HttpClient,
 	\Kshabazz\BattleNet\D3\Connections\Http as D3_Http,
-	\Kshabazz\BattleNet\D3\Models\Hero as D3_Hero,
-	\Kshabazz\BattleNet\D3\Models\Item as D3_Item;
+	\Kshabazz\BattleNet\D3\Hero as D3_Hero,
+	\Kshabazz\BattleNet\D3\Item as D3_Item;
 
 // DO NOT FORGET TO SET THIS!!!
 $apiKey = 'apiKeyFromMashery';

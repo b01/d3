@@ -1,14 +1,14 @@
-<?php namespace Kshabazz\Tests\BattleNet\D3\Models;
+<?php namespace Kshabazz\Tests\BattleNet\D3;
 
 use
 	\Kshabazz\BattleNet\D3\Connections\Http,
-	\Kshabazz\BattleNet\D3\Models\Hero,
+	\Kshabazz\BattleNet\D3\Hero,
 	\Kshabazz\Interception\StreamWrappers\Http as HttpWrapper,
 	\Kshabazz\Slib\HttpClient;
 
 /**
  * @class HeroTest
- * @package \Kshabazz\BattleNet\test\Model
+ * @package Kshabazz\Tests\BattleNet\D3
  */
 class HeroTest extends \PHPUnit_Framework_TestCase
 {
@@ -17,7 +17,7 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 		$fixturesDir,
 		/** @var int */
 		$heroId,
-		/** @var \Kshabazz\BattleNet\D3\Models\Hero */
+		/** @var \Kshabazz\BattleNet\D3\Hero */
 		$heroNoItems,
 		/** @var string. */
 		$json;

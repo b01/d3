@@ -4,7 +4,7 @@
  */
 
 use
-	\Kshabazz\BattleNet\D3\Models\Item;
+	\Kshabazz\BattleNet\D3\Item;
 
 /**
  * Class Http

@@ -1,9 +1,9 @@
-<?php namespace Kshabazz\BattleNet\D3\Models;
+<?php namespace Kshabazz\BattleNet\D3;
 
 /**
  * Class Profile
  *
- * @package \Kshabazz\BattleNet\D3\Models
+ * @package \Kshabazz\BattleNet\D3
  */
 class Profile implements \JsonSerializable
 {

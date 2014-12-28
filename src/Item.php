@@ -1,4 +1,4 @@
-<?php namespace Kshabazz\BattleNet\D3\Models;
+<?php namespace Kshabazz\BattleNet\D3;
 /**
  * Get the users item from Battle.Net and present it to the user; store it locally in a database
  * behind the scenes. The item will only be updated after a few ours of retrieving it.
@@ -6,8 +6,15 @@
 
 /**
  * Class Item
- * http://us.battle.net/api/d3/data/item/Cj0I-bvTgAsSBwgEFdosyssdb2mxyh10HmzAHfKS3AgdcIt38CILCAEVbEIDABgWICAwiQI4_AJAAFAMYJUDGMvMrsMGUABYAg&extra=0&showClose=1
- * @package \Kshabazz\BattleNet\D3\Models
+ *
+ * @package \Kshabazz\BattleNet\D3
+ *
+ * <code>
+ * <?php
+ * // http://us.battle.net/api/d3/data/item/Cj0I-bvTgAsSBwgEFdosyssdb2mxyh10HmzAHfKS3AgdcIt38CILCAEVbEIDABgWICAwiQI4_AJAAFAMYJUDGMvMrsMGUABYAg&extra=0&showClose=1
+ * ?>
+ * </code>
+ *
  */
 class Item
 {
@@ -27,7 +34,8 @@ class Item
 
 	/**
 	 * @var object
-	 * example: "attributes" : {
+	 * <code>
+	 * : "attributes" : {
 		"primary" : [ {
 		"text" : "+211 Strength",
 		"affixType" : "default",
@@ -44,6 +52,7 @@ class Item
 		"secondary" : [ ],
 		"passive" : [ ]
 		}
+	 * </code>
 	 */
 	private $attributes;
 
