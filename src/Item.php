@@ -290,7 +290,7 @@ class Item
 		}
 		if ( array_key_exists('Damage_Weapon_Min#Lightning', $this->attributesRaw) )
 		{
-			$returnValue .= ' lightening';
+			$returnValue .= ' lightning';
 		}
 		if ( array_key_exists('Damage_Weapon_Min#Arcane', $this->attributesRaw) )
 		{
