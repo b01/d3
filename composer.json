@@ -16,13 +16,13 @@
 			"Kshabazz\\Tests\\BattleNet\\D3\\": "tests/D3/"
 		}
 	},
-	"description": "A PHP library for accessing Battle.net Diablo 3 REST service.",
+	"description": "An interface (written in PHP) for accessing Battle.net Diablo 3 REST service.",
 	"extra": {
 		"branch-alias": {
 			"dev-master": "1.0.x-dev"
 		}
 	},
-	"keywords": ["diablo 3"],
+	"keywords": ["diablo 3", "interface"],
 	"license": "MIT",
 	"name": "kshabazz/battlenet-d3",
 	"repositories": [
