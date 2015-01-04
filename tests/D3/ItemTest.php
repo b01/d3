@@ -21,14 +21,7 @@ class ItemTest extends \PHPUnit_Framework_TestCase
 
 	public function setUp()
 	{
-		// Load setting from config.
-		$configJson = \file_get_contents(
-			TESTS_ROOT
-			. DIRECTORY_SEPARATOR . 'config'
-			. DIRECTORY_SEPARATOR . 'unit-test.json'
-		);
-		$config = \json_decode( $configJson );
-		$this->apiKey = $config->apiKey;
+		$this->apiKey = \D3_TEST_API_KEY;
 		$client = new HttpClient();
 		$this->bnrHttp = new Http( $this->apiKey, 'msuBREAKER#1374', $client );
 		$this->itemHash1 = 'item/Cj0I-bvTgAsSBwgEFdosyssdb2mxyh10HmzAHfKS3AgdcIt38CILCAEVbEIDABgWICAwiQI4_AJAAFAMYJUDGMvMrsMGUABYAg';

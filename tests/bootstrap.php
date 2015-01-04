@@ -5,6 +5,19 @@ require_once __DIR__
 	. DIRECTORY_SEPARATOR . 'vendor'
 	. DIRECTORY_SEPARATOR . 'autoload.php';
 
-define( 'TESTS_ROOT', realpath(__DIR__) );
-define( 'FIXTURES_PATH', TESTS_ROOT . DIRECTORY_SEPARATOR . 'fixtures' );
+\define( 'TESTS_ROOT', \realpath(__DIR__) );
+\define( 'FIXTURES_PATH', TESTS_ROOT . DIRECTORY_SEPARATOR . 'fixtures' );
+$testConfig = TESTS_ROOT
+	. DIRECTORY_SEPARATOR . 'config'
+	. DIRECTORY_SEPARATOR . 'unit-test.json';
+
+// When test config exists, load setting from config.
+$apiKey = 'noApiKey';
+if ( \file_exists($testConfig) )
+{
+	$configJson = \file_get_contents( $testConfig );
+	$config = \json_decode( $configJson );
+	$apiKey = $config->apiKey;
+}
+\define( 'D3_TEST_API_KEY', $apiKey );
 ?>

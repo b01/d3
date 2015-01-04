@@ -254,14 +254,7 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 
 	public function test_dual_wielding()
 	{
-		// Load setting from config.
-		$configJson = \file_get_contents(
-			TESTS_ROOT
-			. DIRECTORY_SEPARATOR . 'config'
-			. DIRECTORY_SEPARATOR . 'unit-test.json'
-		);
-		$config = \json_decode( $configJson );
-		$apiKey = $config->apiKey;
+		$apiKey = \D3_TEST_API_KEY;
 		$httpClient = new HttpClient();
 		$httpClient = new Http($apiKey, 'msuBREAKER#1374', $httpClient);
 		$heroFixture = $this->fixturesDir . 'hero-3955832-no-items.json';

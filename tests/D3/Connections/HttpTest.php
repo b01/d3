@@ -27,14 +27,7 @@ class HttpTest extends \PHPUnit_Framework_TestCase
 		$this->battleNetUrlSafeId = 'msuBREAKER-1374';
 		$this->heroId = 3955832;
 		$this->fixturesDir = \FIXTURES_PATH . DIRECTORY_SEPARATOR;
-		// Load setting from config.
-		$configJson = \file_get_contents(
-			TESTS_ROOT
-			. DIRECTORY_SEPARATOR . 'config'
-			. DIRECTORY_SEPARATOR . 'unit-test.json'
-		);
-		$config = \json_decode( $configJson );
-		$this->apiKey = $config->apiKey;
+		$this->apiKey = \D3_TEST_API_KEY;
 	}
 
 	public function test_getting_a_url_safe_battleNet_id()
