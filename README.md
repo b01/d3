@@ -1,12 +1,18 @@
 ## Description
-An interface (written in PHP) for accessing Battle.net Diablo 3 REST service.
+An interface (written in PHP) for accessing Battle.net Diablo 3 REST
+service.
+
+
+## Summary
+This API provides a client for accessing Diablo 3 profiles, heroes, and
+items; which require an API key and battle-tag. There are also a few
+object models for: Profile, Hero, Item, and Skill (Active and Passive).
+
 
 ## Requirements
 
 * PHP 5.4
 
-NOTE: I've removed some thing that required PHP 5.6, so it should work on
-      5.4, or 5.5. Unless I missed something.
 
 ## Installation
 
@@ -14,11 +20,11 @@ Add to your composer.json
 
 ```json
 "require": {
-    "kshabazz/battlenet-d3": "0.1.0"
+    "kshabazz/battlenet-d3": "dev-master"
 }
 ```
 
-## Examples
+## Quick-Start Examples
 
 ### Pull a profile from Diablo 3 (Battle.net)
 

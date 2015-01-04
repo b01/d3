@@ -22,7 +22,7 @@
 			"dev-master": "1.0.x-dev"
 		}
 	},
-	"keywords": ["diablo 3", "interface"],
+	"keywords": ["diablo 3", "interface", "REST", "blizzard"],
 	"license": "MIT",
 	"name": "kshabazz/battlenet-d3",
 	"repositories": [
