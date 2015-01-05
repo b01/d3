@@ -302,5 +302,23 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 		$actual = $this->heroNoItems->primaryAttributeBonus();
 		$this->assertEquals( 3.17, $actual );
 	}
+
+	public function test_isHardcore()
+	{
+		$actual = $this->heroNoItems->isHardcore();
+		$this->assertFalse( $actual );
+	}
+
+	public function test_isSeasonal()
+	{
+		$actual = $this->heroNoItems->isSeasonal();
+		$this->assertFalse( $actual );
+	}
+
+	public function test_eliteKills()
+	{
+		$actual = $this->heroNoItems->eliteKills();
+		$this->assertEquals( 4798, $actual );
+	}
 }
 ?>

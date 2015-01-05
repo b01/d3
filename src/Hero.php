@@ -227,6 +227,16 @@ class Hero
 	}
 
 	/**
+	 * Get number of elites killed.
+	 *
+	 * @return int
+	 */
+	public function eliteKills()
+	{
+		return (int) $this->data[ 'kills' ][ 'elites' ];
+	}
+
+	/**
 	 * Get data from the hero JSON data retrieved from Battle.net API.
 	 *
 	 * @param string $pProperty
@@ -236,7 +246,7 @@ class Hero
 	 */
 	public function get( $pProperty, $pType = 'string' )
 	{
-		if ( array_key_exists($pProperty, $this->data) )
+		if ( \array_key_exists($pProperty, $this->data) )
 		{
 			setType( $this->data[$pProperty], $pType );
 			return $this->data[ $pProperty ];
@@ -521,6 +531,26 @@ class Hero
 		$multiplier = ( $primaryResource === 'Intelligence_Item' ) ? 3 : 1;
 		$this->baseAttributeLevelBonus( 'intelligence', $multiplier );
 		return $this->intelligence;
+	}
+
+	/**
+	 * Get hardcore flag.
+	 *
+	 * @return bool
+	 */
+	public function isHardCore()
+	{
+		return (bool) $this->data[ 'hardcore' ];
+	}
+
+	/**
+	 * Get seasonal flag.
+	 *
+	 * @return bool
+	 */
+	public function isSeasonal()
+	{
+		return (bool) $this->data[ 'seasonal' ];
 	}
 
 	/**
