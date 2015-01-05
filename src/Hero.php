@@ -78,8 +78,6 @@ class Hero
 		$fireResist,
 		/** @var float */
 		$goldFind,
-		/** @var Hero */
-		$hero,
 		/** @var int */
 		$intelligence,
 		/** @var int */
