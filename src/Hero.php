@@ -1,10 +1,6 @@
 <?php namespace Kshabazz\BattleNet\D3;
 /**
- * Diablo 3 Assistant License is under The MIT License (MIT) [OSI Approved License]
- * Please read LICENSE.txt, included with this software for the full licensing information.
- * If no LICENSE.txt accompanied this software, then no license is granted.
- *
- * @copyright (c) 2012-2013 Khalifah K. Shabazz
+ * @copyright (c) Khalifah K. Shabazz
  */
 
 use
