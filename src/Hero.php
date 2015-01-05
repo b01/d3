@@ -23,18 +23,10 @@ class Hero
 		BASE_CRITICAL_HIT_DAMAGE_BONUS = 0.5;
 
 	private
-		/** @var string {barbarian|crusader|demon-hunter|monk|witch-doctor|wizard} */
-		$class,
-		/** @var bool */
-		$dead,
+		/** @var array */
+		$data,
 		/** @var array */
 		$followers,
-		/** @var int */
-		$gender,
-		/** @var bool */
-		$hardcore,
-		/** @var int */
-		$id,
 		/**
 		 * @var array
 		 * example:
@@ -53,16 +45,6 @@ class Hero
 		$items,
 		/** @var array List of hash for the items the hero has equipped. */
 		$itemsHashes,
-		/** @var array */
-		$kills,
-		/** @var int */
-		 $lastUpdated,
-		/** @var int */
-		$level,
-		/** @var string */
-		$name,
-		/** @var int */
-		$paragonLevel,
 		/**
 		 * @var array
 		 * "progression" : {
@@ -72,32 +54,6 @@ class Hero
 		 * }, ...
 		 */
 		$progression,
-		/**
-		 * @var array {active|passive}
-		 * example:
-		 * "skills": {
-				"active": [
-					{
-						"skill" : {
-						"slug" : "fists-of-thunder",
-						"name" : "Fists of Thunder",
-						"icon" : "monk_fistsofthunder",
-						"level" : [''];
-						"categorySlug" : "primary",
-						"tooltipUrl" : "skill/monk/fists-of-thunder",
-						"description" : "Generate: 14 Spirit per attack\r\n\r\nTeleport to your target and unleash a series of extremely fast punches that deal 122% weapon damage as Lightning.\r\n\r\nEvery third hit deals 183% weapon damage as Lightning split between all enemies in front of you.",
-						"simpleDescription" : "Generate: 14 Spirit per attack\r\n\r\nTeleport to your target and attack it with a series of rapid punches.",
-						"skillCalcId" : "a"
-					}
-				],
-				"passive": [
-					...
-				]
-			};
-		 */
-		$skills,
-		/** @var object */
-		$stats,
 		/** @var int */
 		$arcaneResist,
 		/** @var int */
@@ -158,30 +114,18 @@ class Hero
 	public function __construct( $pJson )
 	{
 		$this->json = $pJson;
-		$this->init();
-		$this->data = \json_decode( $pJson, TRUE );
-		$this->stats = $this->data['stats'];
-		$this->kills = $this->data['kills'];
-		$this->dead = $this->data['dead'];
-		$this->name = $this->data['name'];
-		$this->gender = (int) $this->data['gender'];
-		$this->level = (int) $this->data['level'];
-		$this->followers = $this->data['followers'];
-		$this->hardcore = $this->data['hardcore'];
-		$this->class = $this->data['class'];
-		$this->items = $this->data['items'];
-		$this->lastUpdated = (int) $this->data['last-updated'];
-		$this->id = (int) $this->data['id'];
-		$this->skills = $this->data['skills'];
+		$this->init( $pJson );
+		$this->followers = $this->data[ 'followers' ];
+		$this->items = $this->data[ 'items' ];
 		// Properties that may be empty, if a new character.
 		// This value changed in RoS.
-		if ( array_key_exists('progress', $this->data))
+		if ( \array_key_exists('progress', $this->data))
 		{
 			$this->progression = $this->data[ 'progress' ];
 		}
 		else
 		{
-			$this->progression = $this->data['progression'];
+			$this->progression = $this->data[ 'progression' ];
 		}
 		$this->itemModels = NULL;
 
@@ -216,14 +160,66 @@ class Hero
 		$this->thorns = 0.0;
 	}
 
+
+	/**
+	 * Get armor stat.
+	 *
+	 * @return int
+	 */
+	public function armor()
+	{
+		$levelBonus = $this->level() * 3;
+		$this->armor = $this->statBase + $levelBonus + $this->strength();
+		return $this->armor;
+	}
+
+	/**
+	 * Get attack speed.
+	 *
+	 * @return float
+	 */
+	public function attackSpeed()
+	{
+		return $this->attackSpeed;
+	}
+
 	/**
 	 * Character class
 	 *
-	 * @return string
+	 * @return string (barbarian|crusader|demon-hunter|monk|witch-doctor|wizard)
 	 */
 	public function characterClass()
 	{
-		return $this->class;
+		return $this->data[ 'class' ];
+	}
+
+	/**
+	 * @return float
+	 */
+	public function criticalHitChance()
+	{
+		return $this->critChance;
+	}
+
+	/**
+	 * @return float
+	 */
+	public function criticalHitDamage()
+	{
+		return $this->critDamage;
+	}
+
+	/**
+	 * Get dexterity.
+	 *
+	 * @return int
+	 */
+	public function dexterity()
+	{
+		$primaryResource = $this->primaryAttribute();
+		$multiplier = ( $primaryResource === 'Dexterity_Item' ) ? 3 : 1;
+		$this->baseAttributeLevelBonus( 'dexterity', $multiplier );
+		return $this->dexterity;
 	}
 
 	/**
@@ -234,6 +230,16 @@ class Hero
 	public function eliteKills()
 	{
 		return (int) $this->data[ 'kills' ][ 'elites' ];
+	}
+
+	/**
+	 * Get gender.
+	 *
+	 * @return int 0 for male, 1 for woman.
+	 */
+	public function gender()
+	{
+		return (int) $this->data[ 'gender' ];
 	}
 
 	/**
@@ -252,14 +258,6 @@ class Hero
 			return $this->data[ $pProperty ];
 		}
 		throw new \Exception( 'Hero has no property ' . $pProperty );
-	}
-
-	/**
-	 * @return bool
-	 */
-	public function hardcore()
-	{
-		return $this->hardcore;
 	}
 
 	/**
@@ -300,7 +298,20 @@ class Hero
 	 */
 	public function id()
 	{
-		return $this->id;
+		return (int) $this->data[ 'id' ];
+	}
+
+	/**
+	 * Get intelligence.
+	 *
+	 * @return int
+	 */
+	public function intelligence()
+	{
+		$primaryResource = $this->primaryAttribute();
+		$multiplier = ( $primaryResource === 'Intelligence_Item' ) ? 3 : 1;
+		$this->baseAttributeLevelBonus( 'intelligence', $multiplier );
+		return $this->intelligence;
 	}
 
 	/**
@@ -310,7 +321,7 @@ class Hero
 	 */
 	public function isDead()
 	{
-		return (bool) $this->dead;
+		return (bool) $this->data[ 'dead' ];
 	}
 
 	/**
@@ -333,6 +344,26 @@ class Hero
 		$offHand = $itemModels[ 'offHand' ];
 		return ( $mainHand!== NULL && $mainHand->isWeapon() && !(bool)$mainHand->type->twoHanded )
 			 && ( $offHand!== NULL && $offHand->isWeapon() );
+	}
+
+	/**
+	 * Get hardcore flag.
+	 *
+	 * @return bool
+	 */
+	public function isHardCore()
+	{
+		return (bool) $this->data[ 'hardcore' ];
+	}
+
+	/**
+	 * Get seasonal flag.
+	 *
+	 * @return bool
+	 */
+	public function isSeasonal()
+	{
+		return (bool) $this->data[ 'seasonal' ];
 	}
 
 	/**
@@ -382,7 +413,7 @@ class Hero
 	 */
 	public function lastUpdated()
 	{
-		return $this->lastUpdated;
+		return (int) $this->data[ 'last-updated' ];
 	}
 
 	/**
@@ -392,7 +423,7 @@ class Hero
 	 */
 	public function level()
 	{
-		return $this->level;
+		return (int) $this->data['level'];
 	}
 
 	/**
@@ -402,7 +433,7 @@ class Hero
 	 */
 	public function name()
 	{
-		return $this->name;
+		return $this->data['name'];
 	}
 
 	/**
@@ -422,7 +453,7 @@ class Hero
 	 */
 	public function preCalculatedStats()
 	{
-		return $this->stats;
+		return $this->data[ 'stats' ];
 	}
 
 	/**
@@ -449,55 +480,6 @@ class Hero
 	}
 
 	/**
-	 * Get character skills.
-	 *
-	 * @return array
-	 */
-	public function skills()
-	{
-		return $this->skills;
-	}
-
-	// BEGIN stats methods
-	/**
-	 * Get armor stat.
-	 *
-	 * @return int
-	 */
-	public function armor()
-	{
-		$levelBonus = $this->level() * 3;
-		$this->armor = $this->statBase + $levelBonus + $this->strength();
-		return $this->armor;
-	}
-
-	/**
-	 * Get attack speed.
-	 *
-	 * @return float
-	 */
-	public function attackSpeed()
-	{
-		return $this->attackSpeed;
-	}
-
-	/**
-	 * @return float
-	 */
-	public function criticalHitChance()
-	{
-		return $this->critChance;
-	}
-
-	/**
-	 * @return float
-	 */
-	public function criticalHitDamage()
-	{
-		return $this->critDamage;
-	}
-
-	/**
 	 * Get damage you can do with a single punch.
 	 *
 	 * @return float
@@ -508,49 +490,13 @@ class Hero
 	}
 
 	/**
-	 * Get dexterity.
+	 * Get character skills.
 	 *
-	 * @return int
+	 * @return array
 	 */
-	public function dexterity()
+	public function skills()
 	{
-		$primaryResource = $this->primaryAttribute();
-		$multiplier = ( $primaryResource === 'Dexterity_Item' ) ? 3 : 1;
-		$this->baseAttributeLevelBonus( 'dexterity', $multiplier );
-		return $this->dexterity;
-	}
-
-	/**
-	 * Get intelligence.
-	 *
-	 * @return int
-	 */
-	public function intelligence()
-	{
-		$primaryResource = $this->primaryAttribute();
-		$multiplier = ( $primaryResource === 'Intelligence_Item' ) ? 3 : 1;
-		$this->baseAttributeLevelBonus( 'intelligence', $multiplier );
-		return $this->intelligence;
-	}
-
-	/**
-	 * Get hardcore flag.
-	 *
-	 * @return bool
-	 */
-	public function isHardCore()
-	{
-		return (bool) $this->data[ 'hardcore' ];
-	}
-
-	/**
-	 * Get seasonal flag.
-	 *
-	 * @return bool
-	 */
-	public function isSeasonal()
-	{
-		return (bool) $this->data[ 'seasonal' ];
+		return $this->data[ 'skills' ];
 	}
 
 	/**
@@ -603,7 +549,6 @@ class Hero
 		// Compute total based on hero level.
 		$this->{$pProperty} += ( $totalLevels * $pMultiplier );
 	}
-	// END stats methods
 
 	/**
 	 * Use the hero's class to determine the primary attribute.
@@ -613,7 +558,7 @@ class Hero
 	private function determinePrimaryAttribute()
 	{
 		$primaryAttribute = NULL;
-		switch( $this->class )
+		switch( $this->characterClass() )
 		{
 			case "monk":
 			case "demon hunter":
@@ -633,7 +578,7 @@ class Hero
 			default:
 				$trace = debug_backtrace();
 				trigger_error(
-					'There is no hero class ' . $this->class .
+					'There is no hero class ' . $this->characterClass() .
 					'. Error occurred in ' . $trace[ 0 ][ 'file' ] . ' on line ' . $trace[ 0 ][ 'line' ],
 					E_USER_NOTICE
 				);

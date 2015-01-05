@@ -56,15 +56,6 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 		$hero->get( 'test123' );
 	}
 
-	/**
-	 * Test retrieving the hero property.
-	 */
-	public function test_retrieving_hero_hardcore()
-	{
-		$hero = new Hero( $this->json );
-		$this->assertInternalType( 'bool', $hero->hardcore(), 'Hardcore is not a boolean as expected.' );
-	}
-
 	public function test_retrieving_json()
 	{
 		$hero = new Hero( $this->json );
@@ -319,6 +310,42 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 	{
 		$actual = $this->heroNoItems->eliteKills();
 		$this->assertEquals( 4798, $actual );
+	}
+
+	public function test_gender()
+	{
+		$actual = $this->heroNoItems->gender();
+		$this->assertEquals( 0, $actual );
+	}
+
+	public function test_attackSpeed()
+	{
+		$actual = $this->heroNoItems->attackSpeed();
+		$this->assertEquals( 1, $actual );
+	}
+
+	public function test_armor()
+	{
+		$actual = $this->heroNoItems->armor();
+		$this->assertEquals( 294, $actual );
+	}
+
+	public function test_criticalHitChance()
+	{
+		$actual = $this->heroNoItems->criticalHitChance();
+		$this->assertEquals( 0.05, $actual );
+	}
+
+	public function test_criticalHitDamage()
+	{
+		$actual = $this->heroNoItems->criticalHitDamage();
+		$this->assertEquals( 0.5, $actual );
+	}
+
+	public function test_punchDamage()
+	{
+		$actual = $this->heroNoItems->punchDamage();
+		$this->assertEquals( 2.5, $actual );
 	}
 }
 ?>
