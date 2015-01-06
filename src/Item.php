@@ -235,7 +235,7 @@ class Item
 	 */
 	public function __get( $pName )
 	{
-		return $this->{$pName};
+		return $this->data->{$pName};
 	}
 
 	/**
@@ -273,8 +273,8 @@ class Item
 	}
 
 	/**
-	 *  Get name of an items special effects.
-	 * Get list string of item effect.
+	 * Get list string of item special effects.
+	 *
 	 * @return string
 	 */
 	public function effects()

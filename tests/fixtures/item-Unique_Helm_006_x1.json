@@ -1,0 +1,140 @@
+{
+  "id" : "Unique_Helm_006_x1",
+  "name" : "Mempo of Twilight",
+  "icon" : "unique_helm_006_x1_demonhunter_male",
+  "displayColor" : "orange",
+  "tooltipParams" : "item/CnIInND3jAQSBwgEFVml7RMdS7X5Sx0_8gnYHTsnbyQdZiMGUB1-dlWhHcn6vKAwiwI4qwFAAFASWARggAJqKwoMCAAQuemrwYCAgKA-EhsIt-yauQYSBwgEFdVdtnowjwI4AEABWASQAQCAAUa1AX_5Tl0YspXtvgJQCFgA",
+  "requiredLevel" : 70,
+  "itemLevel" : 70,
+  "bonusAffixes" : 0,
+  "bonusAffixesMax" : 0,
+  "accountBound" : true,
+  "flavorText" : "The helmet of the last of the honor-bound warriors. He roamed the far east long ago and lived and died by his code of honor.",
+  "typeName" : "Legendary Helm",
+  "type" : {
+    "twoHanded" : false,
+    "id" : "Helm"
+  },
+  "armor" : {
+    "min" : 741.0,
+    "max" : 741.0
+  },
+  "attributes" : {
+    "primary" : [ {
+      "text" : "+702 Dexterity",
+      "color" : "blue",
+      "affixType" : "default"
+    }, {
+      "text" : "+93 Resistance to All Elements",
+      "color" : "blue",
+      "affixType" : "default"
+    }, {
+      "text" : "Attack Speed Increased by 6.0%",
+      "color" : "blue",
+      "affixType" : "default"
+    } ],
+    "secondary" : [ {
+      "text" : "+35% Extra Gold from Monsters",
+      "color" : "blue",
+      "affixType" : "utility"
+    }, {
+      "text" : "Reduces duration of control impairing effects by 37%",
+      "color" : "blue",
+      "affixType" : "utility"
+    } ],
+    "passive" : [ ]
+  },
+  "attributesRaw" : {
+    "Gold_Find" : {
+      "min" : 0.35,
+      "max" : 0.35
+    },
+    "Sockets" : {
+      "min" : 1.0,
+      "max" : 1.0
+    },
+    "Durability_Max" : {
+      "min" : 256.0,
+      "max" : 256.0
+    },
+    "Item_LegendaryItem_Level_Override" : {
+      "min" : 70.0,
+      "max" : 70.0
+    },
+    "Armor_Item" : {
+      "min" : 741.0,
+      "max" : 741.0
+    },
+    "Durability_Max_Before_Reforge" : {
+      "min" : 256.0,
+      "max" : 256.0
+    },
+    "Dexterity_Item" : {
+      "min" : 702.0,
+      "max" : 702.0
+    },
+    "Item_Legendary_Item_Base_Item" : {
+      "min" : 1.565456767E9,
+      "max" : 1.565456767E9
+    },
+    "Resistance_All" : {
+      "min" : 93.0,
+      "max" : 93.0
+    },
+    "Item_Binding_Level_Override" : {
+      "min" : 2.0,
+      "max" : 2.0
+    },
+    "Season" : {
+      "min" : 0.0,
+      "max" : 0.0
+    },
+    "CrowdControl_Reduction" : {
+      "min" : 0.37,
+      "max" : 0.37
+    },
+    "Attacks_Per_Second_Percent" : {
+      "min" : 0.06,
+      "max" : 0.06
+    },
+    "Durability_Cur" : {
+      "min" : 171.0,
+      "max" : 171.0
+    },
+    "Loot_2_0_Drop" : {
+      "min" : 1.0,
+      "max" : 1.0
+    }
+  },
+  "randomAffixes" : [ ],
+  "gems" : [ {
+    "item" : {
+      "id" : "Topaz_17",
+      "name" : "Flawless Imperial Topaz",
+      "icon" : "topaz_17_demonhunter_male",
+      "displayColor" : "blue",
+      "tooltipParams" : "item/ChsIt-yauQYSBwgEFdVdtnowjwI4AEABWASQAQAYqveyqw8"
+    },
+    "isGem" : true,
+    "isJewel" : false,
+    "attributes" : {
+      "primary" : [ ],
+      "secondary" : [ {
+        "text" : "37% Better Chance of Finding Magical Items",
+        "color" : "blue",
+        "affixType" : "utility"
+      } ],
+      "passive" : [ ]
+    },
+    "attributesRaw" : {
+      "Magic_Find" : {
+        "min" : 0.37,
+        "max" : 0.37
+      }
+    }
+  } ],
+  "socketEffects" : [ ],
+  "craftedBy" : [ ],
+  "seasonRequiredToDrop" : -1,
+  "isSeasonRequiredToDrop" : false
+}

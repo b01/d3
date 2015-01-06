@@ -74,5 +74,13 @@ class ItemTest extends \PHPUnit_Framework_TestCase
 		$item = new Item( $itemJson );
 		$this->assertFalse( $item->isWeapon() );
 	}
+
+	public function test_armor()
+	{
+		$fixtureFile = $this->fixturesDir . 'item-Unique_Helm_006_x1.json';
+		$itemJson = \file_get_contents( $fixtureFile );
+		$item = new Item( $itemJson );
+		$this->assertEquals( 741, $item->armor->min );
+	}
 }
 ?>
