@@ -362,8 +362,9 @@ class Item
 	 */
 	function isWeapon()
 	{
-		$itemType = strtolower( $this->type->id );
-		return in_array( $itemType, self::$oneHandWeaponTypes );
+		$itemType = \strtolower( $this->type->id );
+		return \in_array( $itemType, self::$oneHandWeaponTypes )
+		|| \in_array( $itemType, self::$twoHandedWeaponTypes );
 	}
 
 	/**
