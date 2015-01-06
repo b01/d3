@@ -19,7 +19,7 @@
 	"description": "An interface (written in PHP) for accessing Battle.net Diablo 3 REST service.",
 	"extra": {
 		"branch-alias": {
-			"dev-master": "1.0.x-dev"
+			"dev-master": "1.1.x-dev"
 		}
 	},
 	"keywords": ["diablo 3", "interface", "REST", "blizzard"],
