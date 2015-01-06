@@ -300,6 +300,21 @@ class Item
 	}
 
 	/**
+	 * Get flavor text.
+	 *
+	 * @return string|null
+	 */
+	public function flavorText()
+	{
+		if ( isset($this->data->flavorText) )
+		{
+			return $this->data->flavorText;
+		}
+
+		return NULL;
+	}
+
+	/**
 	 * Get item ID.
 	 *
 	 * @return mixed
