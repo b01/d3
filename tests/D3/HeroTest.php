@@ -28,8 +28,8 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 	public function setUp()
 	{
 		$this->fixturesDir = FIXTURES_PATH . DIRECTORY_SEPARATOR;
-		$this->heroId = 36131726;
-		$this->json = \file_get_contents( $this->fixturesDir . 'hero-36131726.json' );
+		$this->heroId = 3955832;
+		$this->json = \file_get_contents( $this->fixturesDir . 'hero-3955832.json' );
 
 		$heroFixture = $this->fixturesDir . 'hero-3955832-no-items.json';
 		$noItemsJson = \file_get_contents( $heroFixture );
@@ -67,25 +67,14 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 	public function test_retrieving_lastUpdated()
 	{
 		$hero = new Hero( $this->json );
-		$this->assertEquals( 1387045578, $hero->lastUpdated(), 'Invalid hero lastUpdated date returned.' );
+		$this->assertEquals( 1416082795, $hero->lastUpdated(), 'Invalid hero lastUpdated date returned.' );
 	}
 
 	public function test_retrieving_name()
 	{
 		$hero = new Hero( $this->json );
 		$name = $hero->name();
-		$this->assertEquals( 'Kashara', $name, 'Invalid hero name returned.' );
-	}
-
-	public function test_retrieving_progression()
-	{
-		$hero = new Hero( $this->json );
-		$progress = $hero->highestProgression();
-		$this->assertEquals(
-			'Highest completed: inferno act2 BetrayeroftheHoradrim',
-			$progress,
-			'Invalid hero progression returned.'
-		);
+		$this->assertEquals( 'Khalil', $name, 'Invalid hero name returned.' );
 	}
 
 	public function test_retrieving_skills()
@@ -99,7 +88,7 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 	{
 		$hero = new Hero( $this->json );
 		$stats = $hero->preCalculatedStats();
-		$this->assertEquals(53479, $stats['life']);
+		$this->assertEquals(293124, $stats['life']);
 	}
 
 	/**
@@ -109,23 +98,17 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 	{
 		$hero = new Hero( $this->json );
 		$tooltipParams = $hero->items();
-		$itemParams = [
-			'head' => 'item/CmAI76DVrAQSBwgEFSMZlIsdlD3juR1bToDJHc9FH8sdo9Ya6B0SXPT8HYYCY-owCTjTAkAAUBJg1wJqJQoMCAAQ9fHWhoSAgKADEhUIxKuTpwgSBwgEFfee2KswDTgAQAEYuZvfxg5QBlgC',
-		];
-		$this->assertEquals($itemParams['head'], $tooltipParams['head']['tooltipParams'],
+		$this->assertEquals('Unique_Helm_006_x1', $tooltipParams['head']['id'],
 			'Invalid head item returned from Model_GetHero::itemHashes property.'
 		);
 	}
 
-	/**
-	 * @vcr hero.yml
-	 */
-	public function test_highest_progression()
+	public function test_highestProgression()
 	{
 		$hero = new Hero( $this->json );
 		$progression = $hero->highestProgression();
 		$this->assertEquals(
-			'Highest completed: inferno act2 BetrayeroftheHoradrim',
+			'Highest quest completed: act5 - Angel of Death',
 			$progression,
 			'Invalid progression value.'
 		);
@@ -136,7 +119,7 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 		$hero = new Hero( $this->json );
 		$primaryAttribute = $hero->primaryAttribute();
 		$this->assertEquals(
-			'Intelligence_Item',
+			'Dexterity_Item',
 			$primaryAttribute,
 			'Incorrect primary attribute returned.'
 		);
@@ -156,7 +139,7 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 		// verify at least one key has an exact value.
 		$this->assertArrayHasKey( 'torso', $itemHashes );
 		$this->assertEquals(
-			'item/CjkIxYL_7AISBwgEFRaF-hsdtwRpuh2V-O2WHTIlWp4dElbV7h1X8eDWHYNFzIwwCTixAkAAUBJgtQIYrJTUvwNQBlgC',
+			'item/CugBCLHwqJ4GEgcIBBUxIhlgHXMjBlAd_qPyjx2wHg5QHQ4c5LsdSA-9SB1wi3fwIgsIABXB_gEAGBIgDjCLAjizBUAASBJQEFgEYLMFaisKDAgAEI3X4I6BgICAPRIbCJSX75sJEgcIBBUilq6YMI8COABAAVgEkAEAaisKDAgAEK3X4I6BgICAPRIbCOqmqqoKEgcIBBUhlq6YMIsCOABAAVgEkAEAaisKDAgAEIafvOaEgICgCxIbCM2L0YQFEgcIBBUhlq6YMI8COABAAVgEkAEApQH-o_KPrQECmefLuAG8up6KB8ABBBjiiMmBDFAIWAA',
 			$itemHashes['torso']
 		);
 	}
@@ -204,7 +187,7 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 	{
 		$hero = new Hero( $this->json );
 		$actual = $hero->characterClass();
-		$this->assertEquals( 'witch-doctor', $actual );
+		$this->assertEquals( 'monk', $actual );
 	}
 
 	public function test_itemsHashesBySlot_return_null()
@@ -219,28 +202,28 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 	{
 		$hero = new Hero( $this->json );
 		$actual = $hero->level();
-		$this->assertEquals( 60, $actual );
+		$this->assertEquals( 70, $actual );
 	}
 
 	public function test_hero_paragonLevel()
 	{
 		$hero = new Hero( $this->json );
 		$actual = $hero->paragonLevel();
-		$this->assertEquals( 2, $actual );
+		$this->assertEquals( 194, $actual );
 	}
 
 	public function test_hero_progression()
 	{
 		$hero = new Hero( $this->json );
 		$actual = $hero->progression();
-		$this->assertArrayHasKey( 'normal' , $actual );
+		$this->assertArrayHasKey( 'act1' , $actual );
 	}
 
 	public function test_hero_get()
 	{
 		$hero = new Hero( $this->json );
 		$actual = $hero->get( 'id' );
-		$this->assertEquals( '36131726' , $actual );
+		$this->assertEquals( '3955832' , $actual );
 	}
 
 	public function test_dual_wielding()

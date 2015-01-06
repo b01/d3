@@ -261,27 +261,27 @@ class Hero
 	 */
 	public function highestProgression()
 	{
-		if ( empty($this->progression) )
+		if ( !\is_array($this->progression) )
 		{
 			return '';
 		}
-		// Enjoy the flying V!
+
 		$returnValue = '';
-		foreach ( $this->progression as $level => $progression )
+
+		// When hero has started an act.
+		foreach ( $this->progression as $act => $chapter )
 		{
-			// When the level was not skipped.
-			if ( \is_array($progression) && \count($progression) > 0 )
+			// When quest in the act have been completed.
+			if ( !\array_key_exists('completedQuests', $chapter) )
 			{
-				foreach ( $progression as $act => $progress )
-				{
-					// When the quest is completed.
-					$completedQuests = $progress['completedQuests'];
-					if ( \is_array($completedQuests) && \count($completedQuests) > 0 )
-					{
-						$length = \count( $progress['completedQuests'] ) - 1;
-						$returnValue = "Highest completed: {$level} {$act} {$progress['completedQuests'][ $length ]['name']}";
-					}
-				}
+				continue;
+			}
+
+			$highestQuest = \array_pop( $chapter['completedQuests'] );
+			// When the quest is completed.
+			if ( \is_array($highestQuest) && \count($highestQuest) > 0 )
+			{
+				$returnValue = "Highest quest completed: {$act} - {$highestQuest['name']}";
 			}
 		}
 		return $returnValue;

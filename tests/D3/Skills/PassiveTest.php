@@ -11,7 +11,7 @@ class PassiveTest extends \PHPUnit_Framework_TestCase
 
 	public function setUp()
 	{
-		$json = \file_get_contents( FIXTURES_PATH . DIRECTORY_SEPARATOR . 'hero-36131726.json' );
+		$json = \file_get_contents( FIXTURES_PATH . DIRECTORY_SEPARATOR . 'hero-3955832.json' );
 		$hero = new Hero( $json );
 		$this->skills = $hero->skills()[ 'passive' ];
 	}
@@ -21,7 +21,7 @@ class PassiveTest extends \PHPUnit_Framework_TestCase
 		$skill = $this->skills[ 0 ][ 'skill' ];
 		$passiveSkill = new Passive( $skill );
 		$actual = $passiveSkill->description();
-		$this->assertContains( 'Wheneveranenemydieswithin8yards', $actual) ;
+		$this->assertContains( 'The Spirit costs of Mantra activation effects are reduced by 50%', $actual) ;
 	}
 }
 ?>
