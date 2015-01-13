@@ -330,5 +330,41 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 		$actual = $this->heroNoItems->punchDamage();
 		$this->assertEquals( 2.5, $actual );
 	}
+
+	public function test_arcaneResist()
+	{
+		$actual = $this->heroNoItems->arcaneResist();
+		$this->assertEquals( 8, $actual );
+	}
+
+	public function test_coldResist()
+	{
+		$actual = $this->heroNoItems->coldResist();
+		$this->assertEquals( 8, $actual );
+	}
+
+	public function test_fireResist()
+	{
+		$actual = $this->heroNoItems->fireResist();
+		$this->assertEquals( 8, $actual );
+	}
+
+	public function test_lightningResist()
+	{
+		$actual = $this->heroNoItems->lightningResist();
+		$this->assertEquals( 8, $actual );
+	}
+
+	public function test_physicalResist()
+	{
+		$actual = $this->heroNoItems->physicalResist();
+		$this->assertEquals( 8, $actual );
+	}
+
+	public function test_poisonResist()
+	{
+		$actual = $this->heroNoItems->poisonResist();
+		$this->assertEquals( 8, $actual );
+	}
 }
 ?>

@@ -113,7 +113,7 @@ class Hero
 		$this->items = $this->data[ 'items' ];
 		// Properties that may be empty, if a new character.
 		// This value changed in RoS.
-		if ( \array_key_exists('progress', $this->data))
+		if ( \array_key_exists('progress', $this->data) )
 		{
 			$this->progression = $this->data[ 'progress' ];
 		}
@@ -123,29 +123,30 @@ class Hero
 		}
 		$this->itemModels = NULL;
 
+		$resist = 1 + $this->level() / 10;
 		// Stats
-		$this->arcaneResist = 0;
+		$this->arcaneResist = $resist;
 		$this->armor = 0;
 		$this->attackSpeed = 1.00;
 		$this->blockAmountMin = 0.0;
 		$this->blockAmountMax = 0;
 		$this->blockChance = 0.0;
-		$this->coldResist = 0;
+		$this->coldResist = $resist;
 		$this->critChance = 0.05;
 		$this->critDamage = 0.5;
 		$this->damageIncrease = 0.0;
 		$this->damageReduction = 0.0;
-		$this->fireResist = 0;
+		$this->fireResist = $resist;
 		$this->goldFind = 0.0;
 		$this->intelligence = 0;
 		$this->life = 0;
 		$this->lifeOnHit = 0.0;
 		$this->lifePerKill = 0.0;
 		$this->lifeSteal = 0.0;
-		$this->lightningResist = 0;
+		$this->lightningResist = $resist;
 		$this->magicFind = 0.0;
-		$this->physicalResist = 0;
-		$this->poisonResist = 0;
+		$this->physicalResist = $resist;
+		$this->poisonResist = $resist;
 		$this->primaryResource = 0;
 		$this->punchDamage = 2.5;
 		$this->secondaryResource = 0;
@@ -154,6 +155,15 @@ class Hero
 		$this->thorns = 0.0;
 	}
 
+	/**
+	 * Get arcane resist.
+	 *
+	 * @return int
+	 */
+	public function arcaneResist()
+	{
+		return $this->arcaneResist;
+	}
 
 	/**
 	 * Get armor stat.
@@ -185,6 +195,16 @@ class Hero
 	public function characterClass()
 	{
 		return $this->data[ 'class' ];
+	}
+
+	/**
+	 * Get cold resist.
+	 *
+	 * @return int
+	 */
+	public function coldResist()
+	{
+		return $this->coldResist;
 	}
 
 	/**
@@ -224,6 +244,16 @@ class Hero
 	public function eliteKills()
 	{
 		return (int) $this->data[ 'kills' ][ 'elites' ];
+	}
+
+	/**
+	 * Get fire resist.
+	 *
+	 * @return int
+	 */
+	public function fireResist()
+	{
+		return $this->fireResist;
 	}
 
 	/**
@@ -421,6 +451,16 @@ class Hero
 	}
 
 	/**
+	 * Get lightning resistance.
+	 *
+	 * @return int
+	 */
+	public function lightningResist()
+	{
+		return $this->lightningResist;
+	}
+
+	/**
 	 * Get name.
 	 *
 	 * @return string
@@ -438,6 +478,26 @@ class Hero
 	public function paragonLevel()
 	{
 		return $this->data[ 'paragonLevel' ];
+	}
+
+	/**
+	 * Get physical resistance.
+	 *
+	 * @return int
+	 */
+	public function physicalResist()
+	{
+		return $this->physicalResist;
+	}
+
+	/**
+	 * Get poison resistance.
+	 *
+	 * @return int
+	 */
+	public function poisonResist()
+	{
+		return $this->poisonResist;
 	}
 
 	/**
