@@ -7,12 +7,12 @@ require_once __DIR__
 
 \define( 'TESTS_ROOT', \realpath(__DIR__) );
 \define( 'FIXTURES_PATH', TESTS_ROOT . DIRECTORY_SEPARATOR . 'fixtures' );
-$testConfig = TESTS_ROOT
-	. DIRECTORY_SEPARATOR . 'config'
-	. DIRECTORY_SEPARATOR . 'unit-test.json';
 
 // When test config exists, load setting from config.
 $apiKey = 'noApiKey';
+$testConfig = TESTS_ROOT
+	. DIRECTORY_SEPARATOR . 'config'
+	. DIRECTORY_SEPARATOR . 'unit-test.json';
 if ( \file_exists($testConfig) )
 {
 	$configJson = \file_get_contents( $testConfig );
