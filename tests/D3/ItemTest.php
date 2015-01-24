@@ -39,9 +39,6 @@ class ItemTest extends \PHPUnit_Framework_TestCase
 		$this->assertEquals( 'T09_Weapon_MightyWeapon_1H', $actualRecipe->id, 'Recipe not found!' );
 	}
 
-	/**
-	 * @vcr item-hash-1.yml
-	 */
 	public function test_item_has_no_recipe()
 	{
 		$fixtureFile = $this->fixturesDir . 'item-hash-1.json';

@@ -363,9 +363,9 @@ class Hero
 		}
 		$itemHashes[ 'mainHand' ] = $this->items[ 'mainHand' ];
 		$itemHashes[ 'offHand' ] = $this->items[ 'offHand' ];
-		$itemModels = $pHttp->getItemsAsModels( $itemHashes );
-		$mainHand = $itemModels[ 'mainHand' ];
-		$offHand = $itemModels[ 'offHand' ];
+		$this->itemModels = $pHttp->getItemsAsModels( $itemHashes );
+		$mainHand = $this->itemModels[ 'mainHand' ];
+		$offHand = $this->itemModels[ 'offHand' ];
 		return ( $mainHand!== NULL && $mainHand->isWeapon() && !(bool)$mainHand->type->twoHanded )
 			 && ( $offHand!== NULL && $offHand->isWeapon() );
 	}
@@ -588,6 +588,38 @@ class Hero
 	{
 		$this->baseAttributeLevelBonus( 'vitality', 2 );
 		return $this->vitality;
+	}
+
+	/**
+	 * Get weapon status.
+	 *
+	 * @param Http $http
+	 * @return string Dual wielding, single-handed, two-handed, unarmed.
+	 */
+	public function weaponStatus( Http $http )
+	{
+		if ( $this->isDualWielding($http) )
+		{
+			return 'dual wielding';
+		}
+		// Warning: these get set isDualWielding, which is why that is the first check.
+		$mainHand = $this->itemModels[ 'mainHand' ];
+		$offHand = $this->itemModels[ 'offHand' ];
+
+		// When there is some item equipped in either hand.
+		if ( $mainHand !== NULL || $offHand !== NULL )
+		{
+			if ( (bool)$mainHand->type->twoHanded )
+			{
+				return 'two-handed';
+			}
+
+			if ($mainHand->isWeapon() || $offHand->isWeapon() )
+			{
+				return 'single-handed';
+			}
+		}
+		return 'unarmed';
 	}
 
 	/**

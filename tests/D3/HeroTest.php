@@ -34,7 +34,6 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 		$heroFixture = $this->fixturesDir . 'hero-3955832-no-items.json';
 		$noItemsJson = \file_get_contents( $heroFixture );
 		$this->heroNoItems = new Hero( $noItemsJson );
-
 	}
 
 	public function test_getting_the_hero_id()
@@ -228,9 +227,8 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 
 	public function test_dual_wielding()
 	{
-		$apiKey = \D3_TEST_API_KEY;
 		$httpClient = new HttpClient();
-		$httpClient = new Http($apiKey, 'msuBREAKER#1374', $httpClient);
+		$httpClient = new Http(\D3_TEST_API_KEY, 'msuBREAKER#1374', $httpClient);
 		$heroFixture = $this->fixturesDir . 'hero-3955832-no-items.json';
 		$heroJson = \file_get_contents( $heroFixture );
 		$hero = new Hero( $heroJson );
@@ -365,6 +363,35 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 	{
 		$actual = $this->heroNoItems->poisonResist();
 		$this->assertEquals( 8, $actual );
+	}
+
+	/**
+	 * @interception weapon-status-unarmed
+	 */
+	public function test_weaponStatus_unarmed()
+	{
+		$httpClient = $this->getHttpClient();
+		$actual = $this->heroNoItems->weaponStatus( $httpClient );
+		$this->assertEquals( 'unarmed', $actual );
+	}
+
+	public function test_weaponStatus_equpped()
+	{
+		\Kshabazz\Interception\StreamWrappers\Http::persistSaveFile( 'weapon-status-single-handed' );
+		$hero = new Hero( $this->json );
+		$httpClient = $this->getHttpClient();
+		$actual = $hero->weaponStatus( $httpClient );
+		$this->assertEquals( 'single-handed', $actual );
+	}
+
+	/**
+	 * @return Http
+	 */
+	private function getHttpClient()
+	{
+		$battleNetId = 'msuBREAKER#1374';
+		$httpClient = new HttpClient();
+		return new Http( \D3_TEST_API_KEY, $battleNetId, $httpClient );
 	}
 }
 ?>
