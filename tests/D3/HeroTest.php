@@ -377,11 +377,11 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 
 	public function test_weaponStatus_equpped()
 	{
-		\Kshabazz\Interception\StreamWrappers\Http::persistSaveFile( 'weapon-status-single-handed' );
+		\Kshabazz\Interception\StreamWrappers\Http::persistSaveFile( 'weapon-status-one-handed' );
 		$hero = new Hero( $this->json );
 		$httpClient = $this->getHttpClient();
 		$actual = $hero->weaponStatus( $httpClient );
-		$this->assertEquals( 'single-handed', $actual );
+		$this->assertEquals( 'one-handed', $actual );
 	}
 
 	/**

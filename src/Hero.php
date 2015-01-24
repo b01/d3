@@ -616,7 +616,7 @@ class Hero
 
 			if ($mainHand->isWeapon() || $offHand->isWeapon() )
 			{
-				return 'single-handed';
+				return 'one-handed';
 			}
 		}
 		return 'unarmed';

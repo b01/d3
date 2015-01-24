@@ -1,0 +1,159 @@
+HTTP/1.1 200 OK
+Content-Language: en-US
+Content-Type: application/json;charset=UTF-8
+Date: Sat, 24 Jan 2015 19:17:20 GMT
+Last-Modified: Mon, 12 Jan 2015 23:51:00 GMT
+Server: Apache
+Vary: Accept-Encoding
+X-Frame-Options: SAMEORIGIN
+X-Mashery-Responder: prod-j-worker-us-east-1b-59.mashery.com
+Content-Length: 3648
+Connection: Close
+
+{
+  "id" : "Shield_209",
+  "name" : "Thorned Palisade",
+  "icon" : "shield_209_demonhunter_male",
+  "displayColor" : "yellow",
+  "tooltipParams" : "item/Cl8I0pef3gISBwgEFRMMO2wddWfm8R3-o_KPHZoGAMsdIJ3kBB1rB3fOHW3NiR4iCwgAFc3-AQAYGiAiMIsCOLgEQABQEFgEYLgEpQEgneQErQHI-ryguAG5mfGGDcABAximsNjDDVAIWAA",
+  "requiredLevel" : 70,
+  "itemLevel" : 70,
+  "bonusAffixes" : 0,
+  "bonusAffixesMax" : 0,
+  "accountBound" : true,
+  "typeName" : "Rare Shield",
+  "type" : {
+    "twoHanded" : false,
+    "id" : "Shield"
+  },
+  "slots" : [ "right-hand", "follower-right-hand" ],
+  "attributes" : {
+    "primary" : [ {
+      "text" : "+569 Dexterity",
+      "color" : "blue",
+      "affixType" : "enchant"
+    }, {
+      "text" : "+557 Vitality",
+      "color" : "blue",
+      "affixType" : "default"
+    }, {
+      "text" : "+10% Life",
+      "color" : "blue",
+      "affixType" : "default"
+    }, {
+      "text" : "Critical Hit Chance Increased by 10.0%",
+      "color" : "blue",
+      "affixType" : "default"
+    } ],
+    "secondary" : [ {
+      "text" : "+123 Cold Resistance",
+      "color" : "blue",
+      "affixType" : "default"
+    }, {
+      "text" : "Ranged and melee attackers take 1799 damage per hit",
+      "color" : "blue",
+      "affixType" : "utility"
+    } ],
+    "passive" : [ ]
+  },
+  "attributesRaw" : {
+    "Thorns_Fixed#Physical" : {
+      "min" : 1799.0,
+      "max" : 1799.0
+    },
+    "Loot_2_0_Drop" : {
+      "min" : 1.0,
+      "max" : 1.0
+    },
+    "Hitpoints_Max_Percent_Bonus_Item" : {
+      "min" : 0.1,
+      "max" : 0.1
+    },
+    "Item_Binding_Level_Override" : {
+      "min" : 2.0,
+      "max" : 2.0
+    },
+    "Resistance#Cold" : {
+      "min" : 123.0,
+      "max" : 123.0
+    },
+    "Block_Amount_Item_Delta" : {
+      "min" : 7935.0,
+      "max" : 7935.0
+    },
+    "Block_Chance_Item" : {
+      "min" : 0.16,
+      "max" : 0.16
+    },
+    "Dexterity_Item" : {
+      "min" : 569.0,
+      "max" : 569.0
+    },
+    "Vitality_Item" : {
+      "min" : 557.0,
+      "max" : 557.0
+    },
+    "Block_Amount_Item_Min" : {
+      "min" : 15870.0,
+      "max" : 15870.0
+    },
+    "Crit_Percent_Bonus_Capped" : {
+      "min" : 0.1,
+      "max" : 0.1
+    },
+    "Season" : {
+      "min" : 0.0,
+      "max" : 0.0
+    }
+  },
+  "randomAffixes" : [ ],
+  "gems" : [ ],
+  "socketEffects" : [ ],
+  "craftedBy" : [ {
+    "id" : "T12_Armor_Shield",
+    "slug" : "sovereign-ascended-shield",
+    "name" : "Sovereign Ascended Shield",
+    "cost" : 32400,
+    "reagents" : [ {
+      "quantity" : 12,
+      "item" : {
+        "id" : "Crafting_AssortedParts_01",
+        "name" : "Reusable Parts",
+        "icon" : "crafting_assortedparts_01_demonhunter_male",
+        "displayColor" : "white",
+        "tooltipParams" : "item/reusable-parts"
+      }
+    }, {
+      "quantity" : 19,
+      "item" : {
+        "id" : "Crafting_Magic_01",
+        "name" : "Arcane Dust",
+        "icon" : "crafting_magic_01_demonhunter_male",
+        "displayColor" : "blue",
+        "tooltipParams" : "item/arcane-dust"
+      }
+    }, {
+      "quantity" : 15,
+      "item" : {
+        "id" : "Crafting_Rare_01",
+        "name" : "Veiled Crystal",
+        "icon" : "crafting_rare_01_demonhunter_male",
+        "displayColor" : "yellow",
+        "tooltipParams" : "item/veiled-crystal"
+      }
+    } ],
+    "itemProduced" : {
+      "id" : "Shield_209",
+      "name" : "Sovereign Ascended Shield",
+      "icon" : "shield_209_demonhunter_male",
+      "displayColor" : "yellow",
+      "tooltipParams" : "recipe/sovereign-ascended-shield"
+    }
+  } ],
+  "seasonRequiredToDrop" : -1,
+  "isSeasonRequiredToDrop" : false,
+  "blockChance" : {
+    "min" : 0.16,
+    "max" : 0.16
+  }
+}

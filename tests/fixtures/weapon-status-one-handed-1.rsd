@@ -1,0 +1,172 @@
+HTTP/1.1 200 OK
+Content-Language: en-US
+Content-Type: application/json;charset=UTF-8
+Date: Sat, 24 Jan 2015 19:17:20 GMT
+Last-Modified: Mon, 12 Jan 2015 23:51:00 GMT
+Server: Apache
+Vary: Accept-Encoding
+X-Frame-Options: SAMEORIGIN
+X-Mashery-Responder: prod-j-worker-us-east-1b-51.mashery.com
+Connection: Close
+
+{
+  "id" : "Unique_Sword_1H_103_x1",
+  "name" : "Gift of Silaria",
+  "icon" : "unique_sword_1h_103_x1_demonhunter_male",
+  "displayColor" : "orange",
+  "tooltipParams" : "item/CogBCMaw7d0GEgcIBBUY0HtQHTD77J8dFplnOx2MHL6WHevi5AUdyfq8oB2PWNYeMIsCOLoCQABQElgEYLoCaisKDAgAEOzG3rSBgICgNxIbCMeMte8JEgcIBBUjlq6YMI8COABAAVgEkAEAgAFGpQGMHL6WrQFmIwZQtQGb2dnvuAHDsemNDMABARiwwN6HClAIWAA",
+  "requiredLevel" : 70,
+  "itemLevel" : 70,
+  "bonusAffixes" : 0,
+  "bonusAffixesMax" : 0,
+  "accountBound" : true,
+  "flavorText" : "Silaria, a renowned explorer, traveled the length and breadth of Sanctuary in search of adventure. This sword was designed with her compact build and lethally efficient fighting style in mind, and it is reputed to imbue its wielder with Silaria's prowess.",
+  "typeName" : "Legendary Sword",
+  "type" : {
+    "twoHanded" : false,
+    "id" : "Sword"
+  },
+  "dps" : {
+    "min" : 2309.3699606716636,
+    "max" : 2309.3699606716636
+  },
+  "attacksPerSecond" : {
+    "min" : 1.4699999749660493,
+    "max" : 1.4699999749660493
+  },
+  "minDamage" : {
+    "min" : 168.0,
+    "max" : 168.0
+  },
+  "maxDamage" : {
+    "min" : 392.0,
+    "max" : 392.0
+  },
+  "slots" : [ "left-hand", "follower-left-hand", "right-hand", "follower-right-hand" ],
+  "attributes" : {
+    "primary" : [ {
+      "text" : "+1184–1398 Lightning Damage",
+      "color" : "blue",
+      "affixType" : "default"
+    }, {
+      "text" : "+653 Dexterity",
+      "color" : "blue",
+      "affixType" : "default"
+    }, {
+      "text" : "Increases Attack Speed by 5%",
+      "color" : "blue",
+      "affixType" : "default"
+    }, {
+      "text" : "+11% Movement Speed",
+      "color" : "blue",
+      "affixType" : "utility"
+    } ],
+    "secondary" : [ {
+      "text" : "2.5% Chance to Slow on Hit",
+      "color" : "blue",
+      "affixType" : "utility"
+    } ],
+    "passive" : [ ]
+  },
+  "attributesRaw" : {
+    "Dexterity_Item" : {
+      "min" : 653.0,
+      "max" : 653.0
+    },
+    "Item_Binding_Level_Override" : {
+      "min" : 2.0,
+      "max" : 2.0
+    },
+    "Weapon_On_Hit_Slow_Proc_Chance" : {
+      "min" : 0.024599999999999955,
+      "max" : 0.024599999999999955
+    },
+    "Attacks_Per_Second_Item_Percent" : {
+      "min" : 0.05,
+      "max" : 0.05
+    },
+    "Loot_2_0_Drop" : {
+      "min" : 1.0,
+      "max" : 1.0
+    },
+    "Damage_Weapon_Min#Physical" : {
+      "min" : 168.0,
+      "max" : 168.0
+    },
+    "Movement_Scalar" : {
+      "min" : 0.11,
+      "max" : 0.11
+    },
+    "Damage_Weapon_Delta#Lightning" : {
+      "min" : 214.0,
+      "max" : 214.0
+    },
+    "Attacks_Per_Second_Item" : {
+      "min" : 1.399999976158142,
+      "max" : 1.399999976158142
+    },
+    "Durability_Max" : {
+      "min" : 314.0,
+      "max" : 314.0
+    },
+    "Item_LegendaryItem_Level_Override" : {
+      "min" : 70.0,
+      "max" : 70.0
+    },
+    "Season" : {
+      "min" : 0.0,
+      "max" : 0.0
+    },
+    "Durability_Cur" : {
+      "min" : 314.0,
+      "max" : 314.0
+    },
+    "Damage_Weapon_Delta#Physical" : {
+      "min" : 224.0,
+      "max" : 224.0
+    },
+    "Damage_Weapon_Min#Lightning" : {
+      "min" : 1184.0,
+      "max" : 1184.0
+    },
+    "Sockets" : {
+      "min" : 1.0,
+      "max" : 1.0
+    },
+    "Item_Legendary_Item_Base_Item" : {
+      "min" : -2.70935653E8,
+      "max" : -2.70935653E8
+    }
+  },
+  "randomAffixes" : [ ],
+  "gems" : [ {
+    "item" : {
+      "id" : "Emerald_19",
+      "name" : "Flawless Royal Emerald",
+      "icon" : "emerald_19_demonhunter_male",
+      "displayColor" : "blue",
+      "tooltipParams" : "item/ChsIx4y17wkSBwgEFSOWrpgwjwI4AEABWASQAQAYuaeL9Qw"
+    },
+    "isGem" : true,
+    "isJewel" : false,
+    "attributes" : {
+      "primary" : [ {
+        "text" : "Critical Hit Damage Increased by 130.0% ",
+        "color" : "blue",
+        "affixType" : "default"
+      } ],
+      "secondary" : [ ],
+      "passive" : [ ]
+    },
+    "attributesRaw" : {
+      "Crit_Damage_Percent" : {
+        "min" : 1.3,
+        "max" : 1.3
+      }
+    }
+  } ],
+  "socketEffects" : [ ],
+  "craftedBy" : [ ],
+  "seasonRequiredToDrop" : -1,
+  "isSeasonRequiredToDrop" : false
+}
