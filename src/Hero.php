@@ -172,7 +172,7 @@ class Hero
 	 */
 	public function armor()
 	{
-		$levelBonus = $this->level() * 3;
+		$levelBonus = $this->level() * 1;
 		$this->armor = $this->statBase + $levelBonus + $this->strength();
 		return $this->armor;
 	}

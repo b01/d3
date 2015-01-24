@@ -310,7 +310,7 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 	public function test_armor()
 	{
 		$actual = $this->heroNoItems->armor();
-		$this->assertEquals( 294, $actual );
+		$this->assertEquals( 154, $actual );
 	}
 
 	public function test_criticalHitChance()
