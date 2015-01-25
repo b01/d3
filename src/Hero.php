@@ -335,7 +335,7 @@ class Hero
 		$primaryResource = $this->primaryAttribute();
 		$multiplier = ( $primaryResource === 'Intelligence_Item' ) ? 3 : 1;
 		$this->baseAttributeLevelBonus( 'intelligence', $multiplier );
-		return $this->intelligence;
+		return (int) $this->intelligence;
 	}
 
 	/**
@@ -437,7 +437,7 @@ class Hero
 	 */
 	public function lastUpdated()
 	{
-		return (int) $this->data[ 'last-updated' ];
+		return $this->data[ 'last-updated' ];
 	}
 
 	/**
