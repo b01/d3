@@ -646,20 +646,20 @@ class Hero
 		$primaryAttribute = NULL;
 		switch( $this->characterClass() )
 		{
-			case "monk":
-			case "demon hunter":
-			case "demon-hunter":
-				$primaryAttribute = "Dexterity_Item";
+			case 'monk':
+			case 'demon hunter':
+			case 'demon-hunter':
+				$primaryAttribute = 'Dexterity_Item';
 				break;
-			case "crusader":
-			case "barbarian":
-				$primaryAttribute = "Strength_Item";
+			case 'crusader':
+			case 'barbarian':
+				$primaryAttribute = 'Strength_Item';
 				break;
-			case "wizard":
-			case "witch-doctor":
-			case "witch doctor":
-			case "shaman":
-				$primaryAttribute = "Intelligence_Item";
+			case 'wizard':
+			case 'witch-doctor':
+			case 'witch doctor':
+			case 'shaman':
+				$primaryAttribute = 'Intelligence_Item';
 				break;
 			default:
 				$trace = debug_backtrace();
