@@ -554,19 +554,6 @@ class Hero
 	}
 
 	/**
-	 * Get primary stat bonus (bonuses from items not included).
-	 *
-	 * @return int
-	 */
-	public function primaryAttributeBonus()
-	{
-		$primaryResource = \str_replace( '_Item', '', $this->primaryAttribute() );
-		$primaryResource = \strtolower( $primaryResource );
-		$primaryResourceBonus = 1 + $this->{$primaryResource}() / 100;
-		return $primaryResourceBonus;
-	}
-
-	/**
 	 * Get strength.
 	 *
 	 * @return int
