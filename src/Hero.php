@@ -230,9 +230,7 @@ class Hero
 	 */
 	public function dexterity()
 	{
-		$primaryResource = $this->primaryAttribute();
-		$multiplier = ( $primaryResource === 'dexterity' ) ? 3 : 1;
-		$this->baseAttributeLevelBonus( 'dexterity', $multiplier );
+		$this->baseAttributeLevelBonus( 'dexterity' );
 		return $this->dexterity;
 	}
 
@@ -332,9 +330,7 @@ class Hero
 	 */
 	public function intelligence()
 	{
-		$primaryResource = $this->primaryAttribute();
-		$multiplier = ( $primaryResource === 'intelligence' ) ? 3 : 1;
-		$this->baseAttributeLevelBonus( 'intelligence', $multiplier );
+		$this->baseAttributeLevelBonus( 'intelligence' );
 		return (int) $this->intelligence;
 	}
 
@@ -585,9 +581,7 @@ class Hero
 	 */
 	public function strength()
 	{
-		$primaryResource = $this->primaryAttribute();
-		$multiplier = ( $primaryResource === 'strength' ) ? 3 : 1;
-		$this->baseAttributeLevelBonus( 'strength', $multiplier );
+		$this->baseAttributeLevelBonus( 'strength' );
 		return $this->strength;
 	}
 
@@ -640,12 +634,14 @@ class Hero
 	 * @param string $pProperty
 	 * @param int $pMultiplier
 	 */
-	private function baseAttributeLevelBonus( $pProperty, $pMultiplier )
+	private function baseAttributeLevelBonus( $pProperty, $pMultiplier = 1 )
 	{
+		$primaryResource = $this->primaryAttribute();
+		$multiplier = ( $primaryResource === $pProperty ) ? 3 : $pMultiplier;
 		$this->{$pProperty} = 7;
 		$totalLevels = $this->level();
 		// Compute total based on hero level.
-		$this->{$pProperty} += ( $totalLevels * $pMultiplier );
+		$this->{$pProperty} += ( $totalLevels * $multiplier );
 	}
 
 	/**
