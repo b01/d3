@@ -118,7 +118,7 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 		$hero = new Hero( $this->json );
 		$primaryAttribute = $hero->primaryAttribute();
 		$this->assertEquals(
-			'Dexterity_Item',
+			'dexterity',
 			$primaryAttribute,
 			'Incorrect primary attribute returned.'
 		);

@@ -231,7 +231,7 @@ class Hero
 	public function dexterity()
 	{
 		$primaryResource = $this->primaryAttribute();
-		$multiplier = ( $primaryResource === 'Dexterity_Item' ) ? 3 : 1;
+		$multiplier = ( $primaryResource === 'dexterity' ) ? 3 : 1;
 		$this->baseAttributeLevelBonus( 'dexterity', $multiplier );
 		return $this->dexterity;
 	}
@@ -333,7 +333,7 @@ class Hero
 	public function intelligence()
 	{
 		$primaryResource = $this->primaryAttribute();
-		$multiplier = ( $primaryResource === 'Intelligence_Item' ) ? 3 : 1;
+		$multiplier = ( $primaryResource === 'intelligence' ) ? 3 : 1;
 		$this->baseAttributeLevelBonus( 'intelligence', $multiplier );
 		return (int) $this->intelligence;
 	}
@@ -561,7 +561,7 @@ class Hero
 	public function strength()
 	{
 		$primaryResource = $this->primaryAttribute();
-		$multiplier = ( $primaryResource === 'Strength_Item' ) ? 3 : 1;
+		$multiplier = ( $primaryResource === 'strength' ) ? 3 : 1;
 		$this->baseAttributeLevelBonus( 'strength', $multiplier );
 		return $this->strength;
 	}
@@ -636,17 +636,17 @@ class Hero
 			case 'monk':
 			case 'demon hunter':
 			case 'demon-hunter':
-				$primaryAttribute = 'Dexterity_Item';
+				$primaryAttribute = 'dexterity';
 				break;
 			case 'crusader':
 			case 'barbarian':
-				$primaryAttribute = 'Strength_Item';
+				$primaryAttribute = 'strength';
 				break;
 			case 'wizard':
 			case 'witch-doctor':
 			case 'witch doctor':
 			case 'shaman':
-				$primaryAttribute = 'Intelligence_Item';
+				$primaryAttribute = 'intelligence';
 				break;
 			default:
 				$trace = debug_backtrace();
