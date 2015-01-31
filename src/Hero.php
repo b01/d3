@@ -511,7 +511,7 @@ class Hero
 	}
 
 	/**
-	 * Get primary attribute.
+	 * Get primary attribute, using the hero's class to determine the primary attribute.
 	 *
 	 * @return string
 	 */
@@ -519,8 +519,33 @@ class Hero
 	{
 		if ( !isset($this->primaryAttribute) )
 		{
-			$this->primaryAttribute = $this->determinePrimaryAttribute();
+			switch( $this->characterClass() )
+			{
+				case 'monk':
+				case 'demon hunter':
+				case 'demon-hunter':
+					$this->primaryAttribute = 'dexterity';
+					break;
+				case 'crusader':
+				case 'barbarian':
+					$this->primaryAttribute = 'strength';
+					break;
+				case 'wizard':
+				case 'witch-doctor':
+				case 'witch doctor':
+				case 'shaman':
+					$this->primaryAttribute = 'intelligence';
+					break;
+				default:
+					$trace = debug_backtrace();
+					trigger_error(
+						'There is no hero class ' . $this->characterClass() .
+						'. Error occurred in ' . $trace[ 0 ][ 'file' ] . ' on line ' . $trace[ 0 ][ 'line' ],
+						E_USER_NOTICE
+					);
+			}
 		}
+
 		return $this->primaryAttribute;
 	}
 
@@ -621,42 +646,6 @@ class Hero
 		$totalLevels = $this->level();
 		// Compute total based on hero level.
 		$this->{$pProperty} += ( $totalLevels * $pMultiplier );
-	}
-
-	/**
-	 * Use the hero's class to determine the primary attribute.
-	 *
-	 * @return string
-	 */
-	private function determinePrimaryAttribute()
-	{
-		$primaryAttribute = NULL;
-		switch( $this->characterClass() )
-		{
-			case 'monk':
-			case 'demon hunter':
-			case 'demon-hunter':
-				$primaryAttribute = 'dexterity';
-				break;
-			case 'crusader':
-			case 'barbarian':
-				$primaryAttribute = 'strength';
-				break;
-			case 'wizard':
-			case 'witch-doctor':
-			case 'witch doctor':
-			case 'shaman':
-				$primaryAttribute = 'intelligence';
-				break;
-			default:
-				$trace = debug_backtrace();
-				trigger_error(
-					'There is no hero class ' . $this->characterClass() .
-					'. Error occurred in ' . $trace[ 0 ][ 'file' ] . ' on line ' . $trace[ 0 ][ 'line' ],
-					E_USER_NOTICE
-				);
-		}
-		return $primaryAttribute;
 	}
 
 	/**
