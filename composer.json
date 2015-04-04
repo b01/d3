@@ -17,19 +17,10 @@
 		}
 	},
 	"description": "An interface (written in PHP) for accessing Battle.net Diablo 3 REST service.",
-	"extra": {
-		"branch-alias": {
-			"dev-master": "1.1.x-dev"
-		}
-	},
 	"keywords": ["diablo 3", "interface", "REST", "blizzard"],
 	"license": "MIT",
 	"name": "kshabazz/battlenet-d3",
 	"repositories": [
-		{
-			"type": "vcs",
-			"url": "https://github.com/b01/slib"
-		},
 		{
 			"type": "vcs",
 			"url": "https://github.com/b01/interception"
