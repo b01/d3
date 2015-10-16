@@ -1,10 +1,12 @@
-<?php namespace Kshabazz\Tests\BattleNet\D3\Connections;
+<?php namespace Kshabazz\BattleNet\D3\Tests\Connections;
 /**
  * HttpTest test.
  */
 
 use \Kshabazz\BattleNet\D3\Connections\Http,
 	\Kshabazz\Slib\HttpClient;
+
+use const \Kshabazz\BattleNet\D3\Tests\API_KEY;
 
 /**
  * Class HttpTest
@@ -27,7 +29,7 @@ class HttpTest extends \PHPUnit_Framework_TestCase
 		$this->battleNetUrlSafeId = 'msuBREAKER-1374';
 		$this->heroId = 3955832;
 		$this->fixturesDir = \FIXTURES_PATH . DIRECTORY_SEPARATOR;
-		$this->apiKey = \D3_TEST_API_KEY;
+		$this->apiKey = API_KEY;
 	}
 
 	public function test_getting_a_url_safe_battleNet_id()

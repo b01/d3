@@ -13,10 +13,12 @@ class ProfileTest extends \PHPUnit_Framework_TestCase
 {
 	private
 		/** @var string */
-		$fixturesDir;
+		$fixturesDir,
+		$battleNetTag;
 
 	public function setUp()
 	{
+		$this->battleNetTag = 'msuBREAKER#1374';
 		$this->fixturesDir = \FIXTURES_PATH . DIRECTORY_SEPARATOR;
 	}
 
@@ -36,7 +38,7 @@ class ProfileTest extends \PHPUnit_Framework_TestCase
 		$filename = $this->fixturesDir . 'profile-msuBREAKER-1374.json';
 		$profileJson = \file_get_contents( $filename );
 		$profile = new Profile( $profileJson );
-		$this->assertContains( 'msuBREAKER#1374', $profile->battleTag() );
+		$this->assertContains( $this->battleNetTag, $profile->battleTag() );
 	}
 
 	public function test_profile_heroes()
@@ -105,7 +107,7 @@ class ProfileTest extends \PHPUnit_Framework_TestCase
 		$profileJson = \file_get_contents( $filename );
 		$profile = new Profile( $profileJson );
 		$actual = $profile->get( 'battleTag' );
-		$this->assertEquals( 'msuBREAKER#1374', $actual );
+		$this->assertEquals( $this->battleNetTag, $actual );
 		return $profile;
 	}
 
@@ -115,7 +117,7 @@ class ProfileTest extends \PHPUnit_Framework_TestCase
 	public function test_profile_get_when_isset( $profile )
 	{
 		$actual = $profile->get( 'battleTag' );
-		$this->assertEquals( 'msuBREAKER#1374', $actual );
+		$this->assertEquals( $this->battleNetTag, $actual );
 		return $profile;
 	}
 
@@ -127,7 +129,17 @@ class ProfileTest extends \PHPUnit_Framework_TestCase
 	public function test_profile_get_undefined_property( $profile )
 	{
 		$actual = $profile->get( 'invalidProperty' );
-		$this->assertEquals( 'msuBREAKER#1374', $actual );
+		$this->assertEquals($this->battleNetTag , $actual );
 		return $profile;
+	}
+
+	public function test_factory()
+	{
+		$actual = Profile::factory(
+			\Kshabazz\BattleNet\D3\Tests\API_KEY,
+			$this->battleNetTag
+		);
+
+		$this->assertInstanceOf('\\Kshabazz\\BattleNet\\D3\\Profile', $actual);
 	}
 }

@@ -17,6 +17,34 @@ class Profile implements \JsonSerializable
 		/** @var string */
 		$json;
 
+	/**
+	 * Get a hero profile from Battle.Net.
+	 *
+	 * @param string $pApiKey
+	 * @param string $pBattleNetTag
+	 * @return \Kshabazz\BattleNet\D3\Profile
+	 */
+	static public function factory( $pApiKey, $pBattleNetTag )
+	{
+		// Get an HTTP client, currently only my custom HTTP client works.
+		$httpClient = new \Kshabazz\Slib\HttpClient();
+
+		// Initialize a battle.net HTTP client.
+		$bnClient = new \Kshabazz\BattleNet\D3\Connections\Http( $pApiKey, $pBattleNetTag, $httpClient );
+
+		// Get the profile for the Battle.net tag (this will be the raw JSON).
+		$profileJson = $bnClient->getProfile();
+
+		// Pass the profile JSON into a Profile model for accessing common properties.
+		return new self( $profileJson );
+	}
+
+	/**
+	 * Constructor
+	 *
+	 * @param $pJson
+	 * @throws \Exception
+	 */
 	public function __construct( $pJson )
 	{
 		$this->json = $pJson;

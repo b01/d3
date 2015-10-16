@@ -1,0 +1,402 @@
+HTTP/1.1 200 OK
+Content-Language: en-US
+Content-Type: application/json;charset=UTF-8
+Date: Fri, 16 Oct 2015 12:48:46 GMT
+Server: Apache
+Vary: Accept-Encoding
+X-Frame-Options: SAMEORIGIN
+X-Mashery-Responder: prod-j-worker-us-east-1e-114.mashery.com
+X-Plan-QPS-Allotted: 100
+X-Plan-QPS-Current: 1
+X-Plan-Quota-Allotted: 36000
+X-Plan-Quota-Current: 8
+X-Plan-Quota-Reset: Friday, October 16, 2015 1:00:00 PM GMT
+Connection: Close
+
+{
+  "battleTag" : "msuBREAKER#1374",
+  "paragonLevel" : 469,
+  "paragonLevelHardcore" : 164,
+  "paragonLevelSeason" : 258,
+  "paragonLevelSeasonHardcore" : 0,
+  "guildName" : "",
+  "heroes" : [ {
+    "id" : 3955832,
+    "name" : "Khalil",
+    "class" : "monk",
+    "gender" : 0,
+    "level" : 70,
+    "kills" : {
+      "elites" : 11038
+    },
+    "paragonLevel" : 469,
+    "hardcore" : false,
+    "seasonal" : false,
+    "last-updated" : 1435536409,
+    "dead" : false
+  }, {
+    "id" : 60634458,
+    "name" : "Aahil",
+    "class" : "monk",
+    "gender" : 0,
+    "level" : 70,
+    "kills" : {
+      "elites" : 10145
+    },
+    "paragonLevel" : 469,
+    "hardcore" : false,
+    "seasonal" : false,
+    "last-updated" : 1439602913,
+    "dead" : false
+  }, {
+    "id" : 65776416,
+    "name" : "Valus",
+    "class" : "wizard",
+    "gender" : 0,
+    "level" : 70,
+    "kills" : {
+      "elites" : 6197
+    },
+    "paragonLevel" : 258,
+    "hardcore" : false,
+    "seasonal" : true,
+    "last-updated" : 1444536313,
+    "dead" : false
+  }, {
+    "id" : 25879566,
+    "name" : "Khal",
+    "class" : "witch-doctor",
+    "gender" : 0,
+    "level" : 70,
+    "kills" : {
+      "elites" : 2902
+    },
+    "paragonLevel" : 469,
+    "hardcore" : false,
+    "seasonal" : false,
+    "last-updated" : 1435535814,
+    "dead" : false
+  }, {
+    "id" : 63049271,
+    "name" : "Khalil",
+    "class" : "barbarian",
+    "gender" : 0,
+    "level" : 70,
+    "kills" : {
+      "elites" : 5453
+    },
+    "paragonLevel" : 469,
+    "hardcore" : false,
+    "seasonal" : false,
+    "last-updated" : 1440713549,
+    "dead" : false
+  }, {
+    "id" : 58252196,
+    "name" : "Kahara",
+    "class" : "monk",
+    "gender" : 1,
+    "level" : 70,
+    "kills" : {
+      "elites" : 5142
+    },
+    "paragonLevel" : 164,
+    "hardcore" : true,
+    "seasonal" : false,
+    "last-updated" : 1435622221,
+    "dead" : false
+  }, {
+    "id" : 38464947,
+    "name" : "Kara",
+    "class" : "demon-hunter",
+    "gender" : 1,
+    "level" : 70,
+    "kills" : {
+      "elites" : 1715
+    },
+    "paragonLevel" : 164,
+    "hardcore" : true,
+    "seasonal" : false,
+    "last-updated" : 1435536791,
+    "dead" : false
+  }, {
+    "id" : 35662076,
+    "name" : "Karsta",
+    "class" : "wizard",
+    "gender" : 1,
+    "level" : 70,
+    "kills" : {
+      "elites" : 1639
+    },
+    "paragonLevel" : 164,
+    "hardcore" : true,
+    "seasonal" : false,
+    "last-updated" : 1435536833,
+    "dead" : false
+  }, {
+    "id" : 36641782,
+    "name" : "Katharta",
+    "class" : "barbarian",
+    "gender" : 1,
+    "level" : 70,
+    "kills" : {
+      "elites" : 1546
+    },
+    "paragonLevel" : 164,
+    "hardcore" : true,
+    "seasonal" : false,
+    "last-updated" : 1435536697,
+    "dead" : false
+  }, {
+    "id" : 63049165,
+    "name" : "Khalil",
+    "class" : "demon-hunter",
+    "gender" : 0,
+    "level" : 70,
+    "kills" : {
+      "elites" : 2541
+    },
+    "paragonLevel" : 469,
+    "hardcore" : false,
+    "seasonal" : false,
+    "last-updated" : 1440274610,
+    "dead" : false
+  }, {
+    "id" : 45732449,
+    "name" : "Kashara",
+    "class" : "witch-doctor",
+    "gender" : 1,
+    "level" : 70,
+    "kills" : {
+      "elites" : 1564
+    },
+    "paragonLevel" : 164,
+    "hardcore" : true,
+    "seasonal" : false,
+    "last-updated" : 1435536875,
+    "dead" : false
+  }, {
+    "id" : 48438795,
+    "name" : "KaVala",
+    "class" : "crusader",
+    "gender" : 1,
+    "level" : 70,
+    "kills" : {
+      "elites" : 1599
+    },
+    "paragonLevel" : 164,
+    "hardcore" : true,
+    "seasonal" : false,
+    "last-updated" : 1435536496,
+    "dead" : false
+  } ],
+  "lastHeroPlayed" : 65776416,
+  "lastUpdated" : 1444536313,
+  "kills" : {
+    "monsters" : 2238128,
+    "elites" : 119497,
+    "hardcoreMonsters" : 768902
+  },
+  "highestHardcoreLevel" : 70,
+  "timePlayed" : {
+    "barbarian" : 0.276,
+    "crusader" : 0.063,
+    "demon-hunter" : 0.268,
+    "monk" : 1.0,
+    "witch-doctor" : 0.236,
+    "wizard" : 0.402
+  },
+  "progression" : {
+    "act1" : true,
+    "act2" : true,
+    "act3" : true,
+    "act4" : true,
+    "act5" : true
+  },
+  "fallenHeroes" : [ ],
+  "blacksmith" : {
+    "slug" : "blacksmith",
+    "level" : 3,
+    "stepCurrent" : 1,
+    "stepMax" : 5
+  },
+  "jeweler" : {
+    "slug" : "jeweler",
+    "level" : 12,
+    "stepCurrent" : 0,
+    "stepMax" : 1
+  },
+  "mystic" : {
+    "slug" : "mystic",
+    "level" : 12,
+    "stepCurrent" : 0,
+    "stepMax" : 1
+  },
+  "blacksmithHardcore" : {
+    "slug" : "blacksmith",
+    "level" : 3,
+    "stepCurrent" : 1,
+    "stepMax" : 5
+  },
+  "jewelerHardcore" : {
+    "slug" : "jeweler",
+    "level" : 12,
+    "stepCurrent" : 0,
+    "stepMax" : 1
+  },
+  "mysticHardcore" : {
+    "slug" : "mystic",
+    "level" : 12,
+    "stepCurrent" : 0,
+    "stepMax" : 1
+  },
+  "blacksmithSeason" : {
+    "slug" : "blacksmith",
+    "level" : 3,
+    "stepCurrent" : 1,
+    "stepMax" : 5
+  },
+  "jewelerSeason" : {
+    "slug" : "jeweler",
+    "level" : 12,
+    "stepCurrent" : 0,
+    "stepMax" : 1
+  },
+  "mysticSeason" : {
+    "slug" : "mystic",
+    "level" : 12,
+    "stepCurrent" : 0,
+    "stepMax" : 1
+  },
+  "seasonalProfiles" : {
+    "season4" : {
+      "seasonId" : 4,
+      "paragonLevel" : 258,
+      "paragonLevelHardcore" : 0,
+      "kills" : {
+        "monsters" : 105132,
+        "elites" : 6197,
+        "hardcoreMonsters" : 0
+      },
+      "timePlayed" : {
+        "barbarian" : 0.0,
+        "crusader" : 0.0,
+        "demon-hunter" : 0.0,
+        "monk" : 0.0,
+        "witch-doctor" : 0.0,
+        "wizard" : 1.0
+      },
+      "highestHardcoreLevel" : 0,
+      "progression" : {
+        "act1" : false,
+        "act2" : false,
+        "act3" : false,
+        "act4" : false,
+        "act5" : false
+      }
+    },
+    "season3" : {
+      "seasonId" : 3,
+      "paragonLevel" : 410,
+      "paragonLevelHardcore" : 0,
+      "kills" : {
+        "monsters" : 382207,
+        "elites" : 17527,
+        "hardcoreMonsters" : 0
+      },
+      "timePlayed" : {
+        "barbarian" : 0.501,
+        "crusader" : 0.0,
+        "demon-hunter" : 0.244,
+        "monk" : 1.0,
+        "witch-doctor" : 0.0,
+        "wizard" : 0.0
+      },
+      "highestHardcoreLevel" : 0,
+      "progression" : {
+        "act1" : true,
+        "act2" : true,
+        "act3" : true,
+        "act4" : true,
+        "act5" : true
+      }
+    },
+    "season0" : {
+      "seasonId" : 0,
+      "paragonLevel" : 469,
+      "paragonLevelHardcore" : 164,
+      "kills" : {
+        "monsters" : 1632425,
+        "elites" : 89094,
+        "hardcoreMonsters" : 650538
+      },
+      "timePlayed" : {
+        "barbarian" : 0.272,
+        "crusader" : 0.08,
+        "demon-hunter" : 0.304,
+        "monk" : 1.0,
+        "witch-doctor" : 0.302,
+        "wizard" : 0.408
+      },
+      "highestHardcoreLevel" : 70,
+      "progression" : {
+        "act1" : true,
+        "act2" : true,
+        "act3" : true,
+        "act4" : true,
+        "act5" : true
+      }
+    },
+    "season1" : {
+      "seasonId" : 1,
+      "paragonLevel" : 0,
+      "paragonLevelHardcore" : 54,
+      "kills" : {
+        "monsters" : 40734,
+        "elites" : 2228,
+        "hardcoreMonsters" : 40734
+      },
+      "timePlayed" : {
+        "barbarian" : 0.0,
+        "crusader" : 0.0,
+        "demon-hunter" : 0.0,
+        "monk" : 1.0,
+        "witch-doctor" : 0.0,
+        "wizard" : 0.0
+      },
+      "highestHardcoreLevel" : 70,
+      "progression" : {
+        "act1" : false,
+        "act2" : false,
+        "act3" : false,
+        "act4" : false,
+        "act5" : false
+      }
+    },
+    "season2" : {
+      "seasonId" : 2,
+      "paragonLevel" : 0,
+      "paragonLevelHardcore" : 87,
+      "kills" : {
+        "monsters" : 77630,
+        "elites" : 4451,
+        "hardcoreMonsters" : 77630
+      },
+      "timePlayed" : {
+        "barbarian" : 0.0,
+        "crusader" : 0.0,
+        "demon-hunter" : 0.0,
+        "monk" : 1.0,
+        "witch-doctor" : 0.0,
+        "wizard" : 0.0
+      },
+      "highestHardcoreLevel" : 70,
+      "progression" : {
+        "act1" : true,
+        "act2" : true,
+        "act3" : true,
+        "act4" : true,
+        "act5" : true
+      }
+    }
+  }
+}

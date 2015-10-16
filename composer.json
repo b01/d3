@@ -13,7 +13,7 @@
 	},
 	"autoload-dev": {
 		"psr-4": {
-			"Kshabazz\\Tests\\BattleNet\\D3\\": "tests/D3/"
+			"Kshabazz\\BattleNet\\D3\\Tests\\": "tests/D3/"
 		}
 	},
 	"description": "An interface (written in PHP) for accessing Battle.net Diablo 3 REST service.",
@@ -27,12 +27,12 @@
 		}
 	],
 	"require": {
-		"php": "~5.4",
-		"kshabazz/slib": "~1.1"
+		"php": "^5.4",
+		"kshabazz/slib": "^1.1"
 	},
 	"require-dev": {
-		"phpunit/phpunit": "~4.1",
-		"kshabazz/interception": "dev-master",
+		"phpunit/phpunit": "^5.0",
+		"kshabazz/interception": "^0.3",
 		"sphpdox/sphpdox": "dev-master"
 	},
 	"support": {

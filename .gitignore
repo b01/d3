@@ -3,4 +3,4 @@ composer.phar
 vendor/
 composer.lock
 private/
-config/
+tests/unit-test.json

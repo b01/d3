@@ -210,6 +210,26 @@ class Item
 		];
 
 	/**
+	 * Get an item from battle.net.
+	 *
+	 * @return \Kshabazz\BattleNet\D3\Item
+	 */
+	static public function factory( $pApiKey, $pBattleNetTag, $pItemHash )
+	{
+		// Get an HTTP client.
+		$httpClient = new \Kshabazz\Slib\HttpClient();
+
+		// Initialize a Diablo 3 battle.net HTTP client.
+		$bnClient = new \Kshabazz\BattleNet\D3\Connections\Http( $pApiKey, $pBattleNetTag, $httpClient );
+
+		// Get the item from Battle.net.
+		$itemJson = $bnClient->getItem( $pItemHash );
+
+		// Put the JSON into a more usable state.
+		return new self( $itemJson );
+	}
+
+	/**
 	 * Constructor
 	 *
 	 * @param string $pJson

@@ -101,6 +101,29 @@ class Hero
 		$thorns;
 
 	/**
+	 * I need a hero!
+	 *
+	 * @param $pApiKey
+	 * @param $pBattleNetTag
+	 * @param $pHeroId
+	 * @return \Kshabazz\BattleNet\D3\Hero
+	 */
+	static public function factory( $pApiKey, $pBattleNetTag, $pHeroId )
+	{
+		// Get an HTTP client.
+		$httpClient = new \Kshabazz\Slib\HttpClient();
+
+		// Initialize a Diablo 3 battle.net HTTP client.
+		$bnClient = new \Kshabazz\BattleNet\D3\Connections\Http( $pApiKey, $pBattleNetTag, $httpClient );
+
+		// Get the Diablo 3 Hero (this will be the raw JSON).
+		$heroJson = $bnClient->getHero( $pHeroId );
+
+		// Pass the hero JSON into a Hero model for accessing common properties.
+		return new self( $heroJson );
+	}
+
+	/**
 	 * Constructor
 	 *
 	 * @param string $pJson

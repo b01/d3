@@ -1,12 +1,17 @@
 HTTP/1.1 200 OK
 Content-Language: en-US
 Content-Type: application/json;charset=UTF-8
-Date: Sat, 24 Jan 2015 19:17:20 GMT
-Last-Modified: Mon, 12 Jan 2015 23:51:00 GMT
+Date: Fri, 16 Oct 2015 12:48:45 GMT
+Last-Modified: Mon, 12 Oct 2015 21:57:32 GMT
 Server: Apache
 Vary: Accept-Encoding
 X-Frame-Options: SAMEORIGIN
-X-Mashery-Responder: prod-j-worker-us-east-1b-51.mashery.com
+X-Mashery-Responder: prod-j-worker-us-east-1d-113.mashery.com
+X-Plan-QPS-Allotted: 100
+X-Plan-QPS-Current: 1
+X-Plan-Quota-Allotted: 36000
+X-Plan-Quota-Current: 5
+X-Plan-Quota-Reset: Friday, October 16, 2015 1:00:00 PM GMT
 Connection: Close
 
 {
@@ -17,6 +22,7 @@ Connection: Close
   "tooltipParams" : "item/CogBCMaw7d0GEgcIBBUY0HtQHTD77J8dFplnOx2MHL6WHevi5AUdyfq8oB2PWNYeMIsCOLoCQABQElgEYLoCaisKDAgAEOzG3rSBgICgNxIbCMeMte8JEgcIBBUjlq6YMI8COABAAVgEkAEAgAFGpQGMHL6WrQFmIwZQtQGb2dnvuAHDsemNDMABARiwwN6HClAIWAA",
   "requiredLevel" : 70,
   "itemLevel" : 70,
+  "stackSizeMax" : 0,
   "bonusAffixes" : 0,
   "bonusAffixesMax" : 0,
   "accountBound" : true,
@@ -26,6 +32,7 @@ Connection: Close
     "twoHanded" : false,
     "id" : "Sword"
   },
+  "damageRange" : "1352–1790 Damage",
   "dps" : {
     "min" : 2309.3699606716636,
     "max" : 2309.3699606716636
@@ -34,6 +41,7 @@ Connection: Close
     "min" : 1.4699999749660493,
     "max" : 1.4699999749660493
   },
+  "attacksPerSecondText" : "1.47 Attacks per Second",
   "minDamage" : {
     "min" : 168.0,
     "max" : 168.0
@@ -42,6 +50,7 @@ Connection: Close
     "min" : 392.0,
     "max" : 392.0
   },
+  "elementalType" : "lightning",
   "slots" : [ "left-hand", "follower-left-hand", "right-hand", "follower-right-hand" ],
   "attributes" : {
     "primary" : [ {
@@ -69,73 +78,73 @@ Connection: Close
     "passive" : [ ]
   },
   "attributesRaw" : {
-    "Dexterity_Item" : {
-      "min" : 653.0,
-      "max" : 653.0
-    },
-    "Item_Binding_Level_Override" : {
-      "min" : 2.0,
-      "max" : 2.0
+    "Damage_Weapon_Min#Physical" : {
+      "min" : 168.0,
+      "max" : 168.0
     },
     "Weapon_On_Hit_Slow_Proc_Chance" : {
       "min" : 0.024599999999999955,
       "max" : 0.024599999999999955
     },
-    "Attacks_Per_Second_Item_Percent" : {
-      "min" : 0.05,
-      "max" : 0.05
-    },
-    "Loot_2_0_Drop" : {
-      "min" : 1.0,
-      "max" : 1.0
-    },
-    "Damage_Weapon_Min#Physical" : {
-      "min" : 168.0,
-      "max" : 168.0
+    "Durability_Max" : {
+      "min" : 314.0,
+      "max" : 314.0
     },
     "Movement_Scalar" : {
       "min" : 0.11,
       "max" : 0.11
     },
-    "Damage_Weapon_Delta#Lightning" : {
-      "min" : 214.0,
-      "max" : 214.0
-    },
-    "Attacks_Per_Second_Item" : {
-      "min" : 1.399999976158142,
-      "max" : 1.399999976158142
-    },
-    "Durability_Max" : {
-      "min" : 314.0,
-      "max" : 314.0
-    },
-    "Item_LegendaryItem_Level_Override" : {
-      "min" : 70.0,
-      "max" : 70.0
-    },
-    "Season" : {
-      "min" : 0.0,
-      "max" : 0.0
+    "Sockets" : {
+      "min" : 1.0,
+      "max" : 1.0
     },
     "Durability_Cur" : {
       "min" : 314.0,
       "max" : 314.0
     },
-    "Damage_Weapon_Delta#Physical" : {
-      "min" : 224.0,
-      "max" : 224.0
-    },
     "Damage_Weapon_Min#Lightning" : {
       "min" : 1184.0,
       "max" : 1184.0
     },
-    "Sockets" : {
-      "min" : 1.0,
-      "max" : 1.0
+    "Season" : {
+      "min" : 0.0,
+      "max" : 0.0
+    },
+    "Attacks_Per_Second_Item_Percent" : {
+      "min" : 0.05,
+      "max" : 0.05
+    },
+    "Dexterity_Item" : {
+      "min" : 653.0,
+      "max" : 653.0
+    },
+    "Damage_Weapon_Delta#Lightning" : {
+      "min" : 214.0,
+      "max" : 214.0
+    },
+    "Damage_Weapon_Delta#Physical" : {
+      "min" : 224.0,
+      "max" : 224.0
     },
     "Item_Legendary_Item_Base_Item" : {
       "min" : -2.70935653E8,
       "max" : -2.70935653E8
+    },
+    "Item_LegendaryItem_Level_Override" : {
+      "min" : 70.0,
+      "max" : 70.0
+    },
+    "Attacks_Per_Second_Item" : {
+      "min" : 1.399999976158142,
+      "max" : 1.399999976158142
+    },
+    "Item_Binding_Level_Override" : {
+      "min" : 2.0,
+      "max" : 2.0
+    },
+    "Loot_2_0_Drop" : {
+      "min" : 1.0,
+      "max" : 1.0
     }
   },
   "randomAffixes" : [ ],
@@ -168,5 +177,7 @@ Connection: Close
   "socketEffects" : [ ],
   "craftedBy" : [ ],
   "seasonRequiredToDrop" : -1,
-  "isSeasonRequiredToDrop" : false
+  "isSeasonRequiredToDrop" : false,
+  "description" : null,
+  "blockChance" : "+0.0% Chance to Block"
 }

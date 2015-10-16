@@ -1,4 +1,4 @@
-<?php namespace Kshabazz\Tests\BattleNet\D3;
+<?php namespace Kshabazz\BattleNet\D3\Tests;
 
 use \Kshabazz\BattleNet\D3\Item,
 	\Kshabazz\BattleNet\D3\Connections\Http,
@@ -14,19 +14,13 @@ class ItemTest extends \PHPUnit_Framework_TestCase
 	private
 		$apiKey,
 		$bnrHttp,
-		$fixturesDir,
-		$itemHash1,
-		$itemHash2,
-		$itemHash3;
+		$fixturesDir;
 
 	public function setUp()
 	{
-		$this->apiKey = \D3_TEST_API_KEY;
+		$this->apiKey = API_KEY;
 		$client = new HttpClient();
 		$this->bnrHttp = new Http( $this->apiKey, 'msuBREAKER#1374', $client );
-		$this->itemHash1 = 'item/Cj0I-bvTgAsSBwgEFdosyssdb2mxyh10HmzAHfKS3AgdcIt38CILCAEVbEIDABgWICAwiQI4_AJAAFAMYJUDGMvMrsMGUABYAg';
-		$this->itemHash2 = 'item/ChoIqvDNpwMSBwgEFScYtUkwiQI4kANAAGCQAxjO4KibCVAIWAI';
-		$this->itemHash3 = 'item/CioI4YeygAgSBwgEFcgYShEdhBF1FR2dbLMUHape7nUwDTiTA0AAUApgkwMYkOPQlAI';
 		$this->fixturesDir = FIXTURES_PATH . DIRECTORY_SEPARATOR;
 	}
 

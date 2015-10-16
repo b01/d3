@@ -31,27 +31,13 @@ Add to your composer.json
 ```php
 <?php
 
-use
-	\Kshabazz\Slib\HttpClient,
-	\Kshabazz\BattleNet\D3\Connections\Http as D3_Http,
-	\Kshabazz\BattleNet\D3\Profile as D3_Profile;
+use \Kshabazz\BattleNet\D3\Profile as D3_Profile;
 
-// DO NOT FORGET TO SET THIS!!!
-$apiKey = 'apiKeyFromMashery';
-
+$apiKey       = 'apiKeyFromMashery';
 $battleNetTag = 'msuBREAKER#1374';
 
-// Get an HTTP client, currently only my custom HTTP client works.
-$httpClient = new HttpClient();
-
-// Initialize a battle.net HTTP client.
-$bnClient = new D3_Http( $apiKey, $battleNetTag, $httpClient );
-
-// Get the profile for the Battle.net tag (this will be the raw JSON).
-$profileJson = $bnClient->getProfile();
-
 // Pass the profile JSON into a Profile model for accessing common properties.
-$profile = new D3_Profile( $profileJson );
+$profile = D3_Profile::getProfile( $apiKey, $battleNetTag );
 
 var_dump( $profile->heroes() );
 ?>
@@ -85,7 +71,14 @@ $heroJson = $bnClient->getHero( $heroId );
 // Pass the hero JSON into a Hero model for accessing common properties.
 $hero = new D3_Hero( $heroJson );
 
-echo $hero->name();
+// Print out the hero's name.
+var_dump( $hero->name() );
+
+// Get a list of items from the Hero.
+$heroItemHashes = $hero->itemsHashesBySlot();
+
+// Print the list of items hashes.
+var_dump( $heroItemHashes );
 ?>
 ```
 

@@ -1,4 +1,4 @@
-<?php namespace Kshabazz\Tests\BattleNet\D3;
+<?php namespace Kshabazz\BattleNet\D3\Tests;
 
 use
 	\Kshabazz\BattleNet\D3\Connections\Http,
@@ -228,7 +228,7 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 	public function test_dual_wielding()
 	{
 		$httpClient = new HttpClient();
-		$httpClient = new Http(\D3_TEST_API_KEY, 'msuBREAKER#1374', $httpClient);
+		$httpClient = new Http(API_KEY, 'msuBREAKER#1374', $httpClient);
 		$heroFixture = $this->fixturesDir . 'hero-3955832-no-items.json';
 		$heroJson = \file_get_contents( $heroFixture );
 		$hero = new Hero( $heroJson );
@@ -369,13 +369,19 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 		$this->assertEquals( 'unarmed', $actual );
 	}
 
-	public function test_weaponStatus_equpped()
+	public function test_weaponStatus_equipped()
 	{
-		\Kshabazz\Interception\StreamWrappers\Http::persistSaveFile( 'weapon-status-one-handed' );
+		\Kshabazz\Interception\StreamWrappers\Http::persistSaveFile( 'hero-with-one-handed-weapon' );
 		$hero = new Hero( $this->json );
 		$httpClient = $this->getHttpClient();
 		$actual = $hero->weaponStatus( $httpClient );
 		$this->assertEquals( 'one-handed', $actual );
+	}
+
+	public function test_factory()
+	{
+		$actual = Hero::factory( API_KEY, 'msuBREAKER#1374', $this->heroId );
+		$this->assertInstanceOf( '\\Kshabazz\\BattleNet\\D3\\Hero', $actual );
 	}
 
 	/**
@@ -385,7 +391,7 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 	{
 		$battleNetId = 'msuBREAKER#1374';
 		$httpClient = new HttpClient();
-		return new Http( \D3_TEST_API_KEY, $battleNetId, $httpClient );
+		return new Http( API_KEY, $battleNetId, $httpClient );
 	}
 }
 ?>

@@ -1,0 +1,203 @@
+HTTP/1.1 200 OK
+Content-Language: en-US
+Content-Type: application/json;charset=UTF-8
+Date: Fri, 16 Oct 2015 12:56:52 GMT
+Last-Modified: Mon, 12 Oct 2015 21:57:32 GMT
+Server: Apache
+Vary: Accept-Encoding
+X-Frame-Options: SAMEORIGIN
+X-Mashery-Responder: prod-j-worker-us-east-1b-109.mashery.com
+X-Plan-QPS-Allotted: 100
+X-Plan-QPS-Current: 2
+X-Plan-Quota-Allotted: 36000
+X-Plan-Quota-Current: 11
+X-Plan-Quota-Reset: Friday, October 16, 2015 1:00:00 PM GMT
+Connection: Close
+
+{
+  "id" : "Unique_Axe_2H_011_x1",
+  "name" : "Messerschmidt's Reaver",
+  "icon" : "unique_axe_2h_011_x1_demonhunter_male",
+  "displayColor" : "orange",
+  "tooltipParams" : "item/CnIIsofk3wkSBwgEFaaLWKMdG13PRB2eT4PcHRaZZzsdVSnnFB0XwOGgHV0KmKUwix44lgNAAFASWARglgNqKwoMCAAQ2sWIxoCAgMAkEhsIyv3CwQQSBwgEFSOWrpgwjwI4AEABWASQAQCAAUa1AYtZXGUYs9G7ygtQCFgA",
+  "requiredLevel" : 70,
+  "itemLevel" : 70,
+  "stackSizeMax" : 0,
+  "bonusAffixes" : 0,
+  "bonusAffixesMax" : 0,
+  "accountBound" : true,
+  "flavorText" : "This mighty weapon once hewed its way through the demon-infested catacombs beneath the old Zakarum cathedral in Tristram. Could it be the weapon the warrior Aidan used to defeat Diablo all those years ago?",
+  "typeName" : "Ancient Legendary Two-Handed Axe",
+  "type" : {
+    "twoHanded" : true,
+    "id" : "Axe2H"
+  },
+  "damageRange" : "3392–4171 Damage",
+  "dps" : {
+    "min" : 4367.9790946733965,
+    "max" : 4367.9790946733965
+  },
+  "attacksPerSecond" : {
+    "min" : 1.155000025033951,
+    "max" : 1.155000025033951
+  },
+  "attacksPerSecondText" : "1.16 Attacks per Second",
+  "minDamage" : {
+    "min" : 1522.4,
+    "max" : 1522.4
+  },
+  "maxDamage" : {
+    "min" : 1853.5,
+    "max" : 1853.5
+  },
+  "elementalType" : "fire",
+  "slots" : [ "left-hand", "follower-left-hand" ],
+  "attributes" : {
+    "primary" : [ {
+      "text" : "+1700–2107 Fire Damage",
+      "color" : "blue",
+      "affixType" : "default"
+    }, {
+      "text" : "+10% Damage",
+      "color" : "blue",
+      "affixType" : "default"
+    }, {
+      "text" : "+1346 Dexterity",
+      "color" : "blue",
+      "affixType" : "default"
+    }, {
+      "text" : "Increases Attack Speed by 5%",
+      "color" : "blue",
+      "affixType" : "default"
+    } ],
+    "secondary" : [ {
+      "text" : "+16024 Life after Each Kill",
+      "color" : "blue",
+      "affixType" : "default"
+    }, {
+      "text" : "Monster kills grant +220 experience.",
+      "color" : "blue",
+      "affixType" : "utility"
+    } ],
+    "passive" : [ ]
+  },
+  "attributesRaw" : {
+    "Experience_Bonus" : {
+      "min" : 220.0,
+      "max" : 220.0
+    },
+    "Durability_Cur" : {
+      "min" : 406.0,
+      "max" : 406.0
+    },
+    "Ancient_Rank" : {
+      "min" : 1.0,
+      "max" : 1.0
+    },
+    "Damage_Weapon_Delta#Physical" : {
+      "min" : 301.0,
+      "max" : 301.0
+    },
+    "Hitpoints_On_Kill" : {
+      "min" : 16024.0,
+      "max" : 16024.0
+    },
+    "Item_Legendary_Item_Base_Item" : {
+      "min" : 1.700551051E9,
+      "max" : 1.700551051E9
+    },
+    "Attacks_Per_Second_Item" : {
+      "min" : 1.100000023841858,
+      "max" : 1.100000023841858
+    },
+    "Dexterity_Item" : {
+      "min" : 1346.0,
+      "max" : 1346.0
+    },
+    "Damage_Weapon_Min#Fire" : {
+      "min" : 1700.0,
+      "max" : 1700.0
+    },
+    "Durability_Max" : {
+      "min" : 406.0,
+      "max" : 406.0
+    },
+    "Loot_2_0_Drop" : {
+      "min" : 1.0,
+      "max" : 1.0
+    },
+    "Attacks_Per_Second_Item_Percent" : {
+      "min" : 0.05,
+      "max" : 0.05
+    },
+    "Damage_Weapon_Percent_All" : {
+      "min" : 0.1,
+      "max" : 0.1
+    },
+    "Item_Binding_Level_Override" : {
+      "min" : 2.0,
+      "max" : 2.0
+    },
+    "Item_LegendaryItem_Level_Override" : {
+      "min" : 70.0,
+      "max" : 70.0
+    },
+    "Damage_Weapon_Delta#Fire" : {
+      "min" : 407.0,
+      "max" : 407.0
+    },
+    "Sockets" : {
+      "min" : 1.0,
+      "max" : 1.0
+    },
+    "Damage_Weapon_Min#Physical" : {
+      "min" : 1384.0,
+      "max" : 1384.0
+    },
+    "Post_2_1_2_Drop" : {
+      "min" : 1.0,
+      "max" : 1.0
+    },
+    "ConsumableAddSockets" : {
+      "min" : 1.0,
+      "max" : 1.0
+    },
+    "Season" : {
+      "min" : 0.0,
+      "max" : 0.0
+    }
+  },
+  "randomAffixes" : [ ],
+  "gems" : [ {
+    "item" : {
+      "id" : "Emerald_19",
+      "name" : "Flawless Royal Emerald",
+      "icon" : "emerald_19_demonhunter_male",
+      "displayColor" : "blue",
+      "tooltipParams" : "item/ChsIyv3CwQQSBwgEFSOWrpgwjwI4AEABWASQAQAYuaeL9Qw"
+    },
+    "isGem" : true,
+    "isJewel" : false,
+    "attributes" : {
+      "primary" : [ {
+        "text" : "Critical Hit Damage Increased by 130.0% ",
+        "color" : "blue",
+        "affixType" : "default"
+      } ],
+      "secondary" : [ ],
+      "passive" : [ ]
+    },
+    "attributesRaw" : {
+      "Crit_Damage_Percent" : {
+        "min" : 1.3,
+        "max" : 1.3
+      }
+    }
+  } ],
+  "socketEffects" : [ ],
+  "craftedBy" : [ ],
+  "seasonRequiredToDrop" : -1,
+  "isSeasonRequiredToDrop" : false,
+  "description" : null,
+  "blockChance" : "+0.0% Chance to Block"
+}

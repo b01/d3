@@ -1,4 +1,7 @@
-<?php
+<?php namespace Kshabazz\BattleNet\D3\Tests;
+/**
+ * Unit Tests configuration and setup.
+ */
 // Load composer auto-loader.
 require_once __DIR__
 	. DIRECTORY_SEPARATOR . '..'
@@ -11,13 +14,13 @@ require_once __DIR__
 // When test config exists, load setting from config.
 $apiKey = 'noApiKey';
 $testConfig = TESTS_ROOT
-	. DIRECTORY_SEPARATOR . 'config'
 	. DIRECTORY_SEPARATOR . 'unit-test.json';
-if ( \file_exists($testConfig) )
+if ( !\file_exists($testConfig) )
 {
-	$configJson = \file_get_contents( $testConfig );
-	$config = \json_decode( $configJson );
-	$apiKey = $config->apiKey;
+	exit('No configuration found at "' . $testConfig . '". You must create a tests configuration first.');
 }
-\define( 'D3_TEST_API_KEY', $apiKey );
+
+$configJson = \file_get_contents( $testConfig );
+$config = \json_decode( $configJson );
+\define( 'Kshabazz\\BattleNet\\D3\\Tests\\API_KEY', $config->apiKey );
 ?>

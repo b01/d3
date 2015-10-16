@@ -1,13 +1,17 @@
 HTTP/1.1 200 OK
 Content-Language: en-US
 Content-Type: application/json;charset=UTF-8
-Date: Sat, 24 Jan 2015 19:17:20 GMT
-Last-Modified: Mon, 12 Jan 2015 23:51:00 GMT
+Date: Fri, 16 Oct 2015 12:48:45 GMT
+Last-Modified: Mon, 12 Oct 2015 21:57:32 GMT
 Server: Apache
 Vary: Accept-Encoding
 X-Frame-Options: SAMEORIGIN
-X-Mashery-Responder: prod-j-worker-us-east-1b-59.mashery.com
-Content-Length: 3648
+X-Mashery-Responder: prod-j-worker-us-east-1d-113.mashery.com
+X-Plan-QPS-Allotted: 100
+X-Plan-QPS-Current: 2
+X-Plan-Quota-Allotted: 36000
+X-Plan-Quota-Current: 6
+X-Plan-Quota-Reset: Friday, October 16, 2015 1:00:00 PM GMT
 Connection: Close
 
 {
@@ -18,6 +22,7 @@ Connection: Close
   "tooltipParams" : "item/Cl8I0pef3gISBwgEFRMMO2wddWfm8R3-o_KPHZoGAMsdIJ3kBB1rB3fOHW3NiR4iCwgAFc3-AQAYGiAiMIsCOLgEQABQEFgEYLgEpQEgneQErQHI-ryguAG5mfGGDcABAximsNjDDVAIWAA",
   "requiredLevel" : 70,
   "itemLevel" : 70,
+  "stackSizeMax" : 0,
   "bonusAffixes" : 0,
   "bonusAffixesMax" : 0,
   "accountBound" : true,
@@ -26,6 +31,7 @@ Connection: Close
     "twoHanded" : false,
     "id" : "Shield"
   },
+  "damageRange" : "0–0 Damage",
   "slots" : [ "right-hand", "follower-right-hand" ],
   "attributes" : {
     "primary" : [ {
@@ -57,33 +63,33 @@ Connection: Close
     "passive" : [ ]
   },
   "attributesRaw" : {
+    "Resistance#Cold" : {
+      "min" : 123.0,
+      "max" : 123.0
+    },
+    "Block_Amount_Item_Min" : {
+      "min" : 15870.0,
+      "max" : 15870.0
+    },
     "Thorns_Fixed#Physical" : {
       "min" : 1799.0,
       "max" : 1799.0
-    },
-    "Loot_2_0_Drop" : {
-      "min" : 1.0,
-      "max" : 1.0
     },
     "Hitpoints_Max_Percent_Bonus_Item" : {
       "min" : 0.1,
       "max" : 0.1
     },
-    "Item_Binding_Level_Override" : {
-      "min" : 2.0,
-      "max" : 2.0
+    "Season" : {
+      "min" : 0.0,
+      "max" : 0.0
     },
-    "Resistance#Cold" : {
-      "min" : 123.0,
-      "max" : 123.0
+    "Loot_2_0_Drop" : {
+      "min" : 1.0,
+      "max" : 1.0
     },
     "Block_Amount_Item_Delta" : {
       "min" : 7935.0,
       "max" : 7935.0
-    },
-    "Block_Chance_Item" : {
-      "min" : 0.16,
-      "max" : 0.16
     },
     "Dexterity_Item" : {
       "min" : 569.0,
@@ -93,17 +99,17 @@ Connection: Close
       "min" : 557.0,
       "max" : 557.0
     },
-    "Block_Amount_Item_Min" : {
-      "min" : 15870.0,
-      "max" : 15870.0
-    },
     "Crit_Percent_Bonus_Capped" : {
       "min" : 0.1,
       "max" : 0.1
     },
-    "Season" : {
-      "min" : 0.0,
-      "max" : 0.0
+    "Block_Chance_Item" : {
+      "min" : 0.16,
+      "max" : 0.16
+    },
+    "Item_Binding_Level_Override" : {
+      "min" : 2.0,
+      "max" : 2.0
     }
   },
   "randomAffixes" : [ ],
@@ -113,9 +119,9 @@ Connection: Close
     "id" : "T12_Armor_Shield",
     "slug" : "sovereign-ascended-shield",
     "name" : "Sovereign Ascended Shield",
-    "cost" : 32400,
+    "cost" : 1000,
     "reagents" : [ {
-      "quantity" : 12,
+      "quantity" : 15,
       "item" : {
         "id" : "Crafting_AssortedParts_01",
         "name" : "Reusable Parts",
@@ -124,7 +130,7 @@ Connection: Close
         "tooltipParams" : "item/reusable-parts"
       }
     }, {
-      "quantity" : 19,
+      "quantity" : 15,
       "item" : {
         "id" : "Crafting_Magic_01",
         "name" : "Arcane Dust",
@@ -152,8 +158,6 @@ Connection: Close
   } ],
   "seasonRequiredToDrop" : -1,
   "isSeasonRequiredToDrop" : false,
-  "blockChance" : {
-    "min" : 0.16,
-    "max" : 0.16
-  }
+  "description" : null,
+  "blockChance" : "+16.0% Chance to Block"
 }

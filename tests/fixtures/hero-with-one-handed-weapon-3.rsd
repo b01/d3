@@ -1,16 +1,16 @@
 HTTP/1.1 200 OK
 Content-Language: en-US
 Content-Type: application/json;charset=UTF-8
-Date: Fri, 16 Oct 2015 11:27:28 GMT
+Date: Fri, 16 Oct 2015 12:48:45 GMT
 Server: Apache
 Vary: Accept-Encoding
 X-Frame-Options: SAMEORIGIN
-X-Mashery-Responder: prod-j-worker-us-east-1e-120.mashery.com
+X-Mashery-Responder: prod-j-worker-us-east-1b-115.mashery.com
 X-Plan-QPS-Allotted: 100
-X-Plan-QPS-Current: 1
+X-Plan-QPS-Current: 3
 X-Plan-Quota-Allotted: 36000
-X-Plan-Quota-Current: 1
-X-Plan-Quota-Reset: Friday, October 16, 2015 12:00:00 PM GMT
+X-Plan-Quota-Current: 7
+X-Plan-Quota-Reset: Friday, October 16, 2015 1:00:00 PM GMT
 Connection: Close
 
 {
