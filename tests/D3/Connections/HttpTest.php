@@ -106,6 +106,13 @@ class HttpTest extends \PHPUnit_Framework_TestCase
 		$bnr->getHero( 'test' );
 	}
 
+	public function test_getHero_work_with_numeric_string()
+	{
+		$httpClient = new HttpClient();
+		$bnr = new Http( $this->apiKey, $this->battleNetId, $httpClient );
+		$bnr->getHero( (string)$this->heroId );
+	}
+
 	/**
 	 * @interception item-Unique_Helm_006_x1
 	 */

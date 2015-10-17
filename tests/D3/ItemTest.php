@@ -81,5 +81,15 @@ class ItemTest extends \PHPUnit_Framework_TestCase
 		$item = new Item( $itemJson );
 		$this->assertNotNull( $item->flavorText() );
 	}
+
+	public function test_damage_on_item_with_no_damage()
+	{
+		$fixtureFile = $this->fixturesDir . 'item-Unique_Helm_006_x1.json';
+		$itemJson = \file_get_contents( $fixtureFile );
+		$item = new Item( $itemJson );
+		$actual = $item->damage();
+		$this->assertEquals(0, $actual['min']);
+		$this->assertEquals(0, $actual['max']);
+	}
 }
 ?>

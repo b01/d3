@@ -11,8 +11,10 @@ use
  *
  * @package Kshabazz\BattleNet\D3
  */
-class Hero
+class Hero implements \JsonSerializable
 {
+	use Json;
+
 	const
 		BASE_DUAL_WIELD_IAS_BONUS = 0.15,
 		BASE_CRITICAL_HIT_CHANCE_BONUS = 0.05,
@@ -99,29 +101,6 @@ class Hero
 		/** @var int */
 		$vitality,
 		$thorns;
-
-	/**
-	 * I need a hero!
-	 *
-	 * @param $pApiKey
-	 * @param $pBattleNetTag
-	 * @param $pHeroId
-	 * @return \Kshabazz\BattleNet\D3\Hero
-	 */
-	static public function factory( $pApiKey, $pBattleNetTag, $pHeroId )
-	{
-		// Get an HTTP client.
-		$httpClient = new \Kshabazz\Slib\HttpClient();
-
-		// Initialize a Diablo 3 battle.net HTTP client.
-		$bnClient = new \Kshabazz\BattleNet\D3\Connections\Http( $pApiKey, $pBattleNetTag, $httpClient );
-
-		// Get the Diablo 3 Hero (this will be the raw JSON).
-		$heroJson = $bnClient->getHero( $pHeroId );
-
-		// Pass the hero JSON into a Hero model for accessing common properties.
-		return new self( $heroJson );
-	}
 
 	/**
 	 * Constructor
@@ -437,16 +416,6 @@ class Hero
 		}
 
 		return $this->itemsHashes;
-	}
-
-	/**
-	 * Get JSON.
-	 *
-	 * @return string JSON passed into constructor.
-	 */
-	public function json()
-	{
-		return $this->json;
 	}
 
 	/**

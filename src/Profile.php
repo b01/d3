@@ -7,6 +7,8 @@
  */
 class Profile implements \JsonSerializable
 {
+	use Json;
+
 	private
 		/** @var string */
 		$battleTag,
@@ -14,30 +16,8 @@ class Profile implements \JsonSerializable
 		$data,
 		/** @var array */
 		$heroes,
-		/** @var string */
-		$json;
-
-	/**
-	 * Get a hero profile from Battle.Net.
-	 *
-	 * @param string $pApiKey
-	 * @param string $pBattleNetTag
-	 * @return \Kshabazz\BattleNet\D3\Profile
-	 */
-	static public function factory( $pApiKey, $pBattleNetTag )
-	{
-		// Get an HTTP client, currently only my custom HTTP client works.
-		$httpClient = new \Kshabazz\Slib\HttpClient();
-
-		// Initialize a battle.net HTTP client.
-		$bnClient = new \Kshabazz\BattleNet\D3\Connections\Http( $pApiKey, $pBattleNetTag, $httpClient );
-
-		// Get the profile for the Battle.net tag (this will be the raw JSON).
-		$profileJson = $bnClient->getProfile();
-
-		// Pass the profile JSON into a Profile model for accessing common properties.
-		return new self( $profileJson );
-	}
+		/** @var string JSON returned from Battle.Net. */
+	 	$json;
 
 	/**
 	 * Constructor
@@ -147,24 +127,6 @@ class Profile implements \JsonSerializable
 		}
 
 		return $this;
-	}
-
-	/**
-	 * Get raw JSON data returned from Battle.net.
-	 */
-	public function json()
-	{
-		return $this->json;
-	}
-
-	/**
-	 * Specify how this object is to be used with json_encode.
-	 *
-	 * @return \stdClass
-	 */
-	public function jsonSerialize()
-	{
-		return $this->data;
 	}
 }
 ?>

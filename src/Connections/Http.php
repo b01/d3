@@ -7,7 +7,7 @@ use
 	\Kshabazz\BattleNet\D3\Item;
 
 /**
- * Class Http
+ * @class Http
  *
  * @package \Kshabazz\BattleNet
  */
@@ -19,11 +19,7 @@ class Http implements Connection
 		/** @const string */
 		API_HERO_URL = 'https://%s.api.battle.net/d3/profile/%s/hero/%d?locale=%s&apikey=%s',
 		/** @const string */
-		API_ITEM_URL = 'https://%s.api.battle.net/d3/data/%s?locale=%s&apikey=%s',
-		/** @const string */
-		AUTHORIZE_URI = 'https://%s.battle.net/oauth/authorize',
-		/** @const string */
-		TOKEN_URI = 'https://%s.battle.net/oauth/token';
+		API_ITEM_URL = 'https://%s.api.battle.net/d3/data/%s?locale=%s&apikey=%s';
 
 	private
 		/** @var string Key obtained for use with Diablo 3 REST service. */
@@ -48,15 +44,20 @@ class Http implements Connection
 	 * @param string $pBattleNetId BattleNet ID.
 	 * @param \Kshabazz\Slib\HttpClient $pClient Client for making HTTP request.
 	 * @param string $pLocale
+	 * @param string $pRegion
 	 */
-	public function __construct( $pApiKey , $pBattleNetId, $pClient, $pLocale = 'en_US' )
+	public function __construct( $pApiKey ,$pBattleNetId, $pClient, $pLocale = 'en_US', $pRegion = 'us' )
 	{
+		if ( !\is_string($pApiKey) ) {
+			throw new \InvalidArgumentException( 'Invalid API key passed in.' );
+		}
+
 		$this->apiKey = $pApiKey;
-		$this->client = $pClient;
 		$this->battleNetId = $pBattleNetId;
 		$this->battleNetUrlSafeId = \str_replace( '#', '-', $this->battleNetId );
+		$this->client = $pClient;
 		$this->locale = $pLocale;
-		$this->region = 'us';
+		$this->region = $pRegion;
 		$this->url = NULL;
 	}
 
@@ -65,6 +66,7 @@ class Http implements Connection
 	 */
 	public function __destruct()
 	{
+		unset( $this->apiKey );
 		unset( $this->client );
 		unset( $this->battleNetId );
 		unset( $this->battleNetUrlSafeId );
@@ -94,21 +96,13 @@ class Http implements Connection
 	/**
      * Request Hero JSON from Battle.Net.
 	 *
-	 * <code>
-	 * <?php
-	 * // Make a request to:
-	 * // https://us.api.battle.net/d3/profile/<battleNetIdName>-<battleNetIdNumber>/hero/<hero-id>?locale=<string>&apikey=<>
-     * // Note: Leave off the trailing '/' when setting
-	 * ?>
-	 * </code>
-	 *
-	 * @param int $pHeroId Hero ID.
+	 * @param int|string $pHeroId Hero ID.
 	 * @return null|string
 	 * @throws \InvalidArgumentException
 	 */
 	public function getHero( $pHeroId )
 	{
-		if ( !\is_int($pHeroId) )
+		if ( !\is_numeric($pHeroId) )
 		{
 			throw new \InvalidArgumentException( 'Expected an integer, got a '. \gettype($pHeroId) );
 		}

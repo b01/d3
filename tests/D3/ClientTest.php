@@ -1,6 +1,8 @@
 <?php namespace Kshabazz\BattleNet\D3\Tests;
 
-use Kshabazz\BattleNet\D3\Client;
+use Kshabazz\BattleNet\D3\Client as D3_Client;
+
+use const \Kshabazz\BattleNet\D3\Tests\API_KEY;
 
 /**
  * Class ClientTest
@@ -9,15 +11,26 @@ use Kshabazz\BattleNet\D3\Client;
  */
 class ClientTest extends \PHPUnit_Framework_TestCase
 {
-	/** @var \Kshabazz\BattleNet\D3\Client Battle.Net HTTP client. */
-	private $client;
+
+	private
+		/** @var string Battle.Net gamer tag. */
+		$battleNetTag,
+		/** @var \Kshabazz\BattleNet\D3\Client Battle.Net HTTP client. */
+		$client,
+		/** @var int Diablo 3 hero ID. */
+		$heroId;
 
 	public function setUp()
 	{
-		$this->client = new Client(
-			\Kshabazz\BattleNet\D3\Tests\API_KEY,
-			'msuBREAKER#1374'
-		);
+		$this->battleNetTag = 'msuBREAKER#1374';
+		$this->heroId = 3955832;
+		$this->client = new D3_Client( API_KEY, $this->battleNetTag );
+
+	}
+
+	public function tearDown()
+	{
+		unset( $this->client );
 	}
 
 	/**
@@ -34,7 +47,7 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 	 */
 	public function test_getHero()
 	{
-		$actual = $this->client->getHero( 3955832 );
+		$actual = $this->client->getHero( $this->heroId );
 		$this->assertInstanceOf( '\\Kshabazz\\BattleNet\\D3\\Hero', $actual );
 		return $actual->itemsHashesBySlot();
 	}
@@ -47,6 +60,43 @@ class ClientTest extends \PHPUnit_Framework_TestCase
 	{
 		$actual = $this->client->getItem($itemHashes['mainHand']);
 		$this->assertInstanceOf( '\\Kshabazz\\BattleNet\\D3\\Item', $actual );
+	}
+
+	/**
+	 * @interception client-getHero
+	 */
+	public function test_heroFactory()
+	{
+		$actual = D3_Client::heroFactory( API_KEY, $this->battleNetTag, $this->heroId );
+		$this->assertInstanceOf( '\\Kshabazz\\BattleNet\\D3\\Hero', $actual );
+	}
+
+	/**
+	 * @depends test_getHero
+	 * @interception client-getItem
+	 */
+	public function test_itemFactory($itemHashes)
+	{
+		$actual = D3_Client::itemFactory(
+			API_KEY,
+			$this->battleNetTag,
+			$itemHashes['mainHand']
+		);
+
+		$this->assertInstanceOf('\\Kshabazz\\BattleNet\\D3\\Item', $actual);
+	}
+
+	/**
+	 * @interception client-getProfile
+	 */
+	public function test_profileFactory()
+	{
+		$actual = D3_Client::profileFactory(
+			API_KEY,
+			$this->battleNetTag
+		);
+
+		$this->assertInstanceOf('\\Kshabazz\\BattleNet\\D3\\Profile', $actual);
 	}
 }
 ?>

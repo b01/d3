@@ -16,8 +16,10 @@
  * </code>
  *
  */
-class Item
+class Item implements \JsonSerializable
 {
+	use Json;
+
 	/**
 	 * @var bool
 	 */
@@ -210,26 +212,6 @@ class Item
 		];
 
 	/**
-	 * Get an item from battle.net.
-	 *
-	 * @return \Kshabazz\BattleNet\D3\Item
-	 */
-	static public function factory( $pApiKey, $pBattleNetTag, $pItemHash )
-	{
-		// Get an HTTP client.
-		$httpClient = new \Kshabazz\Slib\HttpClient();
-
-		// Initialize a Diablo 3 battle.net HTTP client.
-		$bnClient = new \Kshabazz\BattleNet\D3\Connections\Http( $pApiKey, $pBattleNetTag, $httpClient );
-
-		// Get the item from Battle.net.
-		$itemJson = $bnClient->getItem( $pItemHash );
-
-		// Put the JSON into a more usable state.
-		return new self( $itemJson );
-	}
-
-	/**
 	 * Constructor
 	 *
 	 * @param string $pJson
@@ -256,16 +238,6 @@ class Item
 	public function __get( $pName )
 	{
 		return $this->data->{$pName};
-	}
-
-	/**
-	 * What to do when this object is converting to a string.
-	 *
-	 * @return string
-	 */
-	public function __toString()
-	{
-		return $this->json;
 	}
 
 	/**
@@ -385,16 +357,6 @@ class Item
 		$itemType = \strtolower( $this->type->id );
 		return \in_array( $itemType, self::$oneHandWeaponTypes )
 		|| \in_array( $itemType, self::$twoHandedWeaponTypes );
-	}
-
-	/**
-	 * Get JSON use to initialize this object.
-	 *
-	 * @return string
-	 */
-	public function json()
-	{
-		return $this->json;
 	}
 
 	/**

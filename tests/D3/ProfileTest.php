@@ -101,6 +101,15 @@ class ProfileTest extends \PHPUnit_Framework_TestCase
 		$this->assertEquals( $heroStdObject->battleTag, $profile->battleTag() );
 	}
 
+	public function test_converting_profile_to_a_string()
+	{
+		$filename = $this->fixturesDir . 'profile-msuBREAKER-1374.json';
+		$profileJson = \file_get_contents( $filename );
+		$profile = new Profile( $profileJson );
+		$profile2 = new Profile( (string)$profile );
+		$this->assertInstanceOf( '\\Kshabazz\\BattleNet\\D3\\Profile', $profile2 );
+	}
+
 	public function test_profile_get()
 	{
 		$filename = $this->fixturesDir . 'profile-msuBREAKER-1374.json';
@@ -132,14 +141,5 @@ class ProfileTest extends \PHPUnit_Framework_TestCase
 		$this->assertEquals($this->battleNetTag , $actual );
 		return $profile;
 	}
-
-	public function test_factory()
-	{
-		$actual = Profile::factory(
-			\Kshabazz\BattleNet\D3\Tests\API_KEY,
-			$this->battleNetTag
-		);
-
-		$this->assertInstanceOf('\\Kshabazz\\BattleNet\\D3\\Profile', $actual);
-	}
 }
+?>

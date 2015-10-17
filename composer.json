@@ -16,8 +16,8 @@
 			"Kshabazz\\BattleNet\\D3\\Tests\\": "tests/D3/"
 		}
 	},
-	"description": "An interface (written in PHP) for accessing Battle.net Diablo 3 REST service.",
-	"keywords": ["diablo 3", "interface", "REST", "blizzard"],
+	"description": "An API (written in PHP) for accessing Battle.net Diablo 3 REST service.",
+	"keywords": ["diablo 3", "api", "REST", "blizzard", "web"],
 	"license": "MIT",
 	"name": "kshabazz/battlenet-d3",
 	"repositories": [
@@ -31,8 +31,8 @@
 		"kshabazz/slib": "^1.1"
 	},
 	"require-dev": {
-		"phpunit/phpunit": "^5.0",
-		"kshabazz/interception": "^0.3",
+		"phpunit/phpunit": "^4.0",
+		"kshabazz/interception": "^0.4",
 		"sphpdox/sphpdox": "dev-master"
 	},
 	"support": {

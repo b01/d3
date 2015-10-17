@@ -17,7 +17,7 @@
 	<listeners>
 		<listener class="\Kshabazz\Interception\InterceptionListener">
 			<arguments>
-				<string>Http</string>
+				<string>\Kshabazz\Interception\StreamWrappers\Http</string>
 				<string>FIXTURES_PATH</string>
 				<array>
 					<element>

@@ -3,7 +3,6 @@
 use
 	\Kshabazz\BattleNet\D3\Connections\Http,
 	\Kshabazz\BattleNet\D3\Hero,
-	\Kshabazz\Interception\StreamWrappers\Http as HttpWrapper,
 	\Kshabazz\Slib\HttpClient;
 
 /**
@@ -152,7 +151,7 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 		$this->assertEquals( 0, \count($items) );
 	}
 
-	public function test_when_hero_is_duel_wielding()
+	public function test_when_hero_is_dual_wielding()
 	{
 		$json = \file_get_contents( $this->fixturesDir . 'hero-46026639-dual-wield.json' );
 		$itemJson = \file_get_contents( $this->fixturesDir . 'item-FistWeapon_1H_000.json' );
@@ -167,8 +166,6 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 			->method( 'getItem' )
 			->willReturn( $itemJson );
 		$hero = new Hero( $json );
-		// Since this method will make a network call we need to set a save name.
-		HttpWrapper::setSaveFilename( 'item-FistWeapon_1H_000.rsd' );
 		$actual = $hero->isDualWielding( $httpMock );
 		$this->assertTrue( $actual );
 	}
@@ -369,19 +366,15 @@ class HeroTest extends \PHPUnit_Framework_TestCase
 		$this->assertEquals( 'unarmed', $actual );
 	}
 
+	/**
+	 * @interceptions hero-with-one-handed-weapon
+	 */
 	public function test_weaponStatus_equipped()
 	{
-		\Kshabazz\Interception\StreamWrappers\Http::persistSaveFile( 'hero-with-one-handed-weapon' );
 		$hero = new Hero( $this->json );
 		$httpClient = $this->getHttpClient();
 		$actual = $hero->weaponStatus( $httpClient );
 		$this->assertEquals( 'one-handed', $actual );
-	}
-
-	public function test_factory()
-	{
-		$actual = Hero::factory( API_KEY, 'msuBREAKER#1374', $this->heroId );
-		$this->assertInstanceOf( '\\Kshabazz\\BattleNet\\D3\\Hero', $actual );
 	}
 
 	/**
