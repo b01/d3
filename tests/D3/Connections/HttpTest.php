@@ -106,6 +106,9 @@ class HttpTest extends \PHPUnit_Framework_TestCase
 		$bnr->getHero( 'test' );
 	}
 
+	/**
+	 * @interception getHero-numeric-string
+	 */
 	public function test_getHero_work_with_numeric_string()
 	{
 		$httpClient = new HttpClient();
@@ -162,6 +165,16 @@ class HttpTest extends \PHPUnit_Framework_TestCase
 		$bnrClient = new Http( $this->apiKey, $this->battleNetId, $httpClient );
 		$actual = $bnrClient->getItem( '4321' );
 		$this->assertNull( $actual );
+	}
+
+	/**
+	 * @expectedException \InvalidArgumentException
+	 * @expectedExceptionMessage Invalid API key passed in
+	 */
+	public function test_bad_api_key()
+	{
+		$httpClient = new HttpClient();
+		$bnrClient = new Http( null, $this->battleNetId, $httpClient );
 	}
 }
 ?>
