@@ -1,0 +1,132 @@
+HTTP/1.1 200 OK
+Date: Sat, 24 Oct 2015 19:29:25 GMT
+Server: Apache
+X-Frame-Options: SAMEORIGIN
+Last-Modified: Mon, 12 Oct 2015 21:57:32 GMT
+Content-Language: en-US
+Vary: Accept-Encoding
+Connection: close
+Content-Type: application/json;charset=UTF-8
+
+{
+  "id" : "Unique_Helm_006_x1",
+  "name" : "Mempo of Twilight",
+  "icon" : "unique_helm_006_x1_demonhunter_male",
+  "displayColor" : "orange",
+  "tooltipParams" : "item/mempo-of-twilight",
+  "requiredLevel" : 60,
+  "itemLevel" : 60,
+  "stackSizeMax" : 0,
+  "bonusAffixes" : 2,
+  "bonusAffixesMax" : 2,
+  "accountBound" : true,
+  "flavorText" : "The helmet of the last of the honor-bound warriors. He roamed the far east long ago and lived and died by his code of honor.",
+  "typeName" : "Legendary Helm",
+  "type" : {
+    "twoHanded" : false,
+    "id" : "Helm"
+  },
+  "damageRange" : "0–0 Damage",
+  "armor" : {
+    "min" : 397.0,
+    "max" : 471.0
+  },
+  "slots" : [ "head" ],
+  "attributes" : {
+    "primary" : [ {
+      "text" : "+81–85 Resistance to All Elements",
+      "color" : "blue",
+      "affixType" : "default"
+    }, {
+      "text" : "Attack Speed Increased by 5.0–6.0%",
+      "color" : "blue",
+      "affixType" : "default"
+    } ],
+    "secondary" : [ ],
+    "passive" : [ ]
+  },
+  "attributesRaw" : {
+    "Sockets" : {
+      "min" : 1.0,
+      "max" : 1.0
+    },
+    "Durability_Max" : {
+      "min" : 500.0,
+      "max" : 1000.0
+    },
+    "Armor_Item" : {
+      "min" : 397.5,
+      "max" : 471.5
+    },
+    "Durability_Cur" : {
+      "min" : 500.0,
+      "max" : 1000.0
+    },
+    "Resistance_All" : {
+      "min" : 81.0,
+      "max" : 85.0
+    },
+    "Attacks_Per_Second_Percent" : {
+      "min" : 0.05,
+      "max" : 0.06
+    }
+  },
+  "randomAffixes" : [ {
+    "oneOf" : [ {
+      "attributes" : {
+        "primary" : [ {
+          "text" : "+330–524 Dexterity",
+          "color" : "blue",
+          "affixType" : "default"
+        } ],
+        "secondary" : [ ],
+        "passive" : [ ]
+      },
+      "attributesRaw" : {
+        "Dexterity_Item" : {
+          "min" : 330.0,
+          "max" : 524.0
+        }
+      }
+    }, {
+      "attributes" : {
+        "primary" : [ {
+          "text" : "+330–524 Strength",
+          "color" : "blue",
+          "affixType" : "default"
+        } ],
+        "secondary" : [ ],
+        "passive" : [ ]
+      },
+      "attributesRaw" : {
+        "Strength_Item" : {
+          "min" : 330.0,
+          "max" : 524.0
+        }
+      }
+    }, {
+      "attributes" : {
+        "primary" : [ {
+          "text" : "+330–524 Intelligence",
+          "color" : "blue",
+          "affixType" : "default"
+        } ],
+        "secondary" : [ ],
+        "passive" : [ ]
+      },
+      "attributesRaw" : {
+        "Intelligence_Item" : {
+          "min" : 330.0,
+          "max" : 524.0
+        }
+      }
+    } ]
+  } ],
+  "gems" : [ ],
+  "socketEffects" : [ ],
+  "craftedBy" : [ ],
+  "seasonRequiredToDrop" : -1,
+  "isSeasonRequiredToDrop" : false,
+  "description" : null,
+  "blockChance" : "+0.0% Chance to Block"
+}

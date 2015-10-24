@@ -1,0 +1,15 @@
+HTTP/1.1 504 Gateway Timeout
+Content-Type: application/json
+Date: Sat, 24 Oct 2015 19:19:38 GMT
+Server: Mashery Proxy
+X-Mashery-Error-Code: ERR_504_GATEWAY_TIMEOUT
+X-Mashery-Responder: prod-j-worker-us-east-1e-105.mashery.com
+X-Plan-QPS-Allotted: 100
+X-Plan-QPS-Current: 1
+X-Plan-Quota-Allotted: 36000
+X-Plan-Quota-Current: 32
+X-Plan-Quota-Reset: Saturday, October 24, 2015 8:00:00 PM GMT
+Content-Length: 38
+Connection: Close
+
+{"code":504, "type":"Gateway Timeout"}

@@ -176,5 +176,18 @@ class HttpTest extends \PHPUnit_Framework_TestCase
 		$httpClient = new HttpClient();
 		$bnrClient = new Http( null, $this->battleNetId, $httpClient );
 	}
+
+	/**
+	 * @interception getItem-Unique_Helm_006_x1
+	 */
+	public function test_updated_item_url_with_id_instead_of_hash()
+	{
+		$itemId = 'Unique_Helm_006_x1';
+		$httpClient = new HttpClient();
+		$bnrClient = new Http( $this->apiKey, $this->battleNetId, $httpClient );
+		$itemJson = $bnrClient->getItem( $itemId );
+		$item = \json_decode( $itemJson, TRUE );
+		$this->assertEquals( $itemId, $item['id'] );
+	}
 }
 ?>
