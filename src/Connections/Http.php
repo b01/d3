@@ -15,9 +15,9 @@ class Http implements Connection
 {
 	const
 		/** @const string URL for obtaining a profile from Battle.net */
-		API_PROFILE_URL = 'https://%s.api.battle.net/d3/profile/%s/?locale=%s&apikey=%s',
+		API_PROFILE_URL = 'https://%s.api.battle.net/d3/profile/%s/?&locale=%s&apikey=%s',
 		/** @const string */
-		API_HERO_URL = 'https://%s.api.battle.net/d3/profile/%s/hero/%d?locale=%s&apikey=%s',
+		API_HERO_URL = 'https://%s.api.battle.net/d3/profile/%s/hero/%d?&locale=%s&apikey=%s',
 		/** @const string */
 		API_ITEM_URL = 'https://%s.api.battle.net/d3/data/%s&locale=%s&apikey=%s';
 
