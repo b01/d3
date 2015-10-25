@@ -19,7 +19,7 @@ class Http implements Connection
 		/** @const string */
 		API_HERO_URL = 'https://%s.api.battle.net/d3/profile/%s/hero/%d?&locale=%s&apikey=%s',
 		/** @const string */
-		API_ITEM_URL = 'https://%s.api.battle.net/d3/data/%s&locale=%s&apikey=%s';
+		API_ITEM_URL = 'https://%s.api.battle.net/d3/data/%s?&locale=%s&apikey=%s';
 
 	private
 		/** @var string Key obtained for use with Diablo 3 REST service. */
