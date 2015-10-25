@@ -156,6 +156,7 @@ class Http implements Connection
 	 *
 	 * @param array $pItemHashes List of item hash IDs.
 	 * @return array|null Item models
+	 * @deprecated Use getItem instead.
 	 */
 	public function getItemsAsModels( array $pItemHashes )
 	{

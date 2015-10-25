@@ -17,7 +17,7 @@ class Sql extends SqlClient implements Connection
 		INSERT_REQUEST = 'INSERT INTO `battlenet_api_request` (`battle_net_id`, `ip_address`, `url`, `date_number`, `date_added`) VALUES(:battleNetId, :ipAddress, :url, :dateNumber, :dateAdded);',
 		SELECT_REQUEST = 'SELECT `ip_address`, `url`, `date`, `date_added` FROM `battlenet_api_request` WHERE  `date` = :date;',
 		SELECT_ITEM = 'SELECT `hash`, `id`, `name`, `item_type`, `json`, `ip_address`, `last_updated`, `date_added` FROM `d3_items` WHERE `%s` = :selectValue;',
-		INSERT_ITEM = 'INSERT INTO `d3_items` (`hash`, `id`, `sha3Uid`, `name`, `item_type`, `json`, `ip_address`, `last_updated`, `date_added`) VALUES(:hash, :id, :sha3Uid, :name, :itemType, :json, :ipAddress, :lastUpdate, :dateAdded);',
+		INSERT_ITEM = 'INSERT INTO `d3_items` (`hash`, `id`, `name`, `item_type`, `json`, `ip_address`, `last_updated`, `date_added`) VALUES(:hash, :id, :name, :itemType, :json, :ipAddress, :lastUpdate, :dateAdded);',
 		SELECT_HERO = 'SELECT `id`, `battle_net_id`, `json`, `ip_address`, `last_updated`, `date_added` FROM `d3_heroes` WHERE `id` = :id;',
 		INSERT_HERO = 'INSERT INTO `d3_heroes` (`id`, `battle_net_id`, `json`, `ip_address`, `last_updated`, `date_added`) VALUES(:heroId, :battleNetId, :json, :ipAddress, :lastUpdated, :dateAdded) ON DUPLICATE KEY UPDATE `json` = VALUES(json), `ip_address` = VALUES(ip_address), `last_updated` = VALUES(last_updated);';
 
@@ -100,6 +100,7 @@ class Sql extends SqlClient implements Connection
 
 	/**
 	 * @inherit
+	 * @deprecated Use getItem instead.
 	 */
 	public function getItemsAsModels( array $pItemHashes )
 	{
@@ -165,28 +166,25 @@ class Sql extends SqlClient implements Connection
 	}
 
 	/**
-	 * Save the item locally in a database.
+	 * Save the item to a database.
 	 *
-	 * @param \Kshabazz\BattleNet\D3\Item $pItem
+	 * @param string $pName
+	 * @param string $pTypeId
+	 * @param string $pTooltipParams This will only be set when the item comes from Battle.net.
 	 * @param string $shaString A unique string to use as a SHA seed for the item SHA value in the database.
+	 * @param $pJson
 	 * @return bool
+	 * @throws \Exception
 	 */
-	public function saveItem( Item $pItem, $shaString )
+	public function saveItem( $pName, $pTypeId, $pTooltipParams, $pJson )
 	{
-		$itemName = $pItem->name();
-		/** @var \stdClass $itemType */
-		$itemType = $pItem->type();
-		$id = $pItem->id();
-		$tooltipParams = $pItem->tooltipParams();
-		$json = $pItem->json();
+		$shaString = sha1($pTooltipParams, TRUE);
 		$utcTime = \gmdate( 'Y-m-d H:i:s' );
 		$params = [
-			'hash' => [ $tooltipParams, \PDO::PARAM_STR ],
-			'id' => [ $id, \PDO::PARAM_STR ],
-			'sha3Uid' => [ sha1($shaString, TRUE), \PDO::PARAM_STR ],
-			'name' => [ $itemName, \PDO::PARAM_STR ],
-			'itemType' => [ $itemType->id, \PDO::PARAM_STR ],
-			'json' => [ $json, \PDO::PARAM_STR ],
+			'hash' => [ $pTooltipParams, \PDO::PARAM_STR ],
+			'name' => [ $pName, \PDO::PARAM_STR ],
+			'itemType' => [ $pTypeId, \PDO::PARAM_STR ],
+			'json' => [ $pJson, \PDO::PARAM_STR ],
 			'ipAddress' => [ $this->ipAddress, \PDO::PARAM_STR ],
 			'lastUpdate' => [ $utcTime, \PDO::PARAM_STR ],
 			'dateAdded' => [ $utcTime, \PDO::PARAM_STR ]

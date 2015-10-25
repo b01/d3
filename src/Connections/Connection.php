@@ -38,6 +38,7 @@ interface Connection
 	 * @param array $pItemHashes List of item hashes.
 	 * @return array|null
 	 * @throws \InvalidArgumentException
+	 * @deprecated Use getItem instead.
 	 */
 	public function getItemsAsModels( array $pItemHashes );
 
